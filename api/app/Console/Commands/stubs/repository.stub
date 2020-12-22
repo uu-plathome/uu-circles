@@ -1,0 +1,24 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass
+{
+    /**
+     * Create a new repository instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * invoke
+     *
+     * @return void
+     */
+    public function invoke()
+    {
+    }
+}

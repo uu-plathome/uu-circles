@@ -1,0 +1,12 @@
+version: "3.8"
+volumes:
+  db-store:
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    ports:
+      - ${DB_PORT:-3306}:3306
+    volumes:
+      - db-store:/var/lib/mysql
