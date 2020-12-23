@@ -12,6 +12,26 @@
 
 namespace App\Models{
 /**
+ * App\Models\AdminUser
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereUserId($value)
+ */
+	class AdminUser extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -25,8 +45,10 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\AdminUser|null $adminUser
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User canAdminLogin()
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -42,6 +64,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  */
-	class User extends \Eloquent {}
+	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
 }
 

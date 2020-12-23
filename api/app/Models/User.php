@@ -6,6 +6,7 @@ use App\Enum\UserModel;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +50,19 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * 管理者としてLoginできるユーザーを絞り込む
+     * @param $query
+     * @return User|Builder|\Illuminate\Database\Query\Builder
+     */
+    public function scopeCanAdminLogin($query)
+    {
+        /** @var User $query */
+        return $query->whereActive(true)
+                ->whereNotNull(UserModel::email_verified_at)
+                ->whereHas('adminUser');
+    }
+
+    /**
      * Determine if the user has verified their email address.
      *
      * @return bool
@@ -89,5 +103,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);
+    }
+
+    public function adminUser(): HasOne
+    {
+        return $this->hasOne(AdminUser::class);
     }
 }

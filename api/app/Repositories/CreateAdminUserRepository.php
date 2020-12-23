@@ -11,15 +11,6 @@ use Illuminate\Support\Str;
 class CreateAdminUserRepository
 {
     /**
-     * Create a new repository instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * invoke
      *
      * @param array $inputs
@@ -30,6 +21,9 @@ class CreateAdminUserRepository
         $inputsForUser = $this->getUserInputData($inputs);
 
         $user = User::create($inputsForUser);
+
+        // 管理者テーブルの作成
+        $user->adminUser()->create();
 
         return $user->id;
     }
