@@ -21,3 +21,6 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
+.min-w-48 {
+  min-width: 48px;
+}
