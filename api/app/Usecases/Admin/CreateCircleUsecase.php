@@ -20,13 +20,15 @@ class CreateCircleUsecase
         DB::beginTransaction();
         $circle = $circleValueObject->toCircleModel();
         $circle->createSlugWhenSlugNotExist();
+        $circleInformation = $circleValueObject->toCircleInformationModel();
 
         try {
             $circle->save();
+            $circle->circleInformation()->create($circleInformation->toArray());
 
             DB::commit();
 
-            return CircleValueObject::byEloquent($circle);
+            return CircleValueObject::byEloquent($circle, $circleInformation);
         } catch (Exception $e) {
             DB::rollBack();
         }

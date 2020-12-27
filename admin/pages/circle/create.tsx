@@ -22,6 +22,7 @@ const CreatePage: NextPage = () => {
         event.preventDefault()
 
         await createCircle({
+            name: name.value,
             slug: slug.value
         }, authContext.accessToken)
         await router.push('/circle')

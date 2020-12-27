@@ -18,14 +18,21 @@ class UpdateCircleUsecase
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        DB::beginTransaction();
+        $circle = $circleValueObject->toCircleModel();
+        $circleInformation = $circleValueObject->toCircleInformationModel();
 
+        DB::beginTransaction();
         try {
-            $circle = $circleValueObject->toCircleModel();
             $circle->save();
+            $circle->circleInformation->fill($circleInformation->toArray())->save();
 
             DB::commit();
-            return CircleValueObject::byEloquent(Circle::whereId($circle->id)->firstOrFail());
+
+            $circle = Circle::whereId($circle->id)->firstOrFail();
+            return CircleValueObject::byEloquent(
+                $circle,
+                $circle->circleInformation
+            );
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

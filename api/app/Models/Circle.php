@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
 class Circle extends Model
@@ -12,6 +13,11 @@ class Circle extends Model
         'slug',
         'release',
     ];
+
+    public function circleInformation(): HasOne
+    {
+        return $this->hasOne(CircleInformation::class);
+    }
 
     public function circleUsers(): HasMany
     {

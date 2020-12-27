@@ -32,7 +32,7 @@ class CreateCircleController extends Controller
         );
 
         return [
-            'data' => Arr::camel_keys($circle->toCircleModel()->toArray())
+            'data' => Arr::camel_keys($circle->toArray())
         ];
     }
 }

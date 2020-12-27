@@ -3,16 +3,24 @@
 namespace App\Usecases\Admin;
 
 use App\Models\Circle;
+use App\ValueObjects\CircleValueObject;
 
 class IndexCircleUsecase
 {
     /**
      * invoke
      *
-     * @return array
+     * @return CircleValueObject[]
      */
     public function invoke(): array
     {
-        return Circle::get()->all();
+        $circles = Circle::with('circleInformation')->get();
+
+        return $circles->map(fn (Circle $circle) =>
+            CircleValueObject::byEloquent(
+                $circle,
+                $circle->circleInformation
+            )
+        )->all();
     }
 }

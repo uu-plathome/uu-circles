@@ -3,6 +3,7 @@ import { Circle, CreateCircle } from "./types";
 
 export const createCircle = async (circle: CreateCircle, accessToken: string) => {
     await axiosInstance.post('/circle', {
+        name: circle.name,
         slug: circle.slug,
         release: false
     } as CreateCircle, {
