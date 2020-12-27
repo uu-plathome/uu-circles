@@ -1,8 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FC } from 'react';
 import Image from 'next/image'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { Circle } from '@/infra/api/types';
 
-const CircleListItem = () => {
+type Props = {
+    circle: Circle
+}
+const CircleListItem: FC<Props> = ({ circle }) => {
     return (
         <div className="text-white flex">
         <div>
@@ -24,9 +29,9 @@ const CircleListItem = () => {
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">公開中</p>
                     <div className="flex justify-center h-7 items-center">
                         <FontAwesomeIcon
-                            color="green"
                             size="lg"
-                            icon={faCheckCircle}
+                            color={circle.release ? 'green' : 'red' }
+                            icon={circle.release ? faCheckCircle : faTimesCircle}
                         />
                     </div>
                 </div>

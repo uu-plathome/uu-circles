@@ -50,8 +50,11 @@ const IndexPage: NextPage = () => {
 
                         <div className="border-2 border-gray-800 p-2">
                             {
-                                circles.map((cirlce: Circle) => {
-                                    return <CircleListItem key={`circle-${cirlce.id}`} />
+                                circles.map((circle: Circle) => {
+                                    return <CircleListItem
+                                        key={`circle-${circle.id}`} 
+                                        circle={circle}
+                                    />
                                 })
                             }
                         </div>
