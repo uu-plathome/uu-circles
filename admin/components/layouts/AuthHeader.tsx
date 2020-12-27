@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const AdminHeader: React.FC = () => {
+const AuthHeader: React.FC = () => {
     return (
         <div className="bg-white h-14 flex items-center justify-between px-4">
             <a className="text-black text-xl hover:underline">
@@ -15,4 +15,4 @@ const AdminHeader: React.FC = () => {
     )
 }
 
-export { AdminHeader }
+export { AuthHeader }

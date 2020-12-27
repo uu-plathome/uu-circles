@@ -1,20 +1,33 @@
 
+import { BaseContainer } from '@/components/layouts/BaseContainer'
+import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
 import { useContext } from 'react'
-import Nav from '../components/nav'
+import { BaseHeader } from '../components/layouts/BaseHeader'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
 
   return (
     <div>
-      <Nav />
-      <div className="py-20">
-        <h1 className="text-5xl text-center text-gray-700 dark:text-gray-100">
-          Next.js + Tailwind CSS 2.0
-        </h1>
-      </div>
+      <BaseHeader />
+
+      <BaseContainer>
+        <div className="flex flex-wrap">
+          <div className="w-full lg:w-1/5">
+            <BaseSidebar />
+          </div>
+
+          <div className="w-full lg:w-4/5">
+            <div className="py-10">
+              <h1 className="text-2xl text-gray-700 dark:text-gray-100">
+                管理画面へようこそ
+              </h1>
+            </div>
+          </div>
+        </div>
+      </BaseContainer>
     </div>
   )
 }

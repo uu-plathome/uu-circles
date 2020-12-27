@@ -25,3 +25,16 @@ export interface User {
     apiToken: string
     type: 'user'
 }
+
+export interface CreateCircle {
+    slug: string
+    release?: boolean
+}
+
+export interface Circle {
+    id: number
+    slug: string
+    release: boolean
+    createdAt: string
+    updatedAt: string
+}

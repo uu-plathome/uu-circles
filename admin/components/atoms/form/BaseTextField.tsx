@@ -5,23 +5,37 @@ type Props = {
     id: string
     name: string
     value: string
+    note?: string
+    required?: boolean
+    placeholder?: string
     onChange(e: any): void
 }
-const BaseTextField: React.FC<Props> = ({ label, id, name, value, onChange }) => {
+const BaseTextField: React.FC<Props> = ({ label, id, name, note, value, required, placeholder, onChange }) => {
     return (
-        <div className="flex flex-col space-y-1 mb-2">
-            <label
-                className="text-sm font-semibold text-white"
-                htmlFor={id}
-            >{label}</label>
+        <div className="flex flex-col space-y-1 mb-4">
+            <div className="flex items-center mb-1">
+                <label
+                    className="font-semibold text-white mr-2"
+                    htmlFor={id}
+                >{label}</label>
+                {required ? (
+                    <span className="text-white text-xs bg-red-600 rounded p-1">
+                        必須
+                    </span>
+                ) : ''}
+            </div>
             <input
                 type="text"
                 id={id}
                 name={name}
                 value={value}
+                placeholder={placeholder}
                 onChange={onChange}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
             />
+            {note ? (
+                <p className="text-sm text-gray-400">※{note}</p>
+            ) : ''}
         </div>
     )
 }

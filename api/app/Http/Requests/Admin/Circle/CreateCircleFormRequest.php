@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Circle;
 
+use App\Enum\CircleModel;
 use App\Models\Circle;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
@@ -27,8 +28,8 @@ class CreateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'slug'    => [ 'nullable', 'string' ],
-            'release' => [ 'required', 'boolean' ],
+            CircleModel::slug    => [ 'nullable', 'string' ],
+            CircleModel::release => [ 'required', 'boolean' ],
         ]);
     }
 

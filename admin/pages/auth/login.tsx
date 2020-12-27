@@ -1,4 +1,4 @@
-import { AdminHeader } from "@/components/layouts/AdminHeader"
+import { AuthHeader } from "@/components/layouts/AuthHeader"
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
 import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { login } from "@/infra/api/auth"
@@ -32,12 +32,13 @@ const Login: NextPage = () => {
         }
 
         authContext.setAccessToken(user.apiToken)
+        localStorage.setItem('accessToken', user.apiToken)
         await router.push('/')
     }
 
     return (
         <div>
-            <AdminHeader />
+            <AuthHeader />
 
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">

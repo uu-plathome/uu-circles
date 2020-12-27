@@ -21,6 +21,11 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
-.min-w-48 {
-  min-width: 48px;
+.min-w-120 {
+  min-width: 120px;
+}
+
+.square-image {
+  width: 100px !important;
+  height: 100px !important;
 }

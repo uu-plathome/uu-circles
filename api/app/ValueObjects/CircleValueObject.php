@@ -21,6 +21,7 @@ class CircleValueObject
         $circleValueObject->release = $circle->release;
         $circleValueObject->created_at = $circle->created_at;
         $circleValueObject->updated_at = $circle->updated_at;
+        return $circleValueObject;
     }
 
     public function toCircleModel(): Circle
