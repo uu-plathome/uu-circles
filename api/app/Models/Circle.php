@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\CircleModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -10,8 +11,8 @@ use Illuminate\Support\Str;
 class Circle extends Model
 {
     protected $fillable = [
-        'slug',
-        'release',
+        CircleModel::slug,
+        CircleModel::release,
     ];
 
     public function circleInformation(): HasOne

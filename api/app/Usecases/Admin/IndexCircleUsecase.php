@@ -14,7 +14,7 @@ class IndexCircleUsecase
      */
     public function invoke(): array
     {
-        $circles = Circle::with('circleInformation')->get();
+        $circles = Circle::with('circleInformation')->whereHas('circleInformation')->get();
 
         return $circles->map(fn (Circle $circle) =>
             CircleValueObject::byEloquent(

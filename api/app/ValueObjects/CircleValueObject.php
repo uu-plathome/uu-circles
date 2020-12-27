@@ -91,13 +91,14 @@ class CircleValueObject
 
     public function toCircleModel(): Circle
     {
-        return new Circle([
-            'id'         => $this->id,
+        $circle = new Circle([
             'slug'       => $this->slug,
             'release'    => $this->release,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+        $circle->id = $this->id;
+        return $circle;
     }
 
     public function toCircleInformationModel(): CircleInformation

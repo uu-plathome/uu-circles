@@ -2,6 +2,8 @@
 
 namespace App\Usecases\Admin;
 
+use App\Enum\CircleInformationModel;
+use App\Enum\CircleModel;
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\DB;
@@ -18,20 +20,18 @@ class UpdateCircleUsecase
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        $circle = $circleValueObject->toCircleModel();
-        $circleInformation = $circleValueObject->toCircleInformationModel();
-
         DB::beginTransaction();
         try {
-            $circle->save();
-            $circle->circleInformation->fill($circleInformation->toArray())->save();
+            /** @var Circle $newCircle */
+            $newCircle = Circle::whereId($circleValueObject->id)->firstOrFail();
+            $newCircle->fill($circleValueObject->toArray())->save();
+            $newCircle->circleInformation->fill($circleValueObject->toArray())->save();
 
             DB::commit();
 
-            $circle = Circle::whereId($circle->id)->firstOrFail();
             return CircleValueObject::byEloquent(
-                $circle,
-                $circle->circleInformation
+                $newCircle,
+                $newCircle->circleInformation
             );
         } catch (Exception $e) {
             DB::rollBack();

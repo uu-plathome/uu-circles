@@ -30,7 +30,7 @@ class UpdateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleModel::slug                                  => [ 'required', 'string', 'max:50', 'unique:circles,slug,'.$this->id,'id'],
+            CircleModel::slug                                  => [ 'required', 'string', 'max:50', 'unique:circles,slug,'.$this->id.'id'],
             CircleModel::release                               => [ 'required', 'boolean' ],
             CircleInformationModel::name                       => [ 'required', 'string', 'max:255' ],
             CircleInformationModel::name_kana                  => [ 'nullable', 'string', 'max:255' ],
@@ -66,10 +66,12 @@ class UpdateCircleFormRequest extends FormRequest
 
     public function makeCircleValueObject(): CircleValueObject
     {
+        $circle = new Circle(
+            Arr::snake_keys($this->validated())
+        );
+        $circle->id = $this->id;
         return CircleValueObject::byEloquent(
-            new Circle(
-                Arr::snake_keys($this->validated())
-            ),
+            $circle,
             new CircleInformation(
                 Arr::snake_keys($this->validated())
             )

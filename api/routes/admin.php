@@ -16,4 +16,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/circle', 'Admin\Circle\IndexCircleController');
     Route::post('/circle', 'Admin\Circle\CreateCircleController');
+    Route::get('/circle/{id}', 'Admin\Circle\ShowCircleController');
+    Route::put('/circle/{id}', 'Admin\Circle\UpdateCircleController');
 });
