@@ -12,12 +12,18 @@ export const login = async ({
             password
         })
 
-        return data
+        return {
+            ...data,
+            type: 'user'
+        }
     } catch (_e) {
         const e = _e as AxiosError<LoginValidationError>
 
         if (e.response && e.response.status === 422 && e.response.data) {
-            return e.response.data
+            return {
+                ...e.response.data,
+                type: 'loginValidationError'
+            }
         }
 
         console.error(e)

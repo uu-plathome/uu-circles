@@ -1,6 +1,12 @@
+
+import { AuthContext } from '@/contexts/AuthContext'
+import { NextPage } from 'next'
+import { useContext } from 'react'
 import Nav from '../components/nav'
 
-export default function IndexPage() {
+const IndexPage: NextPage = () => {
+  const authContext = useContext(AuthContext)
+
   return (
     <div>
       <Nav />
@@ -12,3 +18,5 @@ export default function IndexPage() {
     </div>
   )
 }
+
+export default IndexPage

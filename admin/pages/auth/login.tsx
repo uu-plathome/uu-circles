@@ -5,21 +5,33 @@ import { login } from "@/infra/api/auth"
 import { useInput } from "@/hooks/useInput"
 import { NextPage } from "next"
 import { useRouter } from 'next/router'
-
+import { useContext } from "react"
+import { AuthContext } from "@/contexts/AuthContext"
+import { isLoginValidationError } from "@/infra/api/types"
 
 const Login: NextPage = () => {
     const usernameOrEmail = useInput('')
     const password = useInput('')
     const router = useRouter()
+    const authContext = useContext(AuthContext)
+
+    if (authContext.accessToken) {
+        router.push('/')
+    }
 
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        await login({
+        const user = await login({
             usernameOrEmail: usernameOrEmail.value,
             password: password.value
         })
 
+        if (isLoginValidationError(user)) {
+            return user
+        }
+
+        authContext.setAccessToken(user.apiToken)
         await router.push('/')
     }
 
