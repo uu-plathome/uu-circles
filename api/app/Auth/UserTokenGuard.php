@@ -3,14 +3,31 @@
 namespace App\Auth;
 
 use App\Enum\UserModel;
+use App\Models\User;
 use Illuminate\Auth\TokenGuard;
+use App\Auth\UserProvider;
+use Illuminate\Http\Request;
 
 class UserTokenGuard extends TokenGuard
 {
+    public function __construct(
+        UserProvider $provider,
+        Request $request,
+        $inputKey = 'api_token',
+        $storageKey = 'api_token',
+        $hash = false
+    ) {
+        $this->hash = $hash;
+        $this->request = $request;
+        $this->provider = $provider;
+        $this->inputKey = $inputKey;
+        $this->storageKey = $storageKey;
+    }
+
     /**
      * Get the currently authenticated user.
      *
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     * @return User|\Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function user()
     {

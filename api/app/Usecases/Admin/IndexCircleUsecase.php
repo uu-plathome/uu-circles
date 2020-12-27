@@ -9,10 +9,10 @@ class IndexCircleUsecase
     /**
      * invoke
      *
-     * @return void
+     * @return array
      */
-    public function invoke()
+    public function invoke(): array
     {
-        return Circle::get();
+        return Circle::get()->all();
     }
 }

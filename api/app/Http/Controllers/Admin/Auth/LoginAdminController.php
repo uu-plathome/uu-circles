@@ -79,12 +79,10 @@ class LoginAdminController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        $token = $this->guard()->user()->api_token;
+        /** @var User $user */
+        $user = $this->guard()->user();
 
-        return response()->json(Arr::camel_keys([
-            'token'      => $token,
-            'token_type' => 'bearer',
-        ]));
+        return response()->json(Arr::camel_keys($user->toArray()));
     }
 
     /**
