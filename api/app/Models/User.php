@@ -105,8 +105,43 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new VerifyEmail);
     }
 
+    /**
+     * 管理者かどうか
+     *
+     * @return bool
+     */
+    public function isAdminUser(): bool
+    {
+        return AdminUser::whereUserId($this->id)->exists();
+    }
+
+    /**
+     * サークルUserかどうか
+     *
+     * @return bool
+     */
+    public function isCircleUser(): bool
+    {
+        return CircleUser::whereUserId($this->id)->exists();
+    }
+
     public function adminUser(): HasOne
     {
         return $this->hasOne(AdminUser::class);
+    }
+
+    public function circleUser(): HasOne
+    {
+        return $this->hasOne(CircleUser::class);
+    }
+
+    public function createApiToken()
+    {
+        $this->api_token = Str::random(80);
+    }
+
+    public function createRememberToken()
+    {
+        $this->remember_token = Str::random(10);
     }
 }

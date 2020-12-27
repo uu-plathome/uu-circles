@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Admin\Auth;
 
 use App\Enum\UserModel;
+use App\Models\User;
 use App\Rules\RegexPassword;
 use App\Support\Arr;
+use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterAdminFormRequest extends FormRequest
@@ -31,5 +33,10 @@ class RegisterAdminFormRequest extends FormRequest
             UserModel::email    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             UserModel::password => ['required', 'string', new RegexPassword() ],
         ]);
+    }
+
+    public function makeAdminUserValueObject(): AdminUserValueObject
+    {
+        return AdminUserValueObject::byEloquent(new User($this->validated()));
     }
 }

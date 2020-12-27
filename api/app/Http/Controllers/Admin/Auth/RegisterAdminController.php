@@ -26,7 +26,7 @@ class RegisterAdminController extends Controller
     public function __invoke(RegisterAdminFormRequest $request): array
     {
         $user = $this->registerAdminUserUsecase->invoke(
-            Arr::snake_keys($request->all())
+            $request->makeAdminUserValueObject()
         );
 
         return Arr::camel_keys([

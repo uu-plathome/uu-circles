@@ -3,11 +3,14 @@ import { BlueButton } from "@/components/atoms/buttons/BlueButton"
 import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { login } from "@/infra/api/auth"
 import { useInput } from "@/hooks/useInput"
+import { NextPage } from "next"
+import { useRouter } from 'next/router'
 
 
-const Login = () => {
+const Login: NextPage = () => {
     const usernameOrEmail = useInput('')
     const password = useInput('')
+    const router = useRouter()
 
     const onSubmit = async (event) => {
         event.preventDefault()
@@ -16,6 +19,8 @@ const Login = () => {
             usernameOrEmail: usernameOrEmail.value,
             password: password.value
         })
+
+        await router.push('/')
     }
 
     return (

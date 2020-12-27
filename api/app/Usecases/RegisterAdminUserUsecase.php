@@ -3,11 +3,11 @@
 namespace App\Usecases;
 
 use App\Models\User;
-use App\Repositories\CreateAdminUserRepository;
-use App\Repositories\GetAdminUserRepository;
+use App\ValueObjects\AdminUserValueObject;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterAdminUserUsecase
 {
@@ -32,23 +32,29 @@ class RegisterAdminUserUsecase
     /**
      * invoke
      *
-     * @param array $inputs
-     * @return array
+     * @param AdminUserValueObject $adminUserValueObject
+     * @return AdminUserValueObject
      * @throws Exception
      */
-    public function invoke(array $inputs): array
+    public function invoke(AdminUserValueObject $adminUserValueObject): AdminUserValueObject
     {
-        DB::beginTransaction();
+        $user = $adminUserValueObject->toUserModel();
+        $user->display_name ??= $user->username;
+        $user->password = Hash::make($user->password);
+        $user->createRememberToken();
+        $user->createApiToken();
 
+        DB::beginTransaction();
         try {
-            $userId = $this->createAdminUserRepository->invoke($inputs);
+            $user->save();
+            $user->adminUser()->create();
 
             DB::commit();
 
             // 認証メールの通知
-            event(new Registered(User::whereId($userId)->first()));
+            event(new Registered($user));
 
-            return $this->getAdminUserRepository->invoke($userId);
+            return AdminUserValueObject::byEloquent($user);
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

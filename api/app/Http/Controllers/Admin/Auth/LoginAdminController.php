@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Enum\UserModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
+use App\Models\User;
 use App\Support\Arr;
 use App\Usecases\LoginAdminUserUsecase;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -54,13 +55,14 @@ class LoginAdminController extends Controller
             return false;
         }
 
+        /** @var User $user */
         $user = $this->guard()->user();
         // メールアドレスが認証されているか
         if (! $user->hasVerifiedEmail()) {
             return false;
         }
         // 管理者かどうか
-        if (! $user->whereHas('adminUser')->first()) {
+        if (! $user->isAdminUser()) {
             return false;
         }
 
