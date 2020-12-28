@@ -12,8 +12,8 @@ Route::middleware('auth:api')->group(function () {
         return Arr::camel_keys($request->user()->toArray());
     });
 
-    Route::post('/register', 'Admin\Auth\RegisterAdminController')->name('admin.auth.register');
-
+    Route::get('/admin-user', 'Admin\AdminUser\IndexAdminUserController');
+    Route::post('/admin-user', 'Admin\Auth\RegisterAdminController')->name('admin.auth.register');
     Route::get('/circle', 'Admin\Circle\IndexCircleController');
     Route::post('/circle', 'Admin\Circle\CreateCircleController');
     Route::get('/circle/{id}', 'Admin\Circle\ShowCircleController');

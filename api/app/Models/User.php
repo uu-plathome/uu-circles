@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -25,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         UserModel::username,
         UserModel::email,
         UserModel::password,
+        UserModel::active,
         UserModel::api_token,
         UserModel::remember_token,
     ];
@@ -49,6 +52,12 @@ class User extends Authenticatable implements MustVerifyEmail
         UserModel::email_verified_at => 'datetime',
     ];
 
+    public function scopeWhereAdminUser($query)
+    {
+        /** @var User $query */
+        return $query->whereHas('adminUser');
+    }
+
     /**
      * 管理者としてLoginできるユーザーを絞り込む
      * @param $query
@@ -59,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         /** @var User $query */
         return $query->whereActive(true)
                 ->whereNotNull(UserModel::email_verified_at)
-                ->whereHas('adminUser');
+                ->whereAdminUser();
     }
 
     /**
@@ -75,11 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Mark the given user's email as verified.
      *
+     * @param string $password
      * @return bool
      */
-    public function markEmailAsVerified()
+    public function markEmailAndPasswordAsVerified(string $password)
     {
         return $this->forceFill([
+            'password'          => Hash::make($password),
             'email_verified_at' => $this->freshTimestamp(),
         ])->save();
     }

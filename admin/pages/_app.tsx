@@ -12,7 +12,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const f = async () => {
-      if (!accessToken) {
+      if (!accessToken && !router.pathname.startsWith('/email/verify')) {
         const localStorageAccessToken = localStorage.getItem('accessToken')
         if (localStorageAccessToken) {
           try {
@@ -33,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     }
 
     f()
-  })
+  }, [accessToken])
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>

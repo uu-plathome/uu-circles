@@ -180,6 +180,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAdminUser()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereApiToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDisplayName($value)

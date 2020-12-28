@@ -36,4 +36,6 @@ class CircleInformationModel
     const github_url = 'github_url';
     const tiktok_url = 'tiktok_url';
     const participation_url = 'participation_url';
+    const created_at = 'created_at';
+    const updated_at = 'updated_at';
 }

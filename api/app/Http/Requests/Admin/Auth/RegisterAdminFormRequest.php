@@ -29,14 +29,18 @@ class RegisterAdminFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username => ['required', 'string', 'max:30', 'alpha_dash'],
-            UserModel::email    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            UserModel::password => ['required', 'string', new RegexPassword() ],
+            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash'],
+            UserModel::display_name => ['nullable', 'string', 'max:50'],
+            UserModel::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
     }
 
     public function makeAdminUserValueObject(): AdminUserValueObject
     {
-        return AdminUserValueObject::byEloquent(new User($this->validated()));
+        $user = new User();
+        $user->display_name = $this->displayName;
+        $user->username = $this->username;
+        $user->email = $this->email;
+        return AdminUserValueObject::byEloquent($user);
     }
 }

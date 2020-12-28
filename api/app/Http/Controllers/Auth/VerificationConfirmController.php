@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
-class VerificationVerifyController extends Controller
+class VerificationConfirmController extends Controller
 {
     /**
      * Mark the user's email address as verified.
@@ -36,8 +36,16 @@ class VerificationVerifyController extends Controller
             ], 400);
         }
 
+        $request->validate([
+            'password' => ['string', 'required', 'min:8'],
+        ]);
+
+        $user->markEmailAndPasswordAsVerified($request->get('password'));
+
+        event(new Verified($user));
+
         return response()->json([
-            'status' => true
+            'status' => __('verification.verified'),
         ]);
     }
 }

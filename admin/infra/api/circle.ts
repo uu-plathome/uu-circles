@@ -2,7 +2,7 @@ import { axiosInstance } from ".";
 import { Circle, CreateCircle } from "./types";
 
 export const createCircle = async (circle: CreateCircle, accessToken: string) => {
-    const { data } = await axiosInstance.post('/circle', {
+    const { data } = await axiosInstance.post('/admin/api/circle', {
         name: circle.name,
         slug: circle.slug,
         release: false
@@ -18,7 +18,7 @@ export const createCircle = async (circle: CreateCircle, accessToken: string) =>
 export const getCircleList = async (accessToken: string) => {
     const { data } = await axiosInstance.get<{
         data: Circle[]
-    }>('/circle', {
+    }>('/admin/api/circle', {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         }
@@ -30,7 +30,7 @@ export const getCircleList = async (accessToken: string) => {
 export const showCircle = async (id: number, accessToken: string) => {
     const { data } = await axiosInstance.get<{
         data: Circle
-    }>(`/circle/${id}`, {
+    }>(`/admin/api/circle/${id}`, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         }
@@ -42,7 +42,7 @@ export const showCircle = async (id: number, accessToken: string) => {
 export const updateCircle = async (id: number, circle: Circle, accessToken: string) => {
     const { data } = await axiosInstance.put<{
         data: Circle
-    }>(`/circle/${id}`, circle, {
+    }>(`/admin/api/circle/${id}`, circle, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         }

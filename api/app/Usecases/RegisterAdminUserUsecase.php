@@ -11,24 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterAdminUserUsecase
 {
-    private CreateAdminUserRepository $createAdminUserRepository;
-
-    private GetAdminUserRepository $getAdminUserRepository;
-
-    /**
-     * Create a new usecase instance.
-     *
-     * @param CreateAdminUserRepository $createAdminUserRepository
-     * @param GetAdminUserRepository $getAdminUserRepository
-     */
-    public function __construct(
-        CreateAdminUserRepository $createAdminUserRepository,
-        GetAdminUserRepository $getAdminUserRepository
-    ) {
-        $this->createAdminUserRepository = $createAdminUserRepository;
-        $this->getAdminUserRepository = $getAdminUserRepository;
-    }
-
     /**
      * invoke
      *
@@ -40,7 +22,9 @@ class RegisterAdminUserUsecase
     {
         $user = $adminUserValueObject->toUserModel();
         $user->display_name ??= $user->username;
-        $user->password = Hash::make($user->password);
+        if ($user->active === null) {
+            $user->active = true;
+        }
         $user->createRememberToken();
         $user->createApiToken();
 

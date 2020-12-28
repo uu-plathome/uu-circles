@@ -16,10 +16,11 @@ class VerifyEmail extends Notification
      */
     protected function verificationUrl($notifiable)
     {
+        $appUrl = 'http://localhost:3000';
         $url = URL::temporarySignedRoute(
             'verification.verify', Carbon::now()->addWeek(), ['userId' => $notifiable->id]
         );
 
-        return $url;
+        return str_replace(url('/api'), $appUrl, $url);
     }
 }

@@ -10,6 +10,19 @@ export interface LoginValidationError {
     type: 'loginValidationError'
 }
 
+export interface VerifyAuthError {
+    status: string
+    type: 'verifyAuthError'
+}
+
+export interface VerifyValidationError {
+    errors: {
+        password: string
+    }
+    message: string
+    type: 'verifyValidationError'
+}
+
 export const isLoginValidationError = (v: User|LoginValidationError): v is LoginValidationError => {
     return v.type === 'loginValidationError'
 }
@@ -21,9 +34,19 @@ export const isUser = (v: User|LoginValidationError): v is User => {
 export interface User {
     id: number
     username: string
+    displayName: string
     email: string
+    emailVerifiedAt: string
+    active: boolean
     apiToken: string
     type: 'user'
+}
+
+export interface RegisterUser {
+    username: string
+    displayName: string
+    email: string
+    type: 'registerUser'
 }
 
 export interface CreateCircle {

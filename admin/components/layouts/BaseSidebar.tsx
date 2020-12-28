@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, faChevronRight, faHome, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faChevronRight, faHome, faBuilding, faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 
@@ -14,6 +14,7 @@ interface SidebarItem {
 const generalSiderbarList = [
     { name: 'ダッシュボード', link: '/', icon: faHome, exact: true },
     { name: 'サークル', link: '/circle', icon: faBuilding, exact: false },
+    { name: '管理者管理', link: '/user/admin', icon: faUser, exact: true },
 ] as SidebarItem[]
 
 /**

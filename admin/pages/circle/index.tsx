@@ -49,14 +49,19 @@ const IndexPage: NextPage = () => {
                         </div>
 
                         <div className="border-2 border-gray-800 p-2">
-                            {
+                            {authContext.accessToken && circles.length > 0 ? (
                                 circles.map((circle: Circle) => {
                                     return <CircleListItem
-                                        key={`circle-${circle.id}`} 
+                                        key={`circle-${circle.id}`}
                                         circle={circle}
                                     />
                                 })
-                            }
+                            ) : ''}
+                            {authContext.accessToken && circles.length === 0 ? (
+                                <div className="py-4">
+                                    <p className="text-white">まだサークルが登録されていません</p>
+                                </div>
+                            ) : ''}
                         </div>
                     </div>
                 </div>

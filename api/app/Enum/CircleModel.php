@@ -8,5 +8,5 @@ class CircleModel
     const slug = 'slug';
     const release = 'release';
     const created_at = 'created_at';
-    const updated_at = 'udpated_at';
+    const updated_at = 'updated_at';
 }
