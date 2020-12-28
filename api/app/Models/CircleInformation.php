@@ -19,6 +19,7 @@ class CircleInformation extends Model
         CircleInformationModel::intro,
         CircleInformationModel::place_of_activity,
         CircleInformationModel::place_of_activity_detail,
+        CircleInformationModel::do_online_activity,
         CircleInformationModel::date_of_activity_monday,
         CircleInformationModel::date_of_activity_tuesday,
         CircleInformationModel::date_of_activity_wednesday,

@@ -22,6 +22,7 @@ class CircleValueObject
     public ?string $intro;
     public ?string $place_of_activity;
     public ?string $place_of_activity_detail;
+    public ?bool $do_online_activity;
     public ?string $date_of_activity_monday;
     public ?string $date_of_activity_tuesday;
     public ?string $date_of_activity_wednesday;
@@ -63,6 +64,7 @@ class CircleValueObject
         $circleValueObject->intro = $circleInformation->intro;
         $circleValueObject->place_of_activity = $circleInformation->place_of_activity;
         $circleValueObject->place_of_activity_detail = $circleInformation->place_of_activity_detail;
+        $circleValueObject->do_online_activity = $circleInformation->do_online_activity;
         $circleValueObject->date_of_activity_monday = $circleInformation->date_of_activity_monday;
         $circleValueObject->date_of_activity_tuesday = $circleInformation->date_of_activity_tuesday;
         $circleValueObject->date_of_activity_wednesday = $circleInformation->date_of_activity_wednesday;
@@ -92,10 +94,10 @@ class CircleValueObject
     public function toCircleModel(): Circle
     {
         $circle = new Circle([
-            'slug'       => $this->slug,
-            'release'    => $this->release,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            CircleModel::slug       => $this->slug,
+            CircleModel::release    => $this->release,
+            CircleModel::created_at => $this->created_at,
+            CircleModel::updated_at => $this->updated_at,
         ]);
         $circle->id = $this->id;
         return $circle;
@@ -114,6 +116,7 @@ class CircleValueObject
             CircleInformationModel::intro => $this->intro,
             CircleInformationModel::place_of_activity => $this->place_of_activity,
             CircleInformationModel::place_of_activity_detail => $this->place_of_activity_detail,
+            CircleInformationModel::do_online_activity => $this->do_online_activity !== null ? $this->do_online_activity : true,
             CircleInformationModel::date_of_activity_monday => $this->date_of_activity_monday,
             CircleInformationModel::date_of_activity_tuesday => $this->date_of_activity_tuesday,
             CircleInformationModel::date_of_activity_wednesday => $this->date_of_activity_wednesday,
@@ -155,6 +158,7 @@ class CircleValueObject
             CircleInformationModel::intro => $this->intro,
             CircleInformationModel::place_of_activity => $this->place_of_activity,
             CircleInformationModel::place_of_activity_detail => $this->place_of_activity_detail,
+            CircleInformationModel::do_online_activity => $this->do_online_activity,
             CircleInformationModel::date_of_activity_monday => $this->date_of_activity_monday,
             CircleInformationModel::date_of_activity_tuesday => $this->date_of_activity_tuesday,
             CircleInformationModel::date_of_activity_wednesday => $this->date_of_activity_wednesday,

@@ -25,6 +25,7 @@ class CreateCircleInformationTable extends Migration
             $table->longText('intro')->nullable()->comment('サークル長文紹介');
             $table->string('place_of_activity')->nullable()->comment('活動場所');
             $table->string('place_of_activity_detail')->nullable()->comment('活動場所詳細');
+            $table->boolean('do_online_activity')->default(false)->comment('オンライン活動するか');
             $table->string('date_of_activity_monday')->nullable()->comment('活動日時(月)');
             $table->string('date_of_activity_tuesday')->nullable()->comment('活動日時(火)');
             $table->string('date_of_activity_wednesday')->nullable()->comment('活動日時(水)');

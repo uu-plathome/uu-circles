@@ -15,6 +15,7 @@ class CircleInformationModel
     const intro = 'intro';
     const place_of_activity = 'place_of_activity';
     const place_of_activity_detail = 'place_of_activity_detail';
+    const do_online_activity = 'do_online_activity';
     const date_of_activity_monday = 'date_of_activity_monday';
     const date_of_activity_tuesday = 'date_of_activity_tuesday';
     const date_of_activity_wednesday = 'date_of_activity_wednesday';

@@ -25,6 +25,7 @@ const EditPage: NextPage = () => {
     const intro = useInput('')
     const placeOfActivity = useInput('')
     const placeOfActivityDetail = useInput('')
+    const doOnlineActivity = useInput<boolean>(true)
     const dateOfActivityMonday = useInput('')
     const dateOfActivityTuesday = useInput('')
     const dateOfActivityWednesday = useInput('')
@@ -63,6 +64,7 @@ const EditPage: NextPage = () => {
                     intro.set(foundCircle.intro)
                     placeOfActivity.set(foundCircle.placeOfActivity)
                     placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
+                    doOnlineActivity.set(foundCircle.doOnlineActivity)
                     dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
                     dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
                     dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
@@ -145,8 +147,166 @@ const EditPage: NextPage = () => {
                                             name="slug"
                                             id="slug"
                                             placeholder="u-lab"
+                                            required
                                             note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                             { ...slug }
+                                        />
+
+                                        <BaseTextField
+                                            label="サークル名(かな)"
+                                            name="nameKana"
+                                            id="nameKana"
+                                            { ...nameKana }
+                                        />
+
+                                        <BaseTextField
+                                            label="サークル名(省略名)"
+                                            name="shortName"
+                                            id="shortName"
+                                            { ...shortName }
+                                        />
+
+                                        <BaseTextField
+                                            label="サークル名(肩書)"
+                                            name="prefixName"
+                                            id="prefixName"
+                                            { ...prefixName }
+                                        />
+
+                                        <BaseTextField
+                                            label="サークル短文紹介"
+                                            name="description"
+                                            id="description"
+                                            { ...description }
+                                        />
+
+                                        <BaseTextField
+                                            label="サークル長文紹介"
+                                            name="intro"
+                                            id="intro"
+                                            { ...intro }
+                                        />
+
+                                        {/*
+                                            活動場所
+                                            placeOfActivity
+                                        */}
+
+                                        <BaseTextField
+                                            label="活動場所詳細"
+                                            name="placeOfActivityDetail"
+                                            id="placeOfActivityDetail"
+                                            { ...placeOfActivityDetail }
+                                        />
+
+                                        {/*
+                                            オンライン活動しているかどうか
+                                            doOnlineActivity
+                                        */}
+
+                                        {/* dateOfActivityMonday
+                                        dateOfActivityTuesday
+                                        dateOfActivityWednesday
+                                        dateOfActivityThursday
+                                        dateOfActivityFriday
+                                        dateOfActivitySaturday
+                                        dateOfActivitySunday */}
+
+                                        <BaseTextField
+                                            label="活動日時詳細"
+                                            name="dateOfActivityDetail"
+                                            id="dateOfActivityDetail"
+                                            { ...dateOfActivityDetail }
+                                        />
+
+                                        <BaseTextField
+                                            label="入会費"
+                                            name="admissionFee"
+                                            id="admissionFee"
+                                            { ...admissionFee }
+                                        />
+
+                                        {/*
+                                        活動人数
+                                        numberOfMembers
+                                        */}
+
+                                        <BaseTextField
+                                            label="公開用メールアドレス"
+                                            name="publicEmail"
+                                            id="publicEmail"
+                                            { ...publicEmail }
+                                        />
+
+                                        <BaseTextField
+                                            label="Twitter URL"
+                                            name="twitterUrl"
+                                            id="twitterUrl"
+                                            { ...twitterUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Facebook URL"
+                                            name="facebookUrl"
+                                            id="facebookUrl"
+                                            { ...facebookUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Instagram URL"
+                                            name="instagramUrl"
+                                            id="instagramUrl"
+                                            { ...instagramUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Line URL"
+                                            name="lineUrl"
+                                            id="lineUrl"
+                                            { ...lineUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Youtube URL"
+                                            name="youtubeUrl"
+                                            id="youtubeUrl"
+                                            { ...youtubeUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Homepage URL"
+                                            name="homepageUrl"
+                                            id="homepageUrl"
+                                            { ...homepageUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Peing URL"
+                                            name="peingUrl"
+                                            id="peingUrl"
+                                            { ...peingUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Peing URL"
+                                            name="githubUrl"
+                                            id="githubUrl"
+                                            { ...githubUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="Tiktok URL"
+                                            name="tiktokUrl"
+                                            id="tiktokUrl"
+                                            { ...tiktokUrl }
+                                        />
+
+                                        <BaseTextField
+                                            label="新歓・活動参加用URL"
+                                            name="participationUrl"
+                                            id="participationUrl"
+                                            note="Google formなどのURL。Zoomを張るのは控えてください。"
+                                            { ...participationUrl }
                                         />
 
                                         <div className="flex justify-center mt-8">

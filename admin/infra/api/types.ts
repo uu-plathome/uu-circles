@@ -68,6 +68,7 @@ export interface Circle {
     intro: string
     placeOfActivity: string
     placeOfActivityDetail: string
+    doOnlineActivity: boolean
     dateOfActivityMonday: string
     dateOfActivityTuesday: string
     dateOfActivityWednesday: string

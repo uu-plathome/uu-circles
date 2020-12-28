@@ -17,11 +17,11 @@ class CreateCircleUsecase
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        DB::beginTransaction();
         $circle = $circleValueObject->toCircleModel();
         $circle->createSlugWhenSlugNotExist();
         $circleInformation = $circleValueObject->toCircleInformationModel();
 
+        DB::beginTransaction();
         try {
             $circle->save();
             $circle->circleInformation()->create($circleInformation->toArray());
@@ -31,6 +31,7 @@ class CreateCircleUsecase
             return CircleValueObject::byEloquent($circle, $circleInformation);
         } catch (Exception $e) {
             DB::rollBack();
+            throw $e;
         }
     }
 }
