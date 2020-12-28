@@ -104,7 +104,36 @@ const EditPage: NextPage = () => {
                 {
                     name: name.value,
                     slug: slug.value,
-                    release: circle.release
+                    release: circle.release,
+                    nameKana: nameKana.value,
+                    shortName: shortName.value,
+                    prefixName: prefixName.value,
+                    description: description.value,
+                    intro: intro.value,
+                    placeOfActivity: placeOfActivity.value,
+                    placeOfActivityDetail: placeOfActivityDetail.value,
+                    doOnlineActivity: doOnlineActivity.value,
+                    dateOfActivityMonday: dateOfActivityMonday.value,
+                    dateOfActivityTuesday: dateOfActivityTuesday.value,
+                    dateOfActivityWednesday: dateOfActivityWednesday.value,
+                    dateOfActivityThursday: dateOfActivityThursday.value,
+                    dateOfActivityFriday: dateOfActivityFriday.value,
+                    dateOfActivitySaturday: dateOfActivitySaturday.value,
+                    dateOfActivitySunday: dateOfActivitySunday.value,
+                    dateOfActivityDetail: dateOfActivityDetail.value,
+                    admissionFee: admissionFee.value,
+                    numberOfMembers: numberOfMembers.value,
+                    publicEmail: publicEmail.value,
+                    twitterUrl: twitterUrl.value,
+                    facebookUrl: facebookUrl.value,
+                    instagramUrl: instagramUrl.value,
+                    lineUrl: lineUrl.value,
+                    youtubeUrl: youtubeUrl.value,
+                    homepageUrl: homepageUrl.value,
+                    peingUrl: peingUrl.value,
+                    githubUrl: githubUrl.value,
+                    tiktokUrl: tiktokUrl.value,
+                    participationUrl: participationUrl.value,
                 } as Circle,
                 authContext.accessToken
             )
@@ -223,6 +252,7 @@ const EditPage: NextPage = () => {
                                             label="入会費"
                                             name="admissionFee"
                                             id="admissionFee"
+                                            placeholder="年間1,000円"
                                             { ...admissionFee }
                                         />
 
@@ -235,6 +265,7 @@ const EditPage: NextPage = () => {
                                             label="公開用メールアドレス"
                                             name="publicEmail"
                                             id="publicEmail"
+                                            placeholder="example@example.com"
                                             { ...publicEmail }
                                         />
 
@@ -242,6 +273,7 @@ const EditPage: NextPage = () => {
                                             label="Twitter URL"
                                             name="twitterUrl"
                                             id="twitterUrl"
+                                            placeholder="https://twitter.com/"
                                             { ...twitterUrl }
                                         />
 
@@ -256,6 +288,7 @@ const EditPage: NextPage = () => {
                                             label="Instagram URL"
                                             name="instagramUrl"
                                             id="instagramUrl"
+                                            placeholder="https://instagram.com"
                                             { ...instagramUrl }
                                         />
 
@@ -270,6 +303,7 @@ const EditPage: NextPage = () => {
                                             label="Youtube URL"
                                             name="youtubeUrl"
                                             id="youtubeUrl"
+                                            placeholder="https://youtube.com"
                                             { ...youtubeUrl }
                                         />
 
@@ -291,6 +325,7 @@ const EditPage: NextPage = () => {
                                             label="Peing URL"
                                             name="githubUrl"
                                             id="githubUrl"
+                                            placeholder="https://github.com"
                                             { ...githubUrl }
                                         />
 

@@ -158,7 +158,7 @@ class CircleValueObject
             CircleInformationModel::intro => $this->intro,
             CircleInformationModel::place_of_activity => $this->place_of_activity,
             CircleInformationModel::place_of_activity_detail => $this->place_of_activity_detail,
-            CircleInformationModel::do_online_activity => $this->do_online_activity,
+            CircleInformationModel::do_online_activity => $this->do_online_activity !== null ? $this->do_online_activity : true,
             CircleInformationModel::date_of_activity_monday => $this->date_of_activity_monday,
             CircleInformationModel::date_of_activity_tuesday => $this->date_of_activity_tuesday,
             CircleInformationModel::date_of_activity_wednesday => $this->date_of_activity_wednesday,
