@@ -1,12 +1,50 @@
 version: "3.8"
 volumes:
+  php-fpm-socket:
+  pma-session-store:
   db-store:
+  vendor-store:
+  node_modules-store:
 services:
-  db:
-    build:
-      context: .
-      dockerfile: ./infra/docker/mysql/Dockerfile
+  app:
+    build: ./infra/docker/php
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./api:/work/api
+      - vendor-store:/work/api/vendor
+    depends_on:
+      - db
+
+  web:
+    build: ./infra/docker/nginx
     ports:
-      - ${DB_PORT:-3306}:3306
+      - 8000:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./api:/work/api
+      - node_modules-store:/work/api/node_modules
+
+  db:
+    build: ./infra/docker/mysql
+    ports:
+      - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+
+  cs:
+    image: herloct/php-cs-fixer
+    volumes:
+      - ./api:/project
+
+  pma:
+    image: phpmyadmin/phpmyadmin:5.0.2
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+    ports:
+      - 8080:80
+    volumes:
+      - pma-session-store:/sessions
+    depends_on:
+      - db
