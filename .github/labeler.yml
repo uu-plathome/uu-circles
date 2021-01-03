@@ -1,0 +1,13 @@
+admin:
+- admin/**/*
+api:
+- api/**/*
+api-composer-json:
+- api/composer.json
+- api/composer.lock
+admin-packge-json:
+- admin/package.json
+- admin/package-lock.json
+docker:
+- ./infra/docker/*
+- docker-compose.yml

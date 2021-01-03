@@ -1,0 +1,26 @@
+name: Backend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: init
+      run: make init
+    - name: Execute tests
+      run: docker-compose exec app composer test
+      working-directory: ./backend
+    - name: artisan コマンドが正しく実行されるか
+      run: |
+        docker-compose exec app php artisan cache:clear
+        docker-compose exec app php artisan config:cache
+        docker-compose exec app php artisan view:clear
+      working-directory: ./backend
