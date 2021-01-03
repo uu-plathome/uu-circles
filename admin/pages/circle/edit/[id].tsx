@@ -1,5 +1,6 @@
 
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
@@ -7,6 +8,7 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { Circle } from '@/infra/api/types'
+import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -240,6 +242,17 @@ const EditPage: NextPage = () => {
                                         dateOfActivityFriday
                                         dateOfActivitySaturday
                                         dateOfActivitySunday */}
+                                        <BaseSelect
+                                            label="活動(月曜日)"
+                                            id="dateOfActivityMonday"
+                                            name="dateOfActivityMonday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivityMonday }
+                                        />
 
                                         <BaseTextField
                                             label="活動日時詳細"

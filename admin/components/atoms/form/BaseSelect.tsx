@@ -33,9 +33,12 @@ const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, requ
                 value={value}
                 onChange={onChange}
             >
-                {items.map(() => {
-                    return <option key={`${id}-${value}`} value={value}>{label ? label : value}</option>
-                })}
+                {items.map((selectItem: SelectItem) => {
+                    return (
+                        <option key={`${id}-${selectItem.value || 'null'}`} value={selectItem.value}>
+                            {selectItem.label || selectItem.value}
+                        </option>
+                )})}
             </select>
 
             {error ? (
