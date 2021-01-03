@@ -5,33 +5,33 @@ namespace App\Console\Commands;
 use Illuminate\Console\GeneratorCommand as Command;
 use Illuminate\Filesystem\Filesystem;
 
-class MakeRepository extends Command
+class MakeValueObject extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $name = 'make:repository';
+    protected $name = 'make:value';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new repository class';
+    protected $description = 'Create a new Value object class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Repository';
+    protected $type = 'ValueObjects';
 
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Filesystem $files
      */
     public function __construct(Filesystem $files)
     {
@@ -45,7 +45,7 @@ class MakeRepository extends Command
     */
     protected function getStub()
     {
-        return app_path('Console/Commands/stubs/repository.stub');
+        return app_path('Console/Commands/stubs/value_object.stub');
     }
 
     /**
@@ -56,6 +56,6 @@ class MakeRepository extends Command
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Repositories';
+        return $rootNamespace . '\ValueObjects';
     }
 }

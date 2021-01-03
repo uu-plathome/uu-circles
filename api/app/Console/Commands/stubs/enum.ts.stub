@@ -1,0 +1,11 @@
+{{ $classComment }}
+export const {{ $className }} = {
+{{ $keyValue }}
+} as const
+
+export type {{ $className }} = typeof {{ $className }}[keyof typeof {{ $className }}]
+
+{{ $classComment }}
+export const is{{ $className }} = (s: any): s is {{ $className }} => Object.values({{ $className }}).includes(s)
+
+{{ $keyValueGuardFunction }}

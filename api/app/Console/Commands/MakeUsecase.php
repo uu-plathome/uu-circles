@@ -31,7 +31,7 @@ class MakeUsecase extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Filesystem $files
      */
     public function __construct(Filesystem $files)
     {

@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass
+{
+    public static function byEloquent(
+    ): DummyClass {
+
+    }
+
+    public function toArray(): array
+    {
+        return [];
+    }
+}
