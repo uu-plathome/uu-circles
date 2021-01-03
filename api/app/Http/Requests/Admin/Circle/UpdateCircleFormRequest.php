@@ -4,11 +4,13 @@ namespace App\Http\Requests\Admin\Circle;
 
 use App\Enum\CircleInformationModel;
 use App\Enum\CircleModel;
+use App\Enum\CircleType;
 use App\Models\Circle;
 use App\Models\CircleInformation;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCircleFormRequest extends FormRequest
 {
@@ -30,12 +32,22 @@ class UpdateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleModel::slug                                  => [ 'required', 'string', 'max:50', 'unique:circles,slug,'.$this->id.'id'],
+            CircleModel::slug                                  => [
+                'required',
+                'string',
+                'max:50',
+                'unique:circles,slug,'.$this->id.'id'
+            ],
             CircleModel::release                               => [ 'required', 'boolean' ],
             CircleInformationModel::name                       => [ 'required', 'string', 'max:255' ],
             CircleInformationModel::name_kana                  => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::short_name                 => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::prefix_name                => [ 'nullable', 'string', 'max:255' ],
+            CircleInformationModel::circle_type                => [
+                'nullable',
+                'string',
+                Rule::in([CircleType::getAll()])
+            ],
             CircleInformationModel::description                => [ 'nullable', 'string', 'max:100' ],
             CircleInformationModel::intro                      => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::place_of_activity          => [ 'nullable', 'string', 'max:255' ],

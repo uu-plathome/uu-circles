@@ -14,7 +14,7 @@ class CircleValueObject
     public ?string $slug;
     public bool $release;
     public string $name;
-    public ?string $circle_type_id;
+    public ?string $circle_type;
     public ?string $name_kana;
     public ?string $short_name;
     public ?string $prefix_name;
@@ -55,7 +55,7 @@ class CircleValueObject
         $circleValueObject->id = $circle->id;
         $circleValueObject->slug = $circle->slug;
         $circleValueObject->release = $circle->release;
-        $circleValueObject->circle_type_id = $circleInformation->circle_type_id;
+        $circleValueObject->circle_type = $circleInformation->circle_type;
         $circleValueObject->name = $circleInformation->name;
         $circleValueObject->name_kana = $circleInformation->name_kana;
         $circleValueObject->short_name = $circleInformation->short_name;
@@ -107,7 +107,7 @@ class CircleValueObject
     {
         return new CircleInformation([
             CircleInformationModel::circle_id => $this->id,
-            CircleInformationModel::circle_type_id => $this->circle_type_id,
+            CircleInformationModel::circle_type => $this->circle_type,
             CircleInformationModel::name => $this->name,
             CircleInformationModel::name_kana => $this->name_kana,
             CircleInformationModel::short_name => $this->short_name,
@@ -149,7 +149,7 @@ class CircleValueObject
             CircleModel::release    => $this->release,
             CircleModel::created_at => $this->created_at,
             CircleModel::updated_at => $this->updated_at,
-            CircleInformationModel::circle_type_id => $this->circle_type_id,
+            CircleInformationModel::circle_type => $this->circle_type,
             CircleInformationModel::name => $this->name,
             CircleInformationModel::name_kana => $this->name_kana,
             CircleInformationModel::short_name => $this->short_name,

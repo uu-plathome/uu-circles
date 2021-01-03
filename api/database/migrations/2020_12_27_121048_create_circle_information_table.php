@@ -16,7 +16,7 @@ class CreateCircleInformationTable extends Migration
         Schema::create('circle_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
-            $table->unsignedBigInteger('circle_type_id')->nullable();
+            $table->string('circle_type')->nullable();
             $table->string('name')->comment('サークル名');
             $table->string('name_kana')->nullable()->comment('サークル名(カナ)');
             $table->string('short_name')->nullable()->comment('サークル名(通称)');
