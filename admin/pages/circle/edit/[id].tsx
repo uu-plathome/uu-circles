@@ -235,13 +235,6 @@ const EditPage: NextPage = () => {
                                             doOnlineActivity
                                         */}
 
-                                        {/* dateOfActivityMonday
-                                        dateOfActivityTuesday
-                                        dateOfActivityWednesday
-                                        dateOfActivityThursday
-                                        dateOfActivityFriday
-                                        dateOfActivitySaturday
-                                        dateOfActivitySunday */}
                                         <BaseSelect
                                             label="活動(月曜日)"
                                             id="dateOfActivityMonday"
@@ -252,6 +245,78 @@ const EditPage: NextPage = () => {
                                                 { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
                                             ]}
                                             { ...dateOfActivityMonday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(火曜日)"
+                                            id="dateOfActivityTuesday"
+                                            name="dateOfActivityTuesday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivityTuesday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(水曜日)"
+                                            id="dateOfActivityWednesday"
+                                            name="dateOfActivityWednesday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivityWednesday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(木曜日)"
+                                            id="dateOfActivityThursday"
+                                            name="dateOfActivityThursday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivityThursday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(金曜日)"
+                                            id="dateOfActivityFriday"
+                                            name="dateOfActivityFriday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivityFriday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(土曜日)"
+                                            id="dateOfActivitySaturday"
+                                            name="dateOfActivitySaturday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivitySaturday }
+                                        />
+
+                                        <BaseSelect
+                                            label="活動(日曜日)"
+                                            id="dateOfActivitySunday"
+                                            name="dateOfActivitySunday"
+                                            items={[
+                                                { value: null, label: '' },
+                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
+                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                            ]}
+                                            { ...dateOfActivitySunday }
                                         />
 
                                         <BaseTextField
@@ -269,10 +334,12 @@ const EditPage: NextPage = () => {
                                             { ...admissionFee }
                                         />
 
-                                        {/*
-                                        活動人数
-                                        numberOfMembers
-                                        */}
+                                        <BaseTextField
+                                            label="活動人数"
+                                            name="numberOfMembers"
+                                            id="numberOfMembers"
+                                            { ...numberOfMembers }
+                                        />
 
                                         <BaseTextField
                                             label="公開用メールアドレス"
