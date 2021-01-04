@@ -6,6 +6,7 @@ import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { createCircle } from '@/infra/api/circle'
+import { isCreateCircleValidationError } from '@/infra/api/types'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
@@ -21,10 +22,18 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        await createCircle({
+        const data = await createCircle({
             name: name.value,
             slug: slug.value
         }, authContext.accessToken)
+
+        if (isCreateCircleValidationError(data)) {
+            name.setError(data.errors.name)
+            slug.setError(data.errors.slug)
+
+            return
+        }
+
         await router.push('/circle')
     }
 

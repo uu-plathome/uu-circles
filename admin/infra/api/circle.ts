@@ -1,18 +1,32 @@
 import { axiosInstance } from ".";
-import { Circle, CreateCircle } from "./types";
+import { AxiosError } from 'axios'
+import { Circle, CreateCircle, CreateCircleValidationError } from "./types";
 
 export const createCircle = async (circle: CreateCircle, accessToken: string) => {
-    const { data } = await axiosInstance.post('/admin/api/circle', {
-        name: circle.name,
-        slug: circle.slug,
-        release: false
-    } as CreateCircle, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+    try {
+        const { data } = await axiosInstance.post('/admin/api/circle', {
+            name: circle.name,
+            slug: circle.slug,
+            release: false
+        } as CreateCircle, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            }
+        })
 
-    return data.data
+        return data.data
+    } catch (_e) {
+        const e = _e as AxiosError<CreateCircleValidationError>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'createCircleValidationError'
+            } as CreateCircleValidationError
+        }
+
+        console.error(e)
+    }
 }
 
 export const getCircleList = async (accessToken: string) => {
