@@ -9,6 +9,7 @@ import { useInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { Circle } from '@/infra/api/types'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest, UpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -101,9 +102,10 @@ const EditPage: NextPage = () => {
         event.preventDefault()
 
         if (!Array.isArray(id)) {
-            await updateCircle(
+            const data = await updateCircle(
                 Number(id),
                 {
+                    type: 'UpdateCircleFormRequest',
                     name: name.value,
                     slug: slug.value,
                     release: circle.release,
@@ -136,11 +138,47 @@ const EditPage: NextPage = () => {
                     githubUrl: githubUrl.value,
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
-                } as Circle,
+                } as UpdateCircleFormRequest,
                 authContext.accessToken
             )
+
+            if (isUpdateCircleFormRequestValidationError(data)) {
+                name.setError(data.error.name)
+                slug.setError(data.error.slug)
+                nameKana.setError(data.error.nameKana)
+                shortName.setError(data.error.shortName)
+                prefixName.setError(data.error.prefixName)
+                description.setError(data.error.description)
+                intro.setError(data.error.intro)
+                placeOfActivity.setError(data.error.placeOfActivity)
+                placeOfActivityDetail.setError(data.error.placeOfActivityDetail)
+                doOnlineActivity.setError(data.error.doOnlineActivity)
+                dateOfActivityMonday.setError(data.error.dateOfActivityMonday)
+                dateOfActivityTuesday.setError(data.error.dateOfActivityTuesday)
+                dateOfActivityWednesday.setError(data.error.dateOfActivityWednesday)
+                dateOfActivityThursday.setError(data.error.dateOfActivityThursday)
+                dateOfActivityFriday.setError(data.error.dateOfActivityFriday)
+                dateOfActivitySaturday.setError(data.error.dateOfActivitySaturday)
+                dateOfActivitySunday.setError(data.error.dateOfActivitySunday)
+                dateOfActivityDetail.setError(data.error.dateOfActivityDetail)
+                admissionFee.setError(data.error.admissionFee)
+                numberOfMembers.setError(data.error.numberOfMembers)
+                publicEmail.setError(data.error.publicEmail)
+                twitterUrl.setError(data.error.twitterUrl)
+                facebookUrl.setError(data.error.facebookUrl)
+                instagramUrl.setError(data.error.instagramUrl)
+                lineUrl.setError(data.error.lineUrl)
+                youtubeUrl.setError(data.error.youtubeUrl)
+                homepageUrl.setError(data.error.homepageUrl)
+                peingUrl.setError(data.error.peingUrl)
+                githubUrl.setError(data.error.githubUrl)
+                tiktokUrl.setError(data.error.tiktokUrl)
+                participationUrl.setError(data.error.participationUrl)
+                return
+            }
+
+            await router.push('/circle')
         }
-        await router.push('/circle')
     }
 
 

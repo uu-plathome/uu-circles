@@ -48,27 +48,6 @@ export interface RegisterUser {
     email: string
     type: 'registerUser'
 }
-
-export interface CreateCircle {
-    slug: string
-    release?: boolean
-    name: string
-}
-
-export interface CreateCircleValidationError {
-    errors: {
-        slug: string
-        release: string
-        name: string
-    }
-    message: string
-    type: 'createCircleValidationError'
-}
-
-export const isCreateCircleValidationError = (v: any|CreateCircleValidationError): v is CreateCircleValidationError => {
-    return v.type === 'createCircleValidationError'
-}
-
 export interface Circle {
     id: number
     slug: string

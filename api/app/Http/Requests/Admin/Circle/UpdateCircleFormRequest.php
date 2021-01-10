@@ -5,6 +5,8 @@ namespace App\Http\Requests\Admin\Circle;
 use App\Enum\CircleInformationModel;
 use App\Enum\CircleModel;
 use App\Enum\CircleType;
+use App\Enum\DateOfActivity;
+use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
 use App\Models\CircleInformation;
 use App\Support\Arr;
@@ -50,15 +52,48 @@ class UpdateCircleFormRequest extends FormRequest
             ],
             CircleInformationModel::description                => [ 'nullable', 'string', 'max:100' ],
             CircleInformationModel::intro                      => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::place_of_activity          => [ 'nullable', 'string', 'max:255' ],
+            CircleInformationModel::place_of_activity          => [
+                'nullable',
+                'string',
+                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::OTHER]),
+            ],
             CircleInformationModel::place_of_activity_detail   => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_monday    => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_tuesday   => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_wednesday => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_thursday  => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_friday    => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_saturday  => [ 'nullable', 'string', 'max:255' ],
-            CircleInformationModel::date_of_activity_sunday    => [ 'nullable', 'string', 'max:255' ],
+            CircleInformationModel::do_online_activity         => [ 'nullable', 'boolean' ],
+            CircleInformationModel::date_of_activity_monday    => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_tuesday   => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_wednesday => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_thursday  => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_friday    => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_saturday  => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
+            CircleInformationModel::date_of_activity_sunday    => [
+                'nullable',
+                'string',
+                Rule::in(DateOfActivity::getAll()),
+            ],
             CircleInformationModel::date_of_activity_detail    => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::admission_fee              => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::number_of_members          => [ 'nullable', 'integer', 'max:10000' ],
