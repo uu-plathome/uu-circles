@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           const localStorageAccessToken = localStorage.getItem('accessToken')
           if (localStorageAccessToken) {
             try {
-              const { data } = await axiosInstance.get<User>('/user', {
+              const { data } = await axiosInstance.get<User>('/admin/api/user', {
                 headers: {
                   Authorization: `Bearer ${localStorageAccessToken}`,
                 }
