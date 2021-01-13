@@ -8,36 +8,47 @@ import { User } from '@/infra/api/types';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [ accessToken, setAccessToken ] = useState('')
+  const [ loading, setLoading ] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
     const f = async () => {
-      if (!accessToken && !router.pathname.startsWith('/email/verify')) {
-        const localStorageAccessToken = localStorage.getItem('accessToken')
-        if (localStorageAccessToken) {
-          try {
-            const { data } = await axiosInstance.get<User>('/user', {
-              headers: {
-                Authorization: `Bearer ${localStorageAccessToken}`,
-              }
-            })
-            setAccessToken(data.apiToken)
-          } catch(e) {
-            localStorage.setItem('accessToken', '')
+      if (!accessToken && (!router.pathname.startsWith('/email/verify') && !router.pathname.startsWith('/auth'))) {
+        if (typeof window !== "undefined") {
+          const localStorageAccessToken = localStorage.getItem('accessToken')
+          if (localStorageAccessToken) {
+            try {
+              const { data } = await axiosInstance.get<User>('/user', {
+                headers: {
+                  Authorization: `Bearer ${localStorageAccessToken}`,
+                }
+              })
+              setAccessToken(data.apiToken)
+              setLoading(false)
+            } catch(e) {
+              localStorage.setItem('accessToken', '')
+              await router.push('/auth/login')
+              setLoading(false)
+            }
+          } else {
             await router.push('/auth/login')
+            setLoading(false)
           }
-        } else {
-          await router.push('/auth/login')
         }
+      } else {
+        setLoading(false)
       }
     }
 
     f()
-  }, [accessToken])
+  }, [])
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>
-      <Component {...pageProps} />
+      {loading ?
+        <div className="text-white">loading...</div> :
+        <Component {...pageProps} />
+      }
     </AuthContext.Provider>
   )
 }
