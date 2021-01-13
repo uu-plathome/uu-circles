@@ -10,7 +10,8 @@ import { showCircle, updateCircle } from '@/infra/api/circle'
 import { Circle } from '@/infra/api/types'
 import { __ } from '@/lang/ja'
 import { getAllCircleType } from '@/lib/enum/api/CircleType'
-import { getAllDateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { getAllDateOfActivity, isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -124,13 +125,13 @@ const EditPage: NextPage = () => {
                     placeOfActivity: placeOfActivity.value,
                     placeOfActivityDetail: placeOfActivityDetail.value,
                     doOnlineActivity: doOnlineActivity.value === 'true' ? true : false,
-                    dateOfActivityMonday: dateOfActivityMonday.value,
-                    dateOfActivityTuesday: dateOfActivityTuesday.value,
-                    dateOfActivityWednesday: dateOfActivityWednesday.value,
-                    dateOfActivityThursday: dateOfActivityThursday.value,
-                    dateOfActivityFriday: dateOfActivityFriday.value,
-                    dateOfActivitySaturday: dateOfActivitySaturday.value,
-                    dateOfActivitySunday: dateOfActivitySunday.value,
+                    dateOfActivityMonday: isDateOfActivity(dateOfActivityMonday.value) ? dateOfActivityMonday.value : null,
+                    dateOfActivityTuesday: isDateOfActivity(dateOfActivityTuesday.value) ? dateOfActivityTuesday.value: null,
+                    dateOfActivityWednesday: isDateOfActivity(dateOfActivityWednesday.value) ? dateOfActivityWednesday.value: null,
+                    dateOfActivityThursday: isDateOfActivity(dateOfActivityThursday.value) ? dateOfActivityThursday.value: null,
+                    dateOfActivityFriday: isDateOfActivity(dateOfActivityFriday.value) ? dateOfActivityFriday.value: null,
+                    dateOfActivitySaturday: isDateOfActivity(dateOfActivitySaturday.value) ? dateOfActivitySaturday.value: null,
+                    dateOfActivitySunday: isDateOfActivity(dateOfActivitySunday.value) ? dateOfActivitySunday.value: null,
                     dateOfActivityDetail: dateOfActivityDetail.value,
                     admissionFee: admissionFee.value,
                     numberOfMembers: numberOfMembers.value,
@@ -291,10 +292,18 @@ const EditPage: NextPage = () => {
                                             { ...circleType }
                                         />
 
-                                        {/*
-                                            活動場所
-                                            placeOfActivity
-                                        */}
+                                        <BaseSelect
+                                            label="活動場所"
+                                            id="placeOfActivity"
+                                            name="placeOfActivity"
+                                            items={[
+                                                ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
+                                                    value: _placeOfActivity,
+                                                    label: __(_placeOfActivity)
+                                                }))
+                                            ]}
+                                            { ...placeOfActivity }
+                                        />
 
                                         <BaseTextField
                                             label="活動場所詳細"
@@ -313,7 +322,6 @@ const EditPage: NextPage = () => {
                                             ]}
                                             { ...doOnlineActivity }
                                         />
-
 
                                         <BaseSelect
                                             label="活動(月曜日)"
@@ -417,6 +425,7 @@ const EditPage: NextPage = () => {
                                             label="活動日時詳細"
                                             name="dateOfActivityDetail"
                                             id="dateOfActivityDetail"
+                                            expand
                                             { ...dateOfActivityDetail }
                                         />
 

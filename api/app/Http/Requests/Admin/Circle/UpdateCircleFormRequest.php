@@ -55,7 +55,7 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationModel::place_of_activity          => [
                 'nullable',
                 'string',
-                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::OTHER]),
+                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::MINE_AND_YOTO, PlaceOfActivity::OTHER]),
             ],
             CircleInformationModel::place_of_activity_detail   => [ 'nullable', 'string', 'max:255' ],
             CircleInformationModel::do_online_activity         => [ 'nullable', 'boolean' ],
