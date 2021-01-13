@@ -8,8 +8,10 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { Circle } from '@/infra/api/types'
-import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
-import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest, UpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
+import { __ } from '@/lang/ja'
+import { getAllCircleType } from '@/lib/enum/api/CircleType'
+import { getAllDateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -22,6 +24,7 @@ const EditPage: NextPage = () => {
     const name = useInput('')
     const slug = useInput('')
     const release = useInput('false')
+    const circleType = useInput('')
     const nameKana = useInput('')
     const shortName = useInput('')
     const prefixName = useInput('')
@@ -29,7 +32,7 @@ const EditPage: NextPage = () => {
     const intro = useInput('')
     const placeOfActivity = useInput('')
     const placeOfActivityDetail = useInput('')
-    const doOnlineActivity = useInput<boolean>(true)
+    const doOnlineActivity = useInput('true')
     const dateOfActivityMonday = useInput('')
     const dateOfActivityTuesday = useInput('')
     const dateOfActivityWednesday = useInput('')
@@ -67,9 +70,10 @@ const EditPage: NextPage = () => {
                     prefixName.set(foundCircle.prefixName)
                     description.set(foundCircle.description)
                     intro.set(foundCircle.intro)
+                    circleType.set(foundCircle.circleType)
                     placeOfActivity.set(foundCircle.placeOfActivity)
                     placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                    doOnlineActivity.set(foundCircle.doOnlineActivity)
+                    doOnlineActivity.set(foundCircle.doOnlineActivity ? 'true' : 'false')
                     dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
                     dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
                     dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
@@ -112,13 +116,14 @@ const EditPage: NextPage = () => {
                     slug: slug.value,
                     release: release.value === 'true' ? true : false,
                     nameKana: nameKana.value,
+                    circleType: circleType.value,
                     shortName: shortName.value,
                     prefixName: prefixName.value,
                     description: description.value,
                     intro: intro.value,
                     placeOfActivity: placeOfActivity.value,
                     placeOfActivityDetail: placeOfActivityDetail.value,
-                    doOnlineActivity: doOnlineActivity.value,
+                    doOnlineActivity: doOnlineActivity.value === 'true' ? true : false,
                     dateOfActivityMonday: dateOfActivityMonday.value,
                     dateOfActivityTuesday: dateOfActivityTuesday.value,
                     dateOfActivityWednesday: dateOfActivityWednesday.value,
@@ -145,38 +150,39 @@ const EditPage: NextPage = () => {
             )
 
             if (isUpdateCircleFormRequestValidationError(data)) {
-                name.setError(data.error.name)
-                slug.setError(data.error.slug)
-                nameKana.setError(data.error.nameKana)
-                release.setError(data.error.release)
-                shortName.setError(data.error.shortName)
-                prefixName.setError(data.error.prefixName)
-                description.setError(data.error.description)
-                intro.setError(data.error.intro)
-                placeOfActivity.setError(data.error.placeOfActivity)
-                placeOfActivityDetail.setError(data.error.placeOfActivityDetail)
-                doOnlineActivity.setError(data.error.doOnlineActivity)
-                dateOfActivityMonday.setError(data.error.dateOfActivityMonday)
-                dateOfActivityTuesday.setError(data.error.dateOfActivityTuesday)
-                dateOfActivityWednesday.setError(data.error.dateOfActivityWednesday)
-                dateOfActivityThursday.setError(data.error.dateOfActivityThursday)
-                dateOfActivityFriday.setError(data.error.dateOfActivityFriday)
-                dateOfActivitySaturday.setError(data.error.dateOfActivitySaturday)
-                dateOfActivitySunday.setError(data.error.dateOfActivitySunday)
-                dateOfActivityDetail.setError(data.error.dateOfActivityDetail)
-                admissionFee.setError(data.error.admissionFee)
-                numberOfMembers.setError(data.error.numberOfMembers)
-                publicEmail.setError(data.error.publicEmail)
-                twitterUrl.setError(data.error.twitterUrl)
-                facebookUrl.setError(data.error.facebookUrl)
-                instagramUrl.setError(data.error.instagramUrl)
-                lineUrl.setError(data.error.lineUrl)
-                youtubeUrl.setError(data.error.youtubeUrl)
-                homepageUrl.setError(data.error.homepageUrl)
-                peingUrl.setError(data.error.peingUrl)
-                githubUrl.setError(data.error.githubUrl)
-                tiktokUrl.setError(data.error.tiktokUrl)
-                participationUrl.setError(data.error.participationUrl)
+                name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
+                slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
+                nameKana.setError(data.errors.nameKana && Array.isArray(data.errors.nameKana) ? data.errors.nameKana[0] : '')
+                release.setError(data.errors.release && Array.isArray(data.errors.release) ? data.errors.release[0] : '')
+                circleType.setError(data.errors.circleType && Array.isArray(data.errors.circleType) ? data.errors.circleType[0] : '')
+                shortName.setError(data.errors.shortName && Array.isArray(data.errors.shortName) ? data.errors.shortName[0] : '')
+                prefixName.setError(data.errors.prefixName && Array.isArray(data.errors.prefixName) ? data.errors.prefixName[0] : '')
+                description.setError(data.errors.description && Array.isArray(data.errors.description) ? data.errors.description[0] : '')
+                intro.setError(data.errors.intro && Array.isArray(data.errors.intro) ? data.errors.intro[0] : '')
+                placeOfActivity.setError(data.errors.placeOfActivity && Array.isArray(data.errors.placeOfActivity) ? data.errors.placeOfActivity[0] : '')
+                placeOfActivityDetail.setError(data.errors.placeOfActivityDetail && Array.isArray(data.errors.placeOfActivityDetail) ? data.errors.placeOfActivityDetail[0] : '')
+                doOnlineActivity.setError(data.errors.doOnlineActivity && Array.isArray(data.errors.doOnlineActivity) ? data.errors.doOnlineActivity[0] : '')
+                dateOfActivityMonday.setError(data.errors.dateOfActivityMonday && Array.isArray(data.errors.dateOfActivityMonday) ? data.errors.dateOfActivityMonday[0] : '')
+                dateOfActivityTuesday.setError(data.errors.dateOfActivityTuesday && Array.isArray(data.errors.dateOfActivityTuesday) ? data.errors.dateOfActivityTuesday[0] : '')
+                dateOfActivityWednesday.setError(data.errors.dateOfActivityWednesday && Array.isArray(data.errors.dateOfActivityWednesday) ? data.errors.dateOfActivityWednesday[0] : '')
+                dateOfActivityThursday.setError(data.errors.dateOfActivityThursday && Array.isArray(data.errors.dateOfActivityThursday) ? data.errors.dateOfActivityThursday[0] : '')
+                dateOfActivityFriday.setError(data.errors.dateOfActivityFriday && Array.isArray(data.errors.dateOfActivityFriday) ? data.errors.dateOfActivityFriday[0] : '')
+                dateOfActivitySaturday.setError(data.errors.dateOfActivitySaturday && Array.isArray(data.errors.dateOfActivitySaturday) ? data.errors.dateOfActivitySaturday[0] : '')
+                dateOfActivitySunday.setError(data.errors.dateOfActivitySunday && Array.isArray(data.errors.dateOfActivitySunday) ? data.errors.dateOfActivitySunday[0] : '')
+                dateOfActivityDetail.setError(data.errors.dateOfActivityDetail && Array.isArray(data.errors.dateOfActivityDetail) ? data.errors.dateOfActivityDetail[0] : '')
+                admissionFee.setError(data.errors.admissionFee && Array.isArray(data.errors.admissionFee) ? data.errors.admissionFee[0] : '')
+                numberOfMembers.setError(data.errors.numberOfMembers && Array.isArray(data.errors.numberOfMembers) ? data.errors.numberOfMembers[0] : '')
+                publicEmail.setError(data.errors.publicEmail && Array.isArray(data.errors.publicEmail) ? data.errors.publicEmail[0] : '')
+                twitterUrl.setError(data.errors.twitterUrl && Array.isArray(data.errors.twitterUrl) ? data.errors.twitterUrl[0] : '')
+                facebookUrl.setError(data.errors.facebookUrl && Array.isArray(data.errors.facebookUrl) ? data.errors.facebookUrl[0] : '')
+                instagramUrl.setError(data.errors.instagramUrl && Array.isArray(data.errors.instagramUrl) ? data.errors.instagramUrl[0] : '')
+                lineUrl.setError(data.errors.lineUrl && Array.isArray(data.errors.lineUrl) ? data.errors.lineUrl[0] : '')
+                youtubeUrl.setError(data.errors.youtubeUrl && Array.isArray(data.errors.youtubeUrl) ? data.errors.youtubeUrl[0] : '')
+                homepageUrl.setError(data.errors.homepageUrl && Array.isArray(data.errors.homepageUrl) ? data.errors.homepageUrl[0] : '')
+                peingUrl.setError(data.errors.peingUrl && Array.isArray(data.errors.peingUrl) ? data.errors.peingUrl[0] : '')
+                githubUrl.setError(data.errors.githubUrl && Array.isArray(data.errors.githubUrl) ? data.errors.githubUrl[0] : '')
+                tiktokUrl.setError(data.errors.tiktokUrl && Array.isArray(data.errors.tiktokUrl) ? data.errors.tiktokUrl[0] : '')
+                participationUrl.setError(data.errors.participationUrl && Array.isArray(data.errors.participationUrl) ? data.errors.participationUrl[0] : '')
                 return
             }
 
@@ -271,6 +277,20 @@ const EditPage: NextPage = () => {
                                             { ...intro }
                                         />
 
+                                        <BaseSelect
+                                            label="サークル種別"
+                                            id="circleType"
+                                            name="circleType"
+                                            items={[
+                                                ...getAllCircleType().map((_circleType) => ({
+                                                    value: _circleType,
+                                                    label: __(_circleType)
+                                                })),
+                                                { value: '', label: '不明' },
+                                            ]}
+                                            { ...circleType }
+                                        />
+
                                         {/*
                                             活動場所
                                             placeOfActivity
@@ -283,19 +303,28 @@ const EditPage: NextPage = () => {
                                             { ...placeOfActivityDetail }
                                         />
 
-                                        {/*
-                                            オンライン活動しているかどうか
-                                            doOnlineActivity
-                                        */}
+                                        <BaseSelect
+                                            label="オンライン活動しているかどうか"
+                                            id="doOnlineActivity"
+                                            name="doOnlineActivity"
+                                            items={[
+                                                { value: 'true', label: 'オンラインしている' },
+                                                { value: 'false', label: 'オフラインのみ' },
+                                            ]}
+                                            { ...doOnlineActivity }
+                                        />
+
 
                                         <BaseSelect
                                             label="活動(月曜日)"
                                             id="dateOfActivityMonday"
                                             name="dateOfActivityMonday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivityMonday }
                                         />
@@ -305,9 +334,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivityTuesday"
                                             name="dateOfActivityTuesday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivityTuesday }
                                         />
@@ -317,9 +348,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivityWednesday"
                                             name="dateOfActivityWednesday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivityWednesday }
                                         />
@@ -329,9 +362,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivityThursday"
                                             name="dateOfActivityThursday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivityThursday }
                                         />
@@ -341,9 +376,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivityFriday"
                                             name="dateOfActivityFriday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivityFriday }
                                         />
@@ -353,9 +390,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivitySaturday"
                                             name="dateOfActivitySaturday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivitySaturday }
                                         />
@@ -365,9 +404,11 @@ const EditPage: NextPage = () => {
                                             id="dateOfActivitySunday"
                                             name="dateOfActivitySunday"
                                             items={[
-                                                { value: null, label: '' },
-                                                { value: DateOfActivity.EVERY_WEEK, label: '毎週' },
-                                                { value: DateOfActivity.EVERY_OTHER_WEEK, label: '隔週' },
+                                                { value: null, label: '非活動日' },
+                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
+                                                    value: _dateOfActivity,
+                                                    label: __(_dateOfActivity)
+                                                }))
                                             ]}
                                             { ...dateOfActivitySunday }
                                         />

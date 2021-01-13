@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
-import { faCheckCircle, faTimesCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Circle } from '@/infra/api/types';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
@@ -66,6 +66,17 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                                 size="lg"
                                 color="orange"
                                 icon={ faEdit }
+                            />
+                        </a>
+                    </Link>
+                </CircleListItemTableColumn>
+                <CircleListItemTableColumn title="ユーザー">
+                    <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
+                        <a>
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="orange"
+                                icon={ faUserAlt }
                             />
                         </a>
                     </Link>

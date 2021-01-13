@@ -25,12 +25,13 @@ const CreatePage: NextPage = () => {
         const data = await createCircle({
             type: 'CreateCircleFormRequest',
             name: name.value,
-            slug: slug.value
+            slug: slug.value,
+            release: false,
         } as CreateCircleFormRequest, authContext.accessToken)
 
         if (isCreateCircleFormRequestValidationError(data)) {
-            name.setError(data.error.name)
-            slug.setError(data.error.slug)
+            name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
+            slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
 
             return
         }

@@ -52,7 +52,7 @@ export interface Circle {
     id: number
     slug: string
     release: boolean
-    circle_type_id: string
+    circleType: string
     name: string
     nameKana: string
     shortName: string
