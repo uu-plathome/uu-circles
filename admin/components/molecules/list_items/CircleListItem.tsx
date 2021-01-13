@@ -8,6 +8,19 @@ import Link from 'next/link';
 type Props = {
     circle: Circle
 }
+
+const CircleListItemTableColumn: FC<{
+    title: string
+}> = ({ children, title }) => {
+    return (
+        <div className="w-full lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">{title}</p>
+            <div className="flex justify-center h-7 items-center">
+                { children }
+            </div>
+        </div>
+    )
+}
 const CircleListItem: FC<Props> = ({ circle }) => {
     return (
         <div className="text-white flex">
@@ -26,36 +39,36 @@ const CircleListItem: FC<Props> = ({ circle }) => {
             <h2 className="font-bold text-lg text-gray-300 mb-2">{ circle.name }</h2>
 
             <div className="flex flex-wrap w-full">
-                <div className="w-full lg:w-1/6 pr-2">
-                    <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">公開中</p>
-                    <div className="flex justify-center h-7 items-center">
-                        <FontAwesomeIcon
-                            size="lg"
-                            color={circle.release ? 'green' : 'red' }
-                            icon={circle.release ? faCheckCircle : faTimesCircle}
-                        />
-                    </div>
-                </div>
-                <div className="w-full lg:w-1/6 pr-2">
-                    <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">種別</p>
-                    <div className="flex justify-center h-7 items-center">
-                        サークル
-                    </div>
-                </div>
-                <div className="w-full lg:w-1/6">
-                    <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">編集する</p>
-                    <div className="flex justify-center h-7 items-center">
-                        <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
-                            <a>
-                                <FontAwesomeIcon
-                                    size="lg"
-                                    color="orange"
-                                    icon={ faEdit }
-                                />
-                            </a>
-                        </Link>
-                    </div>
-                </div>
+                <CircleListItemTableColumn title="公開中">
+                    <FontAwesomeIcon
+                        size="lg"
+                        color={circle.release ? 'green' : 'red' }
+                        icon={circle.release ? faCheckCircle : faTimesCircle}
+                    />
+                </CircleListItemTableColumn>
+                <CircleListItemTableColumn title="種別">サークル</CircleListItemTableColumn>
+                <CircleListItemTableColumn title="編集する">
+                    <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
+                        <a>
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="orange"
+                                icon={ faEdit }
+                            />
+                        </a>
+                    </Link>
+                </CircleListItemTableColumn>
+                <CircleListItemTableColumn title="新歓">
+                    <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
+                        <a>
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="orange"
+                                icon={ faEdit }
+                            />
+                        </a>
+                    </Link>
+                </CircleListItemTableColumn>
             </div>
         </div>
     </div>

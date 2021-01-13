@@ -21,6 +21,7 @@ const EditPage: NextPage = () => {
     const router = useRouter()
     const name = useInput('')
     const slug = useInput('')
+    const release = useInput('false')
     const nameKana = useInput('')
     const shortName = useInput('')
     const prefixName = useInput('')
@@ -60,6 +61,7 @@ const EditPage: NextPage = () => {
                 if (foundCircle) {
                     name.set(foundCircle.name)
                     slug.set(foundCircle.slug)
+                    release.set(foundCircle.release ? 'true' : 'false')
                     nameKana.set(foundCircle.nameKana)
                     shortName.set(foundCircle.shortName)
                     prefixName.set(foundCircle.prefixName)
@@ -108,7 +110,7 @@ const EditPage: NextPage = () => {
                     type: 'UpdateCircleFormRequest',
                     name: name.value,
                     slug: slug.value,
-                    release: circle.release,
+                    release: release.value === 'true' ? true : false,
                     nameKana: nameKana.value,
                     shortName: shortName.value,
                     prefixName: prefixName.value,
@@ -146,6 +148,7 @@ const EditPage: NextPage = () => {
                 name.setError(data.error.name)
                 slug.setError(data.error.slug)
                 nameKana.setError(data.error.nameKana)
+                release.setError(data.error.release)
                 shortName.setError(data.error.shortName)
                 prefixName.setError(data.error.prefixName)
                 description.setError(data.error.description)
@@ -203,6 +206,18 @@ const EditPage: NextPage = () => {
                             <div className="border-2 border-gray-800 px-2 py-4">
                                 { circle ? (
                                     <form onSubmit={onSubmit}>
+
+                                        <BaseSelect
+                                            label="公開設定"
+                                            id="release"
+                                            name="release"
+                                            items={[
+                                                { value: 'true', label: '公開' },
+                                                { value: 'false', label: '非公開' },
+                                            ]}
+                                            { ...release }
+                                        />
+
                                         <BaseTextField
                                             label="サークル名"
                                             name="name"
@@ -369,6 +384,7 @@ const EditPage: NextPage = () => {
                                             name="admissionFee"
                                             id="admissionFee"
                                             placeholder="年間1,000円"
+                                            suffix="円"
                                             { ...admissionFee }
                                         />
 
@@ -376,6 +392,7 @@ const EditPage: NextPage = () => {
                                             label="活動人数"
                                             name="numberOfMembers"
                                             id="numberOfMembers"
+                                            suffix="人"
                                             { ...numberOfMembers }
                                         />
 
@@ -387,80 +404,112 @@ const EditPage: NextPage = () => {
                                             { ...publicEmail }
                                         />
 
-                                        <BaseTextField
-                                            label="Twitter URL"
-                                            name="twitterUrl"
-                                            id="twitterUrl"
-                                            placeholder="https://twitter.com/"
-                                            { ...twitterUrl }
-                                        />
+                                        <div className="grid grid-cols-2 gap-x-4">
+                                            <div>
+                                                <BaseTextField
+                                                    label="Twitter URL"
+                                                    name="twitterUrl"
+                                                    id="twitterUrl"
+                                                    expand
+                                                    placeholder="https://twitter.com/"
+                                                    { ...twitterUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Facebook URL"
-                                            name="facebookUrl"
-                                            id="facebookUrl"
-                                            { ...facebookUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Facebook URL"
+                                                    name="facebookUrl"
+                                                    id="facebookUrl"
+                                                    expand
+                                                    { ...facebookUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Instagram URL"
-                                            name="instagramUrl"
-                                            id="instagramUrl"
-                                            placeholder="https://instagram.com"
-                                            { ...instagramUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Instagram URL"
+                                                    name="instagramUrl"
+                                                    id="instagramUrl"
+                                                    expand
+                                                    placeholder="https://instagram.com"
+                                                    { ...instagramUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Line URL"
-                                            name="lineUrl"
-                                            id="lineUrl"
-                                            { ...lineUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Line URL"
+                                                    name="lineUrl"
+                                                    id="lineUrl"
+                                                    expand
+                                                    { ...lineUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Youtube URL"
-                                            name="youtubeUrl"
-                                            id="youtubeUrl"
-                                            placeholder="https://youtube.com"
-                                            { ...youtubeUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Youtube URL"
+                                                    name="youtubeUrl"
+                                                    id="youtubeUrl"
+                                                    expand
+                                                    placeholder="https://youtube.com"
+                                                    { ...youtubeUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Homepage URL"
-                                            name="homepageUrl"
-                                            id="homepageUrl"
-                                            { ...homepageUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Homepage URL"
+                                                    name="homepageUrl"
+                                                    id="homepageUrl"
+                                                    expand
+                                                    { ...homepageUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Peing URL"
-                                            name="peingUrl"
-                                            id="peingUrl"
-                                            { ...peingUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Peing URL"
+                                                    name="peingUrl"
+                                                    id="peingUrl"
+                                                    expand
+                                                    { ...peingUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Peing URL"
-                                            name="githubUrl"
-                                            id="githubUrl"
-                                            placeholder="https://github.com"
-                                            { ...githubUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="GitHub URL"
+                                                    name="githubUrl"
+                                                    id="githubUrl"
+                                                    expand
+                                                    placeholder="https://github.com"
+                                                    { ...githubUrl }
+                                                />
+                                            </div>
 
-                                        <BaseTextField
-                                            label="Tiktok URL"
-                                            name="tiktokUrl"
-                                            id="tiktokUrl"
-                                            { ...tiktokUrl }
-                                        />
+                                            <div>
+                                                <BaseTextField
+                                                    label="Tiktok URL"
+                                                    name="tiktokUrl"
+                                                    id="tiktokUrl"
+                                                    expand
+                                                    { ...tiktokUrl }
+                                                />
+                                            </div>
+                                        </div>
 
-                                        <BaseTextField
-                                            label="新歓・活動参加用URL"
-                                            name="participationUrl"
-                                            id="participationUrl"
-                                            note="Google formなどのURL。Zoomを張るのは控えてください。"
-                                            { ...participationUrl }
-                                        />
+                                        <div>
+                                            <BaseTextField
+                                                label="新歓・活動参加用URL"
+                                                name="participationUrl"
+                                                id="participationUrl"
+                                                expand
+                                                note="Google formなどのURL。Zoomを張るのは控えてください。"
+                                                { ...participationUrl }
+                                            />
+                                        </div>
 
                                         <div className="flex justify-center mt-8">
                                             <GreenButton type="submit">

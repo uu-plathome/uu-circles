@@ -2,14 +2,14 @@ import React from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 type SelectItem = {
-    value: string
+    value: string|number
     label?: string
 }
 
 export type Props = {
     id: string
     name: string
-    value: string
+    value: string|number
     required?: boolean
     placeholder?: string
     items: SelectItem[]

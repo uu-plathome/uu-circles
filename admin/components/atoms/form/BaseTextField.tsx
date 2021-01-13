@@ -1,10 +1,25 @@
 import { FC } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
+const inputClass = `
+    px-4
+    py-2
+    transition
+    duration-300
+    border
+    border-gray-300
+    rounded
+    focus:border-transparent
+    focus:outline-none
+    focus:ring-4
+    focus:ring-blue-200
+`
+
 export type Props = {
     id: string
     name: string
     value: string|number
+    expand?: boolean
     required?: boolean
     type?: string
     placeholder?: string
@@ -18,6 +33,7 @@ const BaseTextField: FC<Props> = ({
     name,
     note,
     value,
+    expand,
     type = 'text',
     required,
     placeholder,
@@ -34,7 +50,7 @@ const BaseTextField: FC<Props> = ({
                 id={id}
             />
 
-            <div className="flex">
+            <div className="flex items-end">
                 <input
                     type={type}
                     id={id}
@@ -42,11 +58,14 @@ const BaseTextField: FC<Props> = ({
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
-                    className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    className={inputClass}
+                    style={{
+                        width: expand ? '100%' : 'auto'
+                    }}
                 />
 
                 {suffix ? (
-                    <p className="ml-1">{suffix}</p>
+                    <p className="ml-1 text-white">{suffix}</p>
                 ) : ''}
             </div>
             {error ? (
