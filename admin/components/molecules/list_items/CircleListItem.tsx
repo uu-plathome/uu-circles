@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { faCheckCircle, faTimesCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Circle } from '@/infra/api/types';
 import Link from 'next/link';
+import { __ } from '@/lang/ja';
 
 type Props = {
     circle: Circle
@@ -46,7 +47,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                         icon={circle.release ? faCheckCircle : faTimesCircle}
                     />
                 </CircleListItemTableColumn>
-                <CircleListItemTableColumn title="種別">サークル</CircleListItemTableColumn>
+                <CircleListItemTableColumn title="種別">{__(circle.circleType) || '不明'}</CircleListItemTableColumn>
                 <CircleListItemTableColumn title="編集する">
                     <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
                         <a>

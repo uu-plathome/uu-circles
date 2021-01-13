@@ -23,8 +23,17 @@ export const PlaceOfActivity = {
   OTHER: 'OTHER'
 } as const
 
+export type PlaceOfActivityKey = keyof typeof PlaceOfActivity
 export type PlaceOfActivity = typeof PlaceOfActivity[keyof typeof PlaceOfActivity]
 
+/**
+ * 活動場所
+ */
+export const getAllPlaceOfActivity = (): PlaceOfActivity[] => Object.values(PlaceOfActivity)
+/**
+ * 活動場所
+ */
+export const getAllPlaceOfActivityKey = (): PlaceOfActivityKey[] => Object.keys(PlaceOfActivity) as PlaceOfActivityKey[]
 /**
  * 活動場所
  */
