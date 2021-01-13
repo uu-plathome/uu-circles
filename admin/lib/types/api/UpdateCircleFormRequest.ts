@@ -43,40 +43,40 @@ export interface UpdateCircleFormRequest {
  */
 export interface UpdateCircleFormRequestValidationError {
     type: 'UpdateCircleFormRequestValidationError'
-    error: {
-        slug?: string
-        release?: string
-        name?: string
-        nameKana?: string
-        shortName?: string
-        prefixName?: string
-        circleType?: string
-        description?: string
-        intro?: string
-        placeOfActivity?: string
-        placeOfActivityDetail?: string
-        doOnlineActivity?: string
-        dateOfActivityMonday?: string
-        dateOfActivityTuesday?: string
-        dateOfActivityWednesday?: string
-        dateOfActivityThursday?: string
-        dateOfActivityFriday?: string
-        dateOfActivitySaturday?: string
-        dateOfActivitySunday?: string
-        dateOfActivityDetail?: string
-        admissionFee?: string
-        numberOfMembers?: string
-        publicEmail?: string
-        twitterUrl?: string
-        facebookUrl?: string
-        instagramUrl?: string
-        lineUrl?: string
-        youtubeUrl?: string
-        homepageUrl?: string
-        peingUrl?: string
-        githubUrl?: string
-        tiktokUrl?: string
-        participationUrl?: string
+    errors: {
+        slug?: string[]
+        release?: string[]
+        name?: string[]
+        nameKana?: string[]
+        shortName?: string[]
+        prefixName?: string[]
+        circleType?: string[]
+        description?: string[]
+        intro?: string[]
+        placeOfActivity?: string[]
+        placeOfActivityDetail?: string[]
+        doOnlineActivity?: string[]
+        dateOfActivityMonday?: string[]
+        dateOfActivityTuesday?: string[]
+        dateOfActivityWednesday?: string[]
+        dateOfActivityThursday?: string[]
+        dateOfActivityFriday?: string[]
+        dateOfActivitySaturday?: string[]
+        dateOfActivitySunday?: string[]
+        dateOfActivityDetail?: string[]
+        admissionFee?: string[]
+        numberOfMembers?: string[]
+        publicEmail?: string[]
+        twitterUrl?: string[]
+        facebookUrl?: string[]
+        instagramUrl?: string[]
+        lineUrl?: string[]
+        youtubeUrl?: string[]
+        homepageUrl?: string[]
+        peingUrl?: string[]
+        githubUrl?: string[]
+        tiktokUrl?: string[]
+        participationUrl?: string[]
     }
     message: string
 }

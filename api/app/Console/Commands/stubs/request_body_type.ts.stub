@@ -11,7 +11,7 @@ export interface {{ $className }} {
  */
 export interface {{ $className }}ValidationError {
     type: '{{ $className }}ValidationError'
-    error: {
+    errors: {
 {{ $validationObject }}
     }
     message: string

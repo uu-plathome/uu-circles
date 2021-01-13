@@ -13,10 +13,10 @@ export interface RegisterAdminFormRequest {
  */
 export interface RegisterAdminFormRequestValidationError {
     type: 'RegisterAdminFormRequestValidationError'
-    error: {
-        username?: string
-        displayName?: string
-        email?: string
+    errors: {
+        username?: string[]
+        displayName?: string[]
+        email?: string[]
     }
     message: string
 }

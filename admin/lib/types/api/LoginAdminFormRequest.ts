@@ -12,9 +12,9 @@ export interface LoginAdminFormRequest {
  */
 export interface LoginAdminFormRequestValidationError {
     type: 'LoginAdminFormRequestValidationError'
-    error: {
-        usernameOrEmail?: string
-        password?: string
+    errors: {
+        usernameOrEmail?: string[]
+        password?: string[]
     }
     message: string
 }

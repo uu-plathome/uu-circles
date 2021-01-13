@@ -96,7 +96,6 @@ class GenerateRequestTypeForTs extends Command
             $arrVal = is_string($value)
                 ? explode('|', str_replace(' ', '', $value))
                 : $value;
-            Log::debug($arrVal);
 
             $type = $this->getTsType($arrVal);
             if ($type === 'any[]' && in_array("{$key}.*", array_keys($rulesData, true), true)) {
@@ -118,7 +117,7 @@ class GenerateRequestTypeForTs extends Command
             $operator = in_array('nullable', $arrVal) ? '?:' : ':';
 
             $requestBodyObject .= "    {$key}{$operator} {$type}\n";
-            $validationObject .= "        {$key}?: string\n";
+            $validationObject .= "        {$key}?: string[]\n";
         }
         $requestBodyObject = substr($requestBodyObject, 0, -1);
         $validationObject = substr($validationObject, 0, -1);

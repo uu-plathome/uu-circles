@@ -13,10 +13,10 @@ export interface CreateCircleFormRequest {
  */
 export interface CreateCircleFormRequestValidationError {
     type: 'CreateCircleFormRequestValidationError'
-    error: {
-        slug?: string
-        release?: string
-        name?: string
+    errors: {
+        slug?: string[]
+        release?: string[]
+        name?: string[]
     }
     message: string
 }
