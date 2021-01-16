@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\CircleNewJoy;
 
 use App\Enum\CircleNewJoyModel;
 use App\Enum\PlaceOfActivity;
+use App\Support\Arr;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -27,7 +28,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return Arr::camel_keys([
             CircleNewJoyModel::title                    => ['string', 'max:100'],
             CircleNewJoyModel::description              => ['string', 'nullable', 'max:255'],
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
@@ -42,7 +43,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyModel::start_date               => ['string', 'nullable'],
             CircleNewJoyModel::end_date                 => ['string', 'nullable'],
             CircleNewJoyModel::release                  => ['boolean', 'nullable'],
-        ];
+        ]);
     }
 
     public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject

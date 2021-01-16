@@ -6,12 +6,12 @@ export interface RegisterCircleNewJoyRequest {
     title: string
     description?: string
     url?: string
-    place_of_activity?: string
-    place_of_activity_detail?: string
-    publish_from?: string
-    publish_to?: string
-    start_date?: string
-    end_date?: string
+    placeOfActivity?: string
+    placeOfActivityDetail?: string
+    publishFrom?: string
+    publishTo?: string
+    startDate?: string
+    endDate?: string
     release?: boolean
 }
 
@@ -24,12 +24,12 @@ export interface RegisterCircleNewJoyRequestValidationError {
         title?: string[]
         description?: string[]
         url?: string[]
-        place_of_activity?: string[]
-        place_of_activity_detail?: string[]
-        publish_from?: string[]
-        publish_to?: string[]
-        start_date?: string[]
-        end_date?: string[]
+        placeOfActivity?: string[]
+        placeOfActivityDetail?: string[]
+        publishFrom?: string[]
+        publishTo?: string[]
+        startDate?: string[]
+        endDate?: string[]
         release?: string[]
     }
     message: string
