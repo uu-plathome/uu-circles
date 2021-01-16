@@ -86,3 +86,20 @@ export interface Circle {
     createdAt: string
     updatedAt: string
 }
+
+export interface CircleNewJoy {
+    id: number
+    circleId: number
+    title: string
+    description: string
+    url: string
+    placeOfActivity: string
+    placeOfActivityDetail: string
+    publishFrom: string
+    publishTo: string
+    startDate: string
+    endDate: string
+    release: string
+    createdAt: string
+    updatedAt: string
+}

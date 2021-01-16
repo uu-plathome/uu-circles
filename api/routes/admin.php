@@ -14,8 +14,13 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/admin-user', 'Admin\AdminUser\IndexAdminUserController');
     Route::post('/admin-user', 'Admin\Auth\RegisterAdminController')->name('admin.auth.register');
+
+    // Circle サークル管理
     Route::get('/circle', 'Admin\Circle\IndexCircleController');
     Route::post('/circle', 'Admin\Circle\CreateCircleController');
     Route::get('/circle/{id}', 'Admin\Circle\ShowCircleController');
     Route::put('/circle/{id}', 'Admin\Circle\UpdateCircleController');
+
+    // CircleNewJoy サークル新歓管理
+    Route::post('/circle/{id}/newjoy', 'Admin\CircleNewJoy\RegisterCircleNewJoyController');
 });

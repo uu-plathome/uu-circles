@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
+use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -47,6 +48,7 @@ class GenerateRequestTypeForTs extends Command
         $this->requestClasses = [
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
+            RegisterCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
         ];
