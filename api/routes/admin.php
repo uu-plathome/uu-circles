@@ -22,5 +22,8 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/circle/{id}', 'Admin\Circle\UpdateCircleController');
 
     // CircleNewJoy サークル新歓管理
+    Route::get('/circle/{id}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');
     Route::post('/circle/{id}/newjoy', 'Admin\CircleNewJoy\RegisterCircleNewJoyController');
+    Route::get('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\ShowCircleNewJoyController');
+    Route::put('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\UpdateCircleNewJoyController');
 });

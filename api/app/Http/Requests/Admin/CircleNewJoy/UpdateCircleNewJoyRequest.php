@@ -9,7 +9,7 @@ use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RegisterCircleNewJoyRequest extends FormRequest
+class UpdateCircleNewJoyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

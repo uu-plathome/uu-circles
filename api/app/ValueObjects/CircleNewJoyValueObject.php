@@ -26,8 +26,10 @@ class CircleNewJoyValueObject
 
     public static function of(array $inputs): CircleNewJoyValueObject
     {
+        \Log::debug($inputs);
         $circleNewJoyValueObject = new CircleNewJoyValueObject();
         $circleNewJoyValueObject->id = Arr::get($inputs, CircleNewJoyModel::id);
+        $circleNewJoyValueObject->circle_id = Arr::get($inputs, CircleNewJoyModel::circle_id);
         $circleNewJoyValueObject->title = Arr::get($inputs, CircleNewJoyModel::title);
         $circleNewJoyValueObject->description = Arr::get($inputs, CircleNewJoyModel::description);
         $circleNewJoyValueObject->url = Arr::get($inputs, CircleNewJoyModel::url);
@@ -38,8 +40,11 @@ class CircleNewJoyValueObject
         $circleNewJoyValueObject->start_date = Arr::get($inputs, CircleNewJoyModel::start_date);
         $circleNewJoyValueObject->end_date = Arr::get($inputs, CircleNewJoyModel::end_date);
         $circleNewJoyValueObject->release = Arr::get($inputs, CircleNewJoyModel::release);
-        $circleNewJoyValueObject->created_at = Arr::get($inputs, CircleNewJoyModel::created_at);
-        $circleNewJoyValueObject->updated_at = Arr::get($inputs, CircleNewJoyModel::updated_at);
+
+        $createdAt = Arr::get($inputs, CircleNewJoyModel::created_at);
+        $circleNewJoyValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
+        $updatedAt = Arr::get($inputs, CircleNewJoyModel::updated_at);
+        $circleNewJoyValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
 
         return $circleNewJoyValueObject;
     }

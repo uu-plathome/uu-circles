@@ -36,10 +36,12 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $slug
- * @property int $release
+ * @property bool $release
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\CircleInformation|null $circleInformation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleNewJoy[] $circleNewJoys
+ * @property-read int|null $circle_new_joys_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleUser[] $circleUsers
  * @property-read int|null $circle_users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Circle newModelQuery()
@@ -60,7 +62,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $circle_id
- * @property int|null $circle_type_id
+ * @property string|null $circle_type
  * @property string $name サークル名
  * @property string|null $name_kana サークル名(カナ)
  * @property string|null $short_name サークル名(通称)
@@ -69,6 +71,7 @@ namespace App\Models{
  * @property string|null $intro サークル長文紹介
  * @property string|null $place_of_activity 活動場所
  * @property string|null $place_of_activity_detail 活動場所詳細
+ * @property int $do_online_activity オンライン活動するか
  * @property string|null $date_of_activity_monday 活動日時(月)
  * @property string|null $date_of_activity_tuesday 活動日時(火)
  * @property string|null $date_of_activity_wednesday 活動日時(水)
@@ -98,7 +101,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation query()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereAdmissionFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereCircleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereCircleTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereCircleType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDateOfActivityDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDateOfActivityFriday($value)
@@ -109,6 +112,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDateOfActivityTuesday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDateOfActivityWednesday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereDoOnlineActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereFacebookUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereGithubUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereHomepageUrl($value)
@@ -132,6 +136,46 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereYoutubeUrl($value)
  */
 	class CircleInformation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CircleNewJoy
+ *
+ * @property int $id
+ * @property int $circle_id
+ * @property string|null $title サークル新歓タイトル
+ * @property string|null $description サークル新歓紹介
+ * @property string|null $url サークル新歓 URL
+ * @property string|null $place_of_activity 活動場所
+ * @property string|null $place_of_activity_detail 活動場所詳細
+ * @property \Illuminate\Support\Carbon|null $publish_from 公開開始日時
+ * @property \Illuminate\Support\Carbon|null $publish_to 公開終了日時
+ * @property \Illuminate\Support\Carbon|null $start_date 新歓開始日時
+ * @property \Illuminate\Support\Carbon|null $end_date 新歓終了日時
+ * @property bool $release 公開設定
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy nowPublic(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereCircleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivityDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePublishFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereRelease($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereUrl($value)
+ */
+	class CircleNewJoy extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -165,7 +209,7 @@ namespace App\Models{
  * @property string $display_name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
+ * @property string|null $password
  * @property string $api_token
  * @property bool $active
  * @property string|null $remember_token

@@ -3,9 +3,9 @@ import { axiosInstance } from "."
 import { AxiosError } from 'axios'
 import { CircleNewJoy } from "./types"
 
-export const createCircle = async (circle: RegisterCircleNewJoyRequest, accessToken: string) => {
+export const createCircleNewJoy = async (circleId: number, circle: RegisterCircleNewJoyRequest, accessToken: string) => {
     try {
-        const { data } = await axiosInstance.post('/admin/api/circle', circle, {
+        const { data } = await axiosInstance.post(`/admin/api/circle/${circleId}/newjoy`, circle, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             }
@@ -16,7 +16,7 @@ export const createCircle = async (circle: RegisterCircleNewJoyRequest, accessTo
         const e = _e as AxiosError<RegisterCircleNewJoyRequestValidationError>
 
         if (e.response && e.response.status === 422 && e.response.data) {
-            return  {
+            return {
                 ...e.response.data,
                 type: 'RegisterCircleNewJoyRequestValidationError'
             } as RegisterCircleNewJoyRequestValidationError
