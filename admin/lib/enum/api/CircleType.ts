@@ -10,7 +10,7 @@ export const CircleType = {
   /**
    * 非公式団体
    */
-  UNOFFICIAL_ORGANIZATION: 'OFFICIAL_ORGANIZATION',
+  UNOFFICIAL_ORGANIZATION: 'UNOFFICIAL_ORGANIZATION',
 
   /**
    * 届出団体
@@ -23,8 +23,17 @@ export const CircleType = {
   STUDENT_GROUP: 'STUDENT_GROUP'
 } as const
 
+export type CircleTypeKey = keyof typeof CircleType
 export type CircleType = typeof CircleType[keyof typeof CircleType]
 
+/**
+ * サークル種類
+ */
+export const getAllCircleType = (): CircleType[] => Object.values(CircleType)
+/**
+ * サークル種類
+ */
+export const getAllCircleTypeKey = (): CircleTypeKey[] => Object.keys(CircleType) as CircleTypeKey[]
 /**
  * サークル種類
  */
@@ -37,7 +46,7 @@ export const isOfficialOrganization = (v: any): v is 'OFFICIAL_ORGANIZATION' => 
 /**
  * 非公式団体
  */
-export const isUnofficialOrganization = (v: any): v is 'OFFICIAL_ORGANIZATION' => v === CircleType.UNOFFICIAL_ORGANIZATION
+export const isUnofficialOrganization = (v: any): v is 'UNOFFICIAL_ORGANIZATION' => v === CircleType.UNOFFICIAL_ORGANIZATION
 /**
  * 届出団体
  */

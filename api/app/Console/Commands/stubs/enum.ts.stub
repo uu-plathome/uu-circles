@@ -3,8 +3,13 @@ export const {{ $className }} = {
 {{ $keyValue }}
 } as const
 
+export type {{ $className }}Key = keyof typeof {{ $className }}
 export type {{ $className }} = typeof {{ $className }}[keyof typeof {{ $className }}]
 
+{{ $classComment }}
+export const getAll{{ $className }} = (): {{ $className }}[] => Object.values({{ $className }})
+{{ $classComment }}
+export const getAll{{ $className }}Key = (): {{ $className }}Key[] => Object.keys({{ $className }}) as {{ $className }}Key[]
 {{ $classComment }}
 export const is{{ $className }} = (s: any): s is {{ $className }} => Object.values({{ $className }}).includes(s)
 

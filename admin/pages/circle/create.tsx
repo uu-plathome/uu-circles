@@ -6,6 +6,7 @@ import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { createCircle } from '@/infra/api/circle'
+import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
@@ -21,10 +22,20 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        await createCircle({
+        const data = await createCircle({
+            type: 'CreateCircleFormRequest',
             name: name.value,
-            slug: slug.value
-        }, authContext.accessToken)
+            slug: slug.value,
+            release: false,
+        } as CreateCircleFormRequest, authContext.accessToken)
+
+        if (isCreateCircleFormRequestValidationError(data)) {
+            name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
+            slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
+
+            return
+        }
+
         await router.push('/circle')
     }
 
