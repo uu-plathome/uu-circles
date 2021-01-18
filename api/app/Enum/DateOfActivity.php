@@ -16,4 +16,12 @@ class DateOfActivity
      * 隔週
      */
     const EVERY_OTHER_WEEK = 'EVERY_OTHER_WEEK';
+
+    public static function getAll(): array
+    {
+        return [
+            self::EVERY_WEEK,
+            self::EVERY_OTHER_WEEK,
+        ];
+    }
 }

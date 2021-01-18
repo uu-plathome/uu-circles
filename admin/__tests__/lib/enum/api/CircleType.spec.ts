@@ -8,9 +8,9 @@ describe('Enum CircleType', () => {
     expect(TestFunc.isOfficialOrganization('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isUnofficialOrganization', () => {
-    expect(TestFunc.CircleType.UNOFFICIAL_ORGANIZATION).toBe('OFFICIAL_ORGANIZATION')
-    expect(TestFunc.isCircleType('OFFICIAL_ORGANIZATION')).toBeTruthy()
-    expect(TestFunc.isUnofficialOrganization('OFFICIAL_ORGANIZATION')).toBeTruthy()
+    expect(TestFunc.CircleType.UNOFFICIAL_ORGANIZATION).toBe('UNOFFICIAL_ORGANIZATION')
+    expect(TestFunc.isCircleType('UNOFFICIAL_ORGANIZATION')).toBeTruthy()
+    expect(TestFunc.isUnofficialOrganization('UNOFFICIAL_ORGANIZATION')).toBeTruthy()
     expect(TestFunc.isUnofficialOrganization('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isSendingOrganization', () => {

@@ -48,18 +48,11 @@ export interface RegisterUser {
     email: string
     type: 'registerUser'
 }
-
-export interface CreateCircle {
-    slug: string
-    release?: boolean
-    name: string
-}
-
 export interface Circle {
     id: number
     slug: string
     release: boolean
-    circle_type_id: string
+    circleType: string
     name: string
     nameKana: string
     shortName: string
@@ -90,6 +83,23 @@ export interface Circle {
     githubUrl: string
     tiktokUrl: string
     participationUrl: string
+    createdAt: string
+    updatedAt: string
+}
+
+export interface CircleNewJoy {
+    id: number
+    circleId: number
+    title: string
+    description: string
+    url: string
+    placeOfActivity: string
+    placeOfActivityDetail: string
+    publishFrom: string
+    publishTo: string
+    startDate: string
+    endDate: string
+    release: string
     createdAt: string
     updatedAt: string
 }

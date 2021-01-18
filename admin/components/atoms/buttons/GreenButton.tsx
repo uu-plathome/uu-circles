@@ -1,10 +1,13 @@
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React from "react";
+import { UrlObject } from 'url';
+type Url = string | UrlObject;
 
 type Props = {
-    type?: "button" | "submit" | "reset"
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
+    as?: Url
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-    href?: string
+    href?: LinkProps['href']
 }
 
 const buttonClassName = `
@@ -27,11 +30,11 @@ const buttonClassName = `
     hover:bg-green-700
     focus:outline-none
 `
-const GreenButton: React.FC<Props> = ({ children, href, onClick, type }) => {
+const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
 
     if (href) {
         return (
-            <Link href={href}>
+            <Link href={href} as={as}>
                 <a className={buttonClassName}>
                     { children }
                 </a>

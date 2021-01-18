@@ -13,8 +13,17 @@ export const DateOfActivity = {
   EVERY_OTHER_WEEK: 'EVERY_OTHER_WEEK'
 } as const
 
+export type DateOfActivityKey = keyof typeof DateOfActivity
 export type DateOfActivity = typeof DateOfActivity[keyof typeof DateOfActivity]
 
+/**
+ * 活動日時
+ */
+export const getAllDateOfActivity = (): DateOfActivity[] => Object.values(DateOfActivity)
+/**
+ * 活動日時
+ */
+export const getAllDateOfActivityKey = (): DateOfActivityKey[] => Object.keys(DateOfActivity) as DateOfActivityKey[]
 /**
  * 活動日時
  */

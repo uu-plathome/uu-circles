@@ -51,6 +51,7 @@ const Login: NextPage = () => {
                                     label="メールアドレスかユーザー名"
                                     id="username_or_email"
                                     name="username_or_email"
+                                    expand
                                     { ...usernameOrEmail }
                                 />
 
@@ -58,6 +59,7 @@ const Login: NextPage = () => {
                                     label="パスワード"
                                     id="password"
                                     name="password"
+                                    expand
                                     { ...password }
                                 />
                             </div>

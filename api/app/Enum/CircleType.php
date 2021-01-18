@@ -15,7 +15,7 @@ class CircleType
     /**
      * 非公式団体
      */
-    const UNOFFICIAL_ORGANIZATION = 'OFFICIAL_ORGANIZATION';
+    const UNOFFICIAL_ORGANIZATION = 'UNOFFICIAL_ORGANIZATION';
 
     /**
      * 届出団体
