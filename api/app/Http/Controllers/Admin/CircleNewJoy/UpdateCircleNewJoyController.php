@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
 use App\Usecases\Admin\UpdateCircleNewJoyUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class UpdateCircleNewJoyController extends Controller
 {
@@ -20,15 +22,19 @@ class UpdateCircleNewJoyController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param UpdateCircleNewJoyRequest $request
+     * @param int $id
+     * @param int $circleNewJoyId
+     * @return array
+     * @throws \Exception
      */
     public function __invoke(
         UpdateCircleNewJoyRequest $request,
         int $id,
         int $circleNewJoyId
-    ) {
+    ): array {
         $circleNewJoy = $request->makeCircleNewJoyValueObject();
+
         $this->updateCircleNewJoyUsecase->invoke(
             $id,
             $circleNewJoyId,

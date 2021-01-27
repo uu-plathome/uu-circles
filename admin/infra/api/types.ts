@@ -99,7 +99,7 @@ export interface CircleNewJoy {
     publishTo: string
     startDate: string
     endDate: string
-    release: string
+    release: boolean
     createdAt: string
     updatedAt: string
 }

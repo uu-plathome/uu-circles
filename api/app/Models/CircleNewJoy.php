@@ -22,15 +22,13 @@ class CircleNewJoy extends Model
         CircleNewJoyModel::release,
     ];
 
-    protected $dates = [
-        CircleNewJoyModel::start_date,
-        CircleNewJoyModel::end_date,
-        CircleNewJoyModel::publish_from,
-        CircleNewJoyModel::publish_to,
-    ];
 
     protected $casts = [
-        CircleNewJoyModel::release => 'boolean',
+        CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
+        CircleNewJoyModel::publish_to => 'datetime:Y-m-d',
+        CircleNewJoyModel::start_date => 'datetime:Y-m-d\TH:i',
+        CircleNewJoyModel::end_date   => 'datetime:Y-m-d\TH:i',
+        CircleNewJoyModel::release    => 'boolean',
     ];
 
     /**
