@@ -17,7 +17,7 @@ class ShowCircleController extends Controller
      * @param int $id
      * @return array
      */
-    public function __invoke(Request $request, int $id)
+    public function __invoke(Request $request, int $id): array
     {
         $circle = Circle::findOrFail($id);
 

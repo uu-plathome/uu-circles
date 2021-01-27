@@ -26,7 +26,6 @@ class CircleNewJoyValueObject
 
     public static function of(array $inputs): CircleNewJoyValueObject
     {
-        \Log::debug($inputs);
         $circleNewJoyValueObject = new CircleNewJoyValueObject();
         $circleNewJoyValueObject->id = Arr::get($inputs, CircleNewJoyModel::id);
         $circleNewJoyValueObject->circle_id = Arr::get($inputs, CircleNewJoyModel::circle_id);
@@ -35,10 +34,18 @@ class CircleNewJoyValueObject
         $circleNewJoyValueObject->url = Arr::get($inputs, CircleNewJoyModel::url);
         $circleNewJoyValueObject->place_of_activity = Arr::get($inputs, CircleNewJoyModel::place_of_activity);
         $circleNewJoyValueObject->place_of_activity_detail = Arr::get($inputs, CircleNewJoyModel::place_of_activity_detail);
-        $circleNewJoyValueObject->publish_from = Arr::get($inputs, CircleNewJoyModel::publish_from);
-        $circleNewJoyValueObject->publish_to = Arr::get($inputs, CircleNewJoyModel::publish_to);
-        $circleNewJoyValueObject->start_date = Arr::get($inputs, CircleNewJoyModel::start_date);
-        $circleNewJoyValueObject->end_date = Arr::get($inputs, CircleNewJoyModel::end_date);
+
+        $publishFrom = Arr::get($inputs, CircleNewJoyModel::publish_from);
+        $circleNewJoyValueObject->publish_from = is_string($publishFrom) ? new Carbon($publishFrom) : $publishFrom;
+
+        $publishTo = Arr::get($inputs, CircleNewJoyModel::publish_to);
+        $circleNewJoyValueObject->publish_to = is_string($publishTo) ? new Carbon($publishTo) : $publishTo;
+
+        $startDate = Arr::get($inputs, CircleNewJoyModel::start_date);
+        $circleNewJoyValueObject->start_date = is_string($startDate) ? new Carbon($startDate) : $startDate;
+
+        $endDate = Arr::get($inputs, CircleNewJoyModel::end_date);
+        $circleNewJoyValueObject->end_date = is_string($endDate) ? new Carbon($endDate) : $endDate;
         $circleNewJoyValueObject->release = Arr::get($inputs, CircleNewJoyModel::release);
 
         $createdAt = Arr::get($inputs, CircleNewJoyModel::created_at);
@@ -57,6 +64,11 @@ class CircleNewJoyValueObject
     public function toCircleNewJoy(): CircleNewJoy
     {
         return (new CircleNewJoy())->forceFill($this->toArray());
+    }
+
+    public function except(array $keys): array
+    {
+        return Arr::except($this->toArray(), $keys);
     }
 
     public function toArray(): array

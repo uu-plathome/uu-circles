@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Usecases\Admin\CreateCircleNewJoyUsecase;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RegisterCircleNewJoyController extends Controller
 {
@@ -19,10 +21,12 @@ class RegisterCircleNewJoyController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param RegisterCircleNewJoyRequest $request
+     * @param int $id
+     * @return Response
+     * @throws Exception
      */
-    public function __invoke(RegisterCircleNewJoyRequest $request, int $id)
+    public function __invoke(RegisterCircleNewJoyRequest $request, int $id): Response
     {
         $circleNewJoyValueObject = $request->makeCircleNewJoyValueObject();
         $this->createCircleNewJoyUsecase->invoke($id, $circleNewJoyValueObject);

@@ -26,7 +26,7 @@ export const login = async ({
             }
         }
 
-        console.error(e)
+        throw new Error(e)
     }
 }
 

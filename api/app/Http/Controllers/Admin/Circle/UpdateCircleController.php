@@ -25,7 +25,7 @@ class UpdateCircleController extends Controller
      * @return array
      * @throws \Exception
      */
-    public function __invoke(UpdateCircleFormRequest $request)
+    public function __invoke(UpdateCircleFormRequest $request): array
     {
         $circle = $this->updateCircleUsecase->invoke(
             $request->makeCircleValueObject()

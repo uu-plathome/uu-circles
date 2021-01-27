@@ -5,19 +5,21 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
-import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
+import { createCircleNewJoy, getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
-import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
+import { useContext, useEffect, useState } from 'react'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { __ } from '@/lang/ja'
+import { Circle } from '@/infra/api/types'
+import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest } from '@/lib/types/api/UpdateCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter()
-    const { id } = router.query
+    const { id, circleNewJoyId } = router.query
+    const [circle, setCircle] = useState<Circle|null>(null)
 
     const title = useInput('')
     const description = useInput('')
@@ -30,26 +32,52 @@ const CreatePage: NextPage = () => {
     const endDate = useInput('')
     const release = useInput('true')
 
+    useEffect(() => {
+        const f = async () => {
+            const {
+                circle: newCircle,
+                circleNewJoy
+            } = await getCircleNewJoy(Number(id), Number(circleNewJoyId), authContext.accessToken)
+            setCircle(newCircle)
+
+            title.set(circleNewJoy.title)
+            description.set(circleNewJoy.description)
+            url.set(circleNewJoy.url)
+            placeOfActivity.set(circleNewJoy.placeOfActivity || 'null')
+            placeOfActivityDetail.set(circleNewJoy.placeOfActivityDetail || '')
+            publishFrom.set(circleNewJoy.publishFrom || '')
+            publishTo.set(circleNewJoy.publishTo || '')
+            startDate.set(circleNewJoy.startDate || '')
+            endDate.set(circleNewJoy.endDate || '')
+            release.set(circleNewJoy.release === true ? 'true' : 'false')
+        }
+
+        if (authContext.accessToken && !Array.isArray(id)) {
+            f()
+        }
+    }, [ authContext.accessToken, id ])
+
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        const data = await createCircleNewJoy(
+        const data = await updateCircleNewJoy(
             Number(id),
+            Number(circleNewJoyId),
             {
-                type: 'RegisterCircleNewJoyRequest',
+                type: 'UpdateCircleNewJoyRequest',
                 title: title.value,
                 description: description.value,
                 url: url.value,
-                placeOfActivity: placeOfActivity.value,
+                placeOfActivity: placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
                 placeOfActivityDetail: placeOfActivityDetail.value,
                 publishFrom: publishFrom.value,
                 publishTo: publishTo.value,
                 startDate: startDate.value,
                 endDate: endDate.value,
                 release: release.value === 'true',
-            } as RegisterCircleNewJoyRequest, authContext.accessToken)
+            } as UpdateCircleNewJoyRequest, authContext.accessToken)
 
-        if (data && isRegisterCircleNewJoyRequestValidationError(data)) {
+        if (data && isUpdateCircleNewJoyRequestValidationError(data)) {
             title.setError(data.errors.title && Array.isArray(data.errors.title) ? data.errors.title[0] : '')
             description.setError(data.errors.description && Array.isArray(data.errors.description) ? data.errors.description[0] : '')
             url.setError(data.errors.url && Array.isArray(data.errors.url) ? data.errors.url[0] : '')
@@ -81,7 +109,7 @@ const CreatePage: NextPage = () => {
                         <div className="py-10">
                             <div className="flex justify-between mb-8">
                                 <h1 className="text-2xl text-gray-100">
-                                サークル新規作成
+                                サークル新歓編集
                                 </h1>
                             </div>
 
@@ -140,7 +168,6 @@ const CreatePage: NextPage = () => {
                                         label="サークル新歓活動場所"
                                         name="placeOfActivityDetail"
                                         id="placeOfActivityDetail"
-                                        required
                                         { ...placeOfActivityDetail }
                                     />
 
@@ -149,14 +176,32 @@ const CreatePage: NextPage = () => {
                                         name="publishFrom"
                                         id="publishFrom"
                                         type="date"
-                                        required
                                         { ...publishFrom }
                                     />
 
-{/* publishFrom
-publishTo
-startDate
-endDate */}
+                                    <BaseTextField
+                                        label="公開終了日時"
+                                        name="publishTo"
+                                        id="publishTo"
+                                        type="date"
+                                        { ...publishTo }
+                                    />
+
+                                    <BaseTextField
+                                        label="新歓開始日時"
+                                        name="startDate"
+                                        id="startDate"
+                                        type="datetime-local"
+                                        { ...startDate }
+                                    />
+
+                                    <BaseTextField
+                                        label="新歓終了日時"
+                                        name="endDate"
+                                        id="endDate"
+                                        type="datetime-local"
+                                        { ...endDate }
+                                    />
 
                                     <div className="flex justify-center mt-8">
                                         <GreenButton type="submit">

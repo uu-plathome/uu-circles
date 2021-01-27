@@ -48,17 +48,18 @@ class RegisterCircleNewJoyRequest extends FormRequest
 
     public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
     {
+        $request = Arr::snake_keys($this->validated());
         return CircleNewJoyValueObject::of([
-            CircleNewJoyModel::title                    => $this->title,
-            CircleNewJoyModel::description              => $this->description,
-            CircleNewJoyModel::url                      => $this->url,
-            CircleNewJoyModel::place_of_activity        => $this->place_of_activity,
-            CircleNewJoyModel::place_of_activity_detail => $this->place_of_activity_detail,
-            CircleNewJoyModel::publish_from             => $this->publish_from,
-            CircleNewJoyModel::publish_to               => $this->publish_to,
-            CircleNewJoyModel::start_date               => $this->start_date,
-            CircleNewJoyModel::end_date                 => $this->end_date,
-            CircleNewJoyModel::release                  => $this->release,
+            CircleNewJoyModel::title                    => $request->title,
+            CircleNewJoyModel::description              => $request->description,
+            CircleNewJoyModel::url                      => $request->url,
+            CircleNewJoyModel::place_of_activity        => $request->place_of_activity,
+            CircleNewJoyModel::place_of_activity_detail => $request->place_of_activity_detail,
+            CircleNewJoyModel::publish_from             => $request->publish_from,
+            CircleNewJoyModel::publish_to               => $request->publish_to,
+            CircleNewJoyModel::start_date               => $request->start_date,
+            CircleNewJoyModel::end_date                 => $request->end_date,
+            CircleNewJoyModel::release                  => $request->release,
         ]);
     }
 }
