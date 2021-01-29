@@ -12,6 +12,7 @@ Route::middleware('auth:api')->group(function () {
         return Arr::camel_keys($request->user()->toArray());
     });
 
+    // AdminUser 管理者アカウント
     Route::get('/admin-user', 'Admin\AdminUser\IndexAdminUserController');
     Route::post('/admin-user', 'Admin\Auth\RegisterAdminController')->name('admin.auth.register');
 
@@ -20,6 +21,10 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/circle', 'Admin\Circle\CreateCircleController');
     Route::get('/circle/{id}', 'Admin\Circle\ShowCircleController');
     Route::put('/circle/{id}', 'Admin\Circle\UpdateCircleController');
+
+    // CircleUser サークルユーザー
+    Route::get('/circle/{circleId}/user', 'Admin\CircleUser\IndexCircleUserController');
+    Route::post('/circle/{circleId}/user', 'Admin\CircleUser\RegisterCircleUserController');
 
     // CircleNewJoy サークル新歓管理
     Route::get('/circle/{id}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');

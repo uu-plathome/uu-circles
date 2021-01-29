@@ -11,10 +11,13 @@ import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { RegisterUser } from '@/infra/api/types'
+import { createCircleUser } from '@/infra/api/circle_user'
+import { isRegisterCircleUserRequest, isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter()
+    const { id } = router.query
 
     const username = useInput('')
     const displayName = useInput('')
@@ -23,11 +26,25 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        await createAdminUser({
-            username: username.value,
-            displayName: displayName.value,
-            email: email.value
-        } as RegisterUser, authContext.accessToken)
+        const data = await createCircleUser(
+            Number(id),
+            {
+                type: 'RegisterCircleUserRequest',
+                username: username.value,
+                displayName: displayName.value,
+                email: email.value
+            } as RegisterCircleUserRequest, 
+            authContext.accessToken
+        )
+
+        if (isRegisterCircleUserRequestValidationError(data)) {
+            username.setError(data.errors.username && Array.isArray(data.errors.username) ? data.errors.username[0] : '')
+            displayName.setError(data.errors.displayName && Array.isArray(data.errors.displayName) ? data.errors.displayName[0] : '')
+            email.setError(data.errors.email && Array.isArray(data.errors.email) ? data.errors.email[0] : '')
+
+            return
+        }
+
         await router.push('/circle')
     }
 
@@ -45,7 +62,7 @@ const CreatePage: NextPage = () => {
                         <div className="py-10">
                             <div className="flex justify-between mb-8">
                                 <h1 className="text-2xl text-gray-100">
-                                    管理者新規作成
+                                    サークルアカウント新規作成
                                 </h1>
                             </div>
 
