@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Auth\Notifications\VerifyEmail as Notification;
 use Illuminate\Support\Facades\URL;
 
-class VerifyEmail extends Notification
+class VerifyEmailCircleUser extends Notification
 {
     /**
      * Get the verification URL for the given notifiable.

@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
+use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
@@ -49,6 +50,7 @@ class GenerateRequestTypeForTs extends Command
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
             RegisterCircleNewJoyRequest::class,
+            RegisterCircleUserRequest::class,
             UpdateCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
