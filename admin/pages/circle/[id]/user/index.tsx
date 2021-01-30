@@ -3,13 +3,13 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { User } from '@/infra/api/types'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
 import { deleteCircleUser, getCircleUserList, resendEmailCircleUser } from '@/infra/api/circle_user'
 import { useRouter } from 'next/router'
+import { User } from '@/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)

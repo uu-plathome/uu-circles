@@ -1,8 +1,8 @@
 import { axiosInstance } from ".";
 import { AxiosError } from 'axios'
-import { Circle } from "./types";
 import { CreateCircleFormRequest, CreateCircleFormRequestValidationError } from "@/lib/types/api/CreateCircleFormRequest";
 import { UpdateCircleFormRequest, UpdateCircleFormRequestValidationError } from "@/lib/types/api/UpdateCircleFormRequest";
+import { Circle } from "@/lib/types/model/Circle";
 
 export const createCircle = async (circle: CreateCircleFormRequest, accessToken: string) => {
     try {

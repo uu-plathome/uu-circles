@@ -5,10 +5,11 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNewJoyListItem'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/cirecle_new_joy'
-import { Circle, CircleNewJoy } from '@/infra/api/types'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 
 
 const IndexPage: NextPage = () => {

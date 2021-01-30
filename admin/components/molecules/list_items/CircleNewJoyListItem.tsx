@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
 import { faCheckCircle, faTimesCircle, faEdit, faUserAlt } from '@fortawesome/free-solid-svg-icons';
-import { CircleNewJoy } from '@/infra/api/types';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy';
 
 type Props = {
     circleNewJoy: CircleNewJoy

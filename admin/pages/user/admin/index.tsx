@@ -3,13 +3,13 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { User } from '@/infra/api/types'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { getAdminUserList } from '@/infra/api/admin_user'
 import { resendEmail } from '@/infra/api/auth'
+import { User } from '@/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)

@@ -2,6 +2,7 @@ import { RegisterCircleUserRequest, RegisterCircleUserRequestValidationError } f
 import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
+import { User } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
 
@@ -93,13 +94,13 @@ export const checkVerifyCircleUser = async (id: number, expires: string, signatu
             type: 'success'
         }
     } catch (_e) {
-        const e = _e as AxiosError<VerifyAuthError>
+        const e = _e as AxiosError<VerificationInvalidError>
 
         if (e.response && e.response.status === 400) {
             return {
                 ...e.response.data,
-                type: 'verifyAuthError'
-            } as VerifyAuthError
+                type: 'VerificationInvalidError'
+            } as VerificationInvalidError
         }
 
         console.error(e)
