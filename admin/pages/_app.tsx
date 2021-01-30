@@ -13,7 +13,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const f = async () => {
-      if (!accessToken && (!router.pathname.startsWith('/email/verify') && !router.pathname.startsWith('/auth'))) {
+      if (!accessToken && !router.pathname.startsWith('/auth')) {
         if (typeof window !== "undefined") {
           const localStorageAccessToken = localStorage.getItem('accessToken')
           if (localStorageAccessToken) {

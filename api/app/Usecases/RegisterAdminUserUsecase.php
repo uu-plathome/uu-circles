@@ -2,12 +2,10 @@
 
 namespace App\Usecases;
 
-use App\Models\User;
+use App\Events\RegisteredAdminUser;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterAdminUserUsecase
 {
@@ -36,7 +34,7 @@ class RegisterAdminUserUsecase
             DB::commit();
 
             // 認証メールの通知
-            event(new Registered($user));
+            event(new RegisteredAdminUser($user));
 
             return AdminUserValueObject::byEloquent($user);
         } catch (Exception $e) {

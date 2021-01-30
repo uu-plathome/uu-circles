@@ -29,6 +29,7 @@ return [
     'allowed_origins' => [
         env('APP_ENV', 'production') === 'local' ? 'http://localhost:3000' : '',
         env('APP_ENV', 'production') === 'local' ? 'http://localhost:3001' : '',
+        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3002' : '',
     ],
 
     /*

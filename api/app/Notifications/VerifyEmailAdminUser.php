@@ -4,9 +4,10 @@ namespace App\Notifications;
 
 use Carbon\Carbon;
 use Illuminate\Auth\Notifications\VerifyEmail as Notification;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 
-class VerifyEmail extends Notification
+class VerifyEmailAdminUser extends Notification
 {
     /**
      * Get the verification URL for the given notifiable.
@@ -16,7 +17,8 @@ class VerifyEmail extends Notification
      */
     protected function verificationUrl($notifiable): string
     {
-        $appUrl = 'http://localhost:3000';
+        $appUrl = Config::get('app.admin_url') . '/auth';
+
         $url = URL::temporarySignedRoute(
             'verification.verify', Carbon::now()->addWeek(), ['userId' => $notifiable->id]
         );

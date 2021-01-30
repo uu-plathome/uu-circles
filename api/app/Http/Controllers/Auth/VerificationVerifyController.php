@@ -18,7 +18,7 @@ class VerificationVerifyController extends Controller
      * @param int $userId
      * @return JsonResponse
      */
-    public function __invoke(Request $request, int $userId)
+    public function __invoke(Request $request, int $userId): JsonResponse
     {
         // 有効な署名かどうか
         if (! URL::hasValidSignature($request)) {

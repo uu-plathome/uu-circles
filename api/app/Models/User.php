@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Enum\UserModel;
 use App\Notifications\ResetPassword;
-use App\Notifications\VerifyEmail;
+use App\Notifications\VerifyEmailAdminUser;
 use App\Notifications\VerifyEmailCircleUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -112,9 +112,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return void
      */
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationAdminUserNotification()
     {
-        $this->notify(new VerifyEmail);
+        $this->notify(new VerifyEmailAdminUser);
     }
 
     /**
