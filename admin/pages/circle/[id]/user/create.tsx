@@ -5,14 +5,12 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
-import { createAdminUser } from '@/infra/api/admin_user'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
-import { RegisterUser } from '@/infra/api/types'
 import { createCircleUser } from '@/infra/api/circle_user'
-import { isRegisterCircleUserRequest, isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
+import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
