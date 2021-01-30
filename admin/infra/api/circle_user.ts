@@ -1,4 +1,5 @@
 import { RegisterCircleUserRequest, RegisterCircleUserRequestValidationError } from '@/lib/types/api/RegisterCircleUserRequest'
+import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
 import { User, VerifyAuthError, VerifyValidationError } from './types'
@@ -140,6 +141,36 @@ export const verificationEmailCircleUser = async (id: number, password: string, 
                 ...e.response.data,
                 type: 'verifyValidationError'
             } as VerifyValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+
+export const resendEmailCircleUser = async (email: string) => {
+    try {
+        const { data } = await axiosInstance.post<{
+            status: boolean
+        }>(`/admin/api/email/resend`, {
+            email
+        })
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: boolean,
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<VerificationResendCircleUserFormRequestValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'VerificationResendCircleUserFormRequestValidationError'
+            } as VerificationResendCircleUserFormRequestValidationError
         }
 
         console.error(e)

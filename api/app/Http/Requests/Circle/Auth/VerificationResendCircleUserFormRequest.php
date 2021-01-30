@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Circle\Auth;
 
 use App\Enum\UserModel;
 use Illuminate\Foundation\Http\FormRequest;
 
-class VerificationResendFormRequest extends FormRequest
+class VerificationResendCircleUserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -8,13 +8,14 @@ import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
-import { deleteCircleUser, getCircleUserList } from '@/infra/api/circle_user'
+import { deleteCircleUser, getCircleUserList, resendEmailCircleUser } from '@/infra/api/circle_user'
 import { useRouter } from 'next/router'
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter();
     const [users, setUsers] = useState<User[]>([])
+    const [success, setSuccess] = useState<Boolean>(false)
     const { id } = router.query
 
     useEffect(() => {
@@ -33,6 +34,15 @@ const IndexPage: NextPage = () => {
 
         const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
         setUsers(foundUsers.users)
+    }
+
+    const onResendEmail = async (email: string) => {
+        await resendEmailCircleUser(email)
+        setSuccess(true)
+
+        setTimeout(() => {
+            setSuccess(false)
+        }, 3000)
     }
 
     return (
@@ -57,12 +67,21 @@ const IndexPage: NextPage = () => {
                             </GreenButton>
                         </div>
 
+                        {
+                            success ? (
+                                <div className="w-full bg-green">
+                                    <p className="text-white">Success</p>
+                                </div>
+                            ) : ''
+                        }
+
                         <div className="border-2 border-gray-800 p-2">
                             {
                                 users.map((user: User) => {
                                     return <CircleUserListItem
                                         key={`user-${user.id}`} 
                                         user={user}
+                                        onResendEmail={onResendEmail}
                                         onDelete={onDeleteUser}
                                     />
                                 })

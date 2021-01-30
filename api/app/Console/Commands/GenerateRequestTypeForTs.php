@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -57,6 +58,7 @@ class GenerateRequestTypeForTs extends Command
             UpdateCircleFormRequest::class,
             VerificationEmailCircleUserRequest::class,
             VerificationResendAdminUserFormRequest::class,
+            VerificationResendCircleUserFormRequest::class,
         ];
     }
 
