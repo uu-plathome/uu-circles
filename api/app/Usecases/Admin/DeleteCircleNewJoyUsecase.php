@@ -2,6 +2,7 @@
 
 namespace App\Usecases\Admin;
 
+use App\Models\CircleNewJoy;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

@@ -39,4 +39,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/circle/{id}/newjoy', 'Admin\CircleNewJoy\RegisterCircleNewJoyController');
     Route::get('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\ShowCircleNewJoyController');
     Route::put('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\UpdateCircleNewJoyController');
+    Route::delete('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
 });
