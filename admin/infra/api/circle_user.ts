@@ -36,6 +36,28 @@ export const createCircleUser = async (circleId: number, user: RegisterCircleUse
     }
 }
 
+export const deleteCircleUser = async (circleId: number, circleUserId: number, accessToken: string) => {
+    
+    try {
+        await axiosInstance.delete<{
+            success: true
+        }>(
+            `/admin/api/circle/${circleId}/user/${circleUserId}`, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+
+        return {
+            type: 'Success'
+        }
+    } catch (_e) {
+        console.error(_e)
+    }
+}
+
 export const getCircleUserList = async (circleId: number, accessToken: string) => {
     const { data } = await axiosInstance.get<{
         data: User[],

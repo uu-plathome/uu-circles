@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Auth\VerificationConfirmRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
@@ -14,11 +15,11 @@ class VerificationConfirmController extends Controller
     /**
      * Mark the user's email address as verified.
      *
-     * @param Request $request
+     * @param VerificationConfirmRequest $request
      * @param int $userId
      * @return JsonResponse
      */
-    public function __invoke(Request $request, int $userId)
+    public function __invoke(VerificationConfirmRequest $request, int $userId): JsonResponse
     {
         // 有効な署名かどうか
         if (! URL::hasValidSignature($request)) {
@@ -36,13 +37,7 @@ class VerificationConfirmController extends Controller
             ], 400);
         }
 
-        $request->validate([
-            'password' => ['string', 'required', 'min:8'],
-        ]);
-
         $user->markEmailAndPasswordAsVerified($request->get('password'));
-
-        event(new Verified($user));
 
         return response()->json([
             'status' => __('verification.verified'),
