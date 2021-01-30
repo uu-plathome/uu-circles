@@ -18,7 +18,10 @@ export const createCircleUser = async (circleId: number, user: RegisterCircleUse
             }
         )
 
-        return data.data
+        return 　{
+            ...data.data,
+            type: 'Success'
+        }
     } catch (_e) {
         const e = _e as AxiosError<RegisterCircleUserRequestValidationError>
 
@@ -47,11 +50,44 @@ export const getCircleUserList = async (circleId: number, accessToken: string) =
     }
 }
 
+export const checkVerifyCircleUser = async (id: number, expires: string, signature: string) => {
+    try {
+        const { data } = await axiosInstance.get<{
+            status: boolean
+        }>(`/circle/api/email/verify/${id}`, {
+            params: {
+                expires,
+                signature
+            }
+        })
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: boolean,
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<VerifyAuthError>
+
+        if (e.response && e.response.status === 400) {
+            return {
+                ...e.response.data,
+                type: 'verifyAuthError'
+            } as VerifyAuthError
+        }
+
+        console.error(e)
+    }
+}
+
+
 export const verificationEmailCircleUser = async (id: number, password: string, expires: string, signature: string) => {
     try {
         const { data } = await axiosInstance.post<{
             status: boolean
-        }>(`/api/email/verify/${id}`, {
+        }>(`/circle/api/email/verify/${id}`, {
             password
         }, {
             params: {

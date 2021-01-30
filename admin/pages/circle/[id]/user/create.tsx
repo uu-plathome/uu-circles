@@ -71,7 +71,7 @@ const CreatePage: NextPage = () => {
                                         name="username"
                                         id="username"
                                         note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                                        { ...displayName }
+                                        { ...username }
                                     />
 
                                     <BaseTextField
@@ -80,7 +80,7 @@ const CreatePage: NextPage = () => {
                                         id="display_name"
                                         placeholder="u-lab"
                                         note="入力がない場合は、自動で決まります"
-                                        { ...username }
+                                        { ...displayName }
                                     />
 
                                     <BaseTextField

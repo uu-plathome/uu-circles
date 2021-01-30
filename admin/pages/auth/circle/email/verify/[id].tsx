@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
 import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
-import { verificationEmailCircleUser } from "@/infra/api/circle_user"
+import { checkVerifyCircleUser, verificationEmailCircleUser } from "@/infra/api/circle_user"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -25,7 +25,7 @@ const Login: NextPage = () => {
     useEffect(() => {
         (async () => {
             if (!Array.isArray(id) && Number.isInteger(Number(id)) && !Array.isArray(expires) && !Array.isArray(signature)) {
-                const data = await checkVerify(
+                const data = await checkVerifyCircleUser(
                     Number(id),
                     expires,
                     signature

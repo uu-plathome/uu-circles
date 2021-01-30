@@ -27,7 +27,6 @@ class IndexCircleController extends Controller
     public function __invoke(Request $request): array
     {
         $circles = $this->indexCircleUsecase->invoke();
-        \Log::debug(Arr::camel_keys($circles));
 
         return [
             'data' => (new Collection($circles))->map(
