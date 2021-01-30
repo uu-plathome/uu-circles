@@ -1,8 +1,9 @@
 import { RegisterCircleUserRequest, RegisterCircleUserRequestValidationError } from '@/lib/types/api/RegisterCircleUserRequest'
+import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
+import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
-import { User, VerifyAuthError, VerifyValidationError } from './types'
 
 export const createCircleUser = async (circleId: number, user: RegisterCircleUserRequest, accessToken: string) => {
     
@@ -127,20 +128,20 @@ export const verificationEmailCircleUser = async (id: number, password: string, 
             type: 'success'
         }
     } catch (_e) {
-        const e = _e as AxiosError<VerifyAuthError|VerifyValidationError>
+        const e = _e as AxiosError<VerificationInvalidError|VerificationEmailCircleUserRequestValidationError>
 
         if (e.response && e.response.status === 400) {
             return {
                 ...e.response.data,
-                type: 'verifyAuthError'
-            } as VerifyAuthError
+                type: 'VerificationInvalidError'
+            } as VerificationInvalidError
         }
 
         if (e.response && e.response.status === 422) {
             return {
                 ...e.response.data,
-                type: 'verifyValidationError'
-            } as VerifyValidationError
+                type: 'VerificationEmailCircleUserRequestValidationError'
+            } as VerificationEmailCircleUserRequestValidationError
         }
 
         console.error(e)

@@ -17,5 +17,5 @@ export interface VerificationEmailCircleUserRequestValidationError {
     message: string
 }
 
-export const isVerificationEmailCircleUserRequest = (v: any): v is VerificationEmailCircleUserRequest => v.type === 'VerificationEmailCircleUserRequest'
-export const isVerificationEmailCircleUserRequestValidationError = (v: any): v is VerificationEmailCircleUserRequestValidationError => v.type === 'VerificationEmailCircleUserRequestValidationError'
+export const isVerificationEmailCircleUserRequest = (v: any): v is VerificationEmailCircleUserRequest => v && v.type === 'VerificationEmailCircleUserRequest'
+export const isVerificationEmailCircleUserRequestValidationError = (v: any): v is VerificationEmailCircleUserRequestValidationError => v && v.type === 'VerificationEmailCircleUserRequestValidationError'
