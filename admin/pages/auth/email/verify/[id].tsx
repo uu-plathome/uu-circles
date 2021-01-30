@@ -8,6 +8,8 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
 import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
+import { isVerificationInvalidError } from "@/lib/types/api/VerificationInvalidError"
+import { isVerificationConfirmRequestValidationError } from "@/lib/types/api/VerificationConfirmRequest"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -30,8 +32,9 @@ const Login: NextPage = () => {
                     signature
                 )
 
-                if (data.type === 'verifyAuthError') {
+                if (isVerificationInvalidError(data)) {
                     setError(data.status)
+                    return
                 }
             }
         })()
@@ -50,14 +53,17 @@ const Login: NextPage = () => {
 
             if (data.type === 'success') {
                 setSuccess(true)
+                return
             }
 
-            if (data.type === 'verifyAuthError') {
+            if (isVerificationInvalidError(data)) {
                 setError(data.status)
+                return
             }
 
-            if (data.type === 'verifyValidationError') {
-                password.setError(data.errors.password)
+            if (isVerificationConfirmRequestValidationError(data)) {
+                password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')
+                return
             }
         }
     }
