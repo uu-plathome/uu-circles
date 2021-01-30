@@ -20,9 +20,9 @@ class VerifyEmailAdminUser extends Notification
         $appUrl = Config::get('app.admin_url') . '/auth';
 
         $url = URL::temporarySignedRoute(
-            'verification.verify', Carbon::now()->addWeek(), ['userId' => $notifiable->id]
+            'admin.verification.verify', Carbon::now()->addWeek(), ['userId' => $notifiable->id]
         );
 
-        return str_replace(url('/api'), $appUrl, $url);
+        return str_replace(url('/admin/api'), $appUrl, $url);
     }
 }

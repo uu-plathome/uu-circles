@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\UserModel;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class VerificationResendController extends Controller
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function __invoke(VerificationResendFormRequest $request)
+    public function __invoke(VerificationResendFormRequest $request): JsonResponse
     {
         $email = $request->get(UserModel::email);
 

@@ -8,7 +8,7 @@ import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
-import { getCircleUserList } from '@/infra/api/circle_user'
+import { deleteCircleUser, getCircleUserList } from '@/infra/api/circle_user'
 import { useRouter } from 'next/router'
 
 const IndexPage: NextPage = () => {
@@ -27,6 +27,13 @@ const IndexPage: NextPage = () => {
             f()
         }
     }, [ authContext.accessToken, id ])
+
+    const onDeleteUser = async (circleUserId: number) => {
+        await deleteCircleUser(Number(id), circleUserId, authContext.accessToken)
+
+        const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
+        setUsers(foundUsers.users)
+    }
 
     return (
         <div>
@@ -56,6 +63,7 @@ const IndexPage: NextPage = () => {
                                     return <CircleUserListItem
                                         key={`user-${user.id}`} 
                                         user={user}
+                                        onDelete={onDeleteUser}
                                     />
                                 })
                             }

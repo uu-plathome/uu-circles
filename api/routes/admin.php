@@ -5,6 +5,12 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('/login', 'Admin\Auth\LoginAdminController')->name('admin.auth.login');
+
+    Route::middleware('throttle:6,1')->group(function () {
+        Route::get('email/verify/{userId}', 'Admin\Auth\VerificationVerifyController')->name('admin.verification.verify');
+        Route::post('email/verify/{userId}', 'Admin\Auth\VerificationConfirmController');
+        Route::post('email/resend', 'Admin\Auth\VerificationResendController')->name('admin.verification.resend');
+    });
 });
 
 Route::middleware('auth:api')->group(function () {
@@ -25,6 +31,7 @@ Route::middleware('auth:api')->group(function () {
     // CircleUser サークルユーザー
     Route::get('/circle/{circleId}/user', 'Admin\CircleUser\IndexCircleUserController');
     Route::post('/circle/{circleId}/user', 'Admin\CircleUser\RegisterCircleUserController');
+    Route::delete('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\DeleteCircleUserController');
 
     // CircleNewJoy サークル新歓管理
     Route::get('/circle/{id}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');
