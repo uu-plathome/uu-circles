@@ -17,7 +17,7 @@ class VerificationResendController extends Controller
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function __invoke(VerificationResendFormRequest $request)
+    public function __invoke(VerificationResendFormRequest $request): JsonResponse
     {
         $email = $request->get(UserModel::email);
 
@@ -36,7 +36,7 @@ class VerificationResendController extends Controller
         }
 
         // 認証用のメールを通知
-        $user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationCircleUserNotification();
 
         return response()->json(['status' => __('verification.sent')]);
     }
