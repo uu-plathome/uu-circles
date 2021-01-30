@@ -1,3 +1,5 @@
+import { RegisterAdminFormRequest, RegisterAdminFormRequestValidationError } from "@/lib/types/api/RegisterAdminFormRequest"
+import { AxiosError } from "axios"
 import { axiosInstance } from "."
 import { RegisterUser, User } from "./types"
 
@@ -13,16 +15,30 @@ export const getAdminUserList = async (accessToken: string) => {
     return data.data
 }
 
-export const createAdminUser = async (user: RegisterUser, accessToken: string) => {
-    const { data } = await axiosInstance.post('/admin/api/admin-user', {
-        displayName: user.displayName,
-        username: user.username,
-        email: user.email
-    } as RegisterUser, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+export const createAdminUser = async (user: RegisterAdminFormRequest, accessToken: string) => {
 
-    return data.data
+    try {
+        const { data } = await axiosInstance.post(
+            '/admin/api/admin-user', 
+            user, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+    
+        return data.data
+    } catch (_e) {
+        const e = _e as AxiosError<RegisterAdminFormRequestValidationError>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'RegisterAdminFormRequestValidationError'
+            } as RegisterAdminFormRequestValidationError
+        }
+
+        console.error(e)
+    }
 }

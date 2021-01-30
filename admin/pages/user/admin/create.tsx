@@ -10,7 +10,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
-import { RegisterUser } from '@/infra/api/types'
+import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
@@ -23,12 +23,21 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        await createAdminUser({
+        const data = await createAdminUser({
             username: username.value,
             displayName: displayName.value,
             email: email.value
-        } as RegisterUser, authContext.accessToken)
-        await router.push('/circle')
+        } as RegisterAdminFormRequest, authContext.accessToken)
+
+        if (isRegisterAdminFormRequestValidationError(data)) {
+            username.setError(data.errors.username && Array.isArray(data.errors.username) ? data.errors.username[0] : '')
+            displayName.setError(data.errors.displayName && Array.isArray(data.errors.displayName) ? data.errors.displayName[0] : '')
+            email.setError(data.errors.email && Array.isArray(data.errors.email) ? data.errors.email[0] : '')
+
+            return
+        }
+
+        await router.push('/admin')
     }
 
     return (
@@ -56,7 +65,7 @@ const CreatePage: NextPage = () => {
                                         name="username"
                                         id="username"
                                         note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                                        { ...displayName }
+                                        { ...username }
                                     />
 
                                     <BaseTextField
@@ -65,7 +74,7 @@ const CreatePage: NextPage = () => {
                                         id="display_name"
                                         placeholder="u-lab"
                                         note="入力がない場合は、自動で決まります"
-                                        { ...username }
+                                        { ...displayName }
                                     />
 
                                     <BaseTextField
