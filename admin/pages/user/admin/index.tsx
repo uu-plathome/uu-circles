@@ -7,7 +7,7 @@ import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
-import { getAdminUserList } from '@/infra/api/admin_user'
+import { deleteAdminUser, getAdminUserList } from '@/infra/api/admin_user'
 import { resendEmail } from '@/infra/api/auth'
 import { User } from '@/lib/types/model/User'
 
@@ -20,13 +20,19 @@ const IndexPage: NextPage = () => {
         const f = async () => {
             const foundUsers = await getAdminUserList(authContext.accessToken)
             setUsers(foundUsers)
-            console.log(foundUsers)
         }
 
         if (authContext.accessToken) {
             f()
         }
     }, [ authContext.accessToken ])
+
+    const onDeleteUser = async (userId: number) => {
+        await deleteAdminUser(userId, authContext.accessToken)
+
+        const foundUsers = await getAdminUserList(authContext.accessToken)
+        setUsers(foundUsers)
+    }
 
     const onResendEmail = async (email: string) => {
         await resendEmail(email)
@@ -74,6 +80,7 @@ const IndexPage: NextPage = () => {
                                         key={`user-${user.id}`} 
                                         user={user}
                                         onResendEmail={onResendEmail}
+                                        onDeleteUser={onDeleteUser}
                                     />
                                 })
                             }

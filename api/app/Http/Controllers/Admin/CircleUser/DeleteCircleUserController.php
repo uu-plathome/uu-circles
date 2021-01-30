@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
-use App\Models\CircleUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 

@@ -87,7 +87,6 @@ const CircleUserListItem: FC<Props> = ({ user, onDelete, onResendEmail }) => {
                                 icon={ faTrash }
                             />
                         </button>
-
                     </div>
                 </div>
             </div>

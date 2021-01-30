@@ -1,15 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
-import { faCheckCircle, faTimesCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { User } from '@/lib/types/model/User';
 
 type Props = {
     user: User
     onResendEmail(email: string): void
+    onDeleteUser(userId: number): void
 }
-const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
+const AdminUserListItem: FC<Props> = ({ user, onResendEmail, onDeleteUser }) => {
     return (
         <div className="text-white flex">
         <div>
@@ -74,6 +75,18 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                                 />
                             {/* </a>
                         </Link> */}
+                    </div>
+                </div>
+                <div className="w-full lg:w-1/6">
+                    <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">削除する</p>
+                    <div className="flex justify-center h-7 items-center">
+                        <button onClick={() => onDeleteUser(user.id)}>
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="red"
+                                icon={ faTrash }
+                            />
+                        </button>
                     </div>
                 </div>
             </div>
