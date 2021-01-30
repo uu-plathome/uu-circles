@@ -4,7 +4,7 @@ import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNewJoyListItem'
 import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleNewJoyList } from '@/infra/api/cirecle_new_joy'
+import { getCircleNewJoyList, deleteCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -33,6 +33,17 @@ const IndexPage: NextPage = () => {
             f()
         }
     }, [ authContext.accessToken, id ])
+
+    const onDelete = async (circleNewJoyId: number) => {
+        await deleteCircleNewJoy(Number(id), circleNewJoyId, authContext.accessToken)
+
+        const {
+            circle,
+            circleNewJoys
+        } = await getCircleNewJoyList(Number(id), authContext.accessToken)
+        setCircle(circle)
+        setCircleNewJoys(circleNewJoys)
+    }
 
     return (
         <div>
@@ -64,6 +75,7 @@ const IndexPage: NextPage = () => {
                                     return <CircleNewJoyListItem
                                         key={`circle-${circleNewJoy.id}`}
                                         circleNewJoy={circleNewJoy}
+                                        onDelete={onDelete}
                                     />
                                 })
                             ) : ''}

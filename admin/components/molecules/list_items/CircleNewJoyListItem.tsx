@@ -2,13 +2,14 @@ import dayjs from 'dayjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
-import { faCheckCircle, faTimesCircle, faEdit, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy';
 
 type Props = {
     circleNewJoy: CircleNewJoy
+    onDelete(circleNewJoyId: number): void
 }
 
 const CircleListItemTableColumn: FC<{
@@ -66,7 +67,7 @@ const NewJoyDateTime: FC<{
     )
 }
 
-const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy }) => {
+const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onDelete }) => {
     return (
         <div className="text-white flex">
         <div>
@@ -113,6 +114,17 @@ const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy }) => {
                         </a>
                     </Link>
                 </CircleListItemTableColumn>
+
+                <CircleListItemTableColumn title="削除する">
+                    <button onClick={() => onDelete(circleNewJoy.id)}>
+                        <FontAwesomeIcon
+                            size="lg"
+                            color="red"
+                            icon={ faTrash }
+                        />
+                    </button>
+                </CircleListItemTableColumn>
+
             </div>
         </div>
     </div>

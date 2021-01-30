@@ -95,3 +95,25 @@ export const getCircleNewJoy = async (
         circleNewJoy: data.circleNewJoy
     }
 }
+
+export const deleteCircleNewJoy = async (circleId: number, circleNewJoyId: number, accessToken: string) => {
+    
+    try {
+        await axiosInstance.delete<{
+            success: true
+        }>(
+            `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+
+        return {
+            type: 'Success'
+        }
+    } catch (_e) {
+        console.error(_e)
+    }
+}
