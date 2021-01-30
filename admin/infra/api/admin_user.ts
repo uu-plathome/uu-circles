@@ -42,3 +42,37 @@ export const createAdminUser = async (user: RegisterAdminFormRequest, accessToke
         console.error(e)
     }
 }
+
+export const deleteAdminUser = async (userId: number, accessToken: string) => {
+
+    try {
+        const { data } = await axiosInstance.delete(
+            `/admin/api/admin-user/${userId}`, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+    
+        return data.data
+    } catch (_e) {
+        const e = _e as AxiosError<{
+            errors: {
+                data?: string
+            }
+            message: string,
+            type: 'DeleteAdminUserValidationError'
+        }>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'DeleteAdminUserValidationError'
+            }
+        }
+
+        console.error(e)
+    }
+}
+
