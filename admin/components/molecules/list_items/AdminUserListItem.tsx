@@ -7,8 +7,9 @@ import Link from 'next/link';
 
 type Props = {
     user: User
+    onResendEmail(email: string): void
 }
-const AdminUserListItem: FC<Props> = ({ user }) => {
+const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
     return (
         <div className="text-white flex">
         <div>
@@ -45,11 +46,20 @@ const AdminUserListItem: FC<Props> = ({ user }) => {
                 <div className="w-full lg:w-1/6 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">認証済みか</p>
                     <div className="flex justify-center h-7 items-center">
-                        <FontAwesomeIcon
-                            size="lg"
-                            color={user.emailVerifiedAt ? 'green' : 'red' }
-                            icon={user.emailVerifiedAt ? faCheckCircle : faTimesCircle}
-                        />
+                        <div>
+                            <div className="flex justify-center items-center">
+                                <FontAwesomeIcon
+                                    size="lg"
+                                    color={user.emailVerifiedAt ? 'green' : 'red' }
+                                    icon={user.emailVerifiedAt ? faCheckCircle : faTimesCircle}
+                                />
+                            </div>
+                            {!user.emailVerifiedAt ? (
+                                <div className="text-sm">
+                                    <button onClick={() => onResendEmail(user.email)}>メールの再送信</button>
+                                </div>
+                            ) : '' }
+                        </div>
                     </div>
                 </div>
                 <div className="w-full lg:w-1/6">

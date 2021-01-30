@@ -9,10 +9,12 @@ import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { getAdminUserList } from '@/infra/api/admin_user'
+import { resendEmail } from '@/infra/api/auth'
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const [users, setUsers] = useState<User[]>([])
+    const [success, setSuccess] = useState<Boolean>(false)
 
     useEffect(() => {
         const f = async () => {
@@ -25,6 +27,15 @@ const IndexPage: NextPage = () => {
             f()
         }
     }, [ authContext.accessToken ])
+
+    const onResendEmail = async (email: string) => {
+        await resendEmail(email)
+        setSuccess(true)
+
+        setTimeout(() => {
+            setSuccess(false)
+        }, 3000)
+    }
 
     return (
         <div>
@@ -48,12 +59,21 @@ const IndexPage: NextPage = () => {
                             </GreenButton>
                         </div>
 
+                        {
+                            success ? (
+                                <div className="w-full bg-green">
+                                    <p className="text-white">Success</p>
+                                </div>
+                            ) : ''
+                        }
+
                         <div className="border-2 border-gray-800 p-2">
                             {
                                 users.map((user: User) => {
                                     return <AdminUserListItem
                                         key={`user-${user.id}`} 
                                         user={user}
+                                        onResendEmail={onResendEmail}
                                     />
                                 })
                             }

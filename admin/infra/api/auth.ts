@@ -1,3 +1,4 @@
+import { VerificationResendAdminUserFormRequestValidationError } from '@/lib/types/api/VerificationResendAdminUserFormRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
 import { Login, User, LoginValidationError, VerifyAuthError, VerifyValidationError } from './types'
@@ -34,7 +35,7 @@ export const checkVerify = async (id: number, expires: string, signature: string
     try {
         const { data } = await axiosInstance.get<{
             status: boolean
-        }>(`/api/email/verify/${id}`, {
+        }>(`/admin/api/email/verify/${id}`, {
             params: {
                 expires,
                 signature
@@ -66,7 +67,7 @@ export const verifyPassword = async (id: number, password: string, expires: stri
     try {
         const { data } = await axiosInstance.post<{
             status: boolean
-        }>(`/api/email/verify/${id}`, {
+        }>(`/admin/api/email/verify/${id}`, {
             password
         }, {
             params: {
@@ -97,6 +98,35 @@ export const verifyPassword = async (id: number, password: string, expires: stri
                 ...e.response.data,
                 type: 'verifyValidationError'
             } as VerifyValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+export const resendEmail = async (email: string) => {
+    try {
+        const { data } = await axiosInstance.post<{
+            status: boolean
+        }>(`/admin/api/email/resend`, {
+            email
+        })
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: boolean,
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<VerificationResendAdminUserFormRequestValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'VerificationResendAdminUserFormRequestValidationError'
+            } as VerificationResendAdminUserFormRequestValidationError
         }
 
         console.error(e)
