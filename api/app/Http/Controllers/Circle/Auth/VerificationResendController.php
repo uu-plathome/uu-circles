@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Circle\Auth;
 
 use App\Enum\UserModel;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\VerificationResendFormRequest;
+use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
@@ -13,11 +13,11 @@ class VerificationResendController extends Controller
     /**
      * 認証用のメールを再通知
      *
-     * @param VerificationResendFormRequest $request
+     * @param VerificationResendCircleUserFormRequest $request
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function __invoke(VerificationResendFormRequest $request): JsonResponse
+    public function __invoke(VerificationResendCircleUserFormRequest $request): JsonResponse
     {
         $email = $request->get(UserModel::email);
 
