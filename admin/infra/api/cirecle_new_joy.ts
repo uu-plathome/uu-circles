@@ -1,9 +1,9 @@
 import { RegisterCircleNewJoyRequest, RegisterCircleNewJoyRequestValidationError } from "@/lib/types/api/RegisterCircleNewJoyRequest"
 import { axiosInstance } from "."
 import { AxiosError } from 'axios'
-import { Circle, CircleNewJoy } from "./types"
-import { UpdateCircleFormRequestValidationError } from "@/lib/types/api/UpdateCircleFormRequest"
 import { UpdateCircleNewJoyRequest, UpdateCircleNewJoyRequestValidationError } from "@/lib/types/api/UpdateCircleNewJoyRequest"
+import { Circle } from "@/lib/types/model/Circle"
+import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy"
 
 export const createCircleNewJoy = async (circleId: number, circle: RegisterCircleNewJoyRequest, accessToken: string) => {
     try {

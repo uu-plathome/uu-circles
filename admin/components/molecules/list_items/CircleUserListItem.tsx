@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
 import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { User } from '@/infra/api/types';
 import Link from 'next/link';
+import { User } from '@/lib/types/model/User';
 
 type Props = {
     user: User

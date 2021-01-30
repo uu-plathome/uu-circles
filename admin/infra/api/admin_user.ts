@@ -1,7 +1,7 @@
 import { RegisterAdminFormRequest, RegisterAdminFormRequestValidationError } from "@/lib/types/api/RegisterAdminFormRequest"
+import { User } from "@/lib/types/model/User"
 import { AxiosError } from "axios"
 import { axiosInstance } from "."
-import { RegisterUser, User } from "./types"
 
 export const getAdminUserList = async (accessToken: string) => {
     const { data } = await axiosInstance.get<{

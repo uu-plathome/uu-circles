@@ -5,15 +5,15 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
-import { createCircleNewJoy, getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
+import { getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { __ } from '@/lang/ja'
-import { Circle } from '@/infra/api/types'
 import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest } from '@/lib/types/api/UpdateCircleNewJoyRequest'
+import { Circle } from '@/lib/types/model/Circle'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
