@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
+use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
 use App\Http\Requests\Admin\Auth\VerificationConfirmRequest;
@@ -61,6 +62,7 @@ class GenerateRequestTypeForTs extends Command
             VerificationResendAdminUserFormRequest::class,
             VerificationResendCircleUserFormRequest::class,
             VerificationConfirmRequest::class,
+            AdminPutStorageRequest::class,
         ];
     }
 
