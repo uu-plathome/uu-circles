@@ -40,4 +40,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\ShowCircleNewJoyController');
     Route::put('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\UpdateCircleNewJoyController');
     Route::delete('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
+
+    // Storage
+    Route::post('/storage', 'Admin\PutStorageController');
 });
