@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\UserModel;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\VerificationResendFormRequest;
+use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
@@ -13,11 +14,11 @@ class VerificationResendController extends Controller
     /**
      * 認証用のメールを再通知
      *
-     * @param VerificationResendFormRequest $request
+     * @param VerificationResendAdminUserFormRequest $request
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function __invoke(VerificationResendFormRequest $request)
+    public function __invoke(VerificationResendAdminUserFormRequest $request): JsonResponse
     {
         $email = $request->get(UserModel::email);
 
@@ -36,7 +37,7 @@ class VerificationResendController extends Controller
         }
 
         // 認証用のメールを通知
-        $user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationAdminUserNotification();
 
         return response()->json(['status' => __('verification.sent')]);
     }

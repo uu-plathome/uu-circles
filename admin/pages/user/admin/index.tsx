@@ -3,28 +3,45 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { User } from '@/infra/api/types'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
-import { getAdminUserList } from '@/infra/api/admin_user'
+import { deleteAdminUser, getAdminUserList } from '@/infra/api/admin_user'
+import { resendEmail } from '@/infra/api/auth'
+import { User } from '@/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const [users, setUsers] = useState<User[]>([])
+    const [success, setSuccess] = useState<Boolean>(false)
 
     useEffect(() => {
         const f = async () => {
             const foundUsers = await getAdminUserList(authContext.accessToken)
             setUsers(foundUsers)
-            console.log(foundUsers)
         }
 
         if (authContext.accessToken) {
             f()
         }
     }, [ authContext.accessToken ])
+
+    const onDeleteUser = async (userId: number) => {
+        await deleteAdminUser(userId, authContext.accessToken)
+
+        const foundUsers = await getAdminUserList(authContext.accessToken)
+        setUsers(foundUsers)
+    }
+
+    const onResendEmail = async (email: string) => {
+        await resendEmail(email)
+        setSuccess(true)
+
+        setTimeout(() => {
+            setSuccess(false)
+        }, 3000)
+    }
 
     return (
         <div>
@@ -48,12 +65,22 @@ const IndexPage: NextPage = () => {
                             </GreenButton>
                         </div>
 
+                        {
+                            success ? (
+                                <div className="w-full bg-green">
+                                    <p className="text-white">Success</p>
+                                </div>
+                            ) : ''
+                        }
+
                         <div className="border-2 border-gray-800 p-2">
                             {
                                 users.map((user: User) => {
                                     return <AdminUserListItem
                                         key={`user-${user.id}`} 
                                         user={user}
+                                        onResendEmail={onResendEmail}
+                                        onDeleteUser={onDeleteUser}
                                     />
                                 })
                             }

@@ -21,5 +21,5 @@ export interface CreateCircleFormRequestValidationError {
     message: string
 }
 
-export const isCreateCircleFormRequest = (v: any): v is CreateCircleFormRequest => v.type === 'CreateCircleFormRequest'
-export const isCreateCircleFormRequestValidationError = (v: any): v is CreateCircleFormRequestValidationError => v.type === 'CreateCircleFormRequestValidationError'
+export const isCreateCircleFormRequest = (v: any): v is CreateCircleFormRequest => v && v.type === 'CreateCircleFormRequest'
+export const isCreateCircleFormRequestValidationError = (v: any): v is CreateCircleFormRequestValidationError => v && v.type === 'CreateCircleFormRequestValidationError'

@@ -17,5 +17,5 @@ export interface {{ $className }}ValidationError {
     message: string
 }
 
-export const is{{ $className }} = (v: any): v is {{ $className }} => v.type === '{{ $className }}'
-export const is{{ $className }}ValidationError = (v: any): v is {{ $className }}ValidationError => v.type === '{{ $className }}ValidationError'
+export const is{{ $className }} = (v: any): v is {{ $className }} => v && v.type === '{{ $className }}'
+export const is{{ $className }}ValidationError = (v: any): v is {{ $className }}ValidationError => v && v.type === '{{ $className }}ValidationError'

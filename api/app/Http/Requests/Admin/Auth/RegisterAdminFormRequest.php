@@ -29,7 +29,7 @@ class RegisterAdminFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash'],
+            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
             UserModel::display_name => ['nullable', 'string', 'max:50'],
             UserModel::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
