@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
-import Image from 'next/image'
 import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 import { User } from '@/lib/types/model/User';
 
 type Props = {
@@ -12,18 +10,7 @@ type Props = {
 }
 const CircleUserListItem: FC<Props> = ({ user, onDelete, onResendEmail }) => {
     return (
-        <div className="text-white flex">
         <div>
-            <Image
-                src={`/images/no-image.png`}
-                width="100"
-                height="100"
-                layout={"fixed"}
-                objectFit={"contain"}
-                className="square-image"
-            />
-        </div>
-
         <div className="ml-2 w-full">
             <h2 className="font-bold text-lg text-gray-300 mb-2">{ user.displayName }</h2>
 
