@@ -4,7 +4,7 @@ import '../styles/index.css'
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
-import { User } from '@/infra/api/types';
+import { User } from '@/lib/types/model/User';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [ accessToken, setAccessToken ] = useState('')
@@ -13,7 +13,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const f = async () => {
-      if (!accessToken && (!router.pathname.startsWith('/email/verify') && !router.pathname.startsWith('/auth'))) {
+      if (!accessToken && !router.pathname.startsWith('/auth')) {
         if (typeof window !== "undefined") {
           const localStorageAccessToken = localStorage.getItem('accessToken')
           if (localStorageAccessToken) {

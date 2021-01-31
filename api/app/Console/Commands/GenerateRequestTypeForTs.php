@@ -3,14 +3,19 @@
 namespace App\Console\Commands;
 
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
+use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
+use App\Http\Requests\Admin\Auth\VerificationConfirmRequest;
+use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
+use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
+use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 use ReflectionClass;
 
 class GenerateRequestTypeForTs extends Command
@@ -49,8 +54,15 @@ class GenerateRequestTypeForTs extends Command
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
             RegisterCircleNewJoyRequest::class,
+            RegisterCircleUserRequest::class,
+            UpdateCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
+            VerificationEmailCircleUserRequest::class,
+            VerificationResendAdminUserFormRequest::class,
+            VerificationResendCircleUserFormRequest::class,
+            VerificationConfirmRequest::class,
+            AdminPutStorageRequest::class,
         ];
     }
 

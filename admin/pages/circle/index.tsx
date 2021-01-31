@@ -1,12 +1,11 @@
 
-import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
-import { Circle } from '@/infra/api/types'
+import { Circle } from '@/lib/types/model/Circle'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'

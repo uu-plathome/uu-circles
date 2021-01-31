@@ -1,5 +1,7 @@
+import { RegisterAdminFormRequest, RegisterAdminFormRequestValidationError } from "@/lib/types/api/RegisterAdminFormRequest"
+import { User } from "@/lib/types/model/User"
+import { AxiosError } from "axios"
 import { axiosInstance } from "."
-import { RegisterUser, User } from "./types"
 
 export const getAdminUserList = async (accessToken: string) => {
     const { data } = await axiosInstance.get<{
@@ -13,16 +15,64 @@ export const getAdminUserList = async (accessToken: string) => {
     return data.data
 }
 
-export const createAdminUser = async (user: RegisterUser, accessToken: string) => {
-    const { data } = await axiosInstance.post('/admin/api/admin-user', {
-        displayName: user.displayName,
-        username: user.username,
-        email: user.email
-    } as RegisterUser, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+export const createAdminUser = async (user: RegisterAdminFormRequest, accessToken: string) => {
 
-    return data.data
+    try {
+        const { data } = await axiosInstance.post(
+            '/admin/api/admin-user', 
+            user, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+    
+        return data.data
+    } catch (_e) {
+        const e = _e as AxiosError<RegisterAdminFormRequestValidationError>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'RegisterAdminFormRequestValidationError'
+            } as RegisterAdminFormRequestValidationError
+        }
+
+        console.error(e)
+    }
 }
+
+export const deleteAdminUser = async (userId: number, accessToken: string) => {
+
+    try {
+        const { data } = await axiosInstance.delete(
+            `/admin/api/admin-user/${userId}`, 
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+    
+        return data.data
+    } catch (_e) {
+        const e = _e as AxiosError<{
+            errors: {
+                data?: string
+            }
+            message: string,
+            type: 'DeleteAdminUserValidationError'
+        }>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'DeleteAdminUserValidationError'
+            }
+        }
+
+        console.error(e)
+    }
+}
+

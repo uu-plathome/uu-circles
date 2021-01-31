@@ -4,28 +4,46 @@ import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNewJoyListItem'
 import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleNewJoyList } from '@/infra/api/cirecle_new_joy'
-import { CircleNewJoy } from '@/infra/api/types'
+import { getCircleNewJoyList, deleteCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 
 
 const IndexPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter()
+    const [circle, setCircle] = useState<Circle|null>(null)
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { id } = router.query
 
     useEffect(() => {
         const f = async () => {
-            setCircleNewJoys(await getCircleNewJoyList(Number(id), authContext.accessToken))
+            const {
+                circle,
+                circleNewJoys
+            } = await getCircleNewJoyList(Number(id), authContext.accessToken)
+            setCircle(circle)
+            setCircleNewJoys(circleNewJoys)
         }
 
         if (authContext.accessToken && !Array.isArray(id)) {
             f()
         }
     }, [ authContext.accessToken, id ])
+
+    const onDelete = async (circleNewJoyId: number) => {
+        await deleteCircleNewJoy(Number(id), circleNewJoyId, authContext.accessToken)
+
+        const {
+            circle,
+            circleNewJoys
+        } = await getCircleNewJoyList(Number(id), authContext.accessToken)
+        setCircle(circle)
+        setCircleNewJoys(circleNewJoys)
+    }
 
     return (
         <div>
@@ -41,7 +59,9 @@ const IndexPage: NextPage = () => {
                     <div className="py-10">
                         <div className="flex justify-between mb-8">
                             <h1 className="text-2xl text-gray-100">
-                                サークル新歓一覧へようこそ
+                                { 
+                                    (circle && circle.name) ? `${circle.name}の新歓` : 'loading...'
+                                 }
                             </h1>
 
                             <GreenButton href="/circle/[id]/newjoy/create" as={`/circle/${id}/newjoy/create`}>
@@ -55,6 +75,7 @@ const IndexPage: NextPage = () => {
                                     return <CircleNewJoyListItem
                                         key={`circle-${circleNewJoy.id}`}
                                         circleNewJoy={circleNewJoy}
+                                        onDelete={onDelete}
                                     />
                                 })
                             ) : ''}

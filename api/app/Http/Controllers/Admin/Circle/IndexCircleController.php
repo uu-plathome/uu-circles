@@ -24,10 +24,9 @@ class IndexCircleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): array
     {
         $circles = $this->indexCircleUsecase->invoke();
-        \Log::debug(Arr::camel_keys($circles));
 
         return [
             'data' => (new Collection($circles))->map(

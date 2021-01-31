@@ -8,6 +8,10 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
 import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
+import { checkVerifyCircleUser, verificationEmailCircleUser } from "@/infra/api/circle_user"
+import { isVerificationInvalidError } from "@/lib/types/api/VerificationInvalidError"
+import { isVerificationConfirmRequestValidationError } from "@/lib/types/api/VerificationConfirmRequest"
+import { isVerificationEmailCircleUserRequestValidationError } from "@/lib/types/api/VerificationEmailCircleUserRequest"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -24,7 +28,7 @@ const Login: NextPage = () => {
     useEffect(() => {
         (async () => {
             if (!Array.isArray(id) && Number.isInteger(Number(id)) && !Array.isArray(expires) && !Array.isArray(signature)) {
-                const data = await checkVerify(
+                const data = await checkVerifyCircleUser(
                     Number(id),
                     expires,
                     signature
@@ -41,7 +45,7 @@ const Login: NextPage = () => {
         event.preventDefault()
 
         if (!Array.isArray(id) && !Array.isArray(expires) && !Array.isArray(signature)) {
-            const data = await verifyPassword(
+            const data = await verificationEmailCircleUser(
                 Number(id),
                 password.value,
                 expires,
@@ -52,12 +56,14 @@ const Login: NextPage = () => {
                 setSuccess(true)
             }
 
-            if (data.type === 'verifyAuthError') {
+            if (isVerificationInvalidError(data)) {
                 setError(data.status)
+                return
             }
 
-            if (data.type === 'verifyValidationError') {
-                password.setError(data.errors.password)
+            if (isVerificationEmailCircleUserRequestValidationError(data)) {
+                password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')
+                return
             }
         }
     }

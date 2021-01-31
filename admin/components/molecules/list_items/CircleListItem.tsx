@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
 import { faCheckCircle, faTimesCircle, faEdit, faUserAlt } from '@fortawesome/free-solid-svg-icons';
-import { Circle } from '@/infra/api/types';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
+import { Circle } from '@/lib/types/model/Circle';
 
 type Props = {
     circle: Circle
@@ -71,7 +71,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                     </Link>
                 </CircleListItemTableColumn>
                 <CircleListItemTableColumn title="ユーザー">
-                    <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
+                    <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`} >
                         <a>
                             <FontAwesomeIcon
                                 size="lg"

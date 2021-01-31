@@ -1,30 +1,46 @@
+import { LoginAdminFormRequest, LoginAdminFormRequestValidationError } from '@/lib/types/api/LoginAdminFormRequest'
+import { VerificationConfirmRequestValidationError } from '@/lib/types/api/VerificationConfirmRequest'
+import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
+import { VerificationResendAdminUserFormRequestValidationError } from '@/lib/types/api/VerificationResendAdminUserFormRequest'
+import { User } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
-import { Login, User, LoginValidationError, VerifyAuthError, VerifyValidationError } from './types'
 
-export const login = async ({
-    usernameOrEmail,
-    password
-}: Login): Promise<User|LoginValidationError> => {
+export const login = async (
+    request: LoginAdminFormRequest
+) => {
     try {
-        const { data } = await axiosInstance.post<User>('/admin/api/login', {
-            usernameOrEmail,
-            password
-        })
+        const { data } = await axiosInstance.post<User>(
+            '/admin/api/login', 
+            request
+        )
 
         return {
             ...data,
-            type: 'user'
-        }
+            type: 'User'
+        } as User
     } catch (_e) {
-        const e = _e as AxiosError<LoginValidationError>
+        const e = _e as AxiosError<LoginAdminFormRequestValidationError & {
+            errors: {
+                data?: string
+            }
+            message: string
+        }>
 
         if (e.response && e.response.status === 422 && e.response.data) {
+            if (e.response.data.errors && e.response.data.errors.data) {
+                return {
+                    ...e.response.data,
+                    type: 'LoginAdminMainFormRequestValidationError'
+                }
+            }
+
             return {
                 ...e.response.data,
-                type: 'loginValidationError'
+                type: 'LoginAdminFormRequestValidationError'
             }
         }
+
 
         console.error(e)
     }
@@ -34,7 +50,7 @@ export const checkVerify = async (id: number, expires: string, signature: string
     try {
         const { data } = await axiosInstance.get<{
             status: boolean
-        }>(`/api/email/verify/${id}`, {
+        }>(`/admin/api/email/verify/${id}`, {
             params: {
                 expires,
                 signature
@@ -49,13 +65,13 @@ export const checkVerify = async (id: number, expires: string, signature: string
             type: 'success'
         }
     } catch (_e) {
-        const e = _e as AxiosError<VerifyAuthError>
+        const e = _e as AxiosError<VerificationInvalidError>
 
         if (e.response && e.response.status === 400) {
             return {
                 ...e.response.data,
-                type: 'verifyAuthError'
-            } as VerifyAuthError
+                type: 'VerificationInvalidError'
+            } as VerificationInvalidError
         }
 
         console.error(e)
@@ -66,7 +82,7 @@ export const verifyPassword = async (id: number, password: string, expires: stri
     try {
         const { data } = await axiosInstance.post<{
             status: boolean
-        }>(`/api/email/verify/${id}`, {
+        }>(`/admin/api/email/verify/${id}`, {
             password
         }, {
             params: {
@@ -83,20 +99,49 @@ export const verifyPassword = async (id: number, password: string, expires: stri
             type: 'success'
         }
     } catch (_e) {
-        const e = _e as AxiosError<VerifyAuthError|VerifyValidationError>
+        const e = _e as AxiosError<VerificationInvalidError|VerificationConfirmRequestValidationError>
 
         if (e.response && e.response.status === 400) {
             return {
                 ...e.response.data,
-                type: 'verifyAuthError'
-            } as VerifyAuthError
+                type: 'VerificationInvalidError'
+            } as VerificationInvalidError
         }
 
         if (e.response && e.response.status === 422) {
             return {
                 ...e.response.data,
-                type: 'verifyValidationError'
-            } as VerifyValidationError
+                type: 'VerificationConfirmRequestValidationError'
+            } as VerificationConfirmRequestValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+export const resendEmail = async (email: string) => {
+    try {
+        const { data } = await axiosInstance.post<{
+            status: boolean
+        }>(`/admin/api/email/resend`, {
+            email
+        })
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: boolean,
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<VerificationResendAdminUserFormRequestValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'VerificationResendAdminUserFormRequestValidationError'
+            } as VerificationResendAdminUserFormRequestValidationError
         }
 
         console.error(e)

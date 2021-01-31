@@ -12,7 +12,10 @@ class CreateCircleNewJoyUsecase
     /**
      * 新規新歓を追加する
      *
+     * @param int $circleId
+     * @param CircleNewJoyValueObject $circleNewJoyValueObject
      * @return void
+     * @throws Exception
      */
     public function invoke(int $circleId, CircleNewJoyValueObject $circleNewJoyValueObject)
     {

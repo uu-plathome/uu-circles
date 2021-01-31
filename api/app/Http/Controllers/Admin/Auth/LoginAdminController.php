@@ -11,7 +11,9 @@ use App\Usecases\LoginAdminUserUsecase;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class LoginAdminController extends Controller
 {
@@ -96,12 +98,13 @@ class LoginAdminController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         $user = $this->guard()->user();
-        if (! $user->hasVerifiedEmail()) {
+
+        if ($user && ! $user->hasVerifiedEmail()) {
             throw VerifyEmailException::forUser($user);
         }
 
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
+            'data' => 'ログインに失敗しました。メールアドレス、パスワードを再度、確認してください。',
         ]);
     }
 

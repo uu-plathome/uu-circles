@@ -149,14 +149,32 @@ const CreatePage: NextPage = () => {
                                         name="publishFrom"
                                         id="publishFrom"
                                         type="date"
-                                        required
                                         { ...publishFrom }
                                     />
 
-{/* publishFrom
-publishTo
-startDate
-endDate */}
+                                    <BaseTextField
+                                        label="公開終了日時"
+                                        name="publishTo"
+                                        id="publishTo"
+                                        type="date"
+                                        { ...publishTo }
+                                    />
+
+                                    <BaseTextField
+                                        label="新歓開始日時"
+                                        name="startDate"
+                                        id="startDate"
+                                        type="datetime-local"
+                                        { ...startDate }
+                                    />
+
+                                    <BaseTextField
+                                        label="新歓終了日時"
+                                        name="endDate"
+                                        id="endDate"
+                                        type="datetime-local"
+                                        { ...endDate }
+                                    />
 
                                     <div className="flex justify-center mt-8">
                                         <GreenButton type="submit">
