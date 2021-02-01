@@ -13,6 +13,7 @@ use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
+use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
@@ -63,6 +64,7 @@ class GenerateRequestTypeForTs extends Command
             VerificationResendCircleUserFormRequest::class,
             VerificationConfirmRequest::class,
             AdminPutStorageRequest::class,
+            UpdateCircleUserRequest::class,
         ];
     }
 

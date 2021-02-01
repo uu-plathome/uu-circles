@@ -79,6 +79,7 @@ const IndexPage: NextPage = () => {
                             {
                                 users.map((user: User) => {
                                     return <CircleUserListItem
+                                        circleId={Number(id)}
                                         key={`user-${user.id}`} 
                                         user={user}
                                         onResendEmail={onResendEmail}
