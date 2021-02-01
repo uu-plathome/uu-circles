@@ -27,7 +27,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
         <div className="text-white flex">
         <div>
             <Image
-                src={`/images/no-image.png`}
+                src={circle.mainImageUrl ? circle.mainImageUrl : `/images/no-image.png`}
                 width="100"
                 height="100"
                 layout={"fixed"}
