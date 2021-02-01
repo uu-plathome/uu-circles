@@ -17,7 +17,7 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail, onDeleteUser }) => 
             <div className="flex flex-wrap w-full">
                 <div className="w-full lg:w-1/6 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">ユーザー名</p>
-                    <div className="flex justify-center h-7 items-center">
+                    <div className="flex justify-center h-7 items-center text-white">
                         {user.username}
                     </div>
                 </div>

@@ -32,6 +32,8 @@ Route::middleware('auth:api')->group(function () {
     // CircleUser サークルユーザー
     Route::get('/circle/{circleId}/user', 'Admin\CircleUser\IndexCircleUserController');
     Route::post('/circle/{circleId}/user', 'Admin\CircleUser\RegisterCircleUserController');
+    Route::get('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\ShowCircleUserController');
+    Route::put('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\UpdateCircleUserController');
     Route::delete('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\DeleteCircleUserController');
 
     // CircleNewJoy サークル新歓管理
