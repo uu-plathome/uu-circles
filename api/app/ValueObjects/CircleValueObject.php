@@ -44,6 +44,7 @@ class CircleValueObject
     public ?string $github_url;
     public ?string $tiktok_url;
     public ?string $participation_url;
+    public ?string $main_image_url;
     public ?Carbon $created_at;
     public ?Carbon $updated_at;
 
@@ -88,6 +89,7 @@ class CircleValueObject
         $circleValueObject->participation_url = $circleInformation->participation_url;
         $circleValueObject->created_at = $circle->created_at;
         $circleValueObject->updated_at = $circle->updated_at;
+        $circleValueObject->main_image_url = $circleInformation->main_image_url;
         return $circleValueObject;
     }
 
@@ -138,6 +140,7 @@ class CircleValueObject
             CircleInformationModel::github_url => $this->github_url,
             CircleInformationModel::tiktok_url => $this->tiktok_url,
             CircleInformationModel::participation_url => $this->participation_url,
+            CircleInformationModel::main_image_url => $this->main_image_url,
         ]);
     }
 
@@ -180,6 +183,7 @@ class CircleValueObject
             CircleInformationModel::github_url => $this->github_url,
             CircleInformationModel::tiktok_url => $this->tiktok_url,
             CircleInformationModel::participation_url => $this->participation_url,
+            CircleInformationModel::main_image_url => $this->main_image_url,
         ];
     }
 }

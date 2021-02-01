@@ -117,12 +117,16 @@ const EditPage: NextPage = () => {
             reader.onabort = () => console.log('file reading was aborted')
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = async (e) => {
-                const data = await putStorage(file, authContext.accessToken)
-
-                if (isAdminPutStorageRequestValidationError(data)) {
-                    mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
+                try {
+                    const data = await putStorage(file, authContext.accessToken)
+    
+                    if (isAdminPutStorageRequestValidationError(data)) {
+                        mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
+                    }
+                    mainImageUrl.set(data.url)
+                } catch (e) {
+                    mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
                 }
-                mainImageUrl.set(data.url)
             }
             reader.readAsDataURL(file)
           })
@@ -586,16 +590,6 @@ const EditPage: NextPage = () => {
                                             />
                                         </div>
 
-                                        {/* <div>
-                                            <BaseTextField
-                                            type="file"
-                                            accept="image/*"
-                                            expand
-                                            note="Google formなどのURL。Zoomを張るのは控えてください。"
-                                            { ...mainImageUrl }
-                                            name="mainImageUrl"
-                                            />
-                                        </div> */}
                                         <BaseImageInput 
                                             label="メイン画像"
                                             id="mainImageUrl"
