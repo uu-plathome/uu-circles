@@ -1,5 +1,6 @@
 
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseImageInput } from '@/components/atoms/form/BaseImageInput'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -7,10 +8,12 @@ import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
+import { putStorage } from '@/infra/api/storage'
 import { __ } from '@/lang/ja'
 import { getAllCircleType } from '@/lib/enum/api/CircleType'
 import { getAllDateOfActivity, isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { NextPage } from 'next'
@@ -55,6 +58,7 @@ const EditPage: NextPage = () => {
     const githubUrl = useInput('')
     const tiktokUrl = useInput('')
     const participationUrl = useInput('')
+    const mainImageUrl = useInput('')
     const { id } = router.query
 
     useEffect(() => {
@@ -96,6 +100,7 @@ const EditPage: NextPage = () => {
                     githubUrl.set(foundCircle.githubUrl)
                     tiktokUrl.set(foundCircle.tiktokUrl)
                     participationUrl.set(foundCircle.participationUrl)
+                    mainImageUrl.set(foundCircle.mainImageUrl)
                 }
             }
         }
@@ -104,6 +109,24 @@ const EditPage: NextPage = () => {
             f()
         }
     }, [ authContext.accessToken, id ])
+
+    const onDropMainImage = (acceptedFiles) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+      
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = async (e) => {
+                const data = await putStorage(file, authContext.accessToken)
+
+                if (isAdminPutStorageRequestValidationError(data)) {
+                    mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
+                }
+                mainImageUrl.set(data.url)
+            }
+            reader.readAsDataURL(file)
+          })
+    }
 
     const onSubmit = async (event) => {
         event.preventDefault()
@@ -146,6 +169,7 @@ const EditPage: NextPage = () => {
                     githubUrl: githubUrl.value,
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
+                    mainImageUrl: mainImageUrl.value,
                 } as UpdateCircleFormRequest,
                 authContext.accessToken
             )
@@ -184,6 +208,7 @@ const EditPage: NextPage = () => {
                 githubUrl.setError(data.errors.githubUrl && Array.isArray(data.errors.githubUrl) ? data.errors.githubUrl[0] : '')
                 tiktokUrl.setError(data.errors.tiktokUrl && Array.isArray(data.errors.tiktokUrl) ? data.errors.tiktokUrl[0] : '')
                 participationUrl.setError(data.errors.participationUrl && Array.isArray(data.errors.participationUrl) ? data.errors.participationUrl[0] : '')
+                mainImageUrl.setError(data.errors.mainImageUrl && Array.isArray(data.errors.mainImageUrl) ? data.errors.mainImageUrl[0] : '')
                 return
             }
 
@@ -560,6 +585,24 @@ const EditPage: NextPage = () => {
                                                 { ...participationUrl }
                                             />
                                         </div>
+
+                                        {/* <div>
+                                            <BaseTextField
+                                            type="file"
+                                            accept="image/*"
+                                            expand
+                                            note="Google formなどのURL。Zoomを張るのは控えてください。"
+                                            { ...mainImageUrl }
+                                            name="mainImageUrl"
+                                            />
+                                        </div> */}
+                                        <BaseImageInput 
+                                            label="メイン画像"
+                                            id="mainImageUrl"
+                                            preview={mainImageUrl.value ? mainImageUrl.value : `/images/no-image.png`}
+                                            onDrop={onDropMainImage}
+                                            error={mainImageUrl.error}
+                                        />
 
                                         <div className="flex justify-center mt-8">
                                             <GreenButton type="submit">

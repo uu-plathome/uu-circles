@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PutStorageController extends Controller
 {
@@ -17,8 +19,8 @@ class PutStorageController extends Controller
      */
     public function __invoke(AdminPutStorageRequest $request): array
     {
-        $fp = $request->file('file');
-        $url = Storage::putFile('', $fp);
+        $filename = $request->file('file')->store('');
+        $url = Storage::url($filename);
 
         return [
             'url' => $url,
