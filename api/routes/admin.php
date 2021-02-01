@@ -21,6 +21,8 @@ Route::middleware('auth:api')->group(function () {
     // AdminUser 管理者アカウント
     Route::get('/admin-user', 'Admin\AdminUser\IndexAdminUserController');
     Route::post('/admin-user', 'Admin\Auth\RegisterAdminController')->name('admin.auth.register');
+    Route::get('/admin-user/{userId}', 'Admin\AdminUser\ShowAdminUserController');
+    Route::put('/admin-user/{userId}', 'Admin\AdminUser\UpdateAdminUserController');
     Route::delete('/admin-user/{userId}', 'Admin\AdminUser\DeleteAdminUserController');
 
     // Circle サークル管理
