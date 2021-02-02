@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Enum\UserModel;
-use App\Notifications\ResetPassword;
+use App\Notifications\ResetPasswordAdminUser;
 use App\Notifications\VerifyEmailAdminUser;
 use App\Notifications\VerifyEmailCircleUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return bool
      */
-    public function hasVerifiedEmail()
+    public function hasVerifiedEmail(): bool
     {
         return !is_null($this->email_verified_at) && $this->active;
     }
@@ -88,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param string $password
      * @return bool
      */
-    public function markEmailAndPasswordAsVerified(string $password)
+    public function markEmailAndPasswordAsVerified(string $password): bool
     {
         return $this->forceFill([
             'password'          => Hash::make($password),
@@ -99,12 +99,12 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPassword($token));
+        $this->notify(new ResetPasswordAdminUser($token));
     }
 
     /**
