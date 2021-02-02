@@ -11,8 +11,8 @@ Route::group(['middleware' => 'guest:api'], function () {
         Route::post('email/verify/{userId}', 'Admin\Auth\VerificationConfirmController');
         Route::post('email/resend', 'Admin\Auth\VerificationResendController')->name('admin.verification.resend');
 
-        Route::post('password/email', 'Admin\Auth\ForgotPasswordController');
-        Route::post('password/reset', 'Admin\Auth\ResetPasswordController');
+        Route::post('password/email', 'Admin\Auth\ForgotPasswordAdminController');
+        Route::post('password/reset', 'Admin\Auth\ResetPasswordAdminController');
     });
 });
 
