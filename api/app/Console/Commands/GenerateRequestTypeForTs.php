@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
+use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
+use App\Http\Requests\Admin\Auth\ResetPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\VerificationConfirmRequest;
 use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
@@ -67,6 +69,8 @@ class GenerateRequestTypeForTs extends Command
             AdminPutStorageRequest::class,
             UpdateCircleUserRequest::class,
             UpdateAdminUserRequest::class,
+            ForgotPasswordAdminRequest::class,
+            ResetPasswordAdminRequest::class,
         ];
     }
 
