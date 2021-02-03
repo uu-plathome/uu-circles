@@ -3,6 +3,7 @@
 
 namespace App\Http\Requests\Admin\Auth;
 
+use App\Rules\RegexPassword;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +29,7 @@ class ResetPasswordAdminRequest extends FormRequest
         return Arr::camel_keys([
             'token'    => 'required',
             'email'    => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
+            'password' => ['required', 'string', new RegexPassword()],
         ]);
     }
 }
