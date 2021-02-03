@@ -6,7 +6,7 @@ import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useBooleanInput, useNumberInput, useStringInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
 import { __ } from '@/lang/ja'
@@ -18,47 +18,47 @@ import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } fro
 import { Circle } from '@/lib/types/model/Circle'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '../../../components/layouts/BaseHeader'
 
 const EditPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
-    const name = useInput('')
-    const slug = useInput('')
-    const release = useInput('false')
-    const circleType = useInput('')
-    const nameKana = useInput('')
-    const shortName = useInput('')
-    const prefixName = useInput('')
-    const description = useInput('')
-    const intro = useInput('')
-    const placeOfActivity = useInput('')
-    const placeOfActivityDetail = useInput('')
-    const doOnlineActivity = useInput('true')
-    const dateOfActivityMonday = useInput('')
-    const dateOfActivityTuesday = useInput('')
-    const dateOfActivityWednesday = useInput('')
-    const dateOfActivityThursday = useInput('')
-    const dateOfActivityFriday = useInput('')
-    const dateOfActivitySaturday = useInput('')
-    const dateOfActivitySunday = useInput('')
-    const dateOfActivityDetail = useInput('')
-    const admissionFee = useInput('')
-    const numberOfMembers = useInput<number>(0)
-    const publicEmail = useInput('')
-    const twitterUrl = useInput('')
-    const facebookUrl = useInput('')
-    const instagramUrl = useInput('')
-    const lineUrl = useInput('')
-    const youtubeUrl = useInput('')
-    const homepageUrl = useInput('')
-    const peingUrl = useInput('')
-    const githubUrl = useInput('')
-    const tiktokUrl = useInput('')
-    const participationUrl = useInput('')
-    const mainImageUrl = useInput('')
+    const name = useStringInput('')
+    const slug = useStringInput('')
+    const release = useBooleanInput(false)
+    const circleType = useStringInput('')
+    const nameKana = useStringInput('')
+    const shortName = useStringInput('')
+    const prefixName = useStringInput('')
+    const description = useStringInput('')
+    const intro = useStringInput('')
+    const placeOfActivity = useStringInput('')
+    const placeOfActivityDetail = useStringInput('')
+    const doOnlineActivity = useBooleanInput(true)
+    const dateOfActivityMonday = useStringInput('')
+    const dateOfActivityTuesday = useStringInput('')
+    const dateOfActivityWednesday = useStringInput('')
+    const dateOfActivityThursday = useStringInput('')
+    const dateOfActivityFriday = useStringInput('')
+    const dateOfActivitySaturday = useStringInput('')
+    const dateOfActivitySunday = useStringInput('')
+    const dateOfActivityDetail = useStringInput('')
+    const admissionFee = useStringInput('')
+    const numberOfMembers = useNumberInput(0)
+    const publicEmail = useStringInput('')
+    const twitterUrl = useStringInput('')
+    const facebookUrl = useStringInput('')
+    const instagramUrl = useStringInput('')
+    const lineUrl = useStringInput('')
+    const youtubeUrl = useStringInput('')
+    const homepageUrl = useStringInput('')
+    const peingUrl = useStringInput('')
+    const githubUrl = useStringInput('')
+    const tiktokUrl = useStringInput('')
+    const participationUrl = useStringInput('')
+    const mainImageUrl = useStringInput('')
     const { id } = router.query
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const EditPage: NextPage = () => {
                 if (foundCircle) {
                     name.set(foundCircle.name)
                     slug.set(foundCircle.slug)
-                    release.set(foundCircle.release ? 'true' : 'false')
+                    release.set(foundCircle.release)
                     nameKana.set(foundCircle.nameKana)
                     shortName.set(foundCircle.shortName)
                     prefixName.set(foundCircle.prefixName)
@@ -78,7 +78,7 @@ const EditPage: NextPage = () => {
                     circleType.set(foundCircle.circleType)
                     placeOfActivity.set(foundCircle.placeOfActivity)
                     placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                    doOnlineActivity.set(foundCircle.doOnlineActivity ? 'true' : 'false')
+                    doOnlineActivity.set(foundCircle.doOnlineActivity)
                     dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
                     dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
                     dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
@@ -132,7 +132,7 @@ const EditPage: NextPage = () => {
         })
     }
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (!Array.isArray(id)) {
@@ -142,7 +142,7 @@ const EditPage: NextPage = () => {
                     type: 'UpdateCircleFormRequest',
                     name: name.value,
                     slug: slug.value,
-                    release: release.value === 'true' ? true : false,
+                    release: release.toBoolean,
                     nameKana: nameKana.value,
                     circleType: circleType.value,
                     shortName: shortName.value,
@@ -151,7 +151,7 @@ const EditPage: NextPage = () => {
                     intro: intro.value,
                     placeOfActivity: placeOfActivity.value,
                     placeOfActivityDetail: placeOfActivityDetail.value,
-                    doOnlineActivity: doOnlineActivity.value === 'true' ? true : false,
+                    doOnlineActivity: doOnlineActivity.toBoolean,
                     dateOfActivityMonday: isDateOfActivity(dateOfActivityMonday.value) ? dateOfActivityMonday.value : null,
                     dateOfActivityTuesday: isDateOfActivity(dateOfActivityTuesday.value) ? dateOfActivityTuesday.value: null,
                     dateOfActivityWednesday: isDateOfActivity(dateOfActivityWednesday.value) ? dateOfActivityWednesday.value: null,
@@ -161,7 +161,7 @@ const EditPage: NextPage = () => {
                     dateOfActivitySunday: isDateOfActivity(dateOfActivitySunday.value) ? dateOfActivitySunday.value: null,
                     dateOfActivityDetail: dateOfActivityDetail.value,
                     admissionFee: admissionFee.value,
-                    numberOfMembers: numberOfMembers.value,
+                    numberOfMembers: numberOfMembers.toNumber,
                     publicEmail: publicEmail.value,
                     twitterUrl: twitterUrl.value,
                     facebookUrl: facebookUrl.value,
@@ -179,40 +179,40 @@ const EditPage: NextPage = () => {
             )
 
             if (isUpdateCircleFormRequestValidationError(data)) {
-                name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
-                slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
-                nameKana.setError(data.errors.nameKana && Array.isArray(data.errors.nameKana) ? data.errors.nameKana[0] : '')
-                release.setError(data.errors.release && Array.isArray(data.errors.release) ? data.errors.release[0] : '')
-                circleType.setError(data.errors.circleType && Array.isArray(data.errors.circleType) ? data.errors.circleType[0] : '')
-                shortName.setError(data.errors.shortName && Array.isArray(data.errors.shortName) ? data.errors.shortName[0] : '')
-                prefixName.setError(data.errors.prefixName && Array.isArray(data.errors.prefixName) ? data.errors.prefixName[0] : '')
-                description.setError(data.errors.description && Array.isArray(data.errors.description) ? data.errors.description[0] : '')
-                intro.setError(data.errors.intro && Array.isArray(data.errors.intro) ? data.errors.intro[0] : '')
-                placeOfActivity.setError(data.errors.placeOfActivity && Array.isArray(data.errors.placeOfActivity) ? data.errors.placeOfActivity[0] : '')
-                placeOfActivityDetail.setError(data.errors.placeOfActivityDetail && Array.isArray(data.errors.placeOfActivityDetail) ? data.errors.placeOfActivityDetail[0] : '')
-                doOnlineActivity.setError(data.errors.doOnlineActivity && Array.isArray(data.errors.doOnlineActivity) ? data.errors.doOnlineActivity[0] : '')
-                dateOfActivityMonday.setError(data.errors.dateOfActivityMonday && Array.isArray(data.errors.dateOfActivityMonday) ? data.errors.dateOfActivityMonday[0] : '')
-                dateOfActivityTuesday.setError(data.errors.dateOfActivityTuesday && Array.isArray(data.errors.dateOfActivityTuesday) ? data.errors.dateOfActivityTuesday[0] : '')
-                dateOfActivityWednesday.setError(data.errors.dateOfActivityWednesday && Array.isArray(data.errors.dateOfActivityWednesday) ? data.errors.dateOfActivityWednesday[0] : '')
-                dateOfActivityThursday.setError(data.errors.dateOfActivityThursday && Array.isArray(data.errors.dateOfActivityThursday) ? data.errors.dateOfActivityThursday[0] : '')
-                dateOfActivityFriday.setError(data.errors.dateOfActivityFriday && Array.isArray(data.errors.dateOfActivityFriday) ? data.errors.dateOfActivityFriday[0] : '')
-                dateOfActivitySaturday.setError(data.errors.dateOfActivitySaturday && Array.isArray(data.errors.dateOfActivitySaturday) ? data.errors.dateOfActivitySaturday[0] : '')
-                dateOfActivitySunday.setError(data.errors.dateOfActivitySunday && Array.isArray(data.errors.dateOfActivitySunday) ? data.errors.dateOfActivitySunday[0] : '')
-                dateOfActivityDetail.setError(data.errors.dateOfActivityDetail && Array.isArray(data.errors.dateOfActivityDetail) ? data.errors.dateOfActivityDetail[0] : '')
-                admissionFee.setError(data.errors.admissionFee && Array.isArray(data.errors.admissionFee) ? data.errors.admissionFee[0] : '')
-                numberOfMembers.setError(data.errors.numberOfMembers && Array.isArray(data.errors.numberOfMembers) ? data.errors.numberOfMembers[0] : '')
-                publicEmail.setError(data.errors.publicEmail && Array.isArray(data.errors.publicEmail) ? data.errors.publicEmail[0] : '')
-                twitterUrl.setError(data.errors.twitterUrl && Array.isArray(data.errors.twitterUrl) ? data.errors.twitterUrl[0] : '')
-                facebookUrl.setError(data.errors.facebookUrl && Array.isArray(data.errors.facebookUrl) ? data.errors.facebookUrl[0] : '')
-                instagramUrl.setError(data.errors.instagramUrl && Array.isArray(data.errors.instagramUrl) ? data.errors.instagramUrl[0] : '')
-                lineUrl.setError(data.errors.lineUrl && Array.isArray(data.errors.lineUrl) ? data.errors.lineUrl[0] : '')
-                youtubeUrl.setError(data.errors.youtubeUrl && Array.isArray(data.errors.youtubeUrl) ? data.errors.youtubeUrl[0] : '')
-                homepageUrl.setError(data.errors.homepageUrl && Array.isArray(data.errors.homepageUrl) ? data.errors.homepageUrl[0] : '')
-                peingUrl.setError(data.errors.peingUrl && Array.isArray(data.errors.peingUrl) ? data.errors.peingUrl[0] : '')
-                githubUrl.setError(data.errors.githubUrl && Array.isArray(data.errors.githubUrl) ? data.errors.githubUrl[0] : '')
-                tiktokUrl.setError(data.errors.tiktokUrl && Array.isArray(data.errors.tiktokUrl) ? data.errors.tiktokUrl[0] : '')
-                participationUrl.setError(data.errors.participationUrl && Array.isArray(data.errors.participationUrl) ? data.errors.participationUrl[0] : '')
-                mainImageUrl.setError(data.errors.mainImageUrl && Array.isArray(data.errors.mainImageUrl) ? data.errors.mainImageUrl[0] : '')
+                name.setErrors(data.errors.name)
+                slug.setErrors(data.errors.slug)
+                nameKana.setErrors(data.errors.nameKana)
+                release.setErrors(data.errors.release)
+                circleType.setErrors(data.errors.circleType)
+                shortName.setErrors(data.errors.shortName)
+                prefixName.setErrors(data.errors.prefixName)
+                description.setErrors(data.errors.description)
+                intro.setErrors(data.errors.intro)
+                placeOfActivity.setErrors(data.errors.placeOfActivity)
+                placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
+                doOnlineActivity.setErrors(data.errors.doOnlineActivity)
+                dateOfActivityMonday.setErrors(data.errors.dateOfActivityMonday)
+                dateOfActivityTuesday.setErrors(data.errors.dateOfActivityTuesday)
+                dateOfActivityWednesday.setErrors(data.errors.dateOfActivityWednesday)
+                dateOfActivityThursday.setErrors(data.errors.dateOfActivityThursday)
+                dateOfActivityFriday.setErrors(data.errors.dateOfActivityFriday)
+                dateOfActivitySaturday.setErrors(data.errors.dateOfActivitySaturday)
+                dateOfActivitySunday.setErrors(data.errors.dateOfActivitySunday)
+                dateOfActivityDetail.setErrors(data.errors.dateOfActivityDetail)
+                admissionFee.setErrors(data.errors.admissionFee)
+                numberOfMembers.setErrors(data.errors.numberOfMembers)
+                publicEmail.setErrors(data.errors.publicEmail)
+                twitterUrl.setErrors(data.errors.twitterUrl)
+                facebookUrl.setErrors(data.errors.facebookUrl)
+                instagramUrl.setErrors(data.errors.instagramUrl)
+                lineUrl.setErrors(data.errors.lineUrl)
+                youtubeUrl.setErrors(data.errors.youtubeUrl)
+                homepageUrl.setErrors(data.errors.homepageUrl)
+                peingUrl.setErrors(data.errors.peingUrl)
+                githubUrl.setErrors(data.errors.githubUrl)
+                tiktokUrl.setErrors(data.errors.tiktokUrl)
+                participationUrl.setErrors(data.errors.participationUrl)
+                mainImageUrl.setErrors(data.errors.mainImageUrl)
                 return
             }
 

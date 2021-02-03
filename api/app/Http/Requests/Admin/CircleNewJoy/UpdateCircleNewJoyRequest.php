@@ -29,7 +29,7 @@ class UpdateCircleNewJoyRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleNewJoyModel::title                    => ['string', 'max:100'],
+            CircleNewJoyModel::title                    => ['required', 'string', 'max:100'],
             CircleNewJoyModel::description              => ['string', 'nullable', 'max:255'],
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyModel::place_of_activity        => [

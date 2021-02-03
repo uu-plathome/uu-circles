@@ -2,12 +2,11 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useBooleanInput, useInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { FormEvent, useContext, useEffect } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
@@ -19,16 +18,16 @@ const CreatePage: NextPage = () => {
     const router = useRouter()
     const { userId } = router.query
 
-    const username = useInput('')
-    const displayName = useInput('')
-    const active = useInput('true')
+    const username = useStringInput('')
+    const displayName = useStringInput('')
+    const active = useBooleanInput(true)
 
     useEffect(() => {
         const f = async () => {
             const foundUser = await getAdminUser(Number(userId), authContext.accessToken)
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
-            active.set(foundUser.active ? 'true' : 'false')
+            active.set(foundUser.active)
         }
 
         if (authContext.accessToken) {
@@ -36,7 +35,7 @@ const CreatePage: NextPage = () => {
         }
     }, [ authContext.accessToken, userId ])
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const data = await updateAdminUser(
@@ -45,16 +44,15 @@ const CreatePage: NextPage = () => {
                 type: 'UpdateAdminUserRequest',
                 username: username.value,
                 displayName: displayName.value,
-                active: active.value === 'true'
+                active: active.toBoolean
             } as UpdateAdminUserRequest, 
             authContext.accessToken
         )
 
         if (isUpdateAdminUserRequestValidationError(data)) {
-            username.setError(data.errors.username && Array.isArray(data.errors.username) ? data.errors.username[0] : '')
-            displayName.setError(data.errors.displayName && Array.isArray(data.errors.displayName) ? data.errors.displayName[0] : '')
-            active.setError(data.errors.active && Array.isArray(data.errors.active) ? data.errors.active[0] : '')
-
+            username.setErrors(data.errors.username)
+            displayName.setErrors(data.errors.displayName)
+            active.setErrors(data.errors.active)
             return
         }
 
