@@ -37,7 +37,7 @@ const CreatePage: NextPage = () => {
             return
         }
 
-        await router.push('/admin/user')
+        await router.push('/user/admin')
     }
 
     return (

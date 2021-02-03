@@ -56,7 +56,13 @@ export const deleteAdminUser = async (userId: number, accessToken: string) => {
             }
         )
     
-        return data.data
+        return {
+            type: 'success',
+            data: data.data
+        } as {
+            type: 'success',
+            data: string
+        }
     } catch (_e) {
         const e = _e as AxiosError<{
             errors: {
@@ -69,6 +75,12 @@ export const deleteAdminUser = async (userId: number, accessToken: string) => {
         if (e.response && e.response.status === 422 && e.response.data) {
             return  {
                 ...e.response.data,
+                type: 'DeleteAdminUserValidationError'
+            } as {
+                errors: {
+                    data?: string
+                }
+                message: string,
                 type: 'DeleteAdminUserValidationError'
             }
         }
