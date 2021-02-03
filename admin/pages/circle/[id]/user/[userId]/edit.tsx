@@ -12,6 +12,7 @@ import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
@@ -67,47 +68,17 @@ const CreatePage: NextPage = () => {
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークルアカウント新規作成"
+                    title="サークルアカウント編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
-                        <form onSubmit={onSubmit}>
-                            <BaseTextField
-                                label="ユーザー名"
-                                name="username"
-                                id="username"
-                                required
-                                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                                { ...username }
-                            />
-
-                            <BaseTextField
-                                label="表示名"
-                                name="display_name"
-                                id="display_name"
-                                placeholder="u-lab"
-                                required
-                                note="入力がない場合は、自動で決まります"
-                                { ...displayName }
-                            />
-
-                            <BaseSelect
-                                label="アカウントが有効かどうか"
-                                name="active"
-                                id="active"
-                                required
-                                items={[
-                                    { value: 'true', label: '有効' },
-                                    { value: 'false', label: '無効' },
-                                ]}
-                                { ...active }
-                            />
-
-                            <div className="flex justify-center mt-8">
-                                <GreenButton type="submit">
-                                    進む
-                                </GreenButton>
-                            </div>
-                        </form>
+                        <EditCircleUserForm
+                            onSubmit={onSubmit}
+                            form={{
+                                username,
+                                displayName,
+                                active,
+                            }}
+                        />
                     </div>
                 </BaseWrapper>
             </BaseContainer>
