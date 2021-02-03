@@ -36,8 +36,8 @@ const NewJoyDateTime: FC<{
     if (startDate && endDate) {
         return (
             <div>
-                <p className="text-sm mt-4"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span>{formatDateTime(startDate)}</p>
-                <p className="text-sm mt-2"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">終</span>{formatDateTime(endDate)}</p>
+                <p className="text-sm text-white mt-4"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span>{formatDateTime(startDate)}</p>
+                <p className="text-sm text-white mt-2"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">終</span>{formatDateTime(endDate)}</p>
             </div>
         )
     }
@@ -45,7 +45,7 @@ const NewJoyDateTime: FC<{
     if (startDate && !endDate) {
         return (
             <div>
-                <p className="text-sm"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span>{formatDateTime(startDate)}</p>
+                <p className="text-sm text-white"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span>{formatDateTime(startDate)}</p>
             </div>
         )
     }
@@ -53,8 +53,8 @@ const NewJoyDateTime: FC<{
     if (!startDate && endDate) {
         return (
             <div>
-                <p className="text-sm mt-4"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span></p>
-                <p className="text-sm mt-2"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">終</span>{formatDateTime(endDate)}</p>
+                <p className="text-sm text-white mt-4"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">始</span></p>
+                <p className="text-sm text-white mt-2"><span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">終</span>{formatDateTime(endDate)}</p>
             </div>
         )
     }

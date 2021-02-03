@@ -26,7 +26,7 @@ class RegisterCircleNewJoyController extends Controller
      * @return Response
      * @throws Exception
      */
-    public function __invoke(RegisterCircleNewJoyRequest $request, int $id): Response
+    public function __invoke(RegisterCircleNewJoyRequest $request, int $id)
     {
         $circleNewJoyValueObject = $request->makeCircleNewJoyValueObject();
         $this->createCircleNewJoyUsecase->invoke($id, $circleNewJoyValueObject);

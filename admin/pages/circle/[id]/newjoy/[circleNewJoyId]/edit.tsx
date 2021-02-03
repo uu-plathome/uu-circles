@@ -2,13 +2,12 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { __ } from '@/lang/ja'
@@ -22,16 +21,16 @@ const CreatePage: NextPage = () => {
     const { id, circleNewJoyId } = router.query
     const [circle, setCircle] = useState<Circle|null>(null)
 
-    const title = useInput('')
-    const description = useInput('')
-    const url = useInput('')
-    const placeOfActivity = useInput('')
-    const placeOfActivityDetail = useInput('')
-    const publishFrom = useInput('')
-    const publishTo = useInput('')
-    const startDate = useInput('')
-    const endDate = useInput('')
-    const release = useInput('true')
+    const title = useStringInput('')
+    const description = useStringInput('')
+    const url = useStringInput('')
+    const placeOfActivity = useStringInput('')
+    const placeOfActivityDetail = useStringInput('')
+    const publishFrom = useStringInput('')
+    const publishTo = useStringInput('')
+    const startDate = useStringInput('')
+    const endDate = useStringInput('')
+    const release = useBooleanInput(true)
 
     useEffect(() => {
         const f = async () => {
@@ -44,13 +43,13 @@ const CreatePage: NextPage = () => {
             title.set(circleNewJoy.title)
             description.set(circleNewJoy.description)
             url.set(circleNewJoy.url)
-            placeOfActivity.set(circleNewJoy.placeOfActivity || 'null')
-            placeOfActivityDetail.set(circleNewJoy.placeOfActivityDetail || '')
-            publishFrom.set(circleNewJoy.publishFrom || '')
-            publishTo.set(circleNewJoy.publishTo || '')
-            startDate.set(circleNewJoy.startDate || '')
-            endDate.set(circleNewJoy.endDate || '')
-            release.set(circleNewJoy.release === true ? 'true' : 'false')
+            placeOfActivity.set(circleNewJoy.placeOfActivity)
+            placeOfActivityDetail.set(circleNewJoy.placeOfActivityDetail)
+            publishFrom.set(circleNewJoy.publishFrom)
+            publishTo.set(circleNewJoy.publishTo)
+            startDate.set(circleNewJoy.startDate)
+            endDate.set(circleNewJoy.endDate)
+            release.set(circleNewJoy.release)
         }
 
         if (authContext.accessToken && !Array.isArray(id)) {
@@ -58,7 +57,7 @@ const CreatePage: NextPage = () => {
         }
     }, [ authContext.accessToken, id ])
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const data = await updateCircleNewJoy(
@@ -79,16 +78,16 @@ const CreatePage: NextPage = () => {
             } as UpdateCircleNewJoyRequest, authContext.accessToken)
 
         if (data && isUpdateCircleNewJoyRequestValidationError(data)) {
-            title.setError(data.errors.title && Array.isArray(data.errors.title) ? data.errors.title[0] : '')
-            description.setError(data.errors.description && Array.isArray(data.errors.description) ? data.errors.description[0] : '')
-            url.setError(data.errors.url && Array.isArray(data.errors.url) ? data.errors.url[0] : '')
-            placeOfActivity.setError(data.errors.placeOfActivity && Array.isArray(data.errors.placeOfActivity) ? data.errors.placeOfActivity[0] : '')
-            placeOfActivityDetail.setError(data.errors.placeOfActivityDetail && Array.isArray(data.errors.placeOfActivityDetail) ? data.errors.placeOfActivityDetail[0] : '')
-            publishFrom.setError(data.errors.publishFrom && Array.isArray(data.errors.publishFrom) ? data.errors.publishFrom[0] : '')
-            publishTo.setError(data.errors.publishTo && Array.isArray(data.errors.publishTo) ? data.errors.publishTo[0] : '')
-            startDate.setError(data.errors.startDate && Array.isArray(data.errors.startDate) ? data.errors.startDate[0] : '')
-            endDate.setError(data.errors.endDate && Array.isArray(data.errors.endDate) ? data.errors.endDate[0] : '')
-            release.setError(data.errors.release && Array.isArray(data.errors.release) ? data.errors.release[0] : '')
+            title.setErrors(data.errors.title)
+            description.setErrors(data.errors.description)
+            url.setErrors(data.errors.url)
+            placeOfActivity.setErrors(data.errors.placeOfActivity)
+            placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
+            publishFrom.setErrors(data.errors.publishFrom)
+            publishTo.setErrors(data.errors.publishTo)
+            startDate.setErrors(data.errors.startDate)
+            endDate.setErrors(data.errors.endDate)
+            release.setErrors(data.errors.release)
 
             return
         }

@@ -2,13 +2,12 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useStringInput } from '@/hooks/useInput'
 import { createAdminUser } from '@/infra/api/admin_user'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { FormEvent, useContext } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -17,11 +16,11 @@ const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter()
 
-    const username = useInput('')
-    const displayName = useInput('')
-    const email = useInput('')
+    const username = useStringInput('')
+    const displayName = useStringInput('')
+    const email = useStringInput('')
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const data = await createAdminUser({
@@ -31,10 +30,9 @@ const CreatePage: NextPage = () => {
         } as RegisterAdminFormRequest, authContext.accessToken)
 
         if (isRegisterAdminFormRequestValidationError(data)) {
-            username.setError(data.errors.username && Array.isArray(data.errors.username) ? data.errors.username[0] : '')
-            displayName.setError(data.errors.displayName && Array.isArray(data.errors.displayName) ? data.errors.displayName[0] : '')
-            email.setError(data.errors.email && Array.isArray(data.errors.email) ? data.errors.email[0] : '')
-
+            username.setErrors(data.errors.username)
+            displayName.setErrors(data.errors.displayName)
+            email.setErrors(data.errors.email)
             return
         }
 

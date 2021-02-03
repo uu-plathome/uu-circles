@@ -4,22 +4,22 @@ import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useStringInput } from '@/hooks/useInput'
 import { createCircle } from '@/infra/api/circle'
 import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { FormEvent, useContext } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const router = useRouter()
 
-    const name = useInput('')
-    const slug = useInput('')
+    const name = useStringInput('')
+    const slug = useStringInput('')
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const data = await createCircle({
@@ -30,8 +30,8 @@ const CreatePage: NextPage = () => {
         } as CreateCircleFormRequest, authContext.accessToken)
 
         if (isCreateCircleFormRequestValidationError(data)) {
-            name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
-            slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
+            name.setErrors(data.errors.name)
+            slug.setErrors(data.errors.slug)
 
             return
         }
