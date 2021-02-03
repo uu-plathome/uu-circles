@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('/login', 'Admin\Auth\LoginAdminController')->name('admin.auth.login');
 
-    Route::middleware('throttle:6,1')->group(function () {
+    Route::middleware('throttle:30,1')->group(function () {
         Route::get('email/verify/{userId}', 'Admin\Auth\VerificationVerifyController')->name('admin.verification.verify');
         Route::post('email/verify/{userId}', 'Admin\Auth\VerificationConfirmController');
         Route::post('email/resend', 'Admin\Auth\VerificationResendController')->name('admin.verification.resend');

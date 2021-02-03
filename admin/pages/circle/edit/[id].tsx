@@ -259,6 +259,7 @@ const EditPage: NextPage = () => {
                                             name="name"
                                             id="name"
                                             required
+                                            expand
                                             { ...name }
                                         />
 
@@ -268,6 +269,7 @@ const EditPage: NextPage = () => {
                                             id="slug"
                                             placeholder="u-lab"
                                             required
+                                            expand
                                             note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                             { ...slug }
                                         />
@@ -276,6 +278,7 @@ const EditPage: NextPage = () => {
                                             label="サークル名(かな)"
                                             name="nameKana"
                                             id="nameKana"
+                                            expand
                                             { ...nameKana }
                                         />
 
@@ -283,6 +286,7 @@ const EditPage: NextPage = () => {
                                             label="サークル名(省略名)"
                                             name="shortName"
                                             id="shortName"
+                                            expand
                                             { ...shortName }
                                         />
 
@@ -290,6 +294,7 @@ const EditPage: NextPage = () => {
                                             label="サークル名(肩書)"
                                             name="prefixName"
                                             id="prefixName"
+                                            expand
                                             { ...prefixName }
                                         />
 
@@ -297,6 +302,7 @@ const EditPage: NextPage = () => {
                                             label="サークル短文紹介"
                                             name="description"
                                             id="description"
+                                            expand
                                             { ...description }
                                         />
 
@@ -304,6 +310,7 @@ const EditPage: NextPage = () => {
                                             label="サークル長文紹介"
                                             name="intro"
                                             id="intro"
+                                            expand
                                             { ...intro }
                                         />
 
@@ -463,7 +470,7 @@ const EditPage: NextPage = () => {
                                             name="admissionFee"
                                             id="admissionFee"
                                             placeholder="年間1,000円"
-                                            suffix="円"
+                                            expand
                                             { ...admissionFee }
                                         />
 
@@ -480,6 +487,7 @@ const EditPage: NextPage = () => {
                                             name="publicEmail"
                                             id="publicEmail"
                                             placeholder="example@example.com"
+                                            expand
                                             { ...publicEmail }
                                         />
 
