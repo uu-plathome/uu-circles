@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Auth\Notifications\ResetPassword as Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 
 class ResetPasswordAdminUser extends Notification
 {
@@ -31,7 +32,8 @@ class ResetPasswordAdminUser extends Notification
     protected function resetUrl($notifiable)
     {
         $appUrl = Config::get('app.admin_url') . '/auth';
+        $url = URL::route('admin.password.confirm');
 
-        return url("$appUrl/password/reset/$this->token").'?email='.urlencode($notifiable->email);
+        return str_replace(url('/admin/api'), $appUrl, $url).'?token='.$this->token.'&email='.urlencode($notifiable->email);
     }
 }

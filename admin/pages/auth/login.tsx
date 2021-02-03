@@ -10,11 +10,12 @@ import { AuthContext } from "@/contexts/AuthContext"
 import { isLoginAdminFormRequestValidationError, LoginAdminFormRequest } from "@/lib/types/api/LoginAdminFormRequest"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 const Login: NextPage = () => {
     const usernameOrEmail = useInput('')
     const password = useInput('')
-    const [error, setError] = useState('ログインに失敗しました')
+    const [error, setError] = useState('')
     const router = useRouter()
     const authContext = useContext(AuthContext)
 
@@ -91,6 +92,14 @@ const Login: NextPage = () => {
                                 </BlueButton>
                             </div>
                         </form>
+
+                        <div className="text-white text-right mt-8 mb-4">
+                            <Link href="/auth/password/reset">
+                                <a className="underline">
+                                    パスワードを忘れた場合はこちら
+                                </a>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

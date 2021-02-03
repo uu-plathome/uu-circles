@@ -159,7 +159,7 @@ export const forgotPassword = async (email: string) => {
     try {
         const { data } = await axiosInstance.post<{
             status: string
-        }>(`/admin/api/email/resend`, {
+        }>(`/admin/api/password/reset`, {
             email
         } as ForgotPasswordAdminRequest)
 
@@ -193,7 +193,7 @@ export const resetPassword = async (request: ResetPasswordAdminRequest) => {
     try {
         const { data } = await axiosInstance.post<{
             status: string
-        }>(`/admin/api/email/resend`, request)
+        }>(`/admin/api/password/confirm`, request)
 
         return {
             ...data,
