@@ -12,6 +12,7 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
@@ -66,62 +67,50 @@ const CreatePage: NextPage = () => {
             <BaseHeader />
 
             <BaseContainer>
-                <div className="flex flex-wrap">
-                    <div className="w-full lg:w-1/5">
-                        <BaseSidebar />
-                    </div>
+                <BaseWrapper
+                    title="サークルアカウント新規作成"
+                >
+                    <div className="border-2 border-gray-800 px-2 py-4">
+                        <form onSubmit={onSubmit}>
+                            <BaseTextField
+                                label="ユーザー名"
+                                name="username"
+                                id="username"
+                                required
+                                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+                                { ...username }
+                            />
 
-                    <div className="w-full lg:w-4/5">
-                        <div className="py-10">
-                            <div className="flex justify-between mb-8">
-                                <h1 className="text-2xl text-gray-100">
-                                    サークルアカウント新規作成
-                                </h1>
+                            <BaseTextField
+                                label="表示名"
+                                name="display_name"
+                                id="display_name"
+                                placeholder="u-lab"
+                                required
+                                note="入力がない場合は、自動で決まります"
+                                { ...displayName }
+                            />
+
+                            <BaseSelect
+                                label="アカウントが有効かどうか"
+                                name="active"
+                                id="active"
+                                required
+                                items={[
+                                    { value: 'true', label: '有効' },
+                                    { value: 'false', label: '無効' },
+                                ]}
+                                { ...active }
+                            />
+
+                            <div className="flex justify-center mt-8">
+                                <GreenButton type="submit">
+                                    進む
+                                </GreenButton>
                             </div>
-
-                            <div className="border-2 border-gray-800 px-2 py-4">
-                                <form onSubmit={onSubmit}>
-                                    <BaseTextField
-                                        label="ユーザー名"
-                                        name="username"
-                                        id="username"
-                                        required
-                                        note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                                        { ...username }
-                                    />
-
-                                    <BaseTextField
-                                        label="表示名"
-                                        name="display_name"
-                                        id="display_name"
-                                        placeholder="u-lab"
-                                        required
-                                        note="入力がない場合は、自動で決まります"
-                                        { ...displayName }
-                                    />
-
-                                    <BaseSelect
-                                        label="アカウントが有効かどうか"
-                                        name="active"
-                                        id="active"
-                                        required
-                                        items={[
-                                            { value: 'true', label: '有効' },
-                                            { value: 'false', label: '無効' },
-                                        ]}
-                                        { ...active }
-                                    />
-
-                                    <div className="flex justify-center mt-8">
-                                        <GreenButton type="submit">
-                                            進む
-                                        </GreenButton>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </div>
+                </BaseWrapper>
             </BaseContainer>
         </div>
     )

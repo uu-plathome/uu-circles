@@ -1,7 +1,5 @@
-
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
@@ -30,41 +28,28 @@ const IndexPage: NextPage = () => {
             <BaseHeader />
 
             <BaseContainer>
-                <div className="flex flex-wrap">
-                <div className="w-full lg:w-1/5">
-                    <BaseSidebar />
-                </div>
+                <BaseWrapper
+                    title="サークル一覧へようこそ"
+                    actionText="サークル新規作成"
+                    actionHref="/circle/create"
+                >
+                    <div className="border-2 border-gray-800 p-2">
+                        {authContext.accessToken && circles.length > 0 ? (
+                            circles.map((circle: Circle) => {
+                                return <CircleListItem
+                                    key={`circle-${circle.id}`}
+                                    circle={circle}
+                                />
+                            })
+                        ) : ''}
 
-                <div className="w-full lg:w-4/5">
-                    <div className="py-10">
-                        <div className="flex justify-between mb-8">
-                            <h1 className="text-2xl text-gray-100">
-                                サークル一覧へようこそ
-                            </h1>
-
-                            <GreenButton href="/circle/create">
-                                サークル新規作成
-                            </GreenButton>
-                        </div>
-
-                        <div className="border-2 border-gray-800 p-2">
-                            {authContext.accessToken && circles.length > 0 ? (
-                                circles.map((circle: Circle) => {
-                                    return <CircleListItem
-                                        key={`circle-${circle.id}`}
-                                        circle={circle}
-                                    />
-                                })
-                            ) : ''}
-                            {authContext.accessToken && circles.length === 0 ? (
-                                <div className="py-4">
-                                    <p className="text-white">まだサークルが登録されていません</p>
-                                </div>
-                            ) : ''}
-                        </div>
+                        {authContext.accessToken && circles.length === 0 ? (
+                            <div className="py-4">
+                                <p className="text-white">まだサークルが登録されていません</p>
+                            </div>
+                        ) : ''}
                     </div>
-                </div>
-                </div>
+                </BaseWrapper>
             </BaseContainer>
         </div>
     )

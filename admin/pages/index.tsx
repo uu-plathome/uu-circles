@@ -1,6 +1,7 @@
 
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseSidebar } from '@/components/layouts/BaseSidebar'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
 import { useContext } from 'react'
@@ -14,19 +15,10 @@ const IndexPage: NextPage = () => {
       <BaseHeader />
 
       <BaseContainer>
-        <div className="flex flex-wrap">
-          <div className="w-full lg:w-1/5">
-            <BaseSidebar />
-          </div>
-
-          <div className="w-full lg:w-4/5">
-            <div className="py-10">
-              <h1 className="text-2xl text-gray-700 dark:text-gray-100">
-                管理画面へようこそ
-              </h1>
-            </div>
-          </div>
-        </div>
+        <BaseWrapper
+          title="管理画面へようこそ"
+        >
+        </BaseWrapper>
       </BaseContainer>
     </div>
   )

@@ -12,6 +12,7 @@ import { resendEmail } from '@/infra/api/auth'
 import { User } from '@/lib/types/model/User'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 
 
 const useSuccess = <T,>(initialState: T) => {
@@ -73,53 +74,39 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-        <BaseHeader />
+            <BaseHeader />
 
-        <BaseContainer>
-            <div className="flex flex-wrap">
-                <div className="w-full lg:w-1/5">
-                    <BaseSidebar />
-                </div>
+            <BaseContainer>
+                <BaseWrapper
+                    title="管理者アカウント管理画面"
+                    actionHref="/user/admin/create"
+                    actionText="管理者アカウント作成"
+                >
+                    {
+                        success ? (
+                            <SuccessBunner text={success} />
+                        ) : ''
+                    }
 
-                <div className="w-full lg:w-4/5">
-                    <div className="py-10">
-                        <div className="flex justify-between mb-8">
-                            <h1 className="text-2xl text-gray-100">
-                                管理者管理画面へようこそ
-                            </h1>
+                    {
+                        error ? (
+                            <DangerBunner text={error} />
+                        ) : ''
+                    }
 
-                            <GreenButton href="/user/admin/create">
-                                管理者新規作成
-                            </GreenButton>
-                        </div>
-
+                    <div className="border-2 border-gray-800 p-2">
                         {
-                            success ? (
-                                <SuccessBunner text={success} />
-                            ) : ''
+                            users.map((user: User) => {
+                                return <AdminUserListItem
+                                    key={`user-${user.id}`} 
+                                    user={user}
+                                    onResendEmail={onResendEmail}
+                                    onDeleteUser={onDeleteUser}
+                                />
+                            })
                         }
-
-                        {
-                            error ? (
-                                <DangerBunner text={error} />
-                            ) : ''
-                        }
-
-                        <div className="border-2 border-gray-800 p-2">
-                            {
-                                users.map((user: User) => {
-                                    return <AdminUserListItem
-                                        key={`user-${user.id}`} 
-                                        user={user}
-                                        onResendEmail={onResendEmail}
-                                        onDeleteUser={onDeleteUser}
-                                    />
-                                })
-                            }
-                        </div>
                     </div>
-                </div>
-            </div>
+                </BaseWrapper>
             </BaseContainer>
         </div>
     )

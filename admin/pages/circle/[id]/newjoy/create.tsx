@@ -13,6 +13,7 @@ import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyReque
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { __ } from '@/lang/ja'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
@@ -72,120 +73,108 @@ const CreatePage: NextPage = () => {
             <BaseHeader />
 
             <BaseContainer>
-                <div className="flex flex-wrap">
-                    <div className="w-full lg:w-1/5">
-                        <BaseSidebar />
-                    </div>
+                <BaseWrapper
+                    title="新歓作成"
+                >
+                    <div className="border-2 border-gray-800 px-2 py-4">
+                        <form onSubmit={onSubmit}>
+                            <BaseSelect
+                                label="公開設定"
+                                id="release"
+                                name="release"
+                                items={[
+                                    { value: 'true', label: '公開' },
+                                    { value: 'false', label: '非公開' },
+                                ]}
+                                { ...release }
+                            />
 
-                    <div className="w-full lg:w-4/5">
-                        <div className="py-10">
-                            <div className="flex justify-between mb-8">
-                                <h1 className="text-2xl text-gray-100">
-                                サークル新規作成
-                                </h1>
+                            <BaseTextField
+                                label="サークル新歓"
+                                name="title"
+                                id="title"
+                                required
+                                { ...title }
+                            />
+
+                            <BaseTextField
+                                label="新歓URLのパス"
+                                name="url"
+                                id="url"
+                                placeholder="u-lab"
+                                note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
+                                { ...url }
+                            />
+
+                            <BaseTextField
+                                label="サークル新歓説明"
+                                name="description"
+                                id="description"
+                                required
+                                { ...description }
+                            />
+
+                            <BaseSelect
+                                label="活動場所"
+                                id="placeOfActivity"
+                                name="placeOfActivity"
+                                items={[
+                                    ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
+                                        value: _placeOfActivity,
+                                        label: __(_placeOfActivity)
+                                    }))
+                                ]}
+                                { ...placeOfActivity }
+                            />
+
+                            <BaseTextField
+                                label="サークル新歓活動場所"
+                                name="placeOfActivityDetail"
+                                id="placeOfActivityDetail"
+                                required
+                                { ...placeOfActivityDetail }
+                            />
+
+                            <BaseTextField
+                                label="公開開始日時"
+                                name="publishFrom"
+                                id="publishFrom"
+                                type="date"
+                                { ...publishFrom }
+                            />
+
+                            <BaseTextField
+                                label="公開終了日時"
+                                name="publishTo"
+                                id="publishTo"
+                                type="date"
+                                { ...publishTo }
+                            />
+
+                            <BaseTextField
+                                label="新歓開始日時"
+                                name="startDate"
+                                id="startDate"
+                                type="datetime-local"
+                                { ...startDate }
+                            />
+
+                            <BaseTextField
+                                label="新歓終了日時"
+                                name="endDate"
+                                id="endDate"
+                                type="datetime-local"
+                                { ...endDate }
+                            />
+
+                            <div className="flex justify-center mt-8">
+                                <GreenButton type="submit">
+                                    進む
+                                </GreenButton>
                             </div>
-
-                            <div className="border-2 border-gray-800 px-2 py-4">
-                                <form onSubmit={onSubmit}>
-                                    <BaseSelect
-                                        label="公開設定"
-                                        id="release"
-                                        name="release"
-                                        items={[
-                                            { value: 'true', label: '公開' },
-                                            { value: 'false', label: '非公開' },
-                                        ]}
-                                        { ...release }
-                                    />
-
-                                    <BaseTextField
-                                        label="サークル新歓"
-                                        name="title"
-                                        id="title"
-                                        required
-                                        { ...title }
-                                    />
-
-                                    <BaseTextField
-                                        label="新歓URLのパス"
-                                        name="url"
-                                        id="url"
-                                        placeholder="u-lab"
-                                        note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
-                                        { ...url }
-                                    />
-
-                                    <BaseTextField
-                                        label="サークル新歓説明"
-                                        name="description"
-                                        id="description"
-                                        required
-                                        { ...description }
-                                    />
-
-                                    <BaseSelect
-                                        label="活動場所"
-                                        id="placeOfActivity"
-                                        name="placeOfActivity"
-                                        items={[
-                                            ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                                                value: _placeOfActivity,
-                                                label: __(_placeOfActivity)
-                                            }))
-                                        ]}
-                                        { ...placeOfActivity }
-                                    />
-
-                                    <BaseTextField
-                                        label="サークル新歓活動場所"
-                                        name="placeOfActivityDetail"
-                                        id="placeOfActivityDetail"
-                                        required
-                                        { ...placeOfActivityDetail }
-                                    />
-
-                                    <BaseTextField
-                                        label="公開開始日時"
-                                        name="publishFrom"
-                                        id="publishFrom"
-                                        type="date"
-                                        { ...publishFrom }
-                                    />
-
-                                    <BaseTextField
-                                        label="公開終了日時"
-                                        name="publishTo"
-                                        id="publishTo"
-                                        type="date"
-                                        { ...publishTo }
-                                    />
-
-                                    <BaseTextField
-                                        label="新歓開始日時"
-                                        name="startDate"
-                                        id="startDate"
-                                        type="datetime-local"
-                                        { ...startDate }
-                                    />
-
-                                    <BaseTextField
-                                        label="新歓終了日時"
-                                        name="endDate"
-                                        id="endDate"
-                                        type="datetime-local"
-                                        { ...endDate }
-                                    />
-
-                                    <div className="flex justify-center mt-8">
-                                        <GreenButton type="submit">
-                                            進む
-                                        </GreenButton>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </div>
+                </BaseWrapper>
             </BaseContainer>
         </div>
     )
