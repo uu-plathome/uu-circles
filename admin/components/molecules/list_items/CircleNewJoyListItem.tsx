@@ -1,13 +1,14 @@
 import dayjs from 'dayjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
-import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy';
 
 type Props = {
     circleNewJoy: CircleNewJoy
+    onCopy(circleNewJoyId: number): void
     onDelete(circleNewJoyId: number): void
 }
 
@@ -66,7 +67,7 @@ const NewJoyDateTime: FC<{
     )
 }
 
-const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onDelete }) => {
+const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onCopy, onDelete }) => {
     return (
         <div>
         <div className="ml-2 w-full">
@@ -86,6 +87,16 @@ const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onDelete }) => {
                         startDate={circleNewJoy.startDate}
                         endDate={circleNewJoy.endDate}
                     />
+                </CircleListItemTableColumn>
+
+                <CircleListItemTableColumn title="コピーする">
+                    <button onClick={() => onCopy(circleNewJoy.id)}>
+                        <FontAwesomeIcon
+                            size="lg"
+                            color="orange"
+                            icon={ faCopy }
+                        />
+                    </button>
                 </CircleListItemTableColumn>
 
                 <CircleListItemTableColumn title="編集する">

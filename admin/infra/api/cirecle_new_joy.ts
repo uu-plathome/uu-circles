@@ -96,6 +96,28 @@ export const getCircleNewJoy = async (
     }
 }
 
+export const copyCircleNewJoy = async (circleId: number, circleNewJoyId: number, accessToken: string) => {
+    try {
+        await axiosInstance.post(
+            `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}/copy`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+
+        return {
+            type: 'Success'
+        } as {
+            type: 'Success'
+        }
+    } catch (_e) {
+        console.error(_e)
+    }
+}
+
 export const deleteCircleNewJoy = async (circleId: number, circleNewJoyId: number, accessToken: string) => {
     
     try {
@@ -111,6 +133,8 @@ export const deleteCircleNewJoy = async (circleId: number, circleNewJoyId: numbe
         )
 
         return {
+            type: 'Success'
+        } as {
             type: 'Success'
         }
     } catch (_e) {

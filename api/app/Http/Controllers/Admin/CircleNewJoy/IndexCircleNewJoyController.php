@@ -23,12 +23,12 @@ class IndexCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $id
+     * @param int $circleId
      * @return array
      */
-    public function __invoke(Request $request, int $id): array
+    public function __invoke(Request $request, int $circleId): array
     {
-        $circle = Circle::findOrFail($id);
+        $circle = Circle::findOrFail($circleId);
 
         return [
             'circle' => Arr::camel_keys(CircleValueObject::byEloquent(
@@ -37,7 +37,7 @@ class IndexCircleNewJoyController extends Controller
             )->toArray()),
 
             'circleNewJoys' => Arr::camel_keys(
-                (new Collection($this->indexCircleNewJoyUsecase->invoke($id)))->map(
+                (new Collection($this->indexCircleNewJoyUsecase->invoke($circleId)))->map(
                     fn ($_o) => $_o->toArray()
                 )->toArray()
             ),
