@@ -10,7 +10,7 @@ import { __ } from '@/lang/ja'
 import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest } from '@/lib/types/api/UpdateCircleNewJoyRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { EditCircleNewJoyForm } from '@/components/organisms/form/EditCircleNewJoyForm'
+import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)

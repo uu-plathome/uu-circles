@@ -9,7 +9,7 @@ import { FormEvent, useContext } from 'react'
 import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
 import { __ } from '@/lang/ja'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { CreateCircleNewJoyForm } from '@/components/organisms/form/CreateCircleNewJoyForm'
+import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 
 const CreatePage: NextPage = () => {
     const authContext = useContext(AuthContext)
