@@ -41,7 +41,7 @@ const CreatePage: NextPage = () => {
             return
         }
 
-        await router.push('/circle')
+        await router.push(`/circle/${id}/user`)
     }
 
     return (
