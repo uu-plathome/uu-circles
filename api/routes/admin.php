@@ -42,11 +42,12 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\DeleteCircleUserController');
 
     // CircleNewJoy サークル新歓管理
-    Route::get('/circle/{id}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');
-    Route::post('/circle/{id}/newjoy', 'Admin\CircleNewJoy\RegisterCircleNewJoyController');
-    Route::get('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\ShowCircleNewJoyController');
-    Route::put('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\UpdateCircleNewJoyController');
-    Route::delete('/circle/{id}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
+    Route::get('/circle/{circleId}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');
+    Route::post('/circle/{circleId}/newjoy', 'Admin\CircleNewJoy\RegisterCircleNewJoyController');
+    Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\ShowCircleNewJoyController');
+    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\UpdateCircleNewJoyController');
+    Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
+    Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', 'Admin\CircleNewJoy\CopyCircleNewJoyController');
 
     // Storage
     Route::post('/storage', 'Admin\PutStorageController');

@@ -22,13 +22,13 @@ class RegisterCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param RegisterCircleNewJoyRequest $request
-     * @param int $id
+     * @param int $circleId
      * @return Response
      * @throws Exception
      */
-    public function __invoke(RegisterCircleNewJoyRequest $request, int $id)
+    public function __invoke(RegisterCircleNewJoyRequest $request, int $circleId)
     {
         $circleNewJoyValueObject = $request->makeCircleNewJoyValueObject();
-        $this->createCircleNewJoyUsecase->invoke($id, $circleNewJoyValueObject);
+        $this->createCircleNewJoyUsecase->invoke($circleId, $circleNewJoyValueObject);
     }
 }
