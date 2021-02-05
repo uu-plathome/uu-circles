@@ -15,14 +15,14 @@ class ShowCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $id
+     * @param int $circleId
      * @param int $circleNewJoyId
      * @return array
      */
-    public function __invoke(Request $request, int $id, int $circleNewJoyId): array
+    public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {
-        $circle = Circle::findOrFail($id);
-        $circleNewJoy = CircleNewJoy::whereCircleId($id)->findOrFail($circleNewJoyId);
+        $circle = Circle::findOrFail($circleId);
+        $circleNewJoy = CircleNewJoy::whereCircleId($circleId)->findOrFail($circleNewJoyId);
 
         return [
             'circle' => Arr::camel_keys(CircleValueObject::byEloquent(

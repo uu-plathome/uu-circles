@@ -28,6 +28,7 @@ class LoginAdminController extends Controller
      *
      * @param LoginAdminFormRequest $request
      * @return JsonResponse|void
+     * @throws ValidationException
      */
     public function __invoke(LoginAdminFormRequest $request)
     {

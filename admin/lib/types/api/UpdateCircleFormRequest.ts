@@ -36,6 +36,7 @@ export interface UpdateCircleFormRequest {
     githubUrl?: string
     tiktokUrl?: string
     participationUrl?: string
+    mainImageUrl?: string
 }
 
 /**
@@ -77,6 +78,7 @@ export interface UpdateCircleFormRequestValidationError {
         githubUrl?: string[]
         tiktokUrl?: string[]
         participationUrl?: string[]
+        mainImageUrl?: string[]
     }
     message: string
 }

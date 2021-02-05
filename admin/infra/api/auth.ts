@@ -1,4 +1,6 @@
+import { ForgotPasswordAdminRequest, ForgotPasswordAdminRequestValidationError } from '@/lib/types/api/ForgotPasswordAdminRequest'
 import { LoginAdminFormRequest, LoginAdminFormRequestValidationError } from '@/lib/types/api/LoginAdminFormRequest'
+import { ResetPasswordAdminRequest, ResetPasswordAdminRequestValidationError } from '@/lib/types/api/ResetPasswordAdminRequest'
 import { VerificationConfirmRequestValidationError } from '@/lib/types/api/VerificationConfirmRequest'
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendAdminUserFormRequestValidationError } from '@/lib/types/api/VerificationResendAdminUserFormRequest'
@@ -142,6 +144,72 @@ export const resendEmail = async (email: string) => {
                 ...e.response.data,
                 type: 'VerificationResendAdminUserFormRequestValidationError'
             } as VerificationResendAdminUserFormRequestValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+/**
+ * Passwordを変更するためのメールを送信する
+ * 
+ * @param email 
+ */
+export const forgotPassword = async (email: string) => {
+    try {
+        const { data } = await axiosInstance.post<{
+            status: string
+        }>(`/admin/api/password/reset`, {
+            email
+        } as ForgotPasswordAdminRequest)
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: string
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<ForgotPasswordAdminRequestValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'ForgotPasswordAdminRequestValidationError'
+            } as ForgotPasswordAdminRequestValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+/**
+ * Passwordを変更するためのメールを送信する
+ * 
+ * @param email 
+ */
+export const resetPassword = async (request: ResetPasswordAdminRequest) => {
+    try {
+        const { data } = await axiosInstance.post<{
+            status: string
+        }>(`/admin/api/password/confirm`, request)
+
+        return {
+            ...data,
+            type: 'success'
+        } as {
+            status: string
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<ResetPasswordAdminRequestValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'ResetPasswordAdminRequestValidationError'
+            } as ResetPasswordAdminRequestValidationError
         }
 
         console.error(e)

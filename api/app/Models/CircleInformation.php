@@ -41,6 +41,7 @@ class CircleInformation extends Model
         CircleInformationModel::github_url,
         CircleInformationModel::tiktok_url,
         CircleInformationModel::participation_url,
+        CircleInformationModel::main_image_url,
     ];
 
     public function circle(): BelongsTo

@@ -47,6 +47,7 @@ class CreateCircleInformationTable extends Migration
             $table->string('github_url')->nullable()->comment('GitHub URL');
             $table->string('tiktok_url')->nullable()->comment('Tiktok URL');
             $table->string('participation_url')->nullable()->comment('参加フォーム用のURL');
+            $table->string('main_image_url')->nullable()->comment('メイン画像');
             $table->timestamps();
 
             $table->foreign('circle_id')->references('id')->on('circles');

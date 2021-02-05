@@ -25,7 +25,7 @@ class RegexPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}+\z/', $value);
+        return preg_match('/\A(?=.*?[a-z])(?=.*?\d)(?=.*?[!-\/:-@[-`{-~])[!-~]{8,100}+\z/i', $value);
     }
 
     /**
@@ -35,6 +35,6 @@ class RegexPassword implements Rule
      */
     public function message()
     {
-        return '半角英小文字大文字数字をそれぞれ1種類以上含む8文字以上100文字以下を入力してください。';
+        return '半角英数字記号をそれぞれ1種類以上含む8文字以上100文字以下で入力してください。';
     }
 }

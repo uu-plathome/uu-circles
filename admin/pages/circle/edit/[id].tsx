@@ -1,60 +1,58 @@
-
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseSelect } from '@/components/atoms/form/BaseSelect'
-import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
-import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
-import { showCircle, updateCircle } from '@/infra/api/circle'
-import { __ } from '@/lang/ja'
-import { getAllCircleType } from '@/lib/enum/api/CircleType'
-import { getAllDateOfActivity, isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
-import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
-import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
-import { Circle } from '@/lib/types/model/Circle'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
-import { BaseHeader } from '../../../components/layouts/BaseHeader'
+import { FormEvent, useContext, useEffect, useState } from 'react'
+import { BaseContainer } from '@/components/layouts/BaseContainer'
+import { BaseHeader } from '@/components/layouts/BaseHeader'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleForm'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useBooleanInput, useNumberInput, useStringInput } from '@/hooks/useInput'
+import { showCircle, updateCircle } from '@/infra/api/circle'
+import { putStorage } from '@/infra/api/storage'
+import { __ } from '@/lang/ja'
+import { isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
+import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
+import { Circle } from '@/lib/types/model/Circle'
 
 const EditPage: NextPage = () => {
     const authContext = useContext(AuthContext)
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
-    const name = useInput('')
-    const slug = useInput('')
-    const release = useInput('false')
-    const circleType = useInput('')
-    const nameKana = useInput('')
-    const shortName = useInput('')
-    const prefixName = useInput('')
-    const description = useInput('')
-    const intro = useInput('')
-    const placeOfActivity = useInput('')
-    const placeOfActivityDetail = useInput('')
-    const doOnlineActivity = useInput('true')
-    const dateOfActivityMonday = useInput('')
-    const dateOfActivityTuesday = useInput('')
-    const dateOfActivityWednesday = useInput('')
-    const dateOfActivityThursday = useInput('')
-    const dateOfActivityFriday = useInput('')
-    const dateOfActivitySaturday = useInput('')
-    const dateOfActivitySunday = useInput('')
-    const dateOfActivityDetail = useInput('')
-    const admissionFee = useInput('')
-    const numberOfMembers = useInput<number>(0)
-    const publicEmail = useInput('')
-    const twitterUrl = useInput('')
-    const facebookUrl = useInput('')
-    const instagramUrl = useInput('')
-    const lineUrl = useInput('')
-    const youtubeUrl = useInput('')
-    const homepageUrl = useInput('')
-    const peingUrl = useInput('')
-    const githubUrl = useInput('')
-    const tiktokUrl = useInput('')
-    const participationUrl = useInput('')
+    const name = useStringInput('')
+    const slug = useStringInput('')
+    const release = useBooleanInput(false)
+    const circleType = useStringInput('')
+    const nameKana = useStringInput('')
+    const shortName = useStringInput('')
+    const prefixName = useStringInput('')
+    const description = useStringInput('')
+    const intro = useStringInput('')
+    const placeOfActivity = useStringInput('')
+    const placeOfActivityDetail = useStringInput('')
+    const doOnlineActivity = useBooleanInput(true)
+    const dateOfActivityMonday = useStringInput('')
+    const dateOfActivityTuesday = useStringInput('')
+    const dateOfActivityWednesday = useStringInput('')
+    const dateOfActivityThursday = useStringInput('')
+    const dateOfActivityFriday = useStringInput('')
+    const dateOfActivitySaturday = useStringInput('')
+    const dateOfActivitySunday = useStringInput('')
+    const dateOfActivityDetail = useStringInput('')
+    const admissionFee = useStringInput('')
+    const numberOfMembers = useNumberInput(0)
+    const publicEmail = useStringInput('')
+    const twitterUrl = useStringInput('')
+    const facebookUrl = useStringInput('')
+    const instagramUrl = useStringInput('')
+    const lineUrl = useStringInput('')
+    const youtubeUrl = useStringInput('')
+    const homepageUrl = useStringInput('')
+    const peingUrl = useStringInput('')
+    const githubUrl = useStringInput('')
+    const tiktokUrl = useStringInput('')
+    const participationUrl = useStringInput('')
+    const mainImageUrl = useStringInput('')
     const { id } = router.query
 
     useEffect(() => {
@@ -65,7 +63,7 @@ const EditPage: NextPage = () => {
                 if (foundCircle) {
                     name.set(foundCircle.name)
                     slug.set(foundCircle.slug)
-                    release.set(foundCircle.release ? 'true' : 'false')
+                    release.set(foundCircle.release)
                     nameKana.set(foundCircle.nameKana)
                     shortName.set(foundCircle.shortName)
                     prefixName.set(foundCircle.prefixName)
@@ -74,7 +72,7 @@ const EditPage: NextPage = () => {
                     circleType.set(foundCircle.circleType)
                     placeOfActivity.set(foundCircle.placeOfActivity)
                     placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                    doOnlineActivity.set(foundCircle.doOnlineActivity ? 'true' : 'false')
+                    doOnlineActivity.set(foundCircle.doOnlineActivity)
                     dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
                     dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
                     dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
@@ -96,6 +94,7 @@ const EditPage: NextPage = () => {
                     githubUrl.set(foundCircle.githubUrl)
                     tiktokUrl.set(foundCircle.tiktokUrl)
                     participationUrl.set(foundCircle.participationUrl)
+                    mainImageUrl.set(foundCircle.mainImageUrl)
                 }
             }
         }
@@ -105,7 +104,29 @@ const EditPage: NextPage = () => {
         }
     }, [ authContext.accessToken, id ])
 
-    const onSubmit = async (event) => {
+    const onDropMainImage = (acceptedFiles) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = async (e) => {
+                try {
+                    const data = await putStorage(file, authContext.accessToken)
+    
+                    if (isAdminPutStorageRequestValidationError(data)) {
+                        mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
+                    }
+                    mainImageUrl.set(data.url)
+                } catch (e) {
+                    mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                }
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (!Array.isArray(id)) {
@@ -115,7 +136,7 @@ const EditPage: NextPage = () => {
                     type: 'UpdateCircleFormRequest',
                     name: name.value,
                     slug: slug.value,
-                    release: release.value === 'true' ? true : false,
+                    release: release.toBoolean,
                     nameKana: nameKana.value,
                     circleType: circleType.value,
                     shortName: shortName.value,
@@ -124,7 +145,7 @@ const EditPage: NextPage = () => {
                     intro: intro.value,
                     placeOfActivity: placeOfActivity.value,
                     placeOfActivityDetail: placeOfActivityDetail.value,
-                    doOnlineActivity: doOnlineActivity.value === 'true' ? true : false,
+                    doOnlineActivity: doOnlineActivity.toBoolean,
                     dateOfActivityMonday: isDateOfActivity(dateOfActivityMonday.value) ? dateOfActivityMonday.value : null,
                     dateOfActivityTuesday: isDateOfActivity(dateOfActivityTuesday.value) ? dateOfActivityTuesday.value: null,
                     dateOfActivityWednesday: isDateOfActivity(dateOfActivityWednesday.value) ? dateOfActivityWednesday.value: null,
@@ -134,7 +155,7 @@ const EditPage: NextPage = () => {
                     dateOfActivitySunday: isDateOfActivity(dateOfActivitySunday.value) ? dateOfActivitySunday.value: null,
                     dateOfActivityDetail: dateOfActivityDetail.value,
                     admissionFee: admissionFee.value,
-                    numberOfMembers: numberOfMembers.value,
+                    numberOfMembers: numberOfMembers.toNumber,
                     publicEmail: publicEmail.value,
                     twitterUrl: twitterUrl.value,
                     facebookUrl: facebookUrl.value,
@@ -146,44 +167,46 @@ const EditPage: NextPage = () => {
                     githubUrl: githubUrl.value,
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
+                    mainImageUrl: mainImageUrl.value,
                 } as UpdateCircleFormRequest,
                 authContext.accessToken
             )
 
             if (isUpdateCircleFormRequestValidationError(data)) {
-                name.setError(data.errors.name && Array.isArray(data.errors.name) ? data.errors.name[0] : '')
-                slug.setError(data.errors.slug && Array.isArray(data.errors.slug) ? data.errors.slug[0] : '')
-                nameKana.setError(data.errors.nameKana && Array.isArray(data.errors.nameKana) ? data.errors.nameKana[0] : '')
-                release.setError(data.errors.release && Array.isArray(data.errors.release) ? data.errors.release[0] : '')
-                circleType.setError(data.errors.circleType && Array.isArray(data.errors.circleType) ? data.errors.circleType[0] : '')
-                shortName.setError(data.errors.shortName && Array.isArray(data.errors.shortName) ? data.errors.shortName[0] : '')
-                prefixName.setError(data.errors.prefixName && Array.isArray(data.errors.prefixName) ? data.errors.prefixName[0] : '')
-                description.setError(data.errors.description && Array.isArray(data.errors.description) ? data.errors.description[0] : '')
-                intro.setError(data.errors.intro && Array.isArray(data.errors.intro) ? data.errors.intro[0] : '')
-                placeOfActivity.setError(data.errors.placeOfActivity && Array.isArray(data.errors.placeOfActivity) ? data.errors.placeOfActivity[0] : '')
-                placeOfActivityDetail.setError(data.errors.placeOfActivityDetail && Array.isArray(data.errors.placeOfActivityDetail) ? data.errors.placeOfActivityDetail[0] : '')
-                doOnlineActivity.setError(data.errors.doOnlineActivity && Array.isArray(data.errors.doOnlineActivity) ? data.errors.doOnlineActivity[0] : '')
-                dateOfActivityMonday.setError(data.errors.dateOfActivityMonday && Array.isArray(data.errors.dateOfActivityMonday) ? data.errors.dateOfActivityMonday[0] : '')
-                dateOfActivityTuesday.setError(data.errors.dateOfActivityTuesday && Array.isArray(data.errors.dateOfActivityTuesday) ? data.errors.dateOfActivityTuesday[0] : '')
-                dateOfActivityWednesday.setError(data.errors.dateOfActivityWednesday && Array.isArray(data.errors.dateOfActivityWednesday) ? data.errors.dateOfActivityWednesday[0] : '')
-                dateOfActivityThursday.setError(data.errors.dateOfActivityThursday && Array.isArray(data.errors.dateOfActivityThursday) ? data.errors.dateOfActivityThursday[0] : '')
-                dateOfActivityFriday.setError(data.errors.dateOfActivityFriday && Array.isArray(data.errors.dateOfActivityFriday) ? data.errors.dateOfActivityFriday[0] : '')
-                dateOfActivitySaturday.setError(data.errors.dateOfActivitySaturday && Array.isArray(data.errors.dateOfActivitySaturday) ? data.errors.dateOfActivitySaturday[0] : '')
-                dateOfActivitySunday.setError(data.errors.dateOfActivitySunday && Array.isArray(data.errors.dateOfActivitySunday) ? data.errors.dateOfActivitySunday[0] : '')
-                dateOfActivityDetail.setError(data.errors.dateOfActivityDetail && Array.isArray(data.errors.dateOfActivityDetail) ? data.errors.dateOfActivityDetail[0] : '')
-                admissionFee.setError(data.errors.admissionFee && Array.isArray(data.errors.admissionFee) ? data.errors.admissionFee[0] : '')
-                numberOfMembers.setError(data.errors.numberOfMembers && Array.isArray(data.errors.numberOfMembers) ? data.errors.numberOfMembers[0] : '')
-                publicEmail.setError(data.errors.publicEmail && Array.isArray(data.errors.publicEmail) ? data.errors.publicEmail[0] : '')
-                twitterUrl.setError(data.errors.twitterUrl && Array.isArray(data.errors.twitterUrl) ? data.errors.twitterUrl[0] : '')
-                facebookUrl.setError(data.errors.facebookUrl && Array.isArray(data.errors.facebookUrl) ? data.errors.facebookUrl[0] : '')
-                instagramUrl.setError(data.errors.instagramUrl && Array.isArray(data.errors.instagramUrl) ? data.errors.instagramUrl[0] : '')
-                lineUrl.setError(data.errors.lineUrl && Array.isArray(data.errors.lineUrl) ? data.errors.lineUrl[0] : '')
-                youtubeUrl.setError(data.errors.youtubeUrl && Array.isArray(data.errors.youtubeUrl) ? data.errors.youtubeUrl[0] : '')
-                homepageUrl.setError(data.errors.homepageUrl && Array.isArray(data.errors.homepageUrl) ? data.errors.homepageUrl[0] : '')
-                peingUrl.setError(data.errors.peingUrl && Array.isArray(data.errors.peingUrl) ? data.errors.peingUrl[0] : '')
-                githubUrl.setError(data.errors.githubUrl && Array.isArray(data.errors.githubUrl) ? data.errors.githubUrl[0] : '')
-                tiktokUrl.setError(data.errors.tiktokUrl && Array.isArray(data.errors.tiktokUrl) ? data.errors.tiktokUrl[0] : '')
-                participationUrl.setError(data.errors.participationUrl && Array.isArray(data.errors.participationUrl) ? data.errors.participationUrl[0] : '')
+                name.setErrors(data.errors.name)
+                slug.setErrors(data.errors.slug)
+                nameKana.setErrors(data.errors.nameKana)
+                release.setErrors(data.errors.release)
+                circleType.setErrors(data.errors.circleType)
+                shortName.setErrors(data.errors.shortName)
+                prefixName.setErrors(data.errors.prefixName)
+                description.setErrors(data.errors.description)
+                intro.setErrors(data.errors.intro)
+                placeOfActivity.setErrors(data.errors.placeOfActivity)
+                placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
+                doOnlineActivity.setErrors(data.errors.doOnlineActivity)
+                dateOfActivityMonday.setErrors(data.errors.dateOfActivityMonday)
+                dateOfActivityTuesday.setErrors(data.errors.dateOfActivityTuesday)
+                dateOfActivityWednesday.setErrors(data.errors.dateOfActivityWednesday)
+                dateOfActivityThursday.setErrors(data.errors.dateOfActivityThursday)
+                dateOfActivityFriday.setErrors(data.errors.dateOfActivityFriday)
+                dateOfActivitySaturday.setErrors(data.errors.dateOfActivitySaturday)
+                dateOfActivitySunday.setErrors(data.errors.dateOfActivitySunday)
+                dateOfActivityDetail.setErrors(data.errors.dateOfActivityDetail)
+                admissionFee.setErrors(data.errors.admissionFee)
+                numberOfMembers.setErrors(data.errors.numberOfMembers)
+                publicEmail.setErrors(data.errors.publicEmail)
+                twitterUrl.setErrors(data.errors.twitterUrl)
+                facebookUrl.setErrors(data.errors.facebookUrl)
+                instagramUrl.setErrors(data.errors.instagramUrl)
+                lineUrl.setErrors(data.errors.lineUrl)
+                youtubeUrl.setErrors(data.errors.youtubeUrl)
+                homepageUrl.setErrors(data.errors.homepageUrl)
+                peingUrl.setErrors(data.errors.peingUrl)
+                githubUrl.setErrors(data.errors.githubUrl)
+                tiktokUrl.setErrors(data.errors.tiktokUrl)
+                participationUrl.setErrors(data.errors.participationUrl)
+                mainImageUrl.setErrors(data.errors.mainImageUrl)
                 return
             }
 
@@ -197,383 +220,56 @@ const EditPage: NextPage = () => {
             <BaseHeader />
 
             <BaseContainer>
-                <div className="flex flex-wrap">
-                    <div className="w-full lg:w-1/5">
-                        <BaseSidebar />
+                <BaseWrapper
+                    title="サークル編集"
+                >
+                    <div className="border-2 border-gray-800 px-2 py-4">
+                        { circle ? (
+                            <EditCircleForm
+                                onDropMainImage={onDropMainImage}
+                                onSubmit={onSubmit}
+                                form={{
+                                    release,
+                                    name,
+                                    slug,
+                                    nameKana,
+                                    shortName,
+                                    prefixName,
+                                    description,
+                                    intro,
+                                    circleType,
+                                    placeOfActivity,
+                                    placeOfActivityDetail,
+                                    doOnlineActivity,
+                                    dateOfActivityMonday,
+                                    dateOfActivityTuesday,
+                                    dateOfActivityWednesday,
+                                    dateOfActivityThursday,
+                                    dateOfActivityFriday,
+                                    dateOfActivitySaturday,
+                                    dateOfActivitySunday,
+                                    dateOfActivityDetail,
+                                    admissionFee,
+                                    numberOfMembers,
+                                    publicEmail,
+                                    twitterUrl,
+                                    facebookUrl,
+                                    instagramUrl,
+                                    lineUrl,
+                                    youtubeUrl,
+                                    homepageUrl,
+                                    peingUrl,
+                                    githubUrl,
+                                    tiktokUrl,
+                                    participationUrl,
+                                    mainImageUrl,
+                                }}
+                            />
+                        ) : (
+                            <p className="text-white">Loading...</p>
+                        )}
                     </div>
-
-                    <div className="w-full lg:w-4/5">
-                        <div className="py-10">
-                            <div className="flex justify-between mb-8">
-                                <h1 className="text-2xl text-gray-100">
-                                サークル編集
-                                </h1>
-                            </div>
-
-                            <div className="border-2 border-gray-800 px-2 py-4">
-                                { circle ? (
-                                    <form onSubmit={onSubmit}>
-
-                                        <BaseSelect
-                                            label="公開設定"
-                                            id="release"
-                                            name="release"
-                                            items={[
-                                                { value: 'true', label: '公開' },
-                                                { value: 'false', label: '非公開' },
-                                            ]}
-                                            { ...release }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル名"
-                                            name="name"
-                                            id="name"
-                                            required
-                                            { ...name }
-                                        />
-
-                                        <BaseTextField
-                                            label="URLのパス"
-                                            name="slug"
-                                            id="slug"
-                                            placeholder="u-lab"
-                                            required
-                                            note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                                            { ...slug }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル名(かな)"
-                                            name="nameKana"
-                                            id="nameKana"
-                                            { ...nameKana }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル名(省略名)"
-                                            name="shortName"
-                                            id="shortName"
-                                            { ...shortName }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル名(肩書)"
-                                            name="prefixName"
-                                            id="prefixName"
-                                            { ...prefixName }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル短文紹介"
-                                            name="description"
-                                            id="description"
-                                            { ...description }
-                                        />
-
-                                        <BaseTextField
-                                            label="サークル長文紹介"
-                                            name="intro"
-                                            id="intro"
-                                            { ...intro }
-                                        />
-
-                                        <BaseSelect
-                                            label="サークル種別"
-                                            id="circleType"
-                                            name="circleType"
-                                            items={[
-                                                ...getAllCircleType().map((_circleType) => ({
-                                                    value: _circleType,
-                                                    label: __(_circleType)
-                                                })),
-                                                { value: '', label: '不明' },
-                                            ]}
-                                            { ...circleType }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動場所"
-                                            id="placeOfActivity"
-                                            name="placeOfActivity"
-                                            items={[
-                                                ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                                                    value: _placeOfActivity,
-                                                    label: __(_placeOfActivity)
-                                                }))
-                                            ]}
-                                            { ...placeOfActivity }
-                                        />
-
-                                        <BaseTextField
-                                            label="活動場所詳細"
-                                            name="placeOfActivityDetail"
-                                            id="placeOfActivityDetail"
-                                            { ...placeOfActivityDetail }
-                                        />
-
-                                        <BaseSelect
-                                            label="オンライン活動しているかどうか"
-                                            id="doOnlineActivity"
-                                            name="doOnlineActivity"
-                                            items={[
-                                                { value: 'true', label: 'オンラインしている' },
-                                                { value: 'false', label: 'オフラインのみ' },
-                                            ]}
-                                            { ...doOnlineActivity }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(月曜日)"
-                                            id="dateOfActivityMonday"
-                                            name="dateOfActivityMonday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivityMonday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(火曜日)"
-                                            id="dateOfActivityTuesday"
-                                            name="dateOfActivityTuesday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivityTuesday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(水曜日)"
-                                            id="dateOfActivityWednesday"
-                                            name="dateOfActivityWednesday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivityWednesday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(木曜日)"
-                                            id="dateOfActivityThursday"
-                                            name="dateOfActivityThursday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivityThursday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(金曜日)"
-                                            id="dateOfActivityFriday"
-                                            name="dateOfActivityFriday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivityFriday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(土曜日)"
-                                            id="dateOfActivitySaturday"
-                                            name="dateOfActivitySaturday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivitySaturday }
-                                        />
-
-                                        <BaseSelect
-                                            label="活動(日曜日)"
-                                            id="dateOfActivitySunday"
-                                            name="dateOfActivitySunday"
-                                            items={[
-                                                { value: null, label: '非活動日' },
-                                                ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                                                    value: _dateOfActivity,
-                                                    label: __(_dateOfActivity)
-                                                }))
-                                            ]}
-                                            { ...dateOfActivitySunday }
-                                        />
-
-                                        <BaseTextField
-                                            label="活動日時詳細"
-                                            name="dateOfActivityDetail"
-                                            id="dateOfActivityDetail"
-                                            expand
-                                            { ...dateOfActivityDetail }
-                                        />
-
-                                        <BaseTextField
-                                            label="入会費"
-                                            name="admissionFee"
-                                            id="admissionFee"
-                                            placeholder="年間1,000円"
-                                            suffix="円"
-                                            { ...admissionFee }
-                                        />
-
-                                        <BaseTextField
-                                            label="活動人数"
-                                            name="numberOfMembers"
-                                            id="numberOfMembers"
-                                            suffix="人"
-                                            { ...numberOfMembers }
-                                        />
-
-                                        <BaseTextField
-                                            label="公開用メールアドレス"
-                                            name="publicEmail"
-                                            id="publicEmail"
-                                            placeholder="example@example.com"
-                                            { ...publicEmail }
-                                        />
-
-                                        <div className="grid grid-cols-2 gap-x-4">
-                                            <div>
-                                                <BaseTextField
-                                                    label="Twitter URL"
-                                                    name="twitterUrl"
-                                                    id="twitterUrl"
-                                                    expand
-                                                    placeholder="https://twitter.com/"
-                                                    { ...twitterUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Facebook URL"
-                                                    name="facebookUrl"
-                                                    id="facebookUrl"
-                                                    expand
-                                                    { ...facebookUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Instagram URL"
-                                                    name="instagramUrl"
-                                                    id="instagramUrl"
-                                                    expand
-                                                    placeholder="https://instagram.com"
-                                                    { ...instagramUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Line URL"
-                                                    name="lineUrl"
-                                                    id="lineUrl"
-                                                    expand
-                                                    { ...lineUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Youtube URL"
-                                                    name="youtubeUrl"
-                                                    id="youtubeUrl"
-                                                    expand
-                                                    placeholder="https://youtube.com"
-                                                    { ...youtubeUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Homepage URL"
-                                                    name="homepageUrl"
-                                                    id="homepageUrl"
-                                                    expand
-                                                    { ...homepageUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Peing URL"
-                                                    name="peingUrl"
-                                                    id="peingUrl"
-                                                    expand
-                                                    { ...peingUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="GitHub URL"
-                                                    name="githubUrl"
-                                                    id="githubUrl"
-                                                    expand
-                                                    placeholder="https://github.com"
-                                                    { ...githubUrl }
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <BaseTextField
-                                                    label="Tiktok URL"
-                                                    name="tiktokUrl"
-                                                    id="tiktokUrl"
-                                                    expand
-                                                    { ...tiktokUrl }
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <BaseTextField
-                                                label="新歓・活動参加用URL"
-                                                name="participationUrl"
-                                                id="participationUrl"
-                                                expand
-                                                note="Google formなどのURL。Zoomを張るのは控えてください。"
-                                                { ...participationUrl }
-                                            />
-                                        </div>
-
-                                        <div className="flex justify-center mt-8">
-                                            <GreenButton type="submit">
-                                                更新
-                                            </GreenButton>
-                                        </div>
-                                    </form>
-                                ) : (
-                                    <p className="text-white">Loading...</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </BaseWrapper>
             </BaseContainer>
         </div>
     )

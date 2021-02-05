@@ -1,4 +1,6 @@
 import { RegisterCircleUserRequest, RegisterCircleUserRequestValidationError } from '@/lib/types/api/RegisterCircleUserRequest'
+import { UpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
+import { UpdateCircleUserRequest, UpdateCircleUserRequestValidationError } from '@/lib/types/api/UpdateCircleUserRequest'
 import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
@@ -58,6 +60,54 @@ export const deleteCircleUser = async (circleId: number, circleUserId: number, a
         }
     } catch (_e) {
         console.error(_e)
+    }
+}
+
+export const getCircleUser = async (circleId: number, userId: number, accessToken: string) => {
+    const { data } = await axiosInstance.get<{
+        data: User
+    }>(
+        `/admin/api/circle/${circleId}/user/${userId}`, 
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            }
+        }
+    )
+
+    return data.data
+}
+
+export const updateCircleUser = async (circleId: number, userId: number, user: UpdateCircleUserRequest, accessToken: string) => {
+    
+    try {
+        const { data } = await axiosInstance.put<{
+            data: User[]
+        }>(
+            `/admin/api/circle/${circleId}/user/${userId}`, 
+            user,
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            }
+        )
+
+        return {
+            ...data.data,
+            type: 'Success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<UpdateCircleUserRequestValidationError>
+
+        if (e.response && e.response.status === 422 && e.response.data) {
+            return  {
+                ...e.response.data,
+                type: 'UpdateCircleUserRequestValidationError'
+            } as UpdateCircleUserRequestValidationError
+        }
+
+        console.error(e)
     }
 }
 
