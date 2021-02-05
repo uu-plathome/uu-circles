@@ -108,6 +108,7 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationModel::github_url        => [ 'nullable', 'string', 'url', 'max:255' ],
             CircleInformationModel::tiktok_url        => [ 'nullable', 'string', 'url', 'max:255' ],
             CircleInformationModel::participation_url => [ 'nullable', 'string', 'url', 'max:255' ],
+            CircleInformationModel::main_image_url    => [ 'nullable', 'string', 'url', 'max:255' ],
         ]);
     }
 

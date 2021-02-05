@@ -29,7 +29,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleNewJoyModel::title                    => ['string', 'max:100'],
+            CircleNewJoyModel::title                    => ['required', 'string', 'max:100'],
             CircleNewJoyModel::description              => ['string', 'nullable', 'max:255'],
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyModel::place_of_activity        => [
@@ -50,16 +50,16 @@ class RegisterCircleNewJoyRequest extends FormRequest
     {
         $request = Arr::snake_keys($this->validated());
         return CircleNewJoyValueObject::of([
-            CircleNewJoyModel::title                    => $request->title,
-            CircleNewJoyModel::description              => $request->description,
-            CircleNewJoyModel::url                      => $request->url,
-            CircleNewJoyModel::place_of_activity        => $request->place_of_activity,
-            CircleNewJoyModel::place_of_activity_detail => $request->place_of_activity_detail,
-            CircleNewJoyModel::publish_from             => $request->publish_from,
-            CircleNewJoyModel::publish_to               => $request->publish_to,
-            CircleNewJoyModel::start_date               => $request->start_date,
-            CircleNewJoyModel::end_date                 => $request->end_date,
-            CircleNewJoyModel::release                  => $request->release,
+            CircleNewJoyModel::title                    => $request['title'],
+            CircleNewJoyModel::description              => $request['description'],
+            CircleNewJoyModel::url                      => $request['url'],
+            CircleNewJoyModel::place_of_activity        => $request['place_of_activity'],
+            CircleNewJoyModel::place_of_activity_detail => $request['place_of_activity_detail'],
+            CircleNewJoyModel::publish_from             => $request['publish_from'],
+            CircleNewJoyModel::publish_to               => $request['publish_to'],
+            CircleNewJoyModel::start_date               => $request['start_date'],
+            CircleNewJoyModel::end_date                 => $request['end_date'],
+            CircleNewJoyModel::release                  => $request['release'],
         ]);
     }
 }

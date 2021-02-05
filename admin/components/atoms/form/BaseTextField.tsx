@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, HtmlHTMLAttributes, InputHTMLAttributes } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 const inputClass = `
@@ -17,12 +17,12 @@ const inputClass = `
 
 export type Props = {
     id: string
-    name: string
+    name: InputHTMLAttributes<any>['name']
     value: string|number
     expand?: boolean
     required?: boolean
-    type?: string
-    placeholder?: string
+    type?: InputHTMLAttributes<any>['type']
+    placeholder?: InputHTMLAttributes<any>['placeholder']
     suffix?: string
     error?: string
     onChange(e: any): void

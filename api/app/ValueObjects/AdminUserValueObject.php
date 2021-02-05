@@ -4,6 +4,7 @@ namespace App\ValueObjects;
 
 use App\Enum\UserModel;
 use App\Models\User;
+use App\Support\Arr;
 use DateTime;
 use Illuminate\Support\Carbon;
 
@@ -35,6 +36,29 @@ class AdminUserValueObject
         $adminUser->created_at = $user->created_at;
         $adminUser->updated_at = $user->updated_at;
         return $adminUser;
+    }
+
+    public static function of(array $inputs): AdminUserValueObject
+    {
+        $adminUserValueObject = new AdminUserValueObject();
+        $adminUserValueObject->id = Arr::get($inputs, UserModel::id);
+        $adminUserValueObject->username = Arr::get($inputs, UserModel::username);
+        $adminUserValueObject->email = Arr::get($inputs, UserModel::email);
+        $adminUserValueObject->display_name = Arr::get($inputs, UserModel::display_name);
+        $adminUserValueObject->remember_token = Arr::get($inputs, UserModel::remember_token);
+        $adminUserValueObject->api_token = Arr::get($inputs, UserModel::api_token);
+        $adminUserValueObject->active = Arr::get($inputs, UserModel::active);
+        $adminUserValueObject->password = Arr::get($inputs, UserModel::password);
+
+        $emailVerifiedAt = Arr::get($inputs, UserModel::email_verified_at);
+        $adminUserValueObject->email_verified_at = is_string($emailVerifiedAt) ? new Carbon($emailVerifiedAt) : $emailVerifiedAt;
+
+        $createdAt = Arr::get($inputs, UserModel::created_at);
+        $adminUserValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
+        $updatedAt = Arr::get($inputs, UserModel::updated_at);
+        $adminUserValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
+
+        return $adminUserValueObject;
     }
 
     public function toUserModel(): User

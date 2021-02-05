@@ -23,20 +23,20 @@ class UpdateCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleNewJoyRequest $request
-     * @param int $id
+     * @param int $circleId
      * @param int $circleNewJoyId
      * @return array
      * @throws \Exception
      */
     public function __invoke(
         UpdateCircleNewJoyRequest $request,
-        int $id,
+        int $circleId,
         int $circleNewJoyId
     ): array {
         $circleNewJoy = $request->makeCircleNewJoyValueObject();
 
         $this->updateCircleNewJoyUsecase->invoke(
-            $id,
+            $circleId,
             $circleNewJoyId,
             $circleNewJoy
         );

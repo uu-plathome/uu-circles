@@ -4,8 +4,11 @@ namespace App\Console\Commands;
 
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Http\Requests\Admin\AdminPutStorageRequest;
+use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
+use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
+use App\Http\Requests\Admin\Auth\ResetPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\VerificationConfirmRequest;
 use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
@@ -13,6 +16,7 @@ use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
+use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
@@ -63,6 +67,10 @@ class GenerateRequestTypeForTs extends Command
             VerificationResendCircleUserFormRequest::class,
             VerificationConfirmRequest::class,
             AdminPutStorageRequest::class,
+            UpdateCircleUserRequest::class,
+            UpdateAdminUserRequest::class,
+            ForgotPasswordAdminRequest::class,
+            ResetPasswordAdminRequest::class,
         ];
     }
 

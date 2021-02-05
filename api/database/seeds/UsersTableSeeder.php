@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
 
         try {
             /** @var User $user */
-            $user = factory(User::class)->create();
+            $user = factory(User::class)->state('admin')->create();
             $user->adminUser()->create();
 
             DB::commit();

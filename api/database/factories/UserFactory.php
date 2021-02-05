@@ -25,7 +25,19 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         UserModel::username          => 'tester',
         UserModel::display_name      => 'tester',
-        UserModel::email             => $faker->unique()->safeEmail,
+        UserModel::email             => $faker->email,
+        UserModel::email_verified_at => now(),
+        UserModel::password          => Hash::make('Test1234@@'), // password
+        UserModel::remember_token    => Str::random(10),
+        UserModel::api_token         => 'test1234',
+    ];
+});
+
+$factory->state(User::class, 'admin' , function (Faker $faker) {
+    return [
+        UserModel::username          => 'tester',
+        UserModel::display_name      => 'tester',
+        UserModel::email             => 'tester@example.com',
         UserModel::email_verified_at => now(),
         UserModel::password          => Hash::make('Test1234@@'), // password
         UserModel::remember_token    => Str::random(10),

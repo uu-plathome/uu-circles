@@ -15,7 +15,7 @@ export type Props = {
     error?: string
     onChange(e: any): void
 } & BaseLabelProps
-const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, required, error, onChange }) => {
+const BaseRadio: React.FC<Props> = ({ label, id, name, note, value, items, required, error, onChange }) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
             <BaseLabel
@@ -54,4 +54,4 @@ const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, requ
     )
 }
 
-export { BaseSelect }
+export { BaseRadio }

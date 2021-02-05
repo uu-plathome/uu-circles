@@ -7,9 +7,9 @@ import { NextPage } from "next"
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
-import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
 import { isVerificationInvalidError } from "@/lib/types/api/VerificationInvalidError"
 import { isVerificationConfirmRequestValidationError } from "@/lib/types/api/VerificationConfirmRequest"
+import { GreenButton } from "@/components/atoms/buttons/GreenButton"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -79,16 +79,20 @@ const Login: NextPage = () => {
 
                         {success ? (
                             <div>
-                                <p>パスワードを設定しました</p>
+                                <p className="text-white">パスワードを設定しました</p>
 
-                                <OrangeButton href="/auth/login">
-                                    ログインへ
-                                </OrangeButton>
+                                <div className="text-center">
+                                    <GreenButton href="/auth/login">
+                                        ログインへ
+                                    </GreenButton>
+                                </div>
                             </div>
                         ) : ''}
+
                         {error ? (
                             <p className="text-red-400">{ error }</p>
                         ) : ''}
+
                         {!success && !error ? (
                             <form onSubmit={onSubmit}>
                                 <div className="px-4 mb-4">
@@ -96,6 +100,7 @@ const Login: NextPage = () => {
                                         label="パスワード"
                                         id="password"
                                         name="password"
+                                        expand
                                         { ...password }
                                     />
                                 </div>
