@@ -1,11 +1,10 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
-import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { NextPage } from 'next'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
-type SelectItem = {
+export type SelectItem = {
     value: string|number
     label?: string
 }
