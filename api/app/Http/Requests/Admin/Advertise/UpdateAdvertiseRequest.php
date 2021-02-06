@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Advertise;
 
+use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,7 +38,7 @@ class UpdateAdvertiseRequest extends FormRequest
     {
         $request = Arr::snake_keys($this->validated());
 
-        return Advertise::fill([
+        return (new Advertise())->fill([
             'title'          => $request['title'],
             'main_image_url' => $request['main_image_url'],
             'active'         => $request['active'],

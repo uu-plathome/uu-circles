@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
 use App\Models\Advertise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CreateAdvertiseController extends Controller
 {

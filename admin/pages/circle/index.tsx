@@ -10,7 +10,6 @@ import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 
 const IndexPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const [circles, setCircles] = useState<Circle[]>([])
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const IndexPage: NextPage = () => {
                     actionHref="/circle/create"
                 >
                     <div className="border-2 border-gray-800 p-2">
-                        {authContext.accessToken && circles.length > 0 ? (
+                        {circles.length > 0 ? (
                             circles.map((circle: Circle) => {
                                 return <CircleListItem
                                     key={`circle-${circle.id}`}
@@ -40,7 +39,7 @@ const IndexPage: NextPage = () => {
                             })
                         ) : ''}
 
-                        {authContext.accessToken && circles.length === 0 ? (
+                        {circles.length === 0 ? (
                             <div className="py-4">
                                 <p className="text-white">まだサークルが登録されていません</p>
                             </div>

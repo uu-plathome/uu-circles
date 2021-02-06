@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
+use App\Models\Advertise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UpdateAdvertiseController extends Controller
 {
