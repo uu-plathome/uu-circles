@@ -3,6 +3,7 @@ import { AxiosError } from 'axios'
 import { CreateCircleFormRequest, CreateCircleFormRequestValidationError } from "@/lib/types/api/CreateCircleFormRequest";
 import { UpdateCircleFormRequest, UpdateCircleFormRequestValidationError } from "@/lib/types/api/UpdateCircleFormRequest";
 import { Circle } from "@/lib/types/model/Circle";
+import { User } from "@/lib/types/model/User";
 
 export const createCircle = async (circle: CreateCircleFormRequest) => {
     try {
@@ -58,5 +59,22 @@ export const updateCircle = async (id: number, circle: UpdateCircleFormRequest) 
         }
 
         console.error(e)
+    }
+}
+
+/**
+ * ユーザーに紐づくサークルを取得する
+ * 
+ * @param userId 
+ */
+export const getCircleListByUserId = async (userId: number) => {
+    const { data } = await axiosInstance.get<{
+        circles: Circle[]
+        user: User
+    }>(`/admin/api/circle-user/${userId}`)
+
+    return {
+        circles: data.circles,
+        user: data.user
     }
 }

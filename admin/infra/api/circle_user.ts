@@ -202,3 +202,65 @@ export const resendEmailCircleUser = async (email: string) => {
         console.error(e)
     }
 }
+
+export const createRelationBetweenUserAndCircle = async (userId: number, circleId: number) => {
+    type ValidationError = {
+        type: 'ValidationError'
+        errors: {
+            data: string
+        }
+        message: string
+    }
+
+    try {
+        await axiosInstance.post(`/admin/api/circle-user/${userId}/${circleId}`)
+
+        return {
+            type: 'success'
+        } as {
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<ValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'ValidationError'
+            } as ValidationError
+        }
+
+        console.error(e)
+    }
+}
+
+export const deleteRelationBetweenUserAndCircle = async (userId: number, circleId: number) => {
+    type ValidationError = {
+        type: 'ValidationError'
+        errors: {
+            data: string
+        }
+        message: string
+    }
+
+    try {
+        await axiosInstance.delete(`/admin/api/circle-user/${userId}/${circleId}`)
+
+        return {
+            type: 'success'
+        } as {
+            type: 'success'
+        }
+    } catch (_e) {
+        const e = _e as AxiosError<ValidationError>
+
+        if (e.response && e.response.status === 422) {
+            return {
+                ...e.response.data,
+                type: 'ValidationError'
+            } as ValidationError
+        }
+
+        console.error(e)
+    }
+}
