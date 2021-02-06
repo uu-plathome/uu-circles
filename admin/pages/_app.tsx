@@ -6,8 +6,23 @@ import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
 
+const useAccessToken = (initialState: string) => {
+  const [ accessToken, _setAccessToken ] = useState(initialState)
+  const setAccessToken = (newAccessToken?: string) => {
+    _setAccessToken(newAccessToken || '')
+    
+    axiosInstance.defaults.headers.common['Authorization'] = newAccessToken ?  `Bearer ${newAccessToken}` : ''
+    localStorage.setItem('accessToken', newAccessToken || '')
+  }
+
+  return {
+    accessToken,
+    setAccessToken
+  }
+}
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [ accessToken, setAccessToken ] = useState('')
+  const { accessToken, setAccessToken } = useAccessToken('')
   const [ loading, setLoading ] = useState(true)
   const router = useRouter()
 

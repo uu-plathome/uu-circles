@@ -1,7 +1,4 @@
-
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
@@ -14,7 +11,6 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 
 const IndexPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter();
     const [users, setUsers] = useState<User[]>([])
     const [success, setSuccess] = useState<Boolean>(false)
@@ -22,19 +18,17 @@ const IndexPage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
+            const foundUsers = await getCircleUserList(Number(id))
             setUsers(foundUsers.users)
         }
 
-        if (authContext.accessToken && !!id) {
-            f()
-        }
-    }, [ authContext.accessToken, id ])
+        f()
+    }, [])
 
     const onDeleteUser = async (circleUserId: number) => {
-        await deleteCircleUser(Number(id), circleUserId, authContext.accessToken)
+        await deleteCircleUser(Number(id), circleUserId)
 
-        const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
+        const foundUsers = await getCircleUserList(Number(id))
         setUsers(foundUsers.users)
     }
 

@@ -15,7 +15,7 @@ const generalSiderbarList = [
     { name: 'ダッシュボード', link: '/', icon: faHome, exact: true },
     { name: 'サークル', link: '/circle', icon: faBuilding, exact: false },
     { name: '管理者管理', link: '/user/admin', icon: faUser, exact: true },
-    { name: 'ログアウト', link: '/user/logout', icon: faUser, exact: true },
+    { name: 'ログアウト', link: '/logout', icon: faUser, exact: true },
 ] as SidebarItem[]
 
 /**

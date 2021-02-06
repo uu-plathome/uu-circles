@@ -15,13 +15,10 @@ const IndexPage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            setCircles(await getCircleList(authContext.accessToken))
+            setCircles(await getCircleList())
         }
-
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken ])
+        f()
+    }, [])
 
     return (
         <div>
