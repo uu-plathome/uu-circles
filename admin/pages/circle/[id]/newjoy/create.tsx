@@ -1,18 +1,16 @@
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext } from 'react'
+import { FormEvent } from 'react'
 import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
 import { __ } from '@/lang/ja'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
     const { id } = router.query
 
@@ -44,7 +42,7 @@ const CreatePage: NextPage = () => {
                 startDate: startDate.value,
                 endDate: endDate.value,
                 release: release.toBoolean,
-            } as RegisterCircleNewJoyRequest, authContext.accessToken)
+            } as RegisterCircleNewJoyRequest)
 
         if (data && isRegisterCircleNewJoyRequestValidationError(data)) {
             title.setErrors(data.errors.title)

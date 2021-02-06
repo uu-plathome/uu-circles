@@ -1,17 +1,15 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleForm } from '@/components/organisms/form/Circle/CreateCircleForm'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useStringInput } from '@/hooks/useInput'
 import { createCircle } from '@/infra/api/circle'
 import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext } from 'react'
+import { FormEvent } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
 
     const name = useStringInput('')
@@ -25,7 +23,7 @@ const CreatePage: NextPage = () => {
             name: name.value,
             slug: slug.value,
             release: false,
-        } as CreateCircleFormRequest, authContext.accessToken)
+        } as CreateCircleFormRequest)
 
         if (isCreateCircleFormRequestValidationError(data)) {
             name.setErrors(data.errors.name)

@@ -1,10 +1,6 @@
-
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
-import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { deleteAdminUser, getAdminUserList } from '@/infra/api/admin_user'
@@ -33,26 +29,23 @@ const useSuccess = <T,>(initialState: T) => {
 }
 
 const IndexPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const [users, setUsers] = useState<User[]>([])
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
 
     useEffect(() => {
         const f = async () => {
-            const foundUsers = await getAdminUserList(authContext.accessToken)
+            const foundUsers = await getAdminUserList()
             setUsers(foundUsers)
         }
 
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken ])
+        f()
+    }, [])
 
     const onDeleteUser = async (userId: number) => {
         setError('')
         setSuccess('')
-        const data = await deleteAdminUser(userId, authContext.accessToken)
+        const data = await deleteAdminUser(userId)
 
         if (data && data.type === 'DeleteAdminUserValidationError') {
             setError(data.errors.data)
@@ -61,7 +54,7 @@ const IndexPage: NextPage = () => {
 
         if (data && data.type === 'success') {
             setSuccess('アカウントを削除できました。', 3000)
-            const foundUsers = await getAdminUserList(authContext.accessToken)
+            const foundUsers = await getAdminUserList()
             setUsers(foundUsers)
             return
         }

@@ -1,9 +1,8 @@
-import { FormEvent, useContext, useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
@@ -11,7 +10,6 @@ import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } fro
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
     const { id, userId } = router.query
 
@@ -21,16 +19,14 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const foundUser = await getCircleUser(Number(id), Number(userId), authContext.accessToken)
+            const foundUser = await getCircleUser(Number(id), Number(userId))
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
             active.set(foundUser.active)
         }
 
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken, id, userId ])
+        f()
+    }, [ id, userId ])
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -43,8 +39,7 @@ const CreatePage: NextPage = () => {
                 username: username.value,
                 displayName: displayName.value,
                 active: active.toBoolean
-            } as UpdateCircleUserRequest, 
-            authContext.accessToken
+            } as UpdateCircleUserRequest
         )
 
         if (isUpdateCircleUserRequestValidationError(data)) {

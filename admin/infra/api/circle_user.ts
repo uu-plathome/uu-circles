@@ -8,19 +8,14 @@ import { User } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
 
-export const createCircleUser = async (circleId: number, user: RegisterCircleUserRequest, accessToken: string) => {
+export const createCircleUser = async (circleId: number, user: RegisterCircleUserRequest) => {
     
     try {
         const { data } = await axiosInstance.post<{
             data: User[]
         }>(
             `/admin/api/circle/${circleId}/user`, 
-            user,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            user
         )
 
         return 　{
@@ -41,19 +36,12 @@ export const createCircleUser = async (circleId: number, user: RegisterCircleUse
     }
 }
 
-export const deleteCircleUser = async (circleId: number, circleUserId: number, accessToken: string) => {
+export const deleteCircleUser = async (circleId: number, circleUserId: number) => {
     
     try {
         await axiosInstance.delete<{
             success: true
-        }>(
-            `/admin/api/circle/${circleId}/user/${circleUserId}`, 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
-        )
+        }>(`/admin/api/circle/${circleId}/user/${circleUserId}`)
 
         return {
             type: 'Success'
@@ -63,34 +51,24 @@ export const deleteCircleUser = async (circleId: number, circleUserId: number, a
     }
 }
 
-export const getCircleUser = async (circleId: number, userId: number, accessToken: string) => {
+export const getCircleUser = async (circleId: number, userId: number) => {
     const { data } = await axiosInstance.get<{
         data: User
     }>(
-        `/admin/api/circle/${circleId}/user/${userId}`, 
-        {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            }
-        }
+        `/admin/api/circle/${circleId}/user/${userId}`
     )
 
     return data.data
 }
 
-export const updateCircleUser = async (circleId: number, userId: number, user: UpdateCircleUserRequest, accessToken: string) => {
+export const updateCircleUser = async (circleId: number, userId: number, user: UpdateCircleUserRequest) => {
     
     try {
         const { data } = await axiosInstance.put<{
             data: User[]
         }>(
             `/admin/api/circle/${circleId}/user/${userId}`, 
-            user,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            user
         )
 
         return {
@@ -111,14 +89,10 @@ export const updateCircleUser = async (circleId: number, userId: number, user: U
     }
 }
 
-export const getCircleUserList = async (circleId: number, accessToken: string) => {
+export const getCircleUserList = async (circleId: number) => {
     const { data } = await axiosInstance.get<{
         data: User[],
-    }>(`/admin/api/circle/${circleId}/user`, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+    }>(`/admin/api/circle/${circleId}/user`)
 
     return {
         users: data.data,

@@ -1,11 +1,10 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleForm'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useNumberInput, useStringInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
@@ -16,7 +15,6 @@ import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } fro
 import { Circle } from '@/lib/types/model/Circle'
 
 const EditPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
     const name = useStringInput('')
@@ -57,52 +55,48 @@ const EditPage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            if (!Array.isArray(id)) {
-                const foundCircle = await showCircle(Number(id), authContext.accessToken)
-                setCircle(foundCircle)
-                if (foundCircle) {
-                    name.set(foundCircle.name)
-                    slug.set(foundCircle.slug)
-                    release.set(foundCircle.release)
-                    nameKana.set(foundCircle.nameKana)
-                    shortName.set(foundCircle.shortName)
-                    prefixName.set(foundCircle.prefixName)
-                    description.set(foundCircle.description)
-                    intro.set(foundCircle.intro)
-                    circleType.set(foundCircle.circleType)
-                    placeOfActivity.set(foundCircle.placeOfActivity)
-                    placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                    doOnlineActivity.set(foundCircle.doOnlineActivity)
-                    dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
-                    dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
-                    dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
-                    dateOfActivityThursday.set(foundCircle.dateOfActivityThursday)
-                    dateOfActivityFriday.set(foundCircle.dateOfActivityFriday)
-                    dateOfActivitySaturday.set(foundCircle.dateOfActivitySaturday)
-                    dateOfActivitySunday.set(foundCircle.dateOfActivitySunday)
-                    dateOfActivityDetail.set(foundCircle.dateOfActivityDetail)
-                    admissionFee.set(foundCircle.admissionFee)
-                    numberOfMembers.set(foundCircle.numberOfMembers)
-                    publicEmail.set(foundCircle.publicEmail)
-                    twitterUrl.set(foundCircle.twitterUrl)
-                    facebookUrl.set(foundCircle.facebookUrl)
-                    instagramUrl.set(foundCircle.instagramUrl)
-                    lineUrl.set(foundCircle.lineUrl)
-                    youtubeUrl.set(foundCircle.youtubeUrl)
-                    homepageUrl.set(foundCircle.homepageUrl)
-                    peingUrl.set(foundCircle.peingUrl)
-                    githubUrl.set(foundCircle.githubUrl)
-                    tiktokUrl.set(foundCircle.tiktokUrl)
-                    participationUrl.set(foundCircle.participationUrl)
-                    mainImageUrl.set(foundCircle.mainImageUrl)
-                }
+            const foundCircle = await showCircle(Number(id))
+            setCircle(foundCircle)
+            if (foundCircle) {
+                name.set(foundCircle.name)
+                slug.set(foundCircle.slug)
+                release.set(foundCircle.release)
+                nameKana.set(foundCircle.nameKana)
+                shortName.set(foundCircle.shortName)
+                prefixName.set(foundCircle.prefixName)
+                description.set(foundCircle.description)
+                intro.set(foundCircle.intro)
+                circleType.set(foundCircle.circleType)
+                placeOfActivity.set(foundCircle.placeOfActivity)
+                placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
+                doOnlineActivity.set(foundCircle.doOnlineActivity)
+                dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
+                dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
+                dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
+                dateOfActivityThursday.set(foundCircle.dateOfActivityThursday)
+                dateOfActivityFriday.set(foundCircle.dateOfActivityFriday)
+                dateOfActivitySaturday.set(foundCircle.dateOfActivitySaturday)
+                dateOfActivitySunday.set(foundCircle.dateOfActivitySunday)
+                dateOfActivityDetail.set(foundCircle.dateOfActivityDetail)
+                admissionFee.set(foundCircle.admissionFee)
+                numberOfMembers.set(foundCircle.numberOfMembers)
+                publicEmail.set(foundCircle.publicEmail)
+                twitterUrl.set(foundCircle.twitterUrl)
+                facebookUrl.set(foundCircle.facebookUrl)
+                instagramUrl.set(foundCircle.instagramUrl)
+                lineUrl.set(foundCircle.lineUrl)
+                youtubeUrl.set(foundCircle.youtubeUrl)
+                homepageUrl.set(foundCircle.homepageUrl)
+                peingUrl.set(foundCircle.peingUrl)
+                githubUrl.set(foundCircle.githubUrl)
+                tiktokUrl.set(foundCircle.tiktokUrl)
+                participationUrl.set(foundCircle.participationUrl)
+                mainImageUrl.set(foundCircle.mainImageUrl)
             }
         }
 
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken, id ])
+        f()
+    }, [])
 
     const onDropMainImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
@@ -112,7 +106,7 @@ const EditPage: NextPage = () => {
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = async (e) => {
                 try {
-                    const data = await putStorage(file, authContext.accessToken)
+                    const data = await putStorage(file)
     
                     if (isAdminPutStorageRequestValidationError(data)) {
                         mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
@@ -168,8 +162,7 @@ const EditPage: NextPage = () => {
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
                     mainImageUrl: mainImageUrl.value,
-                } as UpdateCircleFormRequest,
-                authContext.accessToken
+                } as UpdateCircleFormRequest
             )
 
             if (isUpdateCircleFormRequestValidationError(data)) {
@@ -213,7 +206,6 @@ const EditPage: NextPage = () => {
             await router.push('/circle')
         }
     }
-
 
     return (
         <div>

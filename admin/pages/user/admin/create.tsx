@@ -1,19 +1,16 @@
-
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useStringInput } from '@/hooks/useInput'
 import { createAdminUser } from '@/infra/api/admin_user'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext } from 'react'
+import { FormEvent } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
 
     const username = useStringInput('')
@@ -27,7 +24,7 @@ const CreatePage: NextPage = () => {
             username: username.value,
             displayName: displayName.value,
             email: email.value
-        } as RegisterAdminFormRequest, authContext.accessToken)
+        } as RegisterAdminFormRequest)
 
         if (isRegisterAdminFormRequestValidationError(data)) {
             username.setErrors(data.errors.username)

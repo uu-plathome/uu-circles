@@ -4,29 +4,20 @@ import { User } from "@/lib/types/model/User"
 import { AxiosError } from "axios"
 import { axiosInstance } from "."
 
-export const getAdminUserList = async (accessToken: string) => {
+export const getAdminUserList = async () => {
     const { data } = await axiosInstance.get<{
         data: User[]
-    }>('/admin/api/admin-user', {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+    }>('/admin/api/admin-user')
 
     return data.data
 }
 
-export const createAdminUser = async (user: RegisterAdminFormRequest, accessToken: string) => {
+export const createAdminUser = async (user: RegisterAdminFormRequest) => {
 
     try {
         const { data } = await axiosInstance.post(
             '/admin/api/admin-user', 
-            user, 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            user
         )
     
         return data.data
@@ -44,16 +35,11 @@ export const createAdminUser = async (user: RegisterAdminFormRequest, accessToke
     }
 }
 
-export const deleteAdminUser = async (userId: number, accessToken: string) => {
+export const deleteAdminUser = async (userId: number) => {
 
     try {
         const { data } = await axiosInstance.delete(
-            `/admin/api/admin-user/${userId}`, 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            `/admin/api/admin-user/${userId}`
         )
     
         return {
@@ -89,19 +75,14 @@ export const deleteAdminUser = async (userId: number, accessToken: string) => {
     }
 }
 
-export const updateAdminUser = async (userId: number, user: UpdateAdminUserRequest, accessToken: string) => {
+export const updateAdminUser = async (userId: number, user: UpdateAdminUserRequest) => {
     
     try {
         const { data } = await axiosInstance.put<{
             data: User[]
         }>(
             `/admin/api/admin-user/${userId}`, 
-            user,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            user
         )
 
         return {
@@ -122,16 +103,11 @@ export const updateAdminUser = async (userId: number, user: UpdateAdminUserReque
     }
 }
 
-export const getAdminUser = async (userId: number, accessToken: string) => {
+export const getAdminUser = async (userId: number) => {
     const { data } = await axiosInstance.get<{
         data: User
     }>(
-        `/admin/api/admin-user/${userId}`, 
-        {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            }
-        }
+        `/admin/api/admin-user/${userId}`
     )
 
     return data.data

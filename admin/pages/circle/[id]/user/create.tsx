@@ -11,7 +11,6 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
     const { id } = router.query
 
@@ -29,8 +28,7 @@ const CreatePage: NextPage = () => {
                 username: username.value,
                 displayName: displayName.value,
                 email: email.value
-            } as RegisterCircleUserRequest, 
-            authContext.accessToken
+            } as RegisterCircleUserRequest
         )
 
         if (isRegisterCircleUserRequestValidationError(data)) {
