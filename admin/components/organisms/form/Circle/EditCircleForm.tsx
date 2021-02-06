@@ -410,7 +410,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
             </div>
 
             <BaseImageInput
-                label="メイン画像"
+                label="サークルビラ"
                 id="mainImageUrl"
                 preview={form.mainImageUrl.value ? form.mainImageUrl.value : `/images/no-image.png`}
                 onDrop={onDropMainImage}
