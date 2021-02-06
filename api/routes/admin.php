@@ -40,6 +40,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\ShowCircleUserController');
     Route::put('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\UpdateCircleUserController');
     Route::delete('/circle/{circleId}/user/{userId}', 'Admin\CircleUser\DeleteCircleUserController');
+    Route::get('/circle-user/{userId}', 'Admin\CircleUser\IndexCircleUserByUserIdController');
+    Route::post('/circle-user/{userId}/{circleId}', 'Admin\CircleUser\CreateCircleUserRelationController');
+    Route::delete('/circle-user/{userId}/{circleId}', 'Admin\CircleUser\DeleteCircleUserRelationController');
 
     // CircleNewJoy サークル新歓管理
     Route::get('/circle/{circleId}/newjoy', 'Admin\CircleNewJoy\IndexCircleNewJoyController');
