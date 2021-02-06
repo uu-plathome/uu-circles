@@ -6,47 +6,38 @@ use App\Enum\CircleNewJoyModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
-class CircleNewJoy extends Model
+class Advertise extends Model
 {
     protected $fillable = [
-        CircleNewJoyModel::circle_id,
-        CircleNewJoyModel::title,
-        CircleNewJoyModel::description,
-        CircleNewJoyModel::url,
-        CircleNewJoyModel::place_of_activity,
-        CircleNewJoyModel::place_of_activity_detail,
-        CircleNewJoyModel::publish_from,
-        CircleNewJoyModel::publish_to,
-        CircleNewJoyModel::start_date,
-        CircleNewJoyModel::end_date,
-        CircleNewJoyModel::release,
+        'title',
+        'main_image_url',
+        'active',
+        'publish_to',
+        'publish_from',
     ];
 
-
     protected $casts = [
-        CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
-        CircleNewJoyModel::publish_to => 'datetime:Y-m-d',
-        CircleNewJoyModel::start_date => 'datetime:Y-m-d\TH:i',
-        CircleNewJoyModel::end_date   => 'datetime:Y-m-d\TH:i',
-        CircleNewJoyModel::release    => 'boolean',
+        'active'       => 'boolean',
+        'publish_to'   => 'datetime:Y-m-d',
+        'publish_from' => 'datetime:Y-m-d',
     ];
 
     /**
      * 現在公開中かどうか
      *
-     * @param boolean $release
+     * @param boolean $active
      * @param Carbon|null $publish_from
      * @param Carbon|null $publish_to
      * @param Carbon $now
      * @return boolean
      */
     public static function getNowPublic(
-        bool $release,
+        bool $active,
         ?Carbon $publish_from,
         ?Carbon $publish_to,
         Carbon $now
     ): bool {
-        if (!$release) {
+        if (!$active) {
             return false;
         }
 
@@ -62,7 +53,7 @@ class CircleNewJoy extends Model
             return true;
         }
 
-        if ($publish_to && $publish_to->gt($now) && $publish_to && $publish_from->lt($now)) {
+        if ($publish_to && $publish_to->gt($now) && $publish_from && $publish_from->lt($now)) {
             return true;
         }
 
@@ -100,18 +91,18 @@ class CircleNewJoy extends Model
                     $query->where(CircleNewJoyModel::publish_from, '<', $now)
                         ->where(CircleNewJoyModel::publish_to, '>', $now);
                 })
-                ->orWhere(function($query) use($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<', $now)
-                        ->whereNull(CircleNewJoyModel::publish_to);
-                })
-                ->orWhere(function($query) use($now) {
-                    $query->where(CircleNewJoyModel::publish_to, '>', $now)
-                        ->whereNull(CircleNewJoyModel::publish_from);
-                })
-                ->orWhere(function($query) {
-                    $query->whereNull(CircleNewJoyModel::publish_from)
-                        ->whereNull(CircleNewJoyModel::publish_to);
-                });
+                    ->orWhere(function($query) use($now) {
+                        $query->where(CircleNewJoyModel::publish_from, '<', $now)
+                            ->whereNull(CircleNewJoyModel::publish_to);
+                    })
+                    ->orWhere(function($query) use($now) {
+                        $query->where(CircleNewJoyModel::publish_to, '>', $now)
+                            ->whereNull(CircleNewJoyModel::publish_from);
+                    })
+                    ->orWhere(function($query) {
+                        $query->whereNull(CircleNewJoyModel::publish_from)
+                            ->whereNull(CircleNewJoyModel::publish_to);
+                    });
             });
     }
 }
