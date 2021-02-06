@@ -49,6 +49,13 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
     Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', 'Admin\CircleNewJoy\CopyCircleNewJoyController');
 
+    // Advertise
+    Route::get('/advertise', 'Admin\Advertise\IndexAdvertiseController');
+    Route::post('/advertise', 'Admin\Advertise\CreateAdvertiseController');
+    Route::get('/advertise/{id}', 'Admin\Advertise\ShowAdvertiseController');
+    Route::put('/advertise/{id}', 'Admin\Advertise\UpdateAdvertiseController');
+    Route::delete('/advertise/{id}', 'Admin\Advertise\DeleteAdvertiseController');
+
     // Storage
     Route::post('/storage', 'Admin\PutStorageController');
 });

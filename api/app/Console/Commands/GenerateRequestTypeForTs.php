@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
+use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
+use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
 use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
@@ -71,6 +73,8 @@ class GenerateRequestTypeForTs extends Command
             UpdateAdminUserRequest::class,
             ForgotPasswordAdminRequest::class,
             ResetPasswordAdminRequest::class,
+            CreateAdvertiseRequest::class,
+            UpdateAdvertiseRequest::class,
         ];
     }
 
