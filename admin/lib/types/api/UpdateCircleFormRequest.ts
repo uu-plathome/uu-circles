@@ -12,19 +12,32 @@ export interface UpdateCircleFormRequest {
     circleType?: string
     description?: string
     intro?: string
-    placeOfActivity?: string
-    placeOfActivityDetail?: string
-    doOnlineActivity?: boolean
-    dateOfActivityMonday?: string
-    dateOfActivityTuesday?: string
-    dateOfActivityWednesday?: string
-    dateOfActivityThursday?: string
-    dateOfActivityFriday?: string
-    dateOfActivitySaturday?: string
-    dateOfActivitySunday?: string
-    dateOfActivityDetail?: string
-    admissionFee?: string
+    commonPlaceOfActivity?: string
+    commonPlaceOfActivityDetail?: string
+    commonDateOfActivityMonday?: boolean
+    commonDateOfActivityTuesday?: boolean
+    commonDateOfActivityWednesday?: boolean
+    commonDateOfActivityThursday?: boolean
+    commonDateOfActivityFriday?: boolean
+    commonDateOfActivitySaturday?: boolean
+    commonDateOfActivitySunday?: boolean
+    onlineDateOfActivityDetail?: string
+    isOnlineActivity?: boolean
+    onlinePlaceOfActivityDetail?: string
+    onlineDateOfActivityMonday?: boolean
+    onlineDateOfActivityTuesday?: boolean
+    onlineDateOfActivityWednesday?: boolean
+    onlineDateOfActivityThursday?: boolean
+    onlineDateOfActivityFriday?: boolean
+    onlineDateOfActivitySaturday?: boolean
+    onlineDateOfActivitySunday?: boolean
+    commonDateOfActivityDetail?: string
+    admissionFeePerYear?: number
     numberOfMembers?: number
+    isClubActivities?: boolean
+    appealingPoint1?: string
+    appealingPoint2?: string
+    appealingPoint3?: string
     publicEmail?: string
     twitterUrl?: string
     facebookUrl?: string
@@ -54,19 +67,32 @@ export interface UpdateCircleFormRequestValidationError {
         circleType?: string[]
         description?: string[]
         intro?: string[]
-        placeOfActivity?: string[]
-        placeOfActivityDetail?: string[]
-        doOnlineActivity?: string[]
-        dateOfActivityMonday?: string[]
-        dateOfActivityTuesday?: string[]
-        dateOfActivityWednesday?: string[]
-        dateOfActivityThursday?: string[]
-        dateOfActivityFriday?: string[]
-        dateOfActivitySaturday?: string[]
-        dateOfActivitySunday?: string[]
-        dateOfActivityDetail?: string[]
-        admissionFee?: string[]
+        commonPlaceOfActivity?: string[]
+        commonPlaceOfActivityDetail?: string[]
+        commonDateOfActivityMonday?: string[]
+        commonDateOfActivityTuesday?: string[]
+        commonDateOfActivityWednesday?: string[]
+        commonDateOfActivityThursday?: string[]
+        commonDateOfActivityFriday?: string[]
+        commonDateOfActivitySaturday?: string[]
+        commonDateOfActivitySunday?: string[]
+        onlineDateOfActivityDetail?: string[]
+        isOnlineActivity?: string[]
+        onlinePlaceOfActivityDetail?: string[]
+        onlineDateOfActivityMonday?: string[]
+        onlineDateOfActivityTuesday?: string[]
+        onlineDateOfActivityWednesday?: string[]
+        onlineDateOfActivityThursday?: string[]
+        onlineDateOfActivityFriday?: string[]
+        onlineDateOfActivitySaturday?: string[]
+        onlineDateOfActivitySunday?: string[]
+        commonDateOfActivityDetail?: string[]
+        admissionFeePerYear?: string[]
         numberOfMembers?: string[]
+        isClubActivities?: string[]
+        appealingPoint1?: string[]
+        appealingPoint2?: string[]
+        appealingPoint3?: string[]
         publicEmail?: string[]
         twitterUrl?: string[]
         facebookUrl?: string[]

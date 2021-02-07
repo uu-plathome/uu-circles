@@ -88,6 +88,7 @@ class UpdateCircleFormRequest extends FormRequest
             ],
             CircleInformationModel::online_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
             CircleInformationModel::is_online_activity         => ['nullable', 'boolean'],
+            CircleInformationModel::online_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
             CircleInformationModel::online_date_of_activity_monday    => [
                 'nullable',
                 'boolean',
@@ -119,6 +120,10 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationModel::common_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
             CircleInformationModel::admission_fee_per_year              => ['nullable', 'integer', 'max:10000000'],
             CircleInformationModel::number_of_members          => ['nullable', 'integer', 'max:10000'],
+            CircleInformationModel::is_club_activities => ['nullable', 'boolean'],
+            CircleInformationModel::appealing_point1  => ['nullable', 'string', 'max:255'],
+            CircleInformationModel::appealing_point2  => ['nullable', 'string', 'max:255'],
+            CircleInformationModel::appealing_point3  => ['nullable', 'string', 'max:255'],
             CircleInformationModel::public_email      => ['nullable', 'string', 'email', 'max:255'],
             CircleInformationModel::twitter_url       => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationModel::facebook_url      => ['nullable', 'string', 'url', 'max:255'],

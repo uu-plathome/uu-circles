@@ -5,7 +5,6 @@ import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { UseBooleanInput, UseNumberInput, UseStringInput } from "@/hooks/useInput"
 import { __ } from "@/lang/ja"
 import { getAllCircleType } from "@/lib/enum/api/CircleType"
-import { getAllDateOfActivity } from "@/lib/enum/api/DateOfActivity"
 import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity"
 import { FC, FormEvent } from "react"
 
@@ -22,19 +21,32 @@ type Props = {
         prefixName: UseStringInput
         description: UseStringInput
         intro: UseStringInput
+        isClubActivities: UseBooleanInput
+        appealingPoint1: UseStringInput
+        appealingPoint2: UseStringInput
+        appealingPoint3: UseStringInput
         circleType: UseStringInput
-        placeOfActivity: UseStringInput
-        placeOfActivityDetail: UseStringInput
-        doOnlineActivity: UseBooleanInput
-        dateOfActivityMonday: UseStringInput
-        dateOfActivityTuesday: UseStringInput
-        dateOfActivityWednesday: UseStringInput
-        dateOfActivityThursday: UseStringInput
-        dateOfActivityFriday: UseStringInput
-        dateOfActivitySaturday: UseStringInput
-        dateOfActivitySunday: UseStringInput
-        dateOfActivityDetail: UseStringInput
-        admissionFee: UseStringInput
+        commonPlaceOfActivity: UseStringInput
+        commonPlaceOfActivityDetail: UseStringInput
+        commonDateOfActivityMonday: UseBooleanInput
+        commonDateOfActivityTuesday: UseBooleanInput
+        commonDateOfActivityWednesday: UseBooleanInput
+        commonDateOfActivityThursday: UseBooleanInput
+        commonDateOfActivityFriday: UseBooleanInput
+        commonDateOfActivitySaturday: UseBooleanInput
+        commonDateOfActivitySunday: UseBooleanInput
+        commonDateOfActivityDetail: UseStringInput
+        isOnlineActivity: UseBooleanInput
+        onlinePlaceOfActivityDetail: UseStringInput
+        onlineDateOfActivityMonday: UseBooleanInput
+        onlineDateOfActivityTuesday: UseBooleanInput
+        onlineDateOfActivityWednesday: UseBooleanInput
+        onlineDateOfActivityThursday: UseBooleanInput
+        onlineDateOfActivityFriday: UseBooleanInput
+        onlineDateOfActivitySaturday: UseBooleanInput
+        onlineDateOfActivitySunday: UseBooleanInput
+        onlineDateOfActivityDetail: UseStringInput
+        admissionFeePerYear: UseNumberInput
         numberOfMembers: UseNumberInput
         publicEmail: UseStringInput
         twitterUrl: UseStringInput
@@ -125,6 +137,30 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
                 { ...form.intro }
             />
 
+            <BaseTextField
+                label="アピールポイント1"
+                name="appealingPoint1"
+                id="appealingPoint1"
+                expand
+                { ...form.appealingPoint1 }
+            />
+
+            <BaseTextField
+                label="アピールポイント2"
+                name="appealingPoint2"
+                id="appealingPoint2"
+                expand
+                { ...form.appealingPoint2 }
+            />
+
+            <BaseTextField
+                label="アピールポイント3"
+                name="appealingPoint3"
+                id="appealingPoint3"
+                expand
+                { ...form.appealingPoint3 }
+            />
+
             <BaseSelect
                 label="サークル種別"
                 id="circleType"
@@ -140,23 +176,119 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
             />
 
             <BaseSelect
-                label="活動場所"
-                id="placeOfActivity"
-                name="placeOfActivity"
+                label="部活かどうか"
+                id="isClubActivities"
+                name="isClubActivities"
+                items={[
+                    { value: 'true', label: '部活' },
+                    { value: 'false', label: '部活でない' },
+                ]}
+                { ...form.isClubActivities }
+            />
+
+            <BaseSelect
+                label="通常活動場所"
+                id="commonPlaceOfActivity"
+                name="commonPlaceOfActivity"
                 items={[
                     ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
                         value: _placeOfActivity,
                         label: __(_placeOfActivity)
                     }))
                 ]}
-                { ...form.placeOfActivity }
+                { ...form.commonPlaceOfActivity }
             />
 
             <BaseTextField
-                label="活動場所詳細"
+                label="通常活動場所詳細"
                 name="placeOfActivityDetail"
                 id="placeOfActivityDetail"
-                { ...form.placeOfActivityDetail }
+                { ...form.commonPlaceOfActivityDetail }
+            />
+
+            <BaseSelect
+                label="月曜日に通常活動しているか"
+                id="commonDateOfActivityMonday"
+                name="commonDateOfActivityMonday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivityMonday }
+            />
+
+            <BaseSelect
+                label="火曜日に通常活動しているか"
+                id="commonDateOfActivityTuesday"
+                name="commonDateOfActivityTuesday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivityTuesday }
+            />
+
+            <BaseSelect
+                label="水曜日に通常活動しているか"
+                id="commonDateOfActivityWednesday"
+                name="commonDateOfActivityWednesday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivityWednesday }
+            />
+
+            <BaseSelect
+                label="木曜日に通常活動しているか"
+                id="commonDateOfActivityThursday"
+                name="commonDateOfActivityThursday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivityThursday }
+            />
+
+            <BaseSelect
+                label="金曜日に通常活動しているか"
+                id="commonDateOfActivityFriday"
+                name="commonDateOfActivityFriday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivityFriday }
+            />
+
+            <BaseSelect
+                label="土曜日に通常活動しているか"
+                id="commonDateOfActivitySaturday"
+                name="commonDateOfActivitySaturday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivitySaturday }
+            />
+
+            <BaseSelect
+                label="日曜日に通常活動しているか"
+                id="commonDateOfActivitySunday"
+                name="commonDateOfActivitySunday"
+                items={[
+                    { value: 'true', label: '活動している' },
+                    { value: 'false', label: '活動していない' },
+                ]}
+                { ...form.commonDateOfActivitySunday }
+            />
+
+            <BaseTextField
+                label="通常活動日時詳細"
+                name="commonDateOfActivityDetail"
+                id="commonDateOfActivityDetail"
+                expand
+                { ...form.commonDateOfActivityDetail }
             />
 
             <BaseSelect
@@ -167,122 +299,105 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
                     { value: 'true', label: 'オンラインしている' },
                     { value: 'false', label: 'オフラインのみ' },
                 ]}
-                { ...form.doOnlineActivity }
+                { ...form.isOnlineActivity }
             />
 
-            <BaseSelect
-                label="活動(月曜日)"
-                id="dateOfActivityMonday"
-                name="dateOfActivityMonday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivityMonday }
-            />
+            {form.isOnlineActivity.toBoolean ? (
+                <div>
+                    <BaseSelect
+                        label="月曜日にオンライン活動しているか"
+                        id="onlineDateOfActivityMonday"
+                        name="onlineDateOfActivityMonday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivityMonday }
+                    />
 
-            <BaseSelect
-                label="活動(火曜日)"
-                id="dateOfActivityTuesday"
-                name="dateOfActivityTuesday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivityTuesday }
-            />
+                    <BaseSelect
+                        label="火曜日にオンライン活動しているか"
+                        id="onlineDateOfActivityTuesday"
+                        name="onlineDateOfActivityTuesday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivityTuesday }
+                    />
 
-            <BaseSelect
-                label="活動(水曜日)"
-                id="dateOfActivityWednesday"
-                name="dateOfActivityWednesday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivityWednesday }
-            />
+                    <BaseSelect
+                        label="水曜日にオンライン活動しているか"
+                        id="onlineDateOfActivityWednesday"
+                        name="onlineDateOfActivityWednesday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivityWednesday }
+                    />
 
-            <BaseSelect
-                label="活動(木曜日)"
-                id="dateOfActivityThursday"
-                name="dateOfActivityThursday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivityThursday }
-            />
+                    <BaseSelect
+                        label="木曜日にオンライン活動しているか"
+                        id="onlineDateOfActivityThursday"
+                        name="onlineDateOfActivityThursday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivityThursday }
+                    />
 
-            <BaseSelect
-                label="活動(金曜日)"
-                id="dateOfActivityFriday"
-                name="dateOfActivityFriday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivityFriday }
-            />
+                    <BaseSelect
+                        label="金曜日にオンライン活動しているか"
+                        id="onlineDateOfActivityFriday"
+                        name="onlineDateOfActivityFriday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivityFriday }
+                    />
 
-            <BaseSelect
-                label="活動(土曜日)"
-                id="dateOfActivitySaturday"
-                name="dateOfActivitySaturday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivitySaturday }
-            />
+                    <BaseSelect
+                        label="土曜日にオンライン活動しているか"
+                        id="onlineDateOfActivitySaturday"
+                        name="onlineDateOfActivitySaturday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivitySaturday }
+                    />
 
-            <BaseSelect
-                label="活動(日曜日)"
-                id="dateOfActivitySunday"
-                name="dateOfActivitySunday"
-                items={[
-                    { value: null, label: '非活動日' },
-                    ...getAllDateOfActivity().map((_dateOfActivity) => ({
-                        value: _dateOfActivity,
-                        label: __(_dateOfActivity)
-                    }))
-                ]}
-                { ...form.dateOfActivitySunday }
-            />
+                    <BaseSelect
+                        label="日曜日にオンライン活動しているか"
+                        id="onlineDateOfActivitySunday"
+                        name="onlineDateOfActivitySunday"
+                        items={[
+                            { value: 'true', label: 'オンライン活動している' },
+                            { value: 'false', label: 'オンライン活動していない' },
+                        ]}
+                        { ...form.onlineDateOfActivitySunday }
+                    />
 
-            <BaseTextField
-                label="活動日時詳細"
-                name="dateOfActivityDetail"
-                id="dateOfActivityDetail"
-                expand
-                { ...form.dateOfActivityDetail }
-            />
+                    <BaseTextField
+                        label="活動日時詳細"
+                        name="onlineDateOfActivityDetail"
+                        id="onlineDateOfActivityDetail"
+                        expand
+                        { ...form.onlineDateOfActivityDetail }
+                    />
+                </div>
+            ) : ''}
 
             <BaseTextField
                 label="入会費"
                 name="admissionFee"
                 id="admissionFee"
-                placeholder="年間1,000円"
+                placeholder="1000"
                 expand
-                { ...form.admissionFee }
+                { ...form.admissionFeePerYear }
             />
 
             <BaseTextField
