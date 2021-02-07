@@ -7,9 +7,8 @@ import Link from 'next/link';
 type Props = {
     user: User
     onResendEmail(email: string): void
-    onDeleteUser(userId: number): void
 }
-const AdminUserListItem: FC<Props> = ({ user, onResendEmail, onDeleteUser }) => {
+const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
     return (
         <div>
         <div className="ml-2 w-full">
@@ -68,13 +67,15 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail, onDeleteUser }) => 
                 <div className="w-full lg:w-1/6">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">削除する</p>
                     <div className="flex justify-center h-7 items-center">
-                        <button onClick={() => onDeleteUser(user.id)}>
-                            <FontAwesomeIcon
-                                size="lg"
-                                color="red"
-                                icon={ faTrash }
-                            />
-                        </button>
+                        <Link href="/user/admin/[userId]/delete" as={`/user/admin/${user.id}/delete`} >
+                            <a>
+                                <FontAwesomeIcon
+                                    size="lg"
+                                    color="red"
+                                    icon={ faTrash }
+                                />
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -4,32 +4,35 @@ import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNe
 import { getCircleNewJoyList, deleteCircleNewJoy, copyCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
+import useSWR from 'swr'
 
 
 const IndexPage: NextPage = () => {
     const router = useRouter()
+    const { id } = router.query
     const [circle, setCircle] = useState<Circle|null>(null)
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
-    const { id } = router.query
 
-    useEffect(() => {
-        const f = async () => {
-            await fetchCircle()
-        }
+    // 新歓一覧の取得
+    const fetchCircle = async () => {
+        const {
+            circle,
+            circleNewJoys
+        } = await getCircleNewJoyList(Number(id))
+        setCircle(circle)
+        setCircleNewJoys(circleNewJoys)
+    }
 
-        if (!Array.isArray(id)) {
-            f()
-        }
-    }, [ id ])
+    useSWR([`/admin/api/circle/${id}/newjoy`, Number(id)], fetchCircle)
 
     // 新歓のコピー
     const onCopy = async (circleNewJoyId: number) => {
@@ -61,15 +64,6 @@ const IndexPage: NextPage = () => {
         setError('エラーが発生しました')
     }
 
-    // 新歓一覧の取得
-    const fetchCircle = async () => {
-        const {
-            circle,
-            circleNewJoys
-        } = await getCircleNewJoyList(Number(id))
-        setCircle(circle)
-        setCircleNewJoys(circleNewJoys)
-    }
 
     return (
         <div>
