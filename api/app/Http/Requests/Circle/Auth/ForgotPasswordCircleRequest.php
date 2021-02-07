@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Http\Requests\Circle\Auth;
 
-
-use App\Rules\RegexPassword;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 
-class VerificationEmailCircleUserRequest extends FormRequest
+class ForgotPasswordCircleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +25,7 @@ class VerificationEmailCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'password' => ['required', 'string', new RegexPassword()],
+            'email'    => 'required|string|email|max:255',
         ]);
     }
 }

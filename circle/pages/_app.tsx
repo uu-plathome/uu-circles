@@ -33,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           const localStorageAccessToken = localStorage.getItem('accessToken')
           if (localStorageAccessToken) {
             try {
-              const { data } = await axiosInstance.get<User>('/admin/api/user', {
+              const { data } = await axiosInstance.get<User>('/circle/api/user', {
                 headers: {
                   Authorization: `Bearer ${localStorageAccessToken}`,
                 }
@@ -42,11 +42,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               setLoading(false)
             } catch(e) {
               localStorage.setItem('accessToken', '')
-              await router.push('/auth/login')
+              await router.push('/login')
               setLoading(false)
             }
           } else {
-            await router.push('/auth/login')
+            await router.push('/login')
             setLoading(false)
           }
         }
