@@ -20,6 +20,10 @@ use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Circle\Auth\ForgotPasswordCircleRequest;
+use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
+use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
+use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
@@ -68,9 +72,7 @@ class GenerateRequestTypeForTs extends Command
             UpdateCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
-            VerificationEmailCircleUserRequest::class,
             VerificationResendAdminUserFormRequest::class,
-            VerificationResendCircleUserFormRequest::class,
             VerificationConfirmRequest::class,
             AdminPutStorageRequest::class,
             UpdateCircleUserRequest::class,
@@ -80,7 +82,14 @@ class GenerateRequestTypeForTs extends Command
             CreateAdvertiseRequest::class,
             UpdateAdvertiseRequest::class,
         ];
-        $this->requestCircleClasses = [];
+        $this->requestCircleClasses = [
+            ForgotPasswordCircleRequest::class,
+            LoginCircleFormRequest::class,
+            RegisterCircleFormRequest::class,
+            ResetPasswordCircleRequest::class,
+            VerificationEmailCircleUserRequest::class,
+            VerificationResendCircleUserFormRequest::class,
+        ];
     }
 
     private function init()
@@ -97,10 +106,10 @@ class GenerateRequestTypeForTs extends Command
     public function handle()
     {
         foreach ($this->requestAdminClasses as $requestClass) {
-            $this->generateRequestUsecase($requestClass, $this->getAdminOutputTsPath);
+            $this->generateRequestUsecase($requestClass, $this->getAdminOutputTsPath());
         }
         foreach ($this->requestCircleClasses as $requestClass) {
-            $this->generateRequestUsecase($requestClass, $this->getCircleOutputTsPath);
+            $this->generateRequestUsecase($requestClass, $this->getCircleOutputTsPath());
         }
     }
 

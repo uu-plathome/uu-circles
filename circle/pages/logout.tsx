@@ -10,7 +10,7 @@ const Logout: NextPage = () => {
     useEffect(() => {
         const f = async () => {
             authContext.setAccessToken('')
-            await router.push('/auth/login')
+            await router.push('/login')
         }
 
         f()
