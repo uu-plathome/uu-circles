@@ -8,8 +8,6 @@ import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleFor
 import { useBooleanInput, useNumberInput, useStringInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
-import { __ } from '@/lang/ja'
-import { isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
@@ -26,18 +24,31 @@ const EditPage: NextPage = () => {
     const prefixName = useStringInput('')
     const description = useStringInput('')
     const intro = useStringInput('')
-    const placeOfActivity = useStringInput('')
-    const placeOfActivityDetail = useStringInput('')
-    const doOnlineActivity = useBooleanInput(true)
-    const dateOfActivityMonday = useStringInput('')
-    const dateOfActivityTuesday = useStringInput('')
-    const dateOfActivityWednesday = useStringInput('')
-    const dateOfActivityThursday = useStringInput('')
-    const dateOfActivityFriday = useStringInput('')
-    const dateOfActivitySaturday = useStringInput('')
-    const dateOfActivitySunday = useStringInput('')
-    const dateOfActivityDetail = useStringInput('')
-    const admissionFee = useStringInput('')
+    const isClubActivities = useBooleanInput(false)
+    const appealingPoint1 = useStringInput('')
+    const appealingPoint2 = useStringInput('')
+    const appealingPoint3 = useStringInput('')
+    const commonPlaceOfActivity = useStringInput('')
+    const commonPlaceOfActivityDetail = useStringInput('')
+    const commonDateOfActivityMonday = useBooleanInput(false)
+    const commonDateOfActivityTuesday = useBooleanInput(false)
+    const commonDateOfActivityWednesday = useBooleanInput(false)
+    const commonDateOfActivityThursday = useBooleanInput(false)
+    const commonDateOfActivityFriday = useBooleanInput(false)
+    const commonDateOfActivitySaturday = useBooleanInput(false)
+    const commonDateOfActivitySunday = useBooleanInput(false)
+    const commonDateOfActivityDetail = useStringInput('')
+    const isOnlineActivity = useBooleanInput(true)
+    const onlinePlaceOfActivityDetail = useStringInput('')
+    const onlineDateOfActivityMonday = useBooleanInput(false)
+    const onlineDateOfActivityTuesday = useBooleanInput(false)
+    const onlineDateOfActivityWednesday = useBooleanInput(false)
+    const onlineDateOfActivityThursday = useBooleanInput(false)
+    const onlineDateOfActivityFriday = useBooleanInput(false)
+    const onlineDateOfActivitySaturday = useBooleanInput(false)
+    const onlineDateOfActivitySunday = useBooleanInput(false)
+    const onlineDateOfActivityDetail = useStringInput('')
+    const admissionFeePerYear = useNumberInput(0)
     const numberOfMembers = useNumberInput(0)
     const publicEmail = useStringInput('')
     const twitterUrl = useStringInput('')
@@ -67,18 +78,31 @@ const EditPage: NextPage = () => {
                 description.set(foundCircle.description)
                 intro.set(foundCircle.intro)
                 circleType.set(foundCircle.circleType)
-                placeOfActivity.set(foundCircle.placeOfActivity)
-                placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                doOnlineActivity.set(foundCircle.doOnlineActivity)
-                dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
-                dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
-                dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
-                dateOfActivityThursday.set(foundCircle.dateOfActivityThursday)
-                dateOfActivityFriday.set(foundCircle.dateOfActivityFriday)
-                dateOfActivitySaturday.set(foundCircle.dateOfActivitySaturday)
-                dateOfActivitySunday.set(foundCircle.dateOfActivitySunday)
-                dateOfActivityDetail.set(foundCircle.dateOfActivityDetail)
-                admissionFee.set(foundCircle.admissionFee)
+                isClubActivities.set(foundCircle.isClubActivities)
+                appealingPoint1.set(foundCircle.appealingPoint1)
+                appealingPoint2.set(foundCircle.appealingPoint2)
+                appealingPoint3.set(foundCircle.appealingPoint3)
+                commonPlaceOfActivity.set(foundCircle.commonPlaceOfActivity)
+                commonPlaceOfActivityDetail.set(foundCircle.commonPlaceOfActivityDetail)
+                commonDateOfActivityMonday.set(foundCircle.commonDateOfActivityMonday)
+                commonDateOfActivityTuesday.set(foundCircle.commonDateOfActivityTuesday)
+                commonDateOfActivityWednesday.set(foundCircle.commonDateOfActivityWednesday)
+                commonDateOfActivityThursday.set(foundCircle.commonDateOfActivityThursday)
+                commonDateOfActivityFriday.set(foundCircle.commonDateOfActivityFriday)
+                commonDateOfActivitySaturday.set(foundCircle.commonDateOfActivitySaturday)
+                commonDateOfActivitySunday.set(foundCircle.commonDateOfActivitySunday)
+                commonDateOfActivityDetail.set(foundCircle.commonDateOfActivityDetail)
+                isOnlineActivity.set(foundCircle.isOnlineActivity)
+                onlinePlaceOfActivityDetail.set(foundCircle.onlinePlaceOfActivityDetail)
+                onlineDateOfActivityMonday.set(foundCircle.onlineDateOfActivityMonday)
+                onlineDateOfActivityTuesday.set(foundCircle.onlineDateOfActivityTuesday)
+                onlineDateOfActivityWednesday.set(foundCircle.onlineDateOfActivityWednesday)
+                onlineDateOfActivityThursday.set(foundCircle.onlineDateOfActivityThursday)
+                onlineDateOfActivityFriday.set(foundCircle.onlineDateOfActivityFriday)
+                onlineDateOfActivitySaturday.set(foundCircle.onlineDateOfActivitySaturday)
+                onlineDateOfActivitySunday.set(foundCircle.onlineDateOfActivitySunday)
+                onlineDateOfActivityDetail.set(foundCircle.onlineDateOfActivityDetail)
+                admissionFeePerYear.set(foundCircle.admissionFeePerYear)
                 numberOfMembers.set(foundCircle.numberOfMembers)
                 publicEmail.set(foundCircle.publicEmail)
                 twitterUrl.set(foundCircle.twitterUrl)
@@ -137,18 +161,31 @@ const EditPage: NextPage = () => {
                     prefixName: prefixName.value,
                     description: description.value,
                     intro: intro.value,
-                    placeOfActivity: placeOfActivity.value,
-                    placeOfActivityDetail: placeOfActivityDetail.value,
-                    doOnlineActivity: doOnlineActivity.toBoolean,
-                    dateOfActivityMonday: isDateOfActivity(dateOfActivityMonday.value) ? dateOfActivityMonday.value : null,
-                    dateOfActivityTuesday: isDateOfActivity(dateOfActivityTuesday.value) ? dateOfActivityTuesday.value: null,
-                    dateOfActivityWednesday: isDateOfActivity(dateOfActivityWednesday.value) ? dateOfActivityWednesday.value: null,
-                    dateOfActivityThursday: isDateOfActivity(dateOfActivityThursday.value) ? dateOfActivityThursday.value: null,
-                    dateOfActivityFriday: isDateOfActivity(dateOfActivityFriday.value) ? dateOfActivityFriday.value: null,
-                    dateOfActivitySaturday: isDateOfActivity(dateOfActivitySaturday.value) ? dateOfActivitySaturday.value: null,
-                    dateOfActivitySunday: isDateOfActivity(dateOfActivitySunday.value) ? dateOfActivitySunday.value: null,
-                    dateOfActivityDetail: dateOfActivityDetail.value,
-                    admissionFee: admissionFee.value,
+                    commonPlaceOfActivity: commonPlaceOfActivity.value,
+                    isClubActivities: isClubActivities.toBoolean,
+                    appealingPoint1: appealingPoint1.value,
+                    appealingPoint2: appealingPoint2.value,
+                    appealingPoint3: appealingPoint3.value,
+                    commonPlaceOfActivityDetail: commonPlaceOfActivityDetail.value,
+                    commonDateOfActivityMonday: commonDateOfActivityMonday.toBoolean,
+                    commonDateOfActivityTuesday: commonDateOfActivityTuesday.toBoolean,
+                    commonDateOfActivityWednesday: commonDateOfActivityWednesday.toBoolean,
+                    commonDateOfActivityThursday: commonDateOfActivityThursday.toBoolean,
+                    commonDateOfActivityFriday: commonDateOfActivityFriday.toBoolean,
+                    commonDateOfActivitySaturday: commonDateOfActivitySaturday.toBoolean,
+                    commonDateOfActivitySunday: commonDateOfActivitySunday.toBoolean,
+                    commonDateOfActivityDetail: commonDateOfActivityDetail.value,
+                    isOnlineActivity: isOnlineActivity.toBoolean,
+                    onlinePlaceOfActivityDetail: onlinePlaceOfActivityDetail.value,
+                    onlineDateOfActivityMonday: onlineDateOfActivityMonday.toBoolean,
+                    onlineDateOfActivityTuesday: onlineDateOfActivityTuesday.toBoolean,
+                    onlineDateOfActivityWednesday: onlineDateOfActivityWednesday.toBoolean,
+                    onlineDateOfActivityThursday: onlineDateOfActivityThursday.toBoolean,
+                    onlineDateOfActivityFriday: onlineDateOfActivityFriday.toBoolean,
+                    onlineDateOfActivitySaturday: onlineDateOfActivitySaturday.toBoolean,
+                    onlineDateOfActivitySunday: onlineDateOfActivitySunday.toBoolean,
+                    onlineDateOfActivityDetail: onlineDateOfActivityDetail.value,
+                    admissionFeePerYear: admissionFeePerYear.toNumber,
                     numberOfMembers: numberOfMembers.toNumber,
                     publicEmail: publicEmail.value,
                     twitterUrl: twitterUrl.value,
@@ -175,18 +212,31 @@ const EditPage: NextPage = () => {
                 prefixName.setErrors(data.errors.prefixName)
                 description.setErrors(data.errors.description)
                 intro.setErrors(data.errors.intro)
-                placeOfActivity.setErrors(data.errors.placeOfActivity)
-                placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
-                doOnlineActivity.setErrors(data.errors.doOnlineActivity)
-                dateOfActivityMonday.setErrors(data.errors.dateOfActivityMonday)
-                dateOfActivityTuesday.setErrors(data.errors.dateOfActivityTuesday)
-                dateOfActivityWednesday.setErrors(data.errors.dateOfActivityWednesday)
-                dateOfActivityThursday.setErrors(data.errors.dateOfActivityThursday)
-                dateOfActivityFriday.setErrors(data.errors.dateOfActivityFriday)
-                dateOfActivitySaturday.setErrors(data.errors.dateOfActivitySaturday)
-                dateOfActivitySunday.setErrors(data.errors.dateOfActivitySunday)
-                dateOfActivityDetail.setErrors(data.errors.dateOfActivityDetail)
-                admissionFee.setErrors(data.errors.admissionFee)
+                commonPlaceOfActivity.setErrors(data.errors.commonPlaceOfActivity)
+                isClubActivities.setErrors(data.errors.isClubActivities)
+                appealingPoint1.setErrors(data.errors.appealingPoint1)
+                appealingPoint2.setErrors(data.errors.appealingPoint2)
+                appealingPoint3.setErrors(data.errors.appealingPoint3)
+                commonPlaceOfActivityDetail.setErrors(data.errors.commonPlaceOfActivityDetail)
+                commonDateOfActivityMonday.setErrors(data.errors.commonDateOfActivityMonday)
+                commonDateOfActivityTuesday.setErrors(data.errors.commonDateOfActivityTuesday)
+                commonDateOfActivityWednesday.setErrors(data.errors.commonDateOfActivityWednesday)
+                commonDateOfActivityThursday.setErrors(data.errors.commonDateOfActivityThursday)
+                commonDateOfActivityFriday.setErrors(data.errors.commonDateOfActivityFriday)
+                commonDateOfActivitySaturday.setErrors(data.errors.commonDateOfActivitySaturday)
+                commonDateOfActivitySunday.setErrors(data.errors.commonDateOfActivitySunday)
+                commonDateOfActivityDetail.setErrors(data.errors.commonDateOfActivityDetail)
+                isOnlineActivity.setErrors(data.errors.isOnlineActivity)
+                onlinePlaceOfActivityDetail.setErrors(data.errors.onlinePlaceOfActivityDetail)
+                onlineDateOfActivityMonday.setErrors(data.errors.onlineDateOfActivityMonday)
+                onlineDateOfActivityTuesday.setErrors(data.errors.onlineDateOfActivityTuesday)
+                onlineDateOfActivityWednesday.setErrors(data.errors.onlineDateOfActivityWednesday)
+                onlineDateOfActivityThursday.setErrors(data.errors.onlineDateOfActivityThursday)
+                onlineDateOfActivityFriday.setErrors(data.errors.onlineDateOfActivityFriday)
+                onlineDateOfActivitySaturday.setErrors(data.errors.onlineDateOfActivitySaturday)
+                onlineDateOfActivitySunday.setErrors(data.errors.onlineDateOfActivitySunday)
+                onlineDateOfActivityDetail.setErrors(data.errors.onlineDateOfActivityDetail)
+                admissionFeePerYear.setErrors(data.errors.admissionFeePerYear)
                 numberOfMembers.setErrors(data.errors.numberOfMembers)
                 publicEmail.setErrors(data.errors.publicEmail)
                 twitterUrl.setErrors(data.errors.twitterUrl)
@@ -230,18 +280,31 @@ const EditPage: NextPage = () => {
                                     description,
                                     intro,
                                     circleType,
-                                    placeOfActivity,
-                                    placeOfActivityDetail,
-                                    doOnlineActivity,
-                                    dateOfActivityMonday,
-                                    dateOfActivityTuesday,
-                                    dateOfActivityWednesday,
-                                    dateOfActivityThursday,
-                                    dateOfActivityFriday,
-                                    dateOfActivitySaturday,
-                                    dateOfActivitySunday,
-                                    dateOfActivityDetail,
-                                    admissionFee,
+                                    isClubActivities,
+                                    appealingPoint1,
+                                    appealingPoint2,
+                                    appealingPoint3,
+                                    commonPlaceOfActivity,
+                                    commonPlaceOfActivityDetail,
+                                    commonDateOfActivityMonday,
+                                    commonDateOfActivityTuesday,
+                                    commonDateOfActivityWednesday,
+                                    commonDateOfActivityThursday,
+                                    commonDateOfActivityFriday,
+                                    commonDateOfActivitySaturday,
+                                    commonDateOfActivitySunday,
+                                    commonDateOfActivityDetail,
+                                    isOnlineActivity,
+                                    onlinePlaceOfActivityDetail,
+                                    onlineDateOfActivityMonday,
+                                    onlineDateOfActivityTuesday,
+                                    onlineDateOfActivityWednesday,
+                                    onlineDateOfActivityThursday,
+                                    onlineDateOfActivityFriday,
+                                    onlineDateOfActivitySaturday,
+                                    onlineDateOfActivitySunday,
+                                    onlineDateOfActivityDetail,
+                                    admissionFeePerYear,
                                     numberOfMembers,
                                     publicEmail,
                                     twitterUrl,
