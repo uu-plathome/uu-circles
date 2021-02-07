@@ -1,7 +1,6 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
 import { deleteCircleUser, getCircleUserList, resendEmailCircleUser } from '@/infra/api/circle_user'
@@ -13,7 +12,7 @@ import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 const IndexPage: NextPage = () => {
     const router = useRouter();
     const [users, setUsers] = useState<User[]>([])
-    const [success, setSuccess] = useState<Boolean>(false)
+    const [success, setSuccess] = useState<boolean>(false)
     const { id } = router.query
 
     useEffect(() => {

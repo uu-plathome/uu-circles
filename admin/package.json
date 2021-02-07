@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
-    "lint": "eslint . --ext ts --ext tsx --ext js"
+    "lint": "eslint . --fix --ext ts --ext tsx --ext js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
