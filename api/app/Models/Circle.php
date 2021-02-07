@@ -39,6 +39,11 @@ class Circle extends Model
         $this->slug ??= Str::random(16);
     }
 
+    public function circleInvitation(): HasMany
+    {
+        return $this->hasMany(CircleInvitation::class);
+    }
+
     /**
      * 新歓を取得する
      *
