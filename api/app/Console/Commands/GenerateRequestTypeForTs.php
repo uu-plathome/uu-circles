@@ -43,7 +43,11 @@ class GenerateRequestTypeForTs extends Command
     /**
      * @var string[]
      */
-    private array $requestClasses = [];
+    private array $requestAdminClasses = [];
+    /**
+     * @var string[]
+     */
+    private array $requestCircleClasses = [];
 
     private string $stubDataForMain;
 
@@ -56,7 +60,7 @@ class GenerateRequestTypeForTs extends Command
     {
         parent::__construct();
         $this->init();
-        $this->requestClasses = [
+        $this->requestAdminClasses = [
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
             RegisterCircleNewJoyRequest::class,
@@ -76,6 +80,7 @@ class GenerateRequestTypeForTs extends Command
             CreateAdvertiseRequest::class,
             UpdateAdvertiseRequest::class,
         ];
+        $this->requestCircleClasses = [];
     }
 
     private function init()
@@ -91,12 +96,15 @@ class GenerateRequestTypeForTs extends Command
      */
     public function handle()
     {
-        foreach ($this->requestClasses as $requestClass) {
-            $this->generateRequestUsecase($requestClass);
+        foreach ($this->requestAdminClasses as $requestClass) {
+            $this->generateRequestUsecase($requestClass, $this->getAdminOutputTsPath);
+        }
+        foreach ($this->requestCircleClasses as $requestClass) {
+            $this->generateRequestUsecase($requestClass, $this->getCircleOutputTsPath);
         }
     }
 
-    private function generateRequestUsecase(string $class)
+    private function generateRequestUsecase(string $class, string $outputPath)
     {
         $reflectionClass = new ReflectionClass($class);
         $className = $reflectionClass->getShortName();
@@ -167,7 +175,7 @@ class GenerateRequestTypeForTs extends Command
          * ファイルへの書き込み
          */
         file_put_contents(
-            $this->getOutputTsPath().'/'.$className.'.ts',
+            $outputPath.'/'.$className.'.ts',
             $writableData
         );
     }
@@ -198,9 +206,14 @@ class GenerateRequestTypeForTs extends Command
         return app_path('Console/Commands/stubs/request_body_type.ts.stub');
     }
 
-    private function getOutputTsPath(): string
+    private function getAdminOutputTsPath(): string
     {
         return base_path('../admin/lib/types/api');
+    }
+
+    private function getCircleOutputTsPath(): string
+    {
+        return base_path('../circle/lib/types/api');
     }
 
     private function getTsType(array $ruleData): string
