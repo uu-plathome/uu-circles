@@ -20,19 +20,32 @@ class CircleValueObject
     public ?string $prefix_name;
     public ?string $description;
     public ?string $intro;
-    public ?string $place_of_activity;
-    public ?string $place_of_activity_detail;
-    public ?bool $do_online_activity;
-    public ?string $date_of_activity_monday;
-    public ?string $date_of_activity_tuesday;
-    public ?string $date_of_activity_wednesday;
-    public ?string $date_of_activity_thursday;
-    public ?string $date_of_activity_friday;
-    public ?string $date_of_activity_saturday;
-    public ?string $date_of_activity_sunday;
-    public ?string $date_of_activity_detail;
-    public ?string $admission_fee;
+    public ?string $common_place_of_activity;
+    public ?string $common_place_of_activity_detail;
+    public ?bool $common_date_of_activity_monday;
+    public ?bool $common_date_of_activity_tuesday;
+    public ?bool $common_date_of_activity_wednesday;
+    public ?bool $common_date_of_activity_thursday;
+    public ?bool $common_date_of_activity_friday;
+    public ?bool $common_date_of_activity_saturday;
+    public ?bool $common_date_of_activity_sunday;
+    public ?string $common_date_of_activity_detail;
+    public ?bool $is_online_activity;
+    public ?string $online_place_of_activity_detail;
+    public ?bool $online_date_of_activity_monday;
+    public ?bool $online_date_of_activity_tuesday;
+    public ?bool $online_date_of_activity_wednesday;
+    public ?bool $online_date_of_activity_thursday;
+    public ?bool $online_date_of_activity_friday;
+    public ?bool $online_date_of_activity_saturday;
+    public ?bool $online_date_of_activity_sunday;
+    public ?string $online_date_of_activity_detail;
+    public ?string $admission_fee_per_year;
     public ?int $number_of_members;
+    public ?bool $is_club_activities;
+    public ?string $appealing_point1;
+    public ?string $appealing_point2;
+    public ?string $appealing_point3;
     public ?string $public_email;
     public ?string $twitter_url;
     public ?string $facebook_url;
@@ -63,18 +76,31 @@ class CircleValueObject
         $circleValueObject->prefix_name = $circleInformation->prefix_name;
         $circleValueObject->description = $circleInformation->description;
         $circleValueObject->intro = $circleInformation->intro;
-        $circleValueObject->place_of_activity = $circleInformation->place_of_activity;
-        $circleValueObject->place_of_activity_detail = $circleInformation->place_of_activity_detail;
-        $circleValueObject->do_online_activity = $circleInformation->do_online_activity;
-        $circleValueObject->date_of_activity_monday = $circleInformation->date_of_activity_monday;
-        $circleValueObject->date_of_activity_tuesday = $circleInformation->date_of_activity_tuesday;
-        $circleValueObject->date_of_activity_wednesday = $circleInformation->date_of_activity_wednesday;
-        $circleValueObject->date_of_activity_thursday = $circleInformation->date_of_activity_thursday;
-        $circleValueObject->date_of_activity_friday = $circleInformation->date_of_activity_friday;
-        $circleValueObject->date_of_activity_saturday = $circleInformation->date_of_activity_saturday;
-        $circleValueObject->date_of_activity_sunday = $circleInformation->date_of_activity_sunday;
-        $circleValueObject->date_of_activity_detail = $circleInformation->date_of_activity_detail;
-        $circleValueObject->admission_fee = $circleInformation->admission_fee;
+        $circleValueObject->common_place_of_activity = $circleInformation->common_place_of_activity;
+        $circleValueObject->common_place_of_activity_detail = $circleInformation->common_place_of_activity_detail;
+        $circleValueObject->common_date_of_activity_monday = $circleInformation->common_date_of_activity_monday;
+        $circleValueObject->common_date_of_activity_tuesday = $circleInformation->common_date_of_activity_tuesday;
+        $circleValueObject->common_date_of_activity_wednesday = $circleInformation->common_date_of_activity_wednesday;
+        $circleValueObject->common_date_of_activity_thursday = $circleInformation->common_date_of_activity_thursday;
+        $circleValueObject->common_date_of_activity_friday = $circleInformation->common_date_of_activity_friday;
+        $circleValueObject->common_date_of_activity_saturday = $circleInformation->common_date_of_activity_saturday;
+        $circleValueObject->common_date_of_activity_sunday = $circleInformation->common_date_of_activity_sunday;
+        $circleValueObject->common_date_of_activity_detail = $circleInformation->common_date_of_activity_detail;
+        $circleValueObject->is_online_activity = $circleInformation->is_online_activity;
+        $circleValueObject->online_place_of_activity_detail = $circleInformation->online_place_of_activity_detail;
+        $circleValueObject->online_date_of_activity_monday = $circleInformation->online_date_of_activity_monday;
+        $circleValueObject->online_date_of_activity_tuesday = $circleInformation->online_date_of_activity_tuesday;
+        $circleValueObject->online_date_of_activity_wednesday = $circleInformation->online_date_of_activity_wednesday;
+        $circleValueObject->online_date_of_activity_thursday = $circleInformation->online_date_of_activity_thursday;
+        $circleValueObject->online_date_of_activity_friday = $circleInformation->online_date_of_activity_friday;
+        $circleValueObject->online_date_of_activity_saturday = $circleInformation->online_date_of_activity_saturday;
+        $circleValueObject->online_date_of_activity_sunday = $circleInformation->online_date_of_activity_sunday;
+        $circleValueObject->online_date_of_activity_detail = $circleInformation->online_date_of_activity_detail;
+        $circleValueObject->is_club_activities = $circleInformation->is_club_activities;
+        $circleValueObject->appealing_point1 = $circleInformation->appealing_point1;
+        $circleValueObject->appealing_point2 = $circleInformation->appealing_point2;
+        $circleValueObject->appealing_point3 = $circleInformation->appealing_point3;
+        $circleValueObject->admission_fee_per_year = $circleInformation->admission_fee_per_year;
         $circleValueObject->number_of_members = $circleInformation->number_of_members;
         $circleValueObject->public_email = $circleInformation->public_email;
         $circleValueObject->twitter_url = $circleInformation->twitter_url;
@@ -127,7 +153,7 @@ class CircleValueObject
             CircleInformationModel::date_of_activity_saturday => $this->date_of_activity_saturday,
             CircleInformationModel::date_of_activity_sunday => $this->date_of_activity_sunday,
             CircleInformationModel::date_of_activity_detail => $this->date_of_activity_detail,
-            CircleInformationModel::admission_fee => $this->admission_fee,
+            CircleInformationModel::admission_fee_per_year => $this->admission_fee_per_year,
             CircleInformationModel::number_of_members => $this->number_of_members,
             CircleInformationModel::public_email => $this->public_email,
             CircleInformationModel::twitter_url => $this->twitter_url,
@@ -170,7 +196,7 @@ class CircleValueObject
             CircleInformationModel::date_of_activity_saturday => $this->date_of_activity_saturday,
             CircleInformationModel::date_of_activity_sunday => $this->date_of_activity_sunday,
             CircleInformationModel::date_of_activity_detail => $this->date_of_activity_detail,
-            CircleInformationModel::admission_fee => $this->admission_fee,
+            CircleInformationModel::admission_fee_per_year => $this->admission_fee_per_year,
             CircleInformationModel::number_of_members => $this->number_of_members,
             CircleInformationModel::public_email => $this->public_email,
             CircleInformationModel::twitter_url => $this->twitter_url,
