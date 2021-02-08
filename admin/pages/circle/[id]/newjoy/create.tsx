@@ -20,7 +20,6 @@ const CreatePage: NextPage = () => {
     const placeOfActivity = useStringInput('')
     const placeOfActivityDetail = useStringInput('')
     const publishFrom = useStringInput('')
-    const publishTo = useStringInput('')
     const startDate = useStringInput('')
     const endDate = useStringInput('')
     const release = useBooleanInput(true)
@@ -38,7 +37,6 @@ const CreatePage: NextPage = () => {
                 placeOfActivity: placeOfActivity.value,
                 placeOfActivityDetail: placeOfActivityDetail.value,
                 publishFrom: publishFrom.value,
-                publishTo: publishTo.value,
                 startDate: startDate.value,
                 endDate: endDate.value,
                 release: release.toBoolean,
@@ -51,7 +49,6 @@ const CreatePage: NextPage = () => {
             placeOfActivity.setErrors(data.errors.placeOfActivity)
             placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
             publishFrom.setErrors(data.errors.publishFrom)
-            publishTo.setErrors(data.errors.publishTo)
             startDate.setErrors(data.errors.startDate)
             endDate.setErrors(data.errors.endDate)
             release.setErrors(data.errors.release)
@@ -80,7 +77,6 @@ const CreatePage: NextPage = () => {
                                 placeOfActivity,
                                 placeOfActivityDetail,
                                 publishFrom,
-                                publishTo,
                                 startDate,
                                 endDate,
                                 release,

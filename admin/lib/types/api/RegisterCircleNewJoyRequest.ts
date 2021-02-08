@@ -9,7 +9,6 @@ export interface RegisterCircleNewJoyRequest {
     placeOfActivity?: string
     placeOfActivityDetail?: string
     publishFrom?: string
-    publishTo?: string
     startDate?: string
     endDate?: string
     release?: boolean
@@ -27,7 +26,6 @@ export interface RegisterCircleNewJoyRequestValidationError {
         placeOfActivity?: string[]
         placeOfActivityDetail?: string[]
         publishFrom?: string[]
-        publishTo?: string[]
         startDate?: string[]
         endDate?: string[]
         release?: string[]
