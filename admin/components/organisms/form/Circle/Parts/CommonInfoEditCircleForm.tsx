@@ -6,10 +6,12 @@ import { getAllCircleType } from "@/lib/enum/api/CircleType"
 import { __ } from "@/lang/ja"
 import { CircleMainImageInput } from "@/components/atoms/form/CircleMainImageInput"
 import { CircleHandbillImageInput } from "@/components/atoms/form/CircleHandbillImageInput"
+import { CircleActivityImageInput } from "@/components/atoms/form/CircleActivityImageInput"
 
 export type Props = {
     onDropMainImage(acceptedFiles: any): void
     onDropHandbillImage(acceptedFiles: any): void
+    onDropActivityImage(acceptedFiles: any, idx: 1|2|3|4|5|6): void
     form: {
         description: UseStringInput
         intro: UseStringInput
@@ -23,9 +25,15 @@ export type Props = {
         mainImageUrl: UseStringInput
         handbillImageUrl: UseStringInput
         isClubActivities: UseBooleanInput
+        activityImageUrl1: UseStringInput
+        activityImageUrl2: UseStringInput
+        activityImageUrl3: UseStringInput
+        activityImageUrl4: UseStringInput
+        activityImageUrl5: UseStringInput
+        activityImageUrl6: UseStringInput
     }
 }
-const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHandbillImage }) => {
+const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHandbillImage, onDropActivityImage }) => {
     return (
         <div>
             <BaseTextField
@@ -142,6 +150,16 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 }
                 onDrop={onDropHandbillImage}
                 error={form.handbillImageUrl.error}
+            />
+
+            <CircleActivityImageInput
+                onDrop={onDropActivityImage}
+                activityImageUrl1={form.activityImageUrl1}
+                activityImageUrl2={form.activityImageUrl2}
+                activityImageUrl3={form.activityImageUrl3}
+                activityImageUrl4={form.activityImageUrl4}
+                activityImageUrl5={form.activityImageUrl5}
+                activityImageUrl6={form.activityImageUrl6}
             />
         </div>
     )

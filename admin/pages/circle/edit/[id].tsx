@@ -63,6 +63,12 @@ const EditPage: NextPage = () => {
     const participationUrl = useStringInput('')
     const mainImageUrl = useStringInput('')
     const handbillImageUrl = useStringInput('')
+    const activityImageUrl1 = useStringInput('')
+    const activityImageUrl2 = useStringInput('')
+    const activityImageUrl3 = useStringInput('')
+    const activityImageUrl4 = useStringInput('')
+    const activityImageUrl5 = useStringInput('')
+    const activityImageUrl6 = useStringInput('')
     const { id } = router.query
 
     useEffect(() => {
@@ -118,6 +124,12 @@ const EditPage: NextPage = () => {
                 participationUrl.set(foundCircle.participationUrl)
                 mainImageUrl.set(foundCircle.mainImageUrl)
                 handbillImageUrl.set(foundCircle.handbillImageUrl)
+                activityImageUrl1.set(foundCircle.activityImageUrl1)
+                activityImageUrl2.set(foundCircle.activityImageUrl2)
+                activityImageUrl3.set(foundCircle.activityImageUrl3)
+                activityImageUrl4.set(foundCircle.activityImageUrl4)
+                activityImageUrl5.set(foundCircle.activityImageUrl5)
+                activityImageUrl6.set(foundCircle.activityImageUrl6)
             }
         }
 
@@ -162,6 +174,81 @@ const EditPage: NextPage = () => {
                     handbillImageUrl.set(data.url)
                 } catch (e) {
                     handbillImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                }
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const onDropActivityImage  = (acceptedFiles: any, idx: 1|2|3|4|5|6) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = async (e) => {
+                try {
+                    const data = await putStorage(file)
+
+                    switch (idx) {
+                        case 1:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl1.setErrors(data.errors.file)
+                            }
+                            activityImageUrl1.set(data.url)
+                            break
+                        case 2:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl2.setErrors(data.errors.file)
+                            }
+                            activityImageUrl2.set(data.url)
+                            break
+                        case 3:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl3.setErrors(data.errors.file)
+                            }
+                            activityImageUrl3.set(data.url)
+                            break
+                        case 4:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl4.setErrors(data.errors.file)
+                            }
+                            activityImageUrl4.set(data.url)
+                            break
+                        case 5:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl5.setErrors(data.errors.file)
+                            }
+                            activityImageUrl5.set(data.url)
+                            break
+                        case 6:
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                activityImageUrl6.setErrors(data.errors.file)
+                            }
+                            activityImageUrl6.set(data.url)
+                            break
+                    }
+                } catch (e) {
+                    switch (idx) {
+                        case 1:
+                            activityImageUrl1.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                        case 2:
+                            activityImageUrl2.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                        case 3:
+                            activityImageUrl3.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                        case 4:
+                            activityImageUrl4.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                        case 5:
+                            activityImageUrl5.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                        case 6:
+                            activityImageUrl6.setError('エラーが発生しました。別の画像を試してください。')
+                            break
+                    }
                 }
             }
             reader.readAsDataURL(file)
@@ -224,6 +311,12 @@ const EditPage: NextPage = () => {
                     participationUrl: participationUrl.value,
                     mainImageUrl: mainImageUrl.value,
                     handbillImageUrl: handbillImageUrl.value,
+                    activityImageUrl1: activityImageUrl1.value,
+                    activityImageUrl2: activityImageUrl2.value,
+                    activityImageUrl3: activityImageUrl3.value,
+                    activityImageUrl4: activityImageUrl4.value,
+                    activityImageUrl5: activityImageUrl5.value,
+                    activityImageUrl6: activityImageUrl6.value,
                 } as UpdateCircleFormRequest
             )
 
@@ -276,6 +369,12 @@ const EditPage: NextPage = () => {
                 participationUrl.setErrors(data.errors.participationUrl)
                 mainImageUrl.setErrors(data.errors.mainImageUrl)
                 handbillImageUrl.setErrors(data.errors.handbillImageUrl)
+                activityImageUrl1.setErrors(data.errors.activityImageUrl1)
+                activityImageUrl2.setErrors(data.errors.activityImageUrl2)
+                activityImageUrl3.setErrors(data.errors.activityImageUrl3)
+                activityImageUrl4.setErrors(data.errors.activityImageUrl4)
+                activityImageUrl5.setErrors(data.errors.activityImageUrl5)
+                activityImageUrl6.setErrors(data.errors.activityImageUrl6)
                 return
             }
 
@@ -296,6 +395,7 @@ const EditPage: NextPage = () => {
                             <EditCircleForm
                                 onDropMainImage={onDropMainImage}
                                 onDropHandbillImage={onDropHandbillImage}
+                                onDropActivityImage={onDropActivityImage}
                                 onSubmit={onSubmit}
                                 form={{
                                     release,
@@ -346,6 +446,12 @@ const EditPage: NextPage = () => {
                                     participationUrl,
                                     mainImageUrl,
                                     handbillImageUrl,
+                                    activityImageUrl1,
+                                    activityImageUrl2,
+                                    activityImageUrl3,
+                                    activityImageUrl4,
+                                    activityImageUrl5,
+                                    activityImageUrl6,
                                 }}
                             />
                         ) : (
