@@ -1,15 +1,12 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseImageInput } from '@/components/atoms/form/BaseImageInput'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import {
   UseBooleanInput,
-  UseNumberInput,
   UseStringInput,
 } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { getAllCircleType } from '@/lib/enum/api/CircleType'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { FC, FormEvent } from 'react'
 import { CommonInfoEditCircleForm, Props as CommonInfoEditCircleFormProps } from './Parts/CommonInfoEditCircleForm'
@@ -17,6 +14,7 @@ import { NameEditCircleForm, Props as NameEditCircleFormProps } from './Parts/Na
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
+  onDropHandbillImage(acceptedFiles: any): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
     release: UseBooleanInput
@@ -52,7 +50,7 @@ type Props = {
     participationUrl: UseStringInput
   } & NameEditCircleFormProps['form'] & CommonInfoEditCircleFormProps['form']
 }
-const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
+const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
 
@@ -90,6 +88,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
       <div className="mb-8">
         <CommonInfoEditCircleForm
           onDropMainImage={onDropMainImage}
+          onDropHandbillImage={onDropHandbillImage}
           form={{
             description: form.description,
             intro: form.intro,
@@ -101,6 +100,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
             numberOfMembers: form.numberOfMembers,
             publicEmail: form.publicEmail,
             mainImageUrl: form.mainImageUrl,
+            handbillImageUrl: form.handbillImageUrl,
             isClubActivities: form.isClubActivities,
           }}
         />

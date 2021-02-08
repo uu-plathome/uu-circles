@@ -8,6 +8,7 @@ import { BaseImageInput } from "@/components/atoms/form/BaseImageInput"
 
 export type Props = {
     onDropMainImage(acceptedFiles: any): void
+    onDropHandbillImage(acceptedFiles: any): void
     form: {
         description: UseStringInput
         intro: UseStringInput
@@ -19,10 +20,11 @@ export type Props = {
         numberOfMembers: UseNumberInput
         publicEmail: UseStringInput
         mainImageUrl: UseStringInput
+        handbillImageUrl: UseStringInput
         isClubActivities: UseBooleanInput
     }
 }
-const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage }) => {
+const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHandbillImage }) => {
     return (
         <div>
             <BaseTextField
@@ -126,6 +128,18 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage }) => {
                 }
                 onDrop={onDropMainImage}
                 error={form.mainImageUrl.error}
+            />
+
+            <BaseImageInput
+                label="サークル新歓画像"
+                id="handbillImageUrl"
+                preview={
+                form.handbillImageUrl.value
+                    ? form.handbillImageUrl.value
+                    : `/images/no-image.png`
+                }
+                onDrop={onDropHandbillImage}
+                error={form.handbillImageUrl.error}
             />
         </div>
     )

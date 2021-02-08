@@ -5,6 +5,7 @@ namespace App\Usecases\Admin;
 use App\Enum\CircleInformationModel;
 use App\Enum\CircleModel;
 use App\Models\Circle;
+use App\Models\CircleHandbill;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -26,7 +27,14 @@ class UpdateCircleUsecase
             $newCircle = Circle::whereId($circleValueObject->id)->firstOrFail();
             $newCircle->fill($circleValueObject->toArray())->save();
             $newCircle->circleInformation->fill($circleValueObject->toArray())->save();
-            $newCircle->circleHandbill->fill($circleValueObject->toArray())->save();
+
+            if ($circleValueObject->handbill_image_url) {
+                CircleHandbill::create([
+                    'circle_id' => $newCircle->id,
+                    'image_url' => $circleValueObject->handbill_image_url,
+                    'year'      => 2021,
+                ]);
+            }
 
             DB::commit();
 

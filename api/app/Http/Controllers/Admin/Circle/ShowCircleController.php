@@ -24,7 +24,8 @@ class ShowCircleController extends Controller
         return [
             'data' => Arr::camel_keys(CircleValueObject::byEloquent(
                 $circle,
-                $circle->circleInformation
+                $circle->circleInformation,
+                $circle->circleHandbill ?? null
             )->toArray())
         ];
     }
