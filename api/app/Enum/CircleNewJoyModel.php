@@ -12,7 +12,6 @@ class CircleNewJoyModel
     const place_of_activity = 'place_of_activity';
     const place_of_activity_detail = 'place_of_activity_detail';
     const publish_from = 'publish_from';
-    const publish_to = 'publish_to';
     const start_date = 'start_date';
     const end_date = 'end_date';
     const release = 'release';

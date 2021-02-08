@@ -21,8 +21,7 @@ class CreateCircleNewJoysTable extends Migration
             $table->string('url')->nullable()->comment('サークル新歓 URL');
             $table->string('place_of_activity')->nullable()->comment('活動場所');
             $table->string('place_of_activity_detail')->nullable()->comment('活動場所詳細');
-            $table->dateTime('publish_from')->nullable()->comment('公開開始日時');
-            $table->dateTime('publish_to')->nullable()->comment('公開終了日時');
+            $table->dateTime('publish_from')->nullable()->comment('予約投稿');
             $table->dateTime('start_date')->nullable()->comment('新歓開始日時');
             $table->dateTime('end_date')->nullable()->comment('新歓終了日時');
             $table->boolean('release')->default(true)->comment('公開設定');
