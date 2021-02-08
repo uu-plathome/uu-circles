@@ -51,6 +51,12 @@ class CircleInformationModel
     const tiktok_url = 'tiktok_url';
     const participation_url = 'participation_url';
     const main_image_url = 'main_image_url';
+    const activity_image_url1 = 'activity_image_url1';
+    const activity_image_url2 = 'activity_image_url2';
+    const activity_image_url3 = 'activity_image_url3';
+    const activity_image_url4 = 'activity_image_url4';
+    const activity_image_url5 = 'activity_image_url5';
+    const activity_image_url6 = 'activity_image_url6';
     const created_at = 'created_at';
     const updated_at = 'updated_at';
 }
