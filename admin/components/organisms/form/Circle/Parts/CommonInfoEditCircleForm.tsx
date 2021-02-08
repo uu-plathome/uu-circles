@@ -4,7 +4,8 @@ import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { BaseSelect } from "@/components/atoms/form/BaseSelect"
 import { getAllCircleType } from "@/lib/enum/api/CircleType"
 import { __ } from "@/lang/ja"
-import { BaseImageInput } from "@/components/atoms/form/BaseImageInput"
+import { CircleMainImageInput } from "@/components/atoms/form/CircleMainImageInput"
+import { CircleHandbillImageInput } from "@/components/atoms/form/CircleHandbillImageInput"
 
 export type Props = {
     onDropMainImage(acceptedFiles: any): void
@@ -118,7 +119,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 {...form.publicEmail}
             />
 
-            <BaseImageInput
+            <CircleMainImageInput
                 label="サークルロゴ画像"
                 id="mainImageUrl"
                 preview={
@@ -130,7 +131,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 error={form.mainImageUrl.error}
             />
 
-            <BaseImageInput
+            <CircleHandbillImageInput
                 label="サークル新歓画像"
                 id="handbillImageUrl"
                 preview={

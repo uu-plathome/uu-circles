@@ -30,7 +30,7 @@ const BaseImageInput: FC<Props> = ({ label, required, id, onDrop, preview, error
     const {getRootProps, getInputProps, isDragActive} = useDropzone({ onDrop })
 
     return (
-        <div>
+        <div className="mb-4">
             <BaseLabel 
                 label={label}
                 note={isDragActive ?
