@@ -16,7 +16,6 @@ type Props = {
         placeOfActivity: UseStringInput
         placeOfActivityDetail: UseStringInput
         publishFrom: UseStringInput
-        publishTo: UseStringInput
         startDate: UseStringInput
         endDate: UseStringInput
     }
@@ -81,19 +80,11 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
             />
 
             <BaseTextField
-                label="公開開始日時"
+                label="予約投稿"
                 name="publishFrom"
                 id="publishFrom"
                 type="date"
                 { ...form.publishFrom }
-            />
-
-            <BaseTextField
-                label="公開終了日時"
-                name="publishTo"
-                id="publishTo"
-                type="date"
-                { ...form.publishTo }
             />
 
             <BaseTextField
