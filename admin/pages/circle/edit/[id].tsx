@@ -62,6 +62,7 @@ const EditPage: NextPage = () => {
     const tiktokUrl = useStringInput('')
     const participationUrl = useStringInput('')
     const mainImageUrl = useStringInput('')
+    const handbillImageUrl = useStringInput('')
     const { id } = router.query
 
     useEffect(() => {
@@ -116,6 +117,7 @@ const EditPage: NextPage = () => {
                 tiktokUrl.set(foundCircle.tiktokUrl)
                 participationUrl.set(foundCircle.participationUrl)
                 mainImageUrl.set(foundCircle.mainImageUrl)
+                handbillImageUrl.set(foundCircle.handbillImageUrl)
             }
         }
 
@@ -133,11 +135,33 @@ const EditPage: NextPage = () => {
                     const data = await putStorage(file)
     
                     if (isAdminPutStorageRequestValidationError(data)) {
-                        mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
+                        mainImageUrl.setErrors(data.errors.file)
                     }
                     mainImageUrl.set(data.url)
                 } catch (e) {
                     mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                }
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const onDropHandbillImage = (acceptedFiles) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = async (e) => {
+                try {
+                    const data = await putStorage(file)
+    
+                    if (isAdminPutStorageRequestValidationError(data)) {
+                        handbillImageUrl.setErrors(data.errors.file)
+                    }
+                    handbillImageUrl.set(data.url)
+                } catch (e) {
+                    handbillImageUrl.setError('エラーが発生しました。別の画像を試してください。')
                 }
             }
             reader.readAsDataURL(file)
@@ -199,6 +223,7 @@ const EditPage: NextPage = () => {
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
                     mainImageUrl: mainImageUrl.value,
+                    handbillImageUrl: handbillImageUrl.value,
                 } as UpdateCircleFormRequest
             )
 
@@ -250,6 +275,7 @@ const EditPage: NextPage = () => {
                 tiktokUrl.setErrors(data.errors.tiktokUrl)
                 participationUrl.setErrors(data.errors.participationUrl)
                 mainImageUrl.setErrors(data.errors.mainImageUrl)
+                handbillImageUrl.setErrors(data.errors.handbillImageUrl)
                 return
             }
 
@@ -269,6 +295,7 @@ const EditPage: NextPage = () => {
                         { circle ? (
                             <EditCircleForm
                                 onDropMainImage={onDropMainImage}
+                                onDropHandbillImage={onDropHandbillImage}
                                 onSubmit={onSubmit}
                                 form={{
                                     release,
@@ -318,6 +345,7 @@ const EditPage: NextPage = () => {
                                     tiktokUrl,
                                     participationUrl,
                                     mainImageUrl,
+                                    handbillImageUrl,
                                 }}
                             />
                         ) : (

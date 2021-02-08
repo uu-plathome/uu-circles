@@ -66,7 +66,7 @@ class CircleValueObject
     public static function byEloquent(
         Circle $circle,
         CircleInformation $circleInformation,
-        CircleHandbill $circleHandbill
+        ?CircleHandbill $circleHandbill
     ): CircleValueObject {
         $circleValueObject = new CircleValueObject();
         $circleValueObject->id = $circle->id;
@@ -119,7 +119,8 @@ class CircleValueObject
         $circleValueObject->created_at = $circle->created_at;
         $circleValueObject->updated_at = $circle->updated_at;
         $circleValueObject->main_image_url = $circleInformation->main_image_url;
-        $circleValueObject->handbill_image_url = $circleHandbill->image_url;
+        $circleValueObject->handbill_image_url = $circleHandbill ?  $circleHandbill->image_url : null;
+
         return $circleValueObject;
     }
 

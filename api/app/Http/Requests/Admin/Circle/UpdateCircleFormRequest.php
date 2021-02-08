@@ -152,9 +152,9 @@ class UpdateCircleFormRequest extends FormRequest
             new CircleInformation(
                 Arr::snake_keys($this->validated())
             ),
-            new CircleHandbill(
-                Arr::snake_keys($this->validated())
-            )
+            new CircleHandbill([
+                'image_url' => Arr::snake_keys($this->validated())['handbill_image_url']
+            ])
         );
     }
 }

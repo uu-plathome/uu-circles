@@ -28,7 +28,7 @@ class CreateCircleUsecase
 
             DB::commit();
 
-            return CircleValueObject::byEloquent($circle, $circleInformation);
+            return CircleValueObject::byEloquent($circle, $circleInformation, null);
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

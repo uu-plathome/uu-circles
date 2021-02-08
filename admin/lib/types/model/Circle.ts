@@ -48,6 +48,7 @@ export interface Circle {
   tiktokUrl: string
   participationUrl: string
   mainImageUrl: string
+  handbillImageUrl: string
   createdAt: string
   updatedAt: string
 }
