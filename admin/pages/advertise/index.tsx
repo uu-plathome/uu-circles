@@ -1,27 +1,26 @@
+import { useState } from 'react'
+import { NextPage } from 'next'
+import useSWR from 'swr'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdvertiseListItem } from '@/components/molecules/list_items/AdvertiseListItem'
 import { useSuccess } from '@/hooks/useSuccess'
 import { deleteAdvertise, getAdvertiseList } from '@/infra/api/advertise'
 import { Advertise } from '@/lib/types/model/Advertise'
-import { NextPage } from 'next'
-import { useEffect, useState } from 'react'
-import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 
 const IndexPage: NextPage = () => {
     const [ advertises, setAdvertise ] = useState<Advertise[]>([])
     const [ error, setError ] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
-
-    useEffect(() => {
-        const f = async () => {
-            setAdvertise(await getAdvertiseList())
-        }
-        f()
-    }, [])
+    
+    const fetchAdvertise = async () => {
+        setAdvertise(await getAdvertiseList())
+    }
+    useSWR('/admin/api/advertise', fetchAdvertise)
 
     const onDelete = async (advertiseId: number) => {
         setError('')
@@ -30,7 +29,7 @@ const IndexPage: NextPage = () => {
 
         if (data && data.type === 'Success') {
             setSuccess('広告を削除しました', 3000)
-            setAdvertise(await getAdvertiseList())
+            fetchAdvertise()
             return
         }
     }
