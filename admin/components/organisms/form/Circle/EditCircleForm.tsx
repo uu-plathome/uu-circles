@@ -2,6 +2,7 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseImageInput } from '@/components/atoms/form/BaseImageInput'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { FormHeader } from '@/components/atoms/header/FormHeader'
 import {
   UseBooleanInput,
   UseNumberInput,
@@ -11,24 +12,14 @@ import { __ } from '@/lang/ja'
 import { getAllCircleType } from '@/lib/enum/api/CircleType'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { FC, FormEvent } from 'react'
+import { CommonInfoEditCircleForm, Props as CommonInfoEditCircleFormProps } from './Parts/CommonInfoEditCircleForm'
+import { NameEditCircleForm, Props as NameEditCircleFormProps } from './Parts/NameEditCircleForm'
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
     release: UseBooleanInput
-    name: UseStringInput
-    slug: UseStringInput
-    nameKana: UseStringInput
-    shortName: UseStringInput
-    prefixName: UseStringInput
-    description: UseStringInput
-    intro: UseStringInput
-    isClubActivities: UseBooleanInput
-    appealingPoint1: UseStringInput
-    appealingPoint2: UseStringInput
-    appealingPoint3: UseStringInput
-    circleType: UseStringInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
     commonDateOfActivityMonday: UseBooleanInput
@@ -49,9 +40,6 @@ type Props = {
     onlineDateOfActivitySaturday: UseBooleanInput
     onlineDateOfActivitySunday: UseBooleanInput
     onlineDateOfActivityDetail: UseStringInput
-    admissionFeePerYear: UseNumberInput
-    numberOfMembers: UseNumberInput
-    publicEmail: UseStringInput
     twitterUrl: UseStringInput
     facebookUrl: UseStringInput
     instagramUrl: UseStringInput
@@ -62,131 +50,63 @@ type Props = {
     githubUrl: UseStringInput
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
-    mainImageUrl: UseStringInput
-  }
+  } & NameEditCircleFormProps['form'] & CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
-      <BaseSelect
-        label="公開設定"
-        id="release"
-        name="release"
-        items={[
-          { value: 'true', label: '公開' },
-          { value: 'false', label: '非公開' },
-        ]}
-        {...form.release}
-      />
 
-      <BaseTextField
-        label="サークル名"
-        name="name"
-        id="name"
-        required
-        expand
-        {...form.name}
-      />
+      <FormHeader>公開設定</FormHeader>
 
-      <BaseTextField
-        label="URLのパス"
-        name="slug"
-        id="slug"
-        placeholder="u-lab"
-        required
-        expand
-        note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-        {...form.slug}
-      />
+      <div className="mb-8">
+        <BaseSelect
+          label="公開設定"
+          id="release"
+          name="release"
+          items={[
+            { value: 'true', label: '公開' },
+            { value: 'false', label: '非公開' },
+          ]}
+          {...form.release}
+        />
+      </div>
 
-      <BaseTextField
-        label="サークル名(かな)"
-        name="nameKana"
-        id="nameKana"
-        expand
-        {...form.nameKana}
-      />
+      <FormHeader>サークル名情報</FormHeader>
 
-      <BaseTextField
-        label="サークル名(省略名)"
-        name="shortName"
-        id="shortName"
-        expand
-        {...form.shortName}
-      />
+      <div className="mb-8">
+        <NameEditCircleForm
+          form={{
+            name: form.name,
+            slug: form.slug,
+            nameKana: form.nameKana,
+            shortName: form.shortName,
+            prefixName: form.prefixName,
+          }}
+        />
+      </div>
 
-      <BaseTextField
-        label="サークル名(肩書)"
-        name="prefixName"
-        id="prefixName"
-        expand
-        {...form.prefixName}
-      />
+      <FormHeader>基本情報</FormHeader>
 
-      <BaseTextField
-        label="サークル短文紹介"
-        name="description"
-        id="description"
-        expand
-        {...form.description}
-      />
+      <div className="mb-8">
+        <CommonInfoEditCircleForm
+          onDropMainImage={onDropMainImage}
+          form={{
+            description: form.description,
+            intro: form.intro,
+            circleType: form.circleType,
+            appealingPoint1: form.appealingPoint1,
+            appealingPoint2: form.appealingPoint2,
+            appealingPoint3: form.appealingPoint3,
+            admissionFeePerYear: form.admissionFeePerYear,
+            numberOfMembers: form.numberOfMembers,
+            publicEmail: form.publicEmail,
+            mainImageUrl: form.mainImageUrl,
+            isClubActivities: form.isClubActivities,
+          }}
+        />
+      </div>
 
-      <BaseTextField
-        label="サークル長文紹介"
-        name="intro"
-        id="intro"
-        expand
-        {...form.intro}
-      />
-
-      <BaseTextField
-        label="アピールポイント1"
-        name="appealingPoint1"
-        id="appealingPoint1"
-        expand
-        {...form.appealingPoint1}
-      />
-
-      <BaseTextField
-        label="アピールポイント2"
-        name="appealingPoint2"
-        id="appealingPoint2"
-        expand
-        {...form.appealingPoint2}
-      />
-
-      <BaseTextField
-        label="アピールポイント3"
-        name="appealingPoint3"
-        id="appealingPoint3"
-        expand
-        {...form.appealingPoint3}
-      />
-
-      <BaseSelect
-        label="サークル種別"
-        id="circleType"
-        name="circleType"
-        items={[
-          ...getAllCircleType().map((_circleType) => ({
-            value: _circleType,
-            label: __(_circleType),
-          })),
-          { value: '', label: '不明' },
-        ]}
-        {...form.circleType}
-      />
-
-      <BaseSelect
-        label="部活かどうか"
-        id="isClubActivities"
-        name="isClubActivities"
-        items={[
-          { value: 'true', label: '部活' },
-          { value: 'false', label: '部活でない' },
-        ]}
-        {...form.isClubActivities}
-      />
+      <FormHeader>活動情報</FormHeader>
 
       <BaseSelect
         label="通常活動場所"
@@ -395,31 +315,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
         ''
       )}
 
-      <BaseTextField
-        label="年間費用"
-        name="admissionFee"
-        id="admissionFee"
-        placeholder="1000"
-        expand
-        {...form.admissionFeePerYear}
-      />
-
-      <BaseTextField
-        label="活動人数"
-        name="numberOfMembers"
-        id="numberOfMembers"
-        suffix="人"
-        {...form.numberOfMembers}
-      />
-
-      <BaseTextField
-        label="公開用メールアドレス"
-        name="publicEmail"
-        id="publicEmail"
-        placeholder="example@example.com"
-        expand
-        {...form.publicEmail}
-      />
+    <FormHeader>SNS情報</FormHeader>
 
       <div className="grid grid-cols-2 gap-x-4">
         <div>
@@ -527,18 +423,6 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onSubmit, form }) => {
           {...form.participationUrl}
         />
       </div>
-
-      <BaseImageInput
-        label="サークルビラ"
-        id="mainImageUrl"
-        preview={
-          form.mainImageUrl.value
-            ? form.mainImageUrl.value
-            : `/images/no-image.png`
-        }
-        onDrop={onDropMainImage}
-        error={form.mainImageUrl.error}
-      />
 
       <div className="flex justify-center mt-8">
         <GreenButton type="submit">更新</GreenButton>

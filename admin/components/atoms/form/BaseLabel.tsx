@@ -10,7 +10,7 @@ const BaseLabel: React.FC<Props> = ({ label, id, note, required }) => {
     return (
         <div className="flex items-center mb-1">
             <label
-                className="font-semibold text-white mr-2"
+                className="text-white mr-2"
                 htmlFor={id}
                 id={`base_label_${id}`}
             >{label}</label>
