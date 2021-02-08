@@ -5,6 +5,7 @@ namespace App\ValueObjects;
 use App\Enum\CircleInformationModel;
 use App\Enum\CircleModel;
 use App\Models\Circle;
+use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
 use Illuminate\Support\Carbon;
 
@@ -58,12 +59,14 @@ class CircleValueObject
     public ?string $tiktok_url;
     public ?string $participation_url;
     public ?string $main_image_url;
+    public ?string $handbill_image_url;
     public ?Carbon $created_at;
     public ?Carbon $updated_at;
 
     public static function byEloquent(
         Circle $circle,
-        CircleInformation $circleInformation
+        CircleInformation $circleInformation,
+        CircleHandbill $circleHandbill
     ): CircleValueObject {
         $circleValueObject = new CircleValueObject();
         $circleValueObject->id = $circle->id;
@@ -116,6 +119,7 @@ class CircleValueObject
         $circleValueObject->created_at = $circle->created_at;
         $circleValueObject->updated_at = $circle->updated_at;
         $circleValueObject->main_image_url = $circleInformation->main_image_url;
+        $circleValueObject->handbill_image_url = $circleHandbill->image_url;
         return $circleValueObject;
     }
 
@@ -183,6 +187,14 @@ class CircleValueObject
         ]);
     }
 
+    public function toCircleHandbill(): CircleHandbill
+    {
+        return new CircleHandbill([
+            'image_url' => $this->handbill_image_url,
+            'year'      => 2021,
+        ]);
+    }
+
     public function toArray(): array
     {
         return [
@@ -236,6 +248,7 @@ class CircleValueObject
             CircleInformationModel::tiktok_url => $this->tiktok_url,
             CircleInformationModel::participation_url => $this->participation_url,
             CircleInformationModel::main_image_url => $this->main_image_url,
+            'handbill_image_url' => $this->handbill_image_url,
         ];
     }
 }

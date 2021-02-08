@@ -8,6 +8,7 @@ use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
+use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
@@ -136,6 +137,7 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationModel::tiktok_url        => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationModel::participation_url => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationModel::main_image_url    => ['nullable', 'string', 'url', 'max:255'],
+            'handbill_image_url'                      => ['nullable', 'string', 'url', 'max:255'],
         ]);
     }
 
@@ -148,6 +150,9 @@ class UpdateCircleFormRequest extends FormRequest
         return CircleValueObject::byEloquent(
             $circle,
             new CircleInformation(
+                Arr::snake_keys($this->validated())
+            ),
+            new CircleHandbill(
                 Arr::snake_keys($this->validated())
             )
         );
