@@ -15,6 +15,7 @@ import { NameEditCircleForm, Props as NameEditCircleFormProps } from './Parts/Na
 type Props = {
   onDropMainImage(acceptedFiles: any): void
   onDropHandbillImage(acceptedFiles: any): void
+  onDropActivityImage(acceptedFiles: any, idx: 1|2|3|4|5|6): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
     release: UseBooleanInput
@@ -50,7 +51,7 @@ type Props = {
     participationUrl: UseStringInput
   } & NameEditCircleFormProps['form'] & CommonInfoEditCircleFormProps['form']
 }
-const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onSubmit, form }) => {
+const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDropActivityImage, onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
 
@@ -89,6 +90,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onSub
         <CommonInfoEditCircleForm
           onDropMainImage={onDropMainImage}
           onDropHandbillImage={onDropHandbillImage}
+          onDropActivityImage={onDropActivityImage}
           form={{
             description: form.description,
             intro: form.intro,
@@ -102,6 +104,12 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onSub
             mainImageUrl: form.mainImageUrl,
             handbillImageUrl: form.handbillImageUrl,
             isClubActivities: form.isClubActivities,
+            activityImageUrl1: form.activityImageUrl1,
+            activityImageUrl2: form.activityImageUrl2,
+            activityImageUrl3: form.activityImageUrl3,
+            activityImageUrl4: form.activityImageUrl4,
+            activityImageUrl5: form.activityImageUrl5,
+            activityImageUrl6: form.activityImageUrl6,
           }}
         />
       </div>
