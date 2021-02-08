@@ -55,6 +55,16 @@ class Circle extends Model
     }
 
     /**
+     * 新歓ビラ
+     *
+     * @return HasOne
+     */
+    public function circleHandbill(): HasOne
+    {
+        return $this->hasOne(CircleHandbill::class);
+    }
+
+    /**
      * 現在公開中の新歓を取得する
      *
      * @return void

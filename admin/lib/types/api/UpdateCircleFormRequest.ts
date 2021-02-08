@@ -50,6 +50,7 @@ export interface UpdateCircleFormRequest {
     tiktokUrl?: string
     participationUrl?: string
     mainImageUrl?: string
+    handbillImageUrl?: string
 }
 
 /**
@@ -105,6 +106,7 @@ export interface UpdateCircleFormRequestValidationError {
         tiktokUrl?: string[]
         participationUrl?: string[]
         mainImageUrl?: string[]
+        handbillImageUrl?: string[]
     }
     message: string
 }

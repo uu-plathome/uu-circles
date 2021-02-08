@@ -26,12 +26,14 @@ class UpdateCircleUsecase
             $newCircle = Circle::whereId($circleValueObject->id)->firstOrFail();
             $newCircle->fill($circleValueObject->toArray())->save();
             $newCircle->circleInformation->fill($circleValueObject->toArray())->save();
+            $newCircle->circleHandbill->fill($circleValueObject->toArray())->save();
 
             DB::commit();
 
             return CircleValueObject::byEloquent(
                 $newCircle,
-                $newCircle->circleInformation
+                $newCircle->circleInformation,
+                $newCircle->circleHandbill
             );
         } catch (Exception $e) {
             DB::rollBack();
