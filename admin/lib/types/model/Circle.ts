@@ -49,6 +49,12 @@ export interface Circle {
   participationUrl: string
   mainImageUrl: string
   handbillImageUrl: string
+  activityImageUrl1: string
+  activityImageUrl2: string
+  activityImageUrl3: string
+  activityImageUrl4: string
+  activityImageUrl5: string
+  activityImageUrl6: string
   createdAt: string
   updatedAt: string
 }

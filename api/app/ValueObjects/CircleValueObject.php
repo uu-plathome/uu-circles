@@ -59,6 +59,12 @@ class CircleValueObject
     public ?string $tiktok_url;
     public ?string $participation_url;
     public ?string $main_image_url;
+    public ?string $activity_image_url1;
+    public ?string $activity_image_url2;
+    public ?string $activity_image_url3;
+    public ?string $activity_image_url4;
+    public ?string $activity_image_url5;
+    public ?string $activity_image_url6;
     public ?string $handbill_image_url;
     public ?Carbon $created_at;
     public ?Carbon $updated_at;
@@ -119,6 +125,12 @@ class CircleValueObject
         $circleValueObject->created_at = $circle->created_at;
         $circleValueObject->updated_at = $circle->updated_at;
         $circleValueObject->main_image_url = $circleInformation->main_image_url;
+        $circleValueObject->activity_image_url1 = $circleInformation->activity_image_url1;
+        $circleValueObject->activity_image_url2 = $circleInformation->activity_image_url2;
+        $circleValueObject->activity_image_url3 = $circleInformation->activity_image_url3;
+        $circleValueObject->activity_image_url4 = $circleInformation->activity_image_url4;
+        $circleValueObject->activity_image_url5 = $circleInformation->activity_image_url5;
+        $circleValueObject->activity_image_url6 = $circleInformation->activity_image_url6;
         $circleValueObject->handbill_image_url = $circleHandbill ?  $circleHandbill->image_url : null;
 
         return $circleValueObject;
@@ -185,6 +197,12 @@ class CircleValueObject
             CircleInformationModel::tiktok_url => $this->tiktok_url,
             CircleInformationModel::participation_url => $this->participation_url,
             CircleInformationModel::main_image_url => $this->main_image_url,
+            CircleInformationModel::activity_image_url1 => $this->activity_image_url1,
+            CircleInformationModel::activity_image_url2 => $this->activity_image_url2,
+            CircleInformationModel::activity_image_url3 => $this->activity_image_url3,
+            CircleInformationModel::activity_image_url4 => $this->activity_image_url4,
+            CircleInformationModel::activity_image_url5 => $this->activity_image_url5,
+            CircleInformationModel::activity_image_url6 => $this->activity_image_url6,
         ]);
     }
 
@@ -249,6 +267,12 @@ class CircleValueObject
             CircleInformationModel::tiktok_url => $this->tiktok_url,
             CircleInformationModel::participation_url => $this->participation_url,
             CircleInformationModel::main_image_url => $this->main_image_url,
+            CircleInformationModel::activity_image_url1 => $this->activity_image_url1,
+            CircleInformationModel::activity_image_url2 => $this->activity_image_url2,
+            CircleInformationModel::activity_image_url3 => $this->activity_image_url3,
+            CircleInformationModel::activity_image_url4 => $this->activity_image_url4,
+            CircleInformationModel::activity_image_url5 => $this->activity_image_url5,
+            CircleInformationModel::activity_image_url6 => $this->activity_image_url6,
             'handbill_image_url' => $this->handbill_image_url,
         ];
     }

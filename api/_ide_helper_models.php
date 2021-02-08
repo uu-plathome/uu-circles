@@ -68,6 +68,7 @@ namespace App\Models{
  * @property bool $release
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\CircleHandbill|null $circleHandbill
  * @property-read \App\Models\CircleInformation|null $circleInformation
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleInvitation[] $circleInvitation
  * @property-read int|null $circle_invitation_count
@@ -85,6 +86,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereUpdatedAt($value)
  */
 	class Circle extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CircleHandbill
+ *
+ * @property int $id
+ * @property int $circle_id
+ * @property string $image_url
+ * @property int|null $year
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereCircleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill whereYear($value)
+ */
+	class CircleHandbill extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -122,7 +146,7 @@ namespace App\Models{
  * @property string|null $online_date_of_activity_detail オンライン活動日時詳細
  * @property int|null $admission_fee_per_year 年間費用
  * @property int|null $number_of_members 所属人数
- * @property int|null $is_club_activities 部活の有無
+ * @property int|null $is_club_activities 部活かどうか
  * @property string|null $appealing_point1 アピールポイント1
  * @property string|null $appealing_point2 アピールポイント2
  * @property string|null $appealing_point3 アピールポイント3
@@ -138,12 +162,24 @@ namespace App\Models{
  * @property string|null $tiktok_url Tiktok URL
  * @property string|null $participation_url 参加フォーム用のURL
  * @property string|null $main_image_url メイン画像
+ * @property string|null $activity_image_url1 活動画像1
+ * @property string|null $activity_image_url2 活動画像2
+ * @property string|null $activity_image_url3 活動画像3
+ * @property string|null $activity_image_url4 活動画像4
+ * @property string|null $activity_image_url5 活動画像5
+ * @property string|null $activity_image_url6 活動画像6
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Circle $circle
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl5($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl6($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereAdmissionFeePerYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereAppealingPoint1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereAppealingPoint2($value)
@@ -233,8 +269,7 @@ namespace App\Models{
  * @property string|null $url サークル新歓 URL
  * @property string|null $place_of_activity 活動場所
  * @property string|null $place_of_activity_detail 活動場所詳細
- * @property \datetime|null $publish_from 公開開始日時
- * @property \datetime|null $publish_to 公開終了日時
+ * @property \datetime|null $publish_from 予約投稿
  * @property \datetime|null $start_date 新歓開始日時
  * @property \datetime|null $end_date 新歓終了日時
  * @property bool $release 公開設定
@@ -253,7 +288,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivityDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePublishFrom($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePublishTo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereRelease($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereTitle($value)

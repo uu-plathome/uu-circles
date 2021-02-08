@@ -55,6 +55,12 @@ class CircleInformation extends Model
         CircleInformationModel::tiktok_url,
         CircleInformationModel::participation_url,
         CircleInformationModel::main_image_url,
+        CircleInformationModel::activity_image_url1,
+        CircleInformationModel::activity_image_url2,
+        CircleInformationModel::activity_image_url3,
+        CircleInformationModel::activity_image_url4,
+        CircleInformationModel::activity_image_url5,
+        CircleInformationModel::activity_image_url6,
     ];
 
     public function circle(): BelongsTo
