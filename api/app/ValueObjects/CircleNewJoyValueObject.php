@@ -17,7 +17,6 @@ class CircleNewJoyValueObject
     public ?string $place_of_activity;
     public ?string $place_of_activity_detail;
     public ?Carbon $publish_from;
-    public ?Carbon $publish_to;
     public ?Carbon $start_date;
     public ?Carbon $end_date;
     public ?bool $release;
@@ -37,9 +36,6 @@ class CircleNewJoyValueObject
 
         $publishFrom = Arr::get($inputs, CircleNewJoyModel::publish_from);
         $circleNewJoyValueObject->publish_from = is_string($publishFrom) ? new Carbon($publishFrom) : $publishFrom;
-
-        $publishTo = Arr::get($inputs, CircleNewJoyModel::publish_to);
-        $circleNewJoyValueObject->publish_to = is_string($publishTo) ? new Carbon($publishTo) : $publishTo;
 
         $startDate = Arr::get($inputs, CircleNewJoyModel::start_date);
         $circleNewJoyValueObject->start_date = is_string($startDate) ? new Carbon($startDate) : $startDate;
@@ -82,7 +78,6 @@ class CircleNewJoyValueObject
             CircleNewJoyModel::place_of_activity => $this->place_of_activity,
             CircleNewJoyModel::place_of_activity_detail => $this->place_of_activity_detail,
             CircleNewJoyModel::publish_from => $this->publish_from,
-            CircleNewJoyModel::publish_to => $this->publish_to,
             CircleNewJoyModel::start_date => $this->start_date,
             CircleNewJoyModel::end_date => $this->end_date,
             CircleNewJoyModel::release => $this->release,
