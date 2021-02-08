@@ -116,6 +116,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 id="publicEmail"
                 placeholder="example@example.com"
                 expand
+                note="迷惑メールなどが来る可能性がございます。メールアドレスの公開は慎重に考えてお願いします。"
                 {...form.publicEmail}
             />
 
