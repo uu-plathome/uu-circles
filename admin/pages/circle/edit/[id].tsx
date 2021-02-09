@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
+import Compressor from 'compressorjs'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -140,19 +141,28 @@ const EditPage: NextPage = () => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
             reader.onload = async (e) => {
-                try {
-                    const data = await putStorage(file)
-    
-                    if (isAdminPutStorageRequestValidationError(data)) {
-                        mainImageUrl.setErrors(data.errors.file)
-                    }
-                    mainImageUrl.set(data.url)
-                } catch (e) {
-                    mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
-                }
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            // Send the compressed image file to server with XMLHttpRequest.
+                            const data = await putStorage(result)
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                mainImageUrl.setErrors(data.errors.file)
+                            }
+                            mainImageUrl.set(data.url)
+                        } catch (e) {
+                            mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
             }
             reader.readAsDataURL(file)
         })
@@ -165,16 +175,25 @@ const EditPage: NextPage = () => {
             reader.onabort = () => console.log('file reading was aborted')
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = async (e) => {
-                try {
-                    const data = await putStorage(file)
-    
-                    if (isAdminPutStorageRequestValidationError(data)) {
-                        handbillImageUrl.setErrors(data.errors.file)
-                    }
-                    handbillImageUrl.set(data.url)
-                } catch (e) {
-                    handbillImageUrl.setError('エラーが発生しました。別の画像を試してください。')
-                }
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            // Send the compressed image file to server with XMLHttpRequest.
+                            const data = await putStorage(result)
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                handbillImageUrl.setErrors(data.errors.file)
+                            }
+                            handbillImageUrl.set(data.url)
+                        } catch (e) {
+                            handbillImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
             }
             reader.readAsDataURL(file)
         })
@@ -184,72 +203,81 @@ const EditPage: NextPage = () => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
             reader.onload = async (e) => {
-                try {
-                    const data = await putStorage(file)
-
-                    switch (idx) {
-                        case 1:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl1.setErrors(data.errors.file)
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            const data = await putStorage(result)
+        
+                            switch (idx) {
+                                case 1:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl1.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl1.set(data.url)
+                                    break
+                                case 2:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl2.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl2.set(data.url)
+                                    break
+                                case 3:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl3.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl3.set(data.url)
+                                    break
+                                case 4:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl4.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl4.set(data.url)
+                                    break
+                                case 5:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl5.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl5.set(data.url)
+                                    break
+                                case 6:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl6.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl6.set(data.url)
+                                    break
                             }
-                            activityImageUrl1.set(data.url)
-                            break
-                        case 2:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl2.setErrors(data.errors.file)
+                        } catch (e) {
+                            switch (idx) {
+                                case 1:
+                                    activityImageUrl1.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 2:
+                                    activityImageUrl2.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 3:
+                                    activityImageUrl3.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 4:
+                                    activityImageUrl4.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 5:
+                                    activityImageUrl5.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 6:
+                                    activityImageUrl6.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
                             }
-                            activityImageUrl2.set(data.url)
-                            break
-                        case 3:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl3.setErrors(data.errors.file)
-                            }
-                            activityImageUrl3.set(data.url)
-                            break
-                        case 4:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl4.setErrors(data.errors.file)
-                            }
-                            activityImageUrl4.set(data.url)
-                            break
-                        case 5:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl5.setErrors(data.errors.file)
-                            }
-                            activityImageUrl5.set(data.url)
-                            break
-                        case 6:
-                            if (isAdminPutStorageRequestValidationError(data)) {
-                                activityImageUrl6.setErrors(data.errors.file)
-                            }
-                            activityImageUrl6.set(data.url)
-                            break
-                    }
-                } catch (e) {
-                    switch (idx) {
-                        case 1:
-                            activityImageUrl1.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                        case 2:
-                            activityImageUrl2.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                        case 3:
-                            activityImageUrl3.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                        case 4:
-                            activityImageUrl4.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                        case 5:
-                            activityImageUrl5.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                        case 6:
-                            activityImageUrl6.setError('エラーが発生しました。別の画像を試してください。')
-                            break
-                    }
-                }
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
             }
             reader.readAsDataURL(file)
         })
