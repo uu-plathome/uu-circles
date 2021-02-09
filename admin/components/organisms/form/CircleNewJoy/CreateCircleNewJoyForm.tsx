@@ -1,6 +1,7 @@
 import { GreenButton } from "@/components/atoms/buttons/GreenButton";
 import { BaseSelect } from "@/components/atoms/form/BaseSelect";
 import { BaseTextField } from "@/components/atoms/form/BaseTextField";
+import { BaseDate } from "@/components/atoms/form/BaseDate";
 import { UseBooleanInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
 import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
@@ -79,7 +80,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                 { ...form.placeOfActivityDetail }
             />
 
-            <BaseTextField
+            <BaseDate 
                 label="予約投稿"
                 name="publishFrom"
                 id="publishFrom"

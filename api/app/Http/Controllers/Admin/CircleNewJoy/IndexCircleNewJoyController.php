@@ -33,7 +33,8 @@ class IndexCircleNewJoyController extends Controller
         return [
             'circle' => Arr::camel_keys(CircleValueObject::byEloquent(
                 $circle,
-                $circle->circleInformation
+                $circle->circleInformation,
+                null
             )->toArray()),
 
             'circleNewJoys' => Arr::camel_keys(
