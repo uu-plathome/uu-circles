@@ -1,6 +1,6 @@
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { useBooleanInput, useStringInput } from '@/hooks/useInput'
+import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -19,9 +19,9 @@ const CreatePage: NextPage = () => {
     const url = useStringInput('')
     const placeOfActivity = useStringInput('')
     const placeOfActivityDetail = useStringInput('')
-    const publishFrom = useStringInput('')
-    const startDate = useStringInput('')
-    const endDate = useStringInput('')
+    const publishFrom = useDateInput(null)
+    const startDate = useDateInput(null)
+    const endDate = useDateInput(null)
     const release = useBooleanInput(true)
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {

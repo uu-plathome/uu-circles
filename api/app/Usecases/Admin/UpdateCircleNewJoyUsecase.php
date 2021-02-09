@@ -24,7 +24,7 @@ class UpdateCircleNewJoyUsecase
         int $circleNewJoyId,
         CircleNewJoyValueObject $circleNewJoyValueObject
     ) {
-        $newCircleNewJoy = $circleNewJoyValueObject->except(['id']);
+        $newCircleNewJoy = $circleNewJoyValueObject->except(['id', 'circle_id']);
 
         DB::beginTransaction();
         try {

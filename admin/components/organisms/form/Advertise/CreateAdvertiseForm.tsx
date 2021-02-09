@@ -1,8 +1,9 @@
 import { GreenButton } from "@/components/atoms/buttons/GreenButton";
+import { BaseDate } from "@/components/atoms/form/BaseDate";
 import { BaseImageInput } from "@/components/atoms/form/BaseImageInput";
 import { BaseSelect } from "@/components/atoms/form/BaseSelect";
 import { BaseTextField } from "@/components/atoms/form/BaseTextField";
-import { UseBooleanInput, UseStringInput } from "@/hooks/useInput";
+import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { FC, FormEvent } from "react";
 
 type Props = {
@@ -12,8 +13,8 @@ type Props = {
         title: UseStringInput
         mainImageUrl: UseStringInput
         active: UseBooleanInput
-        publishTo: UseStringInput
-        publishFrom: UseStringInput
+        publishTo: UseDateInput
+        publishFrom: UseDateInput
     }
 }
 const CreateAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
@@ -38,19 +39,17 @@ const CreateAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => 
                 { ...form.active }
             />
 
-            <BaseTextField
+            <BaseDate
                 label="公開開始日時"
                 name="publishFrom"
                 id="publishFrom"
-                type="date"
                 { ...form.publishFrom }
             />
 
-            <BaseTextField
+            <BaseDate
                 label="公開終了日時"
                 name="publishTo"
                 id="publishTo"
-                type="date"
                 { ...form.publishTo }
             />
 
