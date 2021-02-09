@@ -16,4 +16,9 @@ class CircleUser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function circle(): BelongsTo
+    {
+        return $this->belongsTo(Circle::class);
+    }
 }

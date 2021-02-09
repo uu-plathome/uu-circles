@@ -1,22 +1,19 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
+import Compressor from 'compressorjs'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleForm'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useNumberInput, useStringInput } from '@/hooks/useInput'
 import { showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
-import { __ } from '@/lang/ja'
-import { isDateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 
 const EditPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
     const name = useStringInput('')
@@ -28,18 +25,31 @@ const EditPage: NextPage = () => {
     const prefixName = useStringInput('')
     const description = useStringInput('')
     const intro = useStringInput('')
-    const placeOfActivity = useStringInput('')
-    const placeOfActivityDetail = useStringInput('')
-    const doOnlineActivity = useBooleanInput(true)
-    const dateOfActivityMonday = useStringInput('')
-    const dateOfActivityTuesday = useStringInput('')
-    const dateOfActivityWednesday = useStringInput('')
-    const dateOfActivityThursday = useStringInput('')
-    const dateOfActivityFriday = useStringInput('')
-    const dateOfActivitySaturday = useStringInput('')
-    const dateOfActivitySunday = useStringInput('')
-    const dateOfActivityDetail = useStringInput('')
-    const admissionFee = useStringInput('')
+    const isClubActivities = useBooleanInput(false)
+    const appealingPoint1 = useStringInput('')
+    const appealingPoint2 = useStringInput('')
+    const appealingPoint3 = useStringInput('')
+    const commonPlaceOfActivity = useStringInput('')
+    const commonPlaceOfActivityDetail = useStringInput('')
+    const commonDateOfActivityMonday = useBooleanInput(false)
+    const commonDateOfActivityTuesday = useBooleanInput(false)
+    const commonDateOfActivityWednesday = useBooleanInput(false)
+    const commonDateOfActivityThursday = useBooleanInput(false)
+    const commonDateOfActivityFriday = useBooleanInput(false)
+    const commonDateOfActivitySaturday = useBooleanInput(false)
+    const commonDateOfActivitySunday = useBooleanInput(false)
+    const commonDateOfActivityDetail = useStringInput('')
+    const isOnlineActivity = useBooleanInput(true)
+    const onlinePlaceOfActivityDetail = useStringInput('')
+    const onlineDateOfActivityMonday = useBooleanInput(false)
+    const onlineDateOfActivityTuesday = useBooleanInput(false)
+    const onlineDateOfActivityWednesday = useBooleanInput(false)
+    const onlineDateOfActivityThursday = useBooleanInput(false)
+    const onlineDateOfActivityFriday = useBooleanInput(false)
+    const onlineDateOfActivitySaturday = useBooleanInput(false)
+    const onlineDateOfActivitySunday = useBooleanInput(false)
+    const onlineDateOfActivityDetail = useStringInput('')
+    const admissionFeePerYear = useNumberInput(0)
     const numberOfMembers = useNumberInput(0)
     const publicEmail = useStringInput('')
     const twitterUrl = useStringInput('')
@@ -53,74 +63,221 @@ const EditPage: NextPage = () => {
     const tiktokUrl = useStringInput('')
     const participationUrl = useStringInput('')
     const mainImageUrl = useStringInput('')
+    const handbillImageUrl = useStringInput('')
+    const activityImageUrl1 = useStringInput('')
+    const activityImageUrl2 = useStringInput('')
+    const activityImageUrl3 = useStringInput('')
+    const activityImageUrl4 = useStringInput('')
+    const activityImageUrl5 = useStringInput('')
+    const activityImageUrl6 = useStringInput('')
     const { id } = router.query
 
     useEffect(() => {
         const f = async () => {
-            if (!Array.isArray(id)) {
-                const foundCircle = await showCircle(Number(id), authContext.accessToken)
-                setCircle(foundCircle)
-                if (foundCircle) {
-                    name.set(foundCircle.name)
-                    slug.set(foundCircle.slug)
-                    release.set(foundCircle.release)
-                    nameKana.set(foundCircle.nameKana)
-                    shortName.set(foundCircle.shortName)
-                    prefixName.set(foundCircle.prefixName)
-                    description.set(foundCircle.description)
-                    intro.set(foundCircle.intro)
-                    circleType.set(foundCircle.circleType)
-                    placeOfActivity.set(foundCircle.placeOfActivity)
-                    placeOfActivityDetail.set(foundCircle.placeOfActivityDetail)
-                    doOnlineActivity.set(foundCircle.doOnlineActivity)
-                    dateOfActivityMonday.set(foundCircle.dateOfActivityMonday)
-                    dateOfActivityTuesday.set(foundCircle.dateOfActivityTuesday)
-                    dateOfActivityWednesday.set(foundCircle.dateOfActivityWednesday)
-                    dateOfActivityThursday.set(foundCircle.dateOfActivityThursday)
-                    dateOfActivityFriday.set(foundCircle.dateOfActivityFriday)
-                    dateOfActivitySaturday.set(foundCircle.dateOfActivitySaturday)
-                    dateOfActivitySunday.set(foundCircle.dateOfActivitySunday)
-                    dateOfActivityDetail.set(foundCircle.dateOfActivityDetail)
-                    admissionFee.set(foundCircle.admissionFee)
-                    numberOfMembers.set(foundCircle.numberOfMembers)
-                    publicEmail.set(foundCircle.publicEmail)
-                    twitterUrl.set(foundCircle.twitterUrl)
-                    facebookUrl.set(foundCircle.facebookUrl)
-                    instagramUrl.set(foundCircle.instagramUrl)
-                    lineUrl.set(foundCircle.lineUrl)
-                    youtubeUrl.set(foundCircle.youtubeUrl)
-                    homepageUrl.set(foundCircle.homepageUrl)
-                    peingUrl.set(foundCircle.peingUrl)
-                    githubUrl.set(foundCircle.githubUrl)
-                    tiktokUrl.set(foundCircle.tiktokUrl)
-                    participationUrl.set(foundCircle.participationUrl)
-                    mainImageUrl.set(foundCircle.mainImageUrl)
-                }
+            const foundCircle = await showCircle(Number(id))
+            setCircle(foundCircle)
+            if (foundCircle) {
+                name.set(foundCircle.name)
+                slug.set(foundCircle.slug)
+                release.set(foundCircle.release)
+                nameKana.set(foundCircle.nameKana)
+                shortName.set(foundCircle.shortName)
+                prefixName.set(foundCircle.prefixName)
+                description.set(foundCircle.description)
+                intro.set(foundCircle.intro)
+                circleType.set(foundCircle.circleType)
+                isClubActivities.set(foundCircle.isClubActivities)
+                appealingPoint1.set(foundCircle.appealingPoint1)
+                appealingPoint2.set(foundCircle.appealingPoint2)
+                appealingPoint3.set(foundCircle.appealingPoint3)
+                commonPlaceOfActivity.set(foundCircle.commonPlaceOfActivity)
+                commonPlaceOfActivityDetail.set(foundCircle.commonPlaceOfActivityDetail)
+                commonDateOfActivityMonday.set(foundCircle.commonDateOfActivityMonday)
+                commonDateOfActivityTuesday.set(foundCircle.commonDateOfActivityTuesday)
+                commonDateOfActivityWednesday.set(foundCircle.commonDateOfActivityWednesday)
+                commonDateOfActivityThursday.set(foundCircle.commonDateOfActivityThursday)
+                commonDateOfActivityFriday.set(foundCircle.commonDateOfActivityFriday)
+                commonDateOfActivitySaturday.set(foundCircle.commonDateOfActivitySaturday)
+                commonDateOfActivitySunday.set(foundCircle.commonDateOfActivitySunday)
+                commonDateOfActivityDetail.set(foundCircle.commonDateOfActivityDetail)
+                isOnlineActivity.set(foundCircle.isOnlineActivity)
+                onlinePlaceOfActivityDetail.set(foundCircle.onlinePlaceOfActivityDetail)
+                onlineDateOfActivityMonday.set(foundCircle.onlineDateOfActivityMonday)
+                onlineDateOfActivityTuesday.set(foundCircle.onlineDateOfActivityTuesday)
+                onlineDateOfActivityWednesday.set(foundCircle.onlineDateOfActivityWednesday)
+                onlineDateOfActivityThursday.set(foundCircle.onlineDateOfActivityThursday)
+                onlineDateOfActivityFriday.set(foundCircle.onlineDateOfActivityFriday)
+                onlineDateOfActivitySaturday.set(foundCircle.onlineDateOfActivitySaturday)
+                onlineDateOfActivitySunday.set(foundCircle.onlineDateOfActivitySunday)
+                onlineDateOfActivityDetail.set(foundCircle.onlineDateOfActivityDetail)
+                admissionFeePerYear.set(foundCircle.admissionFeePerYear)
+                numberOfMembers.set(foundCircle.numberOfMembers)
+                publicEmail.set(foundCircle.publicEmail)
+                twitterUrl.set(foundCircle.twitterUrl)
+                facebookUrl.set(foundCircle.facebookUrl)
+                instagramUrl.set(foundCircle.instagramUrl)
+                lineUrl.set(foundCircle.lineUrl)
+                youtubeUrl.set(foundCircle.youtubeUrl)
+                homepageUrl.set(foundCircle.homepageUrl)
+                peingUrl.set(foundCircle.peingUrl)
+                githubUrl.set(foundCircle.githubUrl)
+                tiktokUrl.set(foundCircle.tiktokUrl)
+                participationUrl.set(foundCircle.participationUrl)
+                mainImageUrl.set(foundCircle.mainImageUrl)
+                handbillImageUrl.set(foundCircle.handbillImageUrl)
+                activityImageUrl1.set(foundCircle.activityImageUrl1)
+                activityImageUrl2.set(foundCircle.activityImageUrl2)
+                activityImageUrl3.set(foundCircle.activityImageUrl3)
+                activityImageUrl4.set(foundCircle.activityImageUrl4)
+                activityImageUrl5.set(foundCircle.activityImageUrl5)
+                activityImageUrl6.set(foundCircle.activityImageUrl6)
             }
         }
 
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken, id ])
+        f()
+    }, [])
 
     const onDropMainImage = (acceptedFiles) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
+            reader.onload = async (e) => {
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            // Send the compressed image file to server with XMLHttpRequest.
+                            const data = await putStorage(result)
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                mainImageUrl.setErrors(data.errors.file)
+                            }
+                            mainImageUrl.set(data.url)
+                        } catch (e) {
+                            mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const onDropHandbillImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
             reader.onabort = () => console.log('file reading was aborted')
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = async (e) => {
-                try {
-                    const data = await putStorage(file, authContext.accessToken)
-    
-                    if (isAdminPutStorageRequestValidationError(data)) {
-                        mainImageUrl.setError(data.errors.file && Array.isArray(data.errors.file) ? data.errors.file[0] : '')
-                    }
-                    mainImageUrl.set(data.url)
-                } catch (e) {
-                    mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
-                }
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            // Send the compressed image file to server with XMLHttpRequest.
+                            const data = await putStorage(result)
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                handbillImageUrl.setErrors(data.errors.file)
+                            }
+                            handbillImageUrl.set(data.url)
+                        } catch (e) {
+                            handbillImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+    const onDropActivityImage  = (acceptedFiles: any, idx: 1|2|3|4|5|6) => {
+        acceptedFiles.forEach((file: Blob) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
+            reader.onload = async (e) => {
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            const data = await putStorage(result)
+        
+                            switch (idx) {
+                                case 1:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl1.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl1.set(data.url)
+                                    break
+                                case 2:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl2.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl2.set(data.url)
+                                    break
+                                case 3:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl3.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl3.set(data.url)
+                                    break
+                                case 4:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl4.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl4.set(data.url)
+                                    break
+                                case 5:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl5.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl5.set(data.url)
+                                    break
+                                case 6:
+                                    if (isAdminPutStorageRequestValidationError(data)) {
+                                        activityImageUrl6.setErrors(data.errors.file)
+                                    }
+                                    activityImageUrl6.set(data.url)
+                                    break
+                            }
+                        } catch (e) {
+                            switch (idx) {
+                                case 1:
+                                    activityImageUrl1.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 2:
+                                    activityImageUrl2.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 3:
+                                    activityImageUrl3.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 4:
+                                    activityImageUrl4.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 5:
+                                    activityImageUrl5.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                                case 6:
+                                    activityImageUrl6.setError('エラーが発生しました。別の画像を試してください。')
+                                    break
+                            }
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
             }
             reader.readAsDataURL(file)
         })
@@ -143,18 +300,31 @@ const EditPage: NextPage = () => {
                     prefixName: prefixName.value,
                     description: description.value,
                     intro: intro.value,
-                    placeOfActivity: placeOfActivity.value,
-                    placeOfActivityDetail: placeOfActivityDetail.value,
-                    doOnlineActivity: doOnlineActivity.toBoolean,
-                    dateOfActivityMonday: isDateOfActivity(dateOfActivityMonday.value) ? dateOfActivityMonday.value : null,
-                    dateOfActivityTuesday: isDateOfActivity(dateOfActivityTuesday.value) ? dateOfActivityTuesday.value: null,
-                    dateOfActivityWednesday: isDateOfActivity(dateOfActivityWednesday.value) ? dateOfActivityWednesday.value: null,
-                    dateOfActivityThursday: isDateOfActivity(dateOfActivityThursday.value) ? dateOfActivityThursday.value: null,
-                    dateOfActivityFriday: isDateOfActivity(dateOfActivityFriday.value) ? dateOfActivityFriday.value: null,
-                    dateOfActivitySaturday: isDateOfActivity(dateOfActivitySaturday.value) ? dateOfActivitySaturday.value: null,
-                    dateOfActivitySunday: isDateOfActivity(dateOfActivitySunday.value) ? dateOfActivitySunday.value: null,
-                    dateOfActivityDetail: dateOfActivityDetail.value,
-                    admissionFee: admissionFee.value,
+                    commonPlaceOfActivity: commonPlaceOfActivity.value,
+                    isClubActivities: isClubActivities.toBoolean,
+                    appealingPoint1: appealingPoint1.value,
+                    appealingPoint2: appealingPoint2.value,
+                    appealingPoint3: appealingPoint3.value,
+                    commonPlaceOfActivityDetail: commonPlaceOfActivityDetail.value,
+                    commonDateOfActivityMonday: commonDateOfActivityMonday.toBoolean,
+                    commonDateOfActivityTuesday: commonDateOfActivityTuesday.toBoolean,
+                    commonDateOfActivityWednesday: commonDateOfActivityWednesday.toBoolean,
+                    commonDateOfActivityThursday: commonDateOfActivityThursday.toBoolean,
+                    commonDateOfActivityFriday: commonDateOfActivityFriday.toBoolean,
+                    commonDateOfActivitySaturday: commonDateOfActivitySaturday.toBoolean,
+                    commonDateOfActivitySunday: commonDateOfActivitySunday.toBoolean,
+                    commonDateOfActivityDetail: commonDateOfActivityDetail.value,
+                    isOnlineActivity: isOnlineActivity.toBoolean,
+                    onlinePlaceOfActivityDetail: onlinePlaceOfActivityDetail.value,
+                    onlineDateOfActivityMonday: onlineDateOfActivityMonday.toBoolean,
+                    onlineDateOfActivityTuesday: onlineDateOfActivityTuesday.toBoolean,
+                    onlineDateOfActivityWednesday: onlineDateOfActivityWednesday.toBoolean,
+                    onlineDateOfActivityThursday: onlineDateOfActivityThursday.toBoolean,
+                    onlineDateOfActivityFriday: onlineDateOfActivityFriday.toBoolean,
+                    onlineDateOfActivitySaturday: onlineDateOfActivitySaturday.toBoolean,
+                    onlineDateOfActivitySunday: onlineDateOfActivitySunday.toBoolean,
+                    onlineDateOfActivityDetail: onlineDateOfActivityDetail.value,
+                    admissionFeePerYear: admissionFeePerYear.toNumber,
                     numberOfMembers: numberOfMembers.toNumber,
                     publicEmail: publicEmail.value,
                     twitterUrl: twitterUrl.value,
@@ -168,8 +338,14 @@ const EditPage: NextPage = () => {
                     tiktokUrl: tiktokUrl.value,
                     participationUrl: participationUrl.value,
                     mainImageUrl: mainImageUrl.value,
-                } as UpdateCircleFormRequest,
-                authContext.accessToken
+                    handbillImageUrl: handbillImageUrl.value,
+                    activityImageUrl1: activityImageUrl1.value,
+                    activityImageUrl2: activityImageUrl2.value,
+                    activityImageUrl3: activityImageUrl3.value,
+                    activityImageUrl4: activityImageUrl4.value,
+                    activityImageUrl5: activityImageUrl5.value,
+                    activityImageUrl6: activityImageUrl6.value,
+                } as UpdateCircleFormRequest
             )
 
             if (isUpdateCircleFormRequestValidationError(data)) {
@@ -182,18 +358,31 @@ const EditPage: NextPage = () => {
                 prefixName.setErrors(data.errors.prefixName)
                 description.setErrors(data.errors.description)
                 intro.setErrors(data.errors.intro)
-                placeOfActivity.setErrors(data.errors.placeOfActivity)
-                placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
-                doOnlineActivity.setErrors(data.errors.doOnlineActivity)
-                dateOfActivityMonday.setErrors(data.errors.dateOfActivityMonday)
-                dateOfActivityTuesday.setErrors(data.errors.dateOfActivityTuesday)
-                dateOfActivityWednesday.setErrors(data.errors.dateOfActivityWednesday)
-                dateOfActivityThursday.setErrors(data.errors.dateOfActivityThursday)
-                dateOfActivityFriday.setErrors(data.errors.dateOfActivityFriday)
-                dateOfActivitySaturday.setErrors(data.errors.dateOfActivitySaturday)
-                dateOfActivitySunday.setErrors(data.errors.dateOfActivitySunday)
-                dateOfActivityDetail.setErrors(data.errors.dateOfActivityDetail)
-                admissionFee.setErrors(data.errors.admissionFee)
+                commonPlaceOfActivity.setErrors(data.errors.commonPlaceOfActivity)
+                isClubActivities.setErrors(data.errors.isClubActivities)
+                appealingPoint1.setErrors(data.errors.appealingPoint1)
+                appealingPoint2.setErrors(data.errors.appealingPoint2)
+                appealingPoint3.setErrors(data.errors.appealingPoint3)
+                commonPlaceOfActivityDetail.setErrors(data.errors.commonPlaceOfActivityDetail)
+                commonDateOfActivityMonday.setErrors(data.errors.commonDateOfActivityMonday)
+                commonDateOfActivityTuesday.setErrors(data.errors.commonDateOfActivityTuesday)
+                commonDateOfActivityWednesday.setErrors(data.errors.commonDateOfActivityWednesday)
+                commonDateOfActivityThursday.setErrors(data.errors.commonDateOfActivityThursday)
+                commonDateOfActivityFriday.setErrors(data.errors.commonDateOfActivityFriday)
+                commonDateOfActivitySaturday.setErrors(data.errors.commonDateOfActivitySaturday)
+                commonDateOfActivitySunday.setErrors(data.errors.commonDateOfActivitySunday)
+                commonDateOfActivityDetail.setErrors(data.errors.commonDateOfActivityDetail)
+                isOnlineActivity.setErrors(data.errors.isOnlineActivity)
+                onlinePlaceOfActivityDetail.setErrors(data.errors.onlinePlaceOfActivityDetail)
+                onlineDateOfActivityMonday.setErrors(data.errors.onlineDateOfActivityMonday)
+                onlineDateOfActivityTuesday.setErrors(data.errors.onlineDateOfActivityTuesday)
+                onlineDateOfActivityWednesday.setErrors(data.errors.onlineDateOfActivityWednesday)
+                onlineDateOfActivityThursday.setErrors(data.errors.onlineDateOfActivityThursday)
+                onlineDateOfActivityFriday.setErrors(data.errors.onlineDateOfActivityFriday)
+                onlineDateOfActivitySaturday.setErrors(data.errors.onlineDateOfActivitySaturday)
+                onlineDateOfActivitySunday.setErrors(data.errors.onlineDateOfActivitySunday)
+                onlineDateOfActivityDetail.setErrors(data.errors.onlineDateOfActivityDetail)
+                admissionFeePerYear.setErrors(data.errors.admissionFeePerYear)
                 numberOfMembers.setErrors(data.errors.numberOfMembers)
                 publicEmail.setErrors(data.errors.publicEmail)
                 twitterUrl.setErrors(data.errors.twitterUrl)
@@ -207,13 +396,19 @@ const EditPage: NextPage = () => {
                 tiktokUrl.setErrors(data.errors.tiktokUrl)
                 participationUrl.setErrors(data.errors.participationUrl)
                 mainImageUrl.setErrors(data.errors.mainImageUrl)
+                handbillImageUrl.setErrors(data.errors.handbillImageUrl)
+                activityImageUrl1.setErrors(data.errors.activityImageUrl1)
+                activityImageUrl2.setErrors(data.errors.activityImageUrl2)
+                activityImageUrl3.setErrors(data.errors.activityImageUrl3)
+                activityImageUrl4.setErrors(data.errors.activityImageUrl4)
+                activityImageUrl5.setErrors(data.errors.activityImageUrl5)
+                activityImageUrl6.setErrors(data.errors.activityImageUrl6)
                 return
             }
 
             await router.push('/circle')
         }
     }
-
 
     return (
         <div>
@@ -227,6 +422,8 @@ const EditPage: NextPage = () => {
                         { circle ? (
                             <EditCircleForm
                                 onDropMainImage={onDropMainImage}
+                                onDropHandbillImage={onDropHandbillImage}
+                                onDropActivityImage={onDropActivityImage}
                                 onSubmit={onSubmit}
                                 form={{
                                     release,
@@ -238,18 +435,31 @@ const EditPage: NextPage = () => {
                                     description,
                                     intro,
                                     circleType,
-                                    placeOfActivity,
-                                    placeOfActivityDetail,
-                                    doOnlineActivity,
-                                    dateOfActivityMonday,
-                                    dateOfActivityTuesday,
-                                    dateOfActivityWednesday,
-                                    dateOfActivityThursday,
-                                    dateOfActivityFriday,
-                                    dateOfActivitySaturday,
-                                    dateOfActivitySunday,
-                                    dateOfActivityDetail,
-                                    admissionFee,
+                                    isClubActivities,
+                                    appealingPoint1,
+                                    appealingPoint2,
+                                    appealingPoint3,
+                                    commonPlaceOfActivity,
+                                    commonPlaceOfActivityDetail,
+                                    commonDateOfActivityMonday,
+                                    commonDateOfActivityTuesday,
+                                    commonDateOfActivityWednesday,
+                                    commonDateOfActivityThursday,
+                                    commonDateOfActivityFriday,
+                                    commonDateOfActivitySaturday,
+                                    commonDateOfActivitySunday,
+                                    commonDateOfActivityDetail,
+                                    isOnlineActivity,
+                                    onlinePlaceOfActivityDetail,
+                                    onlineDateOfActivityMonday,
+                                    onlineDateOfActivityTuesday,
+                                    onlineDateOfActivityWednesday,
+                                    onlineDateOfActivityThursday,
+                                    onlineDateOfActivityFriday,
+                                    onlineDateOfActivitySaturday,
+                                    onlineDateOfActivitySunday,
+                                    onlineDateOfActivityDetail,
+                                    admissionFeePerYear,
                                     numberOfMembers,
                                     publicEmail,
                                     twitterUrl,
@@ -263,6 +473,13 @@ const EditPage: NextPage = () => {
                                     tiktokUrl,
                                     participationUrl,
                                     mainImageUrl,
+                                    handbillImageUrl,
+                                    activityImageUrl1,
+                                    activityImageUrl2,
+                                    activityImageUrl3,
+                                    activityImageUrl4,
+                                    activityImageUrl5,
+                                    activityImageUrl6,
                                 }}
                             />
                         ) : (

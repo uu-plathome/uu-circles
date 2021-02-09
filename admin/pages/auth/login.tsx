@@ -2,28 +2,29 @@ import { AuthHeader } from "@/components/layouts/AuthHeader"
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
 import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { login } from "@/infra/api/auth"
-import { useInput } from "@/hooks/useInput"
+import { useStringInput } from "@/hooks/useInput"
 import { NextPage } from "next"
 import { useRouter } from 'next/router'
-import { useContext, useState } from "react"
+import { FormEvent, useContext, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
 import { isLoginAdminFormRequestValidationError, LoginAdminFormRequest } from "@/lib/types/api/LoginAdminFormRequest"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
+import { isUser } from '@/lib/types/model/User'
 import Link from "next/link"
 
 const Login: NextPage = () => {
-    const usernameOrEmail = useInput('')
-    const password = useInput('')
     const [error, setError] = useState('')
     const router = useRouter()
     const authContext = useContext(AuthContext)
+    const usernameOrEmail = useStringInput('')
+    const password = useStringInput('')
 
     if (authContext.accessToken) {
         router.push('/')
     }
 
-    const onSubmit = async (event) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setError('')
 
@@ -33,21 +34,25 @@ const Login: NextPage = () => {
         } as LoginAdminFormRequest)
 
         if (isLoginAdminFormRequestValidationError(data)) {
-            usernameOrEmail.setError(data.errors.usernameOrEmail && Array.isArray(data.errors.usernameOrEmail) ? data.errors.usernameOrEmail[0] : '')
-            password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')            
+            usernameOrEmail.setErrors(data.errors.usernameOrEmail)
+            password.setErrors(data.errors.password)
+            return
+        }
+
+        if (data && isUser(data)) {
+            authContext.setAccessToken(data.apiToken)
+            await router.push('/')
             return
         }
 
         if (data && data.type === 'LoginAdminMainFormRequestValidationError') {
             if (data.errors.data) {
                 setError(data.errors.data)
+                return
             }
-            return
         }
 
-        authContext.setAccessToken(data.apiToken)
-        localStorage.setItem('accessToken', data.apiToken)
-        await router.push('/')
+        setError('エラーが発生しました')
     }
 
     return (

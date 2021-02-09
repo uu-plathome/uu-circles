@@ -1,4 +1,3 @@
-
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -6,7 +5,7 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
@@ -14,7 +13,6 @@ import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from 
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
     const { userId } = router.query
 
@@ -24,16 +22,14 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const foundUser = await getAdminUser(Number(userId), authContext.accessToken)
+            const foundUser = await getAdminUser(Number(userId))
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
             active.set(foundUser.active)
         }
 
-        if (authContext.accessToken) {
-            f()
-        }
-    }, [ authContext.accessToken, userId ])
+        f()
+    }, [ userId ])
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -45,8 +41,7 @@ const CreatePage: NextPage = () => {
                 username: username.value,
                 displayName: displayName.value,
                 active: active.toBoolean
-            } as UpdateAdminUserRequest, 
-            authContext.accessToken
+            } as UpdateAdminUserRequest
         )
 
         if (isUpdateAdminUserRequestValidationError(data)) {

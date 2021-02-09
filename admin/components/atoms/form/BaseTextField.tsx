@@ -1,4 +1,4 @@
-import { FC, HtmlHTMLAttributes, InputHTMLAttributes } from 'react'
+import { FC, InputHTMLAttributes } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 const inputClass = `
@@ -23,6 +23,7 @@ export type Props = {
     required?: boolean
     type?: InputHTMLAttributes<any>['type']
     placeholder?: InputHTMLAttributes<any>['placeholder']
+    prefix?: string
     suffix?: string
     error?: string
     onChange(e: any): void
@@ -37,6 +38,7 @@ const BaseTextField: FC<Props> = ({
     type = 'text',
     required,
     placeholder,
+    prefix,
     suffix,
     error,
     onChange
@@ -51,6 +53,12 @@ const BaseTextField: FC<Props> = ({
             />
 
             <div className="flex items-end">
+                {prefix ? (
+                    <p className="ml-1 rounded whitespace-nowrap bg-gray-200 text-black-900 px-4 flex items-center" style={{ height: 42 }}>
+                        <span>{prefix}</span>
+                    </p>
+                ) : ''}
+
                 <input
                     type={type}
                     id={id}

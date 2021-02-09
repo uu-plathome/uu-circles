@@ -30,9 +30,9 @@ class CreateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleModel::slug             => [ 'nullable', 'string', 'unique:circles' ],
-            CircleModel::release          => [ 'required', 'boolean' ],
-            CircleInformationModel::name  => [ 'required', 'string', 'max:255' ],
+            CircleModel::slug             => ['nullable', 'string', 'unique:circles'],
+            CircleModel::release          => ['required', 'boolean'],
+            CircleInformationModel::name  => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -44,7 +44,8 @@ class CreateCircleFormRequest extends FormRequest
             ),
             new CircleInformation(
                 Arr::snake_keys($this->validated())
-            )
+            ),
+            null
         );
     }
 }

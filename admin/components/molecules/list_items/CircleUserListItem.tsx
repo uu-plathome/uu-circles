@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
-import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { User } from '@/lib/types/model/User';
 import Link from 'next/link';
 
@@ -52,7 +52,21 @@ const CircleUserListItem: FC<Props> = ({ circleId, user, onDelete, onResendEmail
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6">
+                <div className="w-full lg:w-1/6 pr-2">
+                    <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">所属サークル</p>
+                    <div className="flex justify-center h-7 items-center">
+                        <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`} >
+                            <a>
+                                <FontAwesomeIcon
+                                    size="lg"
+                                    color="orange"
+                                    icon={ faUserFriends }
+                                />
+                            </a>
+                        </Link>
+                    </div>
+                </div>
+                <div className="w-full lg:w-1/6 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">編集する</p>
                     <div className="flex justify-center h-7 items-center">
                         <Link href="/circle/[id]/user/[userId]/edit" as={`/circle/${circleId}/user/${user.id}/edit`} >
