@@ -29,7 +29,7 @@ $factory->define(User::class, function (Faker $faker) {
         UserModel::email_verified_at => now(),
         UserModel::password          => Hash::make('Test1234@@'), // password
         UserModel::remember_token    => Str::random(10),
-        UserModel::api_token         => 'test1234',
+        UserModel::api_token         => Str::random(60),
     ];
 });
 

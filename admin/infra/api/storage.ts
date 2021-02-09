@@ -2,7 +2,7 @@ import { AdminPutStorageRequest, AdminPutStorageRequestValidationError } from "@
 import { AxiosError } from "axios"
 import { axiosInstance } from "."
 
-export const putStorage = async (file: Blob|string, accessToken: string) => {
+export const putStorage = async (file: Blob|string) => {
     try {
         const formData = new FormData()
         formData.append('file', file)
@@ -10,12 +10,7 @@ export const putStorage = async (file: Blob|string, accessToken: string) => {
             url: string
         }>(
             '/admin/api/storage', 
-            formData,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            formData
         )
 
         return {

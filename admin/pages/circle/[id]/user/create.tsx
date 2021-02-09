@@ -1,9 +1,8 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { AuthContext } from '@/contexts/AuthContext'
 import { useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext } from 'react'
+import { FormEvent } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { createCircleUser } from '@/infra/api/circle_user'
 import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
@@ -11,7 +10,6 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 
 const CreatePage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
     const { id } = router.query
 
@@ -29,8 +27,7 @@ const CreatePage: NextPage = () => {
                 username: username.value,
                 displayName: displayName.value,
                 email: email.value
-            } as RegisterCircleUserRequest, 
-            authContext.accessToken
+            } as RegisterCircleUserRequest
         )
 
         if (isRegisterCircleUserRequestValidationError(data)) {

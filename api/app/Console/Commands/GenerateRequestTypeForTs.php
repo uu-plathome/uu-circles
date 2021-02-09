@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
+use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
+use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
 use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
@@ -18,6 +20,10 @@ use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Circle\Auth\ForgotPasswordCircleRequest;
+use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
+use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
+use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
@@ -41,7 +47,11 @@ class GenerateRequestTypeForTs extends Command
     /**
      * @var string[]
      */
-    private array $requestClasses = [];
+    private array $requestAdminClasses = [];
+    /**
+     * @var string[]
+     */
+    private array $requestCircleClasses = [];
 
     private string $stubDataForMain;
 
@@ -54,7 +64,7 @@ class GenerateRequestTypeForTs extends Command
     {
         parent::__construct();
         $this->init();
-        $this->requestClasses = [
+        $this->requestAdminClasses = [
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
             RegisterCircleNewJoyRequest::class,
@@ -62,15 +72,23 @@ class GenerateRequestTypeForTs extends Command
             UpdateCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
-            VerificationEmailCircleUserRequest::class,
             VerificationResendAdminUserFormRequest::class,
-            VerificationResendCircleUserFormRequest::class,
             VerificationConfirmRequest::class,
             AdminPutStorageRequest::class,
             UpdateCircleUserRequest::class,
             UpdateAdminUserRequest::class,
             ForgotPasswordAdminRequest::class,
             ResetPasswordAdminRequest::class,
+            CreateAdvertiseRequest::class,
+            UpdateAdvertiseRequest::class,
+        ];
+        $this->requestCircleClasses = [
+            ForgotPasswordCircleRequest::class,
+            LoginCircleFormRequest::class,
+            RegisterCircleFormRequest::class,
+            ResetPasswordCircleRequest::class,
+            VerificationEmailCircleUserRequest::class,
+            VerificationResendCircleUserFormRequest::class,
         ];
     }
 
@@ -87,12 +105,15 @@ class GenerateRequestTypeForTs extends Command
      */
     public function handle()
     {
-        foreach ($this->requestClasses as $requestClass) {
-            $this->generateRequestUsecase($requestClass);
+        foreach ($this->requestAdminClasses as $requestClass) {
+            $this->generateRequestUsecase($requestClass, $this->getAdminOutputTsPath());
+        }
+        foreach ($this->requestCircleClasses as $requestClass) {
+            $this->generateRequestUsecase($requestClass, $this->getCircleOutputTsPath());
         }
     }
 
-    private function generateRequestUsecase(string $class)
+    private function generateRequestUsecase(string $class, string $outputPath)
     {
         $reflectionClass = new ReflectionClass($class);
         $className = $reflectionClass->getShortName();
@@ -163,7 +184,7 @@ class GenerateRequestTypeForTs extends Command
          * ファイルへの書き込み
          */
         file_put_contents(
-            $this->getOutputTsPath().'/'.$className.'.ts',
+            $outputPath.'/'.$className.'.ts',
             $writableData
         );
     }
@@ -194,9 +215,14 @@ class GenerateRequestTypeForTs extends Command
         return app_path('Console/Commands/stubs/request_body_type.ts.stub');
     }
 
-    private function getOutputTsPath(): string
+    private function getAdminOutputTsPath(): string
     {
         return base_path('../admin/lib/types/api');
+    }
+
+    private function getCircleOutputTsPath(): string
+    {
+        return base_path('../circle/lib/types/api');
     }
 
     private function getTsType(array $ruleData): string

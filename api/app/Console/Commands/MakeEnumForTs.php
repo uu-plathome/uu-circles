@@ -220,6 +220,7 @@ class MakeEnumForTs extends Command
     {
         return [
             base_path('../admin/lib/enum/api'),
+            base_path('../circle/lib/enum/api'),
         ];
     }
 
@@ -230,6 +231,7 @@ class MakeEnumForTs extends Command
     {
         return [
             base_path('../admin/__tests__/lib/enum/api'),
+            base_path('../circle/__tests__/lib/enum/api'),
         ];
     }
 }

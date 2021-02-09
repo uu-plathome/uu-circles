@@ -5,13 +5,9 @@ import { UpdateCircleNewJoyRequest, UpdateCircleNewJoyRequestValidationError } f
 import { Circle } from "@/lib/types/model/Circle"
 import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy"
 
-export const createCircleNewJoy = async (circleId: number, circle: RegisterCircleNewJoyRequest, accessToken: string) => {
+export const createCircleNewJoy = async (circleId: number, circle: RegisterCircleNewJoyRequest) => {
     try {
-        const { data } = await axiosInstance.post(`/admin/api/circle/${circleId}/newjoy`, circle, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            }
-        })
+        const { data } = await axiosInstance.post(`/admin/api/circle/${circleId}/newjoy`, circle)
 
         return data.data
     } catch (_e) {
@@ -31,18 +27,12 @@ export const createCircleNewJoy = async (circleId: number, circle: RegisterCircl
 export const updateCircleNewJoy = async (
     circleId: number, 
     circleNewJoyId: number,
-    circleNewJoy: UpdateCircleNewJoyRequest, 
-    accessToken: string
+    circleNewJoy: UpdateCircleNewJoyRequest
 ) => {
     try {
         const { data } = await axiosInstance.put(
             `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`, 
-            circleNewJoy, 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            circleNewJoy
         )
 
         return data.data
@@ -60,15 +50,11 @@ export const updateCircleNewJoy = async (
     }
 }
 
-export const getCircleNewJoyList = async (circleId: number, accessToken: string) => {
+export const getCircleNewJoyList = async (circleId: number) => {
     const { data } = await axiosInstance.get<{
         circle: Circle,
         circleNewJoys: CircleNewJoy[],
-    }>(`/admin/api/circle/${circleId}/newjoy`, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+    }>(`/admin/api/circle/${circleId}/newjoy`)
 
     return {
         circle: data.circle,
@@ -78,17 +64,12 @@ export const getCircleNewJoyList = async (circleId: number, accessToken: string)
 
 export const getCircleNewJoy = async (
     circleId: number, 
-    circleNewJoyId: number, 
-    accessToken: string
+    circleNewJoyId: number
 ) => {
     const { data } = await axiosInstance.get<{
         circle: Circle,
         circleNewJoy: CircleNewJoy,
-    }>(`/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`, {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        }
-    })
+    }>(`/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`)
 
     return {
         circle: data.circle,
@@ -96,16 +77,11 @@ export const getCircleNewJoy = async (
     }
 }
 
-export const copyCircleNewJoy = async (circleId: number, circleNewJoyId: number, accessToken: string) => {
+export const copyCircleNewJoy = async (circleId: number, circleNewJoyId: number) => {
     try {
         await axiosInstance.post(
             `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}/copy`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            {}
         )
 
         return {
@@ -118,18 +94,13 @@ export const copyCircleNewJoy = async (circleId: number, circleNewJoyId: number,
     }
 }
 
-export const deleteCircleNewJoy = async (circleId: number, circleNewJoyId: number, accessToken: string) => {
+export const deleteCircleNewJoy = async (circleId: number, circleNewJoyId: number) => {
     
     try {
         await axiosInstance.delete<{
             success: true
         }>(
-            `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`, 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                }
-            }
+            `/admin/api/circle/${circleId}/newjoy/${circleNewJoyId}`
         )
 
         return {

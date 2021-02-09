@@ -1,10 +1,6 @@
-
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
-import { AuthContext } from '@/contexts/AuthContext'
 import { NextPage } from 'next'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
 import { deleteCircleUser, getCircleUserList, resendEmailCircleUser } from '@/infra/api/circle_user'
@@ -14,27 +10,24 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 
 const IndexPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter();
     const [users, setUsers] = useState<User[]>([])
-    const [success, setSuccess] = useState<Boolean>(false)
+    const [success, setSuccess] = useState<boolean>(false)
     const { id } = router.query
 
     useEffect(() => {
         const f = async () => {
-            const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
+            const foundUsers = await getCircleUserList(Number(id))
             setUsers(foundUsers.users)
         }
 
-        if (authContext.accessToken && !!id) {
-            f()
-        }
-    }, [ authContext.accessToken, id ])
+        f()
+    }, [])
 
     const onDeleteUser = async (circleUserId: number) => {
-        await deleteCircleUser(Number(id), circleUserId, authContext.accessToken)
+        await deleteCircleUser(Number(id), circleUserId)
 
-        const foundUsers = await getCircleUserList(Number(id), authContext.accessToken)
+        const foundUsers = await getCircleUserList(Number(id))
         setUsers(foundUsers.users)
     }
 

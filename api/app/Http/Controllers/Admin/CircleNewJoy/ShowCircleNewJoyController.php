@@ -27,7 +27,8 @@ class ShowCircleNewJoyController extends Controller
         return [
             'circle' => Arr::camel_keys(CircleValueObject::byEloquent(
                 $circle,
-                $circle->circleInformation
+                $circle->circleInformation,
+                null
             )->toArray()),
 
             'circleNewJoy' => Arr::camel_keys($circleNewJoy->toArray()),

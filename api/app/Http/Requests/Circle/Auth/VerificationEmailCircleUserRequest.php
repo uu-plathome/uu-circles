@@ -4,6 +4,7 @@
 namespace App\Http\Requests\Circle\Auth;
 
 
+use App\Rules\RegexPassword;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,7 @@ class VerificationEmailCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'password' => 'required|string|min:8',
+            'password' => ['required', 'string', new RegexPassword()],
         ]);
     }
 }

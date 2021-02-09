@@ -26,6 +26,7 @@ const CreateCircleForm: FC<Props> = ({ onSubmit, form }) => {
                 name="slug"
                 id="slug"
                 placeholder="u-lab"
+                prefix="https://uu-circle.com/circle/"
                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                 { ...form.slug }
             />

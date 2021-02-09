@@ -1,43 +1,44 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNewJoyListItem'
-import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList, deleteCircleNewJoy, copyCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
+import useSWR from 'swr'
 
 
 const IndexPage: NextPage = () => {
-    const authContext = useContext(AuthContext)
     const router = useRouter()
+    const { id } = router.query
     const [circle, setCircle] = useState<Circle|null>(null)
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
-    const { id } = router.query
 
-    useEffect(() => {
-        const f = async () => {
-            await fetchCircle()
-        }
+    // 新歓一覧の取得
+    const fetchCircle = async () => {
+        const {
+            circle,
+            circleNewJoys
+        } = await getCircleNewJoyList(Number(id))
+        setCircle(circle)
+        setCircleNewJoys(circleNewJoys)
+    }
 
-        if (authContext.accessToken && !Array.isArray(id)) {
-            f()
-        }
-    }, [ authContext.accessToken, id ])
+    useSWR([`/admin/api/circle/${id}/newjoy`, Number(id)], fetchCircle)
 
     // 新歓のコピー
     const onCopy = async (circleNewJoyId: number) => {
         setSuccess('')
         setError('')
-        const data = await copyCircleNewJoy(Number(id), circleNewJoyId, authContext.accessToken)
+        const data = await copyCircleNewJoy(Number(id), circleNewJoyId)
 
         if (data && data.type === 'Success') {
             setSuccess('新歓のコピーに成功しました', 3000)
@@ -52,7 +53,7 @@ const IndexPage: NextPage = () => {
     const onDelete = async (circleNewJoyId: number) => {
         setSuccess('')
         setError('')
-        const data = await deleteCircleNewJoy(Number(id), circleNewJoyId, authContext.accessToken)
+        const data = await deleteCircleNewJoy(Number(id), circleNewJoyId)
 
         if (data && data.type === 'Success') {
             setSuccess('新歓の削除に成功しました', 3000)
@@ -63,15 +64,6 @@ const IndexPage: NextPage = () => {
         setError('エラーが発生しました')
     }
 
-    // 新歓一覧の取得
-    const fetchCircle = async () => {
-        const {
-            circle,
-            circleNewJoys
-        } = await getCircleNewJoyList(Number(id), authContext.accessToken)
-        setCircle(circle)
-        setCircleNewJoys(circleNewJoys)
-    }
 
     return (
         <div>
@@ -93,7 +85,7 @@ const IndexPage: NextPage = () => {
                             <DangerBunner text={error} />
                         ) : ''}
 
-                        {authContext.accessToken && circleNewJoys.length > 0 ? (
+                        {circleNewJoys.length > 0 ? (
                             circleNewJoys.map((circleNewJoy: CircleNewJoy) => {
                                 return <CircleNewJoyListItem
                                     key={`circle-${circleNewJoy.id}`}
@@ -103,7 +95,7 @@ const IndexPage: NextPage = () => {
                                 />
                             })
                         ) : ''}
-                        {authContext.accessToken && circleNewJoys.length === 0 ? (
+                        {circleNewJoys.length === 0 ? (
                             <div className="py-4">
                                 <p className="text-white">まだ新歓が登録されていません</p>
                             </div>

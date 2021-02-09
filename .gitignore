@@ -60,3 +60,4 @@ fabric.properties
 
 # Docker Compose
 .env
+.DS_store

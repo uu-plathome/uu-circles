@@ -1,5 +1,5 @@
 import { AuthContext } from '@/contexts/AuthContext'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 
@@ -10,8 +10,6 @@ const Logout: NextPage = () => {
     useEffect(() => {
         const f = async () => {
             authContext.setAccessToken('')
-            localStorage.setItem('accessToken', '')
-    
             await router.push('/auth/login')
         }
 

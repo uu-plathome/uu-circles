@@ -16,7 +16,6 @@ class CircleNewJoy extends Model
         CircleNewJoyModel::place_of_activity,
         CircleNewJoyModel::place_of_activity_detail,
         CircleNewJoyModel::publish_from,
-        CircleNewJoyModel::publish_to,
         CircleNewJoyModel::start_date,
         CircleNewJoyModel::end_date,
         CircleNewJoyModel::release,
@@ -25,9 +24,8 @@ class CircleNewJoy extends Model
 
     protected $casts = [
         CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
-        CircleNewJoyModel::publish_to => 'datetime:Y-m-d',
-        CircleNewJoyModel::start_date => 'datetime:Y-m-d\TH:i',
-        CircleNewJoyModel::end_date   => 'datetime:Y-m-d\TH:i',
+        CircleNewJoyModel::start_date => 'datetime:Y-m-d H:i',
+        CircleNewJoyModel::end_date   => 'datetime:Y-m-d H:i',
         CircleNewJoyModel::release    => 'boolean',
     ];
 
@@ -36,33 +34,23 @@ class CircleNewJoy extends Model
      *
      * @param boolean $release
      * @param Carbon|null $publish_from
-     * @param Carbon|null $publish_to
      * @param Carbon $now
      * @return boolean
      */
     public static function getNowPublic(
         bool $release,
         ?Carbon $publish_from,
-        ?Carbon $publish_to,
         Carbon $now
     ): bool {
         if (!$release) {
             return false;
         }
 
-        if ($publish_from === null && $publish_to === null) {
+        if ($publish_from === null) {
             return true;
         }
 
-        if ($publish_from && $publish_from->lt($now) && $publish_to === null) {
-            return true;
-        }
-
-        if ($publish_to && $publish_to->gt($now) && $publish_from === null) {
-            return true;
-        }
-
-        if ($publish_to && $publish_to->gt($now) && $publish_to && $publish_from->lt($now)) {
+        if ($publish_from && $publish_from->lt($now)) {
             return true;
         }
 
@@ -74,13 +62,12 @@ class CircleNewJoy extends Model
      *
      * @return boolean
      */
-    public function getNowPublicAttibute(): bool
+    public function getNowPublicAttribute(): bool
     {
         $now = Carbon::now();
         return self::getNowPublic(
             $this->release,
             $this->publish_from,
-            $this->publish_to,
             $now
         );
     }
@@ -97,21 +84,11 @@ class CircleNewJoy extends Model
         return $query->whereRelease(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<', $now)
-                        ->where(CircleNewJoyModel::publish_to, '>', $now);
+                    $query->where(CircleNewJoyModel::publish_from, '<', $now);
                 })
-                ->orWhere(function($query) use($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<', $now)
-                        ->whereNull(CircleNewJoyModel::publish_to);
-                })
-                ->orWhere(function($query) use($now) {
-                    $query->where(CircleNewJoyModel::publish_to, '>', $now)
-                        ->whereNull(CircleNewJoyModel::publish_from);
-                })
-                ->orWhere(function($query) {
-                    $query->whereNull(CircleNewJoyModel::publish_from)
-                        ->whereNull(CircleNewJoyModel::publish_to);
-                });
+                    ->orWhere(function ($query) use ($now) {
+                        $query->whereNull(CircleNewJoyModel::publish_from);
+                    });
             });
     }
 }
