@@ -54,7 +54,9 @@ const BaseTextField: FC<Props> = ({
 
             <div className="flex items-end">
                 {prefix ? (
-                    <p className="ml-1 text-white">{prefix}</p>
+                    <p className="ml-1 rounded whitespace-nowrap bg-gray-200 text-black-900 px-4 flex items-center" style={{ height: 42 }}>
+                        <span>{prefix}</span>
+                    </p>
                 ) : ''}
 
                 <input
