@@ -24,8 +24,8 @@ class CircleNewJoy extends Model
 
     protected $casts = [
         CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
-        CircleNewJoyModel::start_date => 'datetime:Y-m-d\TH:i',
-        CircleNewJoyModel::end_date   => 'datetime:Y-m-d\TH:i',
+        CircleNewJoyModel::start_date => 'datetime:Y-m-d H:i',
+        CircleNewJoyModel::end_date   => 'datetime:Y-m-d H:i',
         CircleNewJoyModel::release    => 'boolean',
     ];
 

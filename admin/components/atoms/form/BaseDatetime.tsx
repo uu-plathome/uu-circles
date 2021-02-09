@@ -12,7 +12,7 @@ export type Props = {
     prefix?: string
     suffix?: string
 } & BaseLabelProps & UseDateInput
-const BaseDate: FC<Props> = ({
+const BaseDatetime: FC<Props> = ({
     label,
     id,
     name,
@@ -39,9 +39,11 @@ const BaseDate: FC<Props> = ({
                 ) : ''}
 
                 <DatePicker
-                    dateFormat="yyyy-MM-dd"
+                    dateFormat="yyyy-MM-dd HH:mm"
+                    timeInputLabel="時間:"
+                    showTimeInput
                     selected={toDateOrNull}
-                    onChange={(date: Date|null) => onChangeDate(date)}
+                    onChange={(date) => onChangeDate(date)}
                     name={name}
                     locale="ja"
                     isClearable
@@ -58,4 +60,4 @@ const BaseDate: FC<Props> = ({
     )
 }
 
-export { BaseDate }
+export { BaseDatetime }

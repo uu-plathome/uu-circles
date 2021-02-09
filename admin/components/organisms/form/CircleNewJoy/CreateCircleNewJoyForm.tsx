@@ -2,7 +2,8 @@ import { GreenButton } from "@/components/atoms/buttons/GreenButton";
 import { BaseSelect } from "@/components/atoms/form/BaseSelect";
 import { BaseTextField } from "@/components/atoms/form/BaseTextField";
 import { BaseDate } from "@/components/atoms/form/BaseDate";
-import { UseBooleanInput, UseStringInput } from "@/hooks/useInput";
+import { BaseDatetime } from "@/components/atoms/form/BaseDatetime";
+import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
 import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
 import { FC, FormEvent } from "react";
@@ -16,9 +17,9 @@ type Props = {
         description: UseStringInput
         placeOfActivity: UseStringInput
         placeOfActivityDetail: UseStringInput
-        publishFrom: UseStringInput
-        startDate: UseStringInput
-        endDate: UseStringInput
+        publishFrom: UseDateInput
+        startDate: UseDateInput
+        endDate: UseDateInput
     }
 }
 const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
@@ -84,23 +85,20 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                 label="予約投稿"
                 name="publishFrom"
                 id="publishFrom"
-                type="date"
                 { ...form.publishFrom }
             />
 
-            <BaseTextField
+            <BaseDatetime
                 label="新歓開始日時"
                 name="startDate"
                 id="startDate"
-                type="datetime-local"
                 { ...form.startDate }
             />
 
-            <BaseTextField
+            <BaseDatetime
                 label="新歓終了日時"
                 name="endDate"
                 id="endDate"
-                type="datetime-local"
                 { ...form.endDate }
             />
 

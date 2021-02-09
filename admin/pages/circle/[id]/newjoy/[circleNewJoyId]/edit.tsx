@@ -1,11 +1,10 @@
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { useBooleanInput, useStringInput } from '@/hooks/useInput'
+import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
-import { __ } from '@/lang/ja'
 import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest } from '@/lib/types/api/UpdateCircleNewJoyRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -21,9 +20,9 @@ const CreatePage: NextPage = () => {
     const url = useStringInput('')
     const placeOfActivity = useStringInput('')
     const placeOfActivityDetail = useStringInput('')
-    const publishFrom = useStringInput('')
-    const startDate = useStringInput('')
-    const endDate = useStringInput('')
+    const publishFrom = useDateInput(null)
+    const startDate = useDateInput(null)
+    const endDate = useDateInput(null)
     const release = useBooleanInput(true)
 
     useEffect(() => {
