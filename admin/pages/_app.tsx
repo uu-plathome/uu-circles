@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
+import "react-datepicker/dist/react-datepicker.css"
 import '../styles/index.css'
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/contexts/AuthContext';
