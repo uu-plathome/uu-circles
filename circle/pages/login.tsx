@@ -9,6 +9,7 @@ import { FormEvent, useContext, useState } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
 import { isUser } from '@/lib/types/model/User'
 import { isLoginCircleFormRequestValidationError, LoginCircleFormRequest, LoginCircleFormRequestValidationError } from "@/lib/types/api/LoginCircleFormRequest"
+import { BaseFooter } from "@/components/layouts/BaseFooter"
 
 const Login: NextPage = () => {
     const [error, setError] = useState('')
@@ -105,6 +106,8 @@ const Login: NextPage = () => {
                     </div>
                 </div>
             </div>
+
+            <BaseFooter />
         </div>
     )
 }

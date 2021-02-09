@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'media', // 'media' or 'class'
+  darkMode: 'class', // 'media' or 'class'
   theme: {
     extend: {
       container: {
@@ -16,6 +16,9 @@ module.exports = {
       colors: {
         black: '#333',
         'accent-1': '#333',
+        'gray-100': '#f5f5f5',
+        'gray-200': '#dfdfdf',
+        'gray-400': '#8d8d8d',
       },
     },
   },
