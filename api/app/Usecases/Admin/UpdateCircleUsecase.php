@@ -29,11 +29,19 @@ class UpdateCircleUsecase
             $newCircle->circleInformation->fill($circleValueObject->toArray())->save();
 
             if ($circleValueObject->handbill_image_url) {
-                CircleHandbill::create([
-                    'circle_id' => $newCircle->id,
-                    'image_url' => $circleValueObject->handbill_image_url,
-                    'year'      => 2021,
-                ]);
+                $circleHandbill = CircleHandbill::whereCircleId($newCircle->id)->first();
+
+                if ($circleHandbill) {
+                    $circleHandbill->update([
+                        'image_url' => $circleValueObject->handbill_image_url,
+                    ]);
+                } else {
+                    CircleHandbill::create([
+                        'circle_id' => $newCircle->id,
+                        'image_url' => $circleValueObject->handbill_image_url,
+                        'year'      => 2021,
+                    ]);
+                }
             }
 
             DB::commit();
