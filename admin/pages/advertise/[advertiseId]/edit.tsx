@@ -1,12 +1,12 @@
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect } from 'react'
+import Compressor from 'compressorjs'
+import { useBooleanInput, useStringInput } from '@/hooks/useInput'
+import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { createAdvertise, showAdvertise, updateAdvertise } from '@/infra/api/advertise'
-import { isCreateAdvertiseRequestValidationError } from '@/lib/types/api/CreateAdvertiseRequest'
+import { showAdvertise, updateAdvertise } from '@/infra/api/advertise'
 import { EditAdvertiseForm } from '@/components/organisms/form/Advertise/EditAdvertiseForm'
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
@@ -65,19 +65,28 @@ const CreatePage: NextPage = () => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
             reader.onload = async (e) => {
-                try {
-                    const data = await putStorage(file)
-    
-                    if (isAdminPutStorageRequestValidationError(data)) {
-                        mainImageUrl.setErrors(data.errors.file)
-                    }
-                    mainImageUrl.set(data.url)
-                } catch (e) {
-                    mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
-                }
+                new Compressor(file, {
+                    quality: 1.0,
+                    maxWidth: 800,
+                    async success(result) {
+                        try {
+                            // Send the compressed image file to server with XMLHttpRequest.
+                            const data = await putStorage(result)
+                            if (isAdminPutStorageRequestValidationError(data)) {
+                                mainImageUrl.setErrors(data.errors.file)
+                            }
+                            mainImageUrl.set(data.url)
+                        } catch (e) {
+                            mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                        }
+                    },
+                    error(err) {
+                        console.error(err.message);
+                    },
+                });
             }
             reader.readAsDataURL(file)
         })
