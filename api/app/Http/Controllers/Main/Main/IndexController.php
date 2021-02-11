@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Main\Main;
 
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -28,9 +30,14 @@ class IndexController extends Controller
         $circles = $this->getRandomCircleUsecase->invoke(6);
 
         return [
-            'data' => (new Collection($circles))->map(
-                fn (CircleValueObject $circleValueObject) => $circleValueObject->toArray()
-            )->toArray(),
+            'data' => Arr::camel_keys(
+                (new Collection($circles))->map(
+                    fn (CircleValueObject $circleValueObject) =>
+                    Arr::only($circleValueObject->toArray(), [
+                        'id', 'name', 'handbill_image_url'
+                    ])
+                )->toArray()
+            ),
         ];
     }
 }
