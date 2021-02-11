@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\CircleTag;
 use App\Enum\CircleModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -62,6 +63,16 @@ class Circle extends Model
     public function circleHandbill(): HasOne
     {
         return $this->hasOne(CircleHandbill::class);
+    }
+
+    /**
+     * サークルタグ
+     *
+     * @return HasOne
+     */
+    public function circleTag(): HasOne
+    {
+        return $this->hasOne(CircleTag::class);
     }
 
     /**
