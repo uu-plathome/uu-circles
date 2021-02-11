@@ -60,3 +60,7 @@ export interface Circle {
 }
 
 export const isCircle = (v: any): v is Circle => v && v.type === 'Circle'
+export const newCircle = (circle: Circle): Circle => ({
+    ...circle,
+    type: 'Circle'
+})

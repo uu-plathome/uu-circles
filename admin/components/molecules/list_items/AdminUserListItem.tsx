@@ -50,7 +50,7 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6">
+                <div className="w-full lg:w-1/6 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">編集する</p>
                     <div className="flex justify-center h-7 items-center">
                         <Link href="/user/admin/[userId]/edit" as={`/user/admin/${user.id}/edit`} >
