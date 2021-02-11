@@ -13,10 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware('guest:api')->group(function () {
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-});
+Route::get('/main', 'Main\Main\IndexController')->name('main.index');
