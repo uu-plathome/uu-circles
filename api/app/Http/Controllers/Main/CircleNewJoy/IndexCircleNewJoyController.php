@@ -35,23 +35,23 @@ class IndexCircleNewJoyController extends Controller
         $circleNewJoys = $this->indexCircleNewJoyUsecase->invoke($circle->id);
 
         return Arr::camel_keys([
-            'circle'              => $circleNewJoys['circle'],
+            'circle'              => $circle->toArray(),
             // 新歓開催済み
             'pastCircleNewJoys'   => (new Collection($circleNewJoys['pastCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
-            )->toArray(),
+            )->values()->toArray(),
             // 新歓開催前
             'futureCircleNewJoys' => (new Collection($circleNewJoys['futureCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
-            )->toArray(),
+            )->values()->toArray(),
             // 現在開催中
             'nowCircleNewJoys'    => (new Collection($circleNewJoys['nowCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
-            )->toArray(),
+            )->values()->toArray(),
             // 今日の新歓
             'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
-            )->toArray(),
+            )->values()->toArray(),
         ]);
     }
 }

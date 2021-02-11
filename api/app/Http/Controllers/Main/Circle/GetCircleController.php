@@ -34,8 +34,7 @@ class GetCircleController extends Controller
 
         // 新歓開催前のものを取得
         $circleNewJoys = CircleNewJoy::whereCircleId($circle->id)
-            ->whereRelease(true)
-            ->where('publish_from', '<=', $now)
+            ->nowPublic($now)
             ->where(CircleNewJoyModel::start_date, '>=', $now)
             ->orderBy(CircleNewJoyModel::start_date)
             ->take(3)
@@ -46,9 +45,8 @@ class GetCircleController extends Controller
         if (count($circleNewJoys) < 3) {
             $count = count($circleNewJoys);
 
-            $appendCircleNewJoys =  CircleNewJoy::whereCircleId($circle->id)
-                ->whereRelease(true)
-                ->where('publish_from', '<=', $now)
+            $appendCircleNewJoys = CircleNewJoy::whereCircleId($circle->id)
+                ->nowPublic($now)
                 ->where(CircleNewJoyModel::start_date, '<', $now)
                 ->orderByDesc(CircleNewJoyModel::start_date)
                 ->take(3 - $count)
