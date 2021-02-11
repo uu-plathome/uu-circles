@@ -5,6 +5,7 @@
 ### API
 
 - Laravel 6 / PHP 7.4
+
 ※ Laravel8にあげたい
 
 ### Main
