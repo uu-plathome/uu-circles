@@ -65,6 +65,16 @@ class Circle extends Model
     }
 
     /**
+     * サークルタグ
+     *
+     * @return HasOne
+     */
+    public function circleTag(): HasOne
+    {
+        return $this->hasOne(CircleTag::class);
+    }
+
+    /**
      * 現在公開中の新歓を取得する
      *
      * @return void
