@@ -6,6 +6,7 @@ import { getMain } from "@/infra/api/main";
 import { Circle } from "@/lib/types/model/Circle";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
+import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 
 type Props = {
     circles: Circle[]
@@ -21,6 +22,8 @@ const Index: NextPage<Props> = ({ circles }) => {
             </BaseContainer>
 
             <div>
+                <MainUucircleAd />
+
                 <MainSponsorshipFooter />
 
                 <BaseFooter />
