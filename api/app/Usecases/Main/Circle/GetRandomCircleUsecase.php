@@ -15,9 +15,14 @@ class GetRandomCircleUsecase
     public function invoke(int $limit = 6)
     {
         $circles = Circle::with([
-            'circleInformation',
-            'circleHandbill',
+            'circleInformation:circle_id,name',
+            'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            // 新歓が登録されているのものを取得
+            ->whereHas('circleHandbill')
+            ->select([
+                'id', 'release'
+            ])
             ->inRandomOrder()
             ->take($limit)
             ->get();
