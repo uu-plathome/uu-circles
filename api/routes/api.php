@@ -13,4 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+// トップページ用
 Route::get('/main', 'Main\Main\IndexController')->name('main.index');
+
+// サークル 
+Route::get('/circle/{slug}', 'Main\Circle\GetCircleController')->name('main.circle.show');
