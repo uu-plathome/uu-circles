@@ -13,10 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// トップページ用
+Route::get('/main', 'Main\Main\IndexController')->name('main.index');
 
-Route::middleware('guest:api')->group(function () {
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-});
+// サークル 
+Route::get('/circle/{slug}', 'Main\Circle\GetCircleController')->name('main.circle.show');
