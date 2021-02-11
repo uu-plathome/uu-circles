@@ -25,6 +25,12 @@ $ docker-compose exec app composer install
 
 $ docker-comopse exec app php artisan key:generate
 
+$ docker-compose exec app php artisan storage:link
+
+$ docker-compose exec app chmod -R 777 storage
+
+$ docker-compose exec app chmod -R 777 bootstrap/cache
+
 $ docker-compose exec app php artisan config:cache
 
 
