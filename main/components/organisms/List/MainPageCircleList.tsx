@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Image from 'next/image'
+import Link from 'next/link'
 import { Circle } from "@/lib/types/model/Circle";
 
 type Props = {
@@ -16,12 +17,16 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
                 {circles.map((circle) => {
                     return (
                         <div key={circle.id}>
-                            <Image 
-                                src={circle.handbillImageUrl} 
-                                alt={`${circle.name}のビラ`}
-                                width={width} 
-                                height={height}
-                            />
+                            <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+                                <a>
+                                    <Image 
+                                        src={circle.handbillImageUrl} 
+                                        alt={`${circle.name}のビラ`}
+                                        width={width} 
+                                        height={height}
+                                    />
+                                </a>
+                            </Link>
 
                             <h3 className="text-center font-bold">
                                 { circle.name }

@@ -21,7 +21,7 @@ class GetRandomCircleUsecase
             // 新歓が登録されているのものを取得
             ->whereHas('circleHandbill')
             ->select([
-                'id', 'release'
+                'id', 'release', 'slug'
             ])
             ->inRandomOrder()
             ->take($limit)

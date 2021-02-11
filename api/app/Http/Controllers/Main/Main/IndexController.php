@@ -34,7 +34,7 @@ class IndexController extends Controller
                 (new Collection($circles))->map(
                     fn (CircleValueObject $circleValueObject) =>
                     Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url'
+                        'id', 'name', 'handbill_image_url', 'slug'
                     ])
                 )->toArray()
             ),

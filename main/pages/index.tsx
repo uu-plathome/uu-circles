@@ -15,13 +15,17 @@ const Index: NextPage<Props> = ({ circles }) => {
 
     return (
         <div>
+            {/*  ヘッダー */}
             <BaseHeader />
 
             <BaseContainer>
+                {/*  サークル一覧 */}
                 <MainPageCircleList circles={circles} />
             </BaseContainer>
 
             <div>
+                {/*  フッター */}
+
                 <MainUucircleAd />
 
                 <MainSponsorshipFooter />
