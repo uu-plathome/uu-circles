@@ -93,7 +93,6 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
           onDropActivityImage={onDropActivityImage}
           form={{
             description: form.description,
-            intro: form.intro,
             circleType: form.circleType,
             appealingPoint1: form.appealingPoint1,
             appealingPoint2: form.appealingPoint2,

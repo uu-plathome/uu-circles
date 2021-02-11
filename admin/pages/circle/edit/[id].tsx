@@ -24,7 +24,6 @@ const EditPage: NextPage = () => {
     const shortName = useStringInput('')
     const prefixName = useStringInput('')
     const description = useStringInput('')
-    const intro = useStringInput('')
     const isClubActivities = useBooleanInput(false)
     const appealingPoint1 = useStringInput('')
     const appealingPoint2 = useStringInput('')
@@ -84,7 +83,6 @@ const EditPage: NextPage = () => {
                 shortName.set(foundCircle.shortName)
                 prefixName.set(foundCircle.prefixName)
                 description.set(foundCircle.description)
-                intro.set(foundCircle.intro)
                 circleType.set(foundCircle.circleType)
                 isClubActivities.set(foundCircle.isClubActivities)
                 appealingPoint1.set(foundCircle.appealingPoint1)
@@ -299,7 +297,6 @@ const EditPage: NextPage = () => {
                     shortName: shortName.value,
                     prefixName: prefixName.value,
                     description: description.value,
-                    intro: intro.value,
                     commonPlaceOfActivity: commonPlaceOfActivity.value,
                     isClubActivities: isClubActivities.toBoolean,
                     appealingPoint1: appealingPoint1.value,
@@ -357,7 +354,6 @@ const EditPage: NextPage = () => {
                 shortName.setErrors(data.errors.shortName)
                 prefixName.setErrors(data.errors.prefixName)
                 description.setErrors(data.errors.description)
-                intro.setErrors(data.errors.intro)
                 commonPlaceOfActivity.setErrors(data.errors.commonPlaceOfActivity)
                 isClubActivities.setErrors(data.errors.isClubActivities)
                 appealingPoint1.setErrors(data.errors.appealingPoint1)
@@ -433,7 +429,6 @@ const EditPage: NextPage = () => {
                                     shortName,
                                     prefixName,
                                     description,
-                                    intro,
                                     circleType,
                                     isClubActivities,
                                     appealingPoint1,

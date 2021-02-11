@@ -9,7 +9,6 @@ export interface Circle {
   shortName: string
   prefixName: string
   description: string
-  intro: string
   commonPlaceOfActivity: string
   commonPlaceOfActivityDetail: string
   commonDateOfActivityMonday: boolean
