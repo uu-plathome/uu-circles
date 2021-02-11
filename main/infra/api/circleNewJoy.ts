@@ -12,7 +12,7 @@ export const getCircleNewJoyBySlug = async (slug: string) => {
         todayCircleNewJoys: CircleNewJoy[]
     }
     const { data } = await axiosInstance.get<Response>(
-        `${linkConst.NEWJOY.GROUP}/${slug}`
+        `${linkConst.CIRCLE.GROUP}/${slug}/newjoy`
     )
 
     return {

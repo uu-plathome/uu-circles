@@ -42,7 +42,7 @@ type Props = {
 }
 const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
     return (
-        <div className="border border-4 border-gray-300 rounded-lg flex justify-between items-center px-4 py-2 mx-auto mb-2" style={{ width: 300 }}>
+        <div className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-4 py-2 mx-auto mb-2" style={{ width: 300 }}>
             <div className="w-full pr-2">
                 <h3 className="text-black font-bold mb-1">{ circleNewJoy.title }</h3>
                 <p className="text-sm border-b border-gray-400 flex mb-1">

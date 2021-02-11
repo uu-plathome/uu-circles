@@ -5,6 +5,7 @@ import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseHeader } from "@/components/layouts/BaseHeader";
 import { NewJoyList } from "@/components/organisms/ShowCircle/NewJoyList";
 import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy";
+import { GreenButton } from "@/components/atoms/button/GreenButton";
 
 type Props = {
     circle?: Circle
@@ -21,6 +22,12 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                 { circle.name }
 
                 <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
+
+                <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
+                    <GreenButton href="/circle/[slug]/newjoy" as={`/circle/${circle.slug}/newjoy`}>
+                        もっと詳しく
+                    </GreenButton>
+                </div>
             </div>
 
             {/*  フッター */}
