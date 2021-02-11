@@ -21,8 +21,7 @@ class CreateCircleInformationTable extends Migration
             $table->string('name_kana')->nullable()->comment('サークル名(カナ)');
             $table->string('short_name')->nullable()->comment('サークル名(通称)');
             $table->string('prefix_name')->nullable()->comment('サークル名(肩書)');
-            $table->string('description')->nullable()->comment('サークル短文紹介');
-            $table->longText('intro')->nullable()->comment('サークル長文紹介');
+            $table->string('description')->nullable()->comment('サークル紹介文');
             $table->string('common_place_of_activity')->nullable()->comment('通常活動場所');
             $table->string('common_place_of_activity_detail')->nullable()->comment('通常活動場所詳細');
             $table->boolean('common_date_of_activity_monday')->default(false)->nullable()->comment('月曜日に通常活動しているか');

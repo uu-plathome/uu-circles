@@ -20,7 +20,6 @@ class CircleValueObject
     public ?string $short_name;
     public ?string $prefix_name;
     public ?string $description;
-    public ?string $intro;
     public ?string $common_place_of_activity;
     public ?string $common_place_of_activity_detail;
     public ?bool $common_date_of_activity_monday;
@@ -85,7 +84,6 @@ class CircleValueObject
         $circleValueObject->short_name = $circleInformation->short_name;
         $circleValueObject->prefix_name = $circleInformation->prefix_name;
         $circleValueObject->description = $circleInformation->description;
-        $circleValueObject->intro = $circleInformation->intro;
         $circleValueObject->common_place_of_activity = $circleInformation->common_place_of_activity;
         $circleValueObject->common_place_of_activity_detail = $circleInformation->common_place_of_activity_detail;
         $circleValueObject->common_date_of_activity_monday = $circleInformation->common_date_of_activity_monday;
@@ -160,7 +158,6 @@ class CircleValueObject
             CircleInformationModel::short_name => $this->short_name,
             CircleInformationModel::prefix_name => $this->prefix_name,
             CircleInformationModel::description => $this->description,
-            CircleInformationModel::intro => $this->intro,
             CircleInformationModel::common_place_of_activity => $this->common_place_of_activity,
             CircleInformationModel::common_place_of_activity_detail => $this->common_place_of_activity_detail,
             CircleInformationModel::common_date_of_activity_monday => $this->common_date_of_activity_monday,
@@ -230,7 +227,6 @@ class CircleValueObject
             CircleInformationModel::short_name => $this->short_name,
             CircleInformationModel::prefix_name => $this->prefix_name,
             CircleInformationModel::description => $this->description,
-            CircleInformationModel::intro => $this->intro,
             CircleInformationModel::common_place_of_activity => $this->common_place_of_activity,
             CircleInformationModel::common_place_of_activity_detail => $this->common_place_of_activity_detail,
             CircleInformationModel::common_date_of_activity_monday => $this->common_date_of_activity_monday,

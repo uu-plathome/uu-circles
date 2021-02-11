@@ -16,7 +16,6 @@ class CircleInformation extends Model
         CircleInformationModel::short_name,
         CircleInformationModel::prefix_name,
         CircleInformationModel::description,
-        CircleInformationModel::intro,
         CircleInformationModel::common_place_of_activity,
         CircleInformationModel::common_place_of_activity_detail,
         CircleInformationModel::common_date_of_activity_monday,

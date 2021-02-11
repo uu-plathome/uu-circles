@@ -14,7 +14,6 @@ export type Props = {
     onDropActivityImage(acceptedFiles: any, idx: 1|2|3|4|5|6): void
     form: {
         description: UseStringInput
-        intro: UseStringInput
         circleType: UseStringInput
         appealingPoint1: UseStringInput
         appealingPoint2: UseStringInput
@@ -37,19 +36,11 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
     return (
         <div>
             <BaseTextField
-                label="サークル短文紹介"
+                label="サークル紹介文"
                 name="description"
                 id="description"
                 expand
                 {...form.description}
-            />
-
-            <BaseTextField
-                label="サークル長文紹介"
-                name="intro"
-                id="intro"
-                expand
-                {...form.intro}
             />
 
             <BaseTextField
