@@ -8,8 +8,7 @@ export interface Circle {
     nameKana: string
     shortName: string
     prefixName: string
-    description: string
-    intro: string
+    /** サークル紹介文 */ description: string
     commonPlaceOfActivity: string
     commonPlaceOfActivityDetail: string
     commonDateOfActivityMonday: boolean

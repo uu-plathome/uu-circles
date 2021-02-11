@@ -28,13 +28,6 @@ $factory->define(CircleInformation::class, function (Faker $faker) {
         CircleInformationModel::prefix_name => '地域に根差す学生集団',
         CircleInformationModel::circle_type => CircleType::STUDENT_GROUP,
         CircleInformationModel::description => '宇都宮大学学生団体。地域に根差すテクノロジー集団。',
-        CircleInformationModel::intro       => '一昨年できたばかり小さな学生団体です。情報、生物、建築などの異分野横断をしながら、学内外問わず研究、展示を行う宇大のデジタルクリエイティブ集団をやってます。
-（今までやってたこと例）
-・木材×プログラミング
-・AR×都市開発
-・web×新歓（今回のサイト）
-展示会で展示した作品はインスタやTwitterにUPしてあるので見ていただけたら嬉しいです。
-大学生活でちょっと面白いことしてみたい人におすすめの学生団体です。',
         CircleInformationModel::common_place_of_activity        => PlaceOfActivity::MINE,
         CircleInformationModel::common_place_of_activity_detail => '4号館',
         CircleInformationModel::common_date_of_activity_monday    => null,

@@ -11,7 +11,6 @@ export interface UpdateCircleFormRequest {
     prefixName?: string
     circleType?: string
     description?: string
-    intro?: string
     commonPlaceOfActivity?: string
     commonPlaceOfActivityDetail?: string
     commonDateOfActivityMonday?: boolean
@@ -73,7 +72,6 @@ export interface UpdateCircleFormRequestValidationError {
         prefixName?: string[]
         circleType?: string[]
         description?: string[]
-        intro?: string[]
         commonPlaceOfActivity?: string[]
         commonPlaceOfActivityDetail?: string[]
         commonDateOfActivityMonday?: string[]
