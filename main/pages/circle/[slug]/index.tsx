@@ -3,12 +3,15 @@ import { getCircleBySlug } from "@/infra/api/circle";
 import { Circle } from "@/lib/types/model/Circle";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseHeader } from "@/components/layouts/BaseHeader";
+import { NewJoyList } from "@/components/organisms/ShowCircle/NewJoyList";
+import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy";
 
 type Props = {
     circle?: Circle
+    circleNewJoys?: CircleNewJoy[]
     errorCode?: number
 }
-const Page: NextPage<Props> = ({ circle }) => {
+const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
     return (
         <div>
             {/*  ヘッダー */}
@@ -16,6 +19,8 @@ const Page: NextPage<Props> = ({ circle }) => {
         
             <div>
                 { circle.name }
+
+                <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
             </div>
 
             {/*  フッター */}
@@ -30,11 +35,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
         return { props: { errorCode: 404 } }
     }
 
-    const { circle } = await getCircleBySlug(params.slug)
+    const { circle, circleNewJoys } = await getCircleBySlug(params.slug)
 
     return {
         props: {
-            circle
+            circle,
+            circleNewJoys,
         }
     }
 }

@@ -7,5 +7,9 @@ export const linkConst = {
 
     CIRCLE: {
         GROUP: `${GROUP}/circle`
+    },
+
+    NEWJOY: {
+        GROUP: `${GROUP}/newjoy`
     }
 } as const
