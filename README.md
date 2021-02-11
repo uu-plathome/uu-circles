@@ -10,11 +10,13 @@
 ### Main
 
 - Next.js v9.5 / Node.js v14 or v15
+
 ※ 基本的には、Node v14で良い。ただし、M1 MacだとNode v15じゃないとうごかない。
 
 ### Admin
 
 - Next.js v9.5 / Node.js v14 or v15
+
 ※ 基本的には、Node v14で良い。ただし、M1 MacだとNode v15じゃないとうごかない。
 
 ## 起動
