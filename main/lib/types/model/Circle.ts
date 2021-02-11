@@ -4,7 +4,7 @@ export interface Circle {
     slug: string
     release: boolean
     circleType: string
-    name: string
+    /** サークル名 */ name: string
     nameKana: string
     shortName: string
     prefixName: string
@@ -55,6 +55,7 @@ export interface Circle {
     activityImageUrl4: string
     activityImageUrl5: string
     activityImageUrl6: string
+    /** 週の活動日数 */ weeklyActivityDays: number
     createdAt: string
     updatedAt: string
 }

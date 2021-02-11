@@ -63,8 +63,71 @@ class CircleInformation extends Model
         CircleInformationModel::activity_image_url6,
     ];
 
+    protected $casts = [
+        CircleInformationModel::common_date_of_activity_monday     => 'boolean',
+        CircleInformationModel::common_date_of_activity_tuesday    => 'boolean',
+        CircleInformationModel::common_date_of_activity_wednesday  => 'boolean',
+        CircleInformationModel::common_date_of_activity_thursday   => 'boolean',
+        CircleInformationModel::common_date_of_activity_friday     => 'boolean',
+        CircleInformationModel::common_date_of_activity_saturday   => 'boolean',
+        CircleInformationModel::common_date_of_activity_sunday     => 'boolean',
+        CircleInformationModel::is_online_activity                 => 'boolean',
+        CircleInformationModel::online_date_of_activity_monday     => 'boolean',
+        CircleInformationModel::online_date_of_activity_tuesday    => 'boolean',
+        CircleInformationModel::online_date_of_activity_wednesday  => 'boolean',
+        CircleInformationModel::online_date_of_activity_thursday   => 'boolean',
+        CircleInformationModel::online_date_of_activity_friday     => 'boolean',
+        CircleInformationModel::online_date_of_activity_saturday   => 'boolean',
+        CircleInformationModel::online_date_of_activity_sunday     => 'boolean',
+        CircleInformationModel::is_club_activities                 => 'boolean',
+    ];
+
+    protected $appends = [
+        'weeklyActivityDays'
+    ];
+
     public function circle(): BelongsTo
     {
         return $this->belongsTo(Circle::class);
+    }
+
+    /**
+     * 週の活動日数
+     *
+     * @return integer
+     */
+    public function weeklyActivityDays(): int
+    {
+        $count = 0;
+
+        if ($this->common_date_of_activity_monday || $this->online_date_of_activity_monday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_tuesday || $this->online_date_of_activity_tuesday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_wednesday || $this->online_date_of_activity_wednesday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_thursday || $this->online_date_of_activity_thursday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_friday || $this->online_date_of_activity_friday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_saturday || $this->online_date_of_activity_saturday) {
+            $count++;
+        }
+
+        if ($this->common_date_of_activity_sunday || $this->online_date_of_activity_sunday) {
+            $count++;
+        }
+
+        return $count;
     }
 }
