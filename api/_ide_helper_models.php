@@ -74,6 +74,7 @@ namespace App\Models{
  * @property-read int|null $circle_invitation_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleNewJoy[] $circleNewJoys
  * @property-read int|null $circle_new_joys_count
+ * @property-read \App\Models\CircleTag|null $circleTag
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleUser[] $circleUsers
  * @property-read int|null $circle_users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Circle newModelQuery()
@@ -122,31 +123,30 @@ namespace App\Models{
  * @property string|null $name_kana サークル名(カナ)
  * @property string|null $short_name サークル名(通称)
  * @property string|null $prefix_name サークル名(肩書)
- * @property string|null $description サークル短文紹介
- * @property string|null $intro サークル長文紹介
+ * @property string|null $description サークル紹介文
  * @property string|null $common_place_of_activity 通常活動場所
  * @property string|null $common_place_of_activity_detail 通常活動場所詳細
- * @property int|null $common_date_of_activity_monday 月曜日に通常活動しているか
- * @property int|null $common_date_of_activity_tuesday 火曜日に通常活動しているか
- * @property int|null $common_date_of_activity_wednesday 水曜日に通常活動しているか
- * @property int|null $common_date_of_activity_thursday 木曜日に通常活動しているか
- * @property int|null $common_date_of_activity_friday 金曜日に通常活動しているか
- * @property int|null $common_date_of_activity_saturday 土曜日に通常活動しているか
- * @property int|null $common_date_of_activity_sunday 日曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_monday 月曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_tuesday 火曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_wednesday 水曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_thursday 木曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_friday 金曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_saturday 土曜日に通常活動しているか
+ * @property bool|null $common_date_of_activity_sunday 日曜日に通常活動しているか
  * @property string|null $common_date_of_activity_detail 活動日時詳細
- * @property int $is_online_activity オンライン活動するか
+ * @property bool $is_online_activity オンライン活動するか
  * @property string|null $online_place_of_activity_detail オンライン活動場所詳細
- * @property int|null $online_date_of_activity_monday 月曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_tuesday 火曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_wednesday 水曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_thursday 木曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_friday 金曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_saturday 土曜日にオンライン活動しているか
- * @property int|null $online_date_of_activity_sunday 日曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_monday 月曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_tuesday 火曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_wednesday 水曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_thursday 木曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_friday 金曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_saturday 土曜日にオンライン活動しているか
+ * @property bool|null $online_date_of_activity_sunday 日曜日にオンライン活動しているか
  * @property string|null $online_date_of_activity_detail オンライン活動日時詳細
  * @property int|null $admission_fee_per_year 年間費用
  * @property int|null $number_of_members 所属人数
- * @property int|null $is_club_activities 部活かどうか
+ * @property bool|null $is_club_activities 部活かどうか
  * @property string|null $appealing_point1 アピールポイント1
  * @property string|null $appealing_point2 アピールポイント2
  * @property string|null $appealing_point3 アピールポイント3
@@ -203,7 +203,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereHomepageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereInstagramUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIntro($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsClubActivities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsOnlineActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereLineUrl($value)
@@ -295,6 +294,43 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereUrl($value)
  */
 	class CircleNewJoy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CircleTag
+ *
+ * @property int $id
+ * @property int $circle_id
+ * @property bool $nature 農業・自然
+ * @property bool $volunteer ボランティア
+ * @property bool $international 国際交流
+ * @property bool $incare インカレ
+ * @property bool $loose ゆるい
+ * @property bool $community 地域おこし
+ * @property bool $program プログラミング
+ * @property bool $urgent_recruitment 部員急募
+ * @property bool $mystery 謎
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCircleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCommunity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereIncare($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereInternational($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereLoose($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereMystery($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereNature($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereProgram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereUrgentRecruitment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereVolunteer($value)
+ */
+	class CircleTag extends \Eloquent {}
 }
 
 namespace App\Models{
