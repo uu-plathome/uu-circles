@@ -22,6 +22,10 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
                                 width={width} 
                                 height={height}
                             />
+
+                            <h3 className="text-center font-bold">
+                                { circle.name }
+                            </h3>
                         </div>
                     )
                 }) }

@@ -5,6 +5,7 @@ import { MainPageCircleList } from "@/components/organisms/List/MainPageCircleLi
 import { getMain } from "@/infra/api/main";
 import { Circle } from "@/lib/types/model/Circle";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
+import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
 
 type Props = {
     circles: Circle[]
@@ -19,7 +20,11 @@ const Index: NextPage<Props> = ({ circles }) => {
                 <MainPageCircleList circles={circles} />
             </BaseContainer>
 
-            <BaseFooter />
+            <div>
+                <MainSponsorshipFooter />
+
+                <BaseFooter />
+            </div>
         </div>
     )
 }
