@@ -12,7 +12,6 @@ class CircleInformationModel
     const short_name = 'short_name';
     const prefix_name = 'prefix_name';
     const description = 'description';
-    const intro = 'intro';
     const common_place_of_activity = 'common_place_of_activity';
     const common_place_of_activity_detail = 'common_place_of_activity_detail';
     const common_date_of_activity_monday = 'common_date_of_activity_monday';

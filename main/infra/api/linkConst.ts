@@ -7,5 +7,5 @@ export const linkConst = {
 
     CIRCLE: {
         GROUP: `${GROUP}/circle`
-    }
+    },
 } as const

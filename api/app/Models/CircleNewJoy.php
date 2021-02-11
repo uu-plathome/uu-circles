@@ -24,9 +24,9 @@ class CircleNewJoy extends Model
 
     protected $casts = [
         CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
-        CircleNewJoyModel::start_date => 'datetime:Y-m-d H:i',
-        CircleNewJoyModel::end_date   => 'datetime:Y-m-d H:i',
-        CircleNewJoyModel::release    => 'boolean',
+        CircleNewJoyModel::start_date   => 'datetime:Y-m-d H:i',
+        CircleNewJoyModel::end_date     => 'datetime:Y-m-d H:i',
+        CircleNewJoyModel::release      => 'boolean',
     ];
 
     /**
@@ -84,11 +84,10 @@ class CircleNewJoy extends Model
         return $query->whereRelease(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<', $now);
-                })
-                    ->orWhere(function ($query) use ($now) {
-                        $query->whereNull(CircleNewJoyModel::publish_from);
-                    });
+                    $query->where(CircleNewJoyModel::publish_from, '<=', $now);
+                })->orWhere(function ($query) {
+                    $query->whereNull(CircleNewJoyModel::publish_from);
+                });
             });
     }
 }

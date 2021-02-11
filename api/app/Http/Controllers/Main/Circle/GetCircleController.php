@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Main\Circle;
 
+use App\Enum\CircleNewJoyModel;
 use App\Http\Controllers\Controller;
+use App\Models\CircleNewJoy;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
+use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class GetCircleController extends Controller
 {
@@ -24,10 +29,41 @@ class GetCircleController extends Controller
      */
     public function __invoke(Request $request, string $slug)
     {
+        $now = Carbon::now();
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
 
-        return [
-            'data' => Arr::camel_keys($circle->toArray()),
-        ];
+        // 新歓開催前のものを取得
+        $circleNewJoys = CircleNewJoy::whereCircleId($circle->id)
+            ->nowPublic($now)
+            ->where(CircleNewJoyModel::start_date, '>=', $now)
+            ->orderBy(CircleNewJoyModel::start_date)
+            ->take(3)
+            ->get()
+            ->toArray();
+
+        // 新歓が3件に満たない時、過去の新歓も取得
+        if (count($circleNewJoys) < 3) {
+            $count = count($circleNewJoys);
+
+            $appendCircleNewJoys = CircleNewJoy::whereCircleId($circle->id)
+                ->nowPublic($now)
+                ->where(CircleNewJoyModel::start_date, '<', $now)
+                ->orderByDesc(CircleNewJoyModel::start_date)
+                ->take(3 - $count)
+                ->get()
+                ->toArray();
+
+            $circleNewJoys = [
+                ...$circleNewJoys,
+                ...$appendCircleNewJoys,
+            ];
+        }
+
+        return Arr::camel_keys([
+            'data'          => $circle->toArray(),
+            'circleNewJoys' => (new Collection($circleNewJoys))->map(
+                fn (array $circleNewJoy) => CircleNewJoyValueObject::of($circleNewJoy)->toArray()
+            )->toArray(),
+        ]);
     }
 }
