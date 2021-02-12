@@ -80,9 +80,9 @@ describe('Enum CircleTagModel', () => {
     expect(TestFunc.isTuesday('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isWednesday', () => {
-    expect(TestFunc.CircleTagModel.wednesday).toBe('wednesday')
-    expect(TestFunc.isCircleTagModel('wednesday')).toBeTruthy()
-    expect(TestFunc.isWednesday('wednesday')).toBeTruthy()
+    expect(TestFunc.CircleTagModel.WEDNESDAY).toBe('WEDNESDAY')
+    expect(TestFunc.isCircleTagModel('WEDNESDAY')).toBeTruthy()
+    expect(TestFunc.isWednesday('WEDNESDAY')).toBeTruthy()
     expect(TestFunc.isWednesday('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isThursday', () => {
