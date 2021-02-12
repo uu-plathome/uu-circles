@@ -111,7 +111,7 @@ class CircleValueObject
         $circleValueObject->appealing_point2 = $circleInformation->appealing_point2;
         $circleValueObject->appealing_point3 = $circleInformation->appealing_point3;
         $circleValueObject->admission_fee_per_year = $circleInformation->admission_fee_per_year;
-        $circleValueObject->weekly_activity_days = $circleInformation->weeklyActivityDays;
+        $circleValueObject->weekly_activity_days = $circleInformation->weeklyActivityDays();
         $circleValueObject->mammoth = $circleInformation->mammoth;
         $circleValueObject->active_activity = $circleInformation->activeActivity;
         $circleValueObject->number_of_members = $circleInformation->number_of_members;

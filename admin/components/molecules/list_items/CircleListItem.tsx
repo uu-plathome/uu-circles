@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import Image from 'next/image'
-import { faCheckCircle, faTimesCircle, faEdit, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faUserAlt, faTags } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { __ } from '@/lang/ja';
 import { Circle } from '@/lib/types/model/Circle';
@@ -48,13 +48,24 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                     />
                 </CircleListItemTableColumn>
                 <CircleListItemTableColumn title="種別">{__(circle.circleType) || '不明'}</CircleListItemTableColumn>
-                <CircleListItemTableColumn title="編集する">
-                    <Link href="/circle/edit/[id]" as={`/circle/edit/${circle.id}`} >
+                <CircleListItemTableColumn title="編集">
+                    <Link href="/circle/[id]/edit" as={`/circle/${circle.id}/edit`} >
                         <a>
                             <FontAwesomeIcon
                                 size="lg"
                                 color="orange"
                                 icon={ faEdit }
+                            />
+                        </a>
+                    </Link>
+                </CircleListItemTableColumn>
+                <CircleListItemTableColumn title="タグ">
+                    <Link href="/circle/[id]/tag" as={`/circle/${circle.id}/tag`} >
+                        <a>
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="orange"
+                                icon={ faTags }
                             />
                         </a>
                     </Link>
