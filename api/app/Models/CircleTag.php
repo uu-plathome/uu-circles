@@ -13,7 +13,7 @@ class CircleTag extends Model
         'incare',
         'loose',
         'community',
-        'program',
+        'programming',
         'urgent_recruitment',
         'mystery',
     ];
@@ -25,7 +25,7 @@ class CircleTag extends Model
         'incare'             => 'boolean',
         'loose'              => 'boolean',
         'community'          => 'boolean',
-        'program'            => 'boolean',
+        'programming'        => 'boolean',
         'urgent_recruitment' => 'boolean',
         'mystery'            => 'boolean',
     ];

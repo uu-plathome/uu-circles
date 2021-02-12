@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\CircleTag;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleTag\CreateOrUpdateCircleTagRequest;
 use App\Usecases\Admin\CreateOrUpdateCircleTagUsecase;
-use Illuminate\Http\Request;
 
 class CreateOrUpdateCircleTagController extends Controller
 {
@@ -22,8 +21,14 @@ class CreateOrUpdateCircleTagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(CreateOrUpdateCircleTagRequest $request, int $circleId)
-    {
+    public function __invoke(
+        CreateOrUpdateCircleTagRequest $request,
+        int $circleId
+    ) {
         $this->createOrUpdateCircleTagUsecase->invoke($circleId, $request->makeCircleTagEntitiy());
+
+        return [
+            'data' => 'success',
+        ];
     }
 }

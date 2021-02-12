@@ -9,10 +9,11 @@ import { createOrUpdateCircleTag } from '@/infra/api/circle_tag'
 import { isCreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { __ } from '@/lang/ja'
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
-    const { circleId } = router.query
+    const { id } = router.query
 
     const [ circleTag, setCircleTag ] = useState<CircleTagModel[]>([])
     const [ errors, setErrors ] = useState<string[]>([])
@@ -23,6 +24,7 @@ const CreatePage: NextPage = () => {
             { label: __(CircleTagModel.NATURE), value: CircleTagModel.NATURE, checked: false },
             { label: __(CircleTagModel.VOLUNTEER), value: CircleTagModel.VOLUNTEER, checked: false },
             { label: __(CircleTagModel.INCARE), value: CircleTagModel.INCARE, checked: false },
+            { label: __(CircleTagModel.INTERNATIONAL), value: CircleTagModel.INTERNATIONAL, checked: false },
             { label: __(CircleTagModel.LOOSE), value: CircleTagModel.LOOSE, checked: false },
             { label: __(CircleTagModel.COMMUNITY), value: CircleTagModel.COMMUNITY, checked: false },
             { label: __(CircleTagModel.PROGRAMMING), value: CircleTagModel.PROGRAMMING, checked: false },
@@ -37,7 +39,7 @@ const CreatePage: NextPage = () => {
         event.preventDefault()
 
         const data = await createOrUpdateCircleTag(
-            Number(circleId),
+            Number(id),
             circleTag
         )
 
@@ -90,6 +92,12 @@ const CreatePage: NextPage = () => {
                                 items={checkBoxItems}
                                 onChange={(e) => onUpdate(e)}
                             />
+
+                            <div className="flex justify-center">
+                                <GreenButton type="submit">
+                                    更新
+                                </GreenButton>
+                            </div>
                         </form>
                     </div>
                 </BaseWrapper>

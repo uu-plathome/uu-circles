@@ -17,7 +17,7 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -48,8 +48,8 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
 
     public function makeCircleTagEntitiy(): CircleTagEntitiy
     {
-        $request = $this->validated();
+        $request = Arr::snake_keys($this->validated());
 
-        return CircleTagEntitiy::of($request);
+        return CircleTagEntitiy::of($request['circle_tag']);
     }
 }
