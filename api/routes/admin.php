@@ -53,6 +53,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', 'Admin\CircleNewJoy\CopyCircleNewJoyController');
 
     // CircleTag サークルタグ管理
+    Route::get('/circle/{circleId}/tag', 'Admin\CircleTag\GetCircleTagController');
     Route::post('/circle/{circleId}/tag', 'Admin\CircleTag\CreateOrUpdateCircleTagController');
 
 

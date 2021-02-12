@@ -28,7 +28,7 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'circle_tag'   => 'required|array',
+            'circle_tag'   => 'nullable|array',
             'circle_tag.*' => [
                 'string',
                 Rule::in([
@@ -50,6 +50,6 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
     {
         $request = Arr::snake_keys($this->validated());
 
-        return CircleTagEntitiy::of($request['circle_tag']);
+        return CircleTagEntitiy::of($request['circle_tag'] ? $request['circle_tag'] : []);
     }
 }
