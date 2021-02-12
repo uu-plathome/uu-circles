@@ -70,7 +70,7 @@ export const CircleTagModel = {
   /**
    * 水曜日活動
    */
-  wednesday: 'wednesday',
+  WEDNESDAY: 'WEDNESDAY',
 
   /**
    * 木曜日活動
@@ -184,7 +184,7 @@ export const isTuesday = (v: any): v is 'TUESDAY' => v === CircleTagModel.TUESDA
 /**
  * 水曜日活動
  */
-export const isWednesday = (v: any): v is 'wednesday' => v === CircleTagModel.wednesday
+export const isWednesday = (v: any): v is 'WEDNESDAY' => v === CircleTagModel.WEDNESDAY
 /**
  * 木曜日活動
  */

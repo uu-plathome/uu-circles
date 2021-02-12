@@ -62,7 +62,7 @@ class CircleTagModel
     /**
      * 水曜日活動
      */
-    const wednesday = 'wednesday';
+    const WEDNESDAY = 'WEDNESDAY';
     /**
      * 木曜日活動
      */
