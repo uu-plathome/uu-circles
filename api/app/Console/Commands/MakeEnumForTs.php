@@ -6,6 +6,7 @@ use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
+use App\Enum\CircleTagModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -54,6 +55,7 @@ class MakeEnumForTs extends Command
         parent::__construct();
         $this->enumClasses = [
             CircleType::class,
+            CircleTagModel::class,
             DateOfActivity::class,
             PlaceOfActivity::class,
         ];
@@ -137,7 +139,7 @@ class MakeEnumForTs extends Command
         $outputJsPathes = $this->getOutputJsPath();
         foreach ($outputJsPathes as $outputJsPath) {
             file_put_contents(
-                $outputJsPath.'/'.$className.'.ts',
+                $outputJsPath . '/' . $className . '.ts',
                 $writableData
             );
         }
@@ -176,7 +178,7 @@ class MakeEnumForTs extends Command
         $outputJsTestPathes = $this->getOutputJsTestPath();
         foreach ($outputJsTestPathes as $outputJsTestPath) {
             file_put_contents(
-                $outputJsTestPath.'/'.$className.'.spec.ts',
+                $outputJsTestPath . '/' . $className . '.spec.ts',
                 $writableData
             );
         }
@@ -221,6 +223,7 @@ class MakeEnumForTs extends Command
         return [
             base_path('../admin/lib/enum/api'),
             base_path('../circle/lib/enum/api'),
+            base_path('../main/lib/enum/api'),
         ];
     }
 
@@ -232,6 +235,7 @@ class MakeEnumForTs extends Command
         return [
             base_path('../admin/__tests__/lib/enum/api'),
             base_path('../circle/__tests__/lib/enum/api'),
+            base_path('../main/__tests__/lib/enum/api'),
         ];
     }
 }

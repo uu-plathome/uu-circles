@@ -42,6 +42,8 @@ class CircleValueObject
     public ?string $online_date_of_activity_detail;
     public ?string $admission_fee_per_year;
     public ?int $weekly_activity_days;
+    public ?bool $mammoth;
+    public ?bool $active_activity;
     public ?int $number_of_members;
     public ?bool $is_club_activities;
     public ?string $appealing_point1;
@@ -109,7 +111,9 @@ class CircleValueObject
         $circleValueObject->appealing_point2 = $circleInformation->appealing_point2;
         $circleValueObject->appealing_point3 = $circleInformation->appealing_point3;
         $circleValueObject->admission_fee_per_year = $circleInformation->admission_fee_per_year;
-        $circleValueObject->weekly_activity_days = $circleInformation->weekly_activity_days;
+        $circleValueObject->weekly_activity_days = $circleInformation->weeklyActivityDays();
+        $circleValueObject->mammoth = $circleInformation->mammoth;
+        $circleValueObject->active_activity = $circleInformation->activeActivity;
         $circleValueObject->number_of_members = $circleInformation->number_of_members;
         $circleValueObject->public_email = $circleInformation->public_email;
         $circleValueObject->twitter_url = $circleInformation->twitter_url;
@@ -254,6 +258,8 @@ class CircleValueObject
             CircleInformationModel::admission_fee_per_year => $this->admission_fee_per_year,
             CircleInformationModel::number_of_members => $this->number_of_members,
             'weekly_activity_days' => $this->weekly_activity_days,
+            'mammoth' => $this->mammoth,
+            'active_activity' => $this->active_activity,
             CircleInformationModel::public_email => $this->public_email,
             CircleInformationModel::twitter_url => $this->twitter_url,
             CircleInformationModel::facebook_url => $this->facebook_url,

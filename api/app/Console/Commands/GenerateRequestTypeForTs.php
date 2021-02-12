@@ -17,6 +17,7 @@ use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
+use App\Http\Requests\Admin\CircleTag\CreateOrUpdateCircleTagRequest;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
@@ -81,6 +82,7 @@ class GenerateRequestTypeForTs extends Command
             ResetPasswordAdminRequest::class,
             CreateAdvertiseRequest::class,
             UpdateAdvertiseRequest::class,
+            CreateOrUpdateCircleTagRequest::class,
         ];
         $this->requestCircleClasses = [
             ForgotPasswordCircleRequest::class,
@@ -184,7 +186,7 @@ class GenerateRequestTypeForTs extends Command
          * ファイルへの書き込み
          */
         file_put_contents(
-            $outputPath.'/'.$className.'.ts',
+            $outputPath . '/' . $className . '.ts',
             $writableData
         );
     }
