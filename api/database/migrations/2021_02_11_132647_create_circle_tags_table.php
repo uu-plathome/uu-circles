@@ -22,7 +22,7 @@ class CreateCircleTagsTable extends Migration
             $table->boolean('incare')->default(false)->comment('インカレ');
             $table->boolean('loose')->default(false)->comment('ゆるい');
             $table->boolean('community')->default(false)->comment('地域おこし');
-            $table->boolean('program')->default(false)->comment('プログラミング');
+            $table->boolean('programming')->default(false)->comment('プログラミング');
             $table->boolean('urgent_recruitment')->default(false)->comment('部員急募');
             $table->boolean('mystery')->default(false)->comment('謎');
             $table->timestamps();

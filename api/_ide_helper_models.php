@@ -171,6 +171,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Circle $circle
+ * @property-read bool $active_activity
+ * @property-read bool $mammoth
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation query()

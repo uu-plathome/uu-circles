@@ -82,7 +82,9 @@ class CircleInformation extends Model
     ];
 
     protected $appends = [
-        'weeklyActivityDays'
+        'weeklyActivityDays',
+        'mammoth',
+        'activeActivity',
     ];
 
     public function circle(): BelongsTo
@@ -128,5 +130,25 @@ class CircleInformation extends Model
         }
 
         return $count;
+    }
+
+    /**
+     * 週5以上
+     */
+    public function getActiveActivityAttribute(): bool
+    {
+        return $this->weeklyActivityDays() > 4;
+    }
+
+    /**
+     * マンモス団体かどうか
+     */
+    public function getMammothAttribute(): bool
+    {
+        if (!$this->number_of_members) {
+            return false;
+        }
+
+        return $this->number_of_members > 49;
     }
 }
