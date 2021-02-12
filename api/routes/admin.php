@@ -52,6 +52,10 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', 'Admin\CircleNewJoy\DeleteCircleNewJoyController');
     Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', 'Admin\CircleNewJoy\CopyCircleNewJoyController');
 
+    // CircleTag サークルタグ管理
+    Route::post('/circle/{circleId}/tag', 'Admin\CircleTag\CreateOrUpdateCircleTagController');
+
+
     // Advertise
     Route::get('/advertise', 'Admin\Advertise\IndexAdvertiseController');
     Route::post('/advertise', 'Admin\Advertise\CreateAdvertiseController');

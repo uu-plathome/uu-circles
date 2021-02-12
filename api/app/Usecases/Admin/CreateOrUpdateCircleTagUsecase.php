@@ -26,10 +26,8 @@ class CreateOrUpdateCircleTagUsecase
             if ($circleTag) {
                 $circleTag->update($shouldInsertCircleTag->toArray());
             } else {
-                (new CircleTag())->fill([
-                    'circle_id' => $circleId,
-                    ...$shouldInsertCircleTag->toArray(),
-                ]);
+                $shouldInsertCircleTag->circle_id = $circleId;
+                $shouldInsertCircleTag->save();
             }
 
             DB::commit();
