@@ -13,7 +13,7 @@ class CircleTagEntitiy
      */
     public array $circleTag = [];
 
-    public function byEloquent(
+    public static function byEloquent(
         CircleInformation $circleInformation,
         CircleTag $circleTag
     ): CircleTagEntitiy {
@@ -56,8 +56,31 @@ class CircleTagEntitiy
         return $circleTagEntity;
     }
 
+    public static function of(array $arr): CircleTagEntitiy
+    {
+        $circleTagEntity = new CircleTagEntitiy();
+        $circleTagEntity->circleTag = $arr;
+        return $circleTagEntity;
+    }
+
     public function toArray()
     {
         return $this->circleTag;
+    }
+
+    public function toCircleTag(): CircleTag
+    {
+        $circleTag = new CircleTag();
+        $circleTag->volunteer = in_array(CircleTagModel::VOLUNTEER, $this->circleTag, true);
+        $circleTag->nature = in_array(CircleTagModel::NATURE, $this->circleTag, true);
+        $circleTag->international = in_array(CircleTagModel::INTERNATIONAL, $this->circleTag, true);
+        $circleTag->incare = in_array(CircleTagModel::INCARE, $this->circleTag, true);
+        $circleTag->loose = in_array(CircleTagModel::LOOSE, $this->circleTag, true);
+        $circleTag->community = in_array(CircleTagModel::COMMUNITY, $this->circleTag, true);
+        $circleTag->programming = in_array(CircleTagModel::PROGRAMMING, $this->circleTag, true);
+        $circleTag->urgent_recruitment = in_array(CircleTagModel::URGENT_RECRUITMENT, $this->circleTag, true);
+        $circleTag->mystery = in_array(CircleTagModel::MYSTERY, $this->circleTag, true);
+
+        return $circleTag;
     }
 }

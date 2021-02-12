@@ -10,14 +10,13 @@ export type CheckBoxItem = {
 export type Props = {
     id: string
     name: string
-    value: string|number
     required?: boolean
     placeholder?: string
     items: CheckBoxItem[]
     error?: string
     onChange(e: any): void
 } & BaseLabelProps
-const BaseSelect: React.FC<Props> = ({ label, id, note, items, required, error, onChange }) => {
+const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error, onChange }) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
             <BaseLabel
@@ -27,22 +26,20 @@ const BaseSelect: React.FC<Props> = ({ label, id, note, items, required, error, 
                 id={id}
             />
 
-            <div id={id}>
+            <div id={id} className="grid grid-cols-3">
                 {items.map((checkBoxItem: CheckBoxItem) => {
                     return (
-                        <div key={checkBoxItem.value}>
-                            <label className="inline-flex items-center">
-                                <input 
-                                    type="checkbox" 
-                                    className="form-checkbox" 
-                                    value={checkBoxItem.value} 
-                                    checked={checkBoxItem.checked}
-                                    id={`${id}_${checkBoxItem.value}`}
-                                    onChange={onChange}
-                                />
-                                <span className="ml-2">{checkBoxItem.label}</span>
-                            </label>
-                        </div>
+                        <label key={checkBoxItem.value} className="inline-flex items-center text-white">
+                            <input 
+                                type="checkbox" 
+                                className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+                                value={checkBoxItem.value} 
+                                checked={checkBoxItem.checked}
+                                id={`${id}_${checkBoxItem.value}`}
+                                onChange={onChange}
+                            />
+                            <span className="ml-2">{checkBoxItem.label}</span>
+                        </label>
                 )})}
             </div>
 
@@ -53,4 +50,4 @@ const BaseSelect: React.FC<Props> = ({ label, id, note, items, required, error, 
     )
 }
 
-export { BaseSelect }
+export { BaseCheckBox }
