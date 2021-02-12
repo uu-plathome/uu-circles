@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseCheckBox, CheckBoxItem } from '@/components/atoms/form/BaseCheckBox'
-import { createOrUpdateCircleTag } from '@/infra/api/circle_tag'
+import { createOrUpdateCircleTag, getCircleTag } from '@/infra/api/circle_tag'
 import { isCreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { __ } from '@/lang/ja'
@@ -32,7 +32,19 @@ const CreatePage: NextPage = () => {
             { label: __(CircleTagModel.MYSTERY), value: CircleTagModel.MYSTERY, checked: false },
         ];
 
-        setCheckBoxItems(newCheckBoxItems)
+        const f = async () => {
+            const { circleTag: pastCircleTag } = await getCircleTag(Number(id))
+
+            const newCheckBoxItemsAdjustPastItem = newCheckBoxItems.map((_checkBoxItem) => ({
+                value: _checkBoxItem.value,
+                label: _checkBoxItem.label,
+                checked: pastCircleTag.includes(_checkBoxItem.value),
+            } as CheckBoxItem))
+            setCircleTag(pastCircleTag)
+            setCheckBoxItems(newCheckBoxItemsAdjustPastItem)
+        }
+
+        f()
     }, [])
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -88,7 +100,6 @@ const CreatePage: NextPage = () => {
                                 name="circle_tag"
                                 label="サークルタグ"
                                 error={errors && Array.isArray(errors) ? errors[0] : ''}
-                                required
                                 items={checkBoxItems}
                                 onChange={(e) => onUpdate(e)}
                             />

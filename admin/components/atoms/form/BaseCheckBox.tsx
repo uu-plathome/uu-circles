@@ -32,7 +32,7 @@ const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error
                         <label key={checkBoxItem.value} className="inline-flex items-center text-white">
                             <input 
                                 type="checkbox" 
-                                className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+                                className="mb-1 rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
                                 value={checkBoxItem.value} 
                                 checked={checkBoxItem.checked}
                                 id={`${id}_${checkBoxItem.value}`}
