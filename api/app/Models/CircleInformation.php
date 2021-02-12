@@ -82,7 +82,6 @@ class CircleInformation extends Model
     ];
 
     protected $appends = [
-        'weeklyActivityDays',
         'mammoth',
         'activeActivity',
     ];
