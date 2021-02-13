@@ -1,10 +1,13 @@
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React from "react";
+import { UrlObject } from 'url';
+type Url = string | UrlObject;
 
 type Props = {
-    type?: "button" | "submit" | "reset"
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
+    as?: Url
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-    href?: string
+    href?: LinkProps['href']
 }
 
 const buttonClassName = `
@@ -16,22 +19,22 @@ const buttonClassName = `
     font-medium
     leading-6
     text-center
-    text-white
+    text-black
     uppercase
     transition
-    bg-yellow-500
+    bg-gray-100
     rounded
     shadow
     ripple
     hover:shadow-lg
-    hover:bg-yellow-600
+    hover:bg-gray-200
     focus:outline-none
 `
-const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
+const GrayButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
 
     if (href) {
         return (
-            <Link href={href}>
+            <Link href={href} as={as}>
                 <a className={buttonClassName}>
                     { children }
                 </a>
@@ -50,4 +53,4 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
     }
 }
 
-export { OrangeButton }
+export { GrayButton }
