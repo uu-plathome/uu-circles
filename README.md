@@ -55,6 +55,11 @@ $ cd main & npm i
 $ cd main & npm run dev
 ```
 
+## 管理者ログイン
+
+ー ユーザー名: tester
+- パスワード： Test1234@@
+
 # Deploy api For Production
 
 ```shell
