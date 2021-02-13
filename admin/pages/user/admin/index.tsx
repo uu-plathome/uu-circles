@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { getAdminUserList } from '@/infra/api/admin_user'
-import { resendEmail } from '@/infra/api/auth'
+import { getAuthUser, resendEmail } from '@/infra/api/auth'
 import { User } from '@/lib/types/model/User'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
@@ -35,6 +35,10 @@ const IndexPage: NextPage = () => {
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
+    const { data: authUser } = useSWR(
+        '/admin/api/user',
+        getAuthUser
+    )
 
     const onResendEmail = async (email: string) => {
         await resendEmail(email)
@@ -70,6 +74,7 @@ const IndexPage: NextPage = () => {
                             users.map((user: User) => {
                                 return <AdminUserListItem
                                     key={`user-${user.id}`} 
+                                    authUser={authUser}
                                     user={user}
                                     onResendEmail={onResendEmail}
                                 />

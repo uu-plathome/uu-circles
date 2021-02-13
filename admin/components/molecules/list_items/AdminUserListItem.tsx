@@ -1,27 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
-import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { User } from '@/lib/types/model/User';
 import Link from 'next/link';
 
 type Props = {
     user: User
+    authUser: User
     onResendEmail(email: string): void
 }
-const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
+const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
     return (
-        <div>
+        <div className="mb-4">
         <div className="ml-2 w-full">
             <h2 className="font-bold text-lg text-gray-300 mb-2">{ user.displayName }</h2>
 
             <div className="flex flex-wrap w-full">
-                <div className="w-full lg:w-1/6 pr-2">
+                <div className="w-full lg:w-1/5 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">ユーザー名</p>
                     <div className="flex justify-center h-7 items-center text-white">
-                        {user.username}
+                        {`@${user.username}`}
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6 pr-2">
+                <div className="w-full lg:w-1/5 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">有効なアカウント</p>
                     <div className="flex justify-center h-7 items-center">
                         <FontAwesomeIcon
@@ -31,7 +32,7 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                         />
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6 pr-2">
+                <div className="w-full lg:w-1/5 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">認証済みか</p>
                     <div className="flex justify-center h-7 items-center">
                         <div>
@@ -43,14 +44,14 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                                 />
                             </div>
                             {!user.emailVerifiedAt ? (
-                                <div className="text-sm">
+                                <div className="text-sm text-white">
                                     <button onClick={() => onResendEmail(user.email)}>メールの再送信</button>
                                 </div>
                             ) : '' }
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6 pr-2">
+                <div className="w-full lg:w-1/5 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">編集する</p>
                     <div className="flex justify-center h-7 items-center">
                         <Link href="/user/admin/[userId]/edit" as={`/user/admin/${user.id}/edit`} >
@@ -64,18 +65,26 @@ const AdminUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                         </Link>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/6">
+                <div className="w-full lg:w-1/5 pr-2">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">削除する</p>
                     <div className="flex justify-center h-7 items-center">
-                        <Link href="/user/admin/[userId]/delete" as={`/user/admin/${user.id}/delete`} >
-                            <a>
-                                <FontAwesomeIcon
-                                    size="lg"
-                                    color="red"
-                                    icon={ faTrash }
-                                />
-                            </a>
-                        </Link>
+                        {authUser && user.id !== authUser.id ? (
+                            <Link href="/user/admin/[userId]/delete" as={`/user/admin/${user.id}/delete`} >
+                                <a>
+                                    <FontAwesomeIcon
+                                        size="lg"
+                                        color="red"
+                                        icon={ faTrash }
+                                    />
+                                </a>
+                            </Link>
+                        ) : (
+                            <FontAwesomeIcon
+                                size="lg"
+                                color="white"
+                                icon={ faMinus }
+                            />
+                        )}
                     </div>
                 </div>
             </div>
