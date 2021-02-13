@@ -6,23 +6,23 @@
 
 - Laravel 6 / PHP 7.4
 
-※ Laravel8にあげたい
+※ Laravel8 にあげたい
 
 ### Main
 
 - Next.js v9.5 / Node.js v14 or v15
 
-※ 基本的には、Node v14で良い。ただし、M1 MacだとNode v15じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
 
 ### Admin
 
 - Next.js v9.5 / Node.js v14 or v15
 
-※ 基本的には、Node v14で良い。ただし、M1 MacだとNode v15じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
 
 ## 起動
 
-``` shell
+```shell
 # API
 $ docker-compose up -d
 
@@ -53,4 +53,10 @@ $ cd admin & npm run dev
 # Main
 $ cd main & npm i
 $ cd main & npm run dev
+```
+
+# Deploy For Apache
+
+```shell
+$ mv ./server/.htaccess .htaccess
 ```
