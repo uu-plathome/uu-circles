@@ -17,15 +17,17 @@ const BaseWrapper: FC<Props> = ({ title, actionHref, actionAs, actionText, child
 
             <div className="w-full md:w-2/3 lg:w-4/5">
                 <div className="pt-20 md:pt-10 pb-10">
-                    <div className="flex justify-between mb-8">
-                        <h1 className="text-2xl text-gray-100">
+                    <div className="md:flex justify-between mb-8">
+                        <h1 className="text-2xl text-gray-100 mb-4 md:mb-0">
                             { title }
                         </h1>
 
                         {actionText ? (
-                            <GreenButton href={actionHref} as={actionAs}>
-                                { actionText }
-                            </GreenButton>
+                            <div className="text-right">
+                                <GreenButton href={actionHref} as={actionAs}>
+                                    { actionText }
+                                </GreenButton>
+                            </div>
                         ) : '' }
                     </div>
 
