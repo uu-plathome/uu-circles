@@ -27,34 +27,11 @@ type Props = {
 const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
     return (
         <form onSubmit={onSubmit}>
-            <FormHeader>公開設定</FormHeader>
-
-            <div className="mb-8">
-                <BaseSelect
-                    label="公開設定"
-                    id="release"
-                    name="release"
-                    items={[
-                        { value: 'true', label: '公開' },
-                        { value: 'false', label: '非公開' },
-                    ]}
-                    { ...form.release }
-                />
-
-                <BaseDate 
-                    label="予約投稿日時"
-                    name="publishFrom"
-                    id="publishFrom"
-                    note="予約投稿をしない場合は、空にしてください。"
-                    { ...form.publishFrom }
-                />
-            </div>
-
             <FormHeader>新歓基本情報</FormHeader>
 
             <div className="mb-8">
                 <BaseTextField
-                    label="サークル新歓"
+                    label="新歓名"
                     name="title"
                     id="title"
                     expand
@@ -63,7 +40,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                 />
 
                 <BaseTextField
-                    label="サークル新歓説明"
+                    label="新歓説明"
                     name="description"
                     id="description"
                     expand
@@ -107,13 +84,36 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                 />
 
                 <BaseTextField
-                    label="新歓URLのパス"
+                    label="新歓URL"
                     name="url"
                     id="url"
                     placeholder="https://ulab-uu.com/"
                     expand
                     note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
                     { ...form.url }
+                />
+            </div>
+
+            <FormHeader>公開設定</FormHeader>
+
+            <div className="mb-8">
+                <BaseSelect
+                    label="公開設定"
+                    id="release"
+                    name="release"
+                    items={[
+                        { value: 'true', label: '公開' },
+                        { value: 'false', label: '非公開' },
+                    ]}
+                    { ...form.release }
+                />
+
+                <BaseDate 
+                    label="予約投稿日時"
+                    name="publishFrom"
+                    id="publishFrom"
+                    note="予約投稿をしない場合は、空にしてください。"
+                    { ...form.publishFrom }
                 />
             </div>
 
