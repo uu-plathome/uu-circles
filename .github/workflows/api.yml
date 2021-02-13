@@ -12,20 +12,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: init
-        run: make init
+        run: |
+          docker-compose build
+          docker-compose up -d
+          docker exec app php -r "file_exists('.env') || copy('.env.example', '.env');"
+          docker exec app composer install
+          docker exec app php artisan key:generate
+          docker exec app php artisan storage:link
+          docker exec app chmod -R 777 storage
+          docker exec app chmod -R 777 bootstrap/cache
+          docker exec app php artisan config:cache
       - name: migrate
         run: |
-          docker-compose exec -T app php artisan migrate
+          docker exec app php artisan migrate
       - name: re migrate
         run: |
-          docker-compose exec -T app php artisan migrate:fresh --seed
+          docker exec app php artisan migrate:fresh --seed
       - name: Execute tests
         run: docker-compose exec app composer test
       - name: artisan コマンドが正しく実行されるか
         run: |
-          docker-compose exec -T app php artisan cache:clear
-          docker-compose exec -T app php artisan config:cache
-          docker-compose exec -T app php artisan view:clear
+          docker exec app php artisan cache:clear
+          docker exec app php artisan config:cache
+          docker exec app php artisan view:clear
 
   deploy:
     if: github.ref == 'refs/heads/develop/production'
