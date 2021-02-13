@@ -1,12 +1,16 @@
 import dayjs from 'dayjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { faCheckCircle, faTimesCircle, faEdit, faTrash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy';
 import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity';
 import { Circle } from '@/lib/types/model/Circle';
 import { __ } from '@/lang/ja';
+import Modal from 'react-modal';
+import { RedButton } from '@/components/atoms/buttons/RedButton';
+import { GrayButton } from '@/components/atoms/buttons/GrayButton';
+import { OrangeButton } from '@/components/atoms/buttons/OrangeButton';
 
 type Props = {
     circle: Circle
@@ -75,6 +79,130 @@ const NewJoyDateTime: FC<{
         </div>
     )
 }
+const customStyles = {
+    content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        width: '300px',
+        height: '320px'
+    }
+};
+
+type CopyButtonProps = {
+    circleNewJoy: CircleNewJoy
+    newJoyTitle: string
+    onCopy(): void
+}
+const CopyButton: FC<CopyButtonProps> = ({ circleNewJoy, newJoyTitle, onCopy }) => {
+    const [isOpen,setIsOpen] = useState(false);
+
+    const onClickCopyButton = () => {
+        setIsOpen(false)
+        onCopy()
+    }
+
+    return (
+        <div>
+            <button onClick={() => setIsOpen(true)}>
+                <FontAwesomeIcon
+                    size="lg"
+                    color="orange"
+                    icon={ faCopy }
+                />
+            </button>
+
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={() => setIsOpen(false)}
+                style={customStyles}
+                contentLabel="新歓のコピー"
+            >
+                <h2 className="text-center text-lg mb-4 font-bold">本当にコピーしますか？</h2>
+
+                <p className="mb-4 text-center">{newJoyTitle}</p>
+
+                <div className="bg-gray-800 rounded p-4 mb-4">
+                    <p className="text-white">新歓日時</p>
+                    <div className="pb-2">
+                        <NewJoyDateTime 
+                            startDate={circleNewJoy.startDate}
+                            endDate={circleNewJoy.endDate}
+                        />
+                    </div>
+                </div>
+
+                <div className="flex justify-center">
+                    <div className="mx-2">
+                        <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+                    </div>
+                    <div className="mx-2">
+                        <OrangeButton onClick={onClickCopyButton}>コピー</OrangeButton>
+                    </div>
+                </div>
+            </Modal>
+        </div>
+    )
+}
+
+type DeleteButtonProps = {
+    circleNewJoy: CircleNewJoy
+    newJoyTitle: string
+    onDelete(): void
+}
+const DeleteButton: FC<DeleteButtonProps> = ({ circleNewJoy, newJoyTitle, onDelete }) => {
+    const [isOpen,setIsOpen] = useState(false);
+
+    const onClickDeleteButton = () => {
+        setIsOpen(false)
+        onDelete()
+    }
+
+    return (
+        <div>
+            <button onClick={() => setIsOpen(true)}>
+                <FontAwesomeIcon
+                    size="lg"
+                    color="red"
+                    icon={ faTrash }
+                />
+            </button>
+
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={() => setIsOpen(false)}
+                style={customStyles}
+                contentLabel="新歓の削除"
+            >
+                <h2 className="text-center text-lg mb-4 font-bold">本当に削除しますか？</h2>
+
+                <p className="mb-4 text-center">{newJoyTitle}</p>
+
+                <div className="bg-gray-800 rounded p-4 mb-4">
+                    <p className="text-white">新歓日時</p>
+                    <div className="pb-2">
+                        <NewJoyDateTime 
+                            startDate={circleNewJoy.startDate}
+                            endDate={circleNewJoy.endDate}
+                        />
+                    </div>
+                </div>
+
+                <div className="flex justify-center">
+                    <div className="mx-2">
+                        <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+                    </div>
+                    <div className="mx-2">
+                        <RedButton onClick={onClickDeleteButton}>削除</RedButton>
+                    </div>
+                </div>
+            </Modal>
+        </div>
+    )
+}
 
 const CircleNewJoyListItem: FC<Props> = ({ circle, circleNewJoy, onCopy, onDelete }) => {
     const newJoyTitle = newJoyTitleEntity(circle, circleNewJoy)
@@ -121,23 +249,19 @@ const CircleNewJoyListItem: FC<Props> = ({ circle, circleNewJoy, onCopy, onDelet
                 </CircleListItemTableColumn>
 
                 <CircleListItemTableColumn title="コピー" xs>
-                    <button onClick={() => onCopy(circleNewJoy.id)}>
-                        <FontAwesomeIcon
-                            size="lg"
-                            color="orange"
-                            icon={ faCopy }
-                        />
-                    </button>
+                    <CopyButton
+                        newJoyTitle={newJoyTitle.value}
+                        circleNewJoy={circleNewJoy}
+                        onCopy={() => onCopy(circleNewJoy.id)}
+                    />
                 </CircleListItemTableColumn>
 
                 <CircleListItemTableColumn title="削除" xs>
-                    <button onClick={() => onDelete(circleNewJoy.id)}>
-                        <FontAwesomeIcon
-                            size="lg"
-                            color="red"
-                            icon={ faTrash }
-                        />
-                    </button>
+                    <DeleteButton
+                        newJoyTitle={newJoyTitle.value}
+                        circleNewJoy={circleNewJoy}
+                        onDelete={() => onDelete(circleNewJoy.id)}
+                    />
                 </CircleListItemTableColumn>
 
             </div>
