@@ -2,7 +2,7 @@ name: API
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop/production, develop/stg]
   pull_request:
 
 jobs:
