@@ -12,6 +12,7 @@ import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
 import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 
 const IndexPage: NextPage = () => {
@@ -21,6 +22,7 @@ const IndexPage: NextPage = () => {
     const [error, setError] = useState<string>('')
     const router = useRouter()
     const { userId } = router.query
+    const { isMd } = useMediaQuery()
 
     useEffect(() => {
         const f = async () => {
@@ -47,7 +49,9 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

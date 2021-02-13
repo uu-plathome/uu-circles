@@ -9,10 +9,12 @@ import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyReque
 import { __ } from '@/lang/ja'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const description = useStringInput('')
@@ -61,7 +63,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

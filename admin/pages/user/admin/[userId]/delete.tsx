@@ -3,6 +3,7 @@ import { RedButton } from "@/components/atoms/buttons/RedButton"
 import { BaseContainer } from "@/components/layouts/BaseContainer"
 import { BaseHeader } from "@/components/layouts/BaseHeader"
 import { BaseWrapper } from "@/components/layouts/BaseWrapper"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { deleteAdminUser, getAdminUser } from "@/infra/api/admin_user"
 import { getAuthUser } from "@/infra/api/auth"
 import { NextPage } from "next"
@@ -13,6 +14,7 @@ import useSWR from "swr"
 const DeletePage: NextPage = () => {
     const router = useRouter()
     const { userId } = router.query
+    const { isMd } = useMediaQuery()
     const [ error, setError ] = useState('本当に削除しますか。削除したら元に戻せません。')
     const { data: user } = useSWR(
         ['/admin/api/admin-user/[userId]', Number(userId)], 
@@ -48,7 +50,9 @@ const DeletePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
