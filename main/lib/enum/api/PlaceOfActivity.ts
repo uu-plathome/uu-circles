@@ -18,6 +18,11 @@ export const PlaceOfActivity = {
   MINE_AND_YOTO: 'MINE_AND_YOTO',
 
   /**
+   * ディスコード
+   */
+  DISCORD: 'DISCORD',
+
+  /**
    * その他
    */
   OTHER: 'OTHER'
@@ -51,6 +56,10 @@ export const isYoto = (v: any): v is 'YOTO' => v === PlaceOfActivity.YOTO
  * 峰キャンパス, 陽東キャンパス
  */
 export const isMineAndYoto = (v: any): v is 'MINE_AND_YOTO' => v === PlaceOfActivity.MINE_AND_YOTO
+/**
+ * ディスコード
+ */
+export const isDiscord = (v: any): v is 'DISCORD' => v === PlaceOfActivity.DISCORD
 /**
  * その他
  */
