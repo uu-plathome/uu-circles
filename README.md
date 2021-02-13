@@ -58,7 +58,7 @@ $ cd main & npm run dev
 # Deploy api For Production
 
 ```shell
-$ git push origin origin/master origin/develop/production -f
+$ git push main:develop/production -f
 ```
 
 # Deploy For Apache
