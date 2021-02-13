@@ -15,7 +15,7 @@ jobs:
         run: |
           docker-compose build
           docker-compose up -d
-          docker-compose exec -T app php -r "file_exists('.env') || copy('.env.example', '.env');"
+          docker-compose exec -T cp --force .env.example .env
           docker-compose exec -T app composer install
           docker-compose exec -T app php artisan key:generate
           docker-compose exec -T app php artisan storage:link
