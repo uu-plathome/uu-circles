@@ -24,10 +24,11 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
             />
 
             <BaseTextField
-                label="サークル名(かな)"
+                label="サークル名(カナ)"
                 name="nameKana"
                 id="nameKana"
                 expand
+                pattern="(?=.*?[\u30A1-\u30FC])[\u30A1-\u30FC\s]*"
                 {...form.nameKana}
             />
 

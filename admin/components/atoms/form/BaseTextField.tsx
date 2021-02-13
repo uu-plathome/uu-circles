@@ -26,6 +26,7 @@ export type Props = {
     prefix?: string
     suffix?: string
     error?: string
+    pattern?: string
     onChange(e: any): void
 } & BaseLabelProps
 const BaseTextField: FC<Props> = ({
@@ -39,6 +40,7 @@ const BaseTextField: FC<Props> = ({
     required,
     placeholder,
     prefix,
+    pattern,
     suffix,
     error,
     onChange
@@ -67,6 +69,7 @@ const BaseTextField: FC<Props> = ({
                     placeholder={placeholder}
                     onChange={onChange}
                     className={inputClass}
+                    pattern={pattern}
                     style={{
                         width: expand ? '100%' : 'auto'
                     }}
