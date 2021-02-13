@@ -5,7 +5,7 @@ import { BaseDate } from "@/components/atoms/form/BaseDate";
 import { BaseDatetime } from "@/components/atoms/form/BaseDatetime";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
-import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { getAllPlaceOfActivity, PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
 import { FC, FormEvent } from "react";
 import { FormHeader } from "@/components/atoms/header/FormHeader";
 import { FrontUrl } from "@/lib/enum/main/FrontUrl";
@@ -52,10 +52,8 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     id="placeOfActivity"
                     name="placeOfActivity"
                     items={[
-                        ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                            value: _placeOfActivity,
-                            label: __(_placeOfActivity)
-                        }))
+                        { value: PlaceOfActivity.DISCORD, label: __(PlaceOfActivity.DISCORD) },
+                        { value: PlaceOfActivity.OTHER, label: __(PlaceOfActivity.OTHER) },
                     ]}
                     { ...form.placeOfActivity }
                 />

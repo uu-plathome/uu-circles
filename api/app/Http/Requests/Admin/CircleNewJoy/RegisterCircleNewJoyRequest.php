@@ -34,8 +34,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyModel::place_of_activity        => [
                 'string',
-                'nullable',
-                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::MINE_AND_YOTO, PlaceOfActivity::OTHER]),
+                Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
             CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:255'],
             CircleNewJoyModel::publish_from             => ['string', 'nullable'],
@@ -53,7 +52,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyModel::description              => $request['description'],
             CircleNewJoyModel::url                      => $request['url'],
             CircleNewJoyModel::place_of_activity        => $request['place_of_activity'],
-            CircleNewJoyModel::place_of_activity_detail => $request['place_of_activity_detail'],
+            CircleNewJoyModel::place_of_activity_detail => Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '',
             CircleNewJoyModel::publish_from             => $request['publish_from'],
             CircleNewJoyModel::start_date               => $request['start_date'],
             CircleNewJoyModel::end_date                 => $request['end_date'],

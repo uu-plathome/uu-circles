@@ -6,10 +6,10 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
-import { __ } from '@/lang/ja'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -19,7 +19,7 @@ const CreatePage: NextPage = () => {
     const title = useStringInput('')
     const description = useStringInput('')
     const url = useStringInput('')
-    const placeOfActivity = useStringInput('')
+    const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
     const placeOfActivityDetail = useStringInput('')
     const publishFrom = useDateInput(null)
     const startDate = useDateInput(null)
