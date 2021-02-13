@@ -199,6 +199,23 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
+      body: [
+        '"M PLUS 1p"',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
+      ]
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
