@@ -12,7 +12,6 @@ import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateAdvertiseRequestValidationError } from '@/lib/types/api/UpdateAdvertiseRequest'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -97,17 +96,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="広告編集"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="広告編集"
+                    title="広告発行"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <EditAdvertiseForm 
