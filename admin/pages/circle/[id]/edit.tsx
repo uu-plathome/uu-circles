@@ -13,6 +13,7 @@ import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPu
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { HiraToKana } from '@/lib/utils/String'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
@@ -136,6 +137,10 @@ const EditPage: NextPage = () => {
 
         f()
     }, [])
+
+    useEffect(() => {
+        nameKana.value && nameKana.set(HiraToKana(nameKana.value))
+    })
 
     const onDropMainImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
