@@ -73,6 +73,8 @@ const CreatePage: NextPage = () => {
                                 name="username"
                                 id="username"
                                 required
+                                prefix="@"
+                                placeholder="u-ta"
                                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                 { ...username }
                             />
@@ -81,7 +83,7 @@ const CreatePage: NextPage = () => {
                                 label="表示名"
                                 name="display_name"
                                 id="display_name"
-                                placeholder="u-lab"
+                                placeholder="宇都宮太郎"
                                 required
                                 note="入力がない場合は、自動で決まります"
                                 { ...displayName }

@@ -51,9 +51,21 @@ const CreatePage: NextPage = () => {
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <form onSubmit={onSubmit}>
                             <BaseTextField
+                                label="メールアドレス"
+                                name="email"
+                                id="email"
+                                required
+                                expand
+                                placeholder="example@example.com"
+                                { ...email }
+                            />
+
+                            <BaseTextField
                                 label="ユーザー名"
                                 name="username"
                                 id="username"
+                                prefix="@"
+                                placeholder="u-ta"
                                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                 { ...username }
                             />
@@ -62,18 +74,9 @@ const CreatePage: NextPage = () => {
                                 label="表示名"
                                 name="display_name"
                                 id="display_name"
-                                placeholder="u-lab"
+                                placeholder="宇都宮太郎"
                                 note="入力がない場合は、自動で決まります"
                                 { ...displayName }
-                            />
-
-                            <BaseTextField
-                                label="メールアドレス"
-                                name="email"
-                                id="email"
-                                required
-                                placeholder="example@example.com"
-                                { ...email }
                             />
 
                             <div className="flex justify-center mt-8">
