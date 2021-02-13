@@ -12,7 +12,6 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import useSWR from 'swr'
 import { showCircle } from '@/infra/api/circle'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -68,10 +67,6 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="新歓作成"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}

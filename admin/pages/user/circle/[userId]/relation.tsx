@@ -13,7 +13,6 @@ import { getCircleList, getCircleListByUserId } from '@/infra/api/circle'
 import { User } from '@/lib/types/model/User'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -73,10 +72,6 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="サークルと連携する"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
