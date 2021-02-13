@@ -8,10 +8,13 @@ import { createCircleUser } from '@/infra/api/circle_user'
 import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -43,11 +46,17 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="部員アカウント新規追加"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークルアカウント新規作成"
+                    title="部員アカウント新規追加"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleUserForm

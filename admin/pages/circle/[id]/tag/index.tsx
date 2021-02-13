@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -10,10 +10,13 @@ import { isCreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { __ } from '@/lang/ja'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     const [ circleTag, setCircleTag ] = useState<CircleTagModel[]>([])
     const [ errors, setErrors ] = useState<string[]>([])
@@ -86,7 +89,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="サークルタグ管理"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

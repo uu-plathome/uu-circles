@@ -1,7 +1,9 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { Head } from '@/components/layouts/Head'
 import { CreateCircleForm } from '@/components/organisms/form/Circle/CreateCircleForm'
 import { useStringInput } from '@/hooks/useInput'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createCircle } from '@/infra/api/circle'
 import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
@@ -11,6 +13,7 @@ import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
+    const { isMd } = useMediaQuery()
 
     const name = useStringInput('')
     const slug = useStringInput('')
@@ -37,7 +40,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="サークル新規作成"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

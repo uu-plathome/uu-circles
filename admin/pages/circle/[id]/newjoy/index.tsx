@@ -12,6 +12,8 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import useSWR from 'swr'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 
 const IndexPage: NextPage = () => {
@@ -21,6 +23,7 @@ const IndexPage: NextPage = () => {
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
+    const { isMd } = useMediaQuery()
 
     // 新歓一覧の取得
     const fetchCircle = async () => {
@@ -67,12 +70,18 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="新歓一覧"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
                     title={(circle && circle.name) ? `${circle.name}の新歓` : 'loading...'}
-                    actionText="新歓新規作成"
+                    actionText="新歓一覧"
                     actionHref="/circle/[id]/newjoy/create"
                     actionAs={`/circle/${id}/newjoy/create`}
                 >
@@ -85,10 +94,11 @@ const IndexPage: NextPage = () => {
                             <DangerBunner text={error} />
                         ) : ''}
 
-                        {circleNewJoys.length > 0 ? (
+                        {circle && circleNewJoys.length > 0 ? (
                             circleNewJoys.map((circleNewJoy: CircleNewJoy) => {
                                 return <CircleNewJoyListItem
                                     key={`circle-${circleNewJoy.id}`}
+                                    circle={circle}
                                     circleNewJoy={circleNewJoy}
                                     onCopy={onCopy}
                                     onDelete={onDelete}

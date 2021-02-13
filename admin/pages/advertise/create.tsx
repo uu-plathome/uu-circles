@@ -1,5 +1,5 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { useBooleanInput, useStringInput } from '@/hooks/useInput'
+import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
@@ -11,15 +11,18 @@ import { isCreateAdvertiseRequestValidationError } from '@/lib/types/api/CreateA
 import { CreateAdvertiseForm } from '@/components/organisms/form/Advertise/CreateAdvertiseForm'
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
-    const publishTo = useStringInput('')
-    const publishFrom = useStringInput('')
+    const publishTo = useDateInput(null)
+    const publishFrom = useDateInput(null)
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -78,7 +81,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="広告発行"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

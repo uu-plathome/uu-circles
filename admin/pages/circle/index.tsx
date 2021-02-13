@@ -6,17 +6,26 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { getCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { Head } from '@/components/layouts/Head';
 
 const IndexPage: NextPage = () => {
     const { data: circles } = useSWR('/admin/api/circle', getCircleList, { revalidateOnReconnect: true })
+    const { isMd } = useMediaQuery()
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="サークル一覧"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークル一覧へようこそ"
+                    title="サークル一覧"
                     actionText="サークル新規作成"
                     actionHref="/circle/create"
                 >

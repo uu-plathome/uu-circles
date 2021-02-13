@@ -12,10 +12,14 @@ import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { HiraToKana } from '@/lib/utils/String'
+import { Head } from '@/components/layouts/Head'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
+    const { isMd } = useMediaQuery()
     const name = useStringInput('')
     const slug = useStringInput('')
     const release = useBooleanInput(false)
@@ -135,6 +139,10 @@ const EditPage: NextPage = () => {
         f()
     }, [])
 
+    useEffect(() => {
+        nameKana.value && nameKana.set(HiraToKana(nameKana.value))
+    })
+
     const onDropMainImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
@@ -170,8 +178,8 @@ const EditPage: NextPage = () => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
             reader.onload = async (e) => {
                 new Compressor(file, {
                     quality: 1.0,
@@ -408,7 +416,13 @@ const EditPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="サークル編集"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

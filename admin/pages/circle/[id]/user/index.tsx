@@ -8,12 +8,15 @@ import { useRouter } from 'next/router'
 import { User } from '@/lib/types/model/User'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const IndexPage: NextPage = () => {
     const router = useRouter();
     const [users, setUsers] = useState<User[]>([])
     const [success, setSuccess] = useState<boolean>(false)
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     useEffect(() => {
         const f = async () => {
@@ -42,11 +45,17 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="部員アカウント管理"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークルユーザー管理"
+                    title="部員アカウント管理"
                     actionHref="/circle/[id]/user/create"
                     actionAs={`/circle/${id}/user/create`}
                     actionText="アカウント新規作成"

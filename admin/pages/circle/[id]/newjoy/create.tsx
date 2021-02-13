@@ -6,23 +6,30 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
-import { __ } from '@/lang/ja'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import useSWR from 'swr'
+import { showCircle } from '@/infra/api/circle'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const description = useStringInput('')
     const url = useStringInput('')
-    const placeOfActivity = useStringInput('')
+    const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
     const placeOfActivityDetail = useStringInput('')
     const publishFrom = useDateInput(null)
     const startDate = useDateInput(null)
     const endDate = useDateInput(null)
     const release = useBooleanInput(true)
+
+    const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () => showCircle(Number(id)))
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -61,7 +68,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="新歓作成"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
@@ -70,6 +83,7 @@ const CreatePage: NextPage = () => {
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleNewJoyForm
                             onSubmit={onSubmit}
+                            circle={circle}
                             form={{
                                 title,
                                 description,

@@ -9,11 +9,14 @@ import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest }
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id, circleNewJoyId } = router.query
     const [circle, setCircle] = useState<Circle|null>(null)
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const description = useStringInput('')
@@ -85,27 +88,36 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="新歓編集"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークル新歓編集"
+                    title="新歓編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
-                        <EditCircleNewJoyForm 
-                            onSubmit={onSubmit}
-                            form={{
-                                title,
-                                description,
-                                url,
-                                placeOfActivity,
-                                placeOfActivityDetail,
-                                publishFrom,
-                                startDate,
-                                endDate,
-                                release,
-                            }}
-                        />
+                        {circle ? (
+                            <EditCircleNewJoyForm 
+                                onSubmit={onSubmit}
+                                circle={circle}
+                                form={{
+                                    title,
+                                    description,
+                                    url,
+                                    placeOfActivity,
+                                    placeOfActivityDetail,
+                                    publishFrom,
+                                    startDate,
+                                    endDate,
+                                    release,
+                                }}
+                            />
+                        ) : ''}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

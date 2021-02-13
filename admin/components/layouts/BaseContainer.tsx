@@ -2,7 +2,7 @@ import { FC } from "react"
 
 const BaseContainer: FC = ({ children }) => {
     return (
-        <div className="xl:container">
+        <div className="container">
             <div className="max-w-screen-lg mx-auto">
                 {children}
             </div>

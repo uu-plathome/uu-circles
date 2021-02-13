@@ -11,10 +11,13 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { userId } = router.query
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -56,7 +59,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            <Head
+                title="管理者アカウント編集"
+            />
+
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
@@ -69,6 +78,8 @@ const CreatePage: NextPage = () => {
                                 name="username"
                                 id="username"
                                 required
+                                prefix="@"
+                                placeholder="u-ta"
                                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                 { ...username }
                             />
@@ -77,7 +88,7 @@ const CreatePage: NextPage = () => {
                                 label="表示名"
                                 name="display_name"
                                 id="display_name"
-                                placeholder="u-lab"
+                                placeholder="宇都宮太郎"
                                 required
                                 note="入力がない場合は、自動で決まります"
                                 { ...displayName }

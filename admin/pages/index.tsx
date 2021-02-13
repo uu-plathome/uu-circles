@@ -1,18 +1,23 @@
 
 import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseSidebar } from '@/components/layouts/BaseSidebar'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { AuthContext } from '@/contexts/AuthContext'
+import { Head } from '@/components/layouts/Head'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { NextPage } from 'next'
-import { useContext } from 'react'
 import { BaseHeader } from '../components/layouts/BaseHeader'
 
 const IndexPage: NextPage = () => {
-  const authContext = useContext(AuthContext)
+  const { isMd } = useMediaQuery()
 
   return (
     <div>
-      <BaseHeader />
+      <Head
+        title="ダッシュボード"
+      />
+
+      {isMd ? (
+        <BaseHeader />
+      ) : ''}
 
       <BaseContainer>
         <BaseWrapper
