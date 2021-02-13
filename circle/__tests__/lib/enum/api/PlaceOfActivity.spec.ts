@@ -19,6 +19,12 @@ describe('Enum PlaceOfActivity', () => {
     expect(TestFunc.isMineAndYoto('MINE_AND_YOTO')).toBeTruthy()
     expect(TestFunc.isMineAndYoto('aaaaabbbbcccc')).toBeFalsy()
   })
+  it('isDiscord', () => {
+    expect(TestFunc.PlaceOfActivity.DISCORD).toBe('DISCORD')
+    expect(TestFunc.isPlaceOfActivity('DISCORD')).toBeTruthy()
+    expect(TestFunc.isDiscord('DISCORD')).toBeTruthy()
+    expect(TestFunc.isDiscord('aaaaabbbbcccc')).toBeFalsy()
+  })
   it('isOther', () => {
     expect(TestFunc.PlaceOfActivity.OTHER).toBe('OTHER')
     expect(TestFunc.isPlaceOfActivity('OTHER')).toBeTruthy()
