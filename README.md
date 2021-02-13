@@ -55,7 +55,15 @@ $ cd main & npm i
 $ cd main & npm run dev
 ```
 
+# Deploy api For Production
+
+```shell
+$ git push origin origin/master origin/develop/production -f
+```
+
 # Deploy For Apache
+
+Apache にデプロイする時の.htaccess の例
 
 ```shell
 $ mv ./server/.htaccess .htaccess

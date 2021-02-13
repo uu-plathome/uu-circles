@@ -15,17 +15,17 @@ jobs:
         run: make init
       - name: migrate
         run: |
-          docker-compose exec app php artisan migrate
+          docker-compose exec -T app php artisan migrate
       - name: re migrate
         run: |
-          docker-compose exec app php artisan migrate:fresh --seed
+          docker-compose exec -T app php artisan migrate:fresh --seed
       - name: Execute tests
         run: docker-compose exec app composer test
       - name: artisan コマンドが正しく実行されるか
         run: |
-          docker-compose exec app php artisan cache:clear
-          docker-compose exec app php artisan config:cache
-          docker-compose exec app php artisan view:clear
+          docker-compose exec -T app php artisan cache:clear
+          docker-compose exec -T app php artisan config:cache
+          docker-compose exec -T app php artisan view:clear
 
   deploy:
     if: github.ref == 'refs/heads/develop/production'
