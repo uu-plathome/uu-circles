@@ -3,10 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import { faCheckCircle, faTimesCircle, faEdit, faTrash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import { __ } from '@/lang/ja';
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy';
+import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity';
+import { Circle } from '@/lib/types/model/Circle';
+import { __ } from '@/lang/ja';
 
 type Props = {
+    circle: Circle
     circleNewJoy: CircleNewJoy
     onCopy(circleNewJoyId: number): void
     onDelete(circleNewJoyId: number): void
@@ -15,15 +18,19 @@ type Props = {
 const CircleListItemTableColumn: FC<{
     title: string,
     large?: boolean
-}> = ({ children, title, large }) => {
+    xs?: boolean
+}> = ({ children, title, large, xs }) => {
+    let w = 'lg:w-1/6'
+    w = large ? 'lg:w-1/4' : w
+    w = xs ? 'lg:w-1/12' : w
     return (
         <div className={`
             w-full 
-            ${large ? 'lg:w-1/3' : 'lg:w-1/6'}
+            ${w}
             pr-2
         `}>
             <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">{title}</p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center h-10 items-center">
                 { children }
             </div>
         </div>
@@ -67,11 +74,12 @@ const NewJoyDateTime: FC<{
     )
 }
 
-const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onCopy, onDelete }) => {
+const CircleNewJoyListItem: FC<Props> = ({ circle, circleNewJoy, onCopy, onDelete }) => {
+    const newJoyTitle = newJoyTitleEntity(circle, circleNewJoy)
     return (
-        <div>
+        <div className="mb-8">
         <div className="ml-2 w-full">
-            <h2 className="font-bold text-lg text-gray-300 mb-2">{ circleNewJoy.title }</h2>
+            <h2 className="font-bold text-lg text-gray-300 mb-2">{ newJoyTitle.value }</h2>
 
             <div className="flex flex-wrap w-full">
                 <CircleListItemTableColumn title="公開中">
@@ -89,17 +97,13 @@ const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onCopy, onDelete }) => 
                     />
                 </CircleListItemTableColumn>
 
-                <CircleListItemTableColumn title="コピーする">
-                    <button onClick={() => onCopy(circleNewJoy.id)}>
-                        <FontAwesomeIcon
-                            size="lg"
-                            color="orange"
-                            icon={ faCopy }
-                        />
-                    </button>
+                <CircleListItemTableColumn title="活動場所" large>
+                    <div className="text-white">
+                        <p>{ __(circleNewJoy.placeOfActivity) }</p>
+                    </div>
                 </CircleListItemTableColumn>
 
-                <CircleListItemTableColumn title="編集する">
+                <CircleListItemTableColumn title="編集">
                     <Link 
                         href="/circle/[id]/newjoy/[circleNewJoyId]/edit" 
                         as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`} 
@@ -114,7 +118,17 @@ const CircleNewJoyListItem: FC<Props> = ({ circleNewJoy, onCopy, onDelete }) => 
                     </Link>
                 </CircleListItemTableColumn>
 
-                <CircleListItemTableColumn title="削除する">
+                <CircleListItemTableColumn title="コピー" xs>
+                    <button onClick={() => onCopy(circleNewJoy.id)}>
+                        <FontAwesomeIcon
+                            size="lg"
+                            color="orange"
+                            icon={ faCopy }
+                        />
+                    </button>
+                </CircleListItemTableColumn>
+
+                <CircleListItemTableColumn title="削除" xs>
                     <button onClick={() => onDelete(circleNewJoy.id)}>
                         <FontAwesomeIcon
                             size="lg"
