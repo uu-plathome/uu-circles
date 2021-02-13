@@ -13,6 +13,7 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 
 const IndexPage: NextPage = () => {
@@ -49,6 +50,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="所属サークル追加"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

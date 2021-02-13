@@ -12,6 +12,7 @@ import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -58,6 +59,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="管理者アカウント編集"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

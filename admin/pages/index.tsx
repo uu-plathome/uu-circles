@@ -1,6 +1,7 @@
 
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { Head } from '@/components/layouts/Head'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { NextPage } from 'next'
 import { BaseHeader } from '../components/layouts/BaseHeader'
@@ -10,6 +11,10 @@ const IndexPage: NextPage = () => {
 
   return (
     <div>
+      <Head
+        title="ダッシュボード"
+      />
+
       {isMd ? (
         <BaseHeader />
       ) : ''}

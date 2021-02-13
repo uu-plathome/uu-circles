@@ -1,5 +1,6 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { Head } from '@/components/layouts/Head'
 import { CreateCircleForm } from '@/components/organisms/form/Circle/CreateCircleForm'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -39,6 +40,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="サークル新規作成"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

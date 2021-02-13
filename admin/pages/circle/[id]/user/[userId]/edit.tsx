@@ -9,6 +9,7 @@ import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest'
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -57,13 +58,17 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="部員アカウント編集"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークルアカウント編集"
+                    title="部員アカウント編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <EditCircleUserForm
