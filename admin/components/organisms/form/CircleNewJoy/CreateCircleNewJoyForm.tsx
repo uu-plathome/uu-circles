@@ -5,13 +5,14 @@ import { BaseDate } from "@/components/atoms/form/BaseDate";
 import { BaseDatetime } from "@/components/atoms/form/BaseDatetime";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
-import { getAllPlaceOfActivity, PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
 import { FC, FormEvent } from "react";
 import { FormHeader } from "@/components/atoms/header/FormHeader";
-import { FrontUrl } from "@/lib/enum/main/FrontUrl";
+import { Circle } from "@/lib/types/model/Circle";
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
+    circle: Circle
     form: {
         release: UseBooleanInput
         title: UseStringInput
@@ -24,7 +25,7 @@ type Props = {
         endDate: UseDateInput
     }
 }
-const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
+const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
     return (
         <form onSubmit={onSubmit}>
             <FormHeader>新歓基本情報</FormHeader>
@@ -34,6 +35,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     label="新歓名"
                     name="title"
                     id="title"
+                    prefix={circle.shortName || circle.name}
                     expand
                     required
                     { ...form.title }
@@ -58,14 +60,15 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     { ...form.placeOfActivity }
                 />
 
-                <BaseTextField
-                    label="サークル新歓活動場所"
-                    name="placeOfActivityDetail"
-                    id="placeOfActivityDetail"
-                    expand
-                    note="オンラインで活動しています。"
-                    { ...form.placeOfActivityDetail }
-                />
+                {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
+                    <BaseTextField
+                        label="サークル新歓活動場所"
+                        name="placeOfActivityDetail"
+                        id="placeOfActivityDetail"
+                        expand
+                        { ...form.placeOfActivityDetail }
+                    />
+                ) : ''}
 
                 <BaseDatetime
                     label="新歓開始日時"

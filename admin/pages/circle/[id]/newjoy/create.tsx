@@ -10,6 +10,8 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import useSWR from 'swr'
+import { showCircle } from '@/infra/api/circle'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -25,6 +27,8 @@ const CreatePage: NextPage = () => {
     const startDate = useDateInput(null)
     const endDate = useDateInput(null)
     const release = useBooleanInput(true)
+
+    const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () => showCircle(Number(id)))
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -74,6 +78,7 @@ const CreatePage: NextPage = () => {
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleNewJoyForm
                             onSubmit={onSubmit}
+                            circle={circle}
                             form={{
                                 title,
                                 description,

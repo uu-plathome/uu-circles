@@ -7,10 +7,12 @@ import { FormHeader } from "@/components/atoms/header/FormHeader";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
 import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { Circle } from "@/lib/types/model/Circle";
 import { FC, FormEvent } from "react";
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
+    circle: Circle
     form: {
         release: UseBooleanInput
         title: UseStringInput
@@ -23,7 +25,7 @@ type Props = {
         endDate: UseDateInput
     }
 }
-const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
+const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
     return (
         <form onSubmit={onSubmit}>
             <FormHeader>新歓基本情報</FormHeader>
@@ -35,6 +37,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     name="title"
                     id="title"
                     required
+                    prefix={circle.shortName || circle.name}
                     expand
                     { ...form.title }
                 />
