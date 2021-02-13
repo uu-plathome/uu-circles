@@ -78,12 +78,6 @@ const BaseSidebar: FC = () => {
     const [ visible, setVisible ] = useState(false)
     const { isMd } = useMediaQuery()
 
-    useEffect(() => {
-        if (isMd) {
-            setVisible(true)
-        }
-    })
-
     return (
         <div className="relative">
 
@@ -99,7 +93,7 @@ const BaseSidebar: FC = () => {
                     />
                 ): ''}
 
-                {visible ? (
+                {(isMd || (!isMd && visible)) ? (
                     <div className="py-4 pr-4 relative">
                         <div>
                             <p className="font-bold text-white p-2">General</p>
