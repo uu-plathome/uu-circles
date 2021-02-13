@@ -89,10 +89,11 @@ const IndexPage: NextPage = () => {
                             <DangerBunner text={error} />
                         ) : ''}
 
-                        {circleNewJoys.length > 0 ? (
+                        {circle && circleNewJoys.length > 0 ? (
                             circleNewJoys.map((circleNewJoy: CircleNewJoy) => {
                                 return <CircleNewJoyListItem
                                     key={`circle-${circleNewJoy.id}`}
+                                    circle={circle}
                                     circleNewJoy={circleNewJoy}
                                     onCopy={onCopy}
                                     onDelete={onDelete}
