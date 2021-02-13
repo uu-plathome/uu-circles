@@ -172,8 +172,8 @@ const EditPage: NextPage = () => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
+            reader.onabort = () => console.error('file reading was aborted')
+            reader.onerror = () => console.error('file reading has failed')
             reader.onload = async (e) => {
                 new Compressor(file, {
                     quality: 1.0,
