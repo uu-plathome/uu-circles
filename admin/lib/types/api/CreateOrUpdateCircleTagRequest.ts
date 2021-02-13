@@ -3,7 +3,7 @@
  */
 export interface CreateOrUpdateCircleTagRequest {
     type: 'CreateOrUpdateCircleTagRequest'
-    circleTag: string[]
+    circleTag?: string[]
 }
 
 /**

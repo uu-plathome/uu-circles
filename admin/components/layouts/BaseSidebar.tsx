@@ -1,8 +1,10 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, faChevronRight, faHome, faBuilding, faUser, faAd } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faChevronRight, faHome, faBuilding, faUser, faAd, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { BaseHeader } from "./BaseHeader";
 
 interface SidebarItem {
     name: string
@@ -73,15 +75,38 @@ const SidebarItem: FC<SidebarItemProps> = ({
 }
 
 const BaseSidebar: FC = () => {
-    return (
-        <div className="py-4 pr-4">
-            <p className="font-bold text-white p-2">General</p>
+    const [ visible, setVisible ] = useState(false)
+    const { isMd } = useMediaQuery()
 
-            <ul>
-                {generalSiderbarList.map((sidebarItem: SidebarItem, idx) =>
-                    <SidebarItem sidebarItem={sidebarItem} key={`general-${idx}`} />
-                )}
-            </ul>
+    return (
+        <div className="relative">
+
+            <div 
+                className={
+                    (!isMd ? `fixed top-0 left-0 bg-gray-900 w-full z-50` : 'z-50' )
+                    + (visible ? ` h-full` : '')
+                }
+            >
+                {!isMd ? (
+                    <BaseHeader
+                        onClick={() => setVisible(!visible)}
+                    />
+                ): ''}
+
+                {(isMd || (!isMd && visible)) ? (
+                    <div className="py-4 pr-4 relative">
+                        <div>
+                            <p className="font-bold text-white p-2">General</p>
+                        </div>
+        
+                        <ul>
+                            {generalSiderbarList.map((sidebarItem: SidebarItem, idx) =>
+                                <SidebarItem sidebarItem={sidebarItem} key={`general-${idx}`} />
+                            )}
+                        </ul>
+                    </div>
+                ) : ''}
+            </div>
         </div>
     )
 }

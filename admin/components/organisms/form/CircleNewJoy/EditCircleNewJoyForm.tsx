@@ -6,11 +6,13 @@ import { BaseTextField } from "@/components/atoms/form/BaseTextField";
 import { FormHeader } from "@/components/atoms/header/FormHeader";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
-import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { Circle } from "@/lib/types/model/Circle";
 import { FC, FormEvent } from "react";
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
+    circle: Circle
     form: {
         release: UseBooleanInput
         title: UseStringInput
@@ -23,9 +25,77 @@ type Props = {
         endDate: UseDateInput
     }
 }
-const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
+const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
     return (
         <form onSubmit={onSubmit}>
+            <FormHeader>新歓基本情報</FormHeader>
+
+            <div className="mb-8">
+
+                <BaseTextField
+                    label="新歓名"
+                    name="title"
+                    id="title"
+                    required
+                    prefix={circle.shortName || circle.name}
+                    expand
+                    { ...form.title }
+                />
+
+                <BaseTextField
+                    label="新歓説明"
+                    name="description"
+                    id="description"
+                    expand
+                    { ...form.description }
+                />
+
+                <BaseSelect
+                    label="活動場所"
+                    id="placeOfActivity"
+                    name="placeOfActivity"
+                    items={[
+                        { value: PlaceOfActivity.DISCORD, label: __(PlaceOfActivity.DISCORD) },
+                        { value: PlaceOfActivity.OTHER, label: __(PlaceOfActivity.OTHER) },
+                    ]}
+                    { ...form.placeOfActivity }
+                />
+
+                {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
+                    <BaseTextField
+                        label="サークル新歓活動場所"
+                        name="placeOfActivityDetail"
+                        id="placeOfActivityDetail"
+                        expand
+                        { ...form.placeOfActivityDetail }
+                    />
+                ) : ''}
+
+                <BaseDatetime
+                    label="新歓開始日時"
+                    name="startDate"
+                    id="startDate"
+                    { ...form.startDate }
+                />
+
+                <BaseDatetime
+                    label="新歓終了日時"
+                    name="endDate"
+                    id="endDate"
+                    { ...form.endDate }
+                />
+
+                <BaseTextField
+                    label="新歓URL"
+                    name="url"
+                    id="url"
+                    placeholder="https://ulab-uu.com/"
+                    expand
+                    note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
+                    { ...form.url }
+                />
+            </div>
+
             <FormHeader>公開設定</FormHeader>
 
             <div className="mb-8">
@@ -46,72 +116,6 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     id="publishFrom"
                     note="予約投稿をしない場合は、空にしてください。"
                     { ...form.publishFrom }
-                />
-            </div>
-
-            <FormHeader>新歓基本情報</FormHeader>
-
-            <div className="mb-8">
-
-                <BaseTextField
-                    label="サークル新歓"
-                    name="title"
-                    id="title"
-                    required
-                    { ...form.title }
-                />
-
-                <BaseTextField
-                    label="サークル新歓説明"
-                    name="description"
-                    id="description"
-                    expand
-                    { ...form.description }
-                />
-
-                <BaseSelect
-                    label="活動場所"
-                    id="placeOfActivity"
-                    name="placeOfActivity"
-                    items={[
-                        ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                            value: _placeOfActivity,
-                            label: __(_placeOfActivity)
-                        }))
-                    ]}
-                    { ...form.placeOfActivity }
-                />
-
-                <BaseTextField
-                    label="サークル新歓活動場所"
-                    name="placeOfActivityDetail"
-                    id="placeOfActivityDetail"
-                    expand
-                    { ...form.placeOfActivityDetail }
-                />
-
-                <BaseDatetime
-                    label="新歓開始日時"
-                    name="startDate"
-                    id="startDate"
-                    { ...form.startDate }
-                />
-
-                <BaseDatetime
-                    label="新歓終了日時"
-                    name="endDate"
-                    id="endDate"
-                    { ...form.endDate }
-                />
-
-                <BaseTextField
-                    label="新歓URLのパス"
-                    name="url"
-                    id="url"
-                    placeholder="https://ulab-uu.com/"
-                    expand
-                    note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
-                    { ...form.url }
                 />
             </div>
 

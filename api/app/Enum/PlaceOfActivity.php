@@ -24,6 +24,11 @@ class PlaceOfActivity
     const MINE_AND_YOTO = 'MINE_AND_YOTO';
 
     /**
+     * ディスコード
+     */
+    const DISCORD = 'DISCORD';
+
+    /**
      * その他
      */
     const OTHER = 'OTHER';
