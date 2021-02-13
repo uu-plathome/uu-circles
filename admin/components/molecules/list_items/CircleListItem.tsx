@@ -14,7 +14,7 @@ const CircleListItemTableColumn: FC<{
     title: string
 }> = ({ children, title }) => {
     return (
-        <div className="w-full lg:w-1/6 pr-2">
+        <div className="w-1/3 lg:w-1/6 pr-2 mb-2">
             <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">{title}</p>
             <div className="flex justify-center h-7 items-center">
                 { children }
@@ -24,8 +24,8 @@ const CircleListItemTableColumn: FC<{
 }
 const CircleListItem: FC<Props> = ({ circle }) => {
     return (
-        <div className="text-white flex">
-        <div>
+        <div className="text-white flex mb-4">
+        <div className="hidden lg:block">
             <Image
                 src={circle.mainImageUrl ? circle.mainImageUrl : `/images/no-image.png`}
                 width="100"
@@ -37,7 +37,19 @@ const CircleListItem: FC<Props> = ({ circle }) => {
         </div>
 
         <div className="ml-2 w-full">
-            <h2 className="font-bold text-lg text-gray-300 mb-2">{ circle.name }</h2>
+            <div className="flex items-center mb-4 lg:mb-0">
+                <div className="lg:hidden mr-2">
+                    <Image
+                        src={circle.mainImageUrl ? circle.mainImageUrl : `/images/no-image.png`}
+                        width="100"
+                        height="100"
+                        layout={"fixed"}
+                        objectFit={"contain"}
+                        className="square-image"
+                    />
+                </div>
+                <h2 className="font-bold text-lg text-gray-300 mb-2">{ circle.name }</h2>
+            </div>
 
             <div className="flex flex-wrap w-full">
                 <CircleListItemTableColumn title="公開中">
