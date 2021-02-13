@@ -41,7 +41,7 @@ ide-helper:
 	php artisan ide-helper:meta
 	php artisan ide-helper:models --nowrite
 init:
-	@make build &&\
+	docker-compose build &&\
 	docker-compose up -d &&\
 	docker-compose exec app php -r "file_exists('.env') || copy('.env.example', '.env');" &&\
 	docker-compose exec app composer install &&\
