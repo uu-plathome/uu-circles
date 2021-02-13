@@ -9,6 +9,7 @@ import { User } from '@/lib/types/model/User'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Head } from '@/components/layouts/Head'
 
 const IndexPage: NextPage = () => {
     const router = useRouter();
@@ -44,13 +45,17 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="部員アカウント管理"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークルユーザー管理"
+                    title="部員アカウント管理"
                     actionHref="/circle/[id]/user/create"
                     actionAs={`/circle/${id}/user/create`}
                     actionText="アカウント新規作成"

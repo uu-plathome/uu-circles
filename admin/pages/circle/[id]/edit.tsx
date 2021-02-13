@@ -14,6 +14,7 @@ import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } fro
 import { Circle } from '@/lib/types/model/Circle'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { HiraToKana } from '@/lib/utils/String'
+import { Head } from '@/components/layouts/Head'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
@@ -415,6 +416,10 @@ const EditPage: NextPage = () => {
 
     return (
         <div>
+            <Head
+                title="サークル編集"
+            />
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
