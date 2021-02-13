@@ -34,8 +34,7 @@ class UpdateCircleNewJoyRequest extends FormRequest
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyModel::place_of_activity        => [
                 'string',
-                'nullable',
-                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::MINE_AND_YOTO, PlaceOfActivity::OTHER]),
+                Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
             CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:255'],
             CircleNewJoyModel::publish_from             => ['string', 'nullable'],
@@ -48,13 +47,14 @@ class UpdateCircleNewJoyRequest extends FormRequest
     public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
     {
         $request = Arr::snake_keys($this->validated());
+
         return CircleNewJoyValueObject::of([
             CircleNewJoyModel::circle_id                => $this->id,
             CircleNewJoyModel::title                    => Arr::get($request, 'title'),
             CircleNewJoyModel::description              => Arr::get($request, 'description'),
             CircleNewJoyModel::url                      => Arr::get($request, 'url'),
             CircleNewJoyModel::place_of_activity        => Arr::get($request, 'place_of_activity'),
-            CircleNewJoyModel::place_of_activity_detail => Arr::get($request, 'place_of_activity_detail'),
+            CircleNewJoyModel::place_of_activity_detail => Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '',
             CircleNewJoyModel::publish_from             => Arr::get($request, 'publish_from'),
             CircleNewJoyModel::start_date               => Arr::get($request, 'start_date'),
             CircleNewJoyModel::end_date                 => Arr::get($request, 'end_date'),

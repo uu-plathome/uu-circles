@@ -13,6 +13,7 @@ export const ja = {
   [PlaceOfActivity.MINE]: '峰キャンパス',
   [PlaceOfActivity.MINE_AND_YOTO]: '峰と陽東キャンパス',
   [PlaceOfActivity.YOTO]: '陽東キャンパス',
+  [PlaceOfActivity.DISCORD]: 'ディスコード',
   [PlaceOfActivity.OTHER]: 'その他',
   [CircleTagModel.NATURE]: '農業・自然',
   [CircleTagModel.VOLUNTEER]: 'ボランティア',

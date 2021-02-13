@@ -6,7 +6,7 @@ import { BaseTextField } from "@/components/atoms/form/BaseTextField";
 import { FormHeader } from "@/components/atoms/header/FormHeader";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
 import { __ } from "@/lang/ja";
-import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
+import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
 import { FC, FormEvent } from "react";
 
 type Props = {
@@ -35,6 +35,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     name="title"
                     id="title"
                     required
+                    expand
                     { ...form.title }
                 />
 
@@ -51,21 +52,21 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, form }) => {
                     id="placeOfActivity"
                     name="placeOfActivity"
                     items={[
-                        ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                            value: _placeOfActivity,
-                            label: __(_placeOfActivity)
-                        }))
+                        { value: PlaceOfActivity.DISCORD, label: __(PlaceOfActivity.DISCORD) },
+                        { value: PlaceOfActivity.OTHER, label: __(PlaceOfActivity.OTHER) },
                     ]}
                     { ...form.placeOfActivity }
                 />
 
-                <BaseTextField
-                    label="サークル新歓活動場所"
-                    name="placeOfActivityDetail"
-                    id="placeOfActivityDetail"
-                    expand
-                    { ...form.placeOfActivityDetail }
-                />
+                {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
+                    <BaseTextField
+                        label="サークル新歓活動場所"
+                        name="placeOfActivityDetail"
+                        id="placeOfActivityDetail"
+                        expand
+                        { ...form.placeOfActivityDetail }
+                    />
+                ) : ''}
 
                 <BaseDatetime
                     label="新歓開始日時"
