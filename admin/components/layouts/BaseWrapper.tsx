@@ -11,12 +11,12 @@ type Props = {
 const BaseWrapper: FC<Props> = ({ title, actionHref, actionAs, actionText, children }) => {
     return (
         <main className="flex flex-wrap">
-            <div className="w-full lg:w-1/5">
+            <div className="w-full md:w-1/5">
                 <BaseSidebar />
             </div>
 
-            <div className="w-full lg:w-4/5">
-                <div className="py-10">
+            <div className="w-full md:w-4/5">
+                <div className="pt-20 md:pt-10 pb-10">
                     <div className="flex justify-between mb-8">
                         <h1 className="text-2xl text-gray-100">
                             { title }
