@@ -3,22 +3,24 @@ import { Circle } from "@/lib/types/model/Circle";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseHeader } from "@/components/layouts/BaseHeader";
 import { IndexCircleNewJoyList } from "@/components/organisms/List/IndexCircleNewJoyList";
-import { getCircleNewJoyBySlug } from "@/infra/api/circleNewJoy";
+import { showCircleNewJoyBySlug } from "@/infra/api/circleNewJoy";
 import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import Link from 'next/link'
 import Image from "next/image";
 
 type Props = {
-    circle?: Circle
     errorCode?: number
-    pastCircleNewJoys?: CircleNewJoy[]
-    futureCircleNewJoys?: CircleNewJoy[]
-    nowCircleNewJoys?: CircleNewJoy[]
-    todayCircleNewJoys?: CircleNewJoy[]
+    /** サークル */ circle?: Circle
+    /** 新歓詳細 */ circleNewJoy?: CircleNewJoy
+    /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
+    /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
+    /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
+    /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
 }
 const Page: NextPage<Props> = ({ 
     circle, 
+    circleNewJoy,
     pastCircleNewJoys,
     futureCircleNewJoys,
     nowCircleNewJoys,
@@ -32,6 +34,9 @@ const Page: NextPage<Props> = ({
             <div className="bg-gray-100 px-2">
                 <BaseContainer>
                     <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
+
+                    新歓名
+                    { circleNewJoy.title }
 
                     {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                         <div className="pb-16">
@@ -100,15 +105,17 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
 
     const { 
         circle, 
+        circleNewJoy,
         pastCircleNewJoys,
         futureCircleNewJoys,
         nowCircleNewJoys,
         todayCircleNewJoys 
-    } = await getCircleNewJoyBySlug(params.slug)
+    } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
 
     return {
         props: {
             circle,
+            circleNewJoy,
             pastCircleNewJoys,
             futureCircleNewJoys,
             nowCircleNewJoys,
