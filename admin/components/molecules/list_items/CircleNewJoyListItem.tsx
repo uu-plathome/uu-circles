@@ -25,9 +25,11 @@ const CircleListItemTableColumn: FC<{
     w = xs ? 'lg:w-1/12' : w
     return (
         <div className={`
-            w-full 
+            w-1/2 
             ${w}
             pr-2
+            mb-8
+            lg:mb-0
         `}>
             <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">{title}</p>
             <div className="flex justify-center h-10 items-center">
