@@ -13,7 +13,6 @@ import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import useSWR from 'swr'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 
 const IndexPage: NextPage = () => {
@@ -70,10 +69,6 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="新歓一覧"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
@@ -81,7 +76,7 @@ const IndexPage: NextPage = () => {
             <BaseContainer>
                 <BaseWrapper
                     title={(circle && circle.name) ? `${circle.name}の新歓` : 'loading...'}
-                    actionText="新歓一覧"
+                    actionText="新歓新規作成"
                     actionHref="/circle/[id]/newjoy/create"
                     actionAs={`/circle/${id}/newjoy/create`}
                 >

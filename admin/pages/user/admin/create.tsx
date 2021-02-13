@@ -10,7 +10,6 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -41,10 +40,6 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="管理者アカウント新規作成"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
