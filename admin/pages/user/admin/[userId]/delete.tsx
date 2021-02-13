@@ -3,7 +3,6 @@ import { RedButton } from "@/components/atoms/buttons/RedButton"
 import { BaseContainer } from "@/components/layouts/BaseContainer"
 import { BaseHeader } from "@/components/layouts/BaseHeader"
 import { BaseWrapper } from "@/components/layouts/BaseWrapper"
-import { Head } from "@/components/layouts/Head"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { deleteAdminUser, getAdminUser } from "@/infra/api/admin_user"
 import { getAuthUser } from "@/infra/api/auth"
@@ -51,10 +50,6 @@ const DeletePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="管理者アカウント削除"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}

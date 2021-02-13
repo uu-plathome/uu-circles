@@ -9,7 +9,6 @@ import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest }
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -46,17 +45,13 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="部員アカウント新規追加"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="部員アカウント新規追加"
+                    title="サークルアカウント新規作成"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleUserForm

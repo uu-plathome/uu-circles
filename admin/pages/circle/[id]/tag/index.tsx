@@ -11,7 +11,6 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { __ } from '@/lang/ja'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Head } from '@/components/layouts/Head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -89,10 +88,6 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <Head
-                title="サークルタグ管理"
-            />
-
             {isMd ? (
                 <BaseHeader />
             ) : ''}
