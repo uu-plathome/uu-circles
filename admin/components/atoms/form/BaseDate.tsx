@@ -44,6 +44,7 @@ const BaseDate: FC<Props> = ({
                     onChange={(date: Date|null) => onChangeDate(date)}
                     name={name}
                     locale="ja"
+                    autoComplete="off"
                     isClearable
                 />
 
