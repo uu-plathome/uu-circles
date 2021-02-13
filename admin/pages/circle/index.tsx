@@ -6,13 +6,17 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { getCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const IndexPage: NextPage = () => {
     const { data: circles } = useSWR('/admin/api/circle', getCircleList, { revalidateOnReconnect: true })
+    const { isMd } = useMediaQuery()
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

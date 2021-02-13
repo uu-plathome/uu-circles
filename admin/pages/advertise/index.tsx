@@ -10,12 +10,14 @@ import { AdvertiseListItem } from '@/components/molecules/list_items/AdvertiseLi
 import { useSuccess } from '@/hooks/useSuccess'
 import { deleteAdvertise, getAdvertiseList } from '@/infra/api/advertise'
 import { Advertise } from '@/lib/types/model/Advertise'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 
 const IndexPage: NextPage = () => {
     const [ advertises, setAdvertise ] = useState<Advertise[]>([])
     const [ error, setError ] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
+    const { isMd } = useMediaQuery()
     
     const fetchAdvertise = async () => {
         setAdvertise(await getAdvertiseList())
@@ -36,7 +38,9 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

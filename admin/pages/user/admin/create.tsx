@@ -9,9 +9,11 @@ import { FormEvent } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -38,7 +40,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

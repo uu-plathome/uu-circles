@@ -12,6 +12,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { getCircleList, getCircleListByUserId } from '@/infra/api/circle'
 import { User } from '@/lib/types/model/User'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -22,6 +23,7 @@ const CreatePage: NextPage = () => {
     const { userId } = router.query
     const [error, setError] = useState<string>('')
     const circleId = useNumberInput(0)
+    const { isMd } = useMediaQuery()
 
     useEffect(() => {
         const f = async () => {
@@ -70,7 +72,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

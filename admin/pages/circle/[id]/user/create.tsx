@@ -8,10 +8,12 @@ import { createCircleUser } from '@/infra/api/circle_user'
 import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -43,7 +45,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

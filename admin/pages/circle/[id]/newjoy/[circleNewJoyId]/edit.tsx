@@ -9,11 +9,13 @@ import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest }
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id, circleNewJoyId } = router.query
     const [circle, setCircle] = useState<Circle|null>(null)
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const description = useStringInput('')
@@ -85,7 +87,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

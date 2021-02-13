@@ -11,10 +11,12 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { userId } = router.query
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -56,7 +58,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

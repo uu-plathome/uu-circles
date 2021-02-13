@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect } from 'react'
 import Compressor from 'compressorjs'
-import { useBooleanInput, useStringInput } from '@/hooks/useInput'
+import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -11,16 +11,18 @@ import { EditAdvertiseForm } from '@/components/organisms/form/Advertise/EditAdv
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateAdvertiseRequestValidationError } from '@/lib/types/api/UpdateAdvertiseRequest'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { advertiseId } = router.query
+    const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
-    const publishTo = useStringInput('')
-    const publishFrom = useStringInput('')
+    const publishTo = useDateInput(null)
+    const publishFrom = useDateInput(null)
 
     useEffect(() => {
         const f = async () => {
@@ -94,7 +96,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

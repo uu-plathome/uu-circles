@@ -10,6 +10,7 @@ import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import useSWR from 'swr'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 
 const useSuccess = <T,>(initialState: T) => {
@@ -33,6 +34,7 @@ const IndexPage: NextPage = () => {
     const { data: users } = useSWR('/admin/api/admin-user', getAdminUserList)
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
+    const { isMd } = useMediaQuery()
 
     const onResendEmail = async (email: string) => {
         await resendEmail(email)
@@ -41,7 +43,9 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

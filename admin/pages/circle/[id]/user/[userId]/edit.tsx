@@ -8,10 +8,12 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest'
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id, userId } = router.query
+    const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
     const displayName = useStringInput('')
@@ -55,7 +57,9 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

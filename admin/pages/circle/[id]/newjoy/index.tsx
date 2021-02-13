@@ -12,6 +12,7 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import useSWR from 'swr'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 
 const IndexPage: NextPage = () => {
@@ -21,6 +22,7 @@ const IndexPage: NextPage = () => {
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
+    const { isMd } = useMediaQuery()
 
     // 新歓一覧の取得
     const fetchCircle = async () => {
@@ -67,7 +69,9 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper

@@ -12,10 +12,12 @@ import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
     const router = useRouter()
+    const { isMd } = useMediaQuery()
     const name = useStringInput('')
     const slug = useStringInput('')
     const release = useBooleanInput(false)
@@ -408,7 +410,9 @@ const EditPage: NextPage = () => {
 
     return (
         <div>
-            <BaseHeader />
+            {isMd ? (
+                <BaseHeader />
+            ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
