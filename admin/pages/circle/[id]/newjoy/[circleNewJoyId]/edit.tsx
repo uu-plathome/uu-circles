@@ -96,20 +96,23 @@ const CreatePage: NextPage = () => {
                     title="サークル新歓編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
-                        <EditCircleNewJoyForm 
-                            onSubmit={onSubmit}
-                            form={{
-                                title,
-                                description,
-                                url,
-                                placeOfActivity,
-                                placeOfActivityDetail,
-                                publishFrom,
-                                startDate,
-                                endDate,
-                                release,
-                            }}
-                        />
+                        {circle ? (
+                            <EditCircleNewJoyForm 
+                                onSubmit={onSubmit}
+                                circle={circle}
+                                form={{
+                                    title,
+                                    description,
+                                    url,
+                                    placeOfActivity,
+                                    placeOfActivityDetail,
+                                    publishFrom,
+                                    startDate,
+                                    endDate,
+                                    release,
+                                }}
+                            />
+                        ) : ''}
                     </div>
                 </BaseWrapper>
             </BaseContainer>
