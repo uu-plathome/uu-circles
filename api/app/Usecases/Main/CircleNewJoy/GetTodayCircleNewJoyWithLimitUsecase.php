@@ -6,7 +6,6 @@ use App\Enum\CircleNewJoyModel;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class GetTodayCircleNewJoyWithLimitUsecase
 {

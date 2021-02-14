@@ -5,7 +5,7 @@ namespace App\Usecases\Main\CircleNewJoy;
 use App\Enum\CircleNewJoyModel;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 class GetTodayCircleNewJoyUsecase
 {
@@ -27,7 +27,8 @@ class GetTodayCircleNewJoyUsecase
                 $query->whereDay(CircleNewJoyModel::start_date, $today)
                     ->orWhereDay(CircleNewJoyModel::end_date, $today);
             })
-            ->orderByDesc(CircleNewJoyModel::start_date)->get();
+            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->get();
 
         $futureCircleNewJoy = CircleNewJoy::with('circle')->nowPublic($now)
             ->where(function ($query) use ($today) {
@@ -35,7 +36,8 @@ class GetTodayCircleNewJoyUsecase
                 $query->whereDay(CircleNewJoyModel::start_date, '>', $today);
             })
             ->orderByDesc(CircleNewJoyModel::start_date)
-            ->take(10)->get();
+            ->take(10)
+            ->get();
 
         return [
             'todayCircleNewJoys' => $todayCircleNewJoy->map(
