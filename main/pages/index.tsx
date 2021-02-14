@@ -17,8 +17,18 @@ const Index: NextPage<Props> = ({ circles }) => {
     return (
         <div>
             <BaseLayout>
+                <div className="w-full bg-gray-600 h-80">
+
+                </div>
+                <div>
+                    <p className="text-center py-8">
+                        新歓をハックする！
+                    </p>
+                </div>
+
                 <BaseContainer>
                     <div className="px-6">
+
                         <MainCategoryList />
 
                         {/*  サークル一覧 */}
