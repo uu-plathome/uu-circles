@@ -44,7 +44,7 @@ class CreateCircleInformationTable extends Migration
             $table->boolean('online_date_of_activity_sunday')->default(false)->nullable()->comment('日曜日にオンライン活動しているか');
             $table->string('online_date_of_activity_detail')->nullable()->comment('オンライン活動日時詳細');
             $table->unsignedInteger('admission_fee_per_year')->nullable()->comment('年間費用');
-            $table->unsignedBigInteger('number_of_members')->nullable()->comment('所属人数');
+            $table->unsignedSmallInteger('number_of_members')->nullable()->comment('所属人数');
             $table->boolean('is_club_activities')->default(false)->nullable()->comment('部活かどうか');
             $table->string('appealing_point1')->nullable()->comment('アピールポイント1');
             $table->string('appealing_point2')->nullable()->comment('アピールポイント2');
