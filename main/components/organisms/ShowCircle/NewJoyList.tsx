@@ -9,7 +9,7 @@ type Props = {
 const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
     return (
         <div className="bg-gray-100">
-            <h2 className="text-center mb-8 text-lg font-bold pt-8">新歓イベント日程</h2>
+            <h2 className="text-center md:text-left mb-8 text-lg font-bold">新歓イベント日程</h2>
 
             <div className="md:flex justify-center">
                 {circleNewJoys.map((circleNewJoy, idx) => {
