@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateAdvertisesTable extends Migration
@@ -22,6 +23,8 @@ class CreateAdvertisesTable extends Migration
             $table->dateTime('publish_from')->nullable()->comment('公開開始日時');
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE advertises COMMENT '広告'");
     }
 
     /**

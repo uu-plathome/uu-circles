@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCircleInformationTable extends Migration
@@ -16,13 +17,13 @@ class CreateCircleInformationTable extends Migration
         Schema::create('circle_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
-            $table->string('circle_type')->nullable();
+            $table->enum('circle_type', ['OFFICIAL_ORGANIZATION', 'UNOFFICIAL_ORGANIZATION', 'SENDING_ORGANIZATION', 'STUDENT_GROUP'])->nullable()->comment("'OFFICIAL_ORGANIZATION': 公認団体, 'UNOFFICIAL_ORGANIZATION': 非公認団体, 'SENDING_ORGANIZATION': 届出団体, 'STUDENT_GROUP': 学生団体");
             $table->string('name')->comment('サークル名');
             $table->string('name_kana')->nullable()->comment('サークル名(カナ)');
             $table->string('short_name')->nullable()->comment('サークル名(通称)');
             $table->string('prefix_name')->nullable()->comment('サークル名(肩書)');
             $table->string('description')->nullable()->comment('サークル紹介文');
-            $table->string('common_place_of_activity')->nullable()->comment('通常活動場所');
+            $table->enum('common_place_of_activity', ['MINE', 'YOTO', 'MINE_AND_YOTO', 'DISCORD', 'OTHER'])->nullable()->comment('通常活動場所');
             $table->string('common_place_of_activity_detail')->nullable()->comment('通常活動場所詳細');
             $table->boolean('common_date_of_activity_monday')->default(false)->nullable()->comment('月曜日に通常活動しているか');
             $table->boolean('common_date_of_activity_tuesday')->default(false)->nullable()->comment('火曜日に通常活動しているか');
@@ -43,7 +44,7 @@ class CreateCircleInformationTable extends Migration
             $table->boolean('online_date_of_activity_sunday')->default(false)->nullable()->comment('日曜日にオンライン活動しているか');
             $table->string('online_date_of_activity_detail')->nullable()->comment('オンライン活動日時詳細');
             $table->unsignedInteger('admission_fee_per_year')->nullable()->comment('年間費用');
-            $table->unsignedInteger('number_of_members')->nullable()->comment('所属人数');
+            $table->unsignedSmallInteger('number_of_members')->nullable()->comment('所属人数');
             $table->boolean('is_club_activities')->default(false)->nullable()->comment('部活かどうか');
             $table->string('appealing_point1')->nullable()->comment('アピールポイント1');
             $table->string('appealing_point2')->nullable()->comment('アピールポイント2');
@@ -70,6 +71,8 @@ class CreateCircleInformationTable extends Migration
 
             $table->foreign('circle_id')->references('id')->on('circles');
         });
+
+        DB::statement("ALTER TABLE circle_information COMMENT 'サークル情報'");
     }
 
     /**
