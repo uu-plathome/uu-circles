@@ -17,8 +17,8 @@ class CreateCircleHandbillsTable extends Migration
         Schema::create('circle_handbills', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
-            $table->string('image_url');
-            $table->unsignedInteger('year')->nullable();
+            $table->string('image_url')->comment('画像URL');
+            $table->unsignedSmallInteger('year')->nullable()->comment('作成年度');
             $table->timestamps();
 
             $table->foreign('circle_id')->references('id')->on('circles');
