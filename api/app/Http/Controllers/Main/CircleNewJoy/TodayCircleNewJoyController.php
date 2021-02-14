@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -28,6 +27,7 @@ class TodayCircleNewJoyController extends Controller
     public function __invoke(Request $request)
     {
         $circleNewJoys = $this->getTodayCircleNewJoyUsecase->invoke();
+
         return Arr::camel_keys([
             'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
                 fn (array $arr) => [
