@@ -7,18 +7,20 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Color from 'colors'
 
-type Props = {}
-const BaseHeader: FC<Props> = () => {
+type Props = {
+    onClick?(): void
+}
+const BaseHeader: FC<Props> = ({ onClick }) => {
     const router = useRouter()
     const {isMd} = useMediaQuery()
 
     return (
         <div>
-            <div id="site_title" className="px-2 sm:px-0 xl:container flex justify-between items-center py-2">
-                <div className="flex items-center">
+            <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-end py-2">
+                <div className="flex items-end">
                     {!isMd ? (
                         <div className="pr-2">
-                            <button>
+                            <button onClick={onClick}>
                                 <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
                             </button>
                         </div>
@@ -29,13 +31,13 @@ const BaseHeader: FC<Props> = () => {
                             <p>UU-Circle</p>
                         ) : (
                             <Link href="/">
-                                <a></a>
+                                <a>UU-Circle</a>
                             </Link>
                         )}
                     </h1>
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-end">
                     <p className="mr-4 text-xs sm:text-base">
                         <a href="" className="underline">
                             <span className="hidden sm:inline">サークルを</span>見つける
