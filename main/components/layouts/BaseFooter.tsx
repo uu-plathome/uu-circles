@@ -82,7 +82,7 @@ const BaseFooter: FC<Props> = () => {
                         <Image
                             className="border-2 border-red-900"
                             src="/images/media_postar_tmp.png"
-                            width={330}
+                            width={340}
                             height={92}
                         />
                     </div>
@@ -91,7 +91,7 @@ const BaseFooter: FC<Props> = () => {
                         <Image
                             className="border-2 border-red-900"
                             src="/images/media_postar_tmp.png"
-                            width={330}
+                            width={340}
                             height={92}
                         />
                     </div>
