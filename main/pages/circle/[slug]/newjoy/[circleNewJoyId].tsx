@@ -17,6 +17,10 @@ type Props = {
     /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
     /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
     /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
+    /** 今日の新歓(全て) */ allTodayCircleNewJoys?: {
+        slug: string
+        circleNewJoy: CircleNewJoy
+    }[]
 }
 const Page: NextPage<Props> = ({ 
     circle, 
@@ -109,7 +113,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
         pastCircleNewJoys,
         futureCircleNewJoys,
         nowCircleNewJoys,
-        todayCircleNewJoys 
+        todayCircleNewJoys,
+        allTodayCircleNewJoys 
     } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
 
     return {
@@ -120,6 +125,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
             futureCircleNewJoys,
             nowCircleNewJoys,
             todayCircleNewJoys,
+            allTodayCircleNewJoys,
         }
     }
 }

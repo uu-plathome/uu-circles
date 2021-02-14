@@ -10,12 +10,16 @@ import Link from 'next/link'
 import Image from "next/image";
 
 type Props = {
-    circle?: Circle
+    /** サークル */ circle?: Circle
     errorCode?: number
-    pastCircleNewJoys?: CircleNewJoy[]
-    futureCircleNewJoys?: CircleNewJoy[]
-    nowCircleNewJoys?: CircleNewJoy[]
-    todayCircleNewJoys?: CircleNewJoy[]
+    /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
+    /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
+    /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
+    /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
+    /** 今日の新歓(全て) */ allTodayCircleNewJoys?: {
+        slug: string
+        circleNewJoy: CircleNewJoy
+    }[]
 }
 const Page: NextPage<Props> = ({ 
     circle, 
@@ -103,7 +107,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
         pastCircleNewJoys,
         futureCircleNewJoys,
         nowCircleNewJoys,
-        todayCircleNewJoys 
+        todayCircleNewJoys,
+        allTodayCircleNewJoys
     } = await getCircleNewJoyBySlug(params.slug)
 
     return {
@@ -113,6 +118,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
             futureCircleNewJoys,
             nowCircleNewJoys,
             todayCircleNewJoys,
+            allTodayCircleNewJoys,
         }
     }
 }

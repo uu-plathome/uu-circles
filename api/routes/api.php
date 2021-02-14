@@ -18,5 +18,6 @@ Route::get('/main', 'Main\Main\IndexController')->name('main.index');
 
 // サークル 
 Route::get('/circle/{slug}', 'Main\Circle\GetCircleController')->name('main.circle.show');
+Route::get('/circle/newjoy', 'Main\CircleNewJoy\TodayCircleNewJoyController')->name('main.circleNewJoy.today');
 Route::get('/circle/{slug}/newjoy', 'Main\CircleNewJoy\IndexCircleNewJoyController')->name('main.circleNewJoy.index');
 Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', 'Main\CircleNewJoy\ShowCircleNewJoyController')->name('main.circleNewJoy.show');

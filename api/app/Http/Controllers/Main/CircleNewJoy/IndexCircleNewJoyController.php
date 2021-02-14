@@ -5,21 +5,26 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
+use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
 use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleNewJoyController extends Controller
 {
     private GetCircleBySlugUsecase $getCircleBySlugUsecase;
+    private GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase;
     private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase;
 
     public function __construct(
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
+        GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase,
         IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase
     ) {
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
+        $this->getTodayCircleNewJoyWithLimitUsecase = $getTodayCircleNewJoyWithLimitUsecase;
         $this->indexCircleNewJoyUsecase = $indexCircleNewJoyUsecase;
     }
 
@@ -33,6 +38,7 @@ class IndexCircleNewJoyController extends Controller
     {
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
         $circleNewJoys = $this->indexCircleNewJoyUsecase->invoke($circle->id);
+        $allCircleNewJoys = $this->getTodayCircleNewJoyWithLimitUsecase->invoke();
 
         return Arr::camel_keys([
             'circle'              => $circle->toArray(),
@@ -51,6 +57,13 @@ class IndexCircleNewJoyController extends Controller
             // 今日の新歓
             'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
+            )->values()->toArray(),
+            // 今日の新歓 全て
+            'allTodayCircleNewJoys' => (new Collection($allCircleNewJoys['todayCircleNewJoys']))->map(
+                fn (array $arr) => [
+                    'slug'         => $arr['slug'],
+                    'circleNewJoy' => $arr['circleNewJoyValueObject']->toArray()
+                ]
             )->values()->toArray(),
         ]);
     }
