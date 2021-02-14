@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Enum\CircleType;
 use App\Models\Circle;
 use App\Models\CircleHandbill;

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Advertise;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,9 +23,9 @@ class AdvertisesTableSeeder extends Seeder
             /** @var Advertise $user */
             factory(Advertise::class, 10)
                 ->make()
-                ->each(function(Advertise $advertise) use ($idx) {
+                ->each(function (Advertise $advertise) use ($idx) {
                     $advertise->fill([
-                        'title' => $advertise->title.$idx,
+                        'title' => $advertise->title . $idx,
                     ])->save();
                     $idx++;
                 });
