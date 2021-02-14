@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCircleInvitationsTable extends Migration
@@ -24,6 +25,8 @@ class CreateCircleInvitationsTable extends Migration
             $table->foreign('created_user_id')->references('id')->on('users');
             $table->foreign('circle_id')->references('id')->on('circles');
         });
+
+        DB::statement("ALTER TABLE circle_invitations COMMENT '部員アカウント招待'");
     }
 
     /**

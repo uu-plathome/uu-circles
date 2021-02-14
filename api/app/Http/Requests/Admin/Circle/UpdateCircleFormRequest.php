@@ -39,7 +39,8 @@ class UpdateCircleFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:50',
-                'unique:circles,slug,' . $this->id . 'id'
+                'unique:circles,slug,' . $this->id . 'id',
+                Rule::notIn(['newjoy']),
             ],
             CircleModel::release                               => ['required', 'boolean'],
             CircleInformationModel::name                       => ['required', 'string', 'max:255'],
@@ -87,7 +88,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'boolean',
             ],
             CircleInformationModel::online_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
-            CircleInformationModel::is_online_activity         => ['nullable', 'boolean'],
+            CircleInformationModel::is_online_activity                => ['nullable', 'boolean'],
             CircleInformationModel::online_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
             CircleInformationModel::online_date_of_activity_monday    => [
                 'nullable',
