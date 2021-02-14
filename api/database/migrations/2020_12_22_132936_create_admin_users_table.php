@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateAdminUsersTable extends Migration
@@ -20,6 +21,8 @@ class CreateAdminUsersTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        DB::statement("ALTER TABLE admin_users COMMENT '管理者ユーザー'");
     }
 
     /**
