@@ -6,6 +6,9 @@ import { NewJoyList } from "@/components/organisms/ShowCircle/NewJoyList";
 import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
+import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
+import { AppealingPoint } from "@/components/organisms/ShowCircle/AppealingPoint";
+import { __ } from "@/lang/ja";
 
 type Props = {
     circle?: Circle
@@ -17,15 +20,115 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
         <div>
             <BaseLayout>
                 <div>
-                    { circle.name }
+                    <BaseContainer>
+                        { circle.name }
 
-                    <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
+                            <AppealingPoint circle={circle} />
 
-                    <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
-                        <GreenButton href="/circle/[slug]/newjoy" as={`/circle/${circle.slug}/newjoy`}>
-                            もっと詳しく
-                        </GreenButton>
-                    </div>
+                            <div className="pt-10">
+                                <div>
+                                    <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
+                                </div>
+
+                                <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
+                                    <GreenButton href="/circle/[slug]/newjoy" as={`/circle/${circle.slug}/newjoy`}>
+                                        もっと詳しく
+                                    </GreenButton>
+                                </div>
+                            </div>
+
+                            <div className="pt-10">
+                                <div>
+                                    <h2 className="text-lg text-center mb-6 md:text-left">サークル詳細</h2>
+
+                                    <div className="flex justify-center md:justify-start px-6 md:px-0">
+                                        <div className="bg-white rounded md:w-full px-6 py-8">
+                                            <div className="border-b border-gray-400 pb-4">
+                                                <p className="text-sm text-gray-400 mb-2">団体・サークル名</p>
+                                                <p className="text-sm text-black">
+                                                    <span className="mr-4">{ circle.prefixName }</span>{ circle.name }
+                                                </p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">団体・サークル名（カナ）</p>
+                                                <p className="text-sm text-black">
+                                                    { circle.nameKana }
+                                                </p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">サークル紹介文</p>
+                                                <p className="text-sm text-black">{ circle.description }</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">サークル種別</p>
+                                                <p className="text-sm text-black">{ __(circle.circleType) }</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">年間費用</p>
+                                                <p className="text-sm text-black">{ circle.admissionFeePerYear ? Number(circle.admissionFeePerYear).toLocaleString() : 0 }円/年</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">活動人数</p>
+                                                <p className="text-sm text-black">{ circle.numberOfMembers }人</p>
+                                            </div>
+
+                                            {circle.publicEmail ? (
+                                                <div className="border-b border-gray-400 py-4">
+                                                    <p className="text-sm text-gray-400 mb-2">連絡用メールアドレス</p>
+                                                    <p className="text-sm text-black">{ circle.publicEmail }</p>
+                                                </div>
+                                            ) : ''}
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">通常活動場所</p>
+                                                <p className="text-sm text-black">{ __(circle.commonPlaceOfActivity) }</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">通常活動場所詳細</p>
+                                                <p className="text-sm text-black">{ circle.commonPlaceOfActivityDetail }</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">通常活動日</p>
+                                                <p className="text-sm text-black">{ circle.commonPlaceOfActivityDetail }</p>
+                                            </div>
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">オンライン活動</p>
+                                                <p className="text-sm text-black">{ circle.isOnlineActivity ? '行う' : '行わない' }</p>
+                                            </div>
+
+                                            {circle.onlineDateOfActivityDetail ? (
+                                                <div className="border-b border-gray-400 py-4">
+                                                    <p className="text-sm text-gray-400 mb-2">オンライン活動場所</p>
+                                                    <p className="text-sm text-black">{ circle.onlineDateOfActivityDetail }</p>
+                                                </div>
+                                            ) : ''}
+
+                                            <div className="border-b border-gray-400 py-4">
+                                                <p className="text-sm text-gray-400 mb-2">オンライン活動日</p>
+                                                <p className="text-sm text-black">{ circle.commonPlaceOfActivityDetail }</p>
+                                            </div>
+
+                                            <div className="py-4">
+                                                <p className="text-sm text-gray-400 mb-2">各種SNS</p>
+                                                <p className="text-sm text-black">{ circle.commonPlaceOfActivityDetail }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </BaseContainer>
+
+
                 </div>
 
                 {/*  フッター */}

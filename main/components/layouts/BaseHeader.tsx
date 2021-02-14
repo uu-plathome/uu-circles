@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Color from 'colors'
+import { BaseContainer } from "../molecules/Container/BaseContainer";
 
 type Props = {
     onClick?(): void
@@ -15,7 +16,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
     const {isMd} = useMediaQuery()
 
     return (
-        <div>
+        <BaseContainer>
             <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-2">
                 <div className="flex items-center">
                     {!isMd ? (
@@ -49,7 +50,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
                     </YellowButton>
                 </div>
             </div>
-        </div>
+        </BaseContainer>
     )
 }
 
