@@ -11,6 +11,7 @@
         "php": "^7.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/legacy-factories": "^1.1",
         "laravel/tinker": "^2.5",
@@ -18,7 +19,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
