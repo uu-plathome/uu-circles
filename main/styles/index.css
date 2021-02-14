@@ -29,3 +29,7 @@ body {
   width: 100px !important;
   height: 100px !important;
 }
+
+.tag-title::before {
+  content: '#';
+}
