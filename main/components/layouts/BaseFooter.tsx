@@ -1,7 +1,9 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useWindowResize } from "@/hooks/useWindowResize";
 import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import Image from "next/image";
 import { FC, Fragment, useEffect, useState } from "react";
 import { BaseContainer } from "../molecules/Container/BaseContainer";
 
@@ -53,6 +55,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
 type Props = {}
 const BaseFooter: FC<Props> = () => {
     const [isTagOpen, setIsTagOpen] = useState(false)
+    const { width } = useWindowResize()
     const { isMd } = useMediaQuery()
 
     useEffect(() => {
@@ -62,59 +65,94 @@ const BaseFooter: FC<Props> = () => {
     })
 
     return (
-        <div className="bg-gray-100 px-6">
-            <BaseContainer>
-                <div className="flex">
-                    <div className="pt-6 w-1/2 md:w-3/4">
-                        <h2 className="text-lg mb-6">全てのタグ</h2>
-                        
-                        <ul className="grid grid-cols-1 md:grid-cols-3">
-                            {tagAlwaysItems.map((_tagItem, idx) => <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} /> ) }
-                            {isTagOpen ? (
-                                <Fragment>
-                                    {tagOtherItems.map((_tagItem, idx) => <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} /> ) }
-                                </Fragment>
-                            ) : (
-                                <p>
-                                    <a onClick={() => setIsTagOpen(true)} className="underline text-gray-400 text-xs">全てのタグ</a>
-                                </p>
-                            )}
-                        </ul>
+        <div className="bg-gray-100">
+            {width ? (
+                <div className="md:px-6 md:mb-10 text-center">
+                    <Image
+                        src="/images/media_postar_tmp.png"
+                        width={width > 700 ? 700 : width}
+                        height={width > 700 ? 700 * 218 / 375 : width * 218 / 375}
+                    />
+                </div>
+            ) : ''}
+
+            <div className="hidden md:flex justify-center">
+                <div className="grid grid-cols-2 gap-6" style={{ maxWidth: 700 }}>
+                    <div className="md:mb-10 text-center">
+                        <Image
+                            className="border-2 border-red-900"
+                            src="/images/media_postar_tmp.png"
+                            width={330}
+                            height={92}
+                        />
                     </div>
-                    
-                    <div className="pt-6 w-1/2 md:w-1/4">
-                        <h2 className="text-lg mb-6">カテゴリー</h2>
+
+                    <div className="md:mb-10 text-center">
+                        <Image
+                            className="border-2 border-red-900"
+                            src="/images/media_postar_tmp.png"
+                            width={330}
+                            height={92}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="px-6">
+                <BaseContainer>
+                    <div className="flex">
+                        <div className="pt-6 w-1/2 md:w-3/4">
+                            <h2 className="text-lg mb-6">全てのタグ</h2>
+                            
+                            <ul className="grid grid-cols-1 md:grid-cols-3">
+                                {tagAlwaysItems.map((_tagItem, idx) => <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} /> ) }
+                                {isTagOpen ? (
+                                    <Fragment>
+                                        {tagOtherItems.map((_tagItem, idx) => <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} /> ) }
+                                    </Fragment>
+                                ) : (
+                                    <p>
+                                        <a onClick={() => setIsTagOpen(true)} className="underline text-gray-400 text-xs">全てのタグ</a>
+                                    </p>
+                                )}
+                            </ul>
+                        </div>
+                        
+                        <div className="pt-6 w-1/2 md:w-1/4">
+                            <h2 className="text-lg mb-6">カテゴリー</h2>
+                            
+                            <ul>
+                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">部活</a></li>
+                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a></li>
+                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a></li>
+                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </BaseContainer>
+
+                <BaseContainer>
+                    <div className="pt-6">
+                        <h2 className="text-lg mb-6">メニュー</h2>
                         
                         <ul>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">部活</a></li>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a></li>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a></li>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a></li>
+                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">サークルを見つける</a></li>
+                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">運営団体について</a></li>
+                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">お問い合わせ</a></li>
+                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">ヘルプ</a></li>
                         </ul>
                     </div>
-                </div>
-            </BaseContainer>
+                </BaseContainer>
 
-            <BaseContainer>
-                <div className="pt-6">
-                    <h2 className="text-lg mb-6">メニュー</h2>
-                    
-                    <ul>
-                        <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">サークルを見つける</a></li>
-                        <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">運営団体について</a></li>
-                        <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">お問い合わせ</a></li>
-                        <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">ヘルプ</a></li>
-                    </ul>
+                <div className="pt-8 text-center">
+                    <hr className="border border-gray-200"/>
+                    <div className="pt-8 pb-16">
+                        <a href="" className="text-gray-400 px-2 text-xs">運営団体</a>
+                        <a href="" className="text-gray-400 px-2 text-xs">利用規約</a>
+                        <a href="" className="text-gray-400 px-2 text-xs">プライバシーポリシー</a>
+                    </div>
                 </div>
-            </BaseContainer>
-
-            <div className="pt-8 text-center">
-                <hr className="border border-gray-200"/>
-                <div className="pt-8 pb-16">
-                    <a href="" className="text-gray-400 px-2 text-xs">運営団体</a>
-                    <a href="" className="text-gray-400 px-2 text-xs">利用規約</a>
-                    <a href="" className="text-gray-400 px-2 text-xs">プライバシーポリシー</a>
-                </div>
+            
             </div>
         </div>
     )
