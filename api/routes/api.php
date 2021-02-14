@@ -19,10 +19,10 @@ use Illuminate\Http\Request;
 */
 
 // トップページ用
-Route::get('/main', [IndexController::class])->name('main.index');
+Route::get('/main', IndexController::class)->name('main.index');
 
 // サークル 
-Route::get('/circle/newjoy', [TodayCircleNewJoyController::class])->name('main.circleNewJoy.today');
-Route::get('/circle/{slug}', [GetCircleController::class])->name('main.circle.show');
-Route::get('/circle/{slug}/newjoy', [IndexCircleNewJoyController::class])->name('main.circleNewJoy.index');
-Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', [ShowCircleNewJoyController::class])->name('main.circleNewJoy.show');
+Route::get('/circle/newjoy', TodayCircleNewJoyController::class)->name('main.circleNewJoy.today');
+Route::get('/circle/{slug}', GetCircleController::class)->name('main.circle.show');
+Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('main.circleNewJoy.index');
+Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('main.circleNewJoy.show');
