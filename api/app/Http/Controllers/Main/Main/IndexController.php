@@ -7,8 +7,9 @@ use App\Support\Arr;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class IndexController extends Controller
 {
@@ -27,7 +28,9 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $circles = $this->getRandomCircleUsecase->invoke(6);
+        $circles = Cache::remember($this->getCacheKey(), 60, function () {
+            return $this->getRandomCircleUsecase->invoke(8);
+        });
 
         return [
             'data' => Arr::camel_keys(
@@ -39,5 +42,11 @@ class IndexController extends Controller
                 )->toArray()
             ),
         ];
+    }
+
+    private function getCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'main' . $minutes . rand(0, 2);
     }
 }
