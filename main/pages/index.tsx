@@ -8,6 +8,7 @@ import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorsh
 import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { MainCategoryList } from "@/components/organisms/List/MainCategoryList";
+import { GreenButton } from "@/components/atoms/button/GreenButton";
 
 type Props = {
     circles: Circle[]
@@ -22,6 +23,12 @@ const Index: NextPage<Props> = ({ circles }) => {
 
                         {/*  サークル一覧 */}
                         <MainPageCircleList circles={circles} />
+
+                        <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
+                            <GreenButton href="/circle">
+                                もっと見る
+                            </GreenButton>
+                        </div>
                     </div>
                 </BaseContainer>
 
