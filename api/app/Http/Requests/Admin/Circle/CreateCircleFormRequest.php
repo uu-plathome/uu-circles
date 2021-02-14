@@ -9,6 +9,7 @@ use App\Models\CircleInformation;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateCircleFormRequest extends FormRequest
 {
@@ -30,7 +31,13 @@ class CreateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleModel::slug             => ['nullable', 'string', 'unique:circles'],
+            CircleModel::slug             => [
+                'nullable',
+                'string',
+                'unique:circles',
+                'max:50',
+                Rule::notIn(['newjoy']),
+            ],
             CircleModel::release          => ['required', 'boolean'],
             CircleInformationModel::name  => ['required', 'string', 'max:255'],
         ]);

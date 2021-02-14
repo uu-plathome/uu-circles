@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCircleInformationTable extends Migration
@@ -70,6 +71,8 @@ class CreateCircleInformationTable extends Migration
 
             $table->foreign('circle_id')->references('id')->on('circles');
         });
+
+        DB::statement("ALTER TABLE circle_information COMMENT 'サークル情報'");
     }
 
     /**
