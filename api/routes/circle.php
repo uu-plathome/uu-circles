@@ -10,15 +10,15 @@ use App\Support\Arr;
 use Illuminate\Http\Request;
 
 Route::middleware('guest:api')->group(function () {
-    Route::post('/login', [LoginCircleController::class])->name('circle.auth.login');
+    Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
-        Route::get('email/verify/{userId}', [VerificationVerifyController::class])->name('circle.verification.verify');
-        Route::post('email/verify/{userId}', [VerificationConfirmController::class]);
-        Route::post('email/resend', [VerificationResendController::class])->name('circle.verification.resend');
+        Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('circle.verification.verify');
+        Route::post('email/verify/{userId}', VerificationConfirmController::class);
+        Route::post('email/resend', VerificationResendController::class)->name('circle.verification.resend');
 
-        Route::post('password/reset', [ForgotPasswordCircleController::class]);
-        Route::post('password/confirm', [ResetPasswordCircleController::class])->name('circle.password.confirm');
+        Route::post('password/reset', ForgotPasswordCircleController::class);
+        Route::post('password/confirm', ResetPasswordCircleController::class)->name('circle.password.confirm');
     });
 });
 
