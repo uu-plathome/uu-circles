@@ -1,18 +1,24 @@
 <?php
 
+use App\Http\Controllers\Circle\Auth\ForgotPasswordCircleController;
+use App\Http\Controllers\Circle\Auth\LoginCircleController;
+use App\Http\Controllers\Circle\Auth\ResetPasswordCircleController;
+use App\Http\Controllers\Circle\Auth\VerificationConfirmController;
+use App\Http\Controllers\Circle\Auth\VerificationResendController;
+use App\Http\Controllers\Circle\Auth\VerificationVerifyController;
 use App\Support\Arr;
 use Illuminate\Http\Request;
 
 Route::middleware('guest:api')->group(function () {
-    Route::post('/login', 'Circle\Auth\LoginCircleController')->name('circle.auth.login');
+    Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
-        Route::get('email/verify/{userId}', 'Circle\Auth\VerificationVerifyController')->name('circle.verification.verify');
-        Route::post('email/verify/{userId}', 'Circle\Auth\VerificationConfirmController');
-        Route::post('email/resend', 'Circle\Auth\VerificationResendController')->name('circle.verification.resend');
+        Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('circle.verification.verify');
+        Route::post('email/verify/{userId}', VerificationConfirmController::class);
+        Route::post('email/resend', VerificationResendController::class)->name('circle.verification.resend');
 
-        Route::post('password/reset', 'Circle\Auth\ForgotPasswordCircleController');
-        Route::post('password/confirm', 'Circle\Auth\ResetPasswordCircleController')->name('circle.password.confirm');
+        Route::post('password/reset', ForgotPasswordCircleController::class);
+        Route::post('password/confirm', ResetPasswordCircleController::class)->name('circle.password.confirm');
     });
 });
 
