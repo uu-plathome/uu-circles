@@ -7,9 +7,7 @@ import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import Color from 'colors'
+import { AppealingPoint } from "@/components/organisms/ShowCircle/AppealingPoint";
 import { __ } from "@/lang/ja";
 
 type Props = {
@@ -26,42 +24,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                         { circle.name }
 
                         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
-                            <div className="pt-10">
-                                <div>
-                                    <h2 className="text-lg text-center mb-6 md:text-left">アピールポイント</h2>
-
-                                    <div className="flex justify-center md:justify-start px-6 md:px-0">
-                                        <div className="bg-white rounded md:w-full px-4 md:pr-6 md:pl-12 py-8 w-full">
-                                            <ul>
-                                                <li className="flex mb-2 text-sm md:text-base">
-                                                    <FontAwesomeIcon
-                                                        className="mt-0.5"
-                                                        color={ Color.yellow[500] }
-                                                        icon={ faCircle }
-                                                    />
-                                                    <p className="ml-4">{ circle.appealingPoint1 }</p>
-                                                </li>
-                                                <li className="flex mb-2 text-sm md:text-base">
-                                                    <FontAwesomeIcon
-                                                        className="mt-0.5"
-                                                        color={ Color.yellow[500] }
-                                                        icon={ faCircle }
-                                                    />
-                                                    <p className="ml-4">{ circle.appealingPoint2 }</p>
-                                                </li>
-                                                <li className="flex mb-2 text-sm md:text-base">
-                                                    <FontAwesomeIcon
-                                                        className="mt-0.5"
-                                                        color={ Color.yellow[500] }
-                                                        icon={ faCircle }
-                                                    />
-                                                    <p className="ml-4">{ circle.appealingPoint3 }</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <AppealingPoint circle={circle} />
 
                             <div className="pt-10">
                                 <div>
@@ -75,7 +38,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="pt-10">
                                 <div>
                                     <h2 className="text-lg text-center mb-6 md:text-left">サークル詳細</h2>
 
