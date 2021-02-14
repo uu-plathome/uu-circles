@@ -16,8 +16,8 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
 
     return (
         <div>
-            <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-end py-2">
-                <div className="flex items-end">
+            <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-2">
+                <div className="flex items-center">
                     {!isMd ? (
                         <div className="pr-2">
                             <button onClick={onClick}>
@@ -37,7 +37,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
                     </h1>
                 </div>
 
-                <div className="flex items-end">
+                <div className="flex items-center">
                     <p className="mr-4 text-xs sm:text-base">
                         <a href="" className="underline">
                             <span className="hidden sm:inline">サークルを</span>見つける
