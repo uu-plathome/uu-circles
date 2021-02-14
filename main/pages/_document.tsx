@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <title>サークルビラ一覧</title>
                     <meta name="theme-color" content="#ff0000" />
                     <meta name="format-detection" content="telephone=no" />
                     <meta name="viewport" content="width=device-width,initial-scale=1" />

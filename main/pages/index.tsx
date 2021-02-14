@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from "next";
-import { BaseHeader } from "@/components/layouts/BaseHeader";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { MainPageCircleList } from "@/components/organisms/List/MainPageCircleList";
 import { getMain } from "@/infra/api/main";

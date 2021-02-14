@@ -4,7 +4,7 @@ import { BaseHeader } from "./BaseHeader"
 import { BaseSpMenu } from "./BaseSpMenu"
 
 const BaseLayout: FC = ({ children }) => {
-    const [ menuIsOpen, setMenuIsOpen ] = useState(true)
+    const [ menuIsOpen, setMenuIsOpen ] = useState(false)
     const { isMd } = useMediaQuery()
 
     useEffect(() => {

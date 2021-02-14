@@ -1,46 +1,43 @@
 import Link from "next/link"
+import { FC } from "react"
 
-const BaseSpMenu = () => {
+type MenuItemProps = {
+    href: string
+}
+const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
+    return (
+        <li className="border border-b border-gray-200">
+            <Link href={href}>
+                <a className="text-sm text-black">
+                    <div className="pl-8 py-4">
+                        { children }
+                    </div>
+                </a>
+            </Link>
+        </li>
+    )
+}
+
+const BaseSpMenu: FC = () => {
     return (
         <div>
             <div>
                 <ul>
-                    <li className="border border-b border-gray-200">
-                        <Link href="/circle">
-                            <a className="text-sm text-black">
-                                <div className="pl-8 py-4">
-                                    団体・サークルを探す
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                    <li className="border border-b border-gray-200">
-                        <Link href="/circle/newjoy">
-                            <a className="text-sm text-black">
-                                <div className="pl-8 py-4">
-                                    今日の新歓イベント
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                    <li className="border border-b border-gray-200">
-                        <Link href="/circle">
-                            <a className="text-sm text-black">
-                                <div className="pl-8 py-4">
-                                    全てのカテゴリー
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                    <li className="border border-b border-gray-200">
-                        <Link href="/circle">
-                            <a className="text-sm text-black">
-                                <div className="pl-8 py-4">
-                                    全てのタグ
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
+                    <MenuItem href="/circle">
+                        団体・サークルを探す
+                    </MenuItem>
+
+                    <MenuItem href="/circle/newjoy">
+                        今日の新歓イベント
+                    </MenuItem>
+
+                    <MenuItem href="/circle">
+                        全てのカテゴリー
+                    </MenuItem>
+
+                    <MenuItem href="/circle">
+                        全てのタグ
+                    </MenuItem>
                 </ul>
             </div>
             
