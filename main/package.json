@@ -15,6 +15,7 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "next": "latest",
+    "next-pwa": "^5.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
