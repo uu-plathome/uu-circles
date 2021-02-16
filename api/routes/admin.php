@@ -40,13 +40,14 @@ use App\Http\Controllers\Admin\PutStorageController;
 use App\Support\Arr;
 use Illuminate\Http\Request;
 
+Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
+
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('/login', LoginAdminController::class)->name('admin.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
         Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('admin.verification.verify');
         Route::post('email/verify/{userId}', VerificationConfirmController::class);
-        Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
 
         Route::post('password/reset', ForgotPasswordAdminController::class);
         Route::post('password/confirm', ResetPasswordAdminController::class)->name('admin.password.confirm');
