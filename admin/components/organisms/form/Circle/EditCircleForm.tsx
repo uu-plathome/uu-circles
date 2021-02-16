@@ -6,8 +6,9 @@ import {
   UseBooleanInput,
   UseStringInput,
 } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
-import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { faFacebook, faGithub, faInstagram, faLine, faTiktok, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faHome, faLink } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, FormEvent } from 'react'
 import { ActivityEditCircleForm } from './Parts/ActivityEditCircleForm'
 import { CommonInfoEditCircleForm, Props as CommonInfoEditCircleFormProps } from './Parts/CommonInfoEditCircleForm'
@@ -152,6 +153,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="twitterUrl"
             expand
             placeholder="https://twitter.com/"
+            prefix={<FontAwesomeIcon icon={faTwitter} color="rgb(29, 161, 242)" size="lg" />}
             {...form.twitterUrl}
           />
         </div>
@@ -162,6 +164,8 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="facebookUrl"
             id="facebookUrl"
             expand
+            placeholder="https://ja-jp.facebook.com/"
+            prefix={<FontAwesomeIcon icon={faFacebook} color="#3B5998" size="lg" />}
             {...form.facebookUrl}
           />
         </div>
@@ -173,6 +177,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="instagramUrl"
             expand
             placeholder="https://instagram.com"
+            prefix={<FontAwesomeIcon icon={faInstagram} color="rgb（76, 76, 76）" size="lg" />}
             {...form.instagramUrl}
           />
         </div>
@@ -183,6 +188,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="lineUrl"
             id="lineUrl"
             expand
+            prefix={<FontAwesomeIcon icon={faLine} color="#00b900" size="lg" />}
             {...form.lineUrl}
           />
         </div>
@@ -194,6 +200,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="youtubeUrl"
             expand
             placeholder="https://youtube.com"
+            prefix={<FontAwesomeIcon icon={faYoutube} color="#dd4b39" size="lg" />}
             {...form.youtubeUrl}
           />
         </div>
@@ -204,17 +211,20 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="homepageUrl"
             id="homepageUrl"
             expand
+            prefix={<FontAwesomeIcon icon={faHome} color="#010101" size="lg" />}
             {...form.homepageUrl}
           />
         </div>
 
         <div>
           <BaseTextField
-            label="Peing URL"
-            name="peingUrl"
-            id="peingUrl"
+            label="Tiktok URL"
+            name="tiktokUrl"
+            id="tiktokUrl"
             expand
-            {...form.peingUrl}
+            placeholder="https://www.tiktok.com/ja-JP/"
+            prefix={<FontAwesomeIcon icon={faTiktok} color="#010101" size="lg" />}
+            {...form.tiktokUrl}
           />
         </div>
 
@@ -225,19 +235,22 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="githubUrl"
             expand
             placeholder="https://github.com"
+            prefix={<FontAwesomeIcon icon={faGithub} color="#171515" size="lg" />}
             {...form.githubUrl}
           />
         </div>
 
         <div>
           <BaseTextField
-            label="Tiktok URL"
-            name="tiktokUrl"
-            id="tiktokUrl"
+            label="Peing URL"
+            name="peingUrl"
+            id="peingUrl"
             expand
-            {...form.tiktokUrl}
+            prefix={<FontAwesomeIcon icon={faLink} color="#010101" size="lg" />}
+            {...form.peingUrl}
           />
         </div>
+
       </div>
 
       <div>

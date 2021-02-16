@@ -23,7 +23,7 @@ export type Props = {
     required?: boolean
     type?: InputHTMLAttributes<any>['type']
     placeholder?: InputHTMLAttributes<any>['placeholder']
-    prefix?: string
+    prefix?: string|any
     suffix?: string
     error?: string
     pattern?: string
