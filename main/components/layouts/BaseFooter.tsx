@@ -4,6 +4,7 @@ import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
 import { BaseContainer } from "../molecules/Container/BaseContainer";
 
@@ -122,10 +123,26 @@ const BaseFooter: FC<Props> = () => {
                             <h2 className="text-lg mb-6">カテゴリー</h2>
                             
                             <ul>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">部活</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a></li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as="/circle/category/CLUB">
+                                        <a className="text-gray-400 font-bold text-sm">部活</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.OFFICIAL_ORGANIZATION}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.STUDENT_GROUP}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.UNOFFICIAL_ORGANIZATION}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
