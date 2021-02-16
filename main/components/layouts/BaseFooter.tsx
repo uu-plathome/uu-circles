@@ -3,6 +3,7 @@ import { useWindowResize } from "@/hooks/useWindowResize";
 import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import { Category } from "@/lib/enum/app/Category";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
@@ -124,22 +125,22 @@ const BaseFooter: FC<Props> = () => {
                             
                             <ul>
                                 <li className="mb-3">
-                                    <Link href="/circle/category/[category]" as="/circle/category/CLUB">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.club}`}>
                                         <a className="text-gray-400 font-bold text-sm">部活</a>
                                     </Link>
                                 </li>
                                 <li className="mb-3">
-                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.OFFICIAL_ORGANIZATION}`}>
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.officialOrganization}`}>
                                         <a className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a>
                                     </Link>
                                 </li>
                                 <li className="mb-3">
-                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.STUDENT_GROUP}`}>
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.studentGroup}`}>
                                         <a className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a>
                                     </Link>
                                 </li>
                                 <li className="mb-3">
-                                    <Link href="/circle/category/[category]" as={`/circle/category/${CircleType.UNOFFICIAL_ORGANIZATION}`}>
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.unofficialOrganization}`}>
                                         <a className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a>
                                     </Link>
                                 </li>

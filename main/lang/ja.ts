@@ -37,6 +37,7 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  CLUB: '部活',
 }
 
 export const __ = (key: string) => (ja[key] ? ja[key] : key)
