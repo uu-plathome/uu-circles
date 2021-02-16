@@ -29,7 +29,7 @@ class IndexController extends Controller
     public function __invoke(Request $request)
     {
         $circles = Cache::remember($this->getCacheKey(), 60, function () {
-            return $this->getRandomCircleUsecase->invoke(8);
+            return $this->getRandomCircleUsecase->invoke(12);
         });
 
         return [

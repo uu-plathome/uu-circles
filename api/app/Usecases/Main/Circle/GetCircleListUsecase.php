@@ -21,8 +21,12 @@ class GetCircleListUsecase
             // 新歓が登録されているのものを取得
             ->whereHas('circleHandbill')
             ->select([
-                'id', 'release', 'slug'
+                'circles.' . 'id',
+                'circles.' . 'release',
+                'circles.' . 'slug'
             ])
+            ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
+            ->orderByDesc('circle_information.updated_at')
             ->get();
 
         return $circles->map(
