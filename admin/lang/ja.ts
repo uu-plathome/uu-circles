@@ -2,6 +2,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { Week } from '@/lib/enum/api/Week'
 
 export const ja = {
   [CircleType.OFFICIAL_ORGANIZATION]: '公認団体',
@@ -37,6 +38,25 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  Week: {
+    [Week.MONDAY]: '月曜日',
+    [Week.TUESDAY]: '火曜日',
+    [Week.WEDNESDAY]: '水曜日',
+    [Week.THURSDAY]: '木曜日',
+    [Week.FRIDAY]: '金曜日',
+    [Week.SATURADY]: '土曜日',
+    [Week.SUNDAY]: '日曜日',
+  },
 }
 
-export const __ = (key: string) => (ja[key] ? ja[key] : key)
+export const __ = (key: string, namespace?: string) => {
+  try {
+    if (!namespace) {
+      return ja[key] ? ja[key] : key
+    }
+
+    return ja[namespace][key] ? ja[namespace][key] : key
+  } catch (e) {
+    return key
+  }
+}

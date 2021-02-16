@@ -6,6 +6,7 @@ use App\Enum\UserModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 

@@ -6,9 +6,11 @@ import {
   UseBooleanInput,
   UseStringInput,
 } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
-import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { faFacebook, faGithub, faInstagram, faLine, faTiktok, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faHome, faLink } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, FormEvent } from 'react'
+import { ActivityEditCircleForm } from './Parts/ActivityEditCircleForm'
 import { CommonInfoEditCircleForm, Props as CommonInfoEditCircleFormProps } from './Parts/CommonInfoEditCircleForm'
 import { NameEditCircleForm, Props as NameEditCircleFormProps } from './Parts/NameEditCircleForm'
 
@@ -115,212 +117,31 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
 
       <FormHeader>活動情報</FormHeader>
 
-      <BaseSelect
-        label="通常活動場所"
-        id="commonPlaceOfActivity"
-        name="commonPlaceOfActivity"
-        items={[
-          ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-            value: _placeOfActivity,
-            label: __(_placeOfActivity),
-          })),
-        ]}
-        {...form.commonPlaceOfActivity}
+      <ActivityEditCircleForm
+        form={{
+          commonPlaceOfActivity: form.commonPlaceOfActivity,
+          commonPlaceOfActivityDetail: form.commonPlaceOfActivityDetail,
+          commonDateOfActivityMonday: form.commonDateOfActivityMonday,
+          commonDateOfActivityTuesday: form.commonDateOfActivityTuesday,
+          commonDateOfActivityWednesday: form.commonDateOfActivityWednesday,
+          commonDateOfActivityThursday: form.commonDateOfActivityThursday,
+          commonDateOfActivityFriday: form.commonDateOfActivityFriday,
+          commonDateOfActivitySaturday: form.commonDateOfActivitySaturday,
+          commonDateOfActivitySunday: form.commonDateOfActivitySunday,
+          commonDateOfActivityDetail: form.commonDateOfActivityDetail,
+          isOnlineActivity: form.isOnlineActivity,
+          onlinePlaceOfActivityDetail: form.onlinePlaceOfActivityDetail,
+          onlineDateOfActivityMonday: form.onlineDateOfActivityMonday,
+          onlineDateOfActivityTuesday: form.onlineDateOfActivityTuesday,
+          onlineDateOfActivityWednesday: form.onlineDateOfActivityWednesday,
+          onlineDateOfActivityThursday: form.onlineDateOfActivityThursday,
+          onlineDateOfActivityFriday: form.onlineDateOfActivityFriday,
+          onlineDateOfActivitySaturday: form.onlineDateOfActivitySaturday,
+          onlineDateOfActivitySunday: form.onlineDateOfActivitySunday,
+          onlineDateOfActivityDetail: form.onlineDateOfActivityDetail,
+        }}
       />
 
-      <BaseTextField
-        label="通常活動場所詳細"
-        name="placeOfActivityDetail"
-        id="placeOfActivityDetail"
-        {...form.commonPlaceOfActivityDetail}
-      />
-
-      <BaseSelect
-        label="月曜日に通常活動しているか"
-        id="commonDateOfActivityMonday"
-        name="commonDateOfActivityMonday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivityMonday}
-      />
-
-      <BaseSelect
-        label="火曜日に通常活動しているか"
-        id="commonDateOfActivityTuesday"
-        name="commonDateOfActivityTuesday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivityTuesday}
-      />
-
-      <BaseSelect
-        label="水曜日に通常活動しているか"
-        id="commonDateOfActivityWednesday"
-        name="commonDateOfActivityWednesday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivityWednesday}
-      />
-
-      <BaseSelect
-        label="木曜日に通常活動しているか"
-        id="commonDateOfActivityThursday"
-        name="commonDateOfActivityThursday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivityThursday}
-      />
-
-      <BaseSelect
-        label="金曜日に通常活動しているか"
-        id="commonDateOfActivityFriday"
-        name="commonDateOfActivityFriday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivityFriday}
-      />
-
-      <BaseSelect
-        label="土曜日に通常活動しているか"
-        id="commonDateOfActivitySaturday"
-        name="commonDateOfActivitySaturday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivitySaturday}
-      />
-
-      <BaseSelect
-        label="日曜日に通常活動しているか"
-        id="commonDateOfActivitySunday"
-        name="commonDateOfActivitySunday"
-        items={[
-          { value: 'true', label: '活動している' },
-          { value: 'false', label: '活動していない' },
-        ]}
-        {...form.commonDateOfActivitySunday}
-      />
-
-      <BaseTextField
-        label="通常活動日時詳細"
-        name="commonDateOfActivityDetail"
-        id="commonDateOfActivityDetail"
-        expand
-        {...form.commonDateOfActivityDetail}
-      />
-
-      <BaseSelect
-        label="オンライン活動しているかどうか"
-        id="doOnlineActivity"
-        name="doOnlineActivity"
-        items={[
-          { value: 'true', label: 'オンラインしている' },
-          { value: 'false', label: 'オフラインのみ' },
-        ]}
-        {...form.isOnlineActivity}
-      />
-
-      {form.isOnlineActivity.toBoolean ? (
-        <div>
-          <BaseSelect
-            label="月曜日にオンライン活動しているか"
-            id="onlineDateOfActivityMonday"
-            name="onlineDateOfActivityMonday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivityMonday}
-          />
-
-          <BaseSelect
-            label="火曜日にオンライン活動しているか"
-            id="onlineDateOfActivityTuesday"
-            name="onlineDateOfActivityTuesday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivityTuesday}
-          />
-
-          <BaseSelect
-            label="水曜日にオンライン活動しているか"
-            id="onlineDateOfActivityWednesday"
-            name="onlineDateOfActivityWednesday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivityWednesday}
-          />
-
-          <BaseSelect
-            label="木曜日にオンライン活動しているか"
-            id="onlineDateOfActivityThursday"
-            name="onlineDateOfActivityThursday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivityThursday}
-          />
-
-          <BaseSelect
-            label="金曜日にオンライン活動しているか"
-            id="onlineDateOfActivityFriday"
-            name="onlineDateOfActivityFriday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivityFriday}
-          />
-
-          <BaseSelect
-            label="土曜日にオンライン活動しているか"
-            id="onlineDateOfActivitySaturday"
-            name="onlineDateOfActivitySaturday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivitySaturday}
-          />
-
-          <BaseSelect
-            label="日曜日にオンライン活動しているか"
-            id="onlineDateOfActivitySunday"
-            name="onlineDateOfActivitySunday"
-            items={[
-              { value: 'true', label: 'オンライン活動している' },
-              { value: 'false', label: 'オンライン活動していない' },
-            ]}
-            {...form.onlineDateOfActivitySunday}
-          />
-
-          <BaseTextField
-            label="活動日時詳細"
-            name="onlineDateOfActivityDetail"
-            id="onlineDateOfActivityDetail"
-            expand
-            {...form.onlineDateOfActivityDetail}
-          />
-        </div>
-      ) : (
-        ''
-      )}
 
     <FormHeader>SNS情報</FormHeader>
 
@@ -332,6 +153,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="twitterUrl"
             expand
             placeholder="https://twitter.com/"
+            prefix={<FontAwesomeIcon icon={faTwitter} color="rgb(29, 161, 242)" size="lg" />}
             {...form.twitterUrl}
           />
         </div>
@@ -342,6 +164,8 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="facebookUrl"
             id="facebookUrl"
             expand
+            placeholder="https://ja-jp.facebook.com/"
+            prefix={<FontAwesomeIcon icon={faFacebook} color="#3B5998" size="lg" />}
             {...form.facebookUrl}
           />
         </div>
@@ -353,6 +177,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="instagramUrl"
             expand
             placeholder="https://instagram.com"
+            prefix={<FontAwesomeIcon icon={faInstagram} color="rgb（76, 76, 76）" size="lg" />}
             {...form.instagramUrl}
           />
         </div>
@@ -363,6 +188,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="lineUrl"
             id="lineUrl"
             expand
+            prefix={<FontAwesomeIcon icon={faLine} color="#00b900" size="lg" />}
             {...form.lineUrl}
           />
         </div>
@@ -374,6 +200,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="youtubeUrl"
             expand
             placeholder="https://youtube.com"
+            prefix={<FontAwesomeIcon icon={faYoutube} color="#dd4b39" size="lg" />}
             {...form.youtubeUrl}
           />
         </div>
@@ -384,17 +211,20 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="homepageUrl"
             id="homepageUrl"
             expand
+            prefix={<FontAwesomeIcon icon={faHome} color="#010101" size="lg" />}
             {...form.homepageUrl}
           />
         </div>
 
         <div>
           <BaseTextField
-            label="Peing URL"
-            name="peingUrl"
-            id="peingUrl"
+            label="Tiktok URL"
+            name="tiktokUrl"
+            id="tiktokUrl"
             expand
-            {...form.peingUrl}
+            placeholder="https://www.tiktok.com/ja-JP/"
+            prefix={<FontAwesomeIcon icon={faTiktok} color="#010101" size="lg" />}
+            {...form.tiktokUrl}
           />
         </div>
 
@@ -405,19 +235,22 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="githubUrl"
             expand
             placeholder="https://github.com"
+            prefix={<FontAwesomeIcon icon={faGithub} color="#171515" size="lg" />}
             {...form.githubUrl}
           />
         </div>
 
         <div>
           <BaseTextField
-            label="Tiktok URL"
-            name="tiktokUrl"
-            id="tiktokUrl"
+            label="Peing URL"
+            name="peingUrl"
+            id="peingUrl"
             expand
-            {...form.tiktokUrl}
+            prefix={<FontAwesomeIcon icon={faLink} color="#010101" size="lg" />}
+            {...form.peingUrl}
           />
         </div>
+
       </div>
 
       <div>

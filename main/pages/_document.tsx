@@ -10,13 +10,13 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <title>サークルビラ一覧</title>
+                    <title>UU-circles</title>
                     <meta name="theme-color" content="#ff0000" />
                     <meta name="format-detection" content="telephone=no" />
                     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
                     {/** M PLUS 1p */}
-                    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet"></link>
+                    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:300,400,700" rel="stylesheet"></link>
                 </Head>
                 <body className="font-body">
                     <Main />
