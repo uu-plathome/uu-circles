@@ -30,3 +30,16 @@ export const getCircleBySlug = async (slug: string) => {
         circleNewJoys: data.circleNewJoys
     }
 }
+
+export const getCircleByCategory = async (category: string) => {
+    type Response = {
+        data: Circle[]
+    }
+    const { data } = await axiosInstance.get<Response>(
+        `${linkConst.CIRCLE.GROUP}/category/${category}`
+    )
+
+    return {
+        circles: data.data
+    }
+}
