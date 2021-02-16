@@ -8,6 +8,8 @@ import { TwoColumnContainer } from "@/components/molecules/Container/TwoColumnCo
 import { CircleSidebar } from "@/components/organisms/Circles/CircleSidebar";
 import { useRouter } from "next/dist/client/router";
 import { __ } from "@/lang/ja";
+import { categoryToCircleType } from "@/lib/utils/category/Category";
+import { Category } from "@/lib/enum/app/Category";
 
 type Props = {
     errorCode?: number
@@ -24,7 +26,7 @@ const Page: NextPage<Props> = ({
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <h1 className="text-2xl py-8">{ __(String(category)) }</h1>
+                        <h1 className="text-2xl py-8">{ __(String(categoryToCircleType(category as Category))) }</h1>
 
                         {/*  サークル一覧 */}
                         <BaseCircleList circles={circles} />
