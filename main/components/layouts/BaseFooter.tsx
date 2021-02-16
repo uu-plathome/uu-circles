@@ -3,7 +3,9 @@ import { useWindowResize } from "@/hooks/useWindowResize";
 import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import { Category } from "@/lib/enum/app/Category";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, Fragment, useEffect, useState } from "react";
 import { BaseContainer } from "../molecules/Container/BaseContainer";
 
@@ -122,10 +124,26 @@ const BaseFooter: FC<Props> = () => {
                             <h2 className="text-lg mb-6">カテゴリー</h2>
                             
                             <ul>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">部活</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a></li>
-                                <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a></li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.club}`}>
+                                        <a className="text-gray-400 font-bold text-sm">部活</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.officialOrganization}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.OFFICIAL_ORGANIZATION) }</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.studentGroup}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.STUDENT_GROUP) }</a>
+                                    </Link>
+                                </li>
+                                <li className="mb-3">
+                                    <Link href="/circle/category/[category]" as={`/circle/category/${Category.unofficialOrganization}`}>
+                                        <a className="text-gray-400 font-bold text-sm">{ __(CircleType.UNOFFICIAL_ORGANIZATION) }</a>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -145,12 +163,14 @@ const BaseFooter: FC<Props> = () => {
                 </BaseContainer>
 
                 <div className="pt-8 text-center">
-                    <hr className="border border-gray-200"/>
-                    <div className="pt-8 pb-16">
-                        <a href="" className="text-gray-400 px-2 text-xs">運営団体</a>
-                        <a href="" className="text-gray-400 px-2 text-xs">利用規約</a>
-                        <a href="" className="text-gray-400 px-2 text-xs">プライバシーポリシー</a>
-                    </div>
+                    <BaseContainer>
+                        <hr className="border border-gray-200"/>
+                        <div className="pt-8 pb-16">
+                            <a href="" className="text-gray-400 px-2 text-xs">運営団体</a>
+                            <a href="" className="text-gray-400 px-2 text-xs">利用規約</a>
+                            <a href="" className="text-gray-400 px-2 text-xs">プライバシーポリシー</a>
+                        </div>
+                    </BaseContainer>
                 </div>
             
             </div>

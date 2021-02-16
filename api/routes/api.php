@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Main\Circle\GetCircleController;
+use App\Http\Controllers\Main\Circle\IndexCircleController;
+use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
 use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
@@ -22,6 +24,8 @@ use Illuminate\Http\Request;
 Route::get('/main', IndexController::class)->name('main.index');
 
 // サークル 
+Route::get('/circle', IndexCircleController::class)->name('main.circle');
+Route::get('/circle/category/{category}', SearchCategoryCircleController::class)->name('main.circle.category');
 Route::get('/circle/newjoy', TodayCircleNewJoyController::class)->name('main.circleNewJoy.today');
 Route::get('/circle/{slug}', GetCircleController::class)->name('main.circle.show');
 Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('main.circleNewJoy.index');

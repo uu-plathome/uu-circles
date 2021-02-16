@@ -7,6 +7,7 @@ use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
 use App\Enum\CircleTagModel;
+use App\Enum\Week;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -58,6 +59,7 @@ class MakeEnumForTs extends Command
             CircleTagModel::class,
             DateOfActivity::class,
             PlaceOfActivity::class,
+            Week::class,
         ];
         $this->init();
     }
