@@ -164,6 +164,8 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 label="通常活動場所詳細"
                 name="placeOfActivityDetail"
                 id="placeOfActivityDetail"
+                expand
+                note="例）月:4号館 / 金:グラウンド"
                 {...form.commonPlaceOfActivityDetail}
             />
 
@@ -196,6 +198,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 name="commonDateOfActivityDetail"
                 id="commonDateOfActivityDetail"
                 expand
+                note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
                 {...form.commonDateOfActivityDetail}
             />
 
@@ -237,10 +240,11 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 ></BaseCheckBox>
 
                 <BaseTextField
-                    label="活動日時詳細"
+                    label="オンライン活動日時詳細"
                     name="onlineDateOfActivityDetail"
                     id="onlineDateOfActivityDetail"
                     expand
+                    note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
                     {...form.onlineDateOfActivityDetail}
                 />
                 </div>

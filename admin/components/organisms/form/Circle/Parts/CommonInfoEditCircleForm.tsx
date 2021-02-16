@@ -97,7 +97,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="admissionFee"
                 id="admissionFee"
                 placeholder="1000"
-                expand
+                suffix="円/年"
                 {...form.admissionFeePerYear}
             />
 
