@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
-import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { BaseCircleList } from "@/components/organisms/List/BaseCircleList";
 import { getAllCircleList } from "@/infra/api/circle";
