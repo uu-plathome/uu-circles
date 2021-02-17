@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\AdminUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Support\Arr;
+use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class ShowAdminUserController extends Controller
         }
 
         return [
-            'data' => Arr::camel_keys($user->toArray()),
+            'data' => Arr::camel_keys(AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray())
         ];
     }
 }

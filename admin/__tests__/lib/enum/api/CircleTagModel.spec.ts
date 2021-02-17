@@ -1,6 +1,24 @@
 import * as TestFunc from '@/lib/enum/api/CircleTagModel'
 
 describe('Enum CircleTagModel', () => {
+  it('isSport', () => {
+    expect(TestFunc.CircleTagModel.SPORT).toBe('SPORT')
+    expect(TestFunc.isCircleTagModel('SPORT')).toBeTruthy()
+    expect(TestFunc.isSport('SPORT')).toBeTruthy()
+    expect(TestFunc.isSport('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isMusic', () => {
+    expect(TestFunc.CircleTagModel.MUSIC).toBe('MUSIC')
+    expect(TestFunc.isCircleTagModel('MUSIC')).toBeTruthy()
+    expect(TestFunc.isMusic('MUSIC')).toBeTruthy()
+    expect(TestFunc.isMusic('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isCulture', () => {
+    expect(TestFunc.CircleTagModel.CULTURE).toBe('CULTURE')
+    expect(TestFunc.isCircleTagModel('CULTURE')).toBeTruthy()
+    expect(TestFunc.isCulture('CULTURE')).toBeTruthy()
+    expect(TestFunc.isCulture('aaaaabbbbcccc')).toBeFalsy()
+  })
   it('isNature', () => {
     expect(TestFunc.CircleTagModel.NATURE).toBe('NATURE')
     expect(TestFunc.isCircleTagModel('NATURE')).toBeTruthy()

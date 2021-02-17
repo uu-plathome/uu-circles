@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class CircleTag extends Model
 {
     protected $fillable = [
+        'sport',
+        'music',
+        'culture',
         'nature',
         'volunteer',
         'international',
@@ -19,6 +22,9 @@ class CircleTag extends Model
     ];
 
     protected $casts = [
+        'sport'              => 'boolean',
+        'music'              => 'boolean',
+        'culture'            => 'boolean',
         'nature'             => 'boolean',
         'volunteer'          => 'boolean',
         'international'      => 'boolean',

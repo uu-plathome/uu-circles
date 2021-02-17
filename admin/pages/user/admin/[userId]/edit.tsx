@@ -12,6 +12,8 @@ import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Role } from '@/lib/enum/api/Role'
+import { __ } from '@/lang/ja'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -21,13 +23,15 @@ const CreatePage: NextPage = () => {
     const username = useStringInput('')
     const displayName = useStringInput('')
     const active = useBooleanInput(true)
+    const role = useStringInput(Role.COMMON)
 
     useEffect(() => {
         const f = async () => {
             const foundUser = await getAdminUser(Number(userId))
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
-            active.set(foundUser.active)
+            active.set(foundUser.active),
+            role.set(foundUser.role)
         }
 
         f()
@@ -42,7 +46,8 @@ const CreatePage: NextPage = () => {
                 type: 'UpdateAdminUserRequest',
                 username: username.value,
                 displayName: displayName.value,
-                active: active.toBoolean
+                active: active.toBoolean,
+                role: role.value
             } as UpdateAdminUserRequest
         )
 
@@ -50,6 +55,7 @@ const CreatePage: NextPage = () => {
             username.setErrors(data.errors.username)
             displayName.setErrors(data.errors.displayName)
             active.setErrors(data.errors.active)
+            role.setErrors(data.errors.role)
             return
         }
 
@@ -99,6 +105,17 @@ const CreatePage: NextPage = () => {
                                     { value: 'false', label: '無効' },
                                 ]}
                                 { ...active }
+                            />
+
+                            <BaseSelect
+                                label="権限"
+                                name="role"
+                                id="role"
+                                items={[
+                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+                                ]}
+                                { ...role }
                             />
 
                             <div className="flex justify-center mt-8">

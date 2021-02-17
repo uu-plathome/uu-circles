@@ -8,6 +8,18 @@ namespace App\Enum;
 class CircleTagModel
 {
     /**
+     * 運動系
+     */
+    const SPORT = 'SPORT';
+    /**
+     * 音楽系
+     */
+    const MUSIC = 'MUSIC';
+    /**
+     * 文化系
+     */
+    const CULTURE = 'CULTURE';
+    /**
      * 農業・自然
      */
     const NATURE = 'NATURE';
