@@ -35,7 +35,7 @@ $ docker-compose exec app php -r "file_exists('.env') || copy('.env.example', '.
 
 $ docker-compose exec app composer install
 
-$ docker-comopse exec app php artisan key:generate
+$ docker-compose exec app php artisan key:generate
 
 $ docker-compose exec app php artisan storage:link
 
@@ -57,7 +57,7 @@ $ cd main & npm run dev
 
 ## 管理者ログイン
 
-ー ユーザー名: tester
+- ユーザー名: tester
 - パスワード： Test1234@@
 
 # Deploy api For Production
