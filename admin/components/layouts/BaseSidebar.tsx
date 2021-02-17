@@ -1,24 +1,27 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, faChevronRight, faHome, faBuilding, faUser, faAd, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { BaseHeader } from "./BaseHeader";
+import { AuthContext } from "@/contexts/AuthContext";
+import { Role } from "@/lib/enum/api/Role";
 
 interface SidebarItem {
     name: string
     link: string
     icon: IconDefinition
     exact: boolean
+    role: Role[]
 }
 
 const generalSiderbarList = [
-    { name: 'ダッシュボード', link: '/', icon: faHome, exact: true },
-    { name: 'サークル', link: '/circle', icon: faBuilding, exact: false },
-    { name: '管理者管理', link: '/user/admin', icon: faUser, exact: true },
-    { name: '広告管理', link: '/advertise', icon: faAd, exact: true },
-    { name: 'ログアウト', link: '/logout', icon: faUser, exact: true },
+    { name: 'ダッシュボード', link: '/', icon: faHome, exact: true, role: [Role.SYSTEM, Role.MANAGER, Role.COMMON] },
+    { name: 'サークル', link: '/circle', icon: faBuilding, exact: false, role: [Role.SYSTEM, Role.MANAGER, Role.COMMON]  },
+    { name: '管理者管理', link: '/user/admin', icon: faUser, exact: false, role: [Role.SYSTEM, Role.MANAGER] },
+    { name: '広告管理', link: '/advertise', icon: faAd, exact: false, role: [Role.SYSTEM, Role.MANAGER] },
+    { name: 'ログアウト', link: '/logout', icon: faUser, exact: true, role: [Role.SYSTEM, Role.MANAGER, Role.COMMON] },
 ] as SidebarItem[]
 
 /**
@@ -76,6 +79,7 @@ const SidebarItem: FC<SidebarItemProps> = ({
 
 const BaseSidebar: FC = () => {
     const [ visible, setVisible ] = useState(false)
+    const { role } = useContext(AuthContext)
     const { isMd } = useMediaQuery()
 
     return (
@@ -101,7 +105,9 @@ const BaseSidebar: FC = () => {
         
                         <ul>
                             {generalSiderbarList.map((sidebarItem: SidebarItem, idx) =>
-                                <SidebarItem sidebarItem={sidebarItem} key={`general-${idx}`} />
+                                sidebarItem.role.includes(role) ? (
+                                    <SidebarItem sidebarItem={sidebarItem} key={`general-${idx}`} />
+                                ) : ''
                             )}
                         </ul>
                     </div>

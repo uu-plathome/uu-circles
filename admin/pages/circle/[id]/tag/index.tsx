@@ -23,6 +23,9 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const newCheckBoxItems = [
+            { label: __(CircleTagModel.SPORT), value: CircleTagModel.SPORT, checked: false },
+            { label: __(CircleTagModel.MUSIC), value: CircleTagModel.MUSIC, checked: false },
+            { label: __(CircleTagModel.CULTURE), value: CircleTagModel.CULTURE, checked: false },
             { label: __(CircleTagModel.NATURE), value: CircleTagModel.NATURE, checked: false },
             { label: __(CircleTagModel.VOLUNTEER), value: CircleTagModel.VOLUNTEER, checked: false },
             { label: __(CircleTagModel.INCARE), value: CircleTagModel.INCARE, checked: false },

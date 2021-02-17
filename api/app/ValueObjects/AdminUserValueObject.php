@@ -2,7 +2,9 @@
 
 namespace App\ValueObjects;
 
+use App\Enum\Propety\AdminUserPropety;
 use App\Enum\UserModel;
+use App\Models\AdminUser;
 use App\Models\User;
 use App\Support\Arr;
 use DateTime;
@@ -18,24 +20,26 @@ class AdminUserValueObject
     public ?string $password;
     public ?string $api_token;
     public ?bool $active;
+    public ?string $role;
     public ?DateTime $email_verified_at;
     public ?Carbon $created_at;
     public ?Carbon $updated_at;
 
-    public static function byEloquent(User $user): AdminUserValueObject
+    public static function byEloquent(User $user, AdminUser $adminUser): AdminUserValueObject
     {
-        $adminUser = new AdminUserValueObject();
-        $adminUser->id = $user->id;
-        $adminUser->display_name = $user->display_name;
-        $adminUser->username = $user->username;
-        $adminUser->email = $user->email;
-        $adminUser->remember_token = $user->remember_token;
-        $adminUser->api_token = $user->api_token;
-        $adminUser->active = $user->active;
-        $adminUser->email_verified_at = $user->email_verified_at;
-        $adminUser->created_at = $user->created_at;
-        $adminUser->updated_at = $user->updated_at;
-        return $adminUser;
+        $adminUserValueObject = new AdminUserValueObject();
+        $adminUserValueObject->id = $user->id;
+        $adminUserValueObject->display_name = $user->display_name;
+        $adminUserValueObject->username = $user->username;
+        $adminUserValueObject->email = $user->email;
+        $adminUserValueObject->remember_token = $user->remember_token;
+        $adminUserValueObject->api_token = $user->api_token;
+        $adminUserValueObject->active = $user->active;
+        $adminUserValueObject->email_verified_at = $user->email_verified_at;
+        $adminUserValueObject->created_at = $user->created_at;
+        $adminUserValueObject->updated_at = $user->updated_at;
+        $adminUserValueObject->role = $adminUser->role;
+        return $adminUserValueObject;
     }
 
     public static function of(array $inputs): AdminUserValueObject
@@ -57,6 +61,8 @@ class AdminUserValueObject
         $adminUserValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
         $updatedAt = Arr::get($inputs, UserModel::updated_at);
         $adminUserValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
+
+        $adminUserValueObject->role = Arr::get($inputs, AdminUserPropety::role);
 
         return $adminUserValueObject;
     }
@@ -88,6 +94,7 @@ class AdminUserValueObject
             UserModel::active            => $this->active,
             UserModel::email             => $this->email,
             UserModel::email_verified_at => $this->email_verified_at,
+            AdminUserPropety::role       => $this->role,
         ];
 
         if ($isOwn) {

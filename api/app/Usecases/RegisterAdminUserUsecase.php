@@ -2,6 +2,7 @@
 
 namespace App\Usecases;
 
+use App\Enum\Propety\AdminUserPropety;
 use App\Events\RegisteredAdminUser;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
@@ -29,14 +30,16 @@ class RegisterAdminUserUsecase
         DB::beginTransaction();
         try {
             $user->save();
-            $user->adminUser()->create();
+            $adminUser = $user->adminUser()->create([
+                AdminUserPropety::role => $adminUserValueObject->role,
+            ]);
 
             DB::commit();
 
             // 認証メールの通知
             event(new RegisteredAdminUser($user));
 
-            return AdminUserValueObject::byEloquent($user);
+            return AdminUserValueObject::byEloquent($user, $adminUser);
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

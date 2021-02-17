@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Admin\PutStorageController;
 use App\Support\Arr;
+use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Http\Request;
 
 Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
@@ -56,7 +57,10 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
-        return Arr::camel_keys($request->user()->toArray());
+        $user = $request->user();
+        return Arr::camel_keys(
+            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
+        );
     });
 
     // AdminUser 管理者アカウント

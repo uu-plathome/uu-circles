@@ -6,6 +6,7 @@ export interface UpdateAdminUserRequest {
     username: string
     displayName: string
     active: boolean
+    role: string
 }
 
 /**
@@ -17,6 +18,7 @@ export interface UpdateAdminUserRequestValidationError {
         username?: string[]
         displayName?: string[]
         active?: string[]
+        role?: string[]
     }
     message: string
 }
