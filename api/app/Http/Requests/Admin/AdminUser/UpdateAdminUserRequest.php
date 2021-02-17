@@ -3,11 +3,14 @@
 
 namespace App\Http\Requests\Admin\AdminUser;
 
-
+use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Role;
 use App\Enum\UserModel;
 use App\Support\Arr;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateAdminUserRequest extends FormRequest
 {
@@ -18,7 +21,8 @@ class UpdateAdminUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $user = Auth::user();
+        return $user->adminUser->isManager();
     }
 
     /**
@@ -29,20 +33,22 @@ class UpdateAdminUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,'.$this->userId],
+            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
             UserModel::display_name => ['required', 'string', 'max:50'],
-            UserModel::active       => ['required', 'boolean' ],
+            UserModel::active       => ['required', 'boolean'],
+            AdminUserPropety::role  => ['required', 'string'],
         ]);
     }
 
     public function makeAdminUserValueObject(): AdminUserValueObject
     {
-        $request = $this->validated();
+        $request = Arr::snake_keys($this->validated());
 
         return AdminUserValueObject::of([
-            UserModel::username     => $request['username'],
-            UserModel::display_name => $request['displayName'],
-            UserModel::active       => $request['active'],
+            UserModel::username     => $request[UserModel::username],
+            UserModel::display_name => $request[UserModel::display_name],
+            UserModel::active       => $request[UserModel::active],
+            AdminUserPropety::role  => $request[AdminUserPropety::role],
         ]);
     }
 }
