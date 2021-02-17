@@ -32,6 +32,9 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
             'circle_tag.*' => [
                 'string',
                 Rule::in([
+                    CircleTagModel::SPORT,
+                    CircleTagModel::MUSIC,
+                    CircleTagModel::CULTURE,
                     CircleTagModel::NATURE,
                     CircleTagModel::VOLUNTEER,
                     CircleTagModel::INTERNATIONAL,

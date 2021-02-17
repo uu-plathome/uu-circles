@@ -17,6 +17,9 @@ class CreateCircleTagsTable extends Migration
         Schema::create('circle_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
+            $table->boolean('sport')->default(false)->comment('運動系');
+            $table->boolean('music')->default(false)->comment('音楽系');
+            $table->boolean('culture')->default(false)->comment('文化系');
             $table->boolean('nature')->default(false)->comment('農業・自然');
             $table->boolean('volunteer')->default(false)->comment('ボランティア');
             $table->boolean('international')->default(false)->comment('国際交流');
