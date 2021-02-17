@@ -37,7 +37,7 @@ class RegisterAdminController extends Controller
         );
 
         return Arr::camel_keys([
-            'data'   => $user,
+            'data'   => $user->toArray(true),
             'status' => __('verification.sent')
         ]);
     }
