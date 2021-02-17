@@ -17,6 +17,7 @@ class CreateAdminUsersTable extends Migration
         Schema::create('admin_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->enum('role', ['SYSTEM', 'MANAGER', 'COMMON'])->default('COMMON')->comment('権限');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

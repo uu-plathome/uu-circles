@@ -16,8 +16,9 @@ class IndexAdminUserUsecase
     {
         $users = User::whereAdminUser()->get();
 
-        return $users->map(fn (User $user) =>
-            AdminUserValueObject::byEloquent($user)
+        return $users->map(
+            fn (User $user) =>
+            AdminUserValueObject::byEloquent($user, $user->adminUser)
         )->all();
     }
 }

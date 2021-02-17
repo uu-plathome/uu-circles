@@ -2,6 +2,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { Role } from '@/lib/enum/api/Role'
 import { Week } from '@/lib/enum/api/Week'
 
 export const ja = {
@@ -38,6 +39,11 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  Role: {
+    [Role.SYSTEM]: 'システム管理者',
+    [Role.MANAGER]: '管理者',
+    [Role.COMMON]: '一般ユーザー',
+  },
   Week: {
     [Week.MONDAY]: '月曜日',
     [Week.TUESDAY]: '火曜日',

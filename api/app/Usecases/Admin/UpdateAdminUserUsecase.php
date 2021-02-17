@@ -3,11 +3,10 @@
 
 namespace App\Usecases\Admin;
 
-
+use App\Enum\Propety\AdminUserPropety;
 use App\Enum\UserModel;
 use App\Models\User;
 use App\ValueObjects\AdminUserValueObject;
-use App\ValueObjects\CircleUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +27,12 @@ class UpdateAdminUserUsecase
 
         DB::beginTransaction();
         try {
-            User::findOrFail($userId)->update($inputs);
+            $user = User::findOrFail($userId);
+            $user->update($inputs);
+            $user->adminUser()->fill([
+                AdminUserPropety::role => $adminUserValueObject->role,
+            ])->save();
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

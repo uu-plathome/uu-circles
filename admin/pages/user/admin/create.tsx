@@ -10,6 +10,9 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { __ } from '@/lang/ja'
+import { Role } from '@/lib/enum/api/Role'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -18,6 +21,7 @@ const CreatePage: NextPage = () => {
     const username = useStringInput('')
     const displayName = useStringInput('')
     const email = useStringInput('')
+    const role = useStringInput(Role.COMMON)
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -25,13 +29,15 @@ const CreatePage: NextPage = () => {
         const data = await createAdminUser({
             username: username.value,
             displayName: displayName.value,
-            email: email.value
+            email: email.value,
+            role: role.value
         } as RegisterAdminFormRequest)
 
         if (isRegisterAdminFormRequestValidationError(data)) {
             username.setErrors(data.errors.username)
             displayName.setErrors(data.errors.displayName)
             email.setErrors(data.errors.email)
+            role.setErrors(data.errors.role)
             return
         }
 
@@ -77,6 +83,17 @@ const CreatePage: NextPage = () => {
                                 placeholder="宇都宮太郎"
                                 note="入力がない場合は、自動で決まります"
                                 { ...displayName }
+                            />
+
+                            <BaseSelect
+                                label="権限"
+                                name="role"
+                                id="role"
+                                items={[
+                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+                                ]}
+                                { ...role }
                             />
 
                             <div className="flex justify-center mt-8">
