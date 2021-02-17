@@ -29,3 +29,47 @@ body {
   width: 100px !important;
   height: 100px !important;
 }
+
+/* 以下はトップページで使う横スクロール */
+.horizontal_scroll {
+  margin: auto;
+  padding: 0;
+  width: 100%; /* コンテンツが見切れて見えるようにする */
+  overflow-x: auto; /* 横スクロールの指定 */
+  white-space: nowrap; /* 横スクロールの指定 */
+  /* overflow-scrolling: touch; スクロールを滑らかにする←現在は非推奨みたいなのでコメントアウトしました */
+  -webkit-overflow-scrolling: touch; /* スクロールを滑らかにする */
+}
+.horizontal_scroll div {
+  display: inline-block; /* 横並びにする指定 */
+  vertical-align: middle;
+  list-style: none;
+  /* height: 300px; 横スクロールする範囲の高さを指定 */
+  /* margin: 10px 10px; */
+  width: 90%;
+}
+
+/* スクロールの幅の設定 */
+.horizontal_scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* スクロールの背景の設定 */
+.horizontal_scroll::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #aaa inset;
+}
+
+/* スクロールのつまみ部分の設定 */
+.horizontal_scroll::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #1733cc;
+}
+/* .main h1 {
+  font-family: "Meiryo";
+} */
+.horizontal_scroll_vila {
+}
+
+/* トップページで使う横スクロールここまで */
