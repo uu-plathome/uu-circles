@@ -59,7 +59,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         $user = $request->user();
         return Arr::camel_keys(
-            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray()
+            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
         );
     });
 
