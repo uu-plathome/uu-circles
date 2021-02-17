@@ -4,7 +4,7 @@
 
 ### API
 
-- Laravel 6 / PHP 7.4
+- Laravel 8 / PHP 7.4
 
 ※ Laravel8 にあげたい
 
