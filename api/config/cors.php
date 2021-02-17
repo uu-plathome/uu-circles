@@ -27,9 +27,9 @@ return [
     * example.comとそのサブドメインを許可: ['https://example.com', 'https://*.example.com']
     */
     'allowed_origins' => [
-        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3000' : '',
-        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3001' : '',
-        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3002' : '',
+        env('CLIENT_URL', 'http://localhost:3000'),
+        env('ADMIN_URL', 'http://localhost:3002'),
+        env('APP_ENV', 'production') === 'local' ? env('CIRCLE_URL', 'http://localhost:3001') : '',
     ],
 
     /*
