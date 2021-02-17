@@ -16,13 +16,13 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
             <h2 className="font-bold text-lg text-gray-300 mb-2">{ user.displayName }</h2>
 
             <div className="flex flex-wrap w-full">
-                <div className="w-full lg:w-1/5 pr-2">
+                <div className="w-1/2 sm:w-1/3 lg:w-1/5 pr-2 mb-4 lg:mb-0">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">ユーザー名</p>
                     <div className="flex justify-center h-7 items-center text-white">
                         {`@${user.username}`}
                     </div>
                 </div>
-                <div className="w-full lg:w-1/5 pr-2">
+                <div className="w-1/2 sm:w-1/3 lg:w-1/5 pr-2 mb-4 lg:mb-0">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">有効なアカウント</p>
                     <div className="flex justify-center h-7 items-center">
                         <FontAwesomeIcon
@@ -32,7 +32,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                         />
                     </div>
                 </div>
-                <div className="w-full lg:w-1/5 pr-2">
+                <div className="w-1/2 sm:w-1/3 lg:w-1/5 pr-2 mb-4 lg:mb-0">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">認証済みか</p>
                     <div className="flex justify-center h-7 items-center">
                         <div>
@@ -51,7 +51,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/5 pr-2">
+                <div className="w-1/2 sm:w-1/3 lg:w-1/5 pr-2 mb-4 lg:mb-0">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">編集する</p>
                     <div className="flex justify-center h-7 items-center">
                         <Link href="/user/admin/[userId]/edit" as={`/user/admin/${user.id}/edit`} >
@@ -65,7 +65,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                         </Link>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/5 pr-2">
+                <div className="w-1/2 sm:w-1/3 lg:w-1/5 pr-2 mb-4 lg:mb-0">
                     <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">削除する</p>
                     <div className="flex justify-center h-7 items-center">
                         {authUser && user.id !== authUser.id ? (
