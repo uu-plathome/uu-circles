@@ -50,4 +50,4 @@ jobs:
           HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd ~/uu-circles.com/public_html/api/uu-circle && git fetch -p && git reset --hard origin/develop/production && cd api && composer install && php artisan migrate && php artisan cache:clear && php artisan config:cache && php artisan route:clear && php artisan view:clear'
+          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd ~/uu-circles.com/public_html/api/uu-circle && git fetch -p && git reset --hard origin/develop/production && cd api && composer install && php artisan migrate --force && php artisan cache:clear && php artisan config:cache && php artisan route:clear && php artisan view:clear'
