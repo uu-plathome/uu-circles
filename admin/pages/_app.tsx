@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
+import { Role } from '@/lib/enum/api/Role';
 
 const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)
@@ -24,6 +25,7 @@ const useAccessToken = (initialState: string) => {
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { accessToken, setAccessToken } = useAccessToken('')
+  const [ role, setRole ] = useState<Role>(undefined)
   const [ loading, setLoading ] = useState(true)
   const router = useRouter()
 
@@ -40,9 +42,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 }
               })
               setAccessToken(data.apiToken)
+              setRole(data.role)
               setLoading(false)
             } catch(e) {
               localStorage.setItem('accessToken', '')
+              setAccessToken('')
+              setRole(undefined)
               await router.push('/auth/login')
               setLoading(false)
             }
@@ -60,7 +65,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ accessToken, setAccessToken }}>
+    <AuthContext.Provider value={{ accessToken, setAccessToken, role, setRole }}>
       {loading ?
         <div className="text-white">loading...</div> :
         <Component {...pageProps} />

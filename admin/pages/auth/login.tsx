@@ -41,6 +41,7 @@ const Login: NextPage = () => {
 
         if (data && isUser(data)) {
             authContext.setAccessToken(data.apiToken)
+            authContext.setRole(data.role)
             await router.push('/')
             return
         }

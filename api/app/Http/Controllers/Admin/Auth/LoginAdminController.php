@@ -7,11 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Models\User;
 use App\Support\Arr;
-use App\Usecases\LoginAdminUserUsecase;
+use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -54,18 +53,18 @@ class LoginAdminController extends Controller
     {
         $token = $this->guard()->attempt($this->credentials($request));
 
-        if (! $token) {
+        if (!$token) {
             return false;
         }
 
         /** @var User $user */
         $user = $this->guard()->user();
         // メールアドレスが認証されているか
-        if (! $user->hasVerifiedEmail()) {
+        if (!$user->hasVerifiedEmail()) {
             return false;
         }
         // 管理者かどうか
-        if (! $user->isAdminUser()) {
+        if (!$user->isAdminUser()) {
             return false;
         }
 
@@ -85,7 +84,9 @@ class LoginAdminController extends Controller
         /** @var User $user */
         $user = $this->guard()->user();
 
-        return response()->json(Arr::camel_keys($user->toArray()));
+        return response()->json(Arr::camel_keys(
+            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
+        ));
     }
 
     /**
@@ -100,7 +101,7 @@ class LoginAdminController extends Controller
     {
         $user = $this->guard()->user();
 
-        if ($user && ! $user->hasVerifiedEmail()) {
+        if ($user && !$user->hasVerifiedEmail()) {
             throw VerifyEmailException::forUser($user);
         }
 
