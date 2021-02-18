@@ -6,8 +6,6 @@
 
 - Laravel 8 / PHP 7.4
 
-※ Laravel8 にあげたい
-
 ### Main
 
 - Next.js v9.5 / Node.js v14 or v15
