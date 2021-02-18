@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <Html>
+            <Html className="dark">
                 <Head>
                     <meta name="theme-color" content="#ff0000" />
                     <meta name="format-detection" content="telephone=no" />
