@@ -1,11 +1,12 @@
+import { NextPage } from 'next'
+import Head from 'next/head';
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleUserRelationListItem } from '@/components/molecules/list_items/CircleUserRelationListItem'
 import { getCircleListByUserId } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { User } from '@/lib/types/model/User'
 import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
@@ -13,7 +14,6 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
 
 const IndexPage: NextPage = () => {
     const [circles, setCircles] = useState<Circle[]>([])
@@ -49,6 +49,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>所属サークル追加</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

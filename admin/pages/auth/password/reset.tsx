@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
 import { isForgotPasswordAdminRequestValidationError } from "@/lib/types/api/ForgotPasswordAdminRequest"
 import Link from "next/link"
+import Head from "next/head"
 
 const Login: NextPage = () => {
     const email = useInput('')
@@ -44,6 +45,10 @@ const Login: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>パスワードを変更する</title>
+            </Head>
+
             <AuthHeader />
 
             <div className="xl:container">

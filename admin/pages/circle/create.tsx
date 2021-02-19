@@ -6,6 +6,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createCircle } from '@/infra/api/circle'
 import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
@@ -39,6 +40,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>サークル新規作成</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

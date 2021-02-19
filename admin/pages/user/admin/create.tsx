@@ -13,6 +13,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { __ } from '@/lang/ja'
 import { Role } from '@/lib/enum/api/Role'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -46,6 +47,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>管理者アカウント新規作成</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
