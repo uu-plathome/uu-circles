@@ -93,7 +93,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                         </a>
                     </Link>
                 </CircleListItemTableColumn>
-                <CircleListItemTableColumn title="ユーザー">
+                {/* <CircleListItemTableColumn title="ユーザー">
                     <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`} >
                         <a>
                             <FontAwesomeIcon
@@ -103,7 +103,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
                             />
                         </a>
                     </Link>
-                </CircleListItemTableColumn>
+                </CircleListItemTableColumn> */}
             </div>
         </div>
     </div>
