@@ -30,4 +30,11 @@ class VerificationEmailCircleUserRequest extends FormRequest
             'password' => 'required|string|min:8',
         ]);
     }
+
+    public function attributes()
+    {
+        return [
+            'password' => __('passwords.password'),
+        ];
+    }
 }
