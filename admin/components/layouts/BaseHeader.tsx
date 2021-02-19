@@ -1,8 +1,9 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import React from 'react'
+import Color from 'colors'
 import { BaseContainer } from './BaseContainer'
 
 type Props = {
@@ -31,9 +32,10 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
                         </Link>
                     </div>
 
-                    <Link href="/circle">
+                    <Link href="/logout">
                         <a className="text-white hover:underline">
-                            サークル一覧
+                            <FontAwesomeIcon color={ Color.red[600] } icon={ faUser } />
+                            <span className="ml-2">ログアウト</span>
                         </a>
                     </Link>
                 </div>

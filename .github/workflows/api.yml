@@ -15,19 +15,22 @@ jobs:
         run: |
           docker-compose build
           docker-compose up -d
-          docker-compose exec -T app cp --force .env.example .env
-          docker-compose exec -T app composer install
-          docker-compose exec -T app php artisan key:generate
+      - name: composer install
+        run: docker-compose exec -T app composer install
+      - name: init link and cache
+        run: docker-compose exec -T app php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Generate key
+        run: docker-compose exec -T app php artisan key:generate
+      - name: Directory Permissions
+        run: |
           docker-compose exec -T app php artisan storage:link
           docker-compose exec -T app chmod -R 777 storage
           docker-compose exec -T app chmod -R 777 bootstrap/cache
           docker-compose exec -T app php artisan config:cache
       - name: migrate
-        run: |
-          docker-compose exec -T app php artisan migrate:fresh
+        run: docker-compose exec -T app php artisan migrate:fresh
       - name: re migrate
-        run: |
-          docker-compose exec -T app php artisan migrate:refresh --seed
+        run: docker-compose exec -T app php artisan migrate:refresh --seed
       - name: Execute tests
         run: docker-compose exec -T app composer test
       - name: artisan コマンドが正しく実行されるか
