@@ -6,6 +6,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
 import { Role } from '@/lib/enum/api/Role';
+import * as gtag from '@/lib/utils/Gtag'
 
 import "react-datepicker/dist/react-datepicker.css"
 import '../styles/index.css'
@@ -65,6 +66,21 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
     f()
   }, [])
+
+  useEffect(() => {
+    if (!gtag.existsGaId) {
+      return
+    }
+
+    const handleRouteChange = (path) => {
+      gtag.pageview(path)
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken, role, setRole }}>
