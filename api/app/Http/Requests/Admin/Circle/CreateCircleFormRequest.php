@@ -43,6 +43,15 @@ class CreateCircleFormRequest extends FormRequest
         ]);
     }
 
+    public function attributes()
+    {
+        return [
+            CircleModel::slug             => __('circle.' . CircleModel::slug),
+            CircleModel::release          => __('circle.' . CircleModel::release),
+            CircleInformationModel::name  => __('circle.' . CircleInformationModel::name),
+        ];
+    }
+
     public function makeCircleValueObject(): CircleValueObject
     {
         return CircleValueObject::byEloquent(

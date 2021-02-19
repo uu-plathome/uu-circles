@@ -27,4 +27,11 @@ class AdminPutStorageRequest extends FormRequest
             'file' => 'required|image|max:2048',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'file' => __('storage.file'),
+        ];
+    }
 }
