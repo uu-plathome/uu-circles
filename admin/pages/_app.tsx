@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import "react-datepicker/dist/react-datepicker.css"
-import '../styles/index.css'
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
 import { Role } from '@/lib/enum/api/Role';
+
+import "react-datepicker/dist/react-datepicker.css"
+import '../styles/index.css'
 
 const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)
@@ -66,12 +68,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken, role, setRole }}>
+      <>
+        <Head>
+          <meta name="viewport" content="viewport-fit=cover" />
+        </Head>
       {loading ?
         <div className="text-white">loading...</div> :
         <Component {...pageProps} />
       }
+      </>
     </AuthContext.Provider>
   )
 }
+
 
 export default MyApp
