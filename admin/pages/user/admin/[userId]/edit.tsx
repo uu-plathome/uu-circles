@@ -14,6 +14,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Role } from '@/lib/enum/api/Role'
 import { __ } from '@/lang/ja'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -24,6 +25,7 @@ const CreatePage: NextPage = () => {
     const displayName = useStringInput('')
     const active = useBooleanInput(true)
     const role = useStringInput(Role.COMMON)
+    const email = useStringInput('')
 
     useEffect(() => {
         const f = async () => {
@@ -32,6 +34,7 @@ const CreatePage: NextPage = () => {
             displayName.set(foundUser.displayName)
             active.set(foundUser.active),
             role.set(foundUser.role)
+            email.set(foundUser.email)
         }
 
         f()
@@ -64,6 +67,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>管理者アカウント編集</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
@@ -81,7 +88,7 @@ const CreatePage: NextPage = () => {
                                 required
                                 prefix="@"
                                 placeholder="u-ta"
-                                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+                                note="アルファベット、ハイフンのみ。"
                                 { ...username }
                             />
 
@@ -91,7 +98,6 @@ const CreatePage: NextPage = () => {
                                 id="display_name"
                                 placeholder="宇都宮太郎"
                                 required
-                                note="入力がない場合は、自動で決まります"
                                 { ...displayName }
                             />
 
@@ -111,11 +117,22 @@ const CreatePage: NextPage = () => {
                                 label="権限"
                                 name="role"
                                 id="role"
+                                required
                                 items={[
                                     { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
                                     { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
                                 ]}
                                 { ...role }
+                            />
+
+                            <BaseTextField
+                                label="メールアドレス"
+                                name="email"
+                                id="email"
+                                required
+                                expand
+                                disabled
+                                { ...email }
                             />
 
                             <div className="flex justify-center mt-8">

@@ -11,6 +11,7 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { deleteAdvertise, getAdvertiseList } from '@/infra/api/advertise'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 
 const IndexPage: NextPage = () => {
@@ -38,6 +39,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>広告管理</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

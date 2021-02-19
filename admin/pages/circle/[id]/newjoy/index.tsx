@@ -13,6 +13,7 @@ import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import useSWR from 'swr'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 
 const IndexPage: NextPage = () => {
@@ -69,6 +70,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>新歓新規作成</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

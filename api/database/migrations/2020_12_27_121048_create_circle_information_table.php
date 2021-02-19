@@ -82,6 +82,6 @@ class CreateCircleInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_information');
+        Schema::dropIfExists('circle_information');
     }
 }

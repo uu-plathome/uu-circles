@@ -8,11 +8,10 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <Html>
+            <Html lang="ja">
                 <Head>
                     <meta name="theme-color" content="#ff0000" />
                     <meta name="format-detection" content="telephone=no" />
-                    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
                     {/** M PLUS 1p */}
                     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:300,400,700" rel="stylesheet"></link>
