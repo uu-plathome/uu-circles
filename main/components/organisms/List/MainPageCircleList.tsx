@@ -14,7 +14,7 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
   return (
     <div>
       {/* <div className="max-w-screen-md md:mx-auto grid grid-cols-3 gap-4"> */}
-      <div className="horizontal_scroll">
+      <div className="horizontal_scroll mx-auto max-w-screen-md md:mx-auto md:grid md:grid-cols-3 md:gap-4">
         {circles.map((circle) => {
           return (
             <div key={circle.id}>
