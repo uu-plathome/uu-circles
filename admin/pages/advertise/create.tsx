@@ -12,6 +12,7 @@ import { CreateAdvertiseForm } from '@/components/organisms/form/Advertise/Creat
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -80,6 +81,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>広告発行</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
