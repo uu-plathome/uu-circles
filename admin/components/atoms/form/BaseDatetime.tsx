@@ -43,11 +43,12 @@ const BaseDatetime: FC<Props> = ({
                     timeInputLabel="時間:"
                     showTimeInput
                     selected={toDateOrNull}
-                    onChange={(date) => onChangeDate(date)}
                     name={name}
                     locale="ja"
                     autoComplete="off"
                     isClearable
+                    onChange={(date) => onChangeDate(date)}
+                    onFocus = {(e: any)=> e.target.readOnly = true}
                 />
 
                 {suffix ? (

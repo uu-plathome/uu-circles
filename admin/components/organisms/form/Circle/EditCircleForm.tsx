@@ -145,7 +145,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
 
     <FormHeader>SNS情報</FormHeader>
 
-      <div className="grid grid-cols-2 gap-x-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
         <div>
           <BaseTextField
             label="Twitter URL"
