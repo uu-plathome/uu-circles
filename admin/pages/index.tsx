@@ -4,19 +4,24 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { NextPage } from 'next'
 import { BaseHeader } from '../components/layouts/BaseHeader'
+import Head from 'next/head';
 
 const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()
 
   return (
     <div>
+      <Head>
+        <title>ダッシュボード</title>
+      </Head>
+
       {isMd ? (
         <BaseHeader />
       ) : ''}
 
       <BaseContainer>
         <BaseWrapper
-          title="管理画面へようこそ"
+          title="ダッシュボード"
         >
         </BaseWrapper>
       </BaseContainer>
