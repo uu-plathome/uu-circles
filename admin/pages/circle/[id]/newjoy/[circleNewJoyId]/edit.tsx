@@ -10,6 +10,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -87,13 +88,17 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>新歓編集</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークル新歓編集"
+                    title="新歓編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         {circle ? (
