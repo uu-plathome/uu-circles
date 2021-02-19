@@ -22,8 +22,8 @@ const CreatePage: NextPage = () => {
     const title = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
-    const publishTo = useDateInput(null)
-    const publishFrom = useDateInput(null)
+    const publishTo = useDateInput(null, 'YYYY-MM-DD')
+    const publishFrom = useDateInput(null,  'YYYY-MM-DD')
 
     useEffect(() => {
         const f = async () => {

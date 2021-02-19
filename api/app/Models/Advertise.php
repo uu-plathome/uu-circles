@@ -88,20 +88,20 @@ class Advertise extends Model
         return $query->whereRelease(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<', $now)
-                        ->where(CircleNewJoyModel::publish_to, '>', $now);
+                    $query->where('publish_from', '<', $now)
+                        ->where('publish_to', '>', $now);
                 })
-                    ->orWhere(function($query) use($now) {
-                        $query->where(CircleNewJoyModel::publish_from, '<', $now)
-                            ->whereNull(CircleNewJoyModel::publish_to);
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where('publish_from', '<', $now)
+                            ->whereNull('publish_to');
                     })
-                    ->orWhere(function($query) use($now) {
-                        $query->where(CircleNewJoyModel::publish_to, '>', $now)
-                            ->whereNull(CircleNewJoyModel::publish_from);
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where('publish_to', '>', $now)
+                            ->whereNull('publish_from');
                     })
-                    ->orWhere(function($query) {
-                        $query->whereNull(CircleNewJoyModel::publish_from)
-                            ->whereNull(CircleNewJoyModel::publish_to);
+                    ->orWhere(function ($query) {
+                        $query->whereNull('publish_from')
+                            ->whereNull('publish_to');
                     });
             });
     }
