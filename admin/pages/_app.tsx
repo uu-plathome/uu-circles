@@ -86,7 +86,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <AuthContext.Provider value={{ accessToken, setAccessToken, role, setRole }}>
       <>
         <Head>
-          <meta name="viewport" content="viewport-fit=cover" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
         </Head>
       {loading ?
         <div className="text-white">loading...</div> :
