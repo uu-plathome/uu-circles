@@ -14,6 +14,7 @@ import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import useSWR from 'swr'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 
 const IndexPage: NextPage = () => {
@@ -23,6 +24,7 @@ const IndexPage: NextPage = () => {
     const [circleNewJoys, setCircleNewJoys] = useState<CircleNewJoy[]>([])
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
+    const [isOpen, setIsOpen] = useState(false)
     const { isMd } = useMediaQuery()
 
     // 新歓一覧の取得
@@ -41,14 +43,18 @@ const IndexPage: NextPage = () => {
     const onCopy = async (circleNewJoyId: number) => {
         setSuccess('')
         setError('')
+        setIsOpen(true)
+
         const data = await copyCircleNewJoy(Number(id), circleNewJoyId)
 
         if (data && data.type === 'Success') {
             setSuccess('新歓のコピーに成功しました', 3000)
             await fetchCircle()
+            setIsOpen(false)
             return
         }
 
+        setIsOpen(false)
         setError('エラーが発生しました')
     }
 
@@ -56,14 +62,17 @@ const IndexPage: NextPage = () => {
     const onDelete = async (circleNewJoyId: number) => {
         setSuccess('')
         setError('')
+        setIsOpen(true)
         const data = await deleteCircleNewJoy(Number(id), circleNewJoyId)
 
         if (data && data.type === 'Success') {
             setSuccess('新歓の削除に成功しました', 3000)
             await fetchCircle()
+            setIsOpen(false)
             return
         }
 
+        setIsOpen(false)
         setError('エラーが発生しました')
     }
 
@@ -77,6 +86,8 @@ const IndexPage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper

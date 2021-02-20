@@ -12,6 +12,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import useSWR from 'swr'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 
 const useSuccess = <T,>(initialState: T) => {
@@ -36,17 +37,21 @@ const IndexPage: NextPage = () => {
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
+    const [ isOpen, setIsOpen ] = useState(false)
     const { data: authUser } = useSWR(
         '/admin/api/user',
         getAuthUser
     )
 
     const onResendEmail = async (email: string) => {
+        setIsOpen(true)
         try {
             await resendEmail(email)
             setSuccess('認証用のメールを送信しました。確認してください。', 3000)
         } catch (e) {
             setError('エラーが発生しました。')
+        } finally {
+            setIsOpen(false)
         }
     }
 
@@ -59,6 +64,8 @@ const IndexPage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper
