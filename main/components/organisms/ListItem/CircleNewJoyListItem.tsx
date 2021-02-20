@@ -58,7 +58,7 @@ const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
             </div>
             <div>
                 <Link href="/circle/[slug]/newjoy/[circleNewJoy]" as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}>
-                    <div className="text-white bg-gray-900 rounded-full text-xs flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                    <div className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center" style={{ width: 52, height: 52 }}>
                         詳細
                     </div>
                 </Link>
