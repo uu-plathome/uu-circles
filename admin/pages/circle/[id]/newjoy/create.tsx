@@ -24,9 +24,9 @@ const CreatePage: NextPage = () => {
     const url = useStringInput('')
     const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
     const placeOfActivityDetail = useStringInput('')
-    const publishFrom = useDateInput(null)
-    const startDate = useDateInput(null)
-    const endDate = useDateInput(null)
+    const publishFrom = useDateInput(null, 'YYYY-MM-DD')
+    const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+    const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
     const release = useBooleanInput(true)
 
     const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () => showCircle(Number(id)))

@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
                         </>
                     )}
                 </Head>
-                <body className="font-body">
+                <body id="app" className="font-body">
                     <Main />
                     <NextScript />
                 </body>

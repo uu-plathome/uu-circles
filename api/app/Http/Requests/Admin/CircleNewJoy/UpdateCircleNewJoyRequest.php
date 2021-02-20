@@ -7,6 +7,7 @@ use App\Enum\PlaceOfActivity;
 use App\Support\Arr;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class UpdateCircleNewJoyRequest extends FormRequest
@@ -37,9 +38,9 @@ class UpdateCircleNewJoyRequest extends FormRequest
                 Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
             CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:255'],
-            CircleNewJoyModel::publish_from             => ['string', 'nullable'],
-            CircleNewJoyModel::start_date               => ['string', 'nullable'],
-            CircleNewJoyModel::end_date                 => ['string', 'nullable'],
+            CircleNewJoyModel::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
+            CircleNewJoyModel::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
+            CircleNewJoyModel::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
             CircleNewJoyModel::release                  => ['boolean', 'nullable'],
         ]);
     }

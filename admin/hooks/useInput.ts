@@ -67,7 +67,7 @@ export const useBooleanInput = (initialValue: boolean) => {
 }
 export const useDateInput = (
   initialValue?: Date,
-  format = 'YYYY-MM-DDTHH:mm:ssZ[Z]'
+  format = 'YYYY-MM-DD HH:mm'
 ) => {
   const initialValueStr = initialValue ? initialValue.toISOString() : ''
   const _useInput = useInput(initialValueStr)

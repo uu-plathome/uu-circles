@@ -8,7 +8,7 @@
 
 html,
 body {
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-gray-900;
 }
 
 /* Write your own custom component styles here */
@@ -35,7 +35,7 @@ body {
 }
 
 .react-datepicker__current-month {
-  @apply text-gray-900 text-sm;
+  @apply text-blue-800 text-sm;
 }
 
 .react-datepicker__input-container input {
