@@ -75,7 +75,7 @@ const NewJoyDateTime: FC<{
 
     return (
         <div>
-            未選択
+            <p className="text-white">未登録</p>
         </div>
     )
 }
