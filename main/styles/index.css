@@ -8,7 +8,7 @@
 
 html,
 body {
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-gray-50 dark:bg-blue-800;
 }
 
 /* Write your own custom component styles here */
