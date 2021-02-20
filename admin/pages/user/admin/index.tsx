@@ -42,8 +42,12 @@ const IndexPage: NextPage = () => {
     )
 
     const onResendEmail = async (email: string) => {
-        await resendEmail(email)
-        setSuccess('認証用のメールを送信しました。確認してください。')
+        try {
+            await resendEmail(email)
+            setSuccess('認証用のメールを送信しました。確認してください。', 3000)
+        } catch (e) {
+            setError('エラーが発生しました。')
+        }
     }
 
     return (
