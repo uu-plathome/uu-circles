@@ -86,7 +86,7 @@ const BaseSidebar: FC = () => {
 
             <div 
                 className={
-                    (!isMd ? `fixed top-0 left-0 bg-gray-900 w-full z-50` : 'z-50' )
+                    (!isMd ? `fixed top-0 left-0 bg-blue-800 w-full z-50` : 'z-50' )
                     + (visible ? ` h-full` : '')
                 }
             >
