@@ -1,8 +1,11 @@
 import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.min.css'
+import 'swiper/components/navigation/navigation.min.css' //Swiperのnavigation用
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {}
 const MainUucircleTopButtons: FC<Props> = () => {
   if (process.browser) {
@@ -12,22 +15,15 @@ const MainUucircleTopButtons: FC<Props> = () => {
     // scrollElement.scrollTop = 300
   }
   return (
-    <div className="flex justify-center">
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        initialSlide={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
+    <div className="flex justify-center my-10">
+      <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
         <nav
           className="horizontal_scroll md:flex md:justify-center"
-          style={{ margin: '0 auto!important' }}
+          style={{ margin: 'auto!important' }}
           id="top-button-scroll"
         >
           <SwiperSlide className="text-center">
             <button
-              className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
                 // backgroundColor: '#faf6e3',
                 width: '280px',
@@ -50,7 +46,6 @@ const MainUucircleTopButtons: FC<Props> = () => {
           </SwiperSlide>
           <SwiperSlide className="text-center">
             <button
-              className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
                 // backgroundColor: '#faf6e3',
                 width: '280px',
@@ -73,7 +68,6 @@ const MainUucircleTopButtons: FC<Props> = () => {
           </SwiperSlide>
           <SwiperSlide className="text-center">
             <button
-              className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
                 // backgroundColor: '#faf6e3',
                 width: '280px',
