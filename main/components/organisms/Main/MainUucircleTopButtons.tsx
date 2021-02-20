@@ -15,7 +15,8 @@ const MainUucircleTopButtons: FC<Props> = () => {
     <div className="flex justify-center">
       <Swiper
         spaceBetween={50}
-        slidesPerView={3}
+        slidesPerView={1}
+        initialSlide={1}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
@@ -24,7 +25,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
           style={{ margin: '0 auto!important' }}
           id="top-button-scroll"
         >
-          <SwiperSlide>
+          <SwiperSlide className="text-center">
             <button
               className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
@@ -47,7 +48,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               </Link>
             </button>
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className="text-center">
             <button
               className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
@@ -70,7 +71,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               </Link>
             </button>
           </SwiperSlide>
-          <SwiperSlide>
+          <SwiperSlide className="text-center">
             <button
               className="w-screen rounded  m-10  focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2"
               style={{
