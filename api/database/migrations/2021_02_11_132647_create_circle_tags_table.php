@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCircleTagsTable extends Migration
@@ -16,6 +17,9 @@ class CreateCircleTagsTable extends Migration
         Schema::create('circle_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
+            $table->boolean('sport')->default(false)->comment('運動系');
+            $table->boolean('music')->default(false)->comment('音楽系');
+            $table->boolean('culture')->default(false)->comment('文化系');
             $table->boolean('nature')->default(false)->comment('農業・自然');
             $table->boolean('volunteer')->default(false)->comment('ボランティア');
             $table->boolean('international')->default(false)->comment('国際交流');
@@ -29,6 +33,8 @@ class CreateCircleTagsTable extends Migration
 
             $table->foreign('circle_id')->references('id')->on('circles');
         });
+
+        DB::statement("ALTER TABLE circle_tags COMMENT 'サークルタグ'");
     }
 
     /**

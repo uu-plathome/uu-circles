@@ -19,6 +19,15 @@ class CircleTagEntitiy
     ): CircleTagEntitiy {
         $circleTagEntity = new CircleTagEntitiy();
 
+        if ($circleTag->sport) {
+            $circleTagEntity->circleTag[] = CircleTagModel::SPORT;
+        }
+        if ($circleTag->music) {
+            $circleTagEntity->circleTag[] = CircleTagModel::MUSIC;
+        }
+        if ($circleTag->culture) {
+            $circleTagEntity->circleTag[] = CircleTagModel::CULTURE;
+        }
         if ($circleTag->volunteer) {
             $circleTagEntity->circleTag[] = CircleTagModel::VOLUNTEER;
         }
@@ -71,6 +80,9 @@ class CircleTagEntitiy
     public function toCircleTag(): CircleTag
     {
         $circleTag = new CircleTag();
+        $circleTag->sport = in_array(CircleTagModel::SPORT, $this->circleTag, true);
+        $circleTag->music = in_array(CircleTagModel::MUSIC, $this->circleTag, true);
+        $circleTag->culture = in_array(CircleTagModel::CULTURE, $this->circleTag, true);
         $circleTag->volunteer = in_array(CircleTagModel::VOLUNTEER, $this->circleTag, true);
         $circleTag->nature = in_array(CircleTagModel::NATURE, $this->circleTag, true);
         $circleTag->international = in_array(CircleTagModel::INTERNATIONAL, $this->circleTag, true);

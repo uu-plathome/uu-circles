@@ -18,13 +18,13 @@ module.exports = {
 
       black: colors.black,
       white: colors.white,
-      gray: colors.coolGray,
+      gray: colors.gray,
       red: colors.red,
       yellow: colors.amber,
-      green: colors.emerald,
+      green: colors.green,
       blue: colors.blue,
       indigo: colors.indigo,
-      purple: colors.violet,
+      purple: colors.purple,
       pink: colors.pink,
     },
     spacing: {

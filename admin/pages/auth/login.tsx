@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
 import { isUser } from '@/lib/types/model/User'
 import Link from "next/link"
+import Head from "next/head"
 
 const Login: NextPage = () => {
     const [error, setError] = useState('')
@@ -41,6 +42,7 @@ const Login: NextPage = () => {
 
         if (data && isUser(data)) {
             authContext.setAccessToken(data.apiToken)
+            authContext.setRole(data.role)
             await router.push('/')
             return
         }
@@ -57,6 +59,10 @@ const Login: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>ログイン</title>
+            </Head>
+
             <AuthHeader />
 
             <div className="xl:container">

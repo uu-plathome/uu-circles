@@ -6,6 +6,7 @@ export interface RegisterAdminFormRequest {
     username: string
     displayName?: string
     email: string
+    role: string
 }
 
 /**
@@ -17,6 +18,7 @@ export interface RegisterAdminFormRequestValidationError {
         username?: string[]
         displayName?: string[]
         email?: string[]
+        role?: string[]
     }
     message: string
 }

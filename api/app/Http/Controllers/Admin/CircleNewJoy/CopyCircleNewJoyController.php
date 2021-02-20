@@ -18,10 +18,12 @@ class CopyCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {
-        CircleNewJoy::whereCircleId($circleId)
+        $circleNewJoy = CircleNewJoy::whereCircleId($circleId)
             ->findOrFail($circleNewJoyId)
-            ->replicate()
-            ->save();
+            ->replicate();
+
+        $circleNewJoy->title = $circleNewJoy->title . ' コピー';
+        $circleNewJoy->save();
 
         return [
             'success' => true

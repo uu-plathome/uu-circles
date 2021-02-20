@@ -12,6 +12,9 @@ import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Role } from '@/lib/enum/api/Role'
+import { __ } from '@/lang/ja'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -21,13 +24,17 @@ const CreatePage: NextPage = () => {
     const username = useStringInput('')
     const displayName = useStringInput('')
     const active = useBooleanInput(true)
+    const role = useStringInput(Role.COMMON)
+    const email = useStringInput('')
 
     useEffect(() => {
         const f = async () => {
             const foundUser = await getAdminUser(Number(userId))
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
-            active.set(foundUser.active)
+            active.set(foundUser.active),
+            role.set(foundUser.role)
+            email.set(foundUser.email)
         }
 
         f()
@@ -42,7 +49,8 @@ const CreatePage: NextPage = () => {
                 type: 'UpdateAdminUserRequest',
                 username: username.value,
                 displayName: displayName.value,
-                active: active.toBoolean
+                active: active.toBoolean,
+                role: role.value
             } as UpdateAdminUserRequest
         )
 
@@ -50,6 +58,7 @@ const CreatePage: NextPage = () => {
             username.setErrors(data.errors.username)
             displayName.setErrors(data.errors.displayName)
             active.setErrors(data.errors.active)
+            role.setErrors(data.errors.role)
             return
         }
 
@@ -58,6 +67,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>管理者アカウント編集</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
@@ -75,7 +88,7 @@ const CreatePage: NextPage = () => {
                                 required
                                 prefix="@"
                                 placeholder="u-ta"
-                                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+                                note="アルファベット、ハイフンのみ。"
                                 { ...username }
                             />
 
@@ -85,7 +98,6 @@ const CreatePage: NextPage = () => {
                                 id="display_name"
                                 placeholder="宇都宮太郎"
                                 required
-                                note="入力がない場合は、自動で決まります"
                                 { ...displayName }
                             />
 
@@ -99,6 +111,28 @@ const CreatePage: NextPage = () => {
                                     { value: 'false', label: '無効' },
                                 ]}
                                 { ...active }
+                            />
+
+                            <BaseSelect
+                                label="権限"
+                                name="role"
+                                id="role"
+                                required
+                                items={[
+                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+                                ]}
+                                { ...role }
+                            />
+
+                            <BaseTextField
+                                label="メールアドレス"
+                                name="email"
+                                id="email"
+                                required
+                                expand
+                                disabled
+                                { ...email }
                             />
 
                             <div className="flex justify-center mt-8">

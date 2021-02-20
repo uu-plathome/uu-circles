@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Main\Circle\GetCircleController;
+use App\Http\Controllers\Main\Circle\IndexCircleController;
+use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
+use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
+use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
+use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
+use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Http\Request;
 
 /*
@@ -14,8 +21,12 @@ use Illuminate\Http\Request;
 */
 
 // トップページ用
-Route::get('/main', 'Main\Main\IndexController')->name('main.index');
+Route::get('/main', IndexController::class)->name('main.index');
 
 // サークル 
-Route::get('/circle/{slug}', 'Main\Circle\GetCircleController')->name('main.circle.show');
-Route::get('/circle/{slug}/newjoy', 'Main\CircleNewJoy\IndexCircleNewJoyController')->name('main.circleNewJoy.index');
+Route::get('/circle', IndexCircleController::class)->name('main.circle');
+Route::get('/circle/category/{category}', SearchCategoryCircleController::class)->name('main.circle.category');
+Route::get('/circle/newjoy', TodayCircleNewJoyController::class)->name('main.circleNewJoy.today');
+Route::get('/circle/{slug}', GetCircleController::class)->name('main.circle.show');
+Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('main.circleNewJoy.index');
+Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('main.circleNewJoy.show');

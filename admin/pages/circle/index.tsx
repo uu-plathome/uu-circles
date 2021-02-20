@@ -7,6 +7,7 @@ import { getCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import Head from 'next/head';
 
 const IndexPage: NextPage = () => {
     const { data: circles } = useSWR('/admin/api/circle', getCircleList, { revalidateOnReconnect: true })
@@ -14,6 +15,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>サークル一覧へようこそ</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

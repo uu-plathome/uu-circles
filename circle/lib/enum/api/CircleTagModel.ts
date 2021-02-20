@@ -3,6 +3,21 @@
  */
 export const CircleTagModel = {
   /**
+   * 運動系
+   */
+  SPORT: 'SPORT',
+
+  /**
+   * 音楽系
+   */
+  MUSIC: 'MUSIC',
+
+  /**
+   * 文化系
+   */
+  CULTURE: 'CULTURE',
+
+  /**
    * 農業・自然
    */
   NATURE: 'NATURE',
@@ -129,6 +144,18 @@ export const getAllCircleTagModelKey = (): CircleTagModelKey[] => Object.keys(Ci
  */
 export const isCircleTagModel = (s: any): s is CircleTagModel => Object.values(CircleTagModel).includes(s)
 
+/**
+ * 運動系
+ */
+export const isSport = (v: any): v is 'SPORT' => v === CircleTagModel.SPORT
+/**
+ * 音楽系
+ */
+export const isMusic = (v: any): v is 'MUSIC' => v === CircleTagModel.MUSIC
+/**
+ * 文化系
+ */
+export const isCulture = (v: any): v is 'CULTURE' => v === CircleTagModel.CULTURE
 /**
  * 農業・自然
  */

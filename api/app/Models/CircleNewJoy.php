@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\CircleNewJoyModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 class CircleNewJoy extends Model
@@ -28,6 +29,11 @@ class CircleNewJoy extends Model
         CircleNewJoyModel::end_date     => 'datetime:Y-m-d H:i',
         CircleNewJoyModel::release      => 'boolean',
     ];
+
+    public function circle(): BelongsTo
+    {
+        return $this->belongsTo(Circle::class);
+    }
 
     /**
      * 現在公開中かどうか

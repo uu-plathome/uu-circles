@@ -4,9 +4,7 @@
 
 ### API
 
-- Laravel 6 / PHP 7.4
-
-※ Laravel8 にあげたい
+- Laravel 8 / PHP 7.4
 
 ### Main
 
@@ -35,7 +33,7 @@ $ docker-compose exec app php -r "file_exists('.env') || copy('.env.example', '.
 
 $ docker-compose exec app composer install
 
-$ docker-comopse exec app php artisan key:generate
+$ docker-compose exec app php artisan key:generate
 
 $ docker-compose exec app php artisan storage:link
 
@@ -44,6 +42,8 @@ $ docker-compose exec app chmod -R 777 storage
 $ docker-compose exec app chmod -R 777 bootstrap/cache
 
 $ docker-compose exec app php artisan config:cache
+
+$ docker-compose exec app php artisan migrate:fresh --seed
 
 
 # Admin
@@ -57,7 +57,7 @@ $ cd main & npm run dev
 
 ## 管理者ログイン
 
-ー ユーザー名: tester
+- ユーザー名: tester
 - パスワード： Test1234@@
 
 # Deploy api For Production

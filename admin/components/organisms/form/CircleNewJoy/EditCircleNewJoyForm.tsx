@@ -63,7 +63,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
 
                 {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
                     <BaseTextField
-                        label="サークル新歓活動場所"
+                        label="新歓活動場所詳細"
                         name="placeOfActivityDetail"
                         id="placeOfActivityDetail"
                         expand

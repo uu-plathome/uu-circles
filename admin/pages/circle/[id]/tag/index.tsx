@@ -11,6 +11,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { __ } from '@/lang/ja'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -23,6 +24,9 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const newCheckBoxItems = [
+            { label: __(CircleTagModel.SPORT), value: CircleTagModel.SPORT, checked: false },
+            { label: __(CircleTagModel.MUSIC), value: CircleTagModel.MUSIC, checked: false },
+            { label: __(CircleTagModel.CULTURE), value: CircleTagModel.CULTURE, checked: false },
             { label: __(CircleTagModel.NATURE), value: CircleTagModel.NATURE, checked: false },
             { label: __(CircleTagModel.VOLUNTEER), value: CircleTagModel.VOLUNTEER, checked: false },
             { label: __(CircleTagModel.INCARE), value: CircleTagModel.INCARE, checked: false },
@@ -88,6 +92,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>サークルタグ管理</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

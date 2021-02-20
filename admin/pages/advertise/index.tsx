@@ -11,6 +11,8 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { deleteAdvertise, getAdvertiseList } from '@/infra/api/advertise'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 
 const IndexPage: NextPage = () => {
@@ -18,6 +20,7 @@ const IndexPage: NextPage = () => {
     const [ error, setError ] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
+    const [ isOpen, setIsOpen ] = useState(false)
     
     const fetchAdvertise = async () => {
         setAdvertise(await getAdvertiseList())
@@ -27,17 +30,25 @@ const IndexPage: NextPage = () => {
     const onDelete = async (advertiseId: number) => {
         setError('')
         setSuccess('')
+        setIsOpen(true)
         const data = await deleteAdvertise(advertiseId)
 
         if (data && data.type === 'Success') {
             setSuccess('広告を削除しました', 3000)
             fetchAdvertise()
+            setIsOpen(false)
             return
         }
+
+        setIsOpen(false)
     }
 
     return (
         <div>
+            <Head>
+                <title>広告管理</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
@@ -59,6 +70,8 @@ const IndexPage: NextPage = () => {
                             <DangerBunner text={error} />
                         ) : ''
                     }
+
+                    <SubmitLoading isOpen={isOpen} />
 
                     <div className="border-2 border-gray-800 p-2">
                         {advertises.length > 0 ? (

@@ -5,6 +5,7 @@
 use App\Enum\CircleModel;
 use App\Models\Circle;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,14 @@ use Faker\Generator as Faker;
 
 $factory->define(Circle::class, function (Faker $faker) {
     return [
-        CircleModel::slug    => $faker->slug,
+        CircleModel::slug    => Str::random(20),
         CircleModel::release => true,
     ];
 });
 
 $factory->state(Circle::class, '非公開', function (Faker $faker) {
     return [
-        CircleModel::slug    => $faker->slug,
+        CircleModel::slug    => Str::random(20),
         CircleModel::release => false,
     ];
 });
