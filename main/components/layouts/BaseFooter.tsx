@@ -154,7 +154,11 @@ const BaseFooter: FC<Props> = () => {
                         <h2 className="text-lg mb-6">メニュー</h2>
                         
                         <ul>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">サークルを見つける</a></li>
+                            <li className="mb-3">
+                                <Link href="/circle">
+                                    <a className="text-gray-400 font-bold text-sm">サークルを見つける</a>
+                                </Link>
+                            </li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">運営団体について</a></li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">お問い合わせ</a></li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">ヘルプ</a></li>

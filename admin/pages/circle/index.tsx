@@ -6,7 +6,7 @@ import { scroller } from "react-scroll";
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
-import { getCircleList } from '@/infra/api/circle'
+import { paginateCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -31,7 +31,7 @@ const IndexPage: NextPage = () => {
 
     const foundCircleList = async (cursor: PaginateCircleCursor = null) => {
         setCircles(
-            await getCircleList(cursor)
+            await paginateCircleList(cursor)
         )
 
         scroller.scrollTo("top", {
@@ -44,7 +44,7 @@ const IndexPage: NextPage = () => {
     useEffect(() => {
         const f = async () => {
             setCircles(
-                await getCircleList({
+                await paginateCircleList({
                     id: null,
                     updatedAt: null,
                     previos: false,

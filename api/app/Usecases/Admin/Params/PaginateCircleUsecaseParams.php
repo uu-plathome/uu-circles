@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Admin\Params;
 
-class IndexCircleUsecaseParams
+class PaginateCircleUsecaseParams
 {
     public ?int $id;
     public ?string $updated_at;

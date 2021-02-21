@@ -36,7 +36,7 @@ type PaginateCircleCursor = {
   previos: boolean
   next: boolean
 } | null
-export const getCircleList = async (cursor: PaginateCircleCursor) => {
+export const paginateCircleList = async (cursor: PaginateCircleCursor) => {
   const { data } = await axiosInstance.get<{
     data: {
       hasNext: boolean | null
@@ -53,6 +53,14 @@ export const getCircleList = async (cursor: PaginateCircleCursor) => {
       next: cursor.next ? 1 : 0,
     },
   })
+
+  return data.data
+}
+
+export const getCircleList = async () => {
+  const { data } = await axiosInstance.get<{
+    data: Circle[]
+  }>('/admin/api/circle')
 
   return data.data
 }
