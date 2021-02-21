@@ -5,7 +5,7 @@ import { useStringInput } from '@/hooks/useInput'
 import { createAdminUser } from '@/infra/api/admin_user'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent } from 'react'
+import { FormEvent, useContext } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -14,9 +14,11 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { __ } from '@/lang/ja'
 import { Role } from '@/lib/enum/api/Role'
 import Head from 'next/head'
+import { AuthContext } from '@/contexts/AuthContext'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
+    const { role: ownRole } = useContext(AuthContext)
     const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
@@ -43,6 +45,21 @@ const CreatePage: NextPage = () => {
         }
 
         await router.push('/user/admin')
+    }
+
+    const roleList = () => {
+        if (ownRole === Role.SYSTEM) {
+            return [
+                { label: __(Role.SYSTEM, 'Role'), value: Role.SYSTEM },
+                { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+            ]
+        }
+
+        return [
+            { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+            { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+        ]
     }
 
     return (
@@ -94,10 +111,7 @@ const CreatePage: NextPage = () => {
                                 label="権限"
                                 name="role"
                                 id="role"
-                                items={[
-                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
-                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
-                                ]}
+                                items={roleList()}
                                 { ...role }
                             />
 
