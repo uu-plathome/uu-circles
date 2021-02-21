@@ -24,9 +24,9 @@ const generalSiderbarList = [
 ] as SidebarItem[]
 
 /**
- * 
- * @param router 
- * @param link 
+ *
+ * @param router
+ * @param link
  * @param exact 完全一致かどうか
  */
 const isActiveRoute = (router: NextRouter, link: string, exact: boolean) => {
@@ -84,9 +84,9 @@ const BaseSidebar: FC = () => {
     return (
         <div className="relative">
 
-            <div 
+            <div
                 className={
-                    (!isMd ? `fixed top-0 left-0 bg-blue-800 w-full z-50` : 'z-50' )
+                    (!isMd ? `fixed top-0 left-0 bg-gray-900 w-full z-50` : 'z-50' )
                     + (visible ? ` h-full` : '')
                 }
             >
@@ -97,11 +97,11 @@ const BaseSidebar: FC = () => {
                 ): ''}
 
                 {(isMd || (!isMd && visible)) ? (
-                    <div className="py-4 pr-4 relative">
+                    <div className="py-4 px-4 md:pl-0 relative">
                         <div>
                             <p className="font-bold text-white p-2">General</p>
                         </div>
-        
+
                         <ul>
                             {generalSiderbarList.map((sidebarItem: SidebarItem, idx) =>
                                 sidebarItem.role.includes(role) ? (
