@@ -32,7 +32,7 @@ class IndexCircleUsecase
         ])->whereHas('circleInformation')
             ->lampager()
             ->forward()
-            ->limit(1)
+            ->limit(10)
             ->orderByDesc('id')
             ->seekable()
             ->paginate($cursor)
