@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Circle;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Admin\IndexCircleUsecase;
+use App\Usecases\Admin\Params\IndexCircleUsecaseParams;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -26,12 +27,17 @@ class IndexCircleController extends Controller
      */
     public function __invoke(Request $request): array
     {
-        $circles = $this->indexCircleUsecase->invoke();
+        $request->validate([
+            'id' => 'nullable|integer',
+        ]);
+        $requestId = $request->query('id', null);
+        $params = new IndexCircleUsecaseParams();
+        $params->id = $requestId;
+
+        $circles = $this->indexCircleUsecase->invoke($params);
 
         return [
-            'data' => (new Collection($circles))->map(
-                fn (CircleValueObject $circle) => Arr::camel_keys($circle->toArray())
-            )
+            'data' => Arr::camel_keys($circles),
         ];
     }
 }
