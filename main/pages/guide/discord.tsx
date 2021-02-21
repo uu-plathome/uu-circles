@@ -11,7 +11,10 @@ const Page: NextPage<Props> = () => {
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <BaseContainer>
-                        <h1 className="text-2xl pt-8 pb-8 px-4">Discordで行われるオンライン新歓に参加してみよう！</h1>
+                        <div className="flex justify-center items-center pt-6">
+                            <a href="https://discord.com/download"><Image src="/images/banner.png" width="328" height="76" /></a>
+                        </div>
+                        <h1 className="text-2xl pt-6 pb-8 px-4">Discordで行われるオンライン新歓に参加してみよう！</h1>
                         <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
                             <h1 className="text-2xl pt-1">目次</h1>
                             <p className="pt-2">0.Discordとは</p>
@@ -71,8 +74,8 @@ const Page: NextPage<Props> = () => {
 
 
                         <div className="px-4 pb-6">
-                            <p>　自分の表示名は、サーバー・チャンネル一覧のページから新歓のサーバーを選んで、右上の「…」の中にある「ニックネームの変更」から変更できるよ。わかりやすいように表示名を「名前　学部　学科　学年」に変更しよう。</p>
-                            <p>（例）たろう　工学部　基盤工学科　１年</p>
+                            <p>自分の表示名は、サーバー・チャンネル一覧のページから新歓のサーバーを選んで、右上の「…」の中にある「ニックネームの変更」から変更できるよ。わかりやすいように表示名を「名前　学部　学科　学年」に変更しよう。</p>
+                            <p>(例)たろう　工学部　基盤工学科　１年</p>
                             <p>じろう　地デザ　建築　１年</p>
                             <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
                         </div>
@@ -83,7 +86,7 @@ const Page: NextPage<Props> = () => {
 
 
                         <div className="px-4 pb-24">
-                            <p>Discordにはたくさんのテキストチャンネル（＃がついているやつ）があるよ。タップで選んで、見たり話したりしてみよう！</p>
+                            <p>Discordにはたくさんのテキストチャンネル(＃がついているやつ)があるよ。タップで選んで、見たり話したりしてみよう！</p>
                             <p>ボイスチャンネル（スピーカーマークがついているやつ）はタップしただけで、通話に参加しちゃうから要注意！</p>
                         </div>
                         
