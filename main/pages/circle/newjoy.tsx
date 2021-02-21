@@ -5,7 +5,7 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import Link from 'next/link'
-import { IndexCircleNewJoyList } from '@/components/organisms/List/IndexCircleNewJoyList'
+import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
 type Props = {
   errorCode?: number
 
@@ -14,13 +14,10 @@ type Props = {
     circleNewJoy: CircleNewJoy
   }[]
   todayCircleNewJoys?: {
-    slug: string
     circleNewJoy: CircleNewJoy
   }[]
 }
 const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
-  console.log('TOP')
-  console.log(todayCircleNewJoys)
   return (
     <div>
       <BaseLayout>
@@ -33,8 +30,7 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
                   今日開催予定の新歓イベント
                 </h2>
                 {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                  <IndexCircleNewJoyList
-                    // slug={circle.slug}
+                  <IndexCircleNewJoyListForNoSlug
                     circleNewJoys={todayCircleNewJoys}
                   />
                 ) : (

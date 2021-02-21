@@ -37,10 +37,11 @@ const getTime = (circleNewJoy: CircleNewJoy) => {
 }
 
 type Props = {
-  slug: string
   circleNewJoy: CircleNewJoy
 }
-const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
+const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
+  circleNewJoy = circleNewJoy.circleNewJoy
+  let slug = circleNewJoy.slug
   return (
     <div
       className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-4 py-2 mx-auto mb-2"
@@ -83,4 +84,4 @@ const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
   )
 }
 
-export { CircleNewJoyListItem }
+export { CircleNewJoyListItemForNoSlug }
