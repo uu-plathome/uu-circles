@@ -8,6 +8,7 @@ use App\Usecases\Admin\IndexAdminUserUsecase;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class IndexAdminUserController extends Controller
 {
@@ -26,7 +27,7 @@ class IndexAdminUserController extends Controller
      */
     public function __invoke(Request $request): array
     {
-        $users = $this->indexAdminUserUsecase->invoke();
+        $users = $this->indexAdminUserUsecase->invoke(Auth::user()->adminUser->role);
 
         return [
             'data' => Arr::camel_keys(
