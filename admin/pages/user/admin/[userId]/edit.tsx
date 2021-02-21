@@ -5,7 +5,7 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect } from 'react'
+import { FormEvent, useContext, useEffect } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
@@ -18,6 +18,7 @@ import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
+    const { role: ownRole } = useContext(AuthContext)
     const { userId } = router.query
     const { isMd } = useMediaQuery()
 
@@ -26,6 +27,12 @@ const CreatePage: NextPage = () => {
     const active = useBooleanInput(true)
     const role = useStringInput(Role.COMMON)
     const email = useStringInput('')
+
+    useEffect(() => {
+        if (!ownRole || ownRole === Role.COMMON) {
+            router.push('/')
+        }
+    }, [])
 
     useEffect(() => {
         const f = async () => {

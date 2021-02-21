@@ -1,6 +1,6 @@
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { getAdminUserList } from '@/infra/api/admin_user'
@@ -13,6 +13,9 @@ import useSWR from 'swr'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
+import { useRouter } from 'next/router'
+import { Role } from '@/lib/enum/api/Role'
+import { AuthContext } from '@/contexts/AuthContext'
 
 
 const useSuccess = <T,>(initialState: T) => {
@@ -25,7 +28,7 @@ const useSuccess = <T,>(initialState: T) => {
             setSuccess(initialState)
         }, timeout)
     }
-    
+
     return {
         success,
         setSuccess: newSetSuceess
@@ -33,7 +36,9 @@ const useSuccess = <T,>(initialState: T) => {
 }
 
 const IndexPage: NextPage = () => {
+    const router = useRouter()
     const { data: users } = useSWR('/admin/api/admin-user', getAdminUserList)
+    const { role: ownRole } = useContext(AuthContext)
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
@@ -42,6 +47,12 @@ const IndexPage: NextPage = () => {
         '/admin/api/user',
         getAuthUser
     )
+
+    useEffect(() => {
+        if (!ownRole || ownRole === Role.COMMON) {
+            router.push('/')
+        }
+    }, [])
 
     const onResendEmail = async (email: string) => {
         setIsOpen(true)
@@ -89,7 +100,7 @@ const IndexPage: NextPage = () => {
                         {users? (
                             users.map((user: User) => {
                                 return <AdminUserListItem
-                                    key={`user-${user.id}`} 
+                                    key={`user-${user.id}`}
                                     authUser={authUser}
                                     user={user}
                                     onResendEmail={onResendEmail}

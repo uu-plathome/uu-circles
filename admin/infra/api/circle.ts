@@ -45,7 +45,7 @@ export const paginateCircleList = async (cursor: PaginateCircleCursor) => {
       previousCursor: PaginateCircleCursor
       records: Circle[]
     }
-  }>('/admin/api/circle', {
+  }>('/admin/api/circle/paginate', {
     params: {
       id: cursor.id,
       updatedAt: cursor.updatedAt,
