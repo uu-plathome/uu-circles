@@ -23,12 +23,12 @@ const Page: NextPage<Props> = () => {
                             <p className="pt-2">6.新歓に参加しよう！</p>
                         </div>
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">0.Discordとは</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">0.Discordとは</h2>
                         </div>
                         <p className="px-4 pb-6">個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね</p>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">1.アプリをインストール</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">1.アプリをインストール</h2>
                         </div>
 
                         <p className="pb-4 px-4">以下のURLをタップして、Discordをインストールしよう。</p>
@@ -37,7 +37,7 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">2.アカウントを作成</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">2.アカウントを作成</h2>
                         </div>
 
                         <div className="px-4">
@@ -49,7 +49,7 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">3.Googleフォームに入力</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">3.Googleフォームに入力</h2>
                         </div>
 
                         <div className="px-4 pb-6">
@@ -57,7 +57,7 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">4.招待URLから新歓会場へ！</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">4.招待URLから新歓会場へ！</h2>
                         </div>
 
                         <div className="px-4 pb-6">
@@ -66,7 +66,7 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">5.表示名を変更する</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">5.表示名を変更する</h2>
                         </div>
 
 
@@ -78,7 +78,7 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h1 className="text-2xl px-4 text-lg font-bold">6.新歓に参加しよう！</h1>
+                            <h2 className="text-2xl px-4 text-lg font-bold">6.新歓に参加しよう！</h2>
                         </div>
 
 
