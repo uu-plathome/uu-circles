@@ -12,17 +12,17 @@ const Page: NextPage<Props> = () => {
                 <div className="bg-gray-100 px-2">
                     <BaseContainer>
                         <h1 className="text-2xl pt-8 pb-8 px-4">Discordで行われるオンライン新歓に参加してみよう！</h1>
-                        <div className="bg-white">
-                            <h1 className="text-2xl pt-1 pl-4">目次</h1>
-                            <p className="pl-4">Discordを使ったことがない人向け</p>
-                            <p className="pl-4">0.Discordとは</p>
-                            <p className="pl-4">1.Discordをインストールしよう</p>
-                            <p className="pl-4">2.Discordのアカウントを作ろう</p>
-                            <p className="pl-4">全員向け</p>
-                            <p className="pl-4">3.Googleフォームから情報を入力</p>
-                            <p className="pl-4">4.招待URLから新歓会場へ！</p>
-                            <p className="pl-4">5.表示名を変更する</p>
-                            <p className="pb-2 pl-4">6.新歓に参加しよう！</p>
+                        <div className="bg-white pl-4">
+                            <h1 className="text-2xl pt-1">目次</h1>
+                            <p>Discordを使ったことがない人向け</p>
+                            <p>0.Discordとは</p>
+                            <p>1.Discordをインストールしよう</p>
+                            <p>2.Discordのアカウントを作ろう</p>
+                            <p>全員向け</p>
+                            <p>3.Googleフォームから情報を入力</p>
+                            <p>4.招待URLから新歓会場へ！</p>
+                            <p>5.表示名を変更する</p>
+                            <p className="pb-2">6.新歓に参加しよう！</p>
                         </div>
                         <h1 className="text-2xl pt-10 px-4">0.Discordとは</h1>
                         <p className="pt-4 px-4">個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね</p>
