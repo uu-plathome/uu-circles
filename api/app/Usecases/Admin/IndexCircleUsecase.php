@@ -26,7 +26,7 @@ class IndexCircleUsecase
         $circles = Circle::with([
             'circleInformation',
             'circleHandbill',
-        ])->whereHas('circleInformation')
+        ])->hasByNonDependentSubquery('circleInformation')
             ->lampager()
             ->forward($params->next)
             ->backward($params->previos)

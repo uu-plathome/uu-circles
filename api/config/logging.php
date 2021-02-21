@@ -103,6 +103,10 @@ return [
         'bugsnag' => [
             'driver' => 'bugsnag',
         ],
+
+        'sql' => [
+            'enable' => env('LOG_SQL_ENABLE', false),
+        ],
     ],
 
 ];
