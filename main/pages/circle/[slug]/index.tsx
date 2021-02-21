@@ -14,6 +14,7 @@ import { faUserFriends, faWallet, faWaveSquare } from "@fortawesome/free-solid-s
 import Color from 'colors'
 import { CircleTypeBadge } from "@/components/molecules/Badge/CircleTypeBadge";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import { SnsList } from "@/components/organisms/ShowCircle/SnsList";
 
 type Props = {
     circle?: Circle
@@ -157,7 +158,9 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
 
                                             <div className="py-4">
                                                 <p className="text-sm text-gray-400 mb-2">各種SNS</p>
-                                                <p className="text-sm text-black">{ circle.commonPlaceOfActivityDetail }</p>
+                                                <div>
+                                                    <SnsList circle={circle} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
