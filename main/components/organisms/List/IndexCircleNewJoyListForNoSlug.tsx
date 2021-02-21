@@ -6,8 +6,6 @@ type Props = {
   circleNewJoys: CircleNewJoy[]
 }
 const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
-  console.log('コンポーネント第一')
-  console.log(circleNewJoys)
   return (
     <div className="bg-gray-100">
       <div className="md:flex justify-center">
