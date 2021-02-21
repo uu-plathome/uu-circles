@@ -19,7 +19,7 @@ class GetRandomCircleUsecase
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             // 新歓が登録されているのものを取得
-            ->whereHas('circleHandbill')
+            ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 'id', 'release', 'slug'
             ])
