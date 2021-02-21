@@ -32,6 +32,9 @@ export const createCircle = async (circle: CreateCircleFormRequest) => {
 
 type PaginateCircleCursor = {
   id: number
+  updatedAt: string
+  previos: boolean
+  next: boolean
 } | null
 export const getCircleList = async (cursor: PaginateCircleCursor) => {
   const { data } = await axiosInstance.get<{
@@ -45,6 +48,9 @@ export const getCircleList = async (cursor: PaginateCircleCursor) => {
   }>('/admin/api/circle', {
     params: {
       id: cursor.id,
+      updatedAt: cursor.updatedAt,
+      previos: cursor.previos ? 1 : 0,
+      next: cursor.next ? 1 : 0,
     },
   })
 
