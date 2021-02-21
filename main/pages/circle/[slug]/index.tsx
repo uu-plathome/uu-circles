@@ -9,6 +9,9 @@ import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { AppealingPoint } from "@/components/organisms/ShowCircle/AppealingPoint";
 import { __ } from "@/lang/ja";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserFriends, faWallet, faWaveSquare } from "@fortawesome/free-solid-svg-icons";
+import Color from 'colors'
 
 type Props = {
     circle?: Circle
@@ -21,7 +24,40 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
             <BaseLayout>
                 <div>
                     <BaseContainer>
-                        { circle.name }
+
+                        <div>
+                            <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
+                                <div>
+                                    <p>{ circle.prefixName }</p>
+                                    <h1 className="text-2xl font-bold">{ circle.name }</h1>
+                                </div>
+
+                                <div>
+                                    { __(circle.circleType) }
+                                </div>
+                            </div>
+                            <div className="flex justify-between md:justify-start bg-white px-4 md:px-10 py-2">
+                                <div className="md:mr-4">
+                                    <p>
+                                        <FontAwesomeIcon color={Color.gray[600]} icon={ faUserFriends } />
+                                        <span className="pl-2">{ circle.numberOfMembers }人</span>
+                                    </p>
+                                </div>
+                                <div className="md:mr-4">
+                                    <p>
+                                        <FontAwesomeIcon color={Color.red[500]} icon={ faWaveSquare } />
+                                        <span className="pl-2">週{ circle.weeklyActivityDays }</span>
+                                    </p>
+                                </div>
+                                <div className="md:mr-4">
+                                    <p>
+                                        <FontAwesomeIcon color={Color.gray[600]} icon={ faWallet } />
+                                        <span className="pl-2">{ circle.admissionFeePerYear ? Number(circle.admissionFeePerYear).toLocaleString() : 0 }円/年</span>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
                             <AppealingPoint circle={circle} />
