@@ -12,6 +12,8 @@ import { __ } from "@/lang/ja";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends, faWallet, faWaveSquare } from "@fortawesome/free-solid-svg-icons";
 import Color from 'colors'
+import { CircleTypeBadge } from "@/components/molecules/Badge/CircleTypeBadge";
+import { CircleType } from "@/lib/enum/api/CircleType";
 
 type Props = {
     circle?: Circle
@@ -33,7 +35,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                                 </div>
 
                                 <div>
-                                    { __(circle.circleType) }
+                                    <CircleTypeBadge circleType={circle.circleType as CircleType} />
                                 </div>
                             </div>
                             <div className="flex justify-between md:justify-start bg-white px-4 md:px-10 py-2">
