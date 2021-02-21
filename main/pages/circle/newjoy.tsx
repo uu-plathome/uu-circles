@@ -37,38 +37,6 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
                   <p>今日の新歓はありません</p>
                 )}
               </div>
-              <section className=" border-2 border-gray-700 rounded-xl grid grid-cols-5 mx-3 bg-white px-2 py-2 pl-6">
-                <div className="col-span-4">
-                  <h2 className="font-bold text-xl">U-lab新歓説明会</h2>
-                  <div className="border-b-2  grid grid-cols-8">
-                    <p className="text-gray-600 text-xs col-span-1">場所</p>
-                    <p className="text-gray-600 text-xs col-span-6 text-center"></p>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="border-b-2  grid grid-cols-8">
-                      <p className="text-gray-600 text-xs col-span-2 mr-1">
-                        日時
-                      </p>
-                      <p className="text-gray-600 text-xs col-span-6 text-center">
-                        2021/3/5
-                      </p>
-                    </div>
-                    <div className="border-b-2  grid grid-cols-8 ml-1">
-                      <p className="text-gray-600 text-xs col-span-2">場所</p>
-                      <p className="text-gray-600 text-xs col-span-6 text-center">
-                        12:00-15:00
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 詳細 */}
-                <div className="col-span-1 rounded-full bg-black text-white w-10 h-10 flex items-center justify-center mx-auto mt-3">
-                  <Link href="mx-auto">
-                    <a className="text-sm text-center mx-auto">詳細</a>
-                  </Link>
-                </div>
-              </section>
             </div>
 
             <div className="pb-16">
