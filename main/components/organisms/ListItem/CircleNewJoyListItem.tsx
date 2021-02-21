@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
 import dayjs from 'dayjs'
-
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 const getDate = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
     const date = dayjs(circleNewJoy.startDate)
@@ -43,8 +43,8 @@ type Props = {
 const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
   return (
     <div
-      className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-4 py-2 mx-auto mb-2"
-      style={{ width: 300 }}
+      className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+      style={{ width: 320 }}
     >
       <div className="w-full pr-2">
         <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
@@ -61,12 +61,13 @@ const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
             <span className="text-gray-400 text-xs pl-1">日時</span>
             <span className="px-2">{getDate(circleNewJoy)}</span>
           </div>
+
           <span className="block w-full text-center border-b border-gray-400 whitespace-nowrap">
             {getTime(circleNewJoy)}
           </span>
         </div>
       </div>
-      <div>
+      <div className="mr-4">
         <Link
           href="/circle/[slug]/newjoy/[circleNewJoy]"
           as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
