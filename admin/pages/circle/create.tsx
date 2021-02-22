@@ -9,7 +9,7 @@ import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } fro
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 const CreatePage: NextPage = () => {
@@ -19,6 +19,10 @@ const CreatePage: NextPage = () => {
 
     const name = useStringInput('')
     const slug = useStringInput('')
+
+    useEffect(() => {
+        slug.set(slug.value.toLowerCase())
+    })
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
