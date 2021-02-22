@@ -115,7 +115,10 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
             </div>
           </section>
           <section className="h-full w-20" style={{ paddingTop: '50px' }}>
-            <Link href="">
+            <Link
+              href="/circle/[slug]/newjoy/[circleNewJoy]"
+              as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+            >
               <a className="text-blue-500 border-b border-blue-500 text-xs w-20">
                 もっと詳しく
               </a>
