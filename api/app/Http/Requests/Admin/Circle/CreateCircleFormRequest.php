@@ -6,6 +6,7 @@ use App\Enum\CircleInformationModel;
 use App\Enum\CircleModel;
 use App\Models\Circle;
 use App\Models\CircleInformation;
+use App\Rules\SmallAlphaNum;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,6 +37,7 @@ class CreateCircleFormRequest extends FormRequest
                 'string',
                 'unique:circles',
                 'max:50',
+                new SmallAlphaNum,
                 Rule::notIn(['newjoy']),
             ],
             CircleModel::release          => ['required', 'boolean'],
