@@ -7,8 +7,6 @@ type Props = {
   circleNewJoys: CircleNewJoy[]
 }
 const IndexCircleNewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
-  //   console.log(circleNewJoys)
-  //   console.log(slug)
   return (
     <div className="bg-gray-100">
       <div className="md:flex justify-center">
@@ -17,7 +15,7 @@ const IndexCircleNewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''
             className = idx % 3 === 1 ? 'place-self-center' : className
             className = idx % 3 === 2 ? 'place-self-start' : className
-            console.log(circleNewJoy)
+
             return (
               <div key={circleNewJoy.id} className={`md:px-4 ${className}`}>
                 <CircleNewJoyListItem slug={slug} circleNewJoy={circleNewJoy} />

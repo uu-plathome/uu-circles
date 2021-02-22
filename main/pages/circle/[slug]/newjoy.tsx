@@ -28,8 +28,6 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
-  console.log('個別')
-  console.log(todayCircleNewJoys)
   return (
     <div>
       <BaseLayout>

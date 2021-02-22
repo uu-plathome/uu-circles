@@ -8,9 +8,27 @@ import Image from 'next/image'
 const getDOW = (circleNewJoy: CircleNewJoy) => {
   //曜日取得関数 dayjs
   const date = dayjs(circleNewJoy.startDate)
-  const DOWList = ['月', '火', '水', '木', '金', '土', '日']
+  const DOWList = ['日', '月', '火', '水', '木', '金', '土'] //dayjsは日曜始まり
   const DOW = DOWList[date.day()]
   return DOW
+}
+const getMonth = (circleNewJoy: CircleNewJoy) => {
+  if (circleNewJoy.startDate) {
+    const date = dayjs(circleNewJoy.startDate)
+
+    return date.format('M')
+  }
+
+  return '未定'
+}
+const getDay = (circleNewJoy: CircleNewJoy) => {
+  if (circleNewJoy.startDate) {
+    const date = dayjs(circleNewJoy.startDate)
+
+    return date.format('D')
+  }
+
+  return '未定'
 }
 const getDate = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
@@ -55,32 +73,32 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
       {isMd ? (
         // PCレイアウト
         <div
-          className="border border-4 border-gray-300 bg-white rounded-xl grid grid-cols-16 px-6 py-2 mx-auto mb-2"
-          style={{ width: 750, height: 100 }}
+          className="border border-4 border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
+          style={{ width: 800, height: 100 }}
         >
-          <div
-            className="col-span-1 rounded-2xl border-gray-300 border border-gray-300"
-            style={
-              {
-                // width: 53,
-                // height: 38,
-              }
-            }
+          <section
+            className="rounded-2xl border-gray-300 border border-gray-300"
+            style={{
+              width: 70,
+              height: 70,
+            }}
           >
-            <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center">
-              <p>土</p>
+            <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
+              <p className="text-xs leading-5">{getDOW(circleNewJoy)}</p>
             </div>
             <div
-              className=" text-black  text-center rounded-2xl rounded-t-none  items-center"
+              className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
               style={{ borderRadius: '0 0 10 10 ' }}
             >
-              <p className="text-sm">4月</p>
-              <p className="text-2xl">12</p>
+              <p className="text-xs leading-4">{getMonth(circleNewJoy)}月</p>
+              <p className="text-2xl">{getDay(circleNewJoy)}</p>
             </div>
-          </div>
-          <section className=" grid grid-cols-5 mx-3 bg-white px-2 py-2 ">
+          </section>
+          <section className=" bg-white px-2 pl-3 w-80">
             <div className="col-span-4">
-              <h2 className="font-bold text-xl">{circleNewJoy.title}</h2>
+              <h2 className="font-bold text-xl text-center">
+                {circleNewJoy.title}
+              </h2>
               <div className="border-b-2  grid grid-cols-8">
                 <p className="text-gray-600 text-xs col-span-1">場所</p>
                 <p className="text-gray-600 text-xs col-span-6 text-center">
@@ -88,35 +106,34 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
                   {__(circleNewJoy.placeOfActivity)}
                 </p>
               </div>
-              <div className="grid grid-cols-2">
-                <div className="border-b-2  grid grid-cols-8">
-                  <p className="text-gray-600 text-xs col-span-2 mr-1">日時</p>
-                  <p className="text-gray-600 text-xs col-span-6 text-center">
-                    {getDate(circleNewJoy)}
-                  </p>
-                </div>
-                <div className="border-b-2  grid grid-cols-8 ml-1">
-                  <p className="text-gray-600 text-xs col-span-2"></p>
-                  <p className="text-gray-600 text-xs col-span-6 text-center">
-                    {getTime(circleNewJoy)}
-                  </p>
-                </div>
+              <div className="border-b-2  grid grid-cols-8">
+                <p className="text-gray-600 text-xs col-span-1">日時</p>
+                <p className="text-gray-600 text-xs col-span-6 text-center">
+                  {getTime(circleNewJoy)}
+                </p>
               </div>
             </div>
-            <div className=" flex justify-around items-end">
-              <Link href="">
-                <a className="text-blue-500 border-b border-blue-500 text-sm w-24">
-                  もっと詳しく
-                </a>
-              </Link>
-            </div>
+          </section>
+          <section className="h-full w-20" style={{ paddingTop: '50px' }}>
+            <Link href="">
+              <a className="text-blue-500 border-b border-blue-500 text-xs w-20">
+                もっと詳しく
+              </a>
+            </Link>
           </section>
 
-          <div className="col-span-4 border-l-2 border-black h-90">
-            <h3 className="text-sm">主催サークル</h3>
-            <div className="flex justify-around items-center">
-              <div className="w-24 h-24 flex items-center justify-center rounded-full">
-                <p className=" bg-blue-600 text-white">サークルのアイコン</p>
+          <section className="border-l-2 border-black h-full pl-4">
+            <h3 className="text-sm ">主催サークル</h3>
+            <div className="pl-2 flex justify-around items-center">
+              <div
+                className=" bg-blue-600  w-12 h-12 flex items-center justify-center rounded-full"
+                style={{ backgroundColor: 'blue' }}
+              >
+                <p className="text-white text-xs">
+                  サークル
+                  <br />
+                  アイコン
+                </p>
               </div>
               {/* <Image
               // src={circle.handbillImageUrl}
@@ -124,12 +141,12 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
               // width={width}
               // height={height}
               /> */}
-              <div>
+              <div className="pl-2">
                 <p className="text-sm">宇都宮大学　デザインラボ</p>
-                <p className="text-lg border-b font-bold">U-lab</p>
+                <p className="inline text-xl border-b font-bold">U-lab</p>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       ) : (
         // スマホレイアウト
