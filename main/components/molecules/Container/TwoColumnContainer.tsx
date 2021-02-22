@@ -12,7 +12,7 @@ const TwoColumnContainer: FC<Props> = ({ children, sidebar }) => {
                     { sidebar }
                 </div>
 
-                <div className="hidden md:block md:w-3/4">
+                <div className="w-full md:w-3/4">
                     { children }
                 </div>
             </div>
