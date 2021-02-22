@@ -14,7 +14,7 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''
             className = idx % 3 === 1 ? 'place-self-center' : className
             className = idx % 3 === 2 ? 'place-self-start' : className
-            console.log(circleNewJoy)
+
             return (
               <div key={circleNewJoy.id} className={`md:px-4 ${className}`}>
                 <CircleNewJoyListItemForNoSlug circleNewJoy={circleNewJoy} />
