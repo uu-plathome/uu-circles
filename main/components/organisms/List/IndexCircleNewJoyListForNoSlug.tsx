@@ -8,7 +8,7 @@ type Props = {
 const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
   return (
     <div className="bg-gray-100">
-      <div className="md:flex justify-center">
+      <div className="flex justify-center flex-wrap">
         {circleNewJoys &&
           circleNewJoys.map((circleNewJoy, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''

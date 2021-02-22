@@ -41,15 +41,13 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
             )}
 
             <div className="pb-16">
-              <div className="pb-16">
-                {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                  <IndexCircleNewJoyListForNoSlug
-                    circleNewJoys={todayCircleNewJoys}
-                  />
-                ) : (
-                  <p>今日の新歓はありません</p>
-                )}
-              </div>
+              {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
+                <IndexCircleNewJoyListForNoSlug
+                  circleNewJoys={todayCircleNewJoys}
+                />
+              ) : (
+                <p>今日の新歓はありません</p>
+              )}
             </div>
 
             <div className="pb-16">
