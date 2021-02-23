@@ -26,6 +26,7 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
                 name="title"
                 id="title"
                 required
+                maxLength={50}
                 { ...form.title }
             />
 
@@ -34,6 +35,7 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
                 name="link"
                 id="link"
                 expand
+                maxLength={255}
                 placeholder="https://example.com"
                 { ...form.link }
             />

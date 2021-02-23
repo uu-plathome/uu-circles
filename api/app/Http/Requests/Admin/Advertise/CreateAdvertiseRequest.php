@@ -27,7 +27,7 @@ class CreateAdvertiseRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'title'          => 'required|string|max:255',
+            'title'          => 'required|string|max:150',
             'link'           => 'nullable|string|max:255|url',
             'main_image_url' => 'nullable|string|max:255|url',
             'active'         => 'nullable|boolean',
