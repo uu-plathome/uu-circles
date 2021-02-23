@@ -5,7 +5,7 @@ import { useStringInput } from '@/hooks/useInput'
 import { createAdminUser } from '@/infra/api/admin_user'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { isRegisterAdminFormRequestValidationError, RegisterAdminFormRequest } from '@/lib/types/api/RegisterAdminFormRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -15,10 +15,12 @@ import { __ } from '@/lang/ja'
 import { Role } from '@/lib/enum/api/Role'
 import Head from 'next/head'
 import { AuthContext } from '@/contexts/AuthContext'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { role: ownRole } = useContext(AuthContext)
+    const [ isOpen, setIsOpen ] = useState(false)
     const { isMd } = useMediaQuery()
 
     const username = useStringInput('')
@@ -34,6 +36,7 @@ const CreatePage: NextPage = () => {
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsOpen(true)
 
         const data = await createAdminUser({
             username: username.value,
@@ -47,9 +50,11 @@ const CreatePage: NextPage = () => {
             displayName.setErrors(data.errors.displayName)
             email.setErrors(data.errors.email)
             role.setErrors(data.errors.role)
+            setIsOpen(false)
             return
         }
 
+        setIsOpen(false)
         await router.push('/user/admin')
     }
 
@@ -77,6 +82,8 @@ const CreatePage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper

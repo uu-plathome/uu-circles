@@ -5,7 +5,7 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
@@ -15,10 +15,12 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Role } from '@/lib/enum/api/Role'
 import { __ } from '@/lang/ja'
 import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { role: ownRole } = useContext(AuthContext)
+    const [ isOpen, setIsOpen ] = useState(false)
     const { userId } = router.query
     const { isMd } = useMediaQuery()
 
@@ -49,6 +51,7 @@ const CreatePage: NextPage = () => {
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsOpen(true)
 
         const data = await updateAdminUser(
             Number(userId),
@@ -66,9 +69,11 @@ const CreatePage: NextPage = () => {
             displayName.setErrors(data.errors.displayName)
             active.setErrors(data.errors.active)
             role.setErrors(data.errors.role)
+            setIsOpen(false)
             return
         }
 
+        setIsOpen(false)
         await router.push(`/user/admin`)
     }
 
@@ -81,6 +86,8 @@ const CreatePage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper
