@@ -10,6 +10,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -22,9 +23,9 @@ const CreatePage: NextPage = () => {
     const url = useStringInput('')
     const placeOfActivity = useStringInput('')
     const placeOfActivityDetail = useStringInput('')
-    const publishFrom = useDateInput(null)
-    const startDate = useDateInput(null)
-    const endDate = useDateInput(null)
+    const publishFrom = useDateInput(null, 'YYYY-MM-DD')
+    const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+    const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
     const release = useBooleanInput(true)
 
     useEffect(() => {
@@ -87,13 +88,17 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>新歓編集</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title="サークル新歓編集"
+                    title="新歓編集"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         {circle ? (

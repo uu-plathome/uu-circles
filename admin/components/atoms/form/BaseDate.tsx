@@ -41,11 +41,12 @@ const BaseDate: FC<Props> = ({
                 <DatePicker
                     dateFormat="yyyy-MM-dd"
                     selected={toDateOrNull}
-                    onChange={(date: Date|null) => onChangeDate(date)}
                     name={name}
                     locale="ja"
                     autoComplete="off"
                     isClearable
+                    onChange={(date: Date|null) => onChangeDate(date)}
+                    onFocus = {(e: any)=> e.target.readOnly = true}
                 />
 
                 {suffix ? (

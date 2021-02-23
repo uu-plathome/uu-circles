@@ -10,6 +10,7 @@ use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
+use App\Rules\SmallAlphaNum;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -40,6 +41,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'string',
                 'max:50',
                 'unique:circles,slug,' . $this->id . 'id',
+                new SmallAlphaNum,
                 Rule::notIn(['newjoy']),
             ],
             CircleModel::release                               => ['required', 'boolean'],

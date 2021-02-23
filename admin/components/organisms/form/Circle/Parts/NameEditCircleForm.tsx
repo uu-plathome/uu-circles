@@ -52,7 +52,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 label="URLのパス"
                 name="slug"
                 id="slug"
-                prefix="https://uu-circle.com/circle/"
+                prefix="uu-circle.com/circle/"
                 placeholder="u-lab"
                 required
                 expand
