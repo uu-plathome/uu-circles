@@ -27,7 +27,7 @@ export type Props = {
     prefix?: string|any
     suffix?: string
     error?: string
-    maxLength: number
+    maxLength?: number
     pattern?: string
     disabled?: boolean
     onChange(e: any): void
