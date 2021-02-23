@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Advertise;
 
+use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,12 +28,24 @@ class UpdateAdvertiseRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'title'          => 'required|string|max:50',
-            'link'           => 'nullable|string|max:255|url',
-            'main_image_url' => 'nullable|string|max:255|url',
-            'active'         => 'nullable|boolean',
-            'publish_from'   => 'nullable|date|date_format:Y-m-d',
-            'publish_to'     => 'nullable|date|date_format:Y-m-d|before:publish_from',
+            AdvertiseProperty::title          => 'required|string|max:50',
+            AdvertiseProperty::link           => 'nullable|string|max:255|url',
+            AdvertiseProperty::main_image_url => 'nullable|string|max:255|url',
+            AdvertiseProperty::active         => 'nullable|boolean',
+            AdvertiseProperty::publish_from   => 'nullable|date|date_format:Y-m-d',
+            AdvertiseProperty::publish_to     => 'nullable|date|date_format:Y-m-d|after:publishFrom',
+        ]);
+    }
+
+    public function attributes()
+    {
+        return Arr::camel_keys([
+            AdvertiseProperty::title          => __('advertise.' . AdvertiseProperty::title),
+            AdvertiseProperty::link           => __('advertise.' . AdvertiseProperty::link),
+            AdvertiseProperty::main_image_url => __('advertise.' . AdvertiseProperty::main_image_url),
+            AdvertiseProperty::active         => __('advertise.' . AdvertiseProperty::active),
+            AdvertiseProperty::publish_from   => __('advertise.' . AdvertiseProperty::publish_from),
+            AdvertiseProperty::publish_to     => __('advertise.' . AdvertiseProperty::publish_to),
         ]);
     }
 
@@ -41,12 +54,12 @@ class UpdateAdvertiseRequest extends FormRequest
         $request = Arr::snake_keys($this->validated());
 
         return (new Advertise())->fill([
-            'title'          => $request['title'],
-            'link'           => $request['link'],
-            'main_image_url' => $request['main_image_url'],
-            'active'         => $request['active'],
-            'publish_to'     => $request['publish_to'] ? new Carbon($request['publish_to']) : null,
-            'publish_from'   => $request['publish_from'] ? new Carbon($request['publish_from']) : null,
+            AdvertiseProperty::title          => $request[AdvertiseProperty::title],
+            AdvertiseProperty::link           => $request[AdvertiseProperty::link],
+            AdvertiseProperty::main_image_url => $request[AdvertiseProperty::main_image_url],
+            AdvertiseProperty::active         => $request[AdvertiseProperty::active],
+            AdvertiseProperty::publish_to     => $request[AdvertiseProperty::publish_to] ? new Carbon($request[AdvertiseProperty::publish_to]) : null,
+            AdvertiseProperty::publish_from   => $request[AdvertiseProperty::publish_from] ? new Carbon($request[AdvertiseProperty::publish_from]) : null,
         ]);
     }
 }
