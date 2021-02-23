@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { CircleNewJoyListItemForNoSlug } from '../ListItem/CircleNewJoyListItemForNoSlug'
+import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 
 type Props = {
-  circleNewJoys: CircleNewJoy[]
+  circleNewJoys: TodayCircleNewJoy[]
 }
 const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
   return (
@@ -16,8 +16,8 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
             className = idx % 3 === 2 ? 'place-self-start' : className
 
             return (
-              <div key={circleNewJoy.id} className={`md:px-4 ${className}`}>
-                <CircleNewJoyListItemForNoSlug circleNewJoy={circleNewJoy} />
+              <div key={circleNewJoy.circleNewJoy.id} className={`md:px-4 ${className}`}>
+                <CircleNewJoyListItemForNoSlug todayCircleNewJoy={circleNewJoy} />
               </div>
             )
           })}

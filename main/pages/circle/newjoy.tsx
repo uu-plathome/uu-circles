@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { getTodayCircleNewJoy } from '@/infra/api/circleNewJoy'
+import { getTodayCircleNewJoy, TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -10,13 +10,8 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 type Props = {
   errorCode?: number
 
-  futureCircleNewJoys?: {
-    slug: string
-    circleNewJoy: CircleNewJoy
-  }[]
-  todayCircleNewJoys?: {
-    circleNewJoy: CircleNewJoy
-  }[]
+  futureCircleNewJoys?: TodayCircleNewJoy[]
+  todayCircleNewJoys?: TodayCircleNewJoy[]
 }
 const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
