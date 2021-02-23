@@ -64,8 +64,11 @@ class ShowCircleNewJoyController extends Controller
             // 今日の新歓 全て
             'allTodayCircleNewJoys' => (new Collection($allCircleNewJoys['todayCircleNewJoys']))->map(
                 fn (array $arr) => [
-                    'slug'         => $arr['slug'],
-                    'circleNewJoy' => $arr['circleNewJoyValueObject']->toArray()
+                    'slug'           => $arr['slug'],
+                    'name'           => $arr['name'],
+                    'circle_type'    => $arr['circle_type'],
+                    'main_image_url' => $arr['main_image_url'],
+                    'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
                 ]
             )->values()->toArray(),
         ]);
