@@ -13,23 +13,26 @@ type Props = {
 const CreateCircleForm: FC<Props> = ({ onSubmit, form }) => {
     return (
         <form onSubmit={onSubmit}>
-            <BaseTextField
-                label="サークル名"
-                name="name"
-                id="name"
-                required
-                { ...form.name }
-            />
+            <div>
+                <BaseTextField
+                    label="サークル名"
+                    name="name"
+                    id="name"
+                    required
+                    { ...form.name }
+                />
 
-            <BaseTextField
-                label="URLのパス"
-                name="slug"
-                id="slug"
-                placeholder="u-lab"
-                prefix="uu-circle.com/circle/"
-                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                { ...form.slug }
-            />
+                <BaseTextField
+                    label="URLのパス"
+                    name="slug"
+                    id="slug"
+                    placeholder="u-lab"
+                    prefix="uu-circle.com/circle/"
+                    note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+                    expand
+                    { ...form.slug }
+                />
+            </div>
 
             <div className="flex justify-center mt-8">
                 <GreenButton type="submit">

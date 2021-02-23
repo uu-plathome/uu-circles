@@ -19,8 +19,11 @@ export type Props = {
     mdCols?: number
 } & BaseLabelProps
 const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error, onChange, cols = 2, mdCols = 3 }) => {
+    const widthClass = getWidthClass(cols)
+    const mdWidthClass = 'md:' + getWidthClass(mdCols)
+
     return (
-        <div className="flex flex-col space-y-1 mb-4">
+        <div className="mb-4">
             <BaseLabel
                 label={label}
                 note={note}
@@ -28,14 +31,14 @@ const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error
                 id={id}
             />
 
-            <div id={id} className={'grid'+` grid-cols-${cols}`+` md:grid-cols-${mdCols} gap-1`}>
+            <div id={id} className="flex flex-wrap">
                 {items.map((checkBoxItem: CheckBoxItem) => {
                     return (
-                        <label key={checkBoxItem.value} className="inline-flex items-center text-white">
-                            <input 
-                                type="checkbox" 
-                                className="mb-1 rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
-                                value={checkBoxItem.value} 
+                        <label key={checkBoxItem.value} className={`${widthClass} ${mdWidthClass} inline-flex items-center text-white mb-2`}>
+                            <input
+                                type="checkbox"
+                                className="mb-1 rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                value={checkBoxItem.value}
                                 checked={checkBoxItem.checked}
                                 id={`${id}_${checkBoxItem.value}`}
                                 onChange={onChange}
@@ -50,6 +53,26 @@ const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error
             ) : ''}
         </div>
     )
+}
+
+const getWidthClass = (cols: number) => {
+    if (cols === 1) {
+        return 'w-full'
+    }
+
+    if (cols === 2) {
+        return 'w-1/2'
+    }
+
+    if (cols === 3) {
+        return 'w-1/3'
+    }
+
+    if (cols === 4) {
+        return 'w-1/4'
+    }
+
+    console.error(`不適切なcolsが指定されてます。 cols=${cols}`)
 }
 
 export { BaseCheckBox }
