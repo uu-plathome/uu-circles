@@ -2,7 +2,7 @@
 
 namespace App\Usecases;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Events\RegisteredAdminUser;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
@@ -31,7 +31,7 @@ class RegisterAdminUserUsecase
         try {
             $user->save();
             $adminUser = $user->adminUser()->create([
-                AdminUserPropety::role => $adminUserValueObject->role,
+                AdminUserProperty::role => $adminUserValueObject->role,
             ]);
 
             DB::commit();

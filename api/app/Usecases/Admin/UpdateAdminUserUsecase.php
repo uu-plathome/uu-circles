@@ -3,7 +3,7 @@
 
 namespace App\Usecases\Admin;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\UserModel;
 use App\Models\User;
 use App\ValueObjects\AdminUserValueObject;
@@ -30,7 +30,7 @@ class UpdateAdminUserUsecase
             $user = User::findOrFail($userId);
             $user->update($inputs);
             $user->adminUser->fill([
-                AdminUserPropety::role => $adminUserValueObject->role,
+                AdminUserProperty::role => $adminUserValueObject->role,
             ])->save();
 
             DB::commit();
