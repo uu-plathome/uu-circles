@@ -20,6 +20,7 @@ const CreatePage: NextPage = () => {
     const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
+    const link = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
     const publishTo = useDateInput(null, 'YYYY-MM-DD')
@@ -29,6 +30,7 @@ const CreatePage: NextPage = () => {
         const f = async () => {
             const foundsAdvertise = await showAdvertise(Number(advertiseId))
             title.set(foundsAdvertise.title)
+            link.set(foundsAdvertise.link)
             mainImageUrl.set(foundsAdvertise.mainImageUrl)
             active.set(foundsAdvertise.active)
             publishTo.set(foundsAdvertise.publishTo)
@@ -45,6 +47,7 @@ const CreatePage: NextPage = () => {
             {
                 type: 'UpdateAdvertiseRequest',
                 title: title.value,
+                link: link.value,
                 mainImageUrl: mainImageUrl.value,
                 active: active.toBoolean,
                 publishTo: publishTo.value,
@@ -54,6 +57,7 @@ const CreatePage: NextPage = () => {
 
         if (isUpdateAdvertiseRequestValidationError(data)) {
             title.setErrors(data.errors.title)
+            link.setErrors(data.errors.link)
             active.setErrors(data.errors.active)
             mainImageUrl.setErrors(data.errors.mainImageUrl)
             publishTo.setErrors(data.errors.publishTo)
@@ -110,11 +114,12 @@ const CreatePage: NextPage = () => {
                     title="広告発行"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
-                        <EditAdvertiseForm 
+                        <EditAdvertiseForm
                             onDropMainImage={onDropMainImage}
                             onSubmit={onSubmit}
                             form={{
                                 title,
+                                link,
                                 mainImageUrl,
                                 active,
                                 publishTo,
