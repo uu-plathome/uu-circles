@@ -15,7 +15,7 @@ const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)
   const setAccessToken = (newAccessToken?: string) => {
     _setAccessToken(newAccessToken || '')
-    
+
     axiosInstance.defaults.headers.common['Authorization'] = newAccessToken ?  `Bearer ${newAccessToken}` : ''
     localStorage.setItem('accessToken', newAccessToken || '')
   }
