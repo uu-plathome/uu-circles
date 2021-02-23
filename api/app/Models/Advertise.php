@@ -32,7 +32,7 @@ class Advertise extends Model
      * @return boolean
      */
     public static function getNowPublic(
-        bool $active,
+        ?bool $active,
         ?Carbon $publish_from,
         ?Carbon $publish_to,
         Carbon $now
@@ -69,7 +69,7 @@ class Advertise extends Model
     {
         $now = Carbon::now();
         return self::getNowPublic(
-            $this->release,
+            $this->active,
             $this->publish_from,
             $this->publish_to,
             $now
@@ -85,7 +85,7 @@ class Advertise extends Model
      */
     public function scopeNowPublic($query, Carbon $now)
     {
-        return $query->whereRelease(true)
+        return $query->whereActive(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
                     $query->where('publish_from', '<', $now)
