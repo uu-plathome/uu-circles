@@ -21,7 +21,9 @@ const CreatePage: NextPage = () => {
     const slug = useStringInput('')
 
     useEffect(() => {
-        slug.set(slug.value.toLowerCase())
+        if (slug.value) {
+            slug.set(slug.value.toLowerCase())
+        }
     })
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
