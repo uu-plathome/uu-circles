@@ -12,10 +12,10 @@ const AppealingPoint: FC<Props> = ({ circle }) => {
         <Fragment>
             {circle.appealingPoint1 || circle.appealingPoint2 || circle.appealingPoint3 ? (
                 <div className="pt-10">
-                    <h2 className="text-lg text-center mb-6 md:text-left">アピールポイント</h2>
+                    <h2 className="text-lg text-center mb-6 md:text-left">{ circle.name }について</h2>
     
                     <div className="flex justify-center md:justify-start px-6 md:px-0">
-                        <div className="bg-white rounded md:w-full px-4 md:pr-6 md:pl-6 py-8 w-full">
+                        <div className="bg-white rounded-2xl md:rounded md:w-full px-4 md:pr-6 md:pl-6 py-4 w-full">
                             <ul>
                                 {circle.appealingPoint1 ? (
                                     <li className="flex mb-2 text-sm md:text-base">

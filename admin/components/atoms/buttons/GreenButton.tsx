@@ -10,32 +10,31 @@ type Props = {
     href?: LinkProps['href']
 }
 
-const buttonClassName = `
-    min-w-120
-    inline-block
-    px-6
-    py-2
-    text-sm
-    font-medium
-    leading-6
-    text-center
-    text-white
-    uppercase
-    transition
-    bg-green-500
-    rounded
-    shadow
-    ripple
-    hover:shadow-lg
-    hover:bg-green-600
-    focus:outline-none
-`
 const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
 
     if (href) {
         return (
             <Link href={href} as={as}>
-                <a className={buttonClassName}>
+                <a className={`
+                    min-w-120
+                    inline-block
+                    px-6
+                    py-2
+                    text-sm
+                    font-medium
+                    leading-6
+                    text-center
+                    text-white
+                    uppercase
+                    transition
+                    bg-green-600
+                    rounded
+                    shadow
+                    ripple
+                    hover:shadow-lg
+                    hover:opacity-80
+                    focus:outline-none
+                `}>
                     { children }
                 </a>
             </Link>
@@ -43,7 +42,26 @@ const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => 
     } else {
         return (
             <button
-                className={buttonClassName}
+                className={`
+                    min-w-120
+                    inline-block
+                    px-6
+                    py-2
+                    text-sm
+                    font-medium
+                    leading-6
+                    text-center
+                    text-white
+                    uppercase
+                    transition
+                    bg-green-600
+                    rounded
+                    shadow
+                    ripple
+                    hover:shadow-lg
+                    hover:opacity-80
+                    focus:outline-none
+                `}
                 onClick={onClick}
                 type={type ? type : 'button'}
             >
