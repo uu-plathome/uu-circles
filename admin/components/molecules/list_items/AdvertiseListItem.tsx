@@ -1,15 +1,75 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Image from 'next/image'
-import { faCheckCircle, faTimesCircle, faEdit, faUserAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-modal';
+import { faCheckCircle, faTimesCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import { __ } from '@/lang/ja';
 import { Advertise } from '@/lib/types/model/Advertise';
+import { RedButton } from '@/components/atoms/buttons/RedButton';
+import { GrayButton } from '@/components/atoms/buttons/GrayButton';
 
 type Props = {
     advertise: Advertise
     onDelete(advertiseId: number): void
 }
+
+const customStyles = {
+    content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        width: '300px',
+        height: '200px'
+    }
+};
+type DeleteButtonProps = {
+    advertise: Advertise
+    onDelete(): void
+}
+const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
+    const [isOpen,setIsOpen] = useState(false);
+
+    const onClickDeleteButton = () => {
+        setIsOpen(false)
+        onDelete()
+    }
+
+    return (
+        <div>
+            <button onClick={() => setIsOpen(true)}>
+                <FontAwesomeIcon
+                    size="lg"
+                    color="red"
+                    icon={ faTrash }
+                />
+            </button>
+
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={() => setIsOpen(false)}
+                style={customStyles}
+                contentLabel="新歓の削除"
+            >
+                <h2 className="text-center text-lg mb-4 font-bold">本当に削除しますか？</h2>
+
+                <p className="mb-8 text-center">{advertise.title}</p>
+
+                <div className="flex justify-center">
+                    <div className="mx-2">
+                        <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+                    </div>
+                    <div className="mx-2">
+                        <RedButton onClick={onClickDeleteButton}>削除</RedButton>
+                    </div>
+                </div>
+            </Modal>
+        </div>
+    )
+}
+
 
 const ListItemTableColumn: FC<{
     title: string
@@ -72,13 +132,10 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
                     </Link>
                 </ListItemTableColumn>
                 <ListItemTableColumn title="削除する">
-                <button onClick={() => onDelete(advertise.id)}>
-                        <FontAwesomeIcon
-                            size="lg"
-                            color="red"
-                            icon={ faTrash }
-                        />
-                    </button>
+                    <DeleteButton
+                        advertise={advertise}
+                        onDelete={() => onDelete(advertise.id)}
+                    />
                 </ListItemTableColumn>
             </div>
         </div>

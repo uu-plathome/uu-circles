@@ -21,7 +21,7 @@ const IndexPage: NextPage = () => {
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
     const [ isOpen, setIsOpen ] = useState(false)
-    
+
     const fetchAdvertise = async () => {
         setAdvertise(await getAdvertiseList())
     }
@@ -86,7 +86,7 @@ const IndexPage: NextPage = () => {
 
                         {advertises.length === 0 ? (
                             <div className="py-4">
-                                <p className="text-white">まだサークルが登録されていません</p>
+                                <p className="text-white">まだ広告が登録されていません</p>
                             </div>
                         ) : ''}
                     </div>
