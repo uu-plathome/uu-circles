@@ -16,6 +16,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { HiraToKana } from '@/lib/utils/String'
 import Head from 'next/head'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
+import { useDelayedEffect } from '@/hooks/useDelayedEffect'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
@@ -142,15 +143,21 @@ const EditPage: NextPage = () => {
     }, [])
 
     // カタカナに固定する
-    useEffect(() => {
-        nameKana.value && nameKana.set(HiraToKana(nameKana.value))
-    })
+    useDelayedEffect(
+        () => {
+            nameKana.set(HiraToKana(nameKana.value))
+        },
+        [nameKana.value],
+        1000
+    )
 
-    useEffect(() => {
-        if (slug.value) {
+    useDelayedEffect(
+        () => {
             slug.set(slug.value.toLowerCase())
-        }
-    })
+        },
+        [slug.value],
+        1000
+    )
 
     const onDropMainImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
@@ -308,9 +315,9 @@ const EditPage: NextPage = () => {
                 {
                     type: 'UpdateCircleFormRequest',
                     name: name.value,
-                    slug: slug.value,
+                    slug: slug.value.toLowerCase(),
                     release: release.toBoolean,
-                    nameKana: nameKana.value,
+                    nameKana: HiraToKana(nameKana.value),
                     circleType: circleType.value,
                     shortName: shortName.value,
                     prefixName: prefixName.value,
