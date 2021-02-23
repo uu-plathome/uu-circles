@@ -4,10 +4,11 @@
 export interface UpdateAdvertiseRequest {
     type: 'UpdateAdvertiseRequest'
     title: string
+    link?: string
     mainImageUrl?: string
     active?: boolean
-    publishTo?: any
     publishFrom?: any
+    publishTo?: any
 }
 
 /**
@@ -17,10 +18,11 @@ export interface UpdateAdvertiseRequestValidationError {
     type: 'UpdateAdvertiseRequestValidationError'
     errors: {
         title?: string[]
+        link?: string[]
         mainImageUrl?: string[]
         active?: string[]
-        publishTo?: string[]
         publishFrom?: string[]
+        publishTo?: string[]
     }
     message: string
 }

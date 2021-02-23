@@ -10,6 +10,7 @@ class Advertise extends Model
 {
     protected $fillable = [
         'title',
+        'link',
         'main_image_url',
         'active',
         'publish_to',
