@@ -26,7 +26,7 @@ const Page: NextPage<Props> = ({
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <h1 className="text-2xl py-8">{ __(String(tag)) }</h1>
+                        <h1 className="text-2xl py-8">{ __(String(tag).toUpperCase()) }</h1>
 
                         {/*  サークル一覧 */}
                         <BaseCircleList circles={circles} />
