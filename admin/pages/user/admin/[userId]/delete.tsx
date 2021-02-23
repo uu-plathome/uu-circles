@@ -1,5 +1,6 @@
 import { DangerBunner } from "@/components/atoms/bunner/DangerBunner"
 import { RedButton } from "@/components/atoms/buttons/RedButton"
+import { SubmitLoading } from "@/components/atoms/loading/SubmitLoading"
 import { BaseContainer } from "@/components/layouts/BaseContainer"
 import { BaseHeader } from "@/components/layouts/BaseHeader"
 import { BaseWrapper } from "@/components/layouts/BaseWrapper"
@@ -18,6 +19,7 @@ const DeletePage: NextPage = () => {
     const { role: ownRole } = useContext(AuthContext)
     const { userId } = router.query
     const { isMd } = useMediaQuery()
+    const [ isOpen, setIsOpen ] = useState(false)
     const [ error, setError ] = useState('本当に削除しますか。削除したら元に戻せません。')
     const { data: user } = useSWR(
         ['/admin/api/admin-user/[userId]', Number(userId)],
@@ -43,18 +45,24 @@ const DeletePage: NextPage = () => {
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsOpen(true)
         setError('')
         const data = await deleteAdminUser(Number(userId))
 
         if (data && data.type === 'DeleteAdminUserValidationError') {
             setError(data.errors.data)
+            setIsOpen(false)
             return
         }
 
         if (data && data.type === 'success') {
             router.push('/user/admin')
+            setIsOpen(false)
             return
         }
+
+        setIsOpen(false)
+        console.error("onSubmitで不適切な処理があります。")
     }
 
     return (
@@ -62,6 +70,8 @@ const DeletePage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper
