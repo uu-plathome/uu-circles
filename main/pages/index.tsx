@@ -9,11 +9,13 @@ import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { MainCategoryList } from "@/components/organisms/List/MainCategoryList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
+import { Advertise } from "@/lib/types/model/Advertise";
 
 type Props = {
+    advertises: Advertise[]
     circles: Circle[]
 }
-const Index: NextPage<Props> = ({ circles }) => {
+const Index: NextPage<Props> = ({ advertises, circles }) => {
     return (
         <div>
             <BaseLayout>
@@ -47,7 +49,7 @@ const Index: NextPage<Props> = ({ circles }) => {
 
                     <MainUucircleAd />
 
-                    <MainSponsorshipFooter />
+                    <MainSponsorshipFooter advertises={advertises} />
 
                     <BaseFooter />
                 </div>
@@ -57,11 +59,12 @@ const Index: NextPage<Props> = ({ circles }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-    const { circles } = await getMain()
+    const { circles, advertises } = await getMain()
 
     return {
         props: {
-            circles
+            advertises,
+            circles,
         }
     }
 }

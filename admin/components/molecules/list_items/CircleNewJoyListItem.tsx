@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import { dayjs } from '@/plugins/Dayjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useState } from 'react';
 import { faCheckCircle, faTimesCircle, faEdit, faTrash, faCopy } from '@fortawesome/free-solid-svg-icons';
@@ -29,7 +29,7 @@ const CircleListItemTableColumn: FC<{
     w = xs ? 'lg:w-1/12' : w
     return (
         <div className={`
-            w-1/2 
+            w-1/2
             ${w}
             pr-2
             mb-8
@@ -55,7 +55,7 @@ const NewJoyDateTime: FC<{
             </div>
         )
     }
-    
+
     if (startDate && !endDate) {
         return (
             <div>
@@ -128,7 +128,7 @@ const CopyButton: FC<CopyButtonProps> = ({ circleNewJoy, newJoyTitle, onCopy }) 
                 <div className="bg-gray-800 rounded p-4 mb-4">
                     <p className="text-white">新歓日時</p>
                     <div className="pb-2">
-                        <NewJoyDateTime 
+                        <NewJoyDateTime
                             startDate={circleNewJoy.startDate}
                             endDate={circleNewJoy.endDate}
                         />
@@ -184,7 +184,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circleNewJoy, newJoyTitle, onDele
                 <div className="bg-gray-800 rounded p-4 mb-4">
                     <p className="text-white">新歓日時</p>
                     <div className="pb-2">
-                        <NewJoyDateTime 
+                        <NewJoyDateTime
                             startDate={circleNewJoy.startDate}
                             endDate={circleNewJoy.endDate}
                         />
@@ -221,7 +221,7 @@ const CircleNewJoyListItem: FC<Props> = ({ circle, circleNewJoy, onCopy, onDelet
                 </CircleListItemTableColumn>
 
                 <CircleListItemTableColumn title="新歓日時" large>
-                    <NewJoyDateTime 
+                    <NewJoyDateTime
                         startDate={circleNewJoy.startDate}
                         endDate={circleNewJoy.endDate}
                     />
@@ -234,9 +234,9 @@ const CircleNewJoyListItem: FC<Props> = ({ circle, circleNewJoy, onCopy, onDelet
                 </CircleListItemTableColumn>
 
                 <CircleListItemTableColumn title="編集">
-                    <Link 
-                        href="/circle/[id]/newjoy/[circleNewJoyId]/edit" 
-                        as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`} 
+                    <Link
+                        href="/circle/[id]/newjoy/[circleNewJoyId]/edit"
+                        as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`}
                     >
                         <a>
                             <FontAwesomeIcon

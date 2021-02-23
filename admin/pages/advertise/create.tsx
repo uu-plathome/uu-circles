@@ -19,6 +19,7 @@ const CreatePage: NextPage = () => {
     const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
+    const link = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
     const publishTo = useDateInput(null, 'YYYY-MM-DD')
@@ -29,6 +30,7 @@ const CreatePage: NextPage = () => {
 
         const data = await createAdvertise({
             type: 'CreateAdvertiseRequest',
+            link: link.value,
             title: title.value,
             mainImageUrl: mainImageUrl.value,
             active: active.toBoolean,
@@ -38,6 +40,7 @@ const CreatePage: NextPage = () => {
 
         if (isCreateAdvertiseRequestValidationError(data)) {
             title.setErrors(data.errors.title)
+            link.setErrors(data.errors.link)
             active.setErrors(data.errors.active)
             mainImageUrl.setErrors(data.errors.mainImageUrl)
             publishTo.setErrors(data.errors.publishTo)
@@ -94,11 +97,12 @@ const CreatePage: NextPage = () => {
                     title="広告発行"
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
-                        <CreateAdvertiseForm 
+                        <CreateAdvertiseForm
                             onDropMainImage={onDropMainImage}
                             onSubmit={onSubmit}
                             form={{
                                 title,
+                                link,
                                 mainImageUrl,
                                 active,
                                 publishTo,

@@ -1,6 +1,7 @@
 export interface Advertise {
     id: number
     title: string
+    link: string
     mainImageUrl: string
     active: boolean
     publishFrom: string

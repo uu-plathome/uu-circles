@@ -153,6 +153,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="twitterUrl"
             expand
             placeholder="https://twitter.com/"
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faTwitter} color="rgb(29, 161, 242)" size="lg" />}
             {...form.twitterUrl}
           />
@@ -165,6 +166,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="facebookUrl"
             expand
             placeholder="https://ja-jp.facebook.com/"
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faFacebook} color="#3B5998" size="lg" />}
             {...form.facebookUrl}
           />
@@ -177,6 +179,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="instagramUrl"
             expand
             placeholder="https://instagram.com"
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faInstagram} color="rgb（76, 76, 76）" size="lg" />}
             {...form.instagramUrl}
           />
@@ -188,6 +191,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="lineUrl"
             id="lineUrl"
             expand
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faLine} color="#00b900" size="lg" />}
             {...form.lineUrl}
           />
@@ -199,6 +203,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="youtubeUrl"
             id="youtubeUrl"
             expand
+            maxLength={255}
             placeholder="https://youtube.com"
             prefix={<FontAwesomeIcon icon={faYoutube} color="#dd4b39" size="lg" />}
             {...form.youtubeUrl}
@@ -211,6 +216,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="homepageUrl"
             id="homepageUrl"
             expand
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faHome} color="#010101" size="lg" />}
             {...form.homepageUrl}
           />
@@ -222,6 +228,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="tiktokUrl"
             id="tiktokUrl"
             expand
+            maxLength={255}
             placeholder="https://www.tiktok.com/ja-JP/"
             prefix={<FontAwesomeIcon icon={faTiktok} color="#010101" size="lg" />}
             {...form.tiktokUrl}
@@ -235,6 +242,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             id="githubUrl"
             expand
             placeholder="https://github.com"
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faGithub} color="#171515" size="lg" />}
             {...form.githubUrl}
           />
@@ -246,6 +254,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             name="peingUrl"
             id="peingUrl"
             expand
+            maxLength={255}
             prefix={<FontAwesomeIcon icon={faLink} color="#010101" size="lg" />}
             {...form.peingUrl}
           />
@@ -259,6 +268,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
           name="participationUrl"
           id="participationUrl"
           expand
+          maxLength={255}
           note="Google formなどのURL。Zoomを張るのは控えてください。"
           {...form.participationUrl}
         />
