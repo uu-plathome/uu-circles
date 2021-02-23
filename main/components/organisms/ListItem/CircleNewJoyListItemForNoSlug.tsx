@@ -5,6 +5,7 @@ import { __ } from '@/lang/ja'
 import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Image from 'next/image'
+import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 const getDOW = (circleNewJoy: CircleNewJoy) => {
   //曜日取得関数 dayjs
   const date = dayjs(circleNewJoy.startDate)
@@ -62,12 +63,12 @@ const getTime = (circleNewJoy: CircleNewJoy) => {
   return '未定'
 }
 type Props = {
-  circleNewJoy: CircleNewJoy
+  todayCircleNewJoy: TodayCircleNewJoy
 }
-const CircleNewJoyListItemForNoSlug: FC<Props> = ({ circleNewJoy }) => {
+const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  circleNewJoy = circleNewJoy.circleNewJoy
-  let slug = circleNewJoy.slug
+  const circleNewJoy = todayCircleNewJoy.circleNewJoy
+  const slug = todayCircleNewJoy.slug
   return (
     <div>
       {isMd ? (
