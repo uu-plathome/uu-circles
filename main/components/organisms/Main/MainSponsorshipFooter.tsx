@@ -1,34 +1,39 @@
 import { LightBlueButton } from "@/components/atoms/button/LightBlueButton"
 import { FC } from "react"
 import Image from "next/image"
+import { Advertise } from "@/lib/types/model/Advertise"
 
 type Props = {
-
+    advertises: Advertise[]
 }
-const MainSponsorshipFooter: FC<Props> = () => {
+const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
     const width = 375
     // w : h = 375 : 218
     const height = width * 218 / 375
     return (
         <div className="bg-gray-100 md:px-6 justify-center">
             <div className="md:flex justify-center md:mx-auto" style={{ maxWidth: 700 }}>
-                <div className="md:mr-2">
-                    <Image 
-                        src="/images/company_ad_tmp.png" 
-                        alt="協賛企業広告"
-                        width={width} 
-                        height={height} 
-                    />
-                </div>
+                {advertises && advertises[0] ? (
+                    <div className="md:mr-2">
+                        <Image 
+                            src={ advertises[0].mainImageUrl ? advertises[0].mainImageUrl : "/images/company_ad_tmp.png" }
+                            alt="協賛企業広告"
+                            width={width} 
+                            height={height} 
+                        />
+                    </div>
+                ) : ''}
 
-                <div className="hidden md:block md:ml-2">
-                    <Image 
-                        src="/images/company_ad_tmp.png" 
-                        alt="協賛企業広告"
-                        width={width} 
-                        height={height} 
-                    />
-                </div>
+                {advertises && advertises[1] ? (
+                    <div className="hidden md:block md:ml-2">
+                        <Image 
+                            src={ advertises[1].mainImageUrl ? advertises[1].mainImageUrl : "/images/company_ad_tmp.png" }
+                            alt="協賛企業広告"
+                            width={width} 
+                            height={height} 
+                        />
+                    </div>
+                ) : ''}
             </div>
 
             <div className="mx-auto md:mx-6 pb-10 md:flex items-center justify-center text-center">

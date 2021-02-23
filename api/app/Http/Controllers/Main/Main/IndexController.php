@@ -50,7 +50,7 @@ class IndexController extends Controller
                     ])
                 )->toArray()
             ),
-            'advertises' => $advertises,
+            'advertises' => Arr::camel_keys($advertises),
         ];
     }
 
@@ -63,6 +63,6 @@ class IndexController extends Controller
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.advertise' . $minutes . rand(0, 2);
+        return 'main.advertise' . $minutes;
     }
 }
