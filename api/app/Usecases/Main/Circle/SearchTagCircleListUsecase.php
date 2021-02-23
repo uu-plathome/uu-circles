@@ -11,11 +11,16 @@ class SearchTagCircleListUsecase
 {
     public function invoke(SearchTagCircleListParam $param)
     {
-        $circles = Circle::with([
+        $with = [
             'circleInformation:circle_id,name',
             'circleHandbill:circle_id,image_url',
-            'circleTag',
-        ])->whereRelease(true)
+        ];
+        if ($this->shouldCircleTagSearch($param)) {
+            $with[] = 'circleTag';
+        }
+
+        $circles = Circle::with($with)
+            ->whereRelease(true)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param) {
@@ -29,6 +34,72 @@ class SearchTagCircleListUsecase
                     $query->orWhere(function ($query) {
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereActiveActivity();
+                    });
+                })->when($param->monday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivityMonday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivityMonday(true);
+                        });
+                    });
+                })->when($param->tuesday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivityTuesday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivityTuesday(true);
+                        });
+                    });
+                })->when($param->wednesday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivityWednesday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivityWednesday(true);
+                        });
+                    });
+                })->when($param->thursday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivityThursday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivityThursday(true);
+                        });
+                    });
+                })->when($param->friday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivityFriday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivityFriday(true);
+                        });
+                    });
+                })->when($param->holiday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        $query->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereCommonDateOfActivitySaturday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivitySaturday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivitySunday(true);
+                        })->orWhere(function ($query) {
+                            /** @var \App\Models\CircleInformation $query */
+                            $query->whereOnlineDateOfActivitySunday(true);
+                        });
                     });
                 });
             })
