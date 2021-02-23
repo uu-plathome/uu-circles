@@ -57,11 +57,12 @@ const Index: NextPage<Props> = ({ circles }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-    const { circles } = await getMain()
+    const { circles, advertises } = await getMain()
 
     return {
         props: {
-            circles
+            advertises,
+            circles,
         }
     }
 }
