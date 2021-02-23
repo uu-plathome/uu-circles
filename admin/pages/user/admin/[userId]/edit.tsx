@@ -77,6 +77,21 @@ const CreatePage: NextPage = () => {
         await router.push(`/user/admin`)
     }
 
+    const roleList = () => {
+        if (ownRole === Role.SYSTEM) {
+            return [
+                { label: __(Role.SYSTEM, 'Role'), value: Role.SYSTEM },
+                { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+            ]
+        }
+
+        return [
+            { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+            { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+        ]
+    }
+
     return (
         <div>
             <Head>
@@ -132,10 +147,7 @@ const CreatePage: NextPage = () => {
                                 name="role"
                                 id="role"
                                 required
-                                items={[
-                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
-                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
-                                ]}
+                                items={roleList()}
                                 { ...role }
                             />
 
