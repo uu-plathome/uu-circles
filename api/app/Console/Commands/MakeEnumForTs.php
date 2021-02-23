@@ -8,6 +8,7 @@ use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
 use App\Enum\CircleTagModel;
 use App\Enum\Role;
+use App\Enum\SlugProperty\TagSlugProperty;
 use App\Enum\Week;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -58,6 +59,7 @@ class MakeEnumForTs extends Command
         $this->enumClasses = [
             CircleType::class,
             CircleTagModel::class,
+            TagSlugProperty::class,
             DateOfActivity::class,
             PlaceOfActivity::class,
             Role::class,
