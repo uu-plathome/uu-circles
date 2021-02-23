@@ -25,7 +25,7 @@ class SmallAlphaNum implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[a-z0-9]+$/', $value);
+        return preg_match('/^[a-z0-9-]+$/', $value);
     }
 
     /**
@@ -35,6 +35,6 @@ class SmallAlphaNum implements Rule
      */
     public function message()
     {
-        return ':attribute は半角小文字英数字で入力してください';
+        return ':attribute は半角小文字英数字ハイフン(-)で入力してください';
     }
 }
