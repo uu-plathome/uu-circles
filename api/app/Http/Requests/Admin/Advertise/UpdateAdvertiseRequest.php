@@ -28,7 +28,8 @@ class UpdateAdvertiseRequest extends FormRequest
     {
         return Arr::camel_keys([
             'title'          => 'required|string|max:255',
-            'main_image_url' => 'nullable|string|max:255',
+            'link'           => 'nullable|string|max:255|url',
+            'main_image_url' => 'nullable|string|max:255|url',
             'active'         => 'nullable|boolean',
             'publish_from'   => 'nullable|date|date_format:Y-m-d',
             'publish_to'     => 'nullable|date|date_format:Y-m-d|after:publish_from',
@@ -41,6 +42,7 @@ class UpdateAdvertiseRequest extends FormRequest
 
         return (new Advertise())->fill([
             'title'          => $request['title'],
+            'link'           => $request['link'],
             'main_image_url' => $request['main_image_url'],
             'active'         => $request['active'],
             'publish_to'     => $request['publish_to'] ? new Carbon($request['publish_to']) : null,

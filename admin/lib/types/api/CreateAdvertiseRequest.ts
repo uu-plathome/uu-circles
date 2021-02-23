@@ -4,10 +4,11 @@
 export interface CreateAdvertiseRequest {
     type: 'CreateAdvertiseRequest'
     title: string
+    link?: string
     mainImageUrl?: string
     active?: boolean
-    publishTo?: any
     publishFrom?: any
+    publishTo?: any
 }
 
 /**
@@ -17,10 +18,11 @@ export interface CreateAdvertiseRequestValidationError {
     type: 'CreateAdvertiseRequestValidationError'
     errors: {
         title?: string[]
+        link?: string[]
         mainImageUrl?: string[]
         active?: string[]
-        publishTo?: string[]
         publishFrom?: string[]
+        publishTo?: string[]
     }
     message: string
 }

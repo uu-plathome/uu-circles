@@ -19,5 +19,6 @@ use Faker\Generator as Faker;
 $factory->define(Advertise::class, function (Faker $faker) {
     return [
         'title'    => 'みやメシ応援隊',
+        'link'     => 'https://ulab-uu.com',
     ];
 });
