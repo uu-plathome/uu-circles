@@ -34,7 +34,7 @@ const CreatePage: NextPage = () => {
             type: 'CreateCircleFormRequest',
             name: name.value,
             slug: slug.value,
-            release: false,
+            release: true,
         } as CreateCircleFormRequest)
 
         if (isCreateCircleFormRequestValidationError(data)) {
