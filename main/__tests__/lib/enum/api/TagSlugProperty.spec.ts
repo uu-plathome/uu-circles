@@ -43,11 +43,11 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isIncare('incare')).toBeTruthy()
     expect(TestFunc.isIncare('aaaaabbbbcccc')).toBeFalsy()
   })
-  it('isProgram', () => {
-    expect(TestFunc.TagSlugProperty.program).toBe('program')
-    expect(TestFunc.isTagSlugProperty('program')).toBeTruthy()
-    expect(TestFunc.isProgram('program')).toBeTruthy()
-    expect(TestFunc.isProgram('aaaaabbbbcccc')).toBeFalsy()
+  it('isProgramming', () => {
+    expect(TestFunc.TagSlugProperty.programming).toBe('programming')
+    expect(TestFunc.isTagSlugProperty('programming')).toBeTruthy()
+    expect(TestFunc.isProgramming('programming')).toBeTruthy()
+    expect(TestFunc.isProgramming('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isVolunteer', () => {
     expect(TestFunc.TagSlugProperty.volunteer).toBe('volunteer')

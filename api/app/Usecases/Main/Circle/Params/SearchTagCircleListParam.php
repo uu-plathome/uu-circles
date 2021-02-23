@@ -8,7 +8,7 @@ class SearchTagCircleListParam
     public bool $community = false;
     public bool $international = false;
     public bool $incare = false;
-    public bool $program = false;
+    public bool $programming = false;
     public bool $volunteer = false;
     public bool $active = false;
     public bool $loose = false;

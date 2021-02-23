@@ -11,7 +11,7 @@ class TagSlugProperty
     const community = 'community';
     const international = 'international';
     const incare = 'incare';
-    const program = 'program';
+    const programming = 'programming';
     const volunteer = 'volunteer';
     const active = 'active';
     const loose = 'loose';
@@ -40,7 +40,7 @@ class TagSlugProperty
             self::community,
             self::international,
             self::incare,
-            self::program,
+            self::programming,
             self::volunteer,
             self::active,
             self::loose,
