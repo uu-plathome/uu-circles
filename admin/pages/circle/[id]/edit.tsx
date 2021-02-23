@@ -14,6 +14,8 @@ import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } fro
 import { Circle } from '@/lib/types/model/Circle'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { HiraToKana } from '@/lib/utils/String'
+import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
@@ -72,6 +74,7 @@ const EditPage: NextPage = () => {
     const activityImageUrl4 = useStringInput('')
     const activityImageUrl5 = useStringInput('')
     const activityImageUrl6 = useStringInput('')
+    const [ isOpen, setIsOpen ] = useState(false)
     const { id } = router.query
 
     useEffect(() => {
@@ -138,8 +141,13 @@ const EditPage: NextPage = () => {
         f()
     }, [])
 
+    // カタカナに固定する
     useEffect(() => {
         nameKana.value && nameKana.set(HiraToKana(nameKana.value))
+    })
+
+    useEffect(() => {
+        slug.set(slug.value.toLowerCase())
     })
 
     const onDropMainImage = (acceptedFiles) => {
@@ -217,7 +225,7 @@ const EditPage: NextPage = () => {
                     async success(result) {
                         try {
                             const data = await putStorage(result)
-        
+
                             switch (idx) {
                                 case 1:
                                     if (isAdminPutStorageRequestValidationError(data)) {
@@ -290,6 +298,7 @@ const EditPage: NextPage = () => {
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsOpen(true)
 
         if (!Array.isArray(id)) {
             const data = await updateCircle(
@@ -406,18 +415,26 @@ const EditPage: NextPage = () => {
                 activityImageUrl4.setErrors(data.errors.activityImageUrl4)
                 activityImageUrl5.setErrors(data.errors.activityImageUrl5)
                 activityImageUrl6.setErrors(data.errors.activityImageUrl6)
+                setIsOpen(false)
                 return
             }
 
+            setIsOpen(false)
             await router.push('/circle')
         }
     }
 
     return (
         <div>
+            <Head>
+                <title>サークル編集</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper

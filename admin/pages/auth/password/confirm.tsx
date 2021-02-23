@@ -11,8 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
 import { isResetPasswordAdminRequestValidationError } from "@/lib/types/api/ResetPasswordAdminRequest"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
+import Head from "next/head"
 
-const Login: NextPage = () => {
+const PasswordConfirmPage: NextPage = () => {
     const password = useInput('')
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
@@ -61,6 +62,10 @@ const Login: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>新しいパスワード</title>
+            </Head>
+
             <AuthHeader />
 
             <div className="xl:container">
@@ -99,7 +104,7 @@ const Login: NextPage = () => {
                                 <p className="text-white">パスワードを変更しました。ログイン画面へ進んでください。</p>
 
                                 <div className="text-center">
-                                    <GreenButton href="/auth/login">
+                                    <GreenButton href="/auth/PasswordConfirmPage">
                                         ログインへ進む
                                     </GreenButton>
                                 </div>
@@ -112,4 +117,4 @@ const Login: NextPage = () => {
     )
 }
 
-export default Login
+export default PasswordConfirmPage

@@ -12,6 +12,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import useSWR from 'swr'
 import { showCircle } from '@/infra/api/circle'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -23,9 +24,9 @@ const CreatePage: NextPage = () => {
     const url = useStringInput('')
     const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
     const placeOfActivityDetail = useStringInput('')
-    const publishFrom = useDateInput(null)
-    const startDate = useDateInput(null)
-    const endDate = useDateInput(null)
+    const publishFrom = useDateInput(null, 'YYYY-MM-DD')
+    const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+    const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
     const release = useBooleanInput(true)
 
     const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () => showCircle(Number(id)))
@@ -67,6 +68,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>新歓作成</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

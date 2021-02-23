@@ -18,7 +18,7 @@ export type Props = {
     cols?: number
     mdCols?: number
 } & BaseLabelProps
-const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error, onChange, cols = 3, mdCols = 3 }) => {
+const BaseCheckBox: React.FC<Props> = ({ label, id, note, items, required, error, onChange, cols = 2, mdCols = 3 }) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
             <BaseLabel

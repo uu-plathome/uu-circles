@@ -10,6 +10,7 @@ import { AuthContext } from "@/contexts/AuthContext"
 import { isVerificationInvalidError } from "@/lib/types/api/VerificationInvalidError"
 import { isVerificationConfirmRequestValidationError } from "@/lib/types/api/VerificationConfirmRequest"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
+import Head from "next/head"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -70,6 +71,10 @@ const Login: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>パスワード設定</title>
+            </Head>
+
             <AuthHeader />
 
             <div className="xl:container">

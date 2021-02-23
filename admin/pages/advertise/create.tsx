@@ -12,6 +12,7 @@ import { CreateAdvertiseForm } from '@/components/organisms/form/Advertise/Creat
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
@@ -20,8 +21,8 @@ const CreatePage: NextPage = () => {
     const title = useStringInput('')
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
-    const publishTo = useDateInput(null)
-    const publishFrom = useDateInput(null)
+    const publishTo = useDateInput(null, 'YYYY-MM-DD')
+    const publishFrom = useDateInput(null, 'YYYY-MM-DD')
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -80,6 +81,10 @@ const CreatePage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>広告発行</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

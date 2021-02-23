@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import "react-datepicker/dist/react-datepicker.css"
-import '../styles/index.css'
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
 import { Role } from '@/lib/enum/api/Role';
+import * as gtag from '@/lib/utils/Gtag'
+
+import "react-datepicker/dist/react-datepicker.css"
+import '../styles/index.css'
 
 const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)
@@ -64,14 +67,35 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     f()
   }, [])
 
+  useEffect(() => {
+    if (!gtag.existsGaId) {
+      return
+    }
+
+    const handleRouteChange = (path) => {
+      gtag.pageview(path)
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken, role, setRole }}>
+      <>
+        <Head>
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+        </Head>
       {loading ?
         <div className="text-white">loading...</div> :
         <Component {...pageProps} />
       }
+      </>
     </AuthContext.Provider>
   )
 }
+
 
 export default MyApp

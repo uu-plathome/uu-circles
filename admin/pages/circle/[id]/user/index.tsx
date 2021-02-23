@@ -9,6 +9,7 @@ import { User } from '@/lib/types/model/User'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 
 const IndexPage: NextPage = () => {
     const router = useRouter();
@@ -44,6 +45,10 @@ const IndexPage: NextPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>サークルユーザー管理</title>
+            </Head>
+
             {isMd ? (
                 <BaseHeader />
             ) : ''}

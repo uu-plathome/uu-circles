@@ -9,13 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "lampager/lampager-laravel": "^0.4.6",
         "laravel/framework": "^8.12",
         "laravel/legacy-factories": "^1.1",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "mpyw/eloquent-has-by-join": "^2.0",
+        "mpyw/eloquent-has-by-non-dependent-subquery": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

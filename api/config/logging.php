@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily', 'bugsnag'],
             'ignore_exceptions' => false,
         ],
 
@@ -99,6 +99,18 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'bugsnag' => [
+            'driver' => 'bugsnag',
+        ],
+
     ],
 
+    'sql' => [
+        'enable' => env('LOG_SQL_ENABLE', false),
+    ],
+
+    'request' => [
+        'enable' => env('LOG_REQUEST_ENABLE', false),
+    ],
 ];
