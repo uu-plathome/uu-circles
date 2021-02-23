@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeWhereAdminUser($query)
     {
         /** @var User $query */
-        return $query->whereHas('adminUser');
+        return $query->with('adminUser')->hasByNonDependentSubquery('adminUser');
     }
 
     /**
@@ -68,8 +68,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         /** @var User $query */
         return $query->whereActive(true)
-                ->whereNotNull(UserModel::email_verified_at)
-                ->whereAdminUser();
+            ->whereNotNull(UserModel::email_verified_at)
+            ->whereAdminUser();
     }
 
     /**

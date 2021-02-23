@@ -6,6 +6,7 @@ namespace App\Usecases\Admin;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Database\Eloquent\Builder;
 
 class IndexCircleByUserIdUsecase
 {
@@ -20,16 +21,18 @@ class IndexCircleByUserIdUsecase
         $circles = Circle::with([
             'circleInformation',
             'circleUsers',
-        ])->whereHas('circleInformation')
-            ->whereHas('circleUsers', function ($query) use ($userId) {
+        ])->hasByNonDependentSubquery('circleInformation')
+            ->hasByNonDependentSubquery('circleUsers', function (Builder $query) use ($userId) {
                 $query->whereUserId($userId);
             })
             ->get();
 
-        return $circles->map(fn (Circle $circle) =>
+        return $circles->map(
+            fn (Circle $circle) =>
             CircleValueObject::byEloquent(
                 $circle,
-                $circle->circleInformation
+                $circle->circleInformation,
+                null
             )
         )->all();
     }

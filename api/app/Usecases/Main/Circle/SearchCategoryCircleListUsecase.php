@@ -6,6 +6,7 @@ use App\Enum\CircleType;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SearchCategoryCircleListUsecase
 {
@@ -30,8 +31,8 @@ class SearchCategoryCircleListUsecase
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             // 新歓が登録されているのものを取得
-            ->whereHas('circleHandbill')
-            ->whereHas('circleInformation', function ($query) use ($param, $circleType) {
+            ->hasByNonDependentSubquery('circleHandbill')
+            ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param, $circleType) {
                 /** @var \App\Models\CircleInformation $query */
                 $query->when($param->club, function ($query) {
                     /** @var \App\Models\CircleInformation $query */
