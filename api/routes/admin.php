@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Auth\VerificationResendController;
 use App\Http\Controllers\Admin\Auth\VerificationVerifyController;
 use App\Http\Controllers\Admin\Circle\CreateCircleController;
 use App\Http\Controllers\Admin\Circle\IndexCircleController;
+use App\Http\Controllers\Admin\Circle\PaginateCircleController;
 use App\Http\Controllers\Admin\Circle\ShowCircleController;
 use App\Http\Controllers\Admin\Circle\UpdateCircleController;
 use App\Http\Controllers\Admin\CircleNewJoy\CopyCircleNewJoyController;
@@ -72,6 +73,7 @@ Route::middleware('auth:api')->group(function () {
 
     // Circle サークル管理
     Route::get('/circle', IndexCircleController::class);
+    Route::get('/circle/paginate', PaginateCircleController::class);
     Route::post('/circle', CreateCircleController::class);
     Route::get('/circle/{id}', ShowCircleController::class);
     Route::put('/circle/{id}', UpdateCircleController::class);

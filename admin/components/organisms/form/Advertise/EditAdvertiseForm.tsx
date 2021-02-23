@@ -1,6 +1,6 @@
 import { GreenButton } from "@/components/atoms/buttons/GreenButton";
+import { AdvertiseMainImageInput } from "@/components/atoms/form/AdvertiseMainImageInput";
 import { BaseDate } from "@/components/atoms/form/BaseDate";
-import { BaseImageInput } from "@/components/atoms/form/BaseImageInput";
 import { BaseSelect } from "@/components/atoms/form/BaseSelect";
 import { BaseTextField } from "@/components/atoms/form/BaseTextField";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
@@ -53,7 +53,7 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
                 { ...form.publishTo }
             />
 
-            <BaseImageInput
+            <AdvertiseMainImageInput
                 label="広告画像"
                 id="mainImageUrl"
                 preview={form.mainImageUrl.value ? form.mainImageUrl.value : `/images/no-image.png`}

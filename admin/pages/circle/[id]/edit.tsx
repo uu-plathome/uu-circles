@@ -146,6 +146,12 @@ const EditPage: NextPage = () => {
         nameKana.value && nameKana.set(HiraToKana(nameKana.value))
     })
 
+    useEffect(() => {
+        if (slug.value) {
+            slug.set(slug.value.toLowerCase())
+        }
+    })
+
     const onDropMainImage = (acceptedFiles) => {
         acceptedFiles.forEach((file: Blob) => {
             const reader = new FileReader()
@@ -221,7 +227,7 @@ const EditPage: NextPage = () => {
                     async success(result) {
                         try {
                             const data = await putStorage(result)
-        
+
                             switch (idx) {
                                 case 1:
                                     if (isAdminPutStorageRequestValidationError(data)) {

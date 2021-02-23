@@ -17,7 +17,8 @@ class IndexCircleUsecase
         $circles = Circle::with([
             'circleInformation',
             'circleHandbill',
-        ])->whereHas('circleInformation')->get();
+        ])->hasByNonDependentSubquery('circleInformation')
+            ->get();
 
         return $circles->map(
             fn (Circle $circle) =>
