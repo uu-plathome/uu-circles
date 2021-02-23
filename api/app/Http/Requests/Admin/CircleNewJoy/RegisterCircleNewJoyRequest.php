@@ -30,14 +30,14 @@ class RegisterCircleNewJoyRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleNewJoyModel::title                    => ['required', 'string', 'max:100'],
-            CircleNewJoyModel::description              => ['string', 'nullable', 'max:255'],
+            CircleNewJoyModel::title                    => ['required', 'string', 'max:30'],
+            CircleNewJoyModel::description              => ['string', 'nullable', 'max:100'],
             CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyModel::place_of_activity        => [
                 'string',
                 Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
-            CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:255'],
+            CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyModel::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
             CircleNewJoyModel::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
             CircleNewJoyModel::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
