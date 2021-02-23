@@ -31,14 +31,20 @@ class TodayCircleNewJoyController extends Controller
         return Arr::camel_keys([
             'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
                 fn (array $arr) => [
-                    'slug'         => $arr['slug'],
-                    'circleNewJoy' => $arr['circleNewJoyValueObject']->toArray()
+                    'slug'           => $arr['slug'],
+                    'name'           => $arr['name'],
+                    'circle_type'    => $arr['circle_type'],
+                    'main_image_url' => $arr['main_image_url'],
+                    'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
                 ]
             )->values()->toArray(),
             'futureCircleNewJoys' => (new Collection($circleNewJoys['futureCircleNewJoys']))->map(
                 fn (array $arr) => [
-                    'slug'         => $arr['slug'],
-                    'circleNewJoy' => $arr['circleNewJoyValueObject']->toArray()
+                    'slug'           => $arr['slug'],
+                    'name'           => $arr['name'],
+                    'circle_type'    => $arr['circle_type'],
+                    'main_image_url' => $arr['main_image_url'],
+                    'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
                 ]
             )->values()->toArray(),
         ]);
