@@ -56,7 +56,6 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 placeholder="u-lab"
                 required
                 expand
-                note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                 {...form.slug}
             />
         </div>

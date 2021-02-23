@@ -1,6 +1,6 @@
 import { GreenButton } from "@/components/atoms/buttons/GreenButton";
 import { BaseDate } from "@/components/atoms/form/BaseDate";
-import { BaseImageInput } from "@/components/atoms/form/BaseImageInput";
+import { AdvertiseMainImageInput } from "@/components/atoms/form/AdvertiseMainImageInput";
 import { BaseSelect } from "@/components/atoms/form/BaseSelect";
 import { BaseTextField } from "@/components/atoms/form/BaseTextField";
 import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
@@ -53,14 +53,13 @@ const CreateAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => 
                 { ...form.publishTo }
             />
 
-            <BaseImageInput
+            <AdvertiseMainImageInput
                 label="広告画像"
                 id="mainImageUrl"
                 preview={form.mainImageUrl.value ? form.mainImageUrl.value : `/images/no-image.png`}
                 onDrop={onDropMainImage}
                 error={form.mainImageUrl.error}
             />
-
 
             <div className="flex justify-center mt-8">
                 <GreenButton type="submit">

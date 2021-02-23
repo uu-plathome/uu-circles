@@ -34,7 +34,7 @@ const ImageInput: FC<ImageInputProps> = ({ onDrop, id, label, preview, width }) 
 
     return (
         <div id={id} className="flex justify-center">
-            <div 
+            <div
                 {...getRootProps()}
                 className={inputClass}>
                 <input {...getInputProps()} />
@@ -77,9 +77,9 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
 
     return (
         <div className="mb-4">
-            <BaseLabel 
+            <BaseLabel
                 label="活動画像"
-                note={'最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
+                note={'最適なアスペクト比は375:200です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
                 id="activityImageUrl"
             />
 
