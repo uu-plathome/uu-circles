@@ -43,8 +43,8 @@ class UpdateAdvertiseRequest extends FormRequest
             'title'          => $request['title'],
             'main_image_url' => $request['main_image_url'],
             'active'         => $request['active'],
-            'publish_to'     => new Carbon($request['publish_to']),
-            'publish_from'   => new Carbon($request['publish_from']),
+            'publish_to'     => $request['publish_to'] ? new Carbon($request['publish_to']) : null,
+            'publish_from'   => $request['publish_from'] ? new Carbon($request['publish_from']) : null,
         ]);
     }
 }

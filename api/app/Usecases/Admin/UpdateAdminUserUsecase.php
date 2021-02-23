@@ -29,7 +29,7 @@ class UpdateAdminUserUsecase
         try {
             $user = User::findOrFail($userId);
             $user->update($inputs);
-            $user->adminUser()->fill([
+            $user->adminUser->fill([
                 AdminUserPropety::role => $adminUserValueObject->role,
             ])->save();
 
