@@ -3,7 +3,7 @@
 
 namespace App\Http\Requests\Admin\AdminUser;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\Role;
 use App\Enum\UserModel;
 use App\Support\Arr;
@@ -36,7 +36,7 @@ class UpdateAdminUserRequest extends FormRequest
             UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
             UserModel::display_name => ['required', 'string', 'max:50'],
             UserModel::active       => ['required', 'boolean'],
-            AdminUserPropety::role  => ['required', 'string'],
+            AdminUserProperty::role  => ['required', 'string'],
         ]);
     }
 
@@ -48,7 +48,7 @@ class UpdateAdminUserRequest extends FormRequest
             UserModel::username     => $request[UserModel::username],
             UserModel::display_name => $request[UserModel::display_name],
             UserModel::active       => $request[UserModel::active],
-            AdminUserPropety::role  => $request[AdminUserPropety::role],
+            AdminUserProperty::role  => $request[AdminUserProperty::role],
         ]);
     }
 }

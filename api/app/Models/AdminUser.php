@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class AdminUser extends Model
 {
     protected $fillable = [
-        AdminUserPropety::user_id,
-        AdminUserPropety::role,
+        AdminUserProperty::user_id,
+        AdminUserProperty::role,
     ];
 
     public function user(): BelongsTo

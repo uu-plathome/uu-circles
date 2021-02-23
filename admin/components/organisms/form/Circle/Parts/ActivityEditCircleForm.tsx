@@ -115,7 +115,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         if (newVal === Week.SUNDAY) {
             form.commonDateOfActivitySunday.set(!form.commonDateOfActivitySunday.toBoolean)
         }
-    } 
+    }
 
     const onChangeOnlineDateOfActivity = (e) => {
         const newVal = e.target.value
@@ -143,7 +143,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         if (newVal === Week.SUNDAY) {
             form.onlineDateOfActivitySunday.set(!form.onlineDateOfActivitySunday.toBoolean)
         }
-    } 
+    }
 
     return (
         <div>
@@ -166,6 +166,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 id="placeOfActivityDetail"
                 expand
                 note="例）月:4号館 / 金:グラウンド"
+                maxLength={255}
                 {...form.commonPlaceOfActivityDetail}
             />
 
@@ -175,8 +176,8 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 label="通常活動日"
                 items={[
                     ...getAllWeek().map((_week) => ({
-                        value: _week, 
-                        checked: checkedCommonDateOfActivity.includes(_week), 
+                        value: _week,
+                        checked: checkedCommonDateOfActivity.includes(_week),
                         label: __(_week, 'Week')
                     }))
                 ]}
@@ -198,6 +199,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 name="commonDateOfActivityDetail"
                 id="commonDateOfActivityDetail"
                 expand
+                maxLength={255}
                 note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
                 {...form.commonDateOfActivityDetail}
             />
@@ -221,8 +223,8 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                     label="オンライン活動日"
                     items={[
                         ...getAllWeek().map((_week) => ({
-                            value: _week, 
-                            checked: checkedOnlineDateOfActivity.includes(_week), 
+                            value: _week,
+                            checked: checkedOnlineDateOfActivity.includes(_week),
                             label: __(_week, 'Week')
                         }))
                     ]}
@@ -245,6 +247,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                     id="onlineDateOfActivityDetail"
                     expand
                     note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
+                    maxLength={255}
                     {...form.onlineDateOfActivityDetail}
                 />
                 </div>

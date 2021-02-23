@@ -40,6 +40,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="description"
                 id="description"
                 expand
+                maxLength={100}
                 {...form.description}
             />
 
@@ -48,6 +49,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="appealingPoint1"
                 id="appealingPoint1"
                 expand
+                maxLength={30}
                 {...form.appealingPoint1}
             />
 
@@ -56,6 +58,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="appealingPoint2"
                 id="appealingPoint2"
                 expand
+                maxLength={30}
                 {...form.appealingPoint2}
             />
 
@@ -64,6 +67,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="appealingPoint3"
                 id="appealingPoint3"
                 expand
+                maxLength={30}
                 {...form.appealingPoint3}
             />
 
@@ -115,6 +119,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 id="publicEmail"
                 placeholder="example@example.com"
                 expand
+                maxLength={255}
                 note="迷惑メールなどが来る可能性がございます。メールアドレスの公開は慎重に考えてお願いします。"
                 {...form.publicEmail}
             />
