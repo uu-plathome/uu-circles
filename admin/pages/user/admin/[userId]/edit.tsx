@@ -117,6 +117,7 @@ const CreatePage: NextPage = () => {
                                 required
                                 prefix="@"
                                 placeholder="u-ta"
+                                maxLength={30}
                                 note="アルファベット、ハイフンのみ。"
                                 { ...username }
                             />
@@ -127,6 +128,7 @@ const CreatePage: NextPage = () => {
                                 id="display_name"
                                 placeholder="宇都宮太郎"
                                 required
+                                maxLength={50}
                                 { ...displayName }
                             />
 
