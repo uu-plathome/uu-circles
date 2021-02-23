@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Main\Circle;
 
-use App\Enum\CircleType;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;

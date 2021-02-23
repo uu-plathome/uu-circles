@@ -150,4 +150,36 @@ class CircleInformation extends Model
 
         return $this->number_of_members > 49;
     }
+
+    public function scopeWhereMammoth($query)
+    {
+        return $query->where('number_of_members', '>', 49);
+    }
+
+    public function scopeWhereActiveActivity($query)
+    {
+        return $query->where(function ($query) {
+            $query->where(function ($query) {
+                $query->whereRaw('(
+                    IFNULL(common_date_of_activity_monday, 0) +
+                    IFNULL(common_date_of_activity_tuesday, 0) +
+                    IFNULL(common_date_of_activity_wednesday, 0) +
+                    IFNULL(common_date_of_activity_thursday, 0) +
+                    IFNULL(common_date_of_activity_friday, 0) +
+                    IFNULL(common_date_of_activity_saturday, 0) +
+                    IFNULL(common_date_of_activity_sunday, 0)
+                ) > 4');
+            })->orWhere(function ($query) {
+                $query->whereRaw('(
+                    IFNULL(online_date_of_activity_monday, 0) +
+                    IFNULL(online_date_of_activity_tuesday, 0) +
+                    IFNULL(online_date_of_activity_wednesday, 0) +
+                    IFNULL(online_date_of_activity_thursday, 0) +
+                    IFNULL(online_date_of_activity_friday, 0) +
+                    IFNULL(online_date_of_activity_saturday, 0) +
+                    IFNULL(online_date_of_activity_sunday, 0)
+                ) > 4');
+            });
+        });
+    }
 }

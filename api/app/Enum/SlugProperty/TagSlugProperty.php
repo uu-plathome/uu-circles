@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Enum\SlugProperty;
+
+class TagSlugProperty
+{
+    const sport = 'sport';
+    const music = 'music';
+    const culture = 'culture';
+    const nature = 'nature';
+    const community = 'community';
+    const international = 'international';
+    const incare = 'incare';
+    const program = 'program';
+    const volunteer = 'volunteer';
+    const active = 'active';
+    const loose = 'loose';
+    const monday = 'monday';
+    const tuesday = 'tuesday';
+    const wednesday = 'wednesday';
+    const thursday = 'thursday';
+    const friday = 'friday';
+    const only_monday = 'only_monday';
+    const only_tuesday = 'only_tuesday';
+    const only_wednesday = 'only_wednesday';
+    const only_thursday = 'only_thursday';
+    const only_friday = 'only_friday';
+    const holiday = 'holiday';
+    const mammoth = 'mammoth';
+    const urgent_recruitment = 'urgent_recruitment';
+    const mystery = 'mystery';
+
+    public static function getAll(): array
+    {
+        return [
+            self::sport,
+            self::music,
+            self::culture,
+            self::nature,
+            self::community,
+            self::international,
+            self::incare,
+            self::program,
+            self::volunteer,
+            self::active,
+            self::loose,
+            self::monday,
+            self::tuesday,
+            self::wednesday,
+            self::thursday,
+            self::friday,
+            self::only_monday,
+            self::only_tuesday,
+            self::only_wednesday,
+            self::only_thursday,
+            self::only_friday,
+            self::holiday,
+            self::mammoth,
+            self::urgent_recruitment,
+            self::mystery,
+        ];
+    }
+}

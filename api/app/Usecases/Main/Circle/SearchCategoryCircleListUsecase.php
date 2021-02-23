@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SearchCategoryCircleListUsecase
 {
+    /**
+     * カテゴリー検索をする
+     *
+     * @param SearchCategoryCircleListParam $param
+     * @return array
+     */
     public function invoke(SearchCategoryCircleListParam $param): array
     {
         $circleType = [];
