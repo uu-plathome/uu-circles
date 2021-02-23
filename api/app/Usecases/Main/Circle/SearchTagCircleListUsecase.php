@@ -46,15 +46,15 @@ class SearchTagCircleListUsecase
                     })->when($param->incare, function ($query) {
                         /** @var \App\Models\CircleTag $query */
                         $query->orWhere('incare', true);
-                    })->when($param->program, function ($query) {
+                    })->when($param->programming, function ($query) {
                         /** @var \App\Models\CircleTag $query */
-                        $query->orWhere('program', true);
+                        $query->orWhere('programming', true);
                     })->when($param->volunteer, function ($query) {
                         /** @var \App\Models\CircleTag $query */
                         $query->orWhere('volunteer', true);
                     })->when($param->loose, function ($query) {
                         /** @var \App\loose\CircleTag $query */
-                        $query->orWhere('program', true);
+                        $query->orWhere('loose', true);
                     })->when($param->urgent_recruitment, function ($query) {
                         /** @var \App\Models\CircleTag $query */
                         $query->orWhere('urgent_recruitment', true);
@@ -106,7 +106,7 @@ class SearchTagCircleListUsecase
         if ($param->incare) {
             return true;
         }
-        if ($param->program) {
+        if ($param->programming) {
             return true;
         }
         if ($param->volunteer) {

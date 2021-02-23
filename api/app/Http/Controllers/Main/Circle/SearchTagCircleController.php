@@ -40,7 +40,7 @@ class SearchTagCircleController extends Controller
         $param->community = $tag === TagSlugProperty::community;
         $param->international = $tag === TagSlugProperty::international;
         $param->incare = $tag === TagSlugProperty::incare;
-        $param->program = $tag === TagSlugProperty::program;
+        $param->programming = $tag === TagSlugProperty::programming;
         $param->volunteer = $tag === TagSlugProperty::volunteer;
         $param->active = $tag === TagSlugProperty::active;
         $param->loose = $tag === TagSlugProperty::loose;
