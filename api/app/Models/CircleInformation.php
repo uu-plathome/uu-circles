@@ -156,6 +156,12 @@ class CircleInformation extends Model
         return $query->where('number_of_members', '>', 49);
     }
 
+    /**
+     * 活動日数が週に5日以上
+     *
+     * @param mixed $query
+     * @return void
+     */
     public function scopeWhereActiveActivity($query)
     {
         return $query->where(function ($query) {
@@ -181,5 +187,10 @@ class CircleInformation extends Model
                 ) > 4');
             });
         });
+    }
+
+    public function scopeWhereOnlyMonday($query)
+    {
+        return $query->where('number_of_members', '>', 49);
     }
 }
