@@ -147,7 +147,9 @@ const EditPage: NextPage = () => {
     })
 
     useEffect(() => {
-        slug.set(slug.value.toLowerCase())
+        if (slug.value) {
+            slug.set(slug.value.toLowerCase())
+        }
     })
 
     const onDropMainImage = (acceptedFiles) => {
