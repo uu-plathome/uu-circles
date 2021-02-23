@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { BaseLabel } from "./BaseLabel"
 
@@ -27,13 +27,17 @@ interface Props {
 }
 const AdvertiseMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview, error, width = 210 }) => {
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
-    const height = width
+    const [height, setHeight] = useState(0)
+    useEffect(() => {
+        // w : h = 375 : 218
+        setHeight(width * 218 / 375)
+    }, [width])
 
     return (
         <div className="mb-4">
             <BaseLabel
                 label={label}
-                note={'最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
+                note={'最適なアスペクト比は375:218です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
                 required={required}
                 id={id}
             />
