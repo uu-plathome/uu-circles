@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enum\Propety;
+namespace App\Enum\Property;
 
-class AdminUserPropety
+class AdminUserProperty
 {
     const id = 'id';
     const user_id = 'user_id';

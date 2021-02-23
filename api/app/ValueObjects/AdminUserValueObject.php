@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\UserModel;
 use App\Models\AdminUser;
 use App\Models\User;
@@ -62,7 +62,7 @@ class AdminUserValueObject
         $updatedAt = Arr::get($inputs, UserModel::updated_at);
         $adminUserValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
 
-        $adminUserValueObject->role = Arr::get($inputs, AdminUserPropety::role);
+        $adminUserValueObject->role = Arr::get($inputs, AdminUserProperty::role);
 
         return $adminUserValueObject;
     }
@@ -94,7 +94,7 @@ class AdminUserValueObject
             UserModel::active            => $this->active,
             UserModel::email             => $this->email,
             UserModel::email_verified_at => $this->email_verified_at,
-            AdminUserPropety::role       => $this->role,
+            AdminUserProperty::role       => $this->role,
         ];
 
         if ($isOwn) {
