@@ -32,7 +32,7 @@ class UpdateAdvertiseRequest extends FormRequest
             'main_image_url' => 'nullable|string|max:255|url',
             'active'         => 'nullable|boolean',
             'publish_from'   => 'nullable|date|date_format:Y-m-d',
-            'publish_to'     => 'nullable|date|date_format:Y-m-d|after:publish_from',
+            'publish_to'     => 'nullable|date|date_format:Y-m-d|before:publish_from',
         ]);
     }
 
