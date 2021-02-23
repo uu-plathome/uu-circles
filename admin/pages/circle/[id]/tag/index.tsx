@@ -12,11 +12,13 @@ import { __ } from '@/lang/ja'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
     const { isMd } = useMediaQuery()
+    const [ isOpen, setIsOpen ] = useState(false)
 
     const [ circleTag, setCircleTag ] = useState<CircleTagModel[]>([])
     const [ errors, setErrors ] = useState<string[]>([])
@@ -55,6 +57,7 @@ const CreatePage: NextPage = () => {
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsOpen(true)
 
         const data = await createOrUpdateCircleTag(
             Number(id),
@@ -63,10 +66,11 @@ const CreatePage: NextPage = () => {
 
         if (isCreateOrUpdateCircleTagRequestValidationError(data)) {
             setErrors(data.errors.circleTag)
-
+            setIsOpen(false)
             return
         }
 
+        setIsOpen(false)
         await router.push(`/circle`)
     }
 
@@ -99,6 +103,8 @@ const CreatePage: NextPage = () => {
             {isMd ? (
                 <BaseHeader />
             ) : ''}
+
+            <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
                 <BaseWrapper
