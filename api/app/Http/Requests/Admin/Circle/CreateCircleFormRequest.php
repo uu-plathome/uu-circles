@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\Circle;
 
-use App\Enum\CircleInformationModel;
+use App\Enum\Property\CircleInformationProperty;
 use App\Enum\CircleModel;
 use App\Models\Circle;
 use App\Models\CircleInformation;

@@ -19,7 +19,7 @@ class CreateCircleUsecase
     {
         $circle = $circleValueObject->toCircleModel();
         $circle->createSlugWhenSlugNotExist();
-        $circleInformation = $circleValueObject->toCircleInformationModel();
+        $circleInformation = $circleValueObject->toCircleInformationProperty();
 
         DB::beginTransaction();
         try {

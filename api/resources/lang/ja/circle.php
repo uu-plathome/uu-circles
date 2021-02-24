@@ -1,6 +1,6 @@
 <?php
 
-use App\Enum\CircleInformationModel;
+use App\Enum\Property\CircleInformationProperty;
 use App\Enum\CircleModel;
 
 return [
