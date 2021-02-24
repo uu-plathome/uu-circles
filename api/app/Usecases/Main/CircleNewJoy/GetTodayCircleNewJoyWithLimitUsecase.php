@@ -20,8 +20,16 @@ class GetTodayCircleNewJoyWithLimitUsecase
         $now = Carbon::now();
         $today = Carbon::today();
 
-        $todayCircleNewJoy = CircleNewJoy::with('circle')
+        $todayCircleNewJoy = CircleNewJoy::with([
+            'circle:id,slug,release',
+            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+        ])
             ->nowPublic($now)
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                // 公開中のサークルのみ
+                /** @var \App\Models\Circle $query */
+                $query->whereRelease(true);
+            })
             ->whereDay(CircleNewJoyModel::start_date, '>=', $today)
             ->orderByDesc(CircleNewJoyModel::start_date)
             ->take($limit)
@@ -30,7 +38,10 @@ class GetTodayCircleNewJoyWithLimitUsecase
         return [
             'todayCircleNewJoys' => $todayCircleNewJoy->map(
                 fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'         => $circleNewJoy->circle['slug'],
+                    'slug'                    => $circleNewJoy->circle['slug'],
+                    'name'                    => $circleNewJoy->circle->circleInformation['name'],
+                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
                     'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
                 ]
             )->toArray(),
