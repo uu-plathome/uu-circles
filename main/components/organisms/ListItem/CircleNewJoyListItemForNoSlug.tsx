@@ -67,6 +67,7 @@ type Props = {
 }
 const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
+  console.log(todayCircleNewJoy)
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   return (
@@ -129,16 +130,20 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
           <section className="border-l-2 border-black h-full pl-4">
             <h3 className="text-sm ">主催サークル</h3>
             <div className="pl-2 flex justify-around items-center">
-              <div
-                className=" bg-blue-600  w-12 h-12 flex items-center justify-center rounded-full"
-                style={{ backgroundColor: 'blue' }}
-              >
-                <p className="text-white text-xs">
-                  サークル
-                  <br />
-                  アイコン
-                </p>
-              </div>
+              {todayCircleNewJoy.mainImageUrl == null ? (
+                ''
+              ) : (
+                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                  <Image
+                    src={todayCircleNewJoy.mainImageUrl}
+                    alt={`${todayCircleNewJoy.name}のビラ`}
+                    class="mx-auto"
+                    width={44}
+                    height={44}
+                  />
+                </div>
+              )}
+
               {/* <Image
               // src={circle.handbillImageUrl}
               // alt={`${circle.name}のアイコン`}
@@ -146,8 +151,10 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
               // height={height}
               /> */}
               <div className="pl-2">
-                <p className="text-sm">宇都宮大学　デザインラボ</p>
-                <p className="inline text-xl border-b font-bold">U-lab</p>
+                <p className="text-sm">{todayCircleNewJoy.circleType}</p>
+                <p className="inline text-xl border-b font-bold">
+                  {todayCircleNewJoy.name}
+                </p>
               </div>
             </div>
           </section>
