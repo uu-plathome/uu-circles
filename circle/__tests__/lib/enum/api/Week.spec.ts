@@ -31,11 +31,11 @@ describe('Enum Week', () => {
     expect(TestFunc.isFriday('FRIDAY')).toBeTruthy()
     expect(TestFunc.isFriday('aaaaabbbbcccc')).toBeFalsy()
   })
-  it('isSaturady', () => {
-    expect(TestFunc.Week.SATURADY).toBe('SATURADY')
-    expect(TestFunc.isWeek('SATURADY')).toBeTruthy()
-    expect(TestFunc.isSaturady('SATURADY')).toBeTruthy()
-    expect(TestFunc.isSaturady('aaaaabbbbcccc')).toBeFalsy()
+  it('isSaturday', () => {
+    expect(TestFunc.Week.SATURDAY).toBe('SATURDAY')
+    expect(TestFunc.isWeek('SATURDAY')).toBeTruthy()
+    expect(TestFunc.isSaturday('SATURDAY')).toBeTruthy()
+    expect(TestFunc.isSaturday('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isSunday', () => {
     expect(TestFunc.Week.SUNDAY).toBe('SUNDAY')
