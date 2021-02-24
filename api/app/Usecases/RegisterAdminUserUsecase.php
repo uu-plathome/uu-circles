@@ -19,7 +19,7 @@ class RegisterAdminUserUsecase
      */
     public function invoke(AdminUserValueObject $adminUserValueObject): AdminUserValueObject
     {
-        $user = $adminUserValueObject->toUserModel();
+        $user = $adminUserValueObject->toUserProperty();
         $user->display_name ??= $user->username;
         if ($user->active === null) {
             $user->active = true;

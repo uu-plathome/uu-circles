@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\Support\Arr;
 use DateTime;
@@ -26,22 +26,22 @@ class CircleUserValueObject
     public static function of(array $inputs): CircleUserValueObject
     {
         $circleUserValueObject = new CircleUserValueObject();
-        $circleUserValueObject->id = Arr::get($inputs, UserModel::id);
-        $circleUserValueObject->username = Arr::get($inputs, UserModel::username);
-        $circleUserValueObject->email = Arr::get($inputs, UserModel::email);
-        $circleUserValueObject->display_name = Arr::get($inputs, UserModel::display_name);
-        $circleUserValueObject->remember_token = Arr::get($inputs, UserModel::remember_token);
-        $circleUserValueObject->api_token = Arr::get($inputs, UserModel::api_token);
-        $circleUserValueObject->active = Arr::get($inputs, UserModel::active);
-        $circleUserValueObject->password = Arr::get($inputs, UserModel::password);
+        $circleUserValueObject->id = Arr::get($inputs, UserProperty::id);
+        $circleUserValueObject->username = Arr::get($inputs, UserProperty::username);
+        $circleUserValueObject->email = Arr::get($inputs, UserProperty::email);
+        $circleUserValueObject->display_name = Arr::get($inputs, UserProperty::display_name);
+        $circleUserValueObject->remember_token = Arr::get($inputs, UserProperty::remember_token);
+        $circleUserValueObject->api_token = Arr::get($inputs, UserProperty::api_token);
+        $circleUserValueObject->active = Arr::get($inputs, UserProperty::active);
+        $circleUserValueObject->password = Arr::get($inputs, UserProperty::password);
         $circleUserValueObject->circle_id = Arr::get($inputs, "circle_id");
 
-        $emailVerifiedAt = Arr::get($inputs, UserModel::email_verified_at);
+        $emailVerifiedAt = Arr::get($inputs, UserProperty::email_verified_at);
         $circleUserValueObject->email_verified_at = is_string($emailVerifiedAt) ? new Carbon($emailVerifiedAt) : $emailVerifiedAt;
 
-        $createdAt = Arr::get($inputs, UserModel::created_at);
+        $createdAt = Arr::get($inputs, UserProperty::created_at);
         $circleUserValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
-        $updatedAt = Arr::get($inputs, UserModel::updated_at);
+        $updatedAt = Arr::get($inputs, UserProperty::updated_at);
         $circleUserValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
 
         return $circleUserValueObject;
@@ -63,15 +63,15 @@ class CircleUserValueObject
         return $adminUser;
     }
 
-    public function toUserModel(): User
+    public function toUserProperty(): User
     {
         $user = new User([
-            UserModel::username => $this->username,
-            UserModel::display_name => $this->display_name,
-            UserModel::email => $this->email,
-            UserModel::api_token => $this->api_token,
-            UserModel::active => $this->active,
-            UserModel::remember_token => $this->remember_token,
+            UserProperty::username => $this->username,
+            UserProperty::display_name => $this->display_name,
+            UserProperty::email => $this->email,
+            UserProperty::api_token => $this->api_token,
+            UserProperty::active => $this->active,
+            UserProperty::remember_token => $this->remember_token,
         ]);
         $user->id = $this->id;
         return $user;
@@ -84,17 +84,17 @@ class CircleUserValueObject
     public function toArray(bool $isOwn = false): array
     {
         $baseArr = [
-            UserModel::id => $this->id,
-            UserModel::username => $this->username,
-            UserModel::display_name => $this->display_name,
-            UserModel::active => $this->active,
-            UserModel::email => $this->email,
-            UserModel::email_verified_at => $this->email_verified_at,
+            UserProperty::id => $this->id,
+            UserProperty::username => $this->username,
+            UserProperty::display_name => $this->display_name,
+            UserProperty::active => $this->active,
+            UserProperty::email => $this->email,
+            UserProperty::email_verified_at => $this->email_verified_at,
         ];
 
         if ($isOwn) {
-            $baseArr[UserModel::api_token] = $this->api_token;
-            $baseArr[UserModel::remember_token] = $this->remember_token;
+            $baseArr[UserProperty::api_token] = $this->api_token;
+            $baseArr[UserProperty::remember_token] = $this->remember_token;
         }
 
         return $baseArr;
