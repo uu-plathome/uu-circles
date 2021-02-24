@@ -6,12 +6,13 @@ use App\Enum\CircleNewJoyModel;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class GetTodayCircleNewJoyUsecase
 {
     /**
      * 今日の新歓
-     * 
+     *
      * 今日の新歓と明日以降の10件の新歓を取得
      *
      * @return void
@@ -21,7 +22,16 @@ class GetTodayCircleNewJoyUsecase
         $now = Carbon::now();
         $today = Carbon::today();
 
-        $todayCircleNewJoy = CircleNewJoy::with('circle')->nowPublic($now)
+        $todayCircleNewJoys = CircleNewJoy::with([
+            'circle:id,slug,release',
+            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+        ])
+            ->nowPublic($now)
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                // 公開中のサークルのみ
+                /** @var \App\Models\Circle $query */
+                $query->whereRelease(true);
+            })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
                 $query->whereDay(CircleNewJoyModel::start_date, $today)
@@ -30,7 +40,16 @@ class GetTodayCircleNewJoyUsecase
             ->orderByDesc(CircleNewJoyModel::start_date)
             ->get();
 
-        $futureCircleNewJoy = CircleNewJoy::with('circle')->nowPublic($now)
+        $futureCircleNewJoys = CircleNewJoy::with([
+            'circle:id,slug,release',
+            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+        ])
+            ->nowPublic($now)
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                // 公開中のサークルのみ
+                /** @var \App\Models\Circle $query */
+                $query->whereRelease(true);
+            })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
                 $query->whereDay(CircleNewJoyModel::start_date, '>', $today);
@@ -40,15 +59,21 @@ class GetTodayCircleNewJoyUsecase
             ->get();
 
         return [
-            'todayCircleNewJoys' => $todayCircleNewJoy->map(
+            'todayCircleNewJoys' => $todayCircleNewJoys->map(
                 fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'         => $circleNewJoy->circle['slug'],
+                    'slug'                    => $circleNewJoy->circle['slug'],
+                    'name'                    => $circleNewJoy->circle->circleInformation['name'],
+                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
                     'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
                 ]
             )->toArray(),
-            'futureCircleNewJoys' => $futureCircleNewJoy->map(
+            'futureCircleNewJoys' => $futureCircleNewJoys->map(
                 fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'         => $circleNewJoy->circle['slug'],
+                    'slug'                    => $circleNewJoy->circle['slug'],
+                    'name'                    => $circleNewJoy->circle->circleInformation['name'],
+                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
                     'circleNewJoyValueObject' => circleNewJoyValueObject::byEloquent($circleNewJoy)
                 ]
             )->toArray(),
