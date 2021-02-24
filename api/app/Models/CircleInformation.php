@@ -193,7 +193,7 @@ class CircleInformation extends Model
     {
         return $query->where(function ($query) {
             /** @var CircleInformation $query */
-            $query->where(function () {
+            $query->where(function ($query) {
                 /** @var CircleInformation $query */
                 $query->where(CircleInformationModel::common_date_of_activity_monday, true)
                     ->orWhere(CircleInformationModel::online_date_of_activity_monday, true);
@@ -216,7 +216,7 @@ class CircleInformation extends Model
     {
         return $query->where(function ($query) {
             /** @var CircleInformation $query */
-            $query->where(function () {
+            $query->where(function ($query) {
                 /** @var CircleInformation $query */
                 $query->where(CircleInformationModel::common_date_of_activity_tuesday, true)
                     ->orWhere(CircleInformationModel::online_date_of_activity_tuesday, true);
@@ -239,7 +239,7 @@ class CircleInformation extends Model
     {
         return $query->where(function ($query) {
             /** @var CircleInformation $query */
-            $query->where(function () {
+            $query->where(function ($query) {
                 /** @var CircleInformation $query */
                 $query->where(CircleInformationModel::common_date_of_activity_wednesday, true)
                     ->orWhere(CircleInformationModel::online_date_of_activity_wednesday, true);
@@ -262,7 +262,7 @@ class CircleInformation extends Model
     {
         return $query->where(function ($query) {
             /** @var CircleInformation $query */
-            $query->where(function () {
+            $query->where(function ($query) {
                 /** @var CircleInformation $query */
                 $query->where(CircleInformationModel::common_date_of_activity_thursday, true)
                     ->orWhere(CircleInformationModel::online_date_of_activity_thursday, true);
@@ -285,7 +285,7 @@ class CircleInformation extends Model
     {
         return $query->where(function ($query) {
             /** @var CircleInformation $query */
-            $query->where(function () {
+            $query->where(function ($query) {
                 /** @var CircleInformation $query */
                 $query->where(CircleInformationModel::common_date_of_activity_friday, true)
                     ->orWhere(CircleInformationModel::online_date_of_activity_friday, true);

@@ -101,6 +101,31 @@ class SearchTagCircleListUsecase
                             $query->whereOnlineDateOfActivitySunday(true);
                         });
                     });
+                })->when($param->only_monday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereOnlyMonday();
+                    });
+                })->when($param->only_tuesday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereOnlyTuesday();
+                    });
+                })->when($param->only_wednesday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereOnlyWednesday();
+                    });
+                })->when($param->only_thursday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereOnlyThursday();
+                    });
+                })->when($param->only_friday, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereOnlyFriday();
+                    });
                 });
             })
             ->when($this->shouldCircleTagSearch($param), function ($query) use ($param) {
