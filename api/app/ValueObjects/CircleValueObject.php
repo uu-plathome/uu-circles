@@ -73,68 +73,71 @@ class CircleValueObject
 
     public static function byEloquent(
         Circle $circle,
-        CircleInformation $circleInformation,
+        ?CircleInformation $circleInformation,
         ?CircleHandbill $circleHandbill
     ): CircleValueObject {
         $circleValueObject = new CircleValueObject();
         $circleValueObject->id = $circle->id;
         $circleValueObject->slug = $circle->slug;
         $circleValueObject->release = $circle->release;
-        $circleValueObject->circle_type = $circleInformation->circle_type;
-        $circleValueObject->name = $circleInformation->name;
-        $circleValueObject->name_kana = $circleInformation->name_kana;
-        $circleValueObject->short_name = $circleInformation->short_name;
-        $circleValueObject->prefix_name = $circleInformation->prefix_name;
-        $circleValueObject->description = $circleInformation->description;
-        $circleValueObject->common_place_of_activity = $circleInformation->common_place_of_activity;
-        $circleValueObject->common_place_of_activity_detail = $circleInformation->common_place_of_activity_detail;
-        $circleValueObject->common_date_of_activity_monday = $circleInformation->common_date_of_activity_monday;
-        $circleValueObject->common_date_of_activity_tuesday = $circleInformation->common_date_of_activity_tuesday;
-        $circleValueObject->common_date_of_activity_wednesday = $circleInformation->common_date_of_activity_wednesday;
-        $circleValueObject->common_date_of_activity_thursday = $circleInformation->common_date_of_activity_thursday;
-        $circleValueObject->common_date_of_activity_friday = $circleInformation->common_date_of_activity_friday;
-        $circleValueObject->common_date_of_activity_saturday = $circleInformation->common_date_of_activity_saturday;
-        $circleValueObject->common_date_of_activity_sunday = $circleInformation->common_date_of_activity_sunday;
-        $circleValueObject->common_date_of_activity_detail = $circleInformation->common_date_of_activity_detail;
-        $circleValueObject->is_online_activity = $circleInformation->is_online_activity;
-        $circleValueObject->online_place_of_activity_detail = $circleInformation->online_place_of_activity_detail;
-        $circleValueObject->online_date_of_activity_monday = $circleInformation->online_date_of_activity_monday;
-        $circleValueObject->online_date_of_activity_tuesday = $circleInformation->online_date_of_activity_tuesday;
-        $circleValueObject->online_date_of_activity_wednesday = $circleInformation->online_date_of_activity_wednesday;
-        $circleValueObject->online_date_of_activity_thursday = $circleInformation->online_date_of_activity_thursday;
-        $circleValueObject->online_date_of_activity_friday = $circleInformation->online_date_of_activity_friday;
-        $circleValueObject->online_date_of_activity_saturday = $circleInformation->online_date_of_activity_saturday;
-        $circleValueObject->online_date_of_activity_sunday = $circleInformation->online_date_of_activity_sunday;
-        $circleValueObject->online_date_of_activity_detail = $circleInformation->online_date_of_activity_detail;
-        $circleValueObject->is_club_activities = $circleInformation->is_club_activities;
-        $circleValueObject->appealing_point1 = $circleInformation->appealing_point1;
-        $circleValueObject->appealing_point2 = $circleInformation->appealing_point2;
-        $circleValueObject->appealing_point3 = $circleInformation->appealing_point3;
-        $circleValueObject->admission_fee_per_year = $circleInformation->admission_fee_per_year;
-        $circleValueObject->weekly_activity_days = $circleInformation->weeklyActivityDays();
-        $circleValueObject->mammoth = $circleInformation->mammoth;
-        $circleValueObject->active_activity = $circleInformation->activeActivity;
-        $circleValueObject->number_of_members = $circleInformation->number_of_members;
-        $circleValueObject->public_email = $circleInformation->public_email;
-        $circleValueObject->twitter_url = $circleInformation->twitter_url;
-        $circleValueObject->facebook_url = $circleInformation->facebook_url;
-        $circleValueObject->instagram_url = $circleInformation->instagram_url;
-        $circleValueObject->line_url = $circleInformation->line_url;
-        $circleValueObject->youtube_url = $circleInformation->youtube_url;
-        $circleValueObject->homepage_url = $circleInformation->homepage_url;
-        $circleValueObject->peing_url = $circleInformation->peing_url;
-        $circleValueObject->github_url = $circleInformation->github_url;
-        $circleValueObject->tiktok_url = $circleInformation->tiktok_url;
-        $circleValueObject->participation_url = $circleInformation->participation_url;
-        $circleValueObject->created_at = $circle->created_at;
-        $circleValueObject->updated_at = $circle->updated_at;
-        $circleValueObject->main_image_url = $circleInformation->main_image_url;
-        $circleValueObject->activity_image_url1 = $circleInformation->activity_image_url1;
-        $circleValueObject->activity_image_url2 = $circleInformation->activity_image_url2;
-        $circleValueObject->activity_image_url3 = $circleInformation->activity_image_url3;
-        $circleValueObject->activity_image_url4 = $circleInformation->activity_image_url4;
-        $circleValueObject->activity_image_url5 = $circleInformation->activity_image_url5;
-        $circleValueObject->activity_image_url6 = $circleInformation->activity_image_url6;
+        $circleValueObject->name = $circle->name;
+
+        if ($circleInformation) {
+            $circleValueObject->circle_type = $circleInformation->circle_type;
+            $circleValueObject->name_kana = $circleInformation->name_kana;
+            $circleValueObject->short_name = $circleInformation->short_name;
+            $circleValueObject->prefix_name = $circleInformation->prefix_name;
+            $circleValueObject->description = $circleInformation->description;
+            $circleValueObject->common_place_of_activity = $circleInformation->common_place_of_activity;
+            $circleValueObject->common_place_of_activity_detail = $circleInformation->common_place_of_activity_detail;
+            $circleValueObject->common_date_of_activity_monday = $circleInformation->common_date_of_activity_monday;
+            $circleValueObject->common_date_of_activity_tuesday = $circleInformation->common_date_of_activity_tuesday;
+            $circleValueObject->common_date_of_activity_wednesday = $circleInformation->common_date_of_activity_wednesday;
+            $circleValueObject->common_date_of_activity_thursday = $circleInformation->common_date_of_activity_thursday;
+            $circleValueObject->common_date_of_activity_friday = $circleInformation->common_date_of_activity_friday;
+            $circleValueObject->common_date_of_activity_saturday = $circleInformation->common_date_of_activity_saturday;
+            $circleValueObject->common_date_of_activity_sunday = $circleInformation->common_date_of_activity_sunday;
+            $circleValueObject->common_date_of_activity_detail = $circleInformation->common_date_of_activity_detail;
+            $circleValueObject->is_online_activity = $circleInformation->is_online_activity;
+            $circleValueObject->online_place_of_activity_detail = $circleInformation->online_place_of_activity_detail;
+            $circleValueObject->online_date_of_activity_monday = $circleInformation->online_date_of_activity_monday;
+            $circleValueObject->online_date_of_activity_tuesday = $circleInformation->online_date_of_activity_tuesday;
+            $circleValueObject->online_date_of_activity_wednesday = $circleInformation->online_date_of_activity_wednesday;
+            $circleValueObject->online_date_of_activity_thursday = $circleInformation->online_date_of_activity_thursday;
+            $circleValueObject->online_date_of_activity_friday = $circleInformation->online_date_of_activity_friday;
+            $circleValueObject->online_date_of_activity_saturday = $circleInformation->online_date_of_activity_saturday;
+            $circleValueObject->online_date_of_activity_sunday = $circleInformation->online_date_of_activity_sunday;
+            $circleValueObject->online_date_of_activity_detail = $circleInformation->online_date_of_activity_detail;
+            $circleValueObject->is_club_activities = $circleInformation->is_club_activities;
+            $circleValueObject->appealing_point1 = $circleInformation->appealing_point1;
+            $circleValueObject->appealing_point2 = $circleInformation->appealing_point2;
+            $circleValueObject->appealing_point3 = $circleInformation->appealing_point3;
+            $circleValueObject->admission_fee_per_year = $circleInformation->admission_fee_per_year;
+            $circleValueObject->weekly_activity_days = $circleInformation->weeklyActivityDays();
+            $circleValueObject->mammoth = $circleInformation->mammoth;
+            $circleValueObject->active_activity = $circleInformation->activeActivity;
+            $circleValueObject->number_of_members = $circleInformation->number_of_members;
+            $circleValueObject->public_email = $circleInformation->public_email;
+            $circleValueObject->twitter_url = $circleInformation->twitter_url;
+            $circleValueObject->facebook_url = $circleInformation->facebook_url;
+            $circleValueObject->instagram_url = $circleInformation->instagram_url;
+            $circleValueObject->line_url = $circleInformation->line_url;
+            $circleValueObject->youtube_url = $circleInformation->youtube_url;
+            $circleValueObject->homepage_url = $circleInformation->homepage_url;
+            $circleValueObject->peing_url = $circleInformation->peing_url;
+            $circleValueObject->github_url = $circleInformation->github_url;
+            $circleValueObject->tiktok_url = $circleInformation->tiktok_url;
+            $circleValueObject->participation_url = $circleInformation->participation_url;
+            $circleValueObject->created_at = $circle->created_at;
+            $circleValueObject->updated_at = $circle->updated_at;
+            $circleValueObject->main_image_url = $circleInformation->main_image_url;
+            $circleValueObject->activity_image_url1 = $circleInformation->activity_image_url1;
+            $circleValueObject->activity_image_url2 = $circleInformation->activity_image_url2;
+            $circleValueObject->activity_image_url3 = $circleInformation->activity_image_url3;
+            $circleValueObject->activity_image_url4 = $circleInformation->activity_image_url4;
+            $circleValueObject->activity_image_url5 = $circleInformation->activity_image_url5;
+            $circleValueObject->activity_image_url6 = $circleInformation->activity_image_url6;
+        }
         $circleValueObject->handbill_image_url = $circleHandbill ?  $circleHandbill->image_url : null;
 
         return $circleValueObject;
@@ -223,10 +226,10 @@ class CircleValueObject
             CircleModel::id         => $this->id,
             CircleModel::slug       => $this->slug,
             CircleModel::release    => $this->release,
+            CircleModel::name       => $this->name,
             CircleModel::created_at => $this->created_at,
             CircleModel::updated_at => $this->updated_at,
             CircleInformationModel::circle_type => $this->circle_type,
-            CircleInformationModel::name => $this->name,
             CircleInformationModel::name_kana => $this->name_kana,
             CircleInformationModel::short_name => $this->short_name,
             CircleInformationModel::prefix_name => $this->prefix_name,
