@@ -10,6 +10,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import Link from 'next/link'
 import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Head from 'next/head'
 type Props = {
   errorCode?: number
 
@@ -21,14 +22,14 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
 
   return (
     <div>
+        <Head>
+            <title>今日の新歓 | UU-circles</title>
+        </Head>
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            {isMd ? (
-              <h1 className="text-2xl py-20 text-center">今日の新歓</h1>
-            ) : (
-              <h1 className="text-2xl py-8 text-center">今日の新歓</h1>
-            )}
+              <h1 className="text-2xl py-8 md:py-20 text-center">今日の新歓</h1>
 
             {isMd ? (
               ''
