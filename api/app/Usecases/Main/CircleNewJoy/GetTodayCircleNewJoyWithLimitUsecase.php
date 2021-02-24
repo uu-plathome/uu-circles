@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Main\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
@@ -30,8 +30,8 @@ class GetTodayCircleNewJoyWithLimitUsecase
                 /** @var \App\Models\Circle $query */
                 $query->whereRelease(true);
             })
-            ->whereDay(CircleNewJoyModel::start_date, '>=', $today)
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->whereDay(CircleNewJoyProperty::start_date, '>=', $today)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->take($limit)
             ->get();
 

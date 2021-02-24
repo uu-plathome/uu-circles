@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Main\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
@@ -34,10 +34,10 @@ class GetTodayCircleNewJoyUsecase
             })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
-                $query->whereDay(CircleNewJoyModel::start_date, $today)
-                    ->orWhereDay(CircleNewJoyModel::end_date, $today);
+                $query->whereDay(CircleNewJoyProperty::start_date, $today)
+                    ->orWhereDay(CircleNewJoyProperty::end_date, $today);
             })
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->get();
 
         $futureCircleNewJoys = CircleNewJoy::with([
@@ -52,9 +52,9 @@ class GetTodayCircleNewJoyUsecase
             })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
-                $query->whereDay(CircleNewJoyModel::start_date, '>', $today);
+                $query->whereDay(CircleNewJoyProperty::start_date, '>', $today);
             })
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->take(10)
             ->get();
 
