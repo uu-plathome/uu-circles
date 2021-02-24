@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\CircleUser;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\SendRegisterEmailCircleUserRequest;
 use App\Models\User;
@@ -21,7 +21,7 @@ class SendRegisterEmailCircleUserController extends Controller
      */
     public function __invoke(SendRegisterEmailCircleUserRequest $request, int $circleId)
     {
-        $email = $request->get(UserModel::email);
+        $email = $request->get(UserProperty::email);
 
         try {
             $user = User::whereEmail($email)->firstOrFail();

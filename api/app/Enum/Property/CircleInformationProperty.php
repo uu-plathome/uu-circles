@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Enum;
+namespace App\Enum\Property;
 
-class CircleInformationModel
+class CircleInformationProperty extends BaseProperty
 {
-    const id = 'id';
     const circle_id = 'circle_id';
     const circle_type = 'circle_type';
-    const name = 'name';
     const name_kana = 'name_kana';
     const short_name = 'short_name';
     const prefix_name = 'prefix_name';
@@ -56,6 +54,4 @@ class CircleInformationModel
     const activity_image_url4 = 'activity_image_url4';
     const activity_image_url5 = 'activity_image_url5';
     const activity_image_url6 = 'activity_image_url6';
-    const created_at = 'created_at';
-    const updated_at = 'updated_at';
 }

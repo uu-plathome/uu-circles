@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VerificationResendAdminUserFormRequest extends FormRequest
@@ -25,7 +25,7 @@ class VerificationResendAdminUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            UserModel::email => [ 'required', 'email', 'string' ]
+            UserProperty::email => ['required', 'email', 'string']
         ];
     }
 }

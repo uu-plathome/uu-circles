@@ -2,6 +2,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { Week } from '@/lib/enum/api/Week'
 
 export const ja = {
   [CircleType.OFFICIAL_ORGANIZATION]: '公認団体',
@@ -41,6 +42,45 @@ export const ja = {
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
   CLUB: '部活',
+  Week: {
+    [Week.MONDAY]: '月曜日',
+    [Week.TUESDAY]: '火曜日',
+    [Week.WEDNESDAY]: '水曜日',
+    [Week.THURSDAY]: '木曜日',
+    [Week.FRIDAY]: '金曜日',
+    [Week.SATURDAY]: '土曜日',
+    [Week.SUNDAY]: '日曜日',
+  },
+  CircleTypeTitle: {
+    [CircleType.OFFICIAL_ORGANIZATION]: "サークル活動の王道",
+    [CircleType.UNOFFICIAL_ORGANIZATION]: "公に認められなくても良い。大学内の自由な自治体",
+    [CircleType.SENDING_ORGANIZATION]: "公認を目指して邁進中",
+    [CircleType.STUDENT_GROUP]: "社会のために。過去と未来の自分のために",
+    CLUB: "大学の1つの顔",
+  },
+  CircleTypeText: {
+    [CircleType.OFFICIAL_ORGANIZATION]: "大学公認のサークルです。何かと不安なあなたにも。折り紙付きの安心感が、あなたの新入生生活を充実したものにします。確実なスタートダッシュを決めて、今後の生活とサークルを盛り上げてみませんか？",
+    [CircleType.UNOFFICIAL_ORGANIZATION]: "学校非公認で活動しているサークルです。学校に認められてはいませんが、縛られもしていません。公認サークルには見えない可能性、一緒に切り拓きませんか？",
+    [CircleType.SENDING_ORGANIZATION]: "公認サークルになりたい非公認サークルです。大輪の花が眠っているかもしれません。可能性のつぼみを一緒に開きませんか？",
+    [CircleType.STUDENT_GROUP]: "。サークルと違い、外部を対象にした活動を主とする集団です。（就職にも有利かも。）このサイトも学生集団制作です。一緒に過去の自分をサポートし、未来の自分の成功に繋げましょう。",
+    CLUB: "その分野での大学の代表となるのが部活動です。大学の名前を背負って、宇都宮大学という集団の一つの顔を担ってみませんか？"
+  },
+  CircleTagTitle: {
+
+  },
+  CircleTagText: {
+
+  },
 }
 
-export const __ = (key: string) => (ja[key] ? ja[key] : key)
+export const __ = (key: string, namespace?: string) => {
+  try {
+    if (!namespace) {
+      return ja[key] ? ja[key] : key
+    }
+
+    return ja[namespace][key] ? ja[namespace][key] : key
+  } catch (e) {
+    return key
+  }
+}

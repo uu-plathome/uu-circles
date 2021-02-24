@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Main\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\Circle;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
@@ -21,7 +21,7 @@ class IndexCircleNewJoyUsecase
     {
         $circleNewJoys = CircleNewJoy::nowPublic(Carbon::now())
             ->whereCircleId($circleId)
-            ->orderBy(CircleNewJoyModel::start_date)
+            ->orderBy(CircleNewJoyProperty::start_date)
             ->get();
 
         $mapCircleNewJoys = $this->splitBeforeOrAfter($circleNewJoys);

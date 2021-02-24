@@ -53,7 +53,7 @@ export const ja = {
     [Week.WEDNESDAY]: '水曜日',
     [Week.THURSDAY]: '木曜日',
     [Week.FRIDAY]: '金曜日',
-    [Week.SATURADY]: '土曜日',
+    [Week.SATURDAY]: '土曜日',
     [Week.SUNDAY]: '日曜日',
   },
 }

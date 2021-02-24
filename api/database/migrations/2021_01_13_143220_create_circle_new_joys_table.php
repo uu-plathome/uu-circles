@@ -29,6 +29,10 @@ class CreateCircleNewJoysTable extends Migration
             $table->timestamps();
 
             $table->foreign('circle_id')->references('id')->on('circles');
+            $table->index([
+                'release',
+                'publish_from',
+            ]);
         });
 
         DB::statement("ALTER TABLE circle_new_joys COMMENT 'サークル新歓'");

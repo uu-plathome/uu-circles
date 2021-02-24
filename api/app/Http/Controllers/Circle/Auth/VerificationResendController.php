@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Circle\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +19,7 @@ class VerificationResendController extends Controller
      */
     public function __invoke(VerificationResendCircleUserFormRequest $request): JsonResponse
     {
-        $email = $request->get(UserModel::email);
+        $email = $request->get(UserProperty::email);
 
         try {
             $user = User::whereEmail($email)->firstOrFail();

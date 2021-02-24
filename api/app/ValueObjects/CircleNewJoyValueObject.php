@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -26,27 +26,27 @@ class CircleNewJoyValueObject
     public static function of(array $inputs): CircleNewJoyValueObject
     {
         $circleNewJoyValueObject = new CircleNewJoyValueObject();
-        $circleNewJoyValueObject->id = Arr::get($inputs, CircleNewJoyModel::id);
-        $circleNewJoyValueObject->circle_id = Arr::get($inputs, CircleNewJoyModel::circle_id);
-        $circleNewJoyValueObject->title = Arr::get($inputs, CircleNewJoyModel::title);
-        $circleNewJoyValueObject->description = Arr::get($inputs, CircleNewJoyModel::description);
-        $circleNewJoyValueObject->url = Arr::get($inputs, CircleNewJoyModel::url);
-        $circleNewJoyValueObject->place_of_activity = Arr::get($inputs, CircleNewJoyModel::place_of_activity);
-        $circleNewJoyValueObject->place_of_activity_detail = Arr::get($inputs, CircleNewJoyModel::place_of_activity_detail);
+        $circleNewJoyValueObject->id = Arr::get($inputs, CircleNewJoyProperty::id);
+        $circleNewJoyValueObject->circle_id = Arr::get($inputs, CircleNewJoyProperty::circle_id);
+        $circleNewJoyValueObject->title = Arr::get($inputs, CircleNewJoyProperty::title);
+        $circleNewJoyValueObject->description = Arr::get($inputs, CircleNewJoyProperty::description);
+        $circleNewJoyValueObject->url = Arr::get($inputs, CircleNewJoyProperty::url);
+        $circleNewJoyValueObject->place_of_activity = Arr::get($inputs, CircleNewJoyProperty::place_of_activity);
+        $circleNewJoyValueObject->place_of_activity_detail = Arr::get($inputs, CircleNewJoyProperty::place_of_activity_detail);
 
-        $publishFrom = Arr::get($inputs, CircleNewJoyModel::publish_from);
+        $publishFrom = Arr::get($inputs, CircleNewJoyProperty::publish_from);
         $circleNewJoyValueObject->publish_from = is_string($publishFrom) ? new Carbon($publishFrom) : $publishFrom;
 
-        $startDate = Arr::get($inputs, CircleNewJoyModel::start_date);
+        $startDate = Arr::get($inputs, CircleNewJoyProperty::start_date);
         $circleNewJoyValueObject->start_date = is_string($startDate) ? new Carbon($startDate) : $startDate;
 
-        $endDate = Arr::get($inputs, CircleNewJoyModel::end_date);
+        $endDate = Arr::get($inputs, CircleNewJoyProperty::end_date);
         $circleNewJoyValueObject->end_date = is_string($endDate) ? new Carbon($endDate) : $endDate;
-        $circleNewJoyValueObject->release = Arr::get($inputs, CircleNewJoyModel::release);
+        $circleNewJoyValueObject->release = Arr::get($inputs, CircleNewJoyProperty::release);
 
-        $createdAt = Arr::get($inputs, CircleNewJoyModel::created_at);
+        $createdAt = Arr::get($inputs, CircleNewJoyProperty::created_at);
         $circleNewJoyValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
-        $updatedAt = Arr::get($inputs, CircleNewJoyModel::updated_at);
+        $updatedAt = Arr::get($inputs, CircleNewJoyProperty::updated_at);
         $circleNewJoyValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
 
         return $circleNewJoyValueObject;
@@ -70,19 +70,19 @@ class CircleNewJoyValueObject
     public function toArray(): array
     {
         return [
-            CircleNewJoyModel::id => $this->id,
-            CircleNewJoyModel::circle_id => $this->circle_id,
-            CircleNewJoyModel::title => $this->title,
-            CircleNewJoyModel::description => $this->description,
-            CircleNewJoyModel::url => $this->url,
-            CircleNewJoyModel::place_of_activity => $this->place_of_activity,
-            CircleNewJoyModel::place_of_activity_detail => $this->place_of_activity_detail,
-            CircleNewJoyModel::publish_from => $this->publish_from,
-            CircleNewJoyModel::start_date => $this->start_date,
-            CircleNewJoyModel::end_date => $this->end_date,
-            CircleNewJoyModel::release => $this->release,
-            CircleNewJoyModel::created_at => $this->created_at,
-            CircleNewJoyModel::updated_at => $this->updated_at,
+            CircleNewJoyProperty::id => $this->id,
+            CircleNewJoyProperty::circle_id => $this->circle_id,
+            CircleNewJoyProperty::title => $this->title,
+            CircleNewJoyProperty::description => $this->description,
+            CircleNewJoyProperty::url => $this->url,
+            CircleNewJoyProperty::place_of_activity => $this->place_of_activity,
+            CircleNewJoyProperty::place_of_activity_detail => $this->place_of_activity_detail,
+            CircleNewJoyProperty::publish_from => $this->publish_from,
+            CircleNewJoyProperty::start_date => $this->start_date,
+            CircleNewJoyProperty::end_date => $this->end_date,
+            CircleNewJoyProperty::release => $this->release,
+            CircleNewJoyProperty::created_at => $this->created_at,
+            CircleNewJoyProperty::updated_at => $this->updated_at,
         ];
     }
 }
