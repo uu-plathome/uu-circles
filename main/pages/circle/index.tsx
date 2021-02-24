@@ -6,6 +6,7 @@ import { getAllCircleList } from "@/infra/api/circle";
 import { Circle } from "@/lib/types/model/Circle";
 import { TwoColumnContainer } from "@/components/molecules/Container/TwoColumnContainer";
 import { CircleSidebar } from "@/components/organisms/Circles/CircleSidebar";
+import Head from "next/head";
 
 type Props = {
     errorCode?: number
@@ -16,6 +17,10 @@ const Page: NextPage<Props> = ({
 }) => {
     return (
         <div>
+            <Head>
+                <title>サークル一覧 | UU-circles</title>
+            </Head>
+
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>

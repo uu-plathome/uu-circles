@@ -7,9 +7,10 @@ import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
 import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
-import { MainCategoryList } from "@/components/organisms/List/MainCategoryList";
+import { MainTagList } from "@/components/organisms/Main/MainTagList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { Advertise } from "@/lib/types/model/Advertise";
+import Head from "next/head";
 
 type Props = {
     advertises: Advertise[]
@@ -18,6 +19,10 @@ type Props = {
 const Index: NextPage<Props> = ({ advertises, circles }) => {
     return (
         <div>
+            <Head>
+                <title>UU-circles</title>
+            </Head>
+
             <BaseLayout>
                 <div className="w-full bg-gray-600 h-80">
 
@@ -31,7 +36,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
                 <BaseContainer>
                     <div className="px-6">
 
-                        <MainCategoryList />
+                        <MainTagList />
 
                         {/*  サークル一覧 */}
                         <MainPageCircleList circles={circles} />

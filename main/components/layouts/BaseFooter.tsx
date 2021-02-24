@@ -162,6 +162,11 @@ const BaseFooter: FC<Props> = () => {
                                     <a className="text-gray-400 font-bold text-sm">サークルを見つける</a>
                                 </Link>
                             </li>
+                            <li className="mb-3">
+                                <Link href="/circle/newjoy">
+                                    <a className="text-gray-400 font-bold text-sm">今日の新歓</a>
+                                </Link>
+                            </li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">運営団体について</a></li>
                             <li className="mb-3"><a href="https://forms.gle/1oULcDjiPaknvfvc8" target="_blank" rel="noreferrer" className="text-gray-400 font-bold text-sm">お問い合わせ</a></li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">ヘルプ</a></li>
