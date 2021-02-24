@@ -18,7 +18,7 @@ const Page: NextPage<Props> = ({
     return (
         <div>
             <Head>
-                <title>サークル一覧</title>
+                <title>サークル一覧 | UU-circles</title>
             </Head>
 
             <BaseLayout>

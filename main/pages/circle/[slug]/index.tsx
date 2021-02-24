@@ -15,6 +15,7 @@ import Color from 'colors'
 import { CircleTypeBadge } from "@/components/molecules/Badge/CircleTypeBadge";
 import { CircleType } from "@/lib/enum/api/CircleType";
 import { SnsList } from "@/components/organisms/ShowCircle/SnsList";
+import Head from "next/head";
 
 type Props = {
     circle?: Circle
@@ -24,6 +25,11 @@ type Props = {
 const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
     return (
         <div>
+            <Head>
+                <title>{ circle.name } | UU-circles</title>
+            </Head>
+
+
             <BaseLayout>
                 <div>
                     <BaseContainer>
