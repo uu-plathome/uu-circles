@@ -7,7 +7,7 @@ import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
 import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
-import { MainCategoryList } from "@/components/organisms/List/MainCategoryList";
+import { MainTagList } from "@/components/organisms/Main/MainTagList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { Advertise } from "@/lib/types/model/Advertise";
 
@@ -31,7 +31,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
                 <BaseContainer>
                     <div className="px-6">
 
-                        <MainCategoryList />
+                        <MainTagList />
 
                         {/*  サークル一覧 */}
                         <MainPageCircleList circles={circles} />
