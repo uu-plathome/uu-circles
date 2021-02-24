@@ -67,7 +67,7 @@ type Props = {
 }
 const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  console.log(todayCircleNewJoy)
+  console.log(todayCircleNewJoy) //しょっちゅう使うため、コメントアウトしています。
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   return (
@@ -118,7 +118,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
           </section>
           <section className="h-full w-20" style={{ paddingTop: '50px' }}>
             <Link
-              href="/circle/[slug]/newjoy/[circleNewJoy]"
+              href="/circle/[slug]/newjoy/[circleNewJoy.id]"
               as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
             >
               <a className="text-blue-500 border-b border-blue-500 text-xs w-20">
@@ -127,16 +127,27 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
             </Link>
           </section>
 
-          <section className="border-l-2 border-black h-full pl-4">
-            <h3 className="text-sm ">主催サークル</h3>
+          <section
+            className="border-l-2 border-gray-600 h-full pl-2"
+            style={{ width: '270px' }}
+          >
+            <h3 className="text-xs  ">主催サークル</h3>
             <div className="pl-2 flex justify-around items-center">
               {todayCircleNewJoy.mainImageUrl == null ? (
-                ''
+                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                  <Image
+                    src={'/images/no-image.png'}
+                    alt={`${todayCircleNewJoy.name}のアイコン`}
+                    class="mx-auto"
+                    width={44}
+                    height={44}
+                  />
+                </div>
               ) : (
                 <div className="  w-12 h-12 flex items-center justify-center rounded-full">
                   <Image
                     src={todayCircleNewJoy.mainImageUrl}
-                    alt={`${todayCircleNewJoy.name}のビラ`}
+                    alt={`${todayCircleNewJoy.name}のアイコン`}
                     class="mx-auto"
                     width={44}
                     height={44}
@@ -144,17 +155,13 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
                 </div>
               )}
 
-              {/* <Image
-              // src={circle.handbillImageUrl}
-              // alt={`${circle.name}のアイコン`}
-              // width={width}
-              // height={height}
-              /> */}
-              <div className="pl-2">
-                <p className="text-sm">{todayCircleNewJoy.circleType}</p>
-                <p className="inline text-xl border-b font-bold">
-                  {todayCircleNewJoy.name}
-                </p>
+              <div className="pl-2 mt-2" style={{ width: '280px' }}>
+                <p className="text-sm ">{todayCircleNewJoy.circleType}</p>
+                <Link href="/circle/[slug]" as={`/circle/${slug}`}>
+                  <a className="inline text-xl border-b font-bold">
+                    {todayCircleNewJoy.name}
+                  </a>
+                </Link>
               </div>
             </div>
           </section>
