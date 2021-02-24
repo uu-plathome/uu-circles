@@ -3,7 +3,7 @@
 namespace App\ValueObjects;
 
 use App\Enum\Property\CircleInformationProperty;
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
@@ -142,14 +142,14 @@ class CircleValueObject
         return $circleValueObject;
     }
 
-    public function toCircleModel(): Circle
+    public function toCircleProperty(): Circle
     {
         $circle = new Circle([
-            CircleModel::name       => $this->name,
-            CircleModel::slug       => $this->slug,
-            CircleModel::release    => $this->release,
-            CircleModel::created_at => $this->created_at,
-            CircleModel::updated_at => $this->updated_at,
+            CircleProperty::name       => $this->name,
+            CircleProperty::slug       => $this->slug,
+            CircleProperty::release    => $this->release,
+            CircleProperty::created_at => $this->created_at,
+            CircleProperty::updated_at => $this->updated_at,
         ]);
         $circle->id = $this->id;
         return $circle;
@@ -222,12 +222,12 @@ class CircleValueObject
     public function toArray(): array
     {
         return [
-            CircleModel::id         => $this->id,
-            CircleModel::slug       => $this->slug,
-            CircleModel::release    => $this->release,
-            CircleModel::name       => $this->name,
-            CircleModel::created_at => $this->created_at,
-            CircleModel::updated_at => $this->updated_at,
+            CircleProperty::id         => $this->id,
+            CircleProperty::slug       => $this->slug,
+            CircleProperty::release    => $this->release,
+            CircleProperty::name       => $this->name,
+            CircleProperty::created_at => $this->created_at,
+            CircleProperty::updated_at => $this->updated_at,
             CircleInformationProperty::circle_type => $this->circle_type,
             CircleInformationProperty::name_kana => $this->name_kana,
             CircleInformationProperty::short_name => $this->short_name,
