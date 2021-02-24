@@ -1,6 +1,5 @@
 import { AuthHeader } from "@/components/layouts/AuthHeader"
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { checkVerify, verifyPassword } from "@/infra/api/auth"
 import { useInput } from "@/hooks/useInput"
 import { NextPage } from "next"
@@ -11,6 +10,7 @@ import { isVerificationInvalidError } from "@/lib/types/api/VerificationInvalidE
 import { isVerificationConfirmRequestValidationError } from "@/lib/types/api/VerificationConfirmRequest"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
 import Head from "next/head"
+import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -101,11 +101,10 @@ const Login: NextPage = () => {
                         {!success && !error ? (
                             <form onSubmit={onSubmit}>
                                 <div className="px-4 mb-4">
-                                    <BaseTextField
+                                    <SimplePasswordTextField
                                         label="パスワード"
                                         id="password"
                                         name="password"
-                                        expand
                                         { ...password }
                                     />
                                 </div>

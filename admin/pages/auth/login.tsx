@@ -1,6 +1,7 @@
 import { AuthHeader } from "@/components/layouts/AuthHeader"
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
 import { BaseTextField } from "@/components/atoms/form/BaseTextField"
+import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
 import { login } from "@/infra/api/auth"
 import { useStringInput } from "@/hooks/useInput"
 import { NextPage } from "next"
@@ -88,11 +89,10 @@ const Login: NextPage = () => {
                                     { ...usernameOrEmail }
                                 />
 
-                                <BaseTextField
+                                <SimplePasswordTextField
                                     label="パスワード"
                                     id="password"
                                     name="password"
-                                    expand
                                     { ...password }
                                 />
                             </div>
