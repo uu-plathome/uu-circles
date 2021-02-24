@@ -67,7 +67,7 @@ type Props = {
 }
 const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  console.log(todayCircleNewJoy) //しょっちゅう使うため、コメントアウトしています。
+  // console.log(todayCircleNewJoy) //しょっちゅう使うため、コメントアウトしています。
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   return (
@@ -148,7 +148,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
                   <Image
                     src={todayCircleNewJoy.mainImageUrl}
                     alt={`${todayCircleNewJoy.name}のアイコン`}
-                    class="mx-auto"
+                    className="mx-auto"
                     width={44}
                     height={44}
                   />
@@ -172,13 +172,13 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
           className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
           style={{ width: 320 }}
         >
-          <div className=" pr-2">
+          <div className=" pr-2" style={{ minWidth: 230 }}>
             <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
             <p className="text-sm border-b border-gray-400 flex mb-1">
               <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
                 場所
               </span>
-              <span className="block  text-center">
+              <span className="block  text-center mx-auto">
                 {__(circleNewJoy.placeOfActivity)}
               </span>
             </p>
@@ -188,7 +188,10 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
                 <span className="px-2">{getDate(circleNewJoy)}</span>
               </div>
 
-              <span className="block  text-center border-b border-gray-400 whitespace-nowrap">
+              <span
+                className="block  text-center border-b border-gray-400 whitespace-nowrap"
+                style={{ minWidth: 87 }}
+              >
                 {getTime(circleNewJoy)}
               </span>
             </div>
