@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\Circle;
 
-use App\Enum\CircleInformationModel;
+use App\Enum\Property\CircleInformationProperty;
 use App\Enum\CircleModel;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
@@ -46,105 +46,105 @@ class UpdateCircleFormRequest extends FormRequest
             ],
             CircleModel::release                               => ['required', 'boolean'],
             CircleModel::name                                  => ['required', 'string', 'max:50'],
-            CircleInformationModel::name_kana                  => ['nullable', 'string', 'max:100'],
-            CircleInformationModel::short_name                 => ['nullable', 'string', 'max:20'],
-            CircleInformationModel::prefix_name                => ['nullable', 'string', 'max:50'],
-            CircleInformationModel::circle_type                => [
+            CircleInformationProperty::name_kana                  => ['nullable', 'string', 'max:100'],
+            CircleInformationProperty::short_name                 => ['nullable', 'string', 'max:20'],
+            CircleInformationProperty::prefix_name                => ['nullable', 'string', 'max:50'],
+            CircleInformationProperty::circle_type                => [
                 'nullable',
                 'string',
                 Rule::in(CircleType::getAll())
             ],
-            CircleInformationModel::description                => ['nullable', 'string', 'max:100'],
-            CircleInformationModel::common_place_of_activity          => [
+            CircleInformationProperty::description                => ['nullable', 'string', 'max:100'],
+            CircleInformationProperty::common_place_of_activity          => [
                 'nullable',
                 'string',
                 Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::MINE_AND_YOTO, PlaceOfActivity::OTHER]),
             ],
-            CircleInformationModel::common_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
-            CircleInformationModel::common_date_of_activity_monday    => [
+            CircleInformationProperty::common_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
+            CircleInformationProperty::common_date_of_activity_monday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_tuesday   => [
+            CircleInformationProperty::common_date_of_activity_tuesday   => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_wednesday => [
+            CircleInformationProperty::common_date_of_activity_wednesday => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_thursday  => [
+            CircleInformationProperty::common_date_of_activity_thursday  => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_friday    => [
+            CircleInformationProperty::common_date_of_activity_friday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_saturday  => [
+            CircleInformationProperty::common_date_of_activity_saturday  => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_sunday    => [
+            CircleInformationProperty::common_date_of_activity_sunday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
-            CircleInformationModel::is_online_activity                => ['nullable', 'boolean'],
-            CircleInformationModel::online_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
-            CircleInformationModel::online_date_of_activity_monday    => [
+            CircleInformationProperty::online_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
+            CircleInformationProperty::is_online_activity                => ['nullable', 'boolean'],
+            CircleInformationProperty::online_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
+            CircleInformationProperty::online_date_of_activity_monday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_tuesday   => [
+            CircleInformationProperty::online_date_of_activity_tuesday   => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_wednesday => [
+            CircleInformationProperty::online_date_of_activity_wednesday => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_thursday  => [
+            CircleInformationProperty::online_date_of_activity_thursday  => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_friday    => [
+            CircleInformationProperty::online_date_of_activity_friday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_saturday  => [
+            CircleInformationProperty::online_date_of_activity_saturday  => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::online_date_of_activity_sunday    => [
+            CircleInformationProperty::online_date_of_activity_sunday    => [
                 'nullable',
                 'boolean',
             ],
-            CircleInformationModel::common_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
-            CircleInformationModel::admission_fee_per_year              => ['nullable', 'integer', 'max:10000000'],
-            CircleInformationModel::number_of_members          => ['nullable', 'integer', 'max:10000'],
-            CircleInformationModel::is_club_activities  => ['nullable', 'boolean'],
-            CircleInformationModel::appealing_point1    => ['nullable', 'string', 'max:30'],
-            CircleInformationModel::appealing_point2    => ['nullable', 'string', 'max:30'],
-            CircleInformationModel::appealing_point3    => ['nullable', 'string', 'max:30'],
-            CircleInformationModel::public_email        => ['nullable', 'string', 'email', 'max:255'],
-            CircleInformationModel::twitter_url         => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::facebook_url        => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::instagram_url       => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::line_url            => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::youtube_url         => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::homepage_url        => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::peing_url           => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::github_url          => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::tiktok_url          => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::participation_url   => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::main_image_url      => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url1 => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url2 => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url3 => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url4 => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url5 => ['nullable', 'string', 'url', 'max:255'],
-            CircleInformationModel::activity_image_url6 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::common_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
+            CircleInformationProperty::admission_fee_per_year              => ['nullable', 'integer', 'max:10000000'],
+            CircleInformationProperty::number_of_members          => ['nullable', 'integer', 'max:10000'],
+            CircleInformationProperty::is_club_activities  => ['nullable', 'boolean'],
+            CircleInformationProperty::appealing_point1    => ['nullable', 'string', 'max:30'],
+            CircleInformationProperty::appealing_point2    => ['nullable', 'string', 'max:30'],
+            CircleInformationProperty::appealing_point3    => ['nullable', 'string', 'max:30'],
+            CircleInformationProperty::public_email        => ['nullable', 'string', 'email', 'max:255'],
+            CircleInformationProperty::twitter_url         => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::facebook_url        => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::instagram_url       => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::line_url            => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::youtube_url         => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::homepage_url        => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::peing_url           => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::github_url          => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::tiktok_url          => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::participation_url   => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::main_image_url      => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url1 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url2 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url3 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url4 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url5 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::activity_image_url6 => ['nullable', 'string', 'url', 'max:255'],
             'handbill_image_url'                        => ['nullable', 'string', 'url', 'max:255'],
         ]);
     }

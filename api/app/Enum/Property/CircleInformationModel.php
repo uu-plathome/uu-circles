@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enum;
+namespace App\Enum\Property;
 
-class CircleInformationModel
+class CircleInformationProperty
 {
     const id = 'id';
     const circle_id = 'circle_id';
