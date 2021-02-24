@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Circle::class, function (Faker $faker) {
     return [
+        CircleModel::name    => 'U-lab',
         CircleModel::slug    => Str::random(20),
         CircleModel::release => true,
     ];
@@ -27,6 +28,7 @@ $factory->define(Circle::class, function (Faker $faker) {
 
 $factory->state(Circle::class, '非公開', function (Faker $faker) {
     return [
+        CircleModel::name    => 'U-lab',
         CircleModel::slug    => Str::random(20),
         CircleModel::release => false,
     ];

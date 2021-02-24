@@ -16,9 +16,16 @@ class CreateCirclesTable extends Migration
     {
         Schema::create('circles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->comment('サークル名');
             $table->string('slug', 50)->unique()->comment('circle slug');
             $table->boolean('release')->default(true)->comment('公開設定');
             $table->timestamps();
+
+            $table->index('release');
+            $table->index([
+                'release',
+                'slug'
+            ]);
         });
 
         DB::statement("ALTER TABLE circles COMMENT 'サークル'");

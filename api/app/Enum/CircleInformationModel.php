@@ -7,7 +7,6 @@ class CircleInformationModel
     const id = 'id';
     const circle_id = 'circle_id';
     const circle_type = 'circle_type';
-    const name = 'name';
     const name_kana = 'name_kana';
     const short_name = 'short_name';
     const prefix_name = 'prefix_name';

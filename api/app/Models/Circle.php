@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class Circle extends Model
 {
     protected $fillable = [
+        CircleModel::name,
         CircleModel::slug,
         CircleModel::release,
     ];

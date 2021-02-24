@@ -45,7 +45,7 @@ class UpdateCircleFormRequest extends FormRequest
                 Rule::notIn(['newjoy']),
             ],
             CircleModel::release                               => ['required', 'boolean'],
-            CircleInformationModel::name                       => ['required', 'string', 'max:50'],
+            CircleModel::name                                  => ['required', 'string', 'max:50'],
             CircleInformationModel::name_kana                  => ['nullable', 'string', 'max:100'],
             CircleInformationModel::short_name                 => ['nullable', 'string', 'max:20'],
             CircleInformationModel::prefix_name                => ['nullable', 'string', 'max:50'],

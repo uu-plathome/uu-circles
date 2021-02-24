@@ -11,7 +11,6 @@ class CircleInformation extends Model
     protected $fillable = [
         CircleInformationModel::circle_id,
         CircleInformationModel::circle_type,
-        CircleInformationModel::name,
         CircleInformationModel::name_kana,
         CircleInformationModel::short_name,
         CircleInformationModel::prefix_name,

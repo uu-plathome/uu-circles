@@ -7,6 +7,7 @@ use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +24,11 @@ class CirclesTableSeeder extends Seeder
         DB::beginTransaction();
         try {
             factory(Circle::class, 20)->create()->each(function (Circle $circle) {
-                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
+                $circle->update([
                     'name'        => "U-lab {$circle->id}",
+                ]);
+
+                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
                     'circle_type' => $this->getCircleType($circle->id),
                 ]));
 
@@ -57,8 +61,11 @@ class CirclesTableSeeder extends Seeder
             });
 
             factory(Circle::class, 4)->state('非公開')->create()->each(function (Circle $circle) {
-                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
+                $circle->update([
                     'name'        => "U-lab {$circle->id}",
+                ]);
+
+                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
                     'circle_type' => $this->getCircleType($circle->id),
                 ]));
 
