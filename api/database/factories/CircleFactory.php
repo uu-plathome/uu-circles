@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -20,16 +20,16 @@ use Illuminate\Support\Str;
 
 $factory->define(Circle::class, function (Faker $faker) {
     return [
-        CircleModel::name    => 'U-lab',
-        CircleModel::slug    => Str::random(20),
-        CircleModel::release => true,
+        CircleProperty::name    => 'U-lab',
+        CircleProperty::slug    => Str::random(20),
+        CircleProperty::release => true,
     ];
 });
 
 $factory->state(Circle::class, '非公開', function (Faker $faker) {
     return [
-        CircleModel::name    => 'U-lab',
-        CircleModel::slug    => Str::random(20),
-        CircleModel::release => false,
+        CircleProperty::name    => 'U-lab',
+        CircleProperty::slug    => Str::random(20),
+        CircleProperty::release => false,
     ];
 });

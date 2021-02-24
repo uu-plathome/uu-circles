@@ -3,10 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Enum\CircleType;
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 use App\Enum\Property\CircleInformationProperty;
 use App\Enum\PlaceOfActivity;
-use App\Models\Circle;
 use App\Models\CircleInformation;
 use Faker\Generator as Faker;
 
@@ -62,7 +61,7 @@ $factory->define(CircleInformation::class, function (Faker $faker) {
 
 $factory->state(CircleInformation::class, '非公開', function (Faker $faker) {
     return [
-        CircleModel::slug    => $faker->slug,
-        CircleModel::release => false,
+        CircleProperty::slug    => $faker->slug,
+        CircleProperty::release => false,
     ];
 });

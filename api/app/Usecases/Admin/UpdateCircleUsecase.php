@@ -3,7 +3,7 @@
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\CircleInformationProperty;
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\ValueObjects\CircleValueObject;

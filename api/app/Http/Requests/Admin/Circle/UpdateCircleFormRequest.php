@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin\Circle;
 
 use App\Enum\Property\CircleInformationProperty;
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
@@ -36,7 +36,7 @@ class UpdateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleModel::slug                                  => [
+            CircleProperty::slug                                  => [
                 'required',
                 'string',
                 'max:50',
@@ -44,8 +44,8 @@ class UpdateCircleFormRequest extends FormRequest
                 new SmallAlphaNum,
                 Rule::notIn(['newjoy']),
             ],
-            CircleModel::release                               => ['required', 'boolean'],
-            CircleModel::name                                  => ['required', 'string', 'max:50'],
+            CircleProperty::release                               => ['required', 'boolean'],
+            CircleProperty::name                                  => ['required', 'string', 'max:50'],
             CircleInformationProperty::name_kana                  => ['nullable', 'string', 'max:100'],
             CircleInformationProperty::short_name                 => ['nullable', 'string', 'max:20'],
             CircleInformationProperty::prefix_name                => ['nullable', 'string', 'max:50'],
