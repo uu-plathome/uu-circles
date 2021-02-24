@@ -2,6 +2,10 @@ admin:
 - admin/**/*
 api:
 - api/**/*
+api-db:
+- api/database/migrations/*
+api-model:
+- api/app/Models/*
 api-composer-json:
 - api/composer.json
 - api/composer.lock
