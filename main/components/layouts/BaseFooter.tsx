@@ -3,6 +3,7 @@ import { useWindowResize } from "@/hooks/useWindowResize";
 import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import { TagSlugProperty } from "@/lib/enum/api/TagSlugProperty";
 import { Category } from "@/lib/enum/app/Category";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,30 +16,30 @@ type TagItem = {
     as?: string
 }
 const tagAlwaysItems: TagItem[] = [
-    { text: __(CircleTagModel.VOLUNTEER), href: '/' },
-    { text: __(CircleTagModel.PROGRAMMING), href: '/' },
-    { text: __(CircleTagModel.NATURE), href: '/' },
-    { text: __(CircleTagModel.INTERNATIONAL), href: '/' },
-    { text: __(CircleTagModel.INCARE), href: '/' },
-    { text: __(CircleTagModel.LOOSE), href: '/' },
+    { text: __(CircleTagModel.VOLUNTEER), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.volunteer}` },
+    { text: __(CircleTagModel.PROGRAMMING), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.programming}` },
+    { text: __(CircleTagModel.NATURE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.nature}` },
+    { text: __(CircleTagModel.INTERNATIONAL), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.international}` },
+    { text: __(CircleTagModel.INCARE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.incare}` },
+    { text: __(CircleTagModel.LOOSE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.loose}` },
 ]
 const tagOtherItems: TagItem[] = [
-    { text: __(CircleTagModel.COMMUNITY), href: '/' },
-    { text: __(CircleTagModel.URGENT_RECRUITMENT), href: '/' },
-    { text: __(CircleTagModel.MYSTERY), href: '/' },
-    { text: __(CircleTagModel.MAMMOTH), href: '/' },
-    { text: __(CircleTagModel.ACTIVE_ACTIVITY), href: '/' },
-    { text: __(CircleTagModel.MONDAY), href: '/' },
-    { text: __(CircleTagModel.TUESDAY), href: '/' },
-    { text: __(CircleTagModel.WEDNESDAY), href: '/' },
-    { text: __(CircleTagModel.THURSDAY), href: '/' },
-    { text: __(CircleTagModel.FRIDAY), href: '/' },
-    { text: __(CircleTagModel.ONLY_MONDAY), href: '/' },
-    { text: __(CircleTagModel.ONLY_TUESDAY), href: '/' },
-    { text: __(CircleTagModel.ONLY_WEDNESDAY), href: '/' },
-    { text: __(CircleTagModel.ONLY_THURSDAY), href: '/' },
-    { text: __(CircleTagModel.ONLY_FRIDAY), href: '/' },
-    { text: __(CircleTagModel.HOLIDAY), href: '/' },
+    { text: __(CircleTagModel.COMMUNITY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.community}` },
+    { text: __(CircleTagModel.URGENT_RECRUITMENT), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.urgent_recruitment}` },
+    { text: __(CircleTagModel.MYSTERY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.mystery}` },
+    { text: __(CircleTagModel.MAMMOTH), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.mammoth}` },
+    { text: __(CircleTagModel.ACTIVE_ACTIVITY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.active_activity}` },
+    { text: __(CircleTagModel.MONDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.monday}` },
+    { text: __(CircleTagModel.TUESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.tuesday}` },
+    { text: __(CircleTagModel.WEDNESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.wednesday}` },
+    { text: __(CircleTagModel.THURSDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.thursday}` },
+    { text: __(CircleTagModel.FRIDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.friday}` },
+    { text: __(CircleTagModel.ONLY_MONDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.only_monday}` },
+    { text: __(CircleTagModel.ONLY_TUESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.only_tuesday}` },
+    { text: __(CircleTagModel.ONLY_WEDNESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.only_wednesday}` },
+    { text: __(CircleTagModel.ONLY_THURSDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.only_thursday}` },
+    { text: __(CircleTagModel.ONLY_FRIDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.only_friday}` },
+    { text: __(CircleTagModel.HOLIDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.holiday}` },
 ]
 
 type TagItemFcProps = {
@@ -47,9 +48,11 @@ type TagItemFcProps = {
 const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
     return (
         <li className="mb-3">
-            <a href={ tagItem.href } className="text-gray-400 font-bold text-sm tag-title">
-                { tagItem.text }
-            </a>
+            <Link href={tagItem.href} as={tagItem.as}>
+                <a className="text-gray-400 font-bold text-sm tag-title">
+                    { tagItem.text }
+                </a>
+            </Link>
         </li>
     )
 }
