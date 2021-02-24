@@ -10,7 +10,7 @@ class SearchTagCircleListParam
     public bool $incare = false;
     public bool $programming = false;
     public bool $volunteer = false;
-    public bool $active = false;
+    public bool $active_activity = false;
     public bool $loose = false;
     public bool $monday = false;
     public bool $tuesday = false;

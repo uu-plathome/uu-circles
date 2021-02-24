@@ -18,7 +18,7 @@ export const TagSlugProperty = {
 
   volunteer: 'volunteer',
 
-  active: 'active',
+  active_activity: 'active_activity',
 
   loose: 'loose',
 
@@ -70,7 +70,7 @@ export const isInternational = (v: any): v is 'international' => v === TagSlugPr
 export const isIncare = (v: any): v is 'incare' => v === TagSlugProperty.incare
 export const isProgramming = (v: any): v is 'programming' => v === TagSlugProperty.programming
 export const isVolunteer = (v: any): v is 'volunteer' => v === TagSlugProperty.volunteer
-export const isActive = (v: any): v is 'active' => v === TagSlugProperty.active
+export const isActiveActivity = (v: any): v is 'active_activity' => v === TagSlugProperty.active_activity
 export const isLoose = (v: any): v is 'loose' => v === TagSlugProperty.loose
 export const isMonday = (v: any): v is 'monday' => v === TagSlugProperty.monday
 export const isTuesday = (v: any): v is 'tuesday' => v === TagSlugProperty.tuesday

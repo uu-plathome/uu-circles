@@ -13,7 +13,7 @@ class TagSlugProperty
     const incare = 'incare';
     const programming = 'programming';
     const volunteer = 'volunteer';
-    const active = 'active';
+    const active_activity = 'active_activity';
     const loose = 'loose';
     const monday = 'monday';
     const tuesday = 'tuesday';
@@ -42,7 +42,7 @@ class TagSlugProperty
             self::incare,
             self::programming,
             self::volunteer,
-            self::active,
+            self::active_activity,
             self::loose,
             self::monday,
             self::tuesday,

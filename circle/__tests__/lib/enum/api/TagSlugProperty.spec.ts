@@ -55,11 +55,11 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isVolunteer('volunteer')).toBeTruthy()
     expect(TestFunc.isVolunteer('aaaaabbbbcccc')).toBeFalsy()
   })
-  it('isActive', () => {
-    expect(TestFunc.TagSlugProperty.active).toBe('active')
-    expect(TestFunc.isTagSlugProperty('active')).toBeTruthy()
-    expect(TestFunc.isActive('active')).toBeTruthy()
-    expect(TestFunc.isActive('aaaaabbbbcccc')).toBeFalsy()
+  it('isActiveActivity', () => {
+    expect(TestFunc.TagSlugProperty.active_activity).toBe('active_activity')
+    expect(TestFunc.isTagSlugProperty('active_activity')).toBeTruthy()
+    expect(TestFunc.isActiveActivity('active_activity')).toBeTruthy()
+    expect(TestFunc.isActiveActivity('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isLoose', () => {
     expect(TestFunc.TagSlugProperty.loose).toBe('loose')

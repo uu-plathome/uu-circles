@@ -30,7 +30,7 @@ class SearchTagCircleListUsecase
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereMammoth();
                     });
-                })->when($param->active, function ($query) {
+                })->when($param->active_activity, function ($query) {
                     $query->orWhere(function ($query) {
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereActiveActivity();

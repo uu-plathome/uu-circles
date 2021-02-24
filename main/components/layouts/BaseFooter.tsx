@@ -28,7 +28,7 @@ const tagOtherItems: TagItem[] = [
     { text: __(CircleTagModel.URGENT_RECRUITMENT), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.urgent_recruitment}` },
     { text: __(CircleTagModel.MYSTERY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.mystery}` },
     { text: __(CircleTagModel.MAMMOTH), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.mammoth}` },
-    { text: __(CircleTagModel.ACTIVE_ACTIVITY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.active}` },
+    { text: __(CircleTagModel.ACTIVE_ACTIVITY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.active_activity}` },
     { text: __(CircleTagModel.MONDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.monday}` },
     { text: __(CircleTagModel.TUESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.tuesday}` },
     { text: __(CircleTagModel.WEDNESDAY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.wednesday}` },
