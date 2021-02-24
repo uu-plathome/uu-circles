@@ -138,7 +138,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
                   <Image
                     src={'/images/no-image.png'}
                     alt={`${todayCircleNewJoy.name}のアイコン`}
-                    class="mx-auto"
+                    className="mx-auto"
                     width={44}
                     height={44}
                   />
