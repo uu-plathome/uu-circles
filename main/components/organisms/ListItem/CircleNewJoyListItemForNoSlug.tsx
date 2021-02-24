@@ -75,11 +75,11 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
       {isMd ? (
         // PCレイアウト
         <div
-          className="border border-4 border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
+          className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
           style={{ width: 800, height: 100 }}
         >
           <section
-            className="rounded-2xl border-gray-300 border border-gray-300"
+            className="rounded-2xl border-gray-300 border"
             style={{
               width: 70,
               height: 70,
@@ -156,7 +156,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
               )}
 
               <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                <p className="text-sm ">{todayCircleNewJoy.circleType}</p>
+                <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
                 <Link href="/circle/[slug]" as={`/circle/${slug}`}>
                   <a className="inline text-xl border-b font-bold">
                     {todayCircleNewJoy.name}
@@ -169,7 +169,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
       ) : (
         // スマホレイアウト
         <div
-          className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+          className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
           style={{ width: 320 }}
         >
           <div className=" pr-2" style={{ minWidth: 230 }}>
