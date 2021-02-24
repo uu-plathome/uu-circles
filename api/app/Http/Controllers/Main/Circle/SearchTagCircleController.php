@@ -42,7 +42,7 @@ class SearchTagCircleController extends Controller
         $param->incare = $tag === TagSlugProperty::incare;
         $param->programming = $tag === TagSlugProperty::programming;
         $param->volunteer = $tag === TagSlugProperty::volunteer;
-        $param->active = $tag === TagSlugProperty::active;
+        $param->active_activity = $tag === TagSlugProperty::active_activity;
         $param->loose = $tag === TagSlugProperty::loose;
         $param->monday = $tag === TagSlugProperty::monday;
         $param->tuesday = $tag === TagSlugProperty::tuesday;
