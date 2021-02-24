@@ -18,8 +18,8 @@ class GetCircleBySlugUsecase
         $circle = Circle::with([
             'circleInformation',
             'circleHandbill',
-        ])->whereSlug($slug)
-            ->whereRelease(true)
+        ])->whereRelease(true)
+            ->whereSlug($slug)
             ->firstOrFail();
 
         return CircleValueObject::byEloquent(

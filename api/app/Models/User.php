@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Notifications\ResetPasswordAdminUser;
 use App\Notifications\VerifyEmailAdminUser;
 use App\Notifications\VerifyEmailCircleUser;
@@ -24,13 +24,13 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        UserModel::display_name,
-        UserModel::username,
-        UserModel::email,
-        UserModel::password,
-        UserModel::active,
-        UserModel::api_token,
-        UserModel::remember_token,
+        UserProperty::display_name,
+        UserProperty::username,
+        UserProperty::email,
+        UserProperty::password,
+        UserProperty::active,
+        UserProperty::api_token,
+        UserProperty::remember_token,
     ];
 
     /**
@@ -39,8 +39,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        UserModel::password,
-        UserModel::remember_token,
+        UserProperty::password,
+        UserProperty::remember_token,
     ];
 
     /**
@@ -49,8 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
-        UserModel::active            => 'boolean',
-        UserModel::email_verified_at => 'datetime',
+        UserProperty::active            => 'boolean',
+        UserProperty::email_verified_at => 'datetime',
     ];
 
     public function scopeWhereAdminUser($query)
@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         /** @var User $query */
         return $query->whereActive(true)
-            ->whereNotNull(UserModel::email_verified_at)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->whereAdminUser();
     }
 

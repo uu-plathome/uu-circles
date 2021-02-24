@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Models\User;
@@ -20,7 +20,7 @@ class LoginAdminController extends Controller
 
     public const username_or_email = 'username_or_email';
 
-    private string $inputType = UserModel::username;
+    private string $inputType = UserProperty::username;
 
     /**
      * Handle the incoming request.
@@ -34,8 +34,8 @@ class LoginAdminController extends Controller
         $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
 
         $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
-            ? UserModel::email
-            : UserModel::username;
+            ? UserProperty::email
+            : UserProperty::username;
         $request->merge([
             $this->username() => $usernameOrEmail
         ]);

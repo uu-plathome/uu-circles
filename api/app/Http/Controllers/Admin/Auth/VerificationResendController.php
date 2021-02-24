@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\VerificationResendAdminUserFormRequest;
 use App\Models\User;
@@ -21,7 +21,7 @@ class VerificationResendController extends Controller
      */
     public function __invoke(VerificationResendAdminUserFormRequest $request): JsonResponse
     {
-        $email = $request->get(UserModel::email);
+        $email = $request->get(UserProperty::email);
 
         try {
             $user = User::whereEmail($email)->firstOrFail();

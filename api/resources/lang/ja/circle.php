@@ -1,10 +1,9 @@
 <?php
 
-use App\Enum\CircleInformationModel;
-use App\Enum\CircleModel;
+use App\Enum\Property\CircleProperty;
 
 return [
-    CircleModel::slug            => 'サークルパス',
-    CircleModel::release         => '公開設定',
-    CircleInformationModel::name => 'サークル名',
+    CircleProperty::slug            => 'サークルパス',
+    CircleProperty::release         => '公開設定',
+    CircleProperty::name => 'サークル名',
 ];

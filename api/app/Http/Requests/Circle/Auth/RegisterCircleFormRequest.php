@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Circle\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\Support\Arr;
 use App\ValueObjects\CircleUserValueObject;
@@ -28,9 +28,9 @@ class RegisterCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
-            UserModel::display_name => ['nullable', 'string', 'max:50'],
-            UserModel::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
+            UserProperty::display_name => ['nullable', 'string', 'max:50'],
+            UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
     }
 

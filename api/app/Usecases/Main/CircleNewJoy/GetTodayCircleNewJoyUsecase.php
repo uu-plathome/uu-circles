@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Main\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
@@ -24,7 +24,7 @@ class GetTodayCircleNewJoyUsecase
 
         $todayCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release',
-            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -34,15 +34,15 @@ class GetTodayCircleNewJoyUsecase
             })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
-                $query->whereDay(CircleNewJoyModel::start_date, $today)
-                    ->orWhereDay(CircleNewJoyModel::end_date, $today);
+                $query->whereDay(CircleNewJoyProperty::start_date, $today)
+                    ->orWhereDay(CircleNewJoyProperty::end_date, $today);
             })
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->get();
 
         $futureCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release',
-            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -52,9 +52,9 @@ class GetTodayCircleNewJoyUsecase
             })
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
-                $query->whereDay(CircleNewJoyModel::start_date, '>', $today);
+                $query->whereDay(CircleNewJoyProperty::start_date, '>', $today);
             })
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->take(10)
             ->get();
 

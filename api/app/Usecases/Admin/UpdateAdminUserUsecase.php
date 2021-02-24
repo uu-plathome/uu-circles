@@ -4,7 +4,7 @@
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\AdminUserProperty;
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
@@ -20,9 +20,9 @@ class UpdateAdminUserUsecase
     public function invoke(int $userId, AdminUserValueObject $adminUserValueObject)
     {
         $inputs = [
-            UserModel::username     => $adminUserValueObject->username,
-            UserModel::display_name => $adminUserValueObject->display_name,
-            UserModel::active       => $adminUserValueObject->active,
+            UserProperty::username     => $adminUserValueObject->username,
+            UserProperty::display_name => $adminUserValueObject->display_name,
+            UserProperty::active       => $adminUserValueObject->active,
         ];
 
         DB::beginTransaction();
