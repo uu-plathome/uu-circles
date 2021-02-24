@@ -166,23 +166,23 @@ class CircleInformation extends Model
         return $query->where(function ($query) {
             $query->where(function ($query) {
                 $query->whereRaw('(
-                    IFNULL(common_date_of_activity_monday, 0) +
-                    IFNULL(common_date_of_activity_tuesday, 0) +
-                    IFNULL(common_date_of_activity_wednesday, 0) +
-                    IFNULL(common_date_of_activity_thursday, 0) +
-                    IFNULL(common_date_of_activity_friday, 0) +
-                    IFNULL(common_date_of_activity_saturday, 0) +
-                    IFNULL(common_date_of_activity_sunday, 0)
+                    common_date_of_activity_monday +
+                    common_date_of_activity_tuesday +
+                    common_date_of_activity_wednesday +
+                    common_date_of_activity_thursday +
+                    common_date_of_activity_friday +
+                    common_date_of_activity_saturday +
+                    common_date_of_activity_sunday
                 ) > 4');
             })->orWhere(function ($query) {
                 $query->whereRaw('(
-                    IFNULL(online_date_of_activity_monday, 0) +
-                    IFNULL(online_date_of_activity_tuesday, 0) +
-                    IFNULL(online_date_of_activity_wednesday, 0) +
-                    IFNULL(online_date_of_activity_thursday, 0) +
-                    IFNULL(online_date_of_activity_friday, 0) +
-                    IFNULL(online_date_of_activity_saturday, 0) +
-                    IFNULL(online_date_of_activity_sunday, 0)
+                    online_date_of_activity_monday +
+                    online_date_of_activity_tuesday +
+                    online_date_of_activity_wednesday +
+                    online_date_of_activity_thursday +
+                    online_date_of_activity_friday +
+                    online_date_of_activity_saturday +
+                    online_date_of_activity_sunday
                 ) > 4');
             });
         });

@@ -24,7 +24,7 @@ class GetTodayCircleNewJoyUsecase
 
         $todayCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release',
-            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -42,7 +42,7 @@ class GetTodayCircleNewJoyUsecase
 
         $futureCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release',
-            'circle.circleInformation:circle_id,name,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {

@@ -12,7 +12,6 @@ class SearchTagCircleListUsecase
     public function invoke(SearchTagCircleListParam $param)
     {
         $with = [
-            'circleInformation:circle_id,name',
             'circleHandbill:circle_id,image_url',
         ];
         if ($this->shouldCircleTagSearch($param)) {
@@ -162,6 +161,7 @@ class SearchTagCircleListUsecase
             })
             ->select([
                 'circles.' . 'id',
+                'circles.' . 'name',
                 'circles.' . 'release',
                 'circles.' . 'slug'
             ])
