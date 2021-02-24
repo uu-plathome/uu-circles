@@ -54,7 +54,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
             _checkedCommonDateOfActivity.push(Week.FRIDAY)
         }
         if (form.commonDateOfActivitySaturday.toBoolean) {
-            _checkedCommonDateOfActivity.push(Week.SATURADY)
+            _checkedCommonDateOfActivity.push(Week.SATURDAY)
         }
         if (form.commonDateOfActivitySunday.toBoolean) {
             _checkedCommonDateOfActivity.push(Week.SUNDAY)
@@ -81,7 +81,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
             _checkedOnlineDateOfActivity.push(Week.FRIDAY)
         }
         if (form.onlineDateOfActivitySaturday.toBoolean) {
-            _checkedOnlineDateOfActivity.push(Week.SATURADY)
+            _checkedOnlineDateOfActivity.push(Week.SATURDAY)
         }
         if (form.onlineDateOfActivitySunday.toBoolean) {
             _checkedOnlineDateOfActivity.push(Week.SUNDAY)
@@ -109,7 +109,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         if (newVal === Week.FRIDAY) {
             form.commonDateOfActivityFriday.set(!form.commonDateOfActivityFriday.toBoolean)
         }
-        if (newVal === Week.SATURADY) {
+        if (newVal === Week.SATURDAY) {
             form.commonDateOfActivitySaturday.set(!form.commonDateOfActivitySaturday.toBoolean)
         }
         if (newVal === Week.SUNDAY) {
@@ -137,7 +137,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         if (newVal === Week.FRIDAY) {
             form.onlineDateOfActivityFriday.set(!form.onlineDateOfActivityFriday.toBoolean)
         }
-        if (newVal === Week.SATURADY) {
+        if (newVal === Week.SATURDAY) {
             form.onlineDateOfActivitySaturday.set(!form.onlineDateOfActivitySaturday.toBoolean)
         }
         if (newVal === Week.SUNDAY) {
