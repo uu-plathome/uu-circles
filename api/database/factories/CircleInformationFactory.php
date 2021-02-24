@@ -6,6 +6,7 @@ use App\Enum\CircleType;
 use App\Enum\CircleModel;
 use App\Enum\CircleInformationModel;
 use App\Enum\PlaceOfActivity;
+use App\Models\Circle;
 use App\Models\CircleInformation;
 use Faker\Generator as Faker;
 
@@ -22,7 +23,6 @@ use Faker\Generator as Faker;
 
 $factory->define(CircleInformation::class, function (Faker $faker) {
     return [
-        CircleInformationModel::name        => 'U-lab',
         CircleInformationModel::name_kana   => 'うらぼ',
         CircleInformationModel::short_name  => 'U-lab',
         CircleInformationModel::prefix_name => '地域に根差す学生集団',

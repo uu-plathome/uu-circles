@@ -41,7 +41,7 @@ class CreateCircleFormRequest extends FormRequest
                 Rule::notIn(['newjoy']),
             ],
             CircleModel::release          => ['required', 'boolean'],
-            CircleInformationModel::name  => ['required', 'string', 'max:50'],
+            CircleModel::name  => ['required', 'string', 'max:50'],
         ]);
     }
 
@@ -50,7 +50,7 @@ class CreateCircleFormRequest extends FormRequest
         return [
             CircleModel::slug             => __('circle.' . CircleModel::slug),
             CircleModel::release          => __('circle.' . CircleModel::release),
-            CircleInformationModel::name  => __('circle.' . CircleInformationModel::name),
+            CircleModel::name             => __('circle.' . CircleModel::name),
         ];
     }
 

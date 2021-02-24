@@ -18,7 +18,6 @@ class CreateCircleInformationTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('circle_id');
             $table->enum('circle_type', ['OFFICIAL_ORGANIZATION', 'UNOFFICIAL_ORGANIZATION', 'SENDING_ORGANIZATION', 'STUDENT_GROUP'])->nullable()->comment("'OFFICIAL_ORGANIZATION': 公認団体, 'UNOFFICIAL_ORGANIZATION': 非公認団体, 'SENDING_ORGANIZATION': 届出団体, 'STUDENT_GROUP': 学生団体");
-            $table->string('name')->comment('サークル名');
             $table->string('name_kana')->nullable()->comment('サークル名(カナ)');
             $table->string('short_name')->nullable()->comment('サークル名(通称)');
             $table->string('prefix_name')->nullable()->comment('サークル名(肩書)');

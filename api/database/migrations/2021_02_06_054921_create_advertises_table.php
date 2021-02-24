@@ -23,6 +23,12 @@ class CreateAdvertisesTable extends Migration
             $table->dateTime('publish_to')->nullable()->comment('公開開始日時');
             $table->dateTime('publish_from')->nullable()->comment('公開終了日時');
             $table->timestamps();
+
+            $table->index([
+                'active',
+                'publish_from',
+                'publish_to',
+            ]);
         });
 
         DB::statement("ALTER TABLE advertises COMMENT '広告'");

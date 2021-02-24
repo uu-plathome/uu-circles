@@ -143,6 +143,7 @@ class CircleValueObject
     public function toCircleModel(): Circle
     {
         $circle = new Circle([
+            CircleModel::name       => $this->name,
             CircleModel::slug       => $this->slug,
             CircleModel::release    => $this->release,
             CircleModel::created_at => $this->created_at,
@@ -157,7 +158,6 @@ class CircleValueObject
         return new CircleInformation([
             CircleInformationModel::circle_id => $this->id,
             CircleInformationModel::circle_type => $this->circle_type,
-            CircleInformationModel::name => $this->name,
             CircleInformationModel::name_kana => $this->name_kana,
             CircleInformationModel::short_name => $this->short_name,
             CircleInformationModel::prefix_name => $this->prefix_name,
