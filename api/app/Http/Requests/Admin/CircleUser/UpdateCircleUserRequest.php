@@ -4,7 +4,7 @@
 namespace App\Http\Requests\Admin\CircleUser;
 
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Support\Arr;
 use App\ValueObjects\CircleUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,9 +29,9 @@ class UpdateCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,'.$this->userId],
-            UserModel::display_name => ['required', 'string', 'max:50'],
-            UserModel::active       => ['required', 'boolean' ],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
+            UserProperty::display_name => ['required', 'string', 'max:50'],
+            UserProperty::active       => ['required', 'boolean'],
         ]);
     }
 
@@ -41,9 +41,9 @@ class UpdateCircleUserRequest extends FormRequest
 
         return CircleUserValueObject::of([
             'circle_id'             => $this->circleId,
-            UserModel::username     => $request['username'],
-            UserModel::display_name => $request['displayName'],
-            UserModel::active       => $request['active'],
+            UserProperty::username     => $request['username'],
+            UserProperty::display_name => $request['displayName'],
+            UserProperty::active       => $request['active'],
         ]);
     }
 }

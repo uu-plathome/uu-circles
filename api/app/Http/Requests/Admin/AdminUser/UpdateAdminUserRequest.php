@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
 use App\Enum\Role;
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Support\Arr;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -33,9 +33,9 @@ class UpdateAdminUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
-            UserModel::display_name => ['required', 'string', 'max:50'],
-            UserModel::active       => ['required', 'boolean'],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
+            UserProperty::display_name => ['required', 'string', 'max:50'],
+            UserProperty::active       => ['required', 'boolean'],
             AdminUserProperty::role  => ['required', 'string'],
         ]);
     }
@@ -45,9 +45,9 @@ class UpdateAdminUserRequest extends FormRequest
         $request = Arr::snake_keys($this->validated());
 
         return AdminUserValueObject::of([
-            UserModel::username     => $request[UserModel::username],
-            UserModel::display_name => $request[UserModel::display_name],
-            UserModel::active       => $request[UserModel::active],
+            UserProperty::username     => $request[UserProperty::username],
+            UserProperty::display_name => $request[UserProperty::display_name],
+            UserProperty::active       => $request[UserProperty::active],
             AdminUserProperty::role  => $request[AdminUserProperty::role],
         ]);
     }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Enum;
+namespace App\Enum\Property;
 
-class UserModel
+use App\Enum\Property\BaseProperty;
+
+class UserProperty extends BaseProperty
 {
-    const id = 'id';
     const username = 'username';
     const display_name = 'display_name';
     const email = 'email';
@@ -12,7 +13,5 @@ class UserModel
     const password = 'password';
     const active = 'active';
     const api_token = 'api_token';
-    const created_at = 'created_at';
-    const updated_at = 'updated_at';
     const remember_token = 'remember_token';
 }
