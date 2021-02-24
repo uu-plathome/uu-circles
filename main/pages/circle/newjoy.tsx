@@ -1,6 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { getTodayCircleNewJoy, TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
+import {
+  getTodayCircleNewJoy,
+  TodayCircleNewJoy,
+} from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -47,13 +50,23 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
 
             <div className="pb-16">
               {isMd ? (
-                <h1 className="text-2xl py-20 text-center">
-                  開催予定の新歓一覧
-                </h1>
+                <section>
+                  <h1 className="text-2xl py-20 text-center">
+                    開催予定の新歓一覧
+                  </h1>
+                  <IndexCircleNewJoyListForNoSlug
+                    circleNewJoys={todayCircleNewJoys}
+                  />
+                </section>
               ) : (
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3 ">
-                  開催日時が近い新歓イベント
-                </h2>
+                <section>
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3 ">
+                    開催日時が近い新歓イベント
+                  </h2>
+                  <IndexCircleNewJoyListForNoSlug
+                    circleNewJoys={todayCircleNewJoys}
+                  />
+                </section>
               )}
             </div>
           </BaseContainer>
