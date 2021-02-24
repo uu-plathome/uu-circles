@@ -10,6 +10,7 @@ import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { MainTagList } from "@/components/organisms/Main/MainTagList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { Advertise } from "@/lib/types/model/Advertise";
+import Head from "next/head";
 
 type Props = {
     advertises: Advertise[]
@@ -18,6 +19,10 @@ type Props = {
 const Index: NextPage<Props> = ({ advertises, circles }) => {
     return (
         <div>
+            <Head>
+                <title>UU-circles</title>
+            </Head>
+
             <BaseLayout>
                 <div className="w-full bg-gray-600 h-80">
 
