@@ -16,6 +16,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
+ * @property string $role 権限
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user
@@ -24,6 +25,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AdminUser query()
  * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AdminUser whereUserId($value)
  */
@@ -36,10 +38,11 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title 広告タイトル
+ * @property string|null $link 広告リンク
  * @property string|null $main_image_url 画像URL
  * @property bool $active 公開するかどうか
  * @property \datetime|null $publish_to 公開開始日時
- * @property \datetime|null $publish_from 公開開始日時
+ * @property \datetime|null $publish_from 公開終了日時
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read bool $now_public
@@ -50,6 +53,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishTo($value)
@@ -64,8 +68,8 @@ namespace App\Models{
  * App\Models\Circle
  *
  * @property int $id
- * @property string $slug
- * @property bool $release
+ * @property string $slug circle slug
+ * @property bool $release 公開設定
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\CircleHandbill|null $circleHandbill
@@ -95,8 +99,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $circle_id
- * @property string $image_url
- * @property int|null $year
+ * @property string $image_url 画像URL
+ * @property int|null $year 作成年度
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|CircleHandbill newModelQuery()
@@ -118,7 +122,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $circle_id
- * @property string|null $circle_type
+ * @property string|null $circle_type 'OFFICIAL_ORGANIZATION': 公認団体, 'UNOFFICIAL_ORGANIZATION': 非公認団体, 'SENDING_ORGANIZATION': 届出団体, 'STUDENT_GROUP': 学生団体
  * @property string $name サークル名
  * @property string|null $name_kana サークル名(カナ)
  * @property string|null $short_name サークル名(通称)
@@ -176,6 +180,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActiveActivity()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl2($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereActivityImageUrl3($value)
@@ -209,6 +214,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsOnlineActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereLineUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMainImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMammoth()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereNameKana($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereNumberOfMembers($value)
@@ -221,6 +227,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlineDateOfActivityTuesday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlineDateOfActivityWednesday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlinePlaceOfActivityDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlyFriday()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlyMonday()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlyThursday()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlyTuesday()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlyWednesday()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereParticipationUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation wherePeingUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation wherePrefixName($value)
@@ -265,17 +276,18 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $circle_id
- * @property string $title サークル新歓タイトル
- * @property string|null $description サークル新歓紹介
- * @property string|null $url サークル新歓 URL
+ * @property string $title 新歓名
+ * @property string|null $description 新歓紹介
+ * @property string|null $url 新歓URL
  * @property string|null $place_of_activity 活動場所
  * @property string|null $place_of_activity_detail 活動場所詳細
- * @property \datetime|null $publish_from 予約投稿
+ * @property \datetime|null $publish_from 予約投稿日時
  * @property \datetime|null $start_date 新歓開始日時
  * @property \datetime|null $end_date 新歓終了日時
  * @property bool $release 公開設定
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Circle $circle
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy newQuery()
@@ -304,13 +316,16 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $circle_id
+ * @property bool $sport 運動系
+ * @property bool $music 音楽系
+ * @property bool $culture 文化系
  * @property bool $nature 農業・自然
  * @property bool $volunteer ボランティア
  * @property bool $international 国際交流
  * @property bool $incare インカレ
  * @property bool $loose ゆるい
  * @property bool $community 地域おこし
- * @property bool $program プログラミング
+ * @property bool $programming プログラミング
  * @property bool $urgent_recruitment 部員急募
  * @property bool $mystery 謎
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -321,13 +336,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCircleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCommunity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereCulture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereIncare($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereInternational($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereLoose($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereMusic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereMystery($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereNature($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereProgram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereProgramming($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereSport($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereUrgentRecruitment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleTag whereVolunteer($value)

@@ -150,4 +150,157 @@ class CircleInformation extends Model
 
         return $this->number_of_members > 49;
     }
+
+    public function scopeWhereMammoth($query)
+    {
+        return $query->where('number_of_members', '>', 49);
+    }
+
+    /**
+     * 活動日数が週に5日以上
+     *
+     * @param mixed $query
+     * @return void
+     */
+    public function scopeWhereActiveActivity($query)
+    {
+        return $query->where(function ($query) {
+            $query->where(function ($query) {
+                $query->whereRaw('(
+                    IFNULL(common_date_of_activity_monday, 0) +
+                    IFNULL(common_date_of_activity_tuesday, 0) +
+                    IFNULL(common_date_of_activity_wednesday, 0) +
+                    IFNULL(common_date_of_activity_thursday, 0) +
+                    IFNULL(common_date_of_activity_friday, 0) +
+                    IFNULL(common_date_of_activity_saturday, 0) +
+                    IFNULL(common_date_of_activity_sunday, 0)
+                ) > 4');
+            })->orWhere(function ($query) {
+                $query->whereRaw('(
+                    IFNULL(online_date_of_activity_monday, 0) +
+                    IFNULL(online_date_of_activity_tuesday, 0) +
+                    IFNULL(online_date_of_activity_wednesday, 0) +
+                    IFNULL(online_date_of_activity_thursday, 0) +
+                    IFNULL(online_date_of_activity_friday, 0) +
+                    IFNULL(online_date_of_activity_saturday, 0) +
+                    IFNULL(online_date_of_activity_sunday, 0)
+                ) > 4');
+            });
+        });
+    }
+
+    public function scopeWhereOnlyMonday($query)
+    {
+        return $query->where(function ($query) {
+            /** @var CircleInformation $query */
+            $query->where(function ($query) {
+                /** @var CircleInformation $query */
+                $query->where(CircleInformationModel::common_date_of_activity_monday, true)
+                    ->orWhere(CircleInformationModel::online_date_of_activity_monday, true);
+            })->whereCommonDateOfActivityTuesday(false)
+                ->whereCommonDateOfActivityWednesday(false)
+                ->whereCommonDateOfActivityThursday(false)
+                ->whereCommonDateOfActivityFriday(false)
+                ->whereCommonDateOfActivitySaturday(false)
+                ->whereCommonDateOfActivitySunday(false)
+                ->whereOnlineDateOfActivityTuesday(false)
+                ->whereOnlineDateOfActivityWednesday(false)
+                ->whereOnlineDateOfActivityThursday(false)
+                ->whereOnlineDateOfActivityFriday(false)
+                ->whereOnlineDateOfActivitySaturday(false)
+                ->whereOnlineDateOfActivitySunday(false);
+        });
+    }
+
+    public function scopeWhereOnlyTuesday($query)
+    {
+        return $query->where(function ($query) {
+            /** @var CircleInformation $query */
+            $query->where(function ($query) {
+                /** @var CircleInformation $query */
+                $query->where(CircleInformationModel::common_date_of_activity_tuesday, true)
+                    ->orWhere(CircleInformationModel::online_date_of_activity_tuesday, true);
+            })->whereCommonDateOfActivityMonday(false)
+                ->whereCommonDateOfActivityWednesday(false)
+                ->whereCommonDateOfActivityThursday(false)
+                ->whereCommonDateOfActivityFriday(false)
+                ->whereCommonDateOfActivitySaturday(false)
+                ->whereCommonDateOfActivitySunday(false)
+                ->whereOnlineDateOfActivityMonday(false)
+                ->whereOnlineDateOfActivityWednesday(false)
+                ->whereOnlineDateOfActivityThursday(false)
+                ->whereOnlineDateOfActivityFriday(false)
+                ->whereOnlineDateOfActivitySaturday(false)
+                ->whereOnlineDateOfActivitySunday(false);
+        });
+    }
+
+    public function scopeWhereOnlyWednesday($query)
+    {
+        return $query->where(function ($query) {
+            /** @var CircleInformation $query */
+            $query->where(function ($query) {
+                /** @var CircleInformation $query */
+                $query->where(CircleInformationModel::common_date_of_activity_wednesday, true)
+                    ->orWhere(CircleInformationModel::online_date_of_activity_wednesday, true);
+            })->whereCommonDateOfActivityMonday(false)
+                ->whereCommonDateOfActivityTuesday(false)
+                ->whereCommonDateOfActivityThursday(false)
+                ->whereCommonDateOfActivityFriday(false)
+                ->whereCommonDateOfActivitySaturday(false)
+                ->whereCommonDateOfActivitySunday(false)
+                ->whereOnlineDateOfActivityMonday(false)
+                ->whereOnlineDateOfActivityTuesday(false)
+                ->whereOnlineDateOfActivityThursday(false)
+                ->whereOnlineDateOfActivityFriday(false)
+                ->whereOnlineDateOfActivitySaturday(false)
+                ->whereOnlineDateOfActivitySunday(false);
+        });
+    }
+
+    public function scopeWhereOnlyThursday($query)
+    {
+        return $query->where(function ($query) {
+            /** @var CircleInformation $query */
+            $query->where(function ($query) {
+                /** @var CircleInformation $query */
+                $query->where(CircleInformationModel::common_date_of_activity_thursday, true)
+                    ->orWhere(CircleInformationModel::online_date_of_activity_thursday, true);
+            })->whereCommonDateOfActivityMonday(false)
+                ->whereCommonDateOfActivityTuesday(false)
+                ->whereCommonDateOfActivityWednesday(false)
+                ->whereCommonDateOfActivityFriday(false)
+                ->whereCommonDateOfActivitySaturday(false)
+                ->whereCommonDateOfActivitySunday(false)
+                ->whereOnlineDateOfActivityMonday(false)
+                ->whereOnlineDateOfActivityTuesday(false)
+                ->whereOnlineDateOfActivityWednesday(false)
+                ->whereOnlineDateOfActivityFriday(false)
+                ->whereOnlineDateOfActivitySaturday(false)
+                ->whereOnlineDateOfActivitySunday(false);
+        });
+    }
+
+    public function scopeWhereOnlyFriday($query)
+    {
+        return $query->where(function ($query) {
+            /** @var CircleInformation $query */
+            $query->where(function ($query) {
+                /** @var CircleInformation $query */
+                $query->where(CircleInformationModel::common_date_of_activity_friday, true)
+                    ->orWhere(CircleInformationModel::online_date_of_activity_friday, true);
+            })->whereCommonDateOfActivityMonday(false)
+                ->whereCommonDateOfActivityTuesday(false)
+                ->whereCommonDateOfActivityWednesday(false)
+                ->whereCommonDateOfActivityThursday(false)
+                ->whereCommonDateOfActivitySaturday(false)
+                ->whereCommonDateOfActivitySunday(false)
+                ->whereOnlineDateOfActivityMonday(false)
+                ->whereOnlineDateOfActivityTuesday(false)
+                ->whereOnlineDateOfActivityWednesday(false)
+                ->whereOnlineDateOfActivityThursday(false)
+                ->whereOnlineDateOfActivitySaturday(false)
+                ->whereOnlineDateOfActivitySunday(false);
+        });
+    }
 }
