@@ -1,15 +1,15 @@
 import { FC } from 'react'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { CircleNewJoyListItem } from '../ListItem/CircleNewJoyListItem'
+import { CircleNewJoyListItemSP } from '../ListItem/CircleNewJoyListItemSP'
 
 type Props = {
   slug: string
   circleNewJoys: CircleNewJoy[]
 }
-const IndexCircleNewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
+const IndexCircleNewJoyListSP: FC<Props> = ({ slug, circleNewJoys }) => {
   return (
     <div className="bg-gray-100">
-      <div className="md:flex justify-center">
+      <div className="md:flex justify-center flex-wrap">
         {circleNewJoys &&
           circleNewJoys.map((circleNewJoy, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''
@@ -18,7 +18,10 @@ const IndexCircleNewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
 
             return (
               <div key={circleNewJoy.id} className={`md:px-4 ${className}`}>
-                <CircleNewJoyListItem slug={slug} circleNewJoy={circleNewJoy} />
+                <CircleNewJoyListItemSP
+                  slug={slug}
+                  circleNewJoy={circleNewJoy}
+                />
               </div>
             )
           })}
@@ -27,4 +30,4 @@ const IndexCircleNewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
   )
 }
 
-export { IndexCircleNewJoyList }
+export { IndexCircleNewJoyListSP }
