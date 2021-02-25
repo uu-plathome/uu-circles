@@ -67,7 +67,7 @@ type Props = {
 }
 const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  // console.log(circleNewJoy)
+  console.log(circleNewJoy)
   return (
     <div>
       {isMd ? ( // PCレイアウト
