@@ -42,7 +42,6 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
-  console.log(circleNewJoy)
   return (
     <div
       className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"

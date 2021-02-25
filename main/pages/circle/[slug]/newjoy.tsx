@@ -10,6 +10,7 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { YellowButton } from '@/components/atoms/button/YellowButton'
 type Props = {
   /** サークル */ circle?: Circle
   errorCode?: number
@@ -136,15 +137,22 @@ const Page: NextPage<Props> = ({
                       </nav>
                     </div>
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
-                      <div
+                      <a>
+                        {/* <div
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
                         style={{ width: 222 }}
-                      >
-                        <h4 className="text-sm">他のサークルの新歓も見る</h4>
-                        <h3 className="text-base font-bold">
-                          今日の新歓をチェック！
-                        </h3>
-                      </div>
+                      > */}
+                        <div>
+                          <YellowButton style={{ width: 222 }}>
+                            <h4 className="text-sm">
+                              他のサークルの新歓も見る
+                            </h4>
+                            <h3 className="text-base font-bold">
+                              今日の新歓をチェック！
+                            </h3>
+                          </YellowButton>
+                        </div>
+                      </a>
                     </Link>
                   </div>
                 </div>

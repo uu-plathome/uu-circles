@@ -66,7 +66,6 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyListItemPC: FC<Props> = ({ slug, circleNewJoy }) => {
-  console.log(circleNewJoy)
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
