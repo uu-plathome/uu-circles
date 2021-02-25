@@ -43,7 +43,7 @@ const Page: NextPage<Props> = ({
 
                 {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                   <div className="pb-16">
-                    <h2 className="text-center text-2xl  pl-1 mb-3">開催中</h2>
+                    <h2 className="text-center text-xl  pl-1 mb-3">開催中</h2>
                     <div className="grid grid-cols-7">
                       <div className="col-span-5">
                         <IndexCircleNewJoyList
@@ -55,9 +55,49 @@ const Page: NextPage<Props> = ({
                         className="col-span-2 bg-gray-300 text-white flex items-center mx-1"
                         style={{ width: 222, height: 324 }}
                       >
-                        <h3 className="text-xl text-center mx-auto">
-                          discodeのバナー広告
-                        </h3>
+                        <h2 className="text-2xl">主要サークル</h2>
+                        <div className="bg-white mt-10 rounded-xl"></div>
+                        <div className="mr-2" style={{ width: 64 }}>
+                          <Image
+                            src={
+                              circle.mainImageUrl
+                                ? circle.mainImageUrl
+                                : '/images/no-image.png'
+                            }
+                            alt={`${circle.name}のロゴ`}
+                            width={64}
+                            height={64}
+                            className="rounded-full border border-gray-300"
+                          />
+                        </div>
+                        <Link
+                          href="/circle/[slug]"
+                          as={`/circle/${circle.slug}`}
+                        >
+                          <a>
+                            <h2 className="font-bold text-lg pl-1 mb-3">
+                              主催サークル
+                            </h2>
+                            <div
+                              className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
+                              style={{ width: 300 }}
+                            >
+                              <div
+                                className="w-full pr-2"
+                                style={{ width: 200 }}
+                              >
+                                <h3 className="text-black font-bold mb-1 text-sm font-bold">
+                                  {circle.name}
+                                </h3>
+                                <div>
+                                  <p className="text-xs text-gray-600">
+                                    {circle.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -66,7 +106,7 @@ const Page: NextPage<Props> = ({
                 )}
 
                 <div className="pb-16">
-                  <h2 className="text-center text-2xl pl-1 mb-3">今日の新歓</h2>
+                  <h2 className="text-center text-xl pl-1 mb-3">今日の新歓</h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
                     <div className="grid grid-cols-7">
                       <div className="col-span-5">
@@ -83,7 +123,7 @@ const Page: NextPage<Props> = ({
                 </div>
 
                 <div className="pb-16">
-                  <h2 className="text-center text-2xl pl-1 mb-3">開催予定</h2>
+                  <h2 className="text-center text-xl pl-1 mb-3">開催予定</h2>
                   <div className="grid grid-cols-7">
                     <div className="col-span-5">
                       <IndexCircleNewJoyList
@@ -96,7 +136,7 @@ const Page: NextPage<Props> = ({
                 </div>
 
                 <div className="pb-16">
-                  <h2 className="text-center text-2xl pl-1 mb-3">開催済み</h2>
+                  <h2 className="text-center text-xl pl-1 mb-3">開催済み</h2>
                   <div className="grid grid-cols-7">
                     <div className="col-span-5">
                       <IndexCircleNewJoyList
