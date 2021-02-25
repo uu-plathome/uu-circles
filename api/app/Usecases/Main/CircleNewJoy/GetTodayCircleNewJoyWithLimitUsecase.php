@@ -30,7 +30,7 @@ class GetTodayCircleNewJoyWithLimitUsecase
                 /** @var \App\Models\Circle $query */
                 $query->whereRelease(true);
             })
-            ->whereDay(CircleNewJoyProperty::start_date, '>=', $today)
+            ->whereDate(CircleNewJoyProperty::start_date, '>=', $today)
             ->orderByDesc(CircleNewJoyProperty::start_date)
             ->take($limit)
             ->get();
