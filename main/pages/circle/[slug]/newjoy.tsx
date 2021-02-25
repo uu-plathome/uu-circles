@@ -3,7 +3,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { IndexCircleNewJoyList } from '@/components/organisms/List/IndexCircleNewJoyList'
+import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
+import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
 import { getCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -46,7 +47,7 @@ const Page: NextPage<Props> = ({
                       <div className="pb-16">
                         <h2 className="text-left text-lg  pl-6 mb-3">開催中</h2>
 
-                        <IndexCircleNewJoyList
+                        <IndexCircleNewJoyListPC
                           slug={circle.slug}
                           circleNewJoys={nowCircleNewJoys}
                         />
@@ -60,7 +61,7 @@ const Page: NextPage<Props> = ({
                         今日の新歓
                       </h2>
                       {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                        <IndexCircleNewJoyList
+                        <IndexCircleNewJoyListPC
                           slug={circle.slug}
                           circleNewJoys={todayCircleNewJoys}
                         />
@@ -72,7 +73,7 @@ const Page: NextPage<Props> = ({
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
 
-                      <IndexCircleNewJoyList
+                      <IndexCircleNewJoyListPC
                         slug={circle.slug}
                         circleNewJoys={futureCircleNewJoys}
                       />
@@ -81,7 +82,7 @@ const Page: NextPage<Props> = ({
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
 
-                      <IndexCircleNewJoyList
+                      <IndexCircleNewJoyListPC
                         slug={circle.slug}
                         circleNewJoys={pastCircleNewJoys}
                       />
@@ -157,7 +158,7 @@ const Page: NextPage<Props> = ({
                       開催中
                     </h2>
 
-                    <IndexCircleNewJoyList
+                    <IndexCircleNewJoyListSP
                       slug={circle.slug}
                       circleNewJoys={nowCircleNewJoys}
                     />
@@ -170,7 +171,7 @@ const Page: NextPage<Props> = ({
                     今日の新歓
                   </h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                    <IndexCircleNewJoyList
+                    <IndexCircleNewJoyListSP
                       slug={circle.slug}
                       circleNewJoys={todayCircleNewJoys}
                     />
@@ -182,7 +183,7 @@ const Page: NextPage<Props> = ({
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-                  <IndexCircleNewJoyList
+                  <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={futureCircleNewJoys}
                   />
@@ -191,7 +192,7 @@ const Page: NextPage<Props> = ({
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-                  <IndexCircleNewJoyList
+                  <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={pastCircleNewJoys}
                   />
