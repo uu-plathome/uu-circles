@@ -76,7 +76,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
         // PCレイアウト
         <div
           className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
-          style={{ width: 800, height: 100 }}
+          style={{ width: 750, height: 100 }}
         >
           <section
             className="rounded-2xl border-gray-300 border"
@@ -116,12 +116,15 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
               </div>
             </div>
           </section>
-          <section className="h-full w-20" style={{ paddingTop: '50px' }}>
+          <section
+            className="h-full w-28 text-center mx-auto"
+            style={{ paddingTop: '50px' }}
+          >
             <Link
               href="/circle/[slug]/newjoy/[circleNewJoy.id]"
               as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
             >
-              <a className="text-blue-500 border-b border-blue-500 text-xs w-20">
+              <a className="text-blue-500 border-b border-blue-500 text-xs w-20 ">
                 もっと詳しく
               </a>
             </Link>
@@ -129,41 +132,41 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
 
           <section
             className="border-l-2 border-gray-600 h-full pl-2"
-            style={{ width: '270px' }}
+            style={{ width: '250px' }}
           >
             <h3 className="text-xs  ">主催サークル</h3>
-            <div className="pl-2 flex justify-around items-center">
-              {todayCircleNewJoy.mainImageUrl == null ? (
-                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                  <Image
-                    src={'/images/no-image.png'}
-                    alt={`${todayCircleNewJoy.name}のアイコン`}
-                    className="mx-auto"
-                    width={44}
-                    height={44}
-                  />
-                </div>
-              ) : (
-                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                  <Image
-                    src={todayCircleNewJoy.mainImageUrl}
-                    alt={`${todayCircleNewJoy.name}のアイコン`}
-                    className="mx-auto"
-                    width={44}
-                    height={44}
-                  />
-                </div>
-              )}
+            <Link href="/circle/[slug]" as={`/circle/${slug}`}>
+              <div className="pl-2 flex justify-around items-center">
+                {todayCircleNewJoy.mainImageUrl == null ? (
+                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                    <Image
+                      src={'/images/no-image.png'}
+                      alt={`${todayCircleNewJoy.name}のアイコン`}
+                      className="mx-auto"
+                      width={44}
+                      height={44}
+                    />
+                  </div>
+                ) : (
+                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                    <Image
+                      src={todayCircleNewJoy.mainImageUrl}
+                      alt={`${todayCircleNewJoy.name}のアイコン`}
+                      className="mx-auto"
+                      width={44}
+                      height={44}
+                    />
+                  </div>
+                )}
+                <div className="pl-2 mt-2" style={{ width: '280px' }}>
+                  <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
 
-              <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
-                <Link href="/circle/[slug]" as={`/circle/${slug}`}>
                   <a className="inline text-xl border-b font-bold">
                     {todayCircleNewJoy.name}
                   </a>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </section>
         </div>
       ) : (
