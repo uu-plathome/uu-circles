@@ -13,7 +13,7 @@ const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
         新歓イベント日程
       </h2>
 
-      <div className="md:flex justify-center">
+      <div className="md:flex justify-center flex-wrap">
         {circleNewJoys.map((circleNewJoy, idx) => {
           let className = idx === 0 ? 'place-self-end' : ''
           className = idx === 1 ? 'place-self-center' : className
