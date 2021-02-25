@@ -135,38 +135,38 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
             style={{ width: '250px' }}
           >
             <h3 className="text-xs  ">主催サークル</h3>
-            <div className="pl-2 flex justify-around items-center">
-              {todayCircleNewJoy.mainImageUrl == null ? (
-                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                  <Image
-                    src={'/images/no-image.png'}
-                    alt={`${todayCircleNewJoy.name}のアイコン`}
-                    className="mx-auto"
-                    width={44}
-                    height={44}
-                  />
-                </div>
-              ) : (
-                <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                  <Image
-                    src={todayCircleNewJoy.mainImageUrl}
-                    alt={`${todayCircleNewJoy.name}のアイコン`}
-                    className="mx-auto"
-                    width={44}
-                    height={44}
-                  />
-                </div>
-              )}
+            <Link href="/circle/[slug]" as={`/circle/${slug}`}>
+              <div className="pl-2 flex justify-around items-center">
+                {todayCircleNewJoy.mainImageUrl == null ? (
+                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                    <Image
+                      src={'/images/no-image.png'}
+                      alt={`${todayCircleNewJoy.name}のアイコン`}
+                      className="mx-auto"
+                      width={44}
+                      height={44}
+                    />
+                  </div>
+                ) : (
+                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                    <Image
+                      src={todayCircleNewJoy.mainImageUrl}
+                      alt={`${todayCircleNewJoy.name}のアイコン`}
+                      className="mx-auto"
+                      width={44}
+                      height={44}
+                    />
+                  </div>
+                )}
+                <div className="pl-2 mt-2" style={{ width: '280px' }}>
+                  <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
 
-              <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
-                <Link href="/circle/[slug]" as={`/circle/${slug}`}>
                   <a className="inline text-xl border-b font-bold">
                     {todayCircleNewJoy.name}
                   </a>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </section>
         </div>
       ) : (
