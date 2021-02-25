@@ -33,6 +33,13 @@ const Page: NextPage<Props> = ({
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
                         <h1 className="text-2xl py-8">{ __(String(tag).toUpperCase()) }</h1>
 
+                        {__(String(tag).toUpperCase(), "CircleTagTitle") ? (
+                            <p className="text-base pb-4">{ __(String(tag).toUpperCase(), "CircleTagTitle") }</p>
+                        ) : ''}
+                        {__(String(tag).toUpperCase(), "CircleTagText") ? (
+                            <p className="text-sm pb-8">{ __(String(tag).toUpperCase(), "CircleTagText") }</p>
+                        ) : ''}
+
                         {/*  サークル一覧 */}
                         <BaseCircleList circles={circles} />
                     </TwoColumnContainer>

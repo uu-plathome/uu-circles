@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import * as gtag from '@/lib/utils/Gtag'
+import 'swiper/swiper-bundle.min.css'
 import '../styles/index.css'
 import { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
