@@ -35,7 +35,7 @@ class GetTodayCircleNewJoyUsecase
             ->where(function ($query) use ($today) {
                 /** @var \Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy $query */
                 $query->whereDate(CircleNewJoyProperty::start_date, $today)
-                    ->orwhereDate(CircleNewJoyProperty::end_date, $today);
+                    ->orWhereDate(CircleNewJoyProperty::end_date, $today);
             })
             ->orderByDesc(CircleNewJoyProperty::start_date)
             ->get();
