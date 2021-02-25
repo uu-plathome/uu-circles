@@ -16,6 +16,7 @@ import { CircleTypeBadge } from "@/components/molecules/Badge/CircleTypeBadge";
 import { CircleType } from "@/lib/enum/api/CircleType";
 import { SnsList } from "@/components/organisms/ShowCircle/SnsList";
 import Head from "next/head";
+import { TopImage } from "@/components/organisms/ShowCircle/TopImage";
 
 type Props = {
     circle?: Circle
@@ -35,6 +36,10 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                     <BaseContainer>
 
                         <div>
+                            <TopImage
+                                circle={circle}
+                            />
+
                             <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
                                 <div>
                                     <p>{ circle.prefixName }</p>
