@@ -65,24 +65,26 @@ class GetTodayCircleNewJoyUsecase
         );
 
         return [
-            'todayCircleNewJoys' => $todayCircleNewJoys->map(
-                fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'                    => $circleNewJoy->circle['slug'],
-                    'name'                    => $circleNewJoy->circle['name'],
-                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
-                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                    'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
-                ]
-            )->toArray(),
-            'futureCircleNewJoys' => $futureCircleNewJoys->map(
-                fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'                    => $circleNewJoy->circle['slug'],
-                    'name'                    => $circleNewJoy->circle['name'],
-                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
-                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                    'circleNewJoyValueObject' => circleNewJoyValueObject::byEloquent($circleNewJoy)
-                ]
-            )->toArray(),
+            'todayCircleNewJoys' => $todayCircleNewJoys->sortBy('start_date')
+                ->map(
+                    fn (CircleNewJoy $circleNewJoy) => [
+                        'slug'                    => $circleNewJoy->circle['slug'],
+                        'name'                    => $circleNewJoy->circle['name'],
+                        'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                        'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                    ]
+                )->toArray(),
+            'futureCircleNewJoys' => $futureCircleNewJoys->sortBy('start_date')
+                ->map(
+                    fn (CircleNewJoy $circleNewJoy) => [
+                        'slug'                    => $circleNewJoy->circle['slug'],
+                        'name'                    => $circleNewJoy->circle['name'],
+                        'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                        'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
+                        'circleNewJoyValueObject' => circleNewJoyValueObject::byEloquent($circleNewJoy)
+                    ]
+                )->toArray(),
         ];
     }
 }
