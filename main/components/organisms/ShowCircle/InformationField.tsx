@@ -169,6 +169,17 @@ const InformationField: FC<Props> = ({ circle }) => {
                     </div>
                 </div>
 
+                {circle.participationUrl ? (
+                    <div className="py-4 border-b border-gray-400">
+                        <p className="text-sm text-gray-400 mb-2">新歓・活動参加用URL</p>
+                        <div>
+                            <a className="text-blue-500 underline" href={circle.participationUrl} target="_blank" rel="noreferrer">
+                                URLはこちらから
+                            </a>
+                        </div>
+                    </div>
+                ) : ''}
+
                 <div className="py-4">
                     <p className="text-sm text-gray-400 mb-2">各種SNS</p>
                     <div>
