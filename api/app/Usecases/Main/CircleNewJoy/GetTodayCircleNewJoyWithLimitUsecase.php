@@ -36,15 +36,16 @@ class GetTodayCircleNewJoyWithLimitUsecase
             ->get();
 
         return [
-            'todayCircleNewJoys' => $todayCircleNewJoy->map(
-                fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'                    => $circleNewJoy->circle['slug'],
-                    'name'                    => $circleNewJoy->circle->circleInformation['name'],
-                    'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
-                    'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                    'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
-                ]
-            )->toArray(),
+            'todayCircleNewJoys' => $todayCircleNewJoy->sortBy('start_date')
+                ->map(
+                    fn (CircleNewJoy $circleNewJoy) => [
+                        'slug'                    => $circleNewJoy->circle['slug'],
+                        'name'                    => $circleNewJoy->circle->circleInformation['name'],
+                        'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                        'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                    ]
+                )->toArray(),
         ];
     }
 }
