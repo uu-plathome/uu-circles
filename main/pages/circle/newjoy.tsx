@@ -53,10 +53,10 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
               {isMd ? (
                 <section>
                   <h1 className="text-2xl py-20 text-center">
-                    開催予定の新歓一覧
+                    開催日時が近い新歓イベント
                   </h1>
                   <IndexCircleNewJoyListForNoSlug
-                    circleNewJoys={todayCircleNewJoys}
+                    circleNewJoys={futureCircleNewJoys}
                   />
                 </section>
               ) : (
@@ -65,7 +65,7 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
                     開催日時が近い新歓イベント
                   </h2>
                   <IndexCircleNewJoyListForNoSlug
-                    circleNewJoys={todayCircleNewJoys}
+                    circleNewJoys={futureCircleNewJoys}
                   />
                 </section>
               )}
