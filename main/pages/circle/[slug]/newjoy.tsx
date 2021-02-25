@@ -153,9 +153,10 @@ const Page: NextPage<Props> = ({
                 <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
                 {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                   <div className="pb-16">
-                    <h2 className="text-center text-lg md:text-center pl-1 mb-3">
+                    <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                       開催中
                     </h2>
+
                     <IndexCircleNewJoyList
                       slug={circle.slug}
                       circleNewJoys={nowCircleNewJoys}
@@ -165,7 +166,7 @@ const Page: NextPage<Props> = ({
                   ''
                 )}
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     今日の新歓
                   </h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -178,7 +179,7 @@ const Page: NextPage<Props> = ({
                   )}
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
                   <IndexCircleNewJoyList
@@ -187,7 +188,7 @@ const Page: NextPage<Props> = ({
                   />
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
                   <IndexCircleNewJoyList
@@ -198,7 +199,7 @@ const Page: NextPage<Props> = ({
                 <div className="pb-16">
                   <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
                     <a>
-                      <h2 className="font-bold text-lg pl-1 mb-3">
+                      <h2 className="font-bold text-lg pl-4 mb-3">
                         主催サークル
                       </h2>
                       <div
