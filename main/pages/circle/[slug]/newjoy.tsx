@@ -29,6 +29,7 @@ const Page: NextPage<Props> = ({
   todayCircleNewJoys,
 }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
+  console.log(circle)
   return (
     <div>
       <BaseLayout>
@@ -52,51 +53,50 @@ const Page: NextPage<Props> = ({
                         />
                       </div>
                       <div
-                        className="col-span-2 bg-gray-300 text-white flex items-center mx-1"
+                        className="col-span-2 bg-gray-300 text-white  mx-1"
                         style={{ width: 222, height: 324 }}
                       >
                         <h2 className="text-2xl">主要サークル</h2>
-                        <div className="bg-white mt-10 rounded-xl"></div>
-                        <div className="mr-2" style={{ width: 64 }}>
-                          <Image
-                            src={
-                              circle.mainImageUrl
-                                ? circle.mainImageUrl
-                                : '/images/no-image.png'
-                            }
-                            alt={`${circle.name}のロゴ`}
-                            width={64}
-                            height={64}
-                            className="rounded-full border border-gray-300"
-                          />
-                        </div>
-                        <Link
-                          href="/circle/[slug]"
-                          as={`/circle/${circle.slug}`}
-                        >
-                          <a>
-                            <h2 className="font-bold text-lg pl-1 mb-3">
-                              主催サークル
-                            </h2>
-                            <div
-                              className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
-                              style={{ width: 300 }}
-                            >
-                              <div
-                                className="w-full pr-2"
-                                style={{ width: 200 }}
-                              >
-                                <h3 className="text-black font-bold mb-1 text-sm font-bold">
-                                  {circle.name}
-                                </h3>
-                                <div>
-                                  <p className="text-xs text-gray-600">
-                                    {circle.description}
-                                  </p>
-                                </div>
-                              </div>
+                        <div className="bg-white mt-10 rounded-xl">
+                          <div className="mr-2" style={{ width: 64 }}>
+                            <Image
+                              src={
+                                circle.mainImageUrl
+                                  ? circle.mainImageUrl
+                                  : '/images/no-image.png'
+                              }
+                              alt={`${circle.name}のロゴ`}
+                              width={64}
+                              height={64}
+                              className="rounded-full border border-gray-300"
+                            />
+                          </div>
+                          <h4 className="text-xl text-center">
+                            {circle.prefixName}
+                          </h4>
+                          <h3 className="text-xl text-center">{circle.name}</h3>
+                          <p className="text-lg text-left mx-auto">
+                            {circle.description}
+                          </p>
+                          <Link
+                            href="/circle/[slug]"
+                            as={`/circle/${circle.slug}`}
+                          >
+                            <a className="text-right ">もっと詳しく</a>
+                          </Link>
+                          <Link
+                            href="/circle/[slug]"
+                            as={`/circle/${circle.slug}`}
+                          >
+                            <div className="rounded-full text-white bg-green-500 text-center px-4 py-2">
+                              新歓日程
                             </div>
-                          </a>
+                          </Link>
+                        </div>
+                        <Link href="/circle/newjoy" as={'/circle/newjoy'}>
+                          <div className="rounded-full text-white bg-green-500 text-center px-4 py-2">
+                            今日の新歓をチェック！
+                          </div>
                         </Link>
                       </div>
                     </div>
