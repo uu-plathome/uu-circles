@@ -40,6 +40,7 @@ const TopImage: FC<Props> = ({ circle }) => {
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
+            loop={true}
             onSwiper={(swiper) => setSwiperInstance(swiper)}
         >
             {images.map((image, index) => {
@@ -48,8 +49,8 @@ const TopImage: FC<Props> = ({ circle }) => {
                 <Image
                     src={image}
                     alt={`${circle.name}の活動の様子`}
-                    width={500}
-                    height={500 * 200 / 375}
+                    width={700}
+                    height={700 * 200 / 375}
                 />
                 </SwiperSlide>
             );
@@ -57,18 +58,21 @@ const TopImage: FC<Props> = ({ circle }) => {
         </Swiper>
 
         {/* サムネイル画像一覧 */}
-        {images.map((image, index) => {
-            return (
-            <Image
-                onClick={() => slideTo(index)}
-                key={image + index}
-                src={image}
-                alt={`${circle.name}の活動の様子`}
-                width={100}
-                height={100 * 200 / 375}
-            />
-            );
-        })}
+        <div className="flex md:px-4">
+            {images.map((image, index) => {
+                return (
+                    <div key={image + index} className="px-1 w-1/6">
+                        <Image
+                            onClick={() => slideTo(index)}
+                            src={image}
+                            alt={`${circle.name}の活動の様子`}
+                            width={100}
+                            height={100 * 200 / 375}
+                        />
+                    </div>
+                );
+            })}
+        </div>
         </>
     )
 }

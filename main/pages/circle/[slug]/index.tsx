@@ -36,9 +36,11 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                     <BaseContainer>
 
                         <div>
-                            <TopImage
-                                circle={circle}
-                            />
+                            <div className="bg-white">
+                                <TopImage
+                                    circle={circle}
+                                />
+                            </div>
 
                             <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
                                 <div>
