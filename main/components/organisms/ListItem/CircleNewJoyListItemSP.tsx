@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
 import dayjs from 'dayjs'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+
 const getDate = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
     const date = dayjs(circleNewJoy.startDate)
@@ -13,6 +13,7 @@ const getDate = (circleNewJoy: CircleNewJoy) => {
 
   return '未定'
 }
+
 const getTime = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate && circleNewJoy.endDate) {
     const startDate = dayjs(circleNewJoy.startDate)
@@ -40,7 +41,8 @@ type Props = {
   slug: string
   circleNewJoy: CircleNewJoy
 }
-const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
+const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
+  console.log(circleNewJoy)
   return (
     <div
       className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -84,4 +86,4 @@ const CircleNewJoyListItem: FC<Props> = ({ slug, circleNewJoy }) => {
   )
 }
 
-export { CircleNewJoyListItem }
+export { CircleNewJoyListItemSP }
