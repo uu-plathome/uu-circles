@@ -28,8 +28,7 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
-  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  console.log(circle)
+  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>
       <BaseLayout>
@@ -38,14 +37,14 @@ const Page: NextPage<Props> = ({
             {isMd ? (
               //PC
               <div style={{ width: 750 }}>
-                <h1 className="text-2xl text-center py-8">
+                <h1 className="text-3xl text-center py-8">
                   {circle.name}の新歓
                 </h1>
                 <div className="grid grid-cols-7">
                   <div className="col-span-5">
                     {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                       <div className="pb-16">
-                        <h2 className="text-left text-xl  pl-1 mb-3">開催中</h2>
+                        <h2 className="text-left text-lg  pl-6 mb-3">開催中</h2>
 
                         <IndexCircleNewJoyList
                           slug={circle.slug}
@@ -57,7 +56,7 @@ const Page: NextPage<Props> = ({
                     )}
 
                     <div className="pb-16">
-                      <h2 className="text-left text-xl pl-1 mb-3">
+                      <h2 className="text-left text-lg pl-6 mb-3">
                         今日の新歓
                       </h2>
                       {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -71,7 +70,7 @@ const Page: NextPage<Props> = ({
                     </div>
 
                     <div className="pb-16">
-                      <h2 className="text-left text-xl pl-1 mb-3">開催予定</h2>
+                      <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
 
                       <IndexCircleNewJoyList
                         slug={circle.slug}
@@ -80,7 +79,7 @@ const Page: NextPage<Props> = ({
                     </div>
 
                     <div className="pb-16">
-                      <h2 className="text-left text-xl pl-1 mb-3">開催済み</h2>
+                      <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
 
                       <IndexCircleNewJoyList
                         slug={circle.slug}
@@ -88,13 +87,14 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   </div>
-                  <div
-                    className="col-span-2 bg-gray-300 text-white  mx-1"
-                    style={{ width: 222, height: 324 }}
-                  >
+
+                  <div className="col-span-2  mx-1">
                     <h2 className="text-2xl">主要サークル</h2>
-                    <div className="bg-white mt-10 rounded-xl">
-                      <div className="mr-2" style={{ width: 64 }}>
+                    <div
+                      className="bg-white mt-3 rounded-xl px-2"
+                      style={{ width: 222, height: 324 }}
+                    >
+                      <div className="mx-auto text-center pb-3 pt-6">
                         <Image
                           src={
                             circle.mainImageUrl
@@ -102,30 +102,47 @@ const Page: NextPage<Props> = ({
                               : '/images/no-image.png'
                           }
                           alt={`${circle.name}のロゴ`}
-                          width={64}
-                          height={64}
+                          width={70}
+                          height={70}
                           className="rounded-full border border-gray-300"
                         />
                       </div>
-                      <h4 className="text-xl text-center">
+                      <h4 className="text-base text-center">
                         {circle.prefixName}
                       </h4>
-                      <h3 className="text-xl text-center">{circle.name}</h3>
-                      <p className="text-lg text-left mx-auto">
+                      <h3 className="text-xl text-center mt-3 mb-4">
+                        {circle.name}
+                      </h3>
+                      <p className="text-xs text-left mx-auto">
                         {circle.description}
                       </p>
-                      <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                        <a className="text-right ">もっと詳しく</a>
-                      </Link>
-                      <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                        <div className="rounded-full text-white bg-green-500 text-center px-4 py-2">
-                          新歓日程
-                        </div>
-                      </Link>
+                      <nav className="text-right">
+                        <Link
+                          href="/circle/[slug]"
+                          as={`/circle/${circle.slug}`}
+                        >
+                          <a className="text-xs text-blue-500 underline">
+                            もっと詳しく
+                          </a>
+                        </Link>
+                      </nav>
+                      <nav className="text-center mt-8">
+                        <Link href="" as={''}>
+                          <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
+                            新歓日程
+                          </a>
+                        </Link>
+                      </nav>
                     </div>
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
-                      <div className="rounded-full text-white bg-green-500 text-center px-4 py-2">
-                        今日の新歓をチェック！
+                      <div
+                        className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
+                        style={{ width: 222 }}
+                      >
+                        <h4 className="text-sm">他のサークルの新歓も見る</h4>
+                        <h3 className="text-base font-bold">
+                          今日の新歓をチェック！
+                        </h3>
                       </div>
                     </Link>
                   </div>
