@@ -17,6 +17,7 @@ import { useWindowResize } from '@/hooks/useWindowResize'
 import { useEffect, useState } from 'react'
 
 import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
+import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
 
 type Props = {
   advertises: Advertise[]
@@ -51,8 +52,8 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
           <p className="text-center py-8">新歓をハックする！</p>
         </div>
 
+        <MainUucircleTopButtons />
         <BaseContainer>
-          <MainUucircleTopButtons />
           <div className="px-6">
             <MainTagList />
 
@@ -69,6 +70,8 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
           {/*  フッター */}
 
           <MainUucircleAd />
+
+          <MainUucircleBottomButtons />
 
           <MainSponsorshipFooter advertises={advertises} />
 
