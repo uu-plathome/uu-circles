@@ -5,11 +5,13 @@ import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
 import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
+import { IndexCircleNewJoyListForDetail } from '@/components/organisms/List/IndexCircleNewJoyListForDetail'
 import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+
 type Props = {
   errorCode?: number
   /** サークル */ circle?: Circle
@@ -31,16 +33,24 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
+  console.log(circleNewJoy)
   const { isMd } = useMediaQuery()
   return (
     <div>
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
+            <h1 className="text-2xl py-8 md:text-center text-left">
+              新歓イベント日程詳細
+            </h1>
             {isMd ? (
               //PC
               <div>
+                <div className="pb-16">
+                  <IndexCircleNewJoyListForDetail
+                    circleNewJoys={circleNewJoy}
+                  />
+                </div>
                 <>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                     <div className="pb-16">
