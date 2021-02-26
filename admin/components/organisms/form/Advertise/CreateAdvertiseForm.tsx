@@ -26,6 +26,7 @@ const CreateAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => 
                 name="title"
                 id="title"
                 required
+                expand
                 maxLength={50}
                 { ...form.title }
             />

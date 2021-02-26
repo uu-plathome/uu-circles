@@ -16,6 +16,7 @@ import { CircleType } from "@/lib/enum/api/CircleType";
 import Head from "next/head";
 import { TopImage } from "@/components/organisms/ShowCircle/TopImage";
 import { InformationField } from "@/components/organisms/ShowCircle/InformationField";
+import Image from "next/image";
 
 type Props = {
     circle?: Circle
@@ -23,6 +24,9 @@ type Props = {
     errorCode?: number
 }
 const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
+    // w : h = 210 : 297
+    const width = 300
+    const height = 300 * 297 / 210
     return (
         <div>
             <Head>
@@ -75,9 +79,26 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
-                            <AppealingPoint circle={circle} />
+                            <div className="order-1">
+                                <AppealingPoint circle={circle} />
+                            </div>
 
-                            <div className="pt-10">
+                            <div className="order-2 pt-10">
+                                <h2 className="text-lg text-center mb-6 md:text-left">新歓ビラ</h2>
+                        
+                                <div className="flex justify-center">
+                                    <a href={circle.handbillImageUrl} target="_blank">
+                                        <Image
+                                            src={circle.handbillImageUrl}
+                                            alt={`${circle.name}新歓ビラ`}
+                                            width={width}
+                                            height={height}
+                                        />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="order-3 md:order-4 pt-10">
                                 <div>
                                     <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
                                 </div>
@@ -89,7 +110,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                                 </div>
                             </div>
 
-                            <div className="pt-10">
+                            <div className="order-4 md:order-3 pt-10">
                                 <InformationField circle={circle} />
                             </div>
                         </div>
