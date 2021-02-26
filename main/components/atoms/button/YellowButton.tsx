@@ -1,13 +1,14 @@
-import Link, { LinkProps } from "next/link";
-import React from "react";
-import { UrlObject } from 'url';
-type Url = string | UrlObject;
+import Link, { LinkProps } from 'next/link'
+import React, { CSSProperties } from 'react'
+import { UrlObject } from 'url'
+type Url = string | UrlObject
 
 type Props = {
-    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
-    as?: Url
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-    href?: LinkProps['href']
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
+  as?: Url
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  href?: LinkProps['href']
+  expand?: CSSProperties
 }
 
 const buttonClassName = `
@@ -32,27 +33,34 @@ const buttonClassName = `
     hover:bg-yellow-500
     focus:outline-none
 `
-const YellowButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
-
-    if (href) {
-        return (
-            <Link href={href} as={as}>
-                <a className={buttonClassName}>
-                    { children }
-                </a>
-            </Link>
-        )
-    } else {
-        return (
-            <button
-                className={buttonClassName}
-                onClick={onClick}
-                type={type ? type : 'button'}
-            >
-                { children }
-            </button>
-        )
-    }
+const YellowButton: React.FC<Props> = ({
+  children,
+  as,
+  href,
+  onClick,
+  type,
+  expand,
+}) => {
+  if (href) {
+    return (
+      <Link href={href} as={as}>
+        <a className={buttonClassName} style={expand}>
+          {children}
+        </a>
+      </Link>
+    )
+  } else {
+    return (
+      <button
+        className={buttonClassName}
+        style={expand}
+        onClick={onClick}
+        type={type ? type : 'button'}
+      >
+        {children}
+      </button>
+    )
+  }
 }
 
 export { YellowButton }
