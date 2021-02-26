@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
-import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
+import { getDOW, getMonth, getDay, getTime } from '@/lib/utils/Date'
 
 type Props = {
   slug: string
