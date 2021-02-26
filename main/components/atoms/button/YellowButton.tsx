@@ -8,7 +8,7 @@ type Props = {
   as?: Url
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   href?: LinkProps['href']
-  width: string | number
+  width?: string | number
 }
 
 const buttonClassName = `
