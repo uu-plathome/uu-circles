@@ -143,7 +143,7 @@ const Page: NextPage<Props> = ({
                         style={{ width: 222 }}
                       > */}
                         <div className="mt-6 w-full">
-                          <YellowButton expand={{ width: '222px' }}>
+                          <YellowButton width={'222px'}>
                             <h4 className="text-sm">
                               他のサークルの新歓も見る
                             </h4>

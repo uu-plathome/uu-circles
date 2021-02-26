@@ -8,7 +8,7 @@ type Props = {
   as?: Url
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   href?: LinkProps['href']
-  expand?: CSSProperties
+  width: string | number
 }
 
 const buttonClassName = `
@@ -39,12 +39,17 @@ const YellowButton: React.FC<Props> = ({
   href,
   onClick,
   type,
-  expand,
+  width,
 }) => {
   if (href) {
     return (
       <Link href={href} as={as}>
-        <a className={buttonClassName} style={expand}>
+        <a
+          className={buttonClassName}
+          style={{
+            width: width,
+          }}
+        >
           {children}
         </a>
       </Link>
@@ -53,7 +58,9 @@ const YellowButton: React.FC<Props> = ({
     return (
       <button
         className={buttonClassName}
-        style={expand}
+        style={{
+          width: width,
+        }}
         onClick={onClick}
         type={type ? type : 'button'}
       >
