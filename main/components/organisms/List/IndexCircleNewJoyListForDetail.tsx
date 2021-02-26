@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { CircleNewJoyListItemForNoSlug } from '../ListItem/CircleNewJoyListItemForNoSlug'
+import { CircleNewJoyListItemForDetail } from '../ListItem/CircleNewJoyListItemForDetail'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 
 type Props = {
@@ -20,7 +20,7 @@ const IndexCircleNewJoyListForDetail: FC<Props> = ({ circleNewJoys }) => {
                 key={circleNewJoy.circleNewJoy.id}
                 className={`md:px-4 ${className}`}
               >
-                <CircleNewJoyListItemForNoSlug
+                <CircleNewJoyListItemForDetail
                   todayCircleNewJoy={circleNewJoy}
                 />
               </div>
