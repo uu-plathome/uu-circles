@@ -91,7 +91,7 @@ const Page: NextPage<Props> = ({
                   </div>
 
                   <div className="col-span-2  mx-1">
-                    <h2 className="text-2xl">主要サークル</h2>
+                    <h2 className="text-2xl">主催サークル</h2>
                     <div
                       className="bg-white mt-3 rounded-xl px-2"
                       style={{ width: 222, height: 324 }}
