@@ -10,6 +10,9 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { YellowButton } from '@/components/atoms/button/YellowButton'
+import { BaseHead } from '@/components/layouts/BaseHead'
+
 type Props = {
   /** サークル */ circle?: Circle
   errorCode?: number
@@ -32,6 +35,10 @@ const Page: NextPage<Props> = ({
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>
+      <BaseHead
+          title={ `${circle.name}の新歓` }
+      />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
@@ -90,7 +97,7 @@ const Page: NextPage<Props> = ({
                   </div>
 
                   <div className="col-span-2  mx-1">
-                    <h2 className="text-2xl">主要サークル</h2>
+                    <h2 className="text-2xl">主催サークル</h2>
                     <div
                       className="bg-white mt-3 rounded-xl px-2"
                       style={{ width: 222, height: 324 }}
@@ -136,15 +143,22 @@ const Page: NextPage<Props> = ({
                       </nav>
                     </div>
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
-                      <div
+                      <a>
+                        {/* <div
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
                         style={{ width: 222 }}
-                      >
-                        <h4 className="text-sm">他のサークルの新歓も見る</h4>
-                        <h3 className="text-base font-bold">
-                          今日の新歓をチェック！
-                        </h3>
-                      </div>
+                      > */}
+                        <div className="mt-6 w-full">
+                          <YellowButton width={'222px'}>
+                            <h4 className="text-sm">
+                              他のサークルの新歓も見る
+                            </h4>
+                            <h3 className="text-base font-bold">
+                              今日の新歓をチェック！
+                            </h3>
+                          </YellowButton>
+                        </div>
+                      </a>
                     </Link>
                   </div>
                 </div>
