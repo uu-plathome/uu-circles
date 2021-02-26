@@ -38,22 +38,19 @@ const Page: NextPage<Props> = ({
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
-            {isMd?( {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+            {isMd?( 
+              //PC
+              {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
               <div className="pb-16">
                 <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                   開催中
                 </h2>
-                {isMd ? (
+      
                   <IndexCircleNewJoyListPC
                     slug={circle.slug}
                     circleNewJoys={nowCircleNewJoys}
                   />
-                ) : (
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={nowCircleNewJoys}
-                  />
-                )}
+                )
               </div>
             ) : (
               ''
@@ -64,17 +61,12 @@ const Page: NextPage<Props> = ({
               </h2>
               {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
                 <div>
-                  {isMd ? (
+            
                     <IndexCircleNewJoyListPC
                       slug={circle.slug}
                       circleNewJoys={todayCircleNewJoys}
                     />
-                  ) : (
-                    <IndexCircleNewJoyListSP
-                      slug={circle.slug}
-                      circleNewJoys={todayCircleNewJoys}
-                    />
-                  )}
+                
                 </div>
               ) : (
                 <p>今日の新歓はありません</p>
@@ -84,33 +76,23 @@ const Page: NextPage<Props> = ({
               <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                 開催予定
               </h2>
-              {isMd ? (
+             
                 <IndexCircleNewJoyListPC
                   slug={circle.slug}
                   circleNewJoys={futureCircleNewJoys}
                 />
-              ) : (
-                <IndexCircleNewJoyListSP
-                  slug={circle.slug}
-                  circleNewJoys={futureCircleNewJoys}
-                />
-              )}
+            
             </div>
             <div className="pb-16">
               <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                 開催済み
               </h2>
-              {isMd ? (
+            
                 <IndexCircleNewJoyListPC
                   slug={circle.slug}
                   circleNewJoys={pastCircleNewJoys}
                 />
-              ) : (
-                <IndexCircleNewJoyListSP
-                  slug={circle.slug}
-                  circleNewJoys={pastCircleNewJoys}
-                />
-              )}
+              
             </div>
             <div className="pb-16">
               <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
@@ -146,22 +128,19 @@ const Page: NextPage<Props> = ({
                   </div>
                 </a>
               </Link>
-            </div>):( {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+            </div>):( 
+              //SP
+              {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
               <div className="pb-16">
                 <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                   開催中
                 </h2>
-                {isMd ? (
-                  <IndexCircleNewJoyListPC
-                    slug={circle.slug}
-                    circleNewJoys={nowCircleNewJoys}
-                  />
-                ) : (
+               
                   <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={nowCircleNewJoys}
                   />
-                )}
+            
               </div>
             ) : (
               ''
@@ -172,17 +151,12 @@ const Page: NextPage<Props> = ({
               </h2>
               {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
                 <div>
-                  {isMd ? (
-                    <IndexCircleNewJoyListPC
-                      slug={circle.slug}
-                      circleNewJoys={todayCircleNewJoys}
-                    />
-                  ) : (
+                 
                     <IndexCircleNewJoyListSP
                       slug={circle.slug}
                       circleNewJoys={todayCircleNewJoys}
                     />
-                  )}
+            
                 </div>
               ) : (
                 <p>今日の新歓はありません</p>
@@ -192,33 +166,23 @@ const Page: NextPage<Props> = ({
               <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                 開催予定
               </h2>
-              {isMd ? (
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={futureCircleNewJoys}
-                />
-              ) : (
+             
                 <IndexCircleNewJoyListSP
                   slug={circle.slug}
                   circleNewJoys={futureCircleNewJoys}
                 />
-              )}
+           
             </div>
             <div className="pb-16">
               <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                 開催済み
               </h2>
-              {isMd ? (
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={pastCircleNewJoys}
-                />
-              ) : (
+        
                 <IndexCircleNewJoyListSP
                   slug={circle.slug}
                   circleNewJoys={pastCircleNewJoys}
                 />
-              )}
+           
             </div>
             <div className="pb-16">
               <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
