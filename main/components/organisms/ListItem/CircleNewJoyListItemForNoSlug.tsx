@@ -6,13 +6,8 @@ import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
-const getDOW = (circleNewJoy: CircleNewJoy) => {
-  //曜日取得関数 dayjs
-  const date = dayjs(circleNewJoy.startDate)
-  const DOWList = ['日', '月', '火', '水', '木', '金', '土'] //dayjsは日曜始まり
-  const DOW = DOWList[date.day()]
-  return DOW
-}
+import { getDOW } from '@/lib/utils/getDOW'
+
 const getMonth = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
     const date = dayjs(circleNewJoy.startDate)
@@ -86,7 +81,9 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
             }}
           >
             <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
-              <p className="text-xs leading-5">{getDOW(circleNewJoy)}</p>
+              <p className="text-xs leading-5">
+                {getDOW(circleNewJoy.startDate)}
+              </p>
             </div>
             <div
               className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
