@@ -51,7 +51,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -66,5 +66,8 @@ return [
         ],
 
     ],
+
+    'AWS_CLOUDFRONT_KEY_PAIR_ID' => env('AWS_CLOUDFRONT_KEY_PAIR_ID'),
+    'AWS_PK_FILENAME' => env('AWS_PK_FILENAME'),
 
 ];
