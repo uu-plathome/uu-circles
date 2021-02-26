@@ -3,11 +3,15 @@ import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import Image from "next/image";
+import { BaseHead } from "@/components/layouts/BaseHead";
 
-type Props = {}
-const Page: NextPage<Props> = () => {
+const Page: NextPage = () => {
     return (
         <div>
+            <BaseHead
+                title="Discordで行われるオンライン新歓に参加してみよう！"
+            />
+
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <BaseContainer>
