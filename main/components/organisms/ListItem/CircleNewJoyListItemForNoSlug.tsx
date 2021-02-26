@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
-import { getDOW } from '@/lib/utils/getDOW'
+import { getDOW } from '@/lib/utils/GetDOW'
 
 const getMonth = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
