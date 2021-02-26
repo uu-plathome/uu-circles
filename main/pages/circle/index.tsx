@@ -7,6 +7,7 @@ import { Circle } from "@/lib/types/model/Circle";
 import { TwoColumnContainer } from "@/components/molecules/Container/TwoColumnContainer";
 import { CircleSidebar } from "@/components/organisms/Circles/CircleSidebar";
 import Head from "next/head";
+import { BaseHead } from "@/components/layouts/BaseHead";
 
 type Props = {
     errorCode?: number
@@ -17,9 +18,9 @@ const Page: NextPage<Props> = ({
 }) => {
     return (
         <div>
-            <Head>
-                <title>サークル一覧 | UU-circles</title>
-            </Head>
+            <BaseHead
+                title="サークル一覧"
+            />
 
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
