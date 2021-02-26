@@ -2,48 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
-import dayjs from 'dayjs'
-import { getDOW } from '@/lib/utils/Date'
-const getMonth = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('M')
-  }
-
-  return '未定'
-}
-const getDay = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('D')
-  }
-
-  return '未定'
-}
-const getTime = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate && circleNewJoy.endDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`
-  }
-
-  if (circleNewJoy.startDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-
-    return `${startDate.format('HH:mm')}-`
-  }
-
-  if (circleNewJoy.endDate) {
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `-${endDate.format('HH:mm')}`
-  }
-
-  return '未定'
-}
+import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 
 type Props = {
   slug: string
@@ -70,8 +29,10 @@ const CircleNewJoyListItemPC: FC<Props> = ({ slug, circleNewJoy }) => {
           className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
           style={{ borderRadius: '0 0 10 10 ' }}
         >
-          <p className="text-xs leading-4">{getMonth(circleNewJoy)}月</p>
-          <p className="text-2xl">{getDay(circleNewJoy)}</p>
+          <p className="text-xs leading-4">
+            {getMonth(circleNewJoy.startDate)}月
+          </p>
+          <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
         </div>
       </section>
       <section className=" bg-white px-2 pl-3 w-80">
@@ -89,7 +50,7 @@ const CircleNewJoyListItemPC: FC<Props> = ({ slug, circleNewJoy }) => {
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">日時</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
-              {getTime(circleNewJoy)}
+              {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
             </p>
           </div>
         </div>
