@@ -67,9 +67,8 @@ type Props = {
 }
 const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  // console.log(todayCircleNewJoy) //しょっちゅう使うため、コメントアウトしています。
-  const circleNewJoy = todayCircleNewJoy.circleNewJoy
-  const slug = todayCircleNewJoy.slug
+  // console.log(todayCircleNewJoy)
+
   return (
     <div>
       {isMd ? (
