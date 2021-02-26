@@ -28,19 +28,20 @@ class IndexCircleNewJoyUsecase
 
         return [
             // 新歓開催済み
-            'pastCircleNewJoys' => $mapCircleNewJoys['past']->map(
-                fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
-            )->toArray(),
+            'pastCircleNewJoys' => $mapCircleNewJoys['past']->sortByDesc('start_date')
+                ->map(
+                    fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                )->toArray(),
             // 新歓開催前
-            'futureCircleNewJoys' => $mapCircleNewJoys['future']->map(
+            'futureCircleNewJoys' => $mapCircleNewJoys['future']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
             // 現在開催中
-            'nowCircleNewJoys' => $mapCircleNewJoys['now']->map(
+            'nowCircleNewJoys' => $mapCircleNewJoys['now']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
             // 今日の新歓
-            'todayCircleNewJoys' => $mapCircleNewJoys['today']->map(
+            'todayCircleNewJoys' => $mapCircleNewJoys['today']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
         ];

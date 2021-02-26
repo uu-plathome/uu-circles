@@ -11,6 +11,8 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
+import { BaseHead } from '@/components/layouts/BaseHead'
+
 type Props = {
   /** サークル */ circle?: Circle
   errorCode?: number
@@ -33,6 +35,10 @@ const Page: NextPage<Props> = ({
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>
+      <BaseHead
+          title={ `${circle.name}の新歓` }
+      />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
