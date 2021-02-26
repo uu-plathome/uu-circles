@@ -2,47 +2,13 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
-import dayjs from 'dayjs'
-
-const getDate = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('YYYY/MM/DD')
-  }
-
-  return '未定'
-}
-
-const getTime = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate && circleNewJoy.endDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`
-  }
-
-  if (circleNewJoy.startDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-
-    return `${startDate.format('HH:mm')}-`
-  }
-
-  if (circleNewJoy.endDate) {
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `-${endDate.format('HH:mm')}`
-  }
-
-  return '未定'
-}
+import { getDate, getTime } from '@/lib/utils/Date'
 
 type Props = {
   slug: string
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
-  console.log(circleNewJoy)
   return (
     <div
       className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -61,11 +27,11 @@ const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
         <div className="text-sm flex">
           <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
             <span className="text-gray-400 text-xs pl-1">日時</span>
-            <span className="px-2">{getDate(circleNewJoy)}</span>
+            <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
           </div>
 
           <span className="block w-full text-center border-b border-gray-400 whitespace-nowrap">
-            {getTime(circleNewJoy)}
+            {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
           </span>
         </div>
       </div>
