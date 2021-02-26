@@ -11,6 +11,7 @@ import { __ } from "@/lang/ja";
 import { categoryToCircleType } from "@/lib/utils/category/Category";
 import { Category } from "@/lib/enum/app/Category";
 import Head from "next/head";
+import { BaseHead } from "@/components/layouts/BaseHead";
 
 type Props = {
     errorCode?: number
@@ -24,9 +25,9 @@ const Page: NextPage<Props> = ({
 
     return (
         <div>
-            <Head>
-                <title>{ __(String(categoryToCircleType(category as Category))) } カテゴリー検索 | UU-circles</title>
-            </Head>
+            <BaseHead
+                title={ `${__(String(categoryToCircleType(category as Category)))} カテゴリー検索` }
+            />
 
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
