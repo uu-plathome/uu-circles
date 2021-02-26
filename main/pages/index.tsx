@@ -11,12 +11,24 @@ import { MainTagList } from "@/components/organisms/Main/MainTagList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
 import { Advertise } from "@/lib/types/model/Advertise";
 import Head from "next/head";
+import Image from "next/image";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useWindowResize } from "@/hooks/useWindowResize";
+import { useEffect, useState } from "react";
 
 type Props = {
     advertises: Advertise[]
     circles: Circle[]
 }
 const Index: NextPage<Props> = ({ advertises, circles }) => {
+    const { width } = useWindowResize()
+    const { isMd } = useMediaQuery()
+    const [ height, setHeight ] = useState(0)
+
+    useEffect(() => {
+        setHeight(isMd ? 330 : width * 4192 / 8001)
+    }, [isMd, width])
+
     return (
         <div>
             <Head>
@@ -24,10 +36,16 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
             </Head>
 
             <BaseLayout>
-                <div className="w-full bg-gray-600 h-80">
-
+                <div className="w-full">
+                    <Image
+                        src="/images/top-image.png"
+                        width={width || 0}
+                        height={height}
+                        objectFit="cover"
+                        alt="UU-circlesへようこそ！"
+                    />
                 </div>
-                <div>
+                <div style={{ marginTop: '-6px' }} className="bg-white">
                     <p className="text-center py-8">
                         新歓をハックする！
                     </p>
