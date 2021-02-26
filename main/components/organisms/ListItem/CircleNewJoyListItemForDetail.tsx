@@ -6,76 +6,24 @@ import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
-const getDOW = (circleNewJoy: CircleNewJoy) => {
-  //曜日取得関数 dayjs
-  const date = dayjs(circleNewJoy.startDate)
-  const DOWList = ['日', '月', '火', '水', '木', '金', '土'] //dayjsは日曜始まり
-  const DOW = DOWList[date.day()]
-  return DOW
-}
-const getMonth = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('M')
-  }
-
-  return '未定'
-}
-const getDay = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('D')
-  }
-
-  return '未定'
-}
-const getDate = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('YYYY/MM/DD')
-  }
-
-  return '未定'
-}
-const getTime = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate && circleNewJoy.endDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`
-  }
-
-  if (circleNewJoy.startDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-
-    return `${startDate.format('HH:mm')}-`
-  }
-
-  if (circleNewJoy.endDate) {
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `-${endDate.format('HH:mm')}`
-  }
-
-  return '未定'
-}
+import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
+import { CircleType } from '@/lib/enum/api/CircleType'
 type Props = {
   todayCircleNewJoy: TodayCircleNewJoy
 }
-const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
+const CircleNewJoyListItemForDetail: FC<Props> = ({ todayCircleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
   // console.log(todayCircleNewJoy)
+  const circleNewJoy = todayCircleNewJoy.circleNewJoy
+  const slug = todayCircleNewJoy.slug
 
   return (
     <div>
       {isMd ? (
         // PCレイアウト
         <div
-          className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
-          style={{ width: 750, height: 100 }}
+          className="border border-gray-300 bg-white rounded-xl flex justify-between px-6 py-2 mx-auto mb-2"
+          style={{ width: 500, height: 448 }}
         >
           <section
             className="rounded-2xl border-gray-300 border"
@@ -85,87 +33,28 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
             }}
           >
             <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
-              <p className="text-xs leading-5">{getDOW(circleNewJoy)}</p>
+              <p className="text-xs leading-5">
+                {getDOW(circleNewJoy.startDate)}
+              </p>
             </div>
             <div
               className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
               style={{ borderRadius: '0 0 10 10 ' }}
             >
-              <p className="text-xs leading-4">{getMonth(circleNewJoy)}月</p>
-              <p className="text-2xl">{getDay(circleNewJoy)}</p>
-            </div>
-          </section>
-          <section className=" bg-white px-2 pl-3 w-80">
-            <div className="col-span-4">
-              <h2 className="font-bold text-xl text-center">
-                {circleNewJoy.title}
-              </h2>
-              <div className="border-b-2  grid grid-cols-8">
-                <p className="text-gray-600 text-xs col-span-1">場所</p>
-                <p className="text-gray-600 text-xs col-span-6 text-center">
-                  {' '}
-                  {__(circleNewJoy.placeOfActivity)}
-                </p>
-              </div>
-              <div className="border-b-2  grid grid-cols-8">
-                <p className="text-gray-600 text-xs col-span-1">日時</p>
-                <p className="text-gray-600 text-xs col-span-6 text-center">
-                  {getTime(circleNewJoy)}
-                </p>
-              </div>
+              <p className="text-xs leading-4">
+                {getMonth(circleNewJoy.startDate)}月
+              </p>
+              <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
             </div>
           </section>
           <section
-            className="h-full w-28 text-center mx-auto"
-            style={{ paddingTop: '50px' }}
+            className=" bg-white px-2 pl-3 w-80"
+            style={{ width: 335, height: 145 }}
           >
-            <Link
-              href="/circle/[slug]/newjoy/[circleNewJoy.id]"
-              as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
-            >
-              <a className="text-blue-500 border-b border-blue-500 text-xs w-20 ">
-                もっと詳しく
-              </a>
-            </Link>
-          </section>
-
-          <section
-            className="border-l-2 border-gray-600 h-full pl-2"
-            style={{ width: '250px' }}
-          >
-            <h3 className="text-xs  ">主催サークル</h3>
-            <Link href="/circle/[slug]" as={`/circle/${slug}`}>
-              <div className="pl-2 flex justify-around items-center">
-                {todayCircleNewJoy.mainImageUrl == null ? (
-                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                    <Image
-                      src={'/images/no-image.png'}
-                      alt={`${todayCircleNewJoy.name}のアイコン`}
-                      className="mx-auto"
-                      width={44}
-                      height={44}
-                    />
-                  </div>
-                ) : (
-                  <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                    <Image
-                      src={todayCircleNewJoy.mainImageUrl}
-                      alt={`${todayCircleNewJoy.name}のアイコン`}
-                      className="mx-auto"
-                      width={44}
-                      height={44}
-                    />
-                  </div>
-                )}
-                <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                  <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
-
-                  <a className="inline text-xl border-b font-bold">
-                    {todayCircleNewJoy.name}
-                  </a>
-                </div>
-              </div>
-            </Link>
+            <h4 className="text-gray-500 text-lg">新歓イベント名</h4>
+            <h4 className="text-black text-xl border-b border-gray-600">
+              テスト新歓
+            </h4>
           </section>
         </div>
       ) : (
@@ -217,4 +106,4 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   )
 }
 
-export { CircleNewJoyListItemForNoSlug }
+export { CircleNewJoyListItemForDetail }
