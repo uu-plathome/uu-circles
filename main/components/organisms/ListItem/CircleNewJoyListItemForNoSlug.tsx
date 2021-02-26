@@ -2,61 +2,11 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
-import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
-import { getDOW } from '@/lib/utils/Date'
+import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 
-const getMonth = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('M')
-  }
-
-  return '未定'
-}
-const getDay = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('D')
-  }
-
-  return '未定'
-}
-const getDate = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate) {
-    const date = dayjs(circleNewJoy.startDate)
-
-    return date.format('YYYY/MM/DD')
-  }
-
-  return '未定'
-}
-const getTime = (circleNewJoy: CircleNewJoy) => {
-  if (circleNewJoy.startDate && circleNewJoy.endDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `${startDate.format('HH:mm')}-${endDate.format('HH:mm')}`
-  }
-
-  if (circleNewJoy.startDate) {
-    const startDate = dayjs(circleNewJoy.startDate)
-
-    return `${startDate.format('HH:mm')}-`
-  }
-
-  if (circleNewJoy.endDate) {
-    const endDate = dayjs(circleNewJoy.endDate)
-
-    return `-${endDate.format('HH:mm')}`
-  }
-
-  return '未定'
-}
 type Props = {
   todayCircleNewJoy: TodayCircleNewJoy
 }
@@ -89,8 +39,10 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
               className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
               style={{ borderRadius: '0 0 10 10 ' }}
             >
-              <p className="text-xs leading-4">{getMonth(circleNewJoy)}月</p>
-              <p className="text-2xl">{getDay(circleNewJoy)}</p>
+              <p className="text-xs leading-4">
+                {getMonth(circleNewJoy.startDate)}月
+              </p>
+              <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
             </div>
           </section>
           <section className=" bg-white px-2 pl-3 w-80">
@@ -108,7 +60,7 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
               <div className="border-b-2  grid grid-cols-8">
                 <p className="text-gray-600 text-xs col-span-1">日時</p>
                 <p className="text-gray-600 text-xs col-span-6 text-center">
-                  {getTime(circleNewJoy)}
+                  {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
                 </p>
               </div>
             </div>
@@ -185,14 +137,14 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
             <div className="text-sm flex">
               <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
                 <span className="text-gray-400 text-xs pl-1">日時</span>
-                <span className="px-2">{getDate(circleNewJoy)}</span>
+                <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
               </div>
 
               <span
                 className="block  text-center border-b border-gray-400 whitespace-nowrap"
                 style={{ minWidth: 87 }}
               >
-                {getTime(circleNewJoy)}
+                {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
               </span>
             </div>
           </div>
