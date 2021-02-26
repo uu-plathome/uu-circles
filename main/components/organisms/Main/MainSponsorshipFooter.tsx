@@ -23,6 +23,10 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                                 height={height} 
                             />
                         </a>
+
+                        <div>
+                            <p className="text-center text-black text-sm">{advertises[0].title}</p>
+                        </div>
                     </div>
                 ) : ''}
 
@@ -36,6 +40,10 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                                 height={height} 
                             />
                         </a>
+
+                        <div>
+                            <p className="text-center text-black text-sm">{advertises[1].title}</p>
+                        </div>
                     </div>
                 ) : ''}
             </div>

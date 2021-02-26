@@ -9,7 +9,7 @@ type Props = {
 const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
   return (
     <div className="bg-gray-100">
-      <h2 className="text-center md:text-left mb-8 text-lg font-bold">
+      <h2 className="text-center md:text-left mb-8 text-lg">
         新歓イベント日程
       </h2>
 
