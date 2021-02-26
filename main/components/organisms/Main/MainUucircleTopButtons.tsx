@@ -13,7 +13,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
   const { isMd } = useMediaQuery()
 
   return (
-    <div className="flex justify-center my-10">
+    <div className="flex justify-center pt-10 pb-10 bg-gray-100">
       {isMd ? (
         <nav style={{ margin: 'auto!important' }}>
           <button
@@ -96,11 +96,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
         </nav>
       ) : (
         <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
-          <nav
-            className="mx-3"
-            style={{ margin: 'auto!important' }}
-            id="top-button-scroll"
-          >
+          <nav className="mx-3" style={{ margin: 'auto!important' }}>
             <SwiperSlide className="text-center">
               <button
                 style={{
