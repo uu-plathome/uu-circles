@@ -38,117 +38,191 @@ const Page: NextPage<Props> = ({
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
-            新歓名
-            {circleNewJoy.title}
-            {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
-              <div className="pb-16">
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                  開催中
-                </h2>
-                {isMd ? (
-                  <IndexCircleNewJoyListPC
-                    slug={circle.slug}
-                    circleNewJoys={nowCircleNewJoys}
-                  />
-                ) : (
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={nowCircleNewJoys}
-                  />
-                )}
-              </div>
-            ) : (
-              ''
-            )}
-            <div className="pb-16">
-              <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                今日の新歓
-              </h2>
-              {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                <div>
-                  {isMd ? (
-                    <IndexCircleNewJoyListPC
-                      slug={circle.slug}
-                      circleNewJoys={todayCircleNewJoys}
-                    />
-                  ) : (
-                    <IndexCircleNewJoyListSP
-                      slug={circle.slug}
-                      circleNewJoys={todayCircleNewJoys}
-                    />
-                  )}
-                </div>
-              ) : (
-                <p>今日の新歓はありません</p>
-              )}
-            </div>
-            <div className="pb-16">
-              <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                開催予定
-              </h2>
-              {isMd ? (
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={futureCircleNewJoys}
-                />
-              ) : (
-                <IndexCircleNewJoyListSP
-                  slug={circle.slug}
-                  circleNewJoys={futureCircleNewJoys}
-                />
-              )}
-            </div>
-            <div className="pb-16">
-              <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                開催済み
-              </h2>
-              {isMd ? (
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={pastCircleNewJoys}
-                />
-              ) : (
-                <IndexCircleNewJoyListSP
-                  slug={circle.slug}
-                  circleNewJoys={pastCircleNewJoys}
-                />
-              )}
-            </div>
-            <div className="pb-16">
-              <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                <a>
-                  <h2 className="font-bold text-lg pl-1 mb-3">主催サークル</h2>
-                  <div
-                    className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
-                    style={{ width: 300 }}
-                  >
-                    <div className="mr-2" style={{ width: 64 }}>
-                      <Image
-                        src={
-                          circle.mainImageUrl
-                            ? circle.mainImageUrl
-                            : '/images/no-image.png'
-                        }
-                        alt={`${circle.name}のロゴ`}
-                        width={64}
-                        height={64}
-                        className="rounded-full border border-gray-300"
+            {isMd ? (
+              //PC
+              <div>
+                <>
+                  {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+                    <div className="pb-16">
+                      <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                        開催中
+                      </h2>
+
+                      <IndexCircleNewJoyListPC
+                        slug={circle.slug}
+                        circleNewJoys={nowCircleNewJoys}
                       />
                     </div>
-                    <div className="w-full pr-2" style={{ width: 200 }}>
-                      <h3 className="text-black font-bold mb-1 text-sm font-bold">
-                        {circle.name}
-                      </h3>
-                      <div>
-                        <p className="text-xs text-gray-600">
-                          {circle.description}
-                        </p>
-                      </div>
+                  ) : (
+                    ''
+                  )}{' '}
+                </>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    今日の新歓
+                  </h2>
+                  {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
+                    <div>
+                      <IndexCircleNewJoyListPC
+                        slug={circle.slug}
+                        circleNewJoys={todayCircleNewJoys}
+                      />
                     </div>
-                  </div>
-                </a>
-              </Link>
-            </div>
+                  ) : (
+                    <p>今日の新歓はありません</p>
+                  )}
+                </div>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    開催予定
+                  </h2>
+
+                  <IndexCircleNewJoyListPC
+                    slug={circle.slug}
+                    circleNewJoys={futureCircleNewJoys}
+                  />
+                </div>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    開催済み
+                  </h2>
+
+                  <IndexCircleNewJoyListPC
+                    slug={circle.slug}
+                    circleNewJoys={pastCircleNewJoys}
+                  />
+                </div>
+                <div className="pb-16">
+                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+                    <a>
+                      <h2 className="font-bold text-lg pl-1 mb-3">
+                        主催サークル
+                      </h2>
+                      <div
+                        className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
+                        style={{ width: 300 }}
+                      >
+                        <div className="mr-2" style={{ width: 64 }}>
+                          <Image
+                            src={
+                              circle.mainImageUrl
+                                ? circle.mainImageUrl
+                                : '/images/no-image.png'
+                            }
+                            alt={`${circle.name}のロゴ`}
+                            width={64}
+                            height={64}
+                            className="rounded-full border border-gray-300"
+                          />
+                        </div>
+                        <div className="w-full pr-2" style={{ width: 200 }}>
+                          <h3 className="text-black font-bold mb-1 text-sm font-bold">
+                            {circle.name}
+                          </h3>
+                          <div>
+                            <p className="text-xs text-gray-600">
+                              {circle.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>{' '}
+              </div>
+            ) : (
+              //SP
+              <div>
+                <>
+                  {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+                    <div className="pb-16">
+                      <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                        開催中
+                      </h2>
+
+                      <IndexCircleNewJoyListPC
+                        slug={circle.slug}
+                        circleNewJoys={nowCircleNewJoys}
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}{' '}
+                </>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    今日の新歓
+                  </h2>
+                  {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
+                    <div>
+                      <IndexCircleNewJoyListSP
+                        slug={circle.slug}
+                        circleNewJoys={todayCircleNewJoys}
+                      />
+                    </div>
+                  ) : (
+                    <p>今日の新歓はありません</p>
+                  )}
+                </div>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    開催予定
+                  </h2>
+
+                  <IndexCircleNewJoyListSP
+                    slug={circle.slug}
+                    circleNewJoys={futureCircleNewJoys}
+                  />
+                </div>
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    開催済み
+                  </h2>
+
+                  <IndexCircleNewJoyListSP
+                    slug={circle.slug}
+                    circleNewJoys={pastCircleNewJoys}
+                  />
+                </div>
+                <div className="pb-16">
+                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+                    <a>
+                      <h2 className="font-bold text-lg pl-1 mb-3">
+                        主催サークル
+                      </h2>
+                      <div
+                        className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
+                        style={{ width: 300 }}
+                      >
+                        <div className="mr-2" style={{ width: 64 }}>
+                          <Image
+                            src={
+                              circle.mainImageUrl
+                                ? circle.mainImageUrl
+                                : '/images/no-image.png'
+                            }
+                            alt={`${circle.name}のロゴ`}
+                            width={64}
+                            height={64}
+                            className="rounded-full border border-gray-300"
+                          />
+                        </div>
+                        <div className="w-full pr-2" style={{ width: 200 }}>
+                          <h3 className="text-black font-bold mb-1 text-sm font-bold">
+                            {circle.name}
+                          </h3>
+                          <div>
+                            <p className="text-xs text-gray-600">
+                              {circle.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>{' '}
+              </div>
+            )}
           </BaseContainer>
         </div>
 
