@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
 import dayjs from 'dayjs'
-import { getDOW } from '@/lib/utils/getDOW'
+import { getDOW } from '@/lib/utils/GetDOW'
 const getMonth = (circleNewJoy: CircleNewJoy) => {
   if (circleNewJoy.startDate) {
     const date = dayjs(circleNewJoy.startDate)
