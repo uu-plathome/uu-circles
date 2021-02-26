@@ -67,7 +67,4 @@ return [
 
     ],
 
-    'AWS_CLOUDFRONT_KEY_PAIR_ID' => env('AWS_CLOUDFRONT_KEY_PAIR_ID'),
-    'AWS_PK_FILENAME' => env('AWS_PK_FILENAME'),
-
 ];
