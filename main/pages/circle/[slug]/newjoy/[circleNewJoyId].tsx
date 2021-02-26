@@ -41,6 +41,7 @@ const Page: NextPage<Props> = ({
             {isMd?( 
               //PC
               {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+                
               <div className="pb-16">
                 <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                   開催中
@@ -50,7 +51,7 @@ const Page: NextPage<Props> = ({
                     slug={circle.slug}
                     circleNewJoys={nowCircleNewJoys}
                   />
-                )
+                
               </div>
             ) : (
               ''
