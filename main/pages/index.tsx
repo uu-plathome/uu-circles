@@ -1,95 +1,93 @@
-import { GetServerSideProps, NextPage } from "next";
-import { BaseFooter } from "@/components/layouts/BaseFooter";
-import { MainPageCircleList } from "@/components/organisms/List/MainPageCircleList";
-import { getMain } from "@/infra/api/main";
-import { Circle } from "@/lib/types/model/Circle";
-import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
-import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
-import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
-import { BaseLayout } from "@/components/layouts/BaseLayout";
-import { MainTagList } from "@/components/organisms/Main/MainTagList";
-import { GreenButton } from "@/components/atoms/button/GreenButton";
-import { Advertise } from "@/lib/types/model/Advertise";
-import Head from "next/head";
-import Image from "next/image";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useWindowResize } from "@/hooks/useWindowResize";
-import { useEffect, useState } from "react";
+import { GetServerSideProps, NextPage } from 'next'
+import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { MainPageCircleList } from '@/components/organisms/List/MainPageCircleList'
+import { getMain } from '@/infra/api/main'
+import { Circle } from '@/lib/types/model/Circle'
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { MainSponsorshipFooter } from '@/components/organisms/Main/MainSponsorshipFooter'
+import { MainUucircleAd } from '@/components/organisms/Main/MainUucircleAd'
+import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { MainTagList } from '@/components/organisms/Main/MainTagList'
+import { GreenButton } from '@/components/atoms/button/GreenButton'
+import { Advertise } from '@/lib/types/model/Advertise'
+import Head from 'next/head'
+import Image from 'next/image'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useWindowResize } from '@/hooks/useWindowResize'
+import { useEffect, useState } from 'react'
+
+import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
 
 type Props = {
-    advertises: Advertise[]
-    circles: Circle[]
+  advertises: Advertise[]
+  circles: Circle[]
 }
 const Index: NextPage<Props> = ({ advertises, circles }) => {
-    const { width } = useWindowResize()
-    const { isMd } = useMediaQuery()
-    const [ height, setHeight ] = useState(0)
+  const { width } = useWindowResize()
+  const { isMd } = useMediaQuery()
+  const [height, setHeight] = useState(0)
 
-    useEffect(() => {
-        setHeight(isMd ? 330 : width * 4192 / 8001)
-    }, [isMd, width])
+  useEffect(() => {
+    setHeight(isMd ? 330 : (width * 4192) / 8001)
+  }, [isMd, width])
 
-    return (
-        <div>
-            <Head>
-                <title>UU-circles</title>
-            </Head>
+  return (
+    <div>
+      <Head>
+        <title>UU-circles</title>
+      </Head>
 
-            <BaseLayout>
-                <div className="w-full">
-                    <Image
-                        src="/images/top-image.png"
-                        width={width || 0}
-                        height={height}
-                        objectFit="cover"
-                        alt="UU-circlesへようこそ！"
-                    />
-                </div>
-                <div style={{ marginTop: '-6px' }} className="bg-white">
-                    <p className="text-center py-8">
-                        新歓をハックする！
-                    </p>
-                </div>
-
-                <BaseContainer>
-                    <div className="px-6">
-
-                        <MainTagList />
-
-                        {/*  サークル一覧 */}
-                        <MainPageCircleList circles={circles} />
-
-                        <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
-                            <GreenButton href="/circle">
-                                もっと見る
-                            </GreenButton>
-                        </div>
-                    </div>
-                </BaseContainer>
-
-                <div>
-                    {/*  フッター */}
-
-                    <MainUucircleAd />
-
-                    <MainSponsorshipFooter advertises={advertises} />
-
-                    <BaseFooter />
-                </div>
-            </BaseLayout>
+      <BaseLayout>
+        <div className="w-full">
+          <Image
+            src="/images/top-image.png"
+            width={width || 0}
+            height={height}
+            objectFit="cover"
+            alt="UU-circlesへようこそ！"
+          />
         </div>
-    )
+        <div style={{ marginTop: '-6px' }} className="bg-white">
+          <p className="text-center py-8">新歓をハックする！</p>
+        </div>
+
+        <BaseContainer>
+          <MainUucircleTopButtons />
+          <div className="px-6">
+            <MainTagList />
+
+            {/*  サークル一覧 */}
+            <MainPageCircleList circles={circles} />
+
+            <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
+              <GreenButton href="/circle">もっと見る</GreenButton>
+            </div>
+          </div>
+        </BaseContainer>
+
+        <div>
+          {/*  フッター */}
+
+          <MainUucircleAd />
+
+          <MainSponsorshipFooter advertises={advertises} />
+
+          <BaseFooter />
+        </div>
+      </BaseLayout>
+    </div>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-    const { circles, advertises } = await getMain()
+  const { circles, advertises } = await getMain()
 
-    return {
-        props: {
-            advertises,
-            circles,
-        }
-    }
+  return {
+    props: {
+      advertises,
+      circles,
+    },
+  }
 }
 
 export default Index
