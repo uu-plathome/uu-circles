@@ -14,7 +14,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         <div className="bg-gray-100 md:px-6 justify-center">
             <div className="md:flex justify-center md:mx-auto" style={{ maxWidth: 700 }}>
                 {advertises && advertises[0] ? (
-                    <div className="md:mr-2">
+                    <div className="md:mr-2 rounded">
                         <a href={advertises[0].link} target="_blank" rel="noopener">
                             <Image 
                                 src={ advertises[0].mainImageUrl ? advertises[0].mainImageUrl : "/images/company_ad_tmp.png" }
@@ -31,7 +31,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 ) : ''}
 
                 {advertises && advertises[1] ? (
-                    <div className="hidden md:block md:ml-2">
+                    <div className="hidden md:block md:ml-2 rounded">
                         <a href={advertises[1].link} target="_blank" rel="noopener">
                             <Image 
                                 src={ advertises[1].mainImageUrl ? advertises[1].mainImageUrl : "/images/company_ad_tmp.png" }
