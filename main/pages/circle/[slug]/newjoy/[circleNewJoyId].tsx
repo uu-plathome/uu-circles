@@ -45,7 +45,6 @@ const Page: NextPage<Props> = ({
     return <Error statusCode={errorCode} />
   }
 
-
   const { isMd } = useMediaQuery()
   return (
     <div>
@@ -176,7 +175,7 @@ const Page: NextPage<Props> = ({
                 </div>{' '}
               </div>
             ) : (
-              //SP
+              // SP
               <div>
                 <>
                   <div className="pb-16">
@@ -262,7 +261,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       todayCircleNewJoys,
       allTodayCircleNewJoys,
     } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
-  
+
     return {
       props: {
         circle,
@@ -276,13 +275,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
-        res.statusCode = 404;
-        return { props: { errorCode: 404 } }
+      res.statusCode = 404
+      return { props: { errorCode: 404 } }
     }
 
-    res.statusCode = 500;
+    res.statusCode = 500
     return { props: { errorCode: 500 } }
-}
+  }
 }
 
 export default Page
