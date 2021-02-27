@@ -25,7 +25,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
             />
 
             <BaseTextField
-                label="サークル名(カナ)"
+                label="サークル名(全角カナ)"
                 name="nameKana"
                 id="nameKana"
                 expand
