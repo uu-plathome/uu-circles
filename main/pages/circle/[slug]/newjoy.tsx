@@ -45,7 +45,7 @@ const Page: NextPage<Props> = ({
             {isMd ? (
               //PC
               <div style={{ width: 750 }}>
-                <h1 className="text-3xl text-center py-8">
+                <h1 className="text-2xl text-center py-20">
                   {circle.name}の新歓
                 </h1>
                 <div className="grid grid-cols-7">
@@ -97,7 +97,7 @@ const Page: NextPage<Props> = ({
                   </div>
 
                   <div className="col-span-2  mx-1">
-                    <h2 className="text-2xl">主催サークル</h2>
+                    <h2 className="text-xl">主催サークル</h2>
 
                     <InformationCircleBesideNewJoyPC circle={circle} />
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
