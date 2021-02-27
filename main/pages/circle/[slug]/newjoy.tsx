@@ -12,6 +12,8 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { BaseHead } from '@/components/layouts/BaseHead'
+import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
+import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 
 type Props = {
   /** サークル */ circle?: Circle
@@ -35,9 +37,7 @@ const Page: NextPage<Props> = ({
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>
-      <BaseHead
-          title={ `${circle.name}の新歓` }
-      />
+      <BaseHead title={`${circle.name}の新歓`} />
 
       <BaseLayout>
         <div className="bg-gray-100 px-2">
@@ -98,50 +98,8 @@ const Page: NextPage<Props> = ({
 
                   <div className="col-span-2  mx-1">
                     <h2 className="text-2xl">主催サークル</h2>
-                    <div
-                      className="bg-white mt-3 rounded-xl px-2"
-                      style={{ width: 222, height: 324 }}
-                    >
-                      <div className="mx-auto text-center pb-3 pt-6">
-                        <Image
-                          src={
-                            circle.mainImageUrl
-                              ? circle.mainImageUrl
-                              : '/images/no-image.png'
-                          }
-                          alt={`${circle.name}のロゴ`}
-                          width={70}
-                          height={70}
-                          className="rounded-full border border-gray-300"
-                        />
-                      </div>
-                      <h4 className="text-base text-center">
-                        {circle.prefixName}
-                      </h4>
-                      <h3 className="text-xl text-center mt-3 mb-4">
-                        {circle.name}
-                      </h3>
-                      <p className="text-xs text-left mx-auto">
-                        {circle.description}
-                      </p>
-                      <nav className="text-right">
-                        <Link
-                          href="/circle/[slug]"
-                          as={`/circle/${circle.slug}`}
-                        >
-                          <a className="text-xs text-blue-500 underline">
-                            もっと詳しく
-                          </a>
-                        </Link>
-                      </nav>
-                      <nav className="text-center mt-8">
-                        <Link href="" as={''}>
-                          <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
-                            新歓日程
-                          </a>
-                        </Link>
-                      </nav>
-                    </div>
+
+                    <InformationCircleBesideNewJoyPC circle={circle} />
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
                       <a>
                         {/* <div
@@ -211,43 +169,8 @@ const Page: NextPage<Props> = ({
                     circleNewJoys={pastCircleNewJoys}
                   />
                 </div>
-                <div className="pb-16">
-                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                    <a>
-                      <h2 className="font-bold text-lg pl-4 mb-3">
-                        主催サークル
-                      </h2>
-                      <div
-                        className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
-                        style={{ width: 300 }}
-                      >
-                        <div className="mr-2" style={{ width: 64 }}>
-                          <Image
-                            src={
-                              circle.mainImageUrl
-                                ? circle.mainImageUrl
-                                : '/images/no-image.png'
-                            }
-                            alt={`${circle.name}のロゴ`}
-                            width={64}
-                            height={64}
-                            className="rounded-full border border-gray-300"
-                          />
-                        </div>
-                        <div className="w-full pr-2" style={{ width: 200 }}>
-                          <h3 className="text-black font-bold mb-1 text-sm font-bold">
-                            {circle.name}
-                          </h3>
-                          <div>
-                            <p className="text-xs text-gray-600">
-                              {circle.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                </div>{' '}
+
+                <InformationCircleBesideNewJoySP circle={circle} />
               </div>
             )}
           </BaseContainer>
