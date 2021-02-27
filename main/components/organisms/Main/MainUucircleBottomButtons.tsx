@@ -1,10 +1,7 @@
 import { FC } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/components/navigation/navigation.min.css' //Swiperのnavigation用
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
@@ -35,7 +32,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white" style={{ fontSize: '18px' }}>
                   新生活の初め方
                 </a>
@@ -50,7 +47,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white" style={{ fontSize: '18px' }}>
                   先輩が教えるおすすめバイト
                 </a>
@@ -65,7 +62,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white " style={{ fontSize: '18px' }}>
                   自転車ってどこで買うの？
                 </a>
@@ -93,7 +90,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white" style={{ fontSize: '18px' }}>
                       新生活の初め方
                     </a>
@@ -109,7 +106,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white" style={{ fontSize: '18px' }}>
                       先輩が教えるおすすめバイト
                     </a>
@@ -125,7 +122,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white " style={{ fontSize: '18px' }}>
                       自転車ってどこで買うの？
                     </a>
