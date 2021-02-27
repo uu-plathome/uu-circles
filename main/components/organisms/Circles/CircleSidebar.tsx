@@ -1,6 +1,7 @@
 import { __ } from "@/lang/ja";
 import { CircleTagModel } from "@/lib/enum/api/CircleTagModel";
 import { CircleType } from "@/lib/enum/api/CircleType";
+import { TagSlugProperty } from "@/lib/enum/api/TagSlugProperty";
 import { Category } from "@/lib/enum/app/Category";
 import Link from "next/link";
 import { FC } from "react";
@@ -13,12 +14,12 @@ type BaseItem = {
 type TagItem = BaseItem
 type CategoryItem = BaseItem
 const tagAlwaysItems: TagItem[] = [
-    { text: __(CircleTagModel.VOLUNTEER), href: '/' },
-    { text: __(CircleTagModel.PROGRAMMING), href: '/' },
-    { text: __(CircleTagModel.NATURE), href: '/' },
-    { text: __(CircleTagModel.INTERNATIONAL), href: '/' },
-    { text: __(CircleTagModel.INCARE), href: '/' },
-    { text: __(CircleTagModel.LOOSE), href: '/' },
+    { text: __(CircleTagModel.VOLUNTEER), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.volunteer}` },
+    { text: __(CircleTagModel.PROGRAMMING), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.programming}` },
+    { text: __(CircleTagModel.NATURE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.nature}` },
+    { text: __(CircleTagModel.INTERNATIONAL), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.international}` },
+    { text: __(CircleTagModel.INCARE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.incare}` },
+    { text: __(CircleTagModel.LOOSE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.loose}` },
 ]
 type TagItemFcProps = {
     tagItem: TagItem
@@ -26,9 +27,11 @@ type TagItemFcProps = {
 const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
     return (
         <li className="mb-3">
-            <a href={ tagItem.href } className="text-gray-400 font-bold text-sm tag-title">
-                { tagItem.text }
-            </a>
+            <Link href={tagItem.href} as={tagItem.as}>
+                <a className="text-gray-400 font-bold text-sm tag-title">
+                    { tagItem.text }
+                </a>
+            </Link>
         </li>
     )
 }

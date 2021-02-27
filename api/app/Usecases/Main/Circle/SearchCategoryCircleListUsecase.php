@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SearchCategoryCircleListUsecase
 {
+    /**
+     * カテゴリー検索をする
+     *
+     * @param SearchCategoryCircleListParam $param
+     * @return array
+     */
     public function invoke(SearchCategoryCircleListParam $param): array
     {
         $circleType = [];
@@ -27,7 +33,6 @@ class SearchCategoryCircleListUsecase
         }
 
         $circles = Circle::with([
-            'circleInformation:circle_id,name',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             // 新歓が登録されているのものを取得
@@ -44,6 +49,7 @@ class SearchCategoryCircleListUsecase
             })
             ->select([
                 'circles.' . 'id',
+                'circles.' . 'name',
                 'circles.' . 'release',
                 'circles.' . 'slug'
             ])
@@ -55,7 +61,7 @@ class SearchCategoryCircleListUsecase
             fn (Circle $circle) =>
             CircleValueObject::byEloquent(
                 $circle,
-                $circle->circleInformation,
+                null,
                 $circle->circleHandbill
             )
         )->toArray();

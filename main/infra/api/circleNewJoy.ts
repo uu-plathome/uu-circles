@@ -2,21 +2,30 @@ import { axiosInstance } from '.'
 import { linkConst } from './linkConst'
 import { Circle } from "@/lib/types/model/Circle"
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { CircleType } from '@/lib/enum/api/CircleType'
 
-export const getTodayCircleNewJoy = async () => {
+/**
+ * 今日の新歓
+ */
+export type TodayCircleNewJoy = {
+    slug: string
+    circleType: CircleType
+    mainImageUrl: string
+    name: string
+    circleNewJoy: CircleNewJoy
+}
+/**
+ * 今日の新歓一覧
+ */
+export const getTodayCircleNewJoy = async (): Promise<{
+    /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[],
+    /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
+}> => {
     type Response = {
-        /** 今日の新歓 */ todayCircleNewJoys: {
-            slug: string
-            circleNewJoy: CircleNewJoy
-        }[]
-        /** 新歓開催前 */ futureCircleNewJoys: {
-            slug: string
-            circleNewJoy: CircleNewJoy
-        }[]
+        /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
+        /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
     }
-    const { data } = await axiosInstance.get<Response>(
-        `${linkConst.CIRCLE.GROUP}/newjoy`
-    )
+    const { data } = await axiosInstance.get<Response>(linkConst.CIRCLE_NEW_JOY.TODAY)
 
     return {
         /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
@@ -31,14 +40,9 @@ export const getCircleNewJoyBySlug = async (slug: string) => {
         /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
         /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
         /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
-        /** 今日の新歓(全て) */ allTodayCircleNewJoys: {
-            slug: string
-            circleNewJoy: CircleNewJoy
-        }[]
+        /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
     }
-    const { data } = await axiosInstance.get<Response>(
-        `${linkConst.CIRCLE.GROUP}/${slug}/newjoy`
-    )
+    const { data } = await axiosInstance.get<Response>(linkConst.CIRCLE_NEW_JOY.LIST(slug))
 
     return {
         /** サークル */ circle: data.circle,
@@ -58,13 +62,10 @@ export const showCircleNewJoyBySlug = async (slug: string, circleNewJoyId: numbe
         /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
         /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
         /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
-        /** 今日の新歓(全て) */ allTodayCircleNewJoys: {
-            slug: string
-            circleNewJoy: CircleNewJoy
-        }[]
+        /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
     }
     const { data } = await axiosInstance.get<Response>(
-        `${linkConst.CIRCLE.GROUP}/${slug}/newjoy/${circleNewJoyId}`
+        linkConst.CIRCLE_NEW_JOY.SHOW(slug, circleNewJoyId)
     )
 
     return {

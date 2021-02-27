@@ -51,7 +51,7 @@ const AdvertiseMainImageInput: FC<Props> = ({ label, required, id, onDrop, previ
                     <input {...getInputProps()} />
 
                     <div className="text-center">
-                        <img src={preview} alt={label}/>
+                        <img src={preview} alt={label} style={{ width, height }} />
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleForm } from '@/components/organisms/form/Circle/CreateCircleForm'
+import { useDelayedEffect } from '@/hooks/useDelayedEffect'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createCircle } from '@/infra/api/circle'
@@ -9,7 +10,7 @@ import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } fro
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { BaseHeader } from '../../components/layouts/BaseHeader'
 
 const CreatePage: NextPage = () => {
@@ -20,11 +21,13 @@ const CreatePage: NextPage = () => {
     const name = useStringInput('')
     const slug = useStringInput('')
 
-    useEffect(() => {
-        if (slug.value) {
+    useDelayedEffect(
+        () => {
             slug.set(slug.value.toLowerCase())
-        }
-    })
+        },
+        [slug.value],
+        1000
+    )
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -33,8 +36,8 @@ const CreatePage: NextPage = () => {
         const data = await createCircle({
             type: 'CreateCircleFormRequest',
             name: name.value,
-            slug: slug.value,
-            release: false,
+            slug: slug.value.toLowerCase(),
+            release: true,
         } as CreateCircleFormRequest)
 
         if (isCreateCircleFormRequestValidationError(data)) {

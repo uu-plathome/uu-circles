@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Circle\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Models\User;
@@ -20,7 +20,7 @@ class LoginCircleController extends Controller
 
     public const username_or_email = 'username_or_email';
 
-    private string $inputType = UserModel::username;
+    private string $inputType = UserProperty::username;
 
     /**
      * Handle the incoming request.
@@ -34,8 +34,8 @@ class LoginCircleController extends Controller
         $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
 
         $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
-            ? UserModel::email
-            : UserModel::username;
+            ? UserProperty::email
+            : UserProperty::username;
         $request->merge([
             $this->username() => $usernameOrEmail
         ]);
@@ -53,18 +53,18 @@ class LoginCircleController extends Controller
     {
         $token = $this->guard()->attempt($this->credentials($request));
 
-        if (! $token) {
+        if (!$token) {
             return false;
         }
 
         /** @var User $user */
         $user = $this->guard()->user();
         // メールアドレスが認証されているか
-        if (! $user->hasVerifiedEmail()) {
+        if (!$user->hasVerifiedEmail()) {
             return false;
         }
         // 管理者かどうか
-        if (! $user->isCircleUser()) {
+        if (!$user->isCircleUser()) {
             return false;
         }
 
@@ -100,7 +100,7 @@ class LoginCircleController extends Controller
         /** @var User $user */
         $user = $this->guard()->user();
 
-        if ($user && ! $user->hasVerifiedEmail()) {
+        if ($user && !$user->hasVerifiedEmail()) {
             throw VerifyEmailException::forUser($user);
         }
 

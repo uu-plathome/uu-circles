@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Admin\Auth;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\Role;
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\Rules\RegexPassword;
 use App\Support\Arr;
@@ -34,10 +34,10 @@ class RegisterAdminFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
-            UserModel::display_name => ['nullable', 'string', 'max:50'],
-            UserModel::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            AdminUserPropety::role  => ['required', 'string'],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
+            UserProperty::display_name => ['nullable', 'string', 'max:50'],
+            UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            AdminUserProperty::role  => ['required', 'string'],
         ]);
     }
 
@@ -46,10 +46,10 @@ class RegisterAdminFormRequest extends FormRequest
         $request = Arr::snake_keys($this->validated());
 
         return AdminUserValueObject::of([
-            UserModel::display_name => $request[UserModel::display_name],
-            UserModel::username     => $request[UserModel::username],
-            UserModel::email        => $request[UserModel::email],
-            AdminUserPropety::role  => $request[AdminUserPropety::role],
+            UserProperty::display_name => $request[UserProperty::display_name],
+            UserProperty::username     => $request[UserProperty::username],
+            UserProperty::email        => $request[UserProperty::email],
+            AdminUserProperty::role  => $request[AdminUserProperty::role],
         ]);
     }
 }

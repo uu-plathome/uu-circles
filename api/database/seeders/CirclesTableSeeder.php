@@ -6,8 +6,11 @@ use App\Enum\CircleType;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
+use App\Models\CircleNewJoy;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class CirclesTableSeeder extends Seeder
@@ -23,10 +26,32 @@ class CirclesTableSeeder extends Seeder
         DB::beginTransaction();
         try {
             factory(Circle::class, 20)->create()->each(function (Circle $circle) {
-                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
+                $circle->update([
                     'name'        => "U-lab {$circle->id}",
+                ]);
+
+                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
                     'circle_type' => $this->getCircleType($circle->id),
                 ]));
+
+                $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->make([
+                    'title'  => "交流会 {$circle->id} 1",
+                ]));
+
+                $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->make([
+                    'title'  => "交流会 {$circle->id} 2",
+                    'start_date' => Carbon::now()->addDay(1)->subHour(1),
+                    'end_date'   => Carbon::now()->addDay(1)->addHour(1),
+                ]));
+
+                $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->make([
+                    'title'  => "交流会 {$circle->id} 3",
+                    'start_date' => Carbon::now()->addDay(2)->subHour(1),
+                    'end_date'   => Carbon::now()->addDay(2)->addHour(1),
+                ]));
+
+                $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->state('pastFixed')->make());
+                $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->state('futureFixed')->make());
 
                 factory(User::class, 1)->create([
                     'username'     => "udai-{$circle->id}",
@@ -57,8 +82,11 @@ class CirclesTableSeeder extends Seeder
             });
 
             factory(Circle::class, 4)->state('非公開')->create()->each(function (Circle $circle) {
-                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
+                $circle->update([
                     'name'        => "U-lab {$circle->id}",
+                ]);
+
+                $circle->circleInformation()->save(factory(CircleInformation::class)->make([
                     'circle_type' => $this->getCircleType($circle->id),
                 ]));
 
