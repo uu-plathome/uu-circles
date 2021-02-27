@@ -27,7 +27,7 @@ class TodayCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#TodayCircleNewJoyController args: slug=$slug");
+        Log::debug("#TodayCircleNewJoyController args: none");
 
         $circleNewJoys = $this->getTodayCircleNewJoyUsecase->invoke();
 
