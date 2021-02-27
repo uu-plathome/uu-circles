@@ -39,7 +39,7 @@ const Page: NextPage<Props> = () => {
                         <p className="pb-6 px-4">ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
                         実際にサークル情報を見てみましょう。</p>
 
-                        <button className="bg-green-500 hover:bg-blue-200 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                        <button className="mb-8 hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4">
                             UU-Circleのトップ画面へ
                         </button>
 
@@ -53,7 +53,7 @@ const Page: NextPage<Props> = () => {
                             、サークルが新歓の告知から説明会まで行ってくれます。まだ入っていない人は下のボタンをタップ！</p>
                         </div>
 
-                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                        <button className="mb-8 hover:shadow-lg shadow bg-green-500 hover:bg-green-700 text-gray-50 font-bold py-4 px-4 rounded mx-4">
                             オンライン新歓会場への参加方法へ
                         </button>
 
@@ -67,7 +67,7 @@ const Page: NextPage<Props> = () => {
                             </p>
                         </div>
 
-                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                        <button className="mb-8 hover:shadow-lg shadow bg-green-500 hover:bg-green-700 text-gray-50 font-bold py-4 px-4 rounded mx-4">
                             今日の新歓ページへ
                         </button>
 
@@ -82,7 +82,7 @@ const Page: NextPage<Props> = () => {
                             <p>是非チェックしてホーム画面に追加してね！</p>
                         </div>
 
-                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                        <button className="mb-8 hover:shadow-lg shadow bg-green-500 hover:bg-green-700 text-gray-50 font-bold py-4 px-4 rounded mx-4">
                             メディアサイトuu-yellへ
                         </button>
 
