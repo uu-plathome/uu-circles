@@ -4,6 +4,7 @@ namespace App\Usecases\Main\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Support\Facades\Log;
 
 class GetCircleBySlugUsecase
 {
@@ -14,6 +15,10 @@ class GetCircleBySlugUsecase
      */
     public function invoke(string $slug): CircleValueObject
     {
+        Log::debug("#GetCircleBySlugUsecase args", [
+            'slug' => $slug,
+        ]);
+
         /** @var Circle $circle */
         $circle = Circle::with([
             'circleInformation',

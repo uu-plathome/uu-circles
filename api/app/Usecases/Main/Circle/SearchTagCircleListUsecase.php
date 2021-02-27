@@ -6,11 +6,16 @@ use App\Models\Circle;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Log;
 
 class SearchTagCircleListUsecase
 {
     public function invoke(SearchTagCircleListParam $param)
     {
+        Log::debug("#SearchTagCircleListUsecase args", [
+            'param' => $param
+        ]);
+
         $with = [
             'circleHandbill:circle_id,image_url',
         ];

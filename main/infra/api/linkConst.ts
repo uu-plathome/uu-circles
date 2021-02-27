@@ -6,15 +6,22 @@ export const linkConst = {
     },
 
     CIRCLE: {
-        GROUP: `${GROUP}/circle`
+        GROUP: `${GROUP}/circle`,
+
+        SLUG: (slug: string): `${typeof GROUP}/circle/${string}` => 
+            `${GROUP}/circle/${slug}` as `${typeof GROUP}/circle/${string}`,
+
+        CATEGORY: (category: string): `${typeof GROUP}/circle/${string}` => 
+            `${GROUP}/circle/category/${category}` as `${typeof GROUP}/circle/${string}`
     },
 
     CIRCLE_NEW_JOY: {
         TODAY: `${GROUP}/circle/newjoy`,
 
-        LIST: (slug: string) => `${linkConst.CIRCLE.GROUP}/${slug}/newjoy`,
+        LIST: (slug: string): `${typeof GROUP}/circle/${string}/newjoy` => 
+            `${GROUP}/circle/${slug}/newjoy` as `${typeof GROUP}/circle/${string}/newjoy`,
 
         SHOW: (slug: string, circleNewJoyId: number) => 
-            `${linkConst.CIRCLE.GROUP}/${slug}/newjoy/${circleNewJoyId}`
+            `${GROUP}/circle/${slug}/newjoy/${circleNewJoyId}`
     },
 } as const
