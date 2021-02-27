@@ -9,6 +9,7 @@ module.exports = {
     domains: [
       'localhost',
       'api.uu-circles.com',
+      'd20rb0br4fsl6o.cloudfront.net',
     ],
   },
 }

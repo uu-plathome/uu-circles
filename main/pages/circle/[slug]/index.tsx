@@ -13,26 +13,31 @@ import { faUserFriends, faWallet, faWaveSquare } from "@fortawesome/free-solid-s
 import Color from 'colors'
 import { CircleTypeBadge } from "@/components/molecules/Badge/CircleTypeBadge";
 import { CircleType } from "@/lib/enum/api/CircleType";
-import Head from "next/head";
 import { TopImage } from "@/components/organisms/ShowCircle/TopImage";
 import { InformationField } from "@/components/organisms/ShowCircle/InformationField";
 import Image from "next/image";
+import { BaseHead } from "@/components/layouts/BaseHead";
+import { PageNotFoundError } from "@/infra/api/error";
+import Error from 'next/error'
 
 type Props = {
     circle?: Circle
     circleNewJoys?: CircleNewJoy[]
     errorCode?: number
 }
-const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
+const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
+    if (errorCode) {
+        return <Error statusCode={errorCode} />
+    }
+
     // w : h = 210 : 297
     const width = 300
     const height = 300 * 297 / 210
     return (
         <div>
-            <Head>
-                <title>{ circle.name } | UU-circles</title>
-            </Head>
-
+            <BaseHead
+                title={`${circle.name} サークル詳細`}
+            />
 
             <BaseLayout>
                 <div>
@@ -83,20 +88,22 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                                 <AppealingPoint circle={circle} />
                             </div>
 
-                            <div className="order-2 pt-10">
-                                <h2 className="text-lg text-center mb-6 md:text-left">新歓ビラ</h2>
-                        
-                                <div className="flex justify-center">
-                                    <a href={circle.handbillImageUrl} target="_blank">
-                                        <Image
-                                            src={circle.handbillImageUrl}
-                                            alt={`${circle.name}新歓ビラ`}
-                                            width={width}
-                                            height={height}
-                                        />
-                                    </a>
+                            {circle.handbillImageUrl ? (
+                                <div className="order-2 pt-10">
+                                    <h2 className="text-lg text-center mb-6 md:text-left">新歓ビラ</h2>
+                            
+                                    <div className="flex justify-center">
+                                        <a href={circle.handbillImageUrl} target="_blank">
+                                            <Image
+                                                src={circle.handbillImageUrl}
+                                                alt={`${circle.name}新歓ビラ`}
+                                                width={width}
+                                                height={height}
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : ''}
 
                             <div className="order-3 md:order-4 pt-10">
                                 <div>
@@ -130,13 +137,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
         return { props: { errorCode: 404 } }
     }
 
-    const { circle, circleNewJoys } = await getCircleBySlug(params.slug)
-
-    return {
-        props: {
-            circle,
-            circleNewJoys,
+    try {
+        const { circle, circleNewJoys } = await getCircleBySlug(params.slug)
+    
+        return {
+            props: {
+                circle,
+                circleNewJoys,
+            }
         }
+    } catch (e) {
+        if (e instanceof PageNotFoundError) {
+            res.statusCode = 404;
+            return { props: { errorCode: 404 } }
+        }
+
+        res.statusCode = 500;
+        return { props: { errorCode: 500 } }
     }
 }
 
