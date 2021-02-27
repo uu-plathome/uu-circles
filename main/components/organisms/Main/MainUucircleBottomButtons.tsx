@@ -14,7 +14,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
 
   return (
     <div className="bg-gray-100  pt-10 pb-10 ">
-      <div className="text-center">
+      <div className="text-center mb-4 mx-8">
         <h2 className="font-bold text-xl">新宇大生必見の情報サイト！</h2>
         <p className="text-sm">
           アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！

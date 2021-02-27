@@ -45,29 +45,32 @@ const MainUucircleTopCarousel: FC<Props> = () => {
       <Swiper {...params}>
         <nav className="">
           <SwiperSlide className="w-full">
-            <Image
-              width={width || 0}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <div style={{ width: width || 0, height: height }}>
+              <Image
+                layout="fill"
+                objectFit="cover"
+                src="/images/topCarousel/Rectangle16.png"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide className="w-full">
-            <Image
-              src="/images/top-image.png"
-              width={width || 0}
-              height={height}
-              objectFit="cover"
-              alt="UU-circlesへようこそ！"
-            />
+            <div style={{ width: width || 0, height: height }}>
+              <Image
+                src="/images/top-image.png"
+                layout="fill"
+                objectFit="cover"
+                alt="UU-circlesへようこそ！"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide className="w-full">
-            <Image
-              width={width || 0}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <div style={{ width: width || 0, height: height }}>
+              <Image
+                layout="fill"
+                objectFit="cover"
+                src="/images/topCarousel/Rectangle16.png"
+              />
+            </div>
           </SwiperSlide>
         </nav>
       </Swiper>
