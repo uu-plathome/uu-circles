@@ -7,6 +7,7 @@ use App\Support\Arr;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class TodayCircleNewJoyController extends Controller
 {
@@ -26,6 +27,8 @@ class TodayCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request)
     {
+        Log::debug("#TodayCircleNewJoyController args: slug=$slug");
+
         $circleNewJoys = $this->getTodayCircleNewJoyUsecase->invoke();
 
         return Arr::camel_keys([

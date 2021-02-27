@@ -60,9 +60,7 @@ class CreateCircleFormRequest extends FormRequest
             new Circle(
                 Arr::snake_keys($this->validated())
             ),
-            new CircleInformation(
-                Arr::snake_keys($this->validated())
-            ),
+            null,
             null
         );
     }
