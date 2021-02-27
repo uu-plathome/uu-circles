@@ -35,7 +35,7 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
-  console.log(circleNewJoy)
+  // console.log(circleNewJoy)
   const { isMd } = useMediaQuery()
   return (
     <div>
