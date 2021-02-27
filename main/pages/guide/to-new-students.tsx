@@ -12,84 +12,93 @@ const Page: NextPage<Props> = () => {
                 <div className="bg-gray-100 px-2">
                     <BaseContainer>
                         <div className="flex justify-center items-center pt-6">
-                            <a href="https://discord.com/download"><Image src="/images/banner.png" width="328" height="76" /></a>
+                            <a href="https://discord.com/download"><Image src="/images/rookie.png" width="328" height="76" /></a>
                         </div>
-                        <h1 className="text-2xl pt-6 pb-8 px-4">Discordで行われるオンライン新歓に参加してみよう！</h1>
+                        <h1 className="text-2xl pt-6 pb-8 px-4">新入生へ</h1>
                         <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
                             <h1 className="text-2xl pt-1">目次</h1>
-                            <p className="pt-2">0.Discordとは</p>
-                            <p className="pt-2">1.Discordをインストールしよう</p>
-                            <p className="pt-2">2.Discordのアカウントを作ろう</p>
-                            <p className="pt-2">3.Googleフォームから情報を入力</p>
-                            <p className="pt-2">4.招待URLから新歓会場へ！</p>
-                            <p className="pt-2">5.表示名を変更する</p>
-                            <p className="pt-2">6.新歓に参加しよう！</p>
+                            <p className="pt-2">0.新入生へ</p>
+                            <p className="pt-2">1.気になったサークルを見てみよう</p>
+                            <p className="pt-2">2.オンライン新歓会場に参加してみよう</p>
+                            <p className="pt-2">3.いつ・どんな新歓があるか確認してみよう</p>
+                            <p className="pt-2">4.宇都宮大学の情報を知ろう</p>
+                            <p className="pt-2">5.先輩のお話を聞いてみよう</p>
                         </div>
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">0.Discordとは</h2>
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">0.新入生へ</h2>
                         </div>
-                        <p className="px-4 pb-6">個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね</p>
+                        <p className="px-4 pb-6">新入生の方々合格おめでとうございます。</p>
+                        <p className="px-4 pb-6">新型コロナという残念な状況ではありますが、
+                        その中でも新入生が楽しく学生生活を送れるようにこのサイトを制作運営しています。
+                        在校生一同皆様のご入学を心からお祝い申し上げます</p>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">1.アプリをインストール</h2>
-                        </div>
-
-                        <p className="pb-4 px-4">以下のURLをタップして、Discordをインストールしよう。</p>
-                        <div className="flex justify-center items-center pb-6">
-                            <a href="https://discord.com/download"><Image src="/images/discord2.png" width="250" height="70" /></a>
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">1.気になったサークルを見てみよう</h2>
                         </div>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">2.アカウントを作成</h2>
-                        </div>
+                        <p className="pb-6 px-4">ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
+                        実際にサークル情報を見てみましょう。</p>
 
-                        <div className="px-4">
-                            <p>Discordアプリを開いたら「登録」からアカウントを作ろう。</p>
-                        </div>
-                        
-                        <div className="border-b-4 border-red-400 mx-4 mb-28 mt-20 text-center">
-                        <p>↓Discordを使ったことがある人はここから！↓</p>
-                        </div>
+                        <button className="bg-green-500 hover:bg-blue-200 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                            UU-Circleのトップ画面へ
+                        </button>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">3.Googleフォームに入力</h2>
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">2.オンライン新歓会場に参加してみよう</h2>
                         </div>
 
                         <div className="px-4 pb-6">
-                            <p>以下のURLから、メールアドレスと、Discordのアカウント名を入力しよう。</p>
+                            <p>現在はオフラインでの新歓開催を予定していますが、
+                            オンラインになった場合のためにdiscordと呼ばれるプラットフォームを用いて
+                            、サークルが新歓の告知から説明会まで行ってくれます。まだ入っていない人は下のボタンをタップ！</p>
                         </div>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">4.招待URLから新歓会場へ！</h2>
+                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                            オンライン新歓会場への参加方法へ
+                        </button>
+
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">3.いつ・どんな新歓があるか確認してみよう</h2>
                         </div>
 
                         <div className="px-4 pb-6">
-                            <p>その３で入力したアドレスに、オンライン新歓が行われるサーバーへの招待URLが届くよ！</p>
-                            <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
+                            <p>今日の新歓というバナーからその日にある新歓や、これからどんな新歓が行われるかがオンラインでわかります。
+                            毎日チェックして気になった新歓に遊びに行こう！
+                            </p>
                         </div>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">5.表示名を変更する</h2>
-                        </div>
+                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                            今日の新歓ページへ
+                        </button>
 
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">4.宇都宮大学の情報を知ろう</h2>
+                        </div>
 
                         <div className="px-4 pb-6">
-                            <p>自分の表示名は、サーバー・チャンネル一覧のページから新歓のサーバーを選んで、右上の「…」の中にある「ニックネームの変更」から変更できるよ。わかりやすいように表示名を「名前　学部　学科　学年」に変更しよう。</p>
-                            <p>(例)たろう　工学部　基盤工学科　１年</p>
-                            <p>じろう　地デザ　建築　１年</p>
-                            <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
+                            <p>宇都宮大学の情報や宇大の学生の情報はメディアサイトuu-yellで分かるよ！
+                            </p>
+                            <p> コンセプトは「uu-mailのとなりにuu-yell。」</p>
+                            <p>是非チェックしてホーム画面に追加してね！</p>
                         </div>
 
-                        <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">6.新歓に参加しよう！</h2>
+                        <button className="shadow bg-green-500 hover:bg-blue-200 text-gray-50 font-bold py-4 px-4 rounded mx-4">
+                            メディアサイトuu-yellへ
+                        </button>
+
+                        <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+                            <h2 className="text-2xl px-4 text-lg font-bold">5.先輩のお話を聞いてみよう</h2>
                         </div>
 
 
                         <div className="px-4 pb-24">
-                            <p>Discordにはたくさんのテキストチャンネル(＃がついているやつ)があるよ。タップで選んで、見たり話したりしてみよう！</p>
-                            <p>ボイスチャンネル（スピーカーマークがついているやつ）はタップしただけで、通話に参加しちゃうから要注意！</p>
+                            <p>
+                                メディアサイト「uu-yell」では、どうやってアパートを探せばいいのか？どうやって自転車をゲットすればいいのか？またおすすめのバイト先は？といった新入生にありがちなお悩みを解決する記事を掲載しています！
+                                是非チェックして、スタートダッシュで楽しい大学生ライフを！
+                            </p>
+
                         </div>
-                        
+
                     </BaseContainer>
                 </div>
 
