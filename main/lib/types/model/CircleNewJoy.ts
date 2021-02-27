@@ -1,17 +1,26 @@
 export interface CircleNewJoy {
     type: 'CircleNewJoy'
     id: number
-    circleId: number
+    circle_id: number
     title: string
     description: string
     url: string
+    place_of_activity: string
+    place_of_activity_detail: string
+    publish_from: string
+    start_date: string
+    end_date: string
+    release: boolean
+    created_at: string
+    updated_at: string
+    // キャメル
+    circleId: number
     placeOfActivity: string
     placeOfActivityDetail: string
     publishFrom: string
     publishTo: string
     startDate: string
     endDate: string
-    release: boolean
     createdAt: string
     updatedAt: string
 }
