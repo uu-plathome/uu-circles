@@ -13,7 +13,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
-
+import { YellowButton } from '@/components/atoms/button/YellowButton'
 type Props = {
   errorCode?: number
   /** サークル */ circle?: Circle
@@ -42,14 +42,39 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 px-4 md:text-center text-left">
+            <h1 className="text-2xl py-8 md:py-20 px-4 md:text-center text-left">
               新歓イベント日程詳細
             </h1>
             {isMd ? (
               //PC
               <div>
-                <div className="pb-16">
-                  <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                <div className="pb-16 grid grid-cols-7">
+                  <div className="col-span-5">
+                    <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                  </div>
+                  <div className="col-span-2  ml-6">
+                    <h2 className="text-xl">主催サークル</h2>
+
+                    <InformationCircleBesideNewJoyPC circle={circle} />
+                    <Link href="/circle/newjoy" as={'/circle/newjoy'}>
+                      <a>
+                        {/* <div
+                        className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
+                        style={{ width: 222 }}
+                      > */}
+                        <div className="mt-6 w-full">
+                          <YellowButton width={'222px'}>
+                            <h4 className="text-sm">
+                              他のサークルの新歓も見る
+                            </h4>
+                            <h3 className="text-base font-bold">
+                              今日の新歓をチェック！
+                            </h3>
+                          </YellowButton>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
                 </div>
                 <>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
