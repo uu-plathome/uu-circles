@@ -14,6 +14,9 @@ import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
+import { PageNotFoundError } from '@/infra/api/error'
+import Error from 'next/error'
+
 
 type Props = {
   /** サークル */ circle?: Circle
@@ -28,12 +31,17 @@ type Props = {
   }[]
 }
 const Page: NextPage<Props> = ({
+  errorCode,
   circle,
   pastCircleNewJoys,
   futureCircleNewJoys,
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>
@@ -192,24 +200,34 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const {
-    circle,
-    pastCircleNewJoys,
-    futureCircleNewJoys,
-    nowCircleNewJoys,
-    todayCircleNewJoys,
-    allTodayCircleNewJoys,
-  } = await getCircleNewJoyBySlug(params.slug)
-
-  return {
-    props: {
+  try {
+    const {
       circle,
       pastCircleNewJoys,
       futureCircleNewJoys,
       nowCircleNewJoys,
       todayCircleNewJoys,
       allTodayCircleNewJoys,
-    },
+    } = await getCircleNewJoyBySlug(params.slug)
+  
+    return {
+      props: {
+        circle,
+        pastCircleNewJoys,
+        futureCircleNewJoys,
+        nowCircleNewJoys,
+        todayCircleNewJoys,
+        allTodayCircleNewJoys,
+      },
+    }
+  } catch (e) {
+    if (e instanceof PageNotFoundError) {
+        res.statusCode = 404;
+        return { props: { errorCode: 404 } }
+    }
+
+    res.statusCode = 500;
+    return { props: { errorCode: 500 } }
   }
 }
 

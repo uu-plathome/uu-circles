@@ -4,16 +4,19 @@ namespace App\Usecases\Main\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Support\Facades\Log;
 
 class GetCircleListUsecase
 {
     /**
-     * サークルを主とくる
+     * サークルを取得する
      *
      * @return CircleValueObject[]
      */
     public function invoke()
     {
+        Log::debug("#GetCircleListUsecase args: none");
+
         $circles = Circle::with([
             'circleInformation:circle_id',
             'circleHandbill:circle_id,image_url',
