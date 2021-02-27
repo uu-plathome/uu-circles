@@ -4,6 +4,7 @@ namespace App\Usecases\Main\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Support\Facades\Log;
 
 class GetRandomCircleUsecase
 {
@@ -14,6 +15,10 @@ class GetRandomCircleUsecase
      */
     public function invoke(int $limit = 6)
     {
+        Log::debug("#GetRandomCircleUsecase args", [
+            'limit' => $limit
+        ]);
+
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)

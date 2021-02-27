@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Color from 'colors'
-import { BaseContainer } from "../molecules/Container/BaseContainer";
 
 type Props = {
     onClick?(): void
@@ -49,11 +48,11 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
                                 </Link>
                             </p>
 
-                            <YellowButton>
-                                新入生へ
-                            </YellowButton>
-                        </div>
+                        <YellowButton href="/guide/to-new-students">
+                            新入生へ
+                        </YellowButton>
                     </div>
+                </div>
             </div>
         </div>
         </div>
