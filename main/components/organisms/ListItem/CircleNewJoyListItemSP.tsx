@@ -9,12 +9,13 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
+  //日時、時間でwidth指定しているのは、時間が開始のみのときに画面崩れるのを防止するためです！！！！
   return (
     <div
       className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
       style={{ width: 320 }}
     >
-      <div className="w-full pr-2">
+      <div className="w-full pr-3">
         <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
         <p className="text-sm border-b border-gray-400 flex mb-1">
           <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
@@ -25,12 +26,18 @@ const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
           </span>
         </p>
         <div className="text-sm flex">
-          <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
+          <div
+            className="mr-2 border-b border-gray-400 whitespace-nowrap"
+            style={{ width: 120 }}
+          >
             <span className="text-gray-400 text-xs pl-1">日時</span>
             <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
           </div>
 
-          <span className="block w-full text-center border-b border-gray-400 whitespace-nowrap">
+          <span
+            className="block w-full text-center border-b border-gray-400 whitespace-nowrap"
+            style={{ width: 90 }}
+          >
             {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
           </span>
         </div>
