@@ -21,6 +21,10 @@ const MainUucircleTopCarousel: FC<Props> = () => {
   const { isMd } = useMediaQuery()
   const { width } = useWindowResize()
   const [height, setHeight] = useState(0)
+  useEffect(() => {
+    setHeight(isMd ? 330 : (width * 4192) / 8001)
+  }, [isMd, width])
+
   const params = {
     //Swiperの設定
 
@@ -38,189 +42,35 @@ const MainUucircleTopCarousel: FC<Props> = () => {
   }
   return (
     <div className="flex justify-center bg-gray-100">
-      {isMd ? (
-        <Swiper {...params}>
-          <nav className="" style={{ margin: 'auto!important' }}>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    <Image
-                      width="382"
-                      height="200"
-                      src="/images/topCarousel/Rectangle16.png"
-                    />
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    {' '}
-                    <Image
-                      src="/images/top-image.png"
-                      width="382"
-                      height="200"
-                      objectFit="cover"
-                      alt="UU-circlesへようこそ！"
-                    />
-                    {/* <Image
-                   width="382"
-                   height="200"
-                   src="/images/topCarousel/新歓サイトトップ画像1.png"
-                 /> */}
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    <Image
-                      width="382"
-                      height="200"
-                      src="/images/topCarousel/Rectangle16.png"
-                    />
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-          </nav>
-        </Swiper>
-      ) : (
-        <Swiper {...params}>
-          <nav className="" style={{ margin: 'auto!important' }}>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    <Image
-                      width="382"
-                      height="200"
-                      src="/images/topCarousel/Rectangle16.png"
-                    />
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    {' '}
-                    <Image
-                      src="/images/top-image.png"
-                      width="382"
-                      height="200"
-                      objectFit="cover"
-                      alt="UU-circlesへようこそ！"
-                    />
-                    {/* <Image
-                      width="382"
-                      height="200"
-                      src="/images/topCarousel/新歓サイトトップ画像1.png"
-                    /> */}
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={
-                  {
-                    // backgroundColor: '#faf6e3',
-                  }
-                }
-              >
-                <Link href="">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
-                    <Image
-                      width="382"
-                      height="200"
-                      src="/images/topCarousel/Rectangle16.png"
-                    />
-                  </a>
-                </Link>
-              </button>
-            </SwiperSlide>
-          </nav>
-        </Swiper>
-      )}
+      <Swiper {...params}>
+        <nav className="">
+          <SwiperSlide className="w-full">
+            <Image
+              width={width || 0}
+              height={height}
+              objectFit="cover"
+              src="/images/topCarousel/Rectangle16.png"
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full">
+            <Image
+              src="/images/top-image.png"
+              width={width || 0}
+              height={height}
+              objectFit="cover"
+              alt="UU-circlesへようこそ！"
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full">
+            <Image
+              width={width || 0}
+              height={height}
+              objectFit="cover"
+              src="/images/topCarousel/Rectangle16.png"
+            />
+          </SwiperSlide>
+        </nav>
+      </Swiper>
     </div>
   )
 }

@@ -41,7 +41,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
 
       <BaseLayout>
         <MainUucircleTopCarousel />
-        <div className="w-full"></div>
+
         <div style={{ marginTop: '-6px' }} className="bg-white">
           <p className="text-center py-8">新歓をハックする！</p>
         </div>

@@ -50,7 +50,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               height: '65px',
             }}
           >
-            <Link href="">
+            <Link href="/circle/newjoy">
               <a
                 className="text-gray-900 text-2xl"
                 style={
@@ -76,7 +76,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               height: '65px',
             }}
           >
-            <Link href="">
+            <Link href="/guide/discode">
               <a
                 className="text-gray-900 text-2xl"
                 style={
@@ -157,7 +157,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
                   height: '65px',
                 }}
               >
-                <Link href="">
+                <Link href="/guide/discode">
                   <a
                     className="text-gray-900 text-2xl"
                     style={
