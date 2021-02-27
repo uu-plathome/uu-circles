@@ -7,6 +7,7 @@ use App\Models\Circle;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Log;
 
 class SearchCategoryCircleListUsecase
 {
@@ -18,6 +19,10 @@ class SearchCategoryCircleListUsecase
      */
     public function invoke(SearchCategoryCircleListParam $param): array
     {
+        Log::debug("#SearchCategoryCircleListParam args", [
+            'param' => $param
+        ]);
+
         $circleType = [];
         if ($param->officialOrganization) {
             $circleType[] = CircleType::OFFICIAL_ORGANIZATION;

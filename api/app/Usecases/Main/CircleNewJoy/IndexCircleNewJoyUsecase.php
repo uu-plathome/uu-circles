@@ -3,30 +3,40 @@
 namespace App\Usecases\Main\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty;
-use App\Models\Circle;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleNewJoyUsecase
 {
     /**
      * 新歓一覧の取得
      *
+     * 第2引数のcircleNewJoyIdを指定すると、検索結果から探す。
+     *
      * @return void
      */
-    public function invoke(int $circleId)
+    public function invoke(int $circleId, ?int $circleNewJoyId = null)
     {
+        Log::debug("#IndexCircleNewJoyUsecase args", [
+            'circleId'       => $circleId,
+            'circleNewJoyId' => $circleNewJoyId
+        ]);
+
         $circleNewJoys = CircleNewJoy::nowPublic(Carbon::now())
             ->whereCircleId($circleId)
             ->orderBy(CircleNewJoyProperty::start_date)
             ->get();
 
+        $circleNewJoy = $circleNewJoyId ? $circleNewJoys->first(
+            fn (CircleNewJoy $circleNewJoy) => $circleNewJoy->id === $circleNewJoyId
+        ) : null;
         $mapCircleNewJoys = $this->splitBeforeOrAfter($circleNewJoys);
 
         return [
+            'circleNewJoy'      => $circleNewJoy,
             // 新歓開催済み
             'pastCircleNewJoys' => $mapCircleNewJoys['past']->sortByDesc('start_date')
                 ->map(

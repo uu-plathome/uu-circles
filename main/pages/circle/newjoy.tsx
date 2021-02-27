@@ -4,21 +4,23 @@ import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
 } from '@/infra/api/circleNewJoy'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
-import Link from 'next/link'
 import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import Head from 'next/head'
 import { BaseHead } from '@/components/layouts/BaseHead'
+import Error from 'next/error'
+
 type Props = {
   errorCode?: number
-
   futureCircleNewJoys?: TodayCircleNewJoy[]
   todayCircleNewJoys?: TodayCircleNewJoy[]
 }
-const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
+const Page: NextPage<Props> = ({ errorCode, futureCircleNewJoys, todayCircleNewJoys }) => {
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
 
   return (
@@ -81,17 +83,22 @@ const Page: NextPage<Props> = ({ futureCircleNewJoys, todayCircleNewJoys }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const {
-    futureCircleNewJoys,
-    todayCircleNewJoys,
-  } = await getTodayCircleNewJoy()
-
-  return {
-    props: {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => {
+  try {
+    const {
       futureCircleNewJoys,
       todayCircleNewJoys,
-    },
+    } = await getTodayCircleNewJoy()
+  
+    return {
+      props: {
+        futureCircleNewJoys,
+        todayCircleNewJoys,
+      },
+    }
+  } catch (e) {
+    res.statusCode = 500;
+    return { props: { errorCode: 500 } }
   }
 }
 
