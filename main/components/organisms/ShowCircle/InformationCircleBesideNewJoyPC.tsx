@@ -12,10 +12,7 @@ type Props = {
 
 const InformationCircleBesideNewJoyPC: FC<Props> = ({ circle }) => {
   return (
-    <div
-      className="bg-white mt-3 rounded-xl px-2"
-      style={{ width: 222, height: 324 }}
-    >
+    <div className="bg-white mt-3 rounded-xl px-3 pb-6 " style={{ width: 222 }}>
       <div className="mx-auto text-center pb-3 pt-6">
         <Image
           src={
@@ -36,13 +33,15 @@ const InformationCircleBesideNewJoyPC: FC<Props> = ({ circle }) => {
           <a className="text-xs text-blue-500 underline">もっと詳しく</a>
         </Link>
       </nav>
-      <nav className="text-center mt-8">
-        <Link href="" as={''}>
-          <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
-            新歓日程
-          </a>
-        </Link>
-      </nav>
+      <div className="mt-4">
+        <nav className="text-center ">
+          <Link href="" as={''}>
+            <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
+              新歓日程
+            </a>
+          </Link>
+        </nav>
+      </div>
     </div>
   )
 }
