@@ -16,6 +16,18 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
   // w : h = 210 : 297
   const height = (width * 297) / 210
   const { isMd } = useMediaQuery()
+  const params: Swiper = {
+    //Swiperの設定
+    initialSlide: 0,
+    spaceBetween: 50,
+    centeredSlides: true,
+    pagination: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  }
   return (
     <div>
       {isMd ? (
@@ -42,7 +54,7 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
           })}
         </div>
       ) : (
-        <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
+        <Swiper {...params}>
           <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
             {circles.map((circle) => {
               return (
