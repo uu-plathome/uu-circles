@@ -17,11 +17,14 @@ class CreateAdvertisesTable extends Migration
         Schema::create('advertises', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->comment('広告タイトル');
+            $table->string('link')->nullable()->comment('広告リンク');
             $table->string('main_image_url')->nullable()->comment('画像URL');
             $table->boolean('active')->default(false)->comment('公開するかどうか');
             $table->dateTime('publish_to')->nullable()->comment('公開開始日時');
             $table->dateTime('publish_from')->nullable()->comment('公開終了日時');
             $table->timestamps();
+
+            $table->index('active');
         });
 
         DB::statement("ALTER TABLE advertises COMMENT '広告'");

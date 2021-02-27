@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Enum;
+namespace App\Enum\Property;
 
-class CircleNewJoyModel
+class CircleNewJoyProperty extends BaseProperty
 {
-    const id = 'id';
     const circle_id = 'circle_id';
     const title = 'title';
     const description = 'description';
@@ -15,6 +14,4 @@ class CircleNewJoyModel
     const start_date = 'start_date';
     const end_date = 'end_date';
     const release = 'release';
-    const created_at = 'created_at';
-    const updated_at = 'updated_at';
 }

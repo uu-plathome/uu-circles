@@ -27,7 +27,7 @@ class Week
     /**
      * 土曜日
      */
-    const SATURADY = 'SATURADY';
+    const SATURDAY = 'SATURDAY';
     /**
      * 日曜日
      */

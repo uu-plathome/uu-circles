@@ -8,9 +8,9 @@ export interface UpdateCircleNewJoyRequest {
     url?: string
     placeOfActivity: string
     placeOfActivityDetail?: string
-    publishFrom?: string
-    startDate?: string
-    endDate?: string
+    publishFrom?: any
+    startDate?: any
+    endDate?: any
     release?: boolean
 }
 

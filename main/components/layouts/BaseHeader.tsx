@@ -17,43 +17,45 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
 
     return (
         <div className="border-b border-gray-300">
-            <BaseContainer>
+            <div className="bg-white">
+            <div className="mx-auto" style={{ maxWidth: 700 }}>
                 <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-2">
-                    <div className="flex items-center">
-                        {!isMd ? (
-                            <div className="pr-2">
-                                <button onClick={onClick}>
-                                    <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
-                                </button>
-                            </div>
-                        ): ''}
+                        <div className="flex items-center">
+                            {!isMd ? (
+                                <div className="pr-2">
+                                    <button onClick={onClick}>
+                                        <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
+                                    </button>
+                                </div>
+                            ): ''}
 
-                        <h1 className="text-sm md:text-lg">
-                            {router.pathname === '/' ? (
-                                <p>UU-circles</p>
-                            ) : (
-                                <Link href="/">
-                                    <a>UU-circles</a>
+                            <h1 className="text-sm md:text-lg">
+                                {router.pathname === '/' ? (
+                                    <p>UU-circles</p>
+                                ) : (
+                                    <Link href="/">
+                                        <a>UU-circles</a>
+                                    </Link>
+                                )}
+                            </h1>
+                        </div>
+
+                        <div className="flex items-center">
+                            <p className="mr-4 text-xs sm:text-sm">
+                                <Link href="/circle">
+                                    <a>
+                                        <span className="hidden sm:inline">サークルを</span>みつける
+                                    </a>
                                 </Link>
-                            )}
-                        </h1>
-                    </div>
-
-                    <div className="flex items-center">
-                        <p className="mr-4 text-xs sm:text-sm">
-                            <Link href="/circle">
-                                <a>
-                                    <span className="hidden sm:inline">サークルを</span>みつける
-                                </a>
-                            </Link>
-                        </p>
+                            </p>
 
                         <YellowButton href="/guide/to-new-students">
                             新入生へ
                         </YellowButton>
                     </div>
                 </div>
-            </BaseContainer>
+            </div>
+        </div>
         </div>
     )
 }

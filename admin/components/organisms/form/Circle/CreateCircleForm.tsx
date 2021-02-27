@@ -18,6 +18,7 @@ const CreateCircleForm: FC<Props> = ({ onSubmit, form }) => {
                     label="サークル名"
                     name="name"
                     id="name"
+                    maxLength={50}
                     required
                     { ...form.name }
                 />
@@ -27,6 +28,7 @@ const CreateCircleForm: FC<Props> = ({ onSubmit, form }) => {
                     name="slug"
                     id="slug"
                     placeholder="u-lab"
+                    maxLength={50}
                     prefix="uu-circle.com/circle/"
                     note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                     expand

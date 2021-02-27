@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Circle\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VerificationResendCircleUserFormRequest extends FormRequest
@@ -25,7 +25,7 @@ class VerificationResendCircleUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            UserModel::email => [ 'required', 'email', 'string' ]
+            UserProperty::email => ['required', 'email', 'string']
         ];
     }
 }

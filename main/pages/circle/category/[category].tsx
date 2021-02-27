@@ -10,6 +10,8 @@ import { useRouter } from "next/dist/client/router";
 import { __ } from "@/lang/ja";
 import { categoryToCircleType } from "@/lib/utils/category/Category";
 import { Category } from "@/lib/enum/app/Category";
+import Head from "next/head";
+import { BaseHead } from "@/components/layouts/BaseHead";
 
 type Props = {
     errorCode?: number
@@ -23,10 +25,17 @@ const Page: NextPage<Props> = ({
 
     return (
         <div>
+            <BaseHead
+                title={ `${__(String(categoryToCircleType(category as Category)))} カテゴリー検索` }
+            />
+
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
                         <h1 className="text-2xl py-8">{ __(String(categoryToCircleType(category as Category))) }</h1>
+                        
+                        <p className="text-base pb-4">{ __(String(categoryToCircleType(category as Category)), "CircleTypeTitle") }</p>
+                        <p className="text-sm pb-8">{ __(String(categoryToCircleType(category as Category)), "CircleTypeText") }</p>
 
                         {/*  サークル一覧 */}
                         <BaseCircleList circles={circles} />

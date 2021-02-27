@@ -1,6 +1,5 @@
 import { AuthHeader } from "@/components/layouts/AuthHeader"
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { resetPassword } from "@/infra/api/auth"
 import { useInput } from "@/hooks/useInput"
 import { NextPage } from "next"
@@ -12,6 +11,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
 import { isResetPasswordAdminRequestValidationError } from "@/lib/types/api/ResetPasswordAdminRequest"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
 import Head from "next/head"
+import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
 
 const PasswordConfirmPage: NextPage = () => {
     const password = useInput('')
@@ -20,8 +20,8 @@ const PasswordConfirmPage: NextPage = () => {
     const router = useRouter()
     const authContext = useContext(AuthContext)
     const { token: queryToken, email: queryEamil } = router.query
-    const email = Array.isArray(queryEamil) ? queryEamil[0] : queryEamil 
-    const token = Array.isArray(queryToken) ? queryToken[0] : queryToken 
+    const email = Array.isArray(queryEamil) ? queryEamil[0] : queryEamil
+    const token = Array.isArray(queryToken) ? queryToken[0] : queryToken
 
     if (authContext.accessToken) {
         router.push('/')
@@ -39,7 +39,7 @@ const PasswordConfirmPage: NextPage = () => {
         })
 
         if (isResetPasswordAdminRequestValidationError(data)) {
-            password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')     
+            password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')
 
             if (data.errors.email && Array.isArray(data.errors.email)) {
                 setError('エラーが発生しました。')
@@ -84,11 +84,10 @@ const PasswordConfirmPage: NextPage = () => {
                         { !success ? (
                             <form onSubmit={onSubmit}>
                                 <div className="px-4 mb-4">
-                                    <BaseTextField
+                                    <SimplePasswordTextField
                                         label="新しいパスワード"
                                         id="password"
                                         name="password"
-                                        expand
                                         { ...password }
                                     />
                                 </div>

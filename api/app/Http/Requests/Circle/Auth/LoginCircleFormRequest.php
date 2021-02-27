@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Circle\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,8 +27,8 @@ class LoginCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'username_or_email' => [ 'required', 'string' ],
-            UserModel::password => [ 'required', 'string' ],
+            'username_or_email' => ['required', 'string'],
+            UserProperty::password => ['required', 'string'],
         ]);
     }
 }

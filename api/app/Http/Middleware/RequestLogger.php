@@ -46,6 +46,13 @@ class RequestLogger
      */
     private function write(Request $request): void
     {
-        Log::debug($request->method(), ['url' => $request->fullUrl(), 'request' => $request->all()]);
+        Log::debug($request->method(), [
+            'url'     => $request->fullUrl(),
+            'request' => $request->all()
+        ]);
+
+        foreach ($request->headers as $key => $value) {
+            Log::debug('headers', [$key => $value]);
+        }
     }
 }

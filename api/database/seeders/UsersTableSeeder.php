@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enum\Propety\AdminUserPropety;
+use App\Enum\Property\AdminUserProperty;
 use App\Enum\Role;
 use App\Models\User;
 use Exception;
@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
             /** @var User $user */
             $user = factory(User::class)->state('admin')->create();
             $user->adminUser()->create([
-                AdminUserPropety::role => Role::SYSTEM,
+                AdminUserProperty::role => Role::SYSTEM,
             ]);
 
             DB::commit();

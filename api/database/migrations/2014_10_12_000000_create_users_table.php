@@ -25,6 +25,9 @@ class CreateUsersTable extends Migration
             $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();
+
+            $table->index('api_token');
+            $table->index('active');
         });
 
         DB::statement("ALTER TABLE users COMMENT 'ユーザー'");

@@ -17,9 +17,9 @@ class CreateCircleUsecase
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        $circle = $circleValueObject->toCircleModel();
+        $circle = $circleValueObject->toCircleProperty();
         $circle->createSlugWhenSlugNotExist();
-        $circleInformation = $circleValueObject->toCircleInformationModel();
+        $circleInformation = $circleValueObject->toCircleInformationProperty();
 
         DB::beginTransaction();
         try {

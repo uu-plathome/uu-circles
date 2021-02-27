@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -10,24 +10,24 @@ use Illuminate\Support\Carbon;
 class CircleNewJoy extends Model
 {
     protected $fillable = [
-        CircleNewJoyModel::circle_id,
-        CircleNewJoyModel::title,
-        CircleNewJoyModel::description,
-        CircleNewJoyModel::url,
-        CircleNewJoyModel::place_of_activity,
-        CircleNewJoyModel::place_of_activity_detail,
-        CircleNewJoyModel::publish_from,
-        CircleNewJoyModel::start_date,
-        CircleNewJoyModel::end_date,
-        CircleNewJoyModel::release,
+        CircleNewJoyProperty::circle_id,
+        CircleNewJoyProperty::title,
+        CircleNewJoyProperty::description,
+        CircleNewJoyProperty::url,
+        CircleNewJoyProperty::place_of_activity,
+        CircleNewJoyProperty::place_of_activity_detail,
+        CircleNewJoyProperty::publish_from,
+        CircleNewJoyProperty::start_date,
+        CircleNewJoyProperty::end_date,
+        CircleNewJoyProperty::release,
     ];
 
 
     protected $casts = [
-        CircleNewJoyModel::publish_from => 'datetime:Y-m-d',
-        CircleNewJoyModel::start_date   => 'datetime:Y-m-d H:i',
-        CircleNewJoyModel::end_date     => 'datetime:Y-m-d H:i',
-        CircleNewJoyModel::release      => 'boolean',
+        CircleNewJoyProperty::publish_from => 'datetime:Y-m-d',
+        CircleNewJoyProperty::start_date   => 'datetime:Y-m-d H:i',
+        CircleNewJoyProperty::end_date     => 'datetime:Y-m-d H:i',
+        CircleNewJoyProperty::release      => 'boolean',
     ];
 
     public function circle(): BelongsTo
@@ -90,9 +90,9 @@ class CircleNewJoy extends Model
         return $query->whereRelease(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where(CircleNewJoyModel::publish_from, '<=', $now);
+                    $query->where(CircleNewJoyProperty::publish_from, '<=', $now);
                 })->orWhere(function ($query) {
-                    $query->whereNull(CircleNewJoyModel::publish_from);
+                    $query->whereNull(CircleNewJoyProperty::publish_from);
                 });
             });
     }

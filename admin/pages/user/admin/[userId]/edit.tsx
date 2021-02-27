@@ -77,6 +77,21 @@ const CreatePage: NextPage = () => {
         await router.push(`/user/admin`)
     }
 
+    const roleList = () => {
+        if (ownRole === Role.SYSTEM) {
+            return [
+                { label: __(Role.SYSTEM, 'Role'), value: Role.SYSTEM },
+                { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+                { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+            ]
+        }
+
+        return [
+            { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
+            { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
+        ]
+    }
+
     return (
         <div>
             <Head>
@@ -102,6 +117,7 @@ const CreatePage: NextPage = () => {
                                 required
                                 prefix="@"
                                 placeholder="u-ta"
+                                maxLength={30}
                                 note="アルファベット、ハイフンのみ。"
                                 { ...username }
                             />
@@ -112,6 +128,7 @@ const CreatePage: NextPage = () => {
                                 id="display_name"
                                 placeholder="宇都宮太郎"
                                 required
+                                maxLength={50}
                                 { ...displayName }
                             />
 
@@ -132,10 +149,7 @@ const CreatePage: NextPage = () => {
                                 name="role"
                                 id="role"
                                 required
-                                items={[
-                                    { label: __(Role.MANAGER, 'Role'), value: Role.MANAGER },
-                                    { label: __(Role.COMMON, 'Role'), value: Role.COMMON },
-                                ]}
+                                items={roleList()}
                                 { ...role }
                             />
 

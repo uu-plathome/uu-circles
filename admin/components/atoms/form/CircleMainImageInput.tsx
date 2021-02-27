@@ -31,7 +31,7 @@ const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview,
 
     return (
         <div className="mb-4">
-            <BaseLabel 
+            <BaseLabel
                 label={label}
                 note={'最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
                 required={required}
@@ -39,15 +39,15 @@ const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview,
             />
 
             <div className="flex justify-center">
-                <div 
-                    {...getRootProps()} 
-                    className={inputClass} 
+                <div
+                    {...getRootProps()}
+                    className={inputClass}
                     style={{ width, height }}
                 >
                     <input {...getInputProps()} />
 
                     <div className="text-center">
-                        <img src={preview} alt={label}/>
+                        <img src={preview} alt={label} style={{ width, height }} />
                     </div>
                 </div>
             </div>
