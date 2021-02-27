@@ -1,20 +1,8 @@
 import { FC } from 'react'
-import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
-import dayjs from 'dayjs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import Image from 'next/image'
-import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
-import {
-  getDOW,
-  getMonth,
-  getDay,
-  getDate,
-  getTime,
-  getFullJPDate,
-} from '@/lib/utils/Date'
-import { CircleType } from '@/lib/enum/api/CircleType'
+import { getDOW, getMonth, getDay, getFullJPDate } from '@/lib/utils/Date'
 type Props = {
   circleNewJoy: CircleNewJoy
 }
@@ -30,7 +18,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
           className=" bg-white rounded-lg  px-6 py-2 mx-auto mb-2 flex justify-center"
           style={{ width: 500 }}
         >
-          <div className="my-6 mr-3">
+          <div className="my-3 mr-6">
             <section
               className="rounded-2xl border-gray-300 border"
               style={{
@@ -60,7 +48,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
               width: 335,
             }}
           >
-            <section className="my-6 border-b border-gray-600">
+            <section className="my-3 border-b border-gray-600">
               <h4 className="text-gray-500 text-base text-gray-400">
                 新歓イベント名
               </h4>
