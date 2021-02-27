@@ -13,6 +13,16 @@ export interface CircleNewJoy {
     release: boolean
     created_at: string
     updated_at: string
+    // キャメル
+    circleId: number
+    placeOfActivity: string
+    placeOfActivityDetail: string
+    publishFrom: string
+    publishTo: string
+    startDate: string
+    endDate: string
+    createdAt: string
+    updatedAt: string
 }
 
 export const isCircleNewJoy = (v: any): v is CircleNewJoy => v && v.type === 'CircleNewJoy'

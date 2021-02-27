@@ -8,7 +8,7 @@ type Props = {
 }
 const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  // console.log(CircleNewJoy)
+  // console.log(circleNewJoy)
 
   return (
     <div>
