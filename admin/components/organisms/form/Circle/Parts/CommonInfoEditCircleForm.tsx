@@ -137,7 +137,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
             />
 
             <CircleHandbillImageInput
-                label="サークル新歓画像"
+                label="サークル新歓ビラ画像"
                 id="handbillImageUrl"
                 preview={
                 form.handbillImageUrl.value
