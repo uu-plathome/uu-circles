@@ -1,19 +1,18 @@
 export interface CircleNewJoy {
     type: 'CircleNewJoy'
     id: number
-    circleId: number
+    circle_id: number
     title: string
     description: string
     url: string
-    placeOfActivity: string
-    placeOfActivityDetail: string
-    publishFrom: string
-    publishTo: string
-    startDate: string
-    endDate: string
+    place_of_activity: string
+    place_of_activity_detail: string
+    publish_from: string
+    start_date: string
+    end_date: string
     release: boolean
-    createdAt: string
-    updatedAt: string
+    created_at: string
+    updated_at: string
 }
 
 export const isCircleNewJoy = (v: any): v is CircleNewJoy => v && v.type === 'CircleNewJoy'

@@ -5,7 +5,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
 import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
-import { IndexCircleNewJoyListForDetail } from '@/components/organisms/List/IndexCircleNewJoyListForDetail'
+import { CircleNewJoyDetail } from '@/components/organisms/Newjoy/CircleNewJoyDetail'
 import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -42,16 +42,14 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:text-center text-left">
+            <h1 className="text-2xl py-8 px-4 md:text-center text-left">
               新歓イベント日程詳細
             </h1>
             {isMd ? (
               //PC
               <div>
                 <div className="pb-16">
-                  <IndexCircleNewJoyListForDetail
-                    circleNewJoys={circleNewJoy}
-                  />
+                  <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
                 </div>
                 <>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
@@ -146,6 +144,9 @@ const Page: NextPage<Props> = ({
               //SP
               <div>
                 <>
+                  <div className="pb-16">
+                    <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                  </div>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                     <div className="pb-16">
                       <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
@@ -162,7 +163,7 @@ const Page: NextPage<Props> = ({
                   )}{' '}
                 </>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     今日の新歓
                   </h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -177,26 +178,24 @@ const Page: NextPage<Props> = ({
                   )}
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-
                   <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={futureCircleNewJoys}
                   />
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-
                   <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={pastCircleNewJoys}
                   />
                 </div>
-                <InformationCircleBesideNewJoySP />
+                <InformationCircleBesideNewJoySP circle={circle} />
               </div>
             )}
           </BaseContainer>
