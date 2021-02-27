@@ -83,20 +83,22 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
                                 <AppealingPoint circle={circle} />
                             </div>
 
-                            <div className="order-2 pt-10">
-                                <h2 className="text-lg text-center mb-6 md:text-left">新歓ビラ</h2>
-                        
-                                <div className="flex justify-center">
-                                    <a href={circle.handbillImageUrl} target="_blank">
-                                        <Image
-                                            src={circle.handbillImageUrl}
-                                            alt={`${circle.name}新歓ビラ`}
-                                            width={width}
-                                            height={height}
-                                        />
-                                    </a>
+                            {circle.handbillImageUrl ? (
+                                <div className="order-2 pt-10">
+                                    <h2 className="text-lg text-center mb-6 md:text-left">新歓ビラ</h2>
+                            
+                                    <div className="flex justify-center">
+                                        <a href={circle.handbillImageUrl} target="_blank">
+                                            <Image
+                                                src={circle.handbillImageUrl}
+                                                alt={`${circle.name}新歓ビラ`}
+                                                width={width}
+                                                height={height}
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : ''}
 
                             <div className="order-3 md:order-4 pt-10">
                                 <div>
