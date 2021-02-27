@@ -2,7 +2,7 @@
 
 namespace App\Auth;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Auth\TokenGuard;
 use App\Auth\UserProvider;
@@ -34,7 +34,7 @@ class UserTokenGuard extends TokenGuard
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
         // every call to this method because that would be tremendously slow.
-        if (! is_null($this->user)) {
+        if (!is_null($this->user)) {
             return $this->user;
         }
 
@@ -42,10 +42,10 @@ class UserTokenGuard extends TokenGuard
 
         $token = $this->getTokenForRequest();
 
-        if (! empty($token)) {
+        if (!empty($token)) {
             $user = $this->provider->retrieveByCredentials([
                 $this->storageKey => $this->hash ? hash('sha256', $token) : $token,
-                UserModel::active => true
+                UserProperty::active => true
             ]);
         }
 

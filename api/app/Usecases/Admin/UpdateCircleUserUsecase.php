@@ -4,7 +4,7 @@
 namespace App\Usecases\Admin;
 
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use App\ValueObjects\CircleUserValueObject;
 use Exception;
@@ -20,9 +20,9 @@ class UpdateCircleUserUsecase
     public function invoke(int $userId, CircleUserValueObject $circleUserValueObject)
     {
         $inputs = [
-            UserModel::username     => $circleUserValueObject->username,
-            UserModel::display_name => $circleUserValueObject->display_name,
-            UserModel::active       => $circleUserValueObject->active,
+            UserProperty::username     => $circleUserValueObject->username,
+            UserProperty::display_name => $circleUserValueObject->display_name,
+            UserProperty::active       => $circleUserValueObject->active,
         ];
 
         DB::beginTransaction();

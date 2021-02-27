@@ -28,7 +28,7 @@ export const Week = {
   /**
    * 土曜日
    */
-  SATURADY: 'SATURADY',
+  SATURDAY: 'SATURDAY',
 
   /**
    * 日曜日
@@ -69,7 +69,7 @@ export const isFriday = (v: any): v is 'FRIDAY' => v === Week.FRIDAY
 /**
  * 土曜日
  */
-export const isSaturady = (v: any): v is 'SATURADY' => v === Week.SATURADY
+export const isSaturday = (v: any): v is 'SATURDAY' => v === Week.SATURDAY
 /**
  * 日曜日
  */

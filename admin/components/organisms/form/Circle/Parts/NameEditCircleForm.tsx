@@ -20,6 +20,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 id="name"
                 required
                 expand
+                maxLength={50}
                 {...form.name}
             />
 
@@ -28,6 +29,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 name="nameKana"
                 id="nameKana"
                 expand
+                maxLength={100}
                 pattern="(?=.*?[\u30A1-\u30FC])[\u30A1-\u30FC\s]*"
                 {...form.nameKana}
             />
@@ -37,6 +39,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 name="shortName"
                 id="shortName"
                 expand
+                maxLength={20}
                 {...form.shortName}
             />
 
@@ -45,6 +48,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 name="prefixName"
                 id="prefixName"
                 expand
+                maxLength={50}
                 {...form.prefixName}
             />
 
@@ -54,6 +58,7 @@ const NameEditCircleForm: FC<Props> = ({ form }) => {
                 id="slug"
                 prefix="uu-circle.com/circle/"
                 placeholder="u-lab"
+                maxLength={50}
                 required
                 expand
                 {...form.slug}

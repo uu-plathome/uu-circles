@@ -28,7 +28,7 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
                                 </a>
                             </Link>
 
-                            <h3 className="text-center font-bold">
+                            <h3 className="text-center">
                                 { circle.name }
                             </h3>
                         </div>

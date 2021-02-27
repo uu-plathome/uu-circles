@@ -35,6 +35,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     label="新歓名"
                     name="title"
                     id="title"
+                    maxLength={30}
                     prefix={circle.shortName || circle.name}
                     expand
                     required
@@ -46,6 +47,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     name="description"
                     id="description"
                     expand
+                    maxLength={100}
                     { ...form.description }
                 />
 
@@ -66,6 +68,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                         name="placeOfActivityDetail"
                         id="placeOfActivityDetail"
                         expand
+                        maxLength={100}
                         { ...form.placeOfActivityDetail }
                     />
                 ) : ''}
@@ -90,6 +93,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     id="url"
                     placeholder="https://ulab-uu.com/"
                     expand
+                    maxLength={255}
                     note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
                     { ...form.url }
                 />
@@ -109,7 +113,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     { ...form.release }
                 />
 
-                <BaseDate 
+                <BaseDate
                     label="予約投稿日時"
                     name="publishFrom"
                     id="publishFrom"

@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Main\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
@@ -20,20 +20,32 @@ class GetTodayCircleNewJoyWithLimitUsecase
         $now = Carbon::now();
         $today = Carbon::today();
 
-        $todayCircleNewJoy = CircleNewJoy::with('circle')
+        $todayCircleNewJoy = CircleNewJoy::with([
+            'circle:id,slug,release,name',
+            'circle.circleInformation:circle_id,circle_type,main_image_url'
+        ])
             ->nowPublic($now)
-            ->whereDay(CircleNewJoyModel::start_date, '>=', $today)
-            ->orderByDesc(CircleNewJoyModel::start_date)
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                // 公開中のサークルのみ
+                /** @var \App\Models\Circle $query */
+                $query->whereRelease(true);
+            })
+            ->whereDate(CircleNewJoyProperty::start_date, '>=', $today)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
             ->take($limit)
             ->get();
 
         return [
-            'todayCircleNewJoys' => $todayCircleNewJoy->map(
-                fn (CircleNewJoy $circleNewJoy) => [
-                    'slug'         => $circleNewJoy->circle['slug'],
-                    'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
-                ]
-            )->toArray(),
+            'todayCircleNewJoys' => $todayCircleNewJoy->sortBy('start_date')
+                ->map(
+                    fn (CircleNewJoy $circleNewJoy) => [
+                        'slug'                    => $circleNewJoy->circle['slug'],
+                        'name'                    => $circleNewJoy->circle['name'],
+                        'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
+                        'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                    ]
+                )->toArray(),
         ];
     }
 }

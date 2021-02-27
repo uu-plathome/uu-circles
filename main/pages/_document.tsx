@@ -11,7 +11,6 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <title>UU-circles</title>
                     <meta name="theme-color" content="#ff0000" />
                     <meta name="format-detection" content="telephone=no" />
                     <meta name="robots" content="noindex, nofollow" />

@@ -1,4 +1,5 @@
-import { FC, InputHTMLAttributes } from 'react'
+import { useDelayedEffect } from '@/hooks/useDelayedEffect'
+import { FC, InputHTMLAttributes, useState } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 const inputClass = `
@@ -26,6 +27,7 @@ export type Props = {
     prefix?: string|any
     suffix?: string
     error?: string
+    maxLength?: number
     pattern?: string
     disabled?: boolean
     onChange(e: any): void
@@ -41,12 +43,27 @@ const BaseTextField: FC<Props> = ({
     required,
     placeholder,
     prefix,
+    maxLength,
     pattern,
     suffix,
     error,
     disabled,
     onChange
 }) => {
+    const [ counter, setCounter ] = useState<number>(0)
+
+    useDelayedEffect(
+        () => {
+            if (typeof value === 'number') {
+                setCounter(value ? String(value).length : 0)
+            } else {
+                setCounter(value ? value.length : 0)
+            }
+        },
+        [value],
+        1000
+    )
+
     return (
         <div className="flex flex-col space-y-1 mb-4">
             <BaseLabel
@@ -70,6 +87,7 @@ const BaseTextField: FC<Props> = ({
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
+                    maxLength={maxLength}
                     className={inputClass}
                     pattern={pattern}
                     disabled={disabled}
@@ -82,9 +100,18 @@ const BaseTextField: FC<Props> = ({
                     <p className="ml-1 text-white">{suffix}</p>
                 ) : ''}
             </div>
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+
+            <div className="flex justify-between">
+                {error ? (
+                    <p className="text-sm text-red-400">{error}</p>
+                ) : <span> </span>}
+                <p className="text-sm text-white">
+                    <span>{ counter }</span>
+                    {maxLength ? (
+                        <span> / { maxLength }</span>
+                    ) : '' }
+                </p>
+            </div>
         </div>
     )
 }
