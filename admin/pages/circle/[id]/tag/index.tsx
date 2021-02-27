@@ -42,13 +42,29 @@ const CreatePage: NextPage = () => {
 
         const f = async () => {
             const { circleTag: pastCircleTag } = await getCircleTag(Number(id))
+            const filterPastCircleTag = pastCircleTag.filter((_tag) => {
+                return [
+                    CircleTagModel.SPORT,
+                    CircleTagModel.MUSIC,
+                    CircleTagModel.CULTURE,
+                    CircleTagModel.NATURE,
+                    CircleTagModel.VOLUNTEER,
+                    CircleTagModel.INCARE,
+                    CircleTagModel.INTERNATIONAL,
+                    CircleTagModel.LOOSE,
+                    CircleTagModel.COMMUNITY,
+                    CircleTagModel.PROGRAMMING,
+                    CircleTagModel.URGENT_RECRUITMENT,
+                    CircleTagModel.MYSTERY,
+                ].includes(_tag as any)
+            })
 
             const newCheckBoxItemsAdjustPastItem = newCheckBoxItems.map((_checkBoxItem) => ({
                 value: _checkBoxItem.value,
                 label: _checkBoxItem.label,
-                checked: pastCircleTag.includes(_checkBoxItem.value),
+                checked: filterPastCircleTag.includes(_checkBoxItem.value),
             } as CheckBoxItem))
-            setCircleTag(pastCircleTag)
+            setCircleTag(filterPastCircleTag)
             setCheckBoxItems(newCheckBoxItemsAdjustPastItem)
         }
 
