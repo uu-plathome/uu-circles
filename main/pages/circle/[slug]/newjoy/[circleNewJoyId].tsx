@@ -10,6 +10,9 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { PageNotFoundError } from '@/infra/api/error'
+import Error from 'next/error'
+
 type Props = {
   errorCode?: number
   /** サークル */ circle?: Circle
@@ -24,6 +27,7 @@ type Props = {
   }[]
 }
 const Page: NextPage<Props> = ({
+  errorCode,
   circle,
   circleNewJoy,
   pastCircleNewJoys,
@@ -31,6 +35,10 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
   const { isMd } = useMediaQuery()
   return (
     <div>
@@ -242,18 +250,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const {
-    circle,
-    circleNewJoy,
-    pastCircleNewJoys,
-    futureCircleNewJoys,
-    nowCircleNewJoys,
-    todayCircleNewJoys,
-    allTodayCircleNewJoys,
-  } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
-
-  return {
-    props: {
+  try {
+    const {
       circle,
       circleNewJoy,
       pastCircleNewJoys,
@@ -261,8 +259,28 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       nowCircleNewJoys,
       todayCircleNewJoys,
       allTodayCircleNewJoys,
-    },
-  }
+    } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
+  
+    return {
+      props: {
+        circle,
+        circleNewJoy,
+        pastCircleNewJoys,
+        futureCircleNewJoys,
+        nowCircleNewJoys,
+        todayCircleNewJoys,
+        allTodayCircleNewJoys,
+      },
+    }
+  } catch (e) {
+    if (e instanceof PageNotFoundError) {
+        res.statusCode = 404;
+        return { props: { errorCode: 404 } }
+    }
+
+    res.statusCode = 500;
+    return { props: { errorCode: 500 } }
+}
 }
 
 export default Page
