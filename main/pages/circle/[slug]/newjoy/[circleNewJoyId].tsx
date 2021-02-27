@@ -5,11 +5,15 @@ import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
 import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
+import { CircleNewJoyDetail } from '@/components/organisms/Newjoy/CircleNewJoyDetail'
 import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
+import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
+import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
 
@@ -35,9 +39,12 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
+  // console.log(circleNewJoy)
+
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
+
 
   const { isMd } = useMediaQuery()
   return (
@@ -45,10 +52,40 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8">新歓イベント日程詳細</h1>
+            <h1 className="text-2xl py-8 md:py-20 px-4 md:text-center text-left">
+              新歓イベント日程詳細
+            </h1>
             {isMd ? (
               //PC
               <div>
+                <div className="pb-16 grid grid-cols-7">
+                  <div className="col-span-5">
+                    <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                  </div>
+                  <div className="col-span-2  ml-6">
+                    <h2 className="text-xl">主催サークル</h2>
+
+                    <InformationCircleBesideNewJoyPC circle={circle} />
+                    <Link href="/circle/newjoy" as={'/circle/newjoy'}>
+                      <a>
+                        {/* <div
+                        className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
+                        style={{ width: 222 }}
+                      > */}
+                        <div className="mt-6 w-full">
+                          <YellowButton width={'222px'}>
+                            <h4 className="text-sm">
+                              他のサークルの新歓も見る
+                            </h4>
+                            <h3 className="text-base font-bold">
+                              今日の新歓をチェック！
+                            </h3>
+                          </YellowButton>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                </div>
                 <>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                     <div className="pb-16">
@@ -142,6 +179,9 @@ const Page: NextPage<Props> = ({
               //SP
               <div>
                 <>
+                  <div className="pb-16">
+                    <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                  </div>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                     <div className="pb-16">
                       <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
@@ -158,7 +198,7 @@ const Page: NextPage<Props> = ({
                   )}{' '}
                 </>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     今日の新歓
                   </h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -173,62 +213,24 @@ const Page: NextPage<Props> = ({
                   )}
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-
                   <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={futureCircleNewJoys}
                   />
                 </div>
                 <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-
                   <IndexCircleNewJoyListSP
                     slug={circle.slug}
                     circleNewJoys={pastCircleNewJoys}
                   />
                 </div>
-                <div className="pb-16">
-                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                    <a>
-                      <h2 className="font-bold text-lg pl-1 mb-3">
-                        主催サークル
-                      </h2>
-                      <div
-                        className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
-                        style={{ width: 300 }}
-                      >
-                        <div className="mr-2" style={{ width: 64 }}>
-                          <Image
-                            src={
-                              circle.mainImageUrl
-                                ? circle.mainImageUrl
-                                : '/images/no-image.png'
-                            }
-                            alt={`${circle.name}のロゴ`}
-                            width={64}
-                            height={64}
-                            className="rounded-full border border-gray-300"
-                          />
-                        </div>
-                        <div className="w-full pr-2" style={{ width: 200 }}>
-                          <h3 className="text-black font-bold mb-1 text-sm font-bold">
-                            {circle.name}
-                          </h3>
-                          <div>
-                            <p className="text-xs text-gray-600">
-                              {circle.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                </div>{' '}
+                <InformationCircleBesideNewJoySP circle={circle} />
               </div>
             )}
           </BaseContainer>
