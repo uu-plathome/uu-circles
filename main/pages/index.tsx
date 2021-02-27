@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useWindowResize } from "@/hooks/useWindowResize";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
 
 type Props = {
     advertises: Advertise[]
@@ -24,6 +25,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
     const { width } = useWindowResize()
     const { isMd } = useMediaQuery()
     const [ height, setHeight ] = useState(0)
+    const router = useRouter()
 
     useEffect(() => {
         setHeight(isMd ? 330 : width * 4192 / 8001)
@@ -33,6 +35,11 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
         <div>
             <Head>
                 <title>UU-circles</title>
+                <meta property="og:title" content={`UU-circles`} />
+                <meta property="og:site_name" content="UU-circles" />
+                <meta property="og:type" content={'website'} />
+                <meta property="og:url" content={`https://uu-circles.com/`} />
+                <meta name="twitter:site" content="@Ulab_uu" />
             </Head>
 
             <BaseLayout>

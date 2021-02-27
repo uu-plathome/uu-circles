@@ -17,6 +17,7 @@ import Head from "next/head";
 import { TopImage } from "@/components/organisms/ShowCircle/TopImage";
 import { InformationField } from "@/components/organisms/ShowCircle/InformationField";
 import Image from "next/image";
+import { BaseHead } from "@/components/layouts/BaseHead";
 
 type Props = {
     circle?: Circle
@@ -29,10 +30,9 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys }) => {
     const height = 300 * 297 / 210
     return (
         <div>
-            <Head>
-                <title>{ circle.name } | UU-circles</title>
-            </Head>
-
+            <BaseHead
+                title={`${circle.name} サークル詳細`}
+            />
 
             <BaseLayout>
                 <div>
