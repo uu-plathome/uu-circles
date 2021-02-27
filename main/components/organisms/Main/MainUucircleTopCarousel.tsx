@@ -9,7 +9,6 @@ import SwiperCore, {
   A11y,
 } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.min.css'
 import 'swiper/components/navigation/navigation.min.css' //Swiperのnavigation用
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useWindowResize } from '@/hooks/useWindowResize'

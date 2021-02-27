@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.min.css'
 import 'swiper/components/navigation/navigation.min.css' //Swiperのnavigation用
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
