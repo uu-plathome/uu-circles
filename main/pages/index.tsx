@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 
 import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
 import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
+import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircleTopCarousel'
 
 type Props = {
   advertises: Advertise[]
@@ -39,15 +40,8 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
       </Head>
 
       <BaseLayout>
-        <div className="w-full">
-          <Image
-            src="/images/top-image.png"
-            width={width || 0}
-            height={height}
-            objectFit="cover"
-            alt="UU-circlesへようこそ！"
-          />
-        </div>
+        <MainUucircleTopCarousel />
+        <div className="w-full"></div>
         <div style={{ marginTop: '-6px' }} className="bg-white">
           <p className="text-center py-8">新歓をハックする！</p>
         </div>
