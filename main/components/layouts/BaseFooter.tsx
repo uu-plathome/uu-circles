@@ -16,14 +16,17 @@ type TagItem = {
     as?: string
 }
 const tagAlwaysItems: TagItem[] = [
+    { text: __(CircleTagModel.SPORT), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.sport}` },
+    { text: __(CircleTagModel.MUSIC), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.music}` },
+    { text: __(CircleTagModel.CULTURE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.culture}` },
     { text: __(CircleTagModel.VOLUNTEER), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.volunteer}` },
     { text: __(CircleTagModel.PROGRAMMING), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.programming}` },
     { text: __(CircleTagModel.NATURE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.nature}` },
     { text: __(CircleTagModel.INTERNATIONAL), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.international}` },
-    { text: __(CircleTagModel.INCARE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.incare}` },
-    { text: __(CircleTagModel.LOOSE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.loose}` },
 ]
 const tagOtherItems: TagItem[] = [
+    { text: __(CircleTagModel.INCARE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.incare}` },
+    { text: __(CircleTagModel.LOOSE), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.loose}` },
     { text: __(CircleTagModel.COMMUNITY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.community}` },
     { text: __(CircleTagModel.URGENT_RECRUITMENT), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.urgent_recruitment}` },
     { text: __(CircleTagModel.MYSTERY), href: '/circle/tag/[tag]', as: `/circle/tag/${TagSlugProperty.mystery}` },

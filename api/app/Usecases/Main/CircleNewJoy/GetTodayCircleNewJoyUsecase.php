@@ -6,6 +6,7 @@ use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class GetTodayCircleNewJoyUsecase
 {
@@ -18,6 +19,8 @@ class GetTodayCircleNewJoyUsecase
      */
     public function invoke()
     {
+        Log::debug("#GetTodayCircleNewJoyUsecase args: none");
+
         $now = Carbon::now();
         $today = Carbon::today();
 
