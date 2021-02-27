@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects;
 
-use App\Enum\Propety\AdminUserPropety;
-use App\Enum\UserModel;
+use App\Enum\Property\AdminUserProperty;
+use App\Enum\Property\UserProperty;
 use App\Models\AdminUser;
 use App\Models\User;
 use App\Support\Arr;
@@ -45,37 +45,37 @@ class AdminUserValueObject
     public static function of(array $inputs): AdminUserValueObject
     {
         $adminUserValueObject = new AdminUserValueObject();
-        $adminUserValueObject->id = Arr::get($inputs, UserModel::id);
-        $adminUserValueObject->username = Arr::get($inputs, UserModel::username);
-        $adminUserValueObject->email = Arr::get($inputs, UserModel::email);
-        $adminUserValueObject->display_name = Arr::get($inputs, UserModel::display_name);
-        $adminUserValueObject->remember_token = Arr::get($inputs, UserModel::remember_token);
-        $adminUserValueObject->api_token = Arr::get($inputs, UserModel::api_token);
-        $adminUserValueObject->active = Arr::get($inputs, UserModel::active);
-        $adminUserValueObject->password = Arr::get($inputs, UserModel::password);
+        $adminUserValueObject->id = Arr::get($inputs, UserProperty::id);
+        $adminUserValueObject->username = Arr::get($inputs, UserProperty::username);
+        $adminUserValueObject->email = Arr::get($inputs, UserProperty::email);
+        $adminUserValueObject->display_name = Arr::get($inputs, UserProperty::display_name);
+        $adminUserValueObject->remember_token = Arr::get($inputs, UserProperty::remember_token);
+        $adminUserValueObject->api_token = Arr::get($inputs, UserProperty::api_token);
+        $adminUserValueObject->active = Arr::get($inputs, UserProperty::active);
+        $adminUserValueObject->password = Arr::get($inputs, UserProperty::password);
 
-        $emailVerifiedAt = Arr::get($inputs, UserModel::email_verified_at);
+        $emailVerifiedAt = Arr::get($inputs, UserProperty::email_verified_at);
         $adminUserValueObject->email_verified_at = is_string($emailVerifiedAt) ? new Carbon($emailVerifiedAt) : $emailVerifiedAt;
 
-        $createdAt = Arr::get($inputs, UserModel::created_at);
+        $createdAt = Arr::get($inputs, UserProperty::created_at);
         $adminUserValueObject->created_at = is_string($createdAt) ? new Carbon($createdAt) : $createdAt;
-        $updatedAt = Arr::get($inputs, UserModel::updated_at);
+        $updatedAt = Arr::get($inputs, UserProperty::updated_at);
         $adminUserValueObject->updated_at = is_string($updatedAt) ? new Carbon($updatedAt) : $updatedAt;
 
-        $adminUserValueObject->role = Arr::get($inputs, AdminUserPropety::role);
+        $adminUserValueObject->role = Arr::get($inputs, AdminUserProperty::role);
 
         return $adminUserValueObject;
     }
 
-    public function toUserModel(): User
+    public function toUserProperty(): User
     {
         $user = new User([
-            UserModel::username       => $this->username,
-            UserModel::display_name   => $this->display_name,
-            UserModel::email          => $this->email,
-            UserModel::api_token      => $this->api_token,
-            UserModel::active         => $this->active,
-            UserModel::remember_token => $this->remember_token,
+            UserProperty::username       => $this->username,
+            UserProperty::display_name   => $this->display_name,
+            UserProperty::email          => $this->email,
+            UserProperty::api_token      => $this->api_token,
+            UserProperty::active         => $this->active,
+            UserProperty::remember_token => $this->remember_token,
         ]);
         $user->id = $this->id;
         return $user;
@@ -88,18 +88,18 @@ class AdminUserValueObject
     public function toArray(bool $isOwn = false): array
     {
         $baseArr = [
-            UserModel::id                => $this->id,
-            UserModel::username          => $this->username,
-            UserModel::display_name      => $this->display_name,
-            UserModel::active            => $this->active,
-            UserModel::email             => $this->email,
-            UserModel::email_verified_at => $this->email_verified_at,
-            AdminUserPropety::role       => $this->role,
+            UserProperty::id                => $this->id,
+            UserProperty::username          => $this->username,
+            UserProperty::display_name      => $this->display_name,
+            UserProperty::active            => $this->active,
+            UserProperty::email             => $this->email,
+            UserProperty::email_verified_at => $this->email_verified_at,
+            AdminUserProperty::role       => $this->role,
         ];
 
         if ($isOwn) {
-            $baseArr[UserModel::api_token] = $this->api_token;
-            $baseArr[UserModel::remember_token] = $this->remember_token;
+            $baseArr[UserProperty::api_token] = $this->api_token;
+            $baseArr[UserProperty::remember_token] = $this->remember_token;
         }
 
         return $baseArr;

@@ -97,6 +97,7 @@ const CreatePage: NextPage = () => {
                                 id="email"
                                 required
                                 expand
+                                maxLength={255}
                                 placeholder="example@example.com"
                                 { ...email }
                             />
@@ -106,6 +107,7 @@ const CreatePage: NextPage = () => {
                                 name="username"
                                 id="username"
                                 prefix="@"
+                                maxLength={30}
                                 placeholder="u-ta"
                                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
                                 { ...username }
@@ -116,6 +118,7 @@ const CreatePage: NextPage = () => {
                                 name="display_name"
                                 id="display_name"
                                 placeholder="宇都宮太郎"
+                                maxLength={50}
                                 note="入力がない場合は、自動で決まります"
                                 { ...displayName }
                             />

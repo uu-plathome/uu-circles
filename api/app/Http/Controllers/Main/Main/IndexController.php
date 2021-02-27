@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main\Main;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
@@ -13,10 +14,14 @@ use Illuminate\Support\Facades\Cache;
 
 class IndexController extends Controller
 {
+    private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
-    public function __construct(GetRandomCircleUsecase $getRandomCircleUsecase)
-    {
+    public function __construct(
+        GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
+        GetRandomCircleUsecase $getRandomCircleUsecase
+    ) {
+        $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
     }
 
@@ -32,6 +37,10 @@ class IndexController extends Controller
             return $this->getRandomCircleUsecase->invoke(12);
         });
 
+        $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60, function () {
+            return $this->getRandomAdvertiseUsecase->invoke(2);
+        });
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -41,6 +50,7 @@ class IndexController extends Controller
                     ])
                 )->toArray()
             ),
+            'advertises' => Arr::camel_keys($advertises),
         ];
     }
 
@@ -48,5 +58,11 @@ class IndexController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
         return 'main' . $minutes . rand(0, 2);
+    }
+
+    private function getAdvertiseCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'main.advertise' . $minutes;
     }
 }

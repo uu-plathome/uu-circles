@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Enum\UserTokenModel;
 use App\Models\User;
 use App\Models\UserToken;
@@ -23,24 +23,24 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        UserModel::username          => 'tester',
-        UserModel::display_name      => 'tester',
-        UserModel::email             => $faker->email,
-        UserModel::email_verified_at => now(),
-        UserModel::password          => Hash::make('Test1234@@'), // password
-        UserModel::remember_token    => Str::random(10),
-        UserModel::api_token         => Str::random(60),
+        UserProperty::username          => 'tester',
+        UserProperty::display_name      => 'tester',
+        UserProperty::email             => $faker->email,
+        UserProperty::email_verified_at => now(),
+        UserProperty::password          => Hash::make('Test1234@@'), // password
+        UserProperty::remember_token    => Str::random(10),
+        UserProperty::api_token         => Str::random(60),
     ];
 });
 
-$factory->state(User::class, 'admin' , function (Faker $faker) {
+$factory->state(User::class, 'admin', function (Faker $faker) {
     return [
-        UserModel::username          => 'tester',
-        UserModel::display_name      => 'tester',
-        UserModel::email             => 'tester@example.com',
-        UserModel::email_verified_at => now(),
-        UserModel::password          => Hash::make('Test1234@@'), // password
-        UserModel::remember_token    => Str::random(10),
-        UserModel::api_token         => 'test1234',
+        UserProperty::username          => 'tester',
+        UserProperty::display_name      => 'tester',
+        UserProperty::email             => 'tester@example.com',
+        UserProperty::email_verified_at => now(),
+        UserProperty::password          => Hash::make('Test1234@@'), // password
+        UserProperty::remember_token    => Str::random(10),
+        UserProperty::api_token         => 'test1234',
     ];
 });

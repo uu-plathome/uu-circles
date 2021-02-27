@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\CircleUser;
 
-use App\Enum\UserModel;
+use App\Enum\Property\UserProperty;
 use App\Support\Arr;
 use App\ValueObjects\CircleUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,9 +27,9 @@ class RegisterCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserModel::username     => ['required', 'string', 'max:30', 'alpha_dash'],
-            UserModel::display_name => ['nullable', 'string', 'max:50'],
-            UserModel::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash'],
+            UserProperty::display_name => ['nullable', 'string', 'max:50'],
+            UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
     }
 
@@ -39,9 +39,9 @@ class RegisterCircleUserRequest extends FormRequest
 
         return CircleUserValueObject::of([
             'circle_id'             => $this->circleId,
-            UserModel::username     => $request['username'],
-            UserModel::display_name => $request['displayName'],
-            UserModel::email        => $request['email'],
+            UserProperty::username     => $request['username'],
+            UserProperty::display_name => $request['displayName'],
+            UserProperty::email        => $request['email'],
         ]);
     }
 }

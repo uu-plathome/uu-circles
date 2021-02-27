@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\CircleNewJoy;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Enum\PlaceOfActivity;
 use App\Support\Arr;
 use App\ValueObjects\CircleNewJoyValueObject;
@@ -30,18 +30,18 @@ class RegisterCircleNewJoyRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleNewJoyModel::title                    => ['required', 'string', 'max:100'],
-            CircleNewJoyModel::description              => ['string', 'nullable', 'max:255'],
-            CircleNewJoyModel::url                      => ['string', 'nullable', 'url', 'max:255'],
-            CircleNewJoyModel::place_of_activity        => [
+            CircleNewJoyProperty::title                    => ['required', 'string', 'max:30'],
+            CircleNewJoyProperty::description              => ['string', 'nullable', 'max:100'],
+            CircleNewJoyProperty::url                      => ['string', 'nullable', 'url', 'max:255'],
+            CircleNewJoyProperty::place_of_activity        => [
                 'string',
                 Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
-            CircleNewJoyModel::place_of_activity_detail => ['string', 'nullable', 'max:255'],
-            CircleNewJoyModel::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
-            CircleNewJoyModel::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
-            CircleNewJoyModel::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
-            CircleNewJoyModel::release                  => ['boolean', 'nullable'],
+            CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
+            CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
+            CircleNewJoyProperty::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
+            CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
+            CircleNewJoyProperty::release                  => ['boolean', 'nullable'],
         ]);
     }
 
@@ -49,15 +49,15 @@ class RegisterCircleNewJoyRequest extends FormRequest
     {
         $request = Arr::snake_keys($this->validated());
         return CircleNewJoyValueObject::of([
-            CircleNewJoyModel::title                    => $request['title'],
-            CircleNewJoyModel::description              => $request['description'],
-            CircleNewJoyModel::url                      => $request['url'],
-            CircleNewJoyModel::place_of_activity        => $request['place_of_activity'],
-            CircleNewJoyModel::place_of_activity_detail => Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '',
-            CircleNewJoyModel::publish_from             => $request['publish_from'],
-            CircleNewJoyModel::start_date               => $request['start_date'],
-            CircleNewJoyModel::end_date                 => $request['end_date'],
-            CircleNewJoyModel::release                  => $request['release'],
+            CircleNewJoyProperty::title                    => $request['title'],
+            CircleNewJoyProperty::description              => $request['description'],
+            CircleNewJoyProperty::url                      => $request['url'],
+            CircleNewJoyProperty::place_of_activity        => $request['place_of_activity'],
+            CircleNewJoyProperty::place_of_activity_detail => Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '',
+            CircleNewJoyProperty::publish_from             => $request['publish_from'],
+            CircleNewJoyProperty::start_date               => $request['start_date'],
+            CircleNewJoyProperty::end_date                 => $request['end_date'],
+            CircleNewJoyProperty::release                  => $request['release'],
         ]);
     }
 }

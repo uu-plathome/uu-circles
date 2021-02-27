@@ -7,20 +7,45 @@ import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { MainSponsorshipFooter } from "@/components/organisms/Main/MainSponsorshipFooter";
 import { MainUucircleAd } from "@/components/organisms/Main/MainUucircleAd";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
-import { MainCategoryList } from "@/components/organisms/List/MainCategoryList";
+import { MainTagList } from "@/components/organisms/Main/MainTagList";
 import { GreenButton } from "@/components/atoms/button/GreenButton";
+import { Advertise } from "@/lib/types/model/Advertise";
+import Head from "next/head";
+import Image from "next/image";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useWindowResize } from "@/hooks/useWindowResize";
+import { useEffect, useState } from "react";
 
 type Props = {
+    advertises: Advertise[]
     circles: Circle[]
 }
-const Index: NextPage<Props> = ({ circles }) => {
+const Index: NextPage<Props> = ({ advertises, circles }) => {
+    const { width } = useWindowResize()
+    const { isMd } = useMediaQuery()
+    const [ height, setHeight ] = useState(0)
+
+    useEffect(() => {
+        setHeight(isMd ? 330 : width * 4192 / 8001)
+    }, [isMd, width])
+
     return (
         <div>
-            <BaseLayout>
-                <div className="w-full bg-gray-600 h-80">
+            <Head>
+                <title>UU-circles</title>
+            </Head>
 
+            <BaseLayout>
+                <div className="w-full">
+                    <Image
+                        src="/images/top-image.png"
+                        width={width || 0}
+                        height={height}
+                        objectFit="cover"
+                        alt="UU-circlesへようこそ！"
+                    />
                 </div>
-                <div>
+                <div style={{ marginTop: '-6px' }} className="bg-white">
                     <p className="text-center py-8">
                         新歓をハックする！
                     </p>
@@ -29,7 +54,7 @@ const Index: NextPage<Props> = ({ circles }) => {
                 <BaseContainer>
                     <div className="px-6">
 
-                        <MainCategoryList />
+                        <MainTagList />
 
                         {/*  サークル一覧 */}
                         <MainPageCircleList circles={circles} />
@@ -47,7 +72,7 @@ const Index: NextPage<Props> = ({ circles }) => {
 
                     <MainUucircleAd />
 
-                    <MainSponsorshipFooter />
+                    <MainSponsorshipFooter advertises={advertises} />
 
                     <BaseFooter />
                 </div>
@@ -57,11 +82,12 @@ const Index: NextPage<Props> = ({ circles }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-    const { circles } = await getMain()
+    const { circles, advertises } = await getMain()
 
     return {
         props: {
-            circles
+            advertises,
+            circles,
         }
     }
 }

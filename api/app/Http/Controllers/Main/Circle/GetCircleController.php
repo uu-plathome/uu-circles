@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main\Circle;
 
-use App\Enum\CircleNewJoyModel;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Http\Controllers\Controller;
 use App\Models\CircleNewJoy;
 use App\Support\Arr;
@@ -35,8 +35,8 @@ class GetCircleController extends Controller
         // 新歓開催前のものを取得
         $circleNewJoys = CircleNewJoy::whereCircleId($circle->id)
             ->nowPublic($now)
-            ->where(CircleNewJoyModel::start_date, '>=', $now)
-            ->orderBy(CircleNewJoyModel::start_date)
+            ->where(CircleNewJoyProperty::start_date, '>=', $now)
+            ->orderBy(CircleNewJoyProperty::start_date)
             ->take(3)
             ->get()
             ->toArray();
@@ -47,8 +47,8 @@ class GetCircleController extends Controller
 
             $appendCircleNewJoys = CircleNewJoy::whereCircleId($circle->id)
                 ->nowPublic($now)
-                ->where(CircleNewJoyModel::start_date, '<', $now)
-                ->orderByDesc(CircleNewJoyModel::start_date)
+                ->where(CircleNewJoyProperty::start_date, '<', $now)
+                ->orderByDesc(CircleNewJoyProperty::start_date)
                 ->take(3 - $count)
                 ->get()
                 ->toArray();

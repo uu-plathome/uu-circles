@@ -47,6 +47,6 @@ class IndexCircleController extends Controller
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main' . $minutes;
+        return 'main.circle.IndexCircleController.' . $minutes;
     }
 }

@@ -11,6 +11,7 @@ type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
     form: {
         title: UseStringInput
+        link: UseStringInput
         mainImageUrl: UseStringInput
         active: UseBooleanInput
         publishTo: UseDateInput
@@ -25,7 +26,19 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
                 name="title"
                 id="title"
                 required
+                expand
+                maxLength={50}
                 { ...form.title }
+            />
+
+            <BaseTextField
+                label="広告リンク"
+                name="link"
+                id="link"
+                expand
+                maxLength={255}
+                placeholder="https://example.com"
+                { ...form.link }
             />
 
             <BaseSelect

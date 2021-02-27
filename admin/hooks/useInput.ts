@@ -1,5 +1,5 @@
 import { isDate, isDatetime } from '@/lib/utils/Date'
-import dayjs from 'dayjs'
+import { dayjs } from '@/plugins/Dayjs'
 import { useState } from 'react'
 
 export const useInput = <T extends string>(initialValue: T) => {
