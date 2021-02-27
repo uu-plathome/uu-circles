@@ -18,12 +18,11 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
   const { isMd } = useMediaQuery()
   return (
     <div>
-      <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-        {circles.map((circle) => {
-          return (
-            <div>
-              {isMd ? (
-                //PC
+      {isMd ? (
+        <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {circles.map((circle) => {
+            return (
+              <div>
                 <div key={circle.id} className="mb-6 md:mb-16">
                   <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
                     <a>
@@ -38,27 +37,36 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
 
                   <h3 className="text-center">{circle.name}</h3>
                 </div>
-              ) : (
-                //SP
-                <div key={circle.id} className="mb-6 md:mb-16">
-                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-                    <a>
-                      <Image
-                        src={circle.handbillImageUrl}
-                        alt={`${circle.name}のビラ`}
-                        width={width}
-                        height={height}
-                      />
-                    </a>
-                  </Link>
+              </div>
+            )
+          })}
+        </div>
+      ) : (
+        <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
+          <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+            {circles.map((circle) => {
+              return (
+                <SwiperSlide className="">
+                  <div key={circle.id} className="mb-6 md:mb-16">
+                    <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+                      <a>
+                        <Image
+                          src={circle.handbillImageUrl}
+                          alt={`${circle.name}のビラ`}
+                          width={width}
+                          height={height}
+                        />
+                      </a>
+                    </Link>
 
-                  <h3 className="text-center">{circle.name}</h3>
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
+                    <h3 className="text-center">{circle.name}</h3>
+                  </div>
+                </SwiperSlide>
+              )
+            })}
+          </div>
+        </Swiper>
+      )}
     </div>
   )
 }
