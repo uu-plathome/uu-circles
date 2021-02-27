@@ -187,7 +187,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
 
         <div>
           <BaseTextField
-            label="Line URL"
+            label="LINE URL"
             name="lineUrl"
             id="lineUrl"
             expand

@@ -10,6 +10,7 @@ module.exports = withPWA({
   images: {
     domains: [
       'd20rb0br4fsl6o.cloudfront.net',
+      'static.uu-circles.com',
       'localhost',
       'api.uu-circles.com',
       'firebasestorage.googleapis.com',
