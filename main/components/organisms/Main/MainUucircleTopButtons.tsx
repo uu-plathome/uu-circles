@@ -23,7 +23,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               height: '65px',
             }}
           >
-            <Link href="">
+            <Link href="/">
               <a
                 className="text-gray-900 text-2xl"
                 style={
@@ -75,7 +75,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
               height: '65px',
             }}
           >
-            <Link href="/guide/discode">
+            <Link href="/guide/discord">
               <a
                 className="text-gray-900 text-2xl"
                 style={
@@ -104,7 +104,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
                   height: '65px',
                 }}
               >
-                <Link href="">
+                <Link href="/">
                   <a
                     className="text-gray-900 text-2xl"
                     style={
@@ -130,7 +130,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
                   height: '65px',
                 }}
               >
-                <Link href="">
+                <Link href="/">
                   <a
                     className="text-gray-900 text-2xl"
                     style={

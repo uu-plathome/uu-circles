@@ -34,7 +34,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white" style={{ fontSize: '18px' }}>
                   新生活の初め方
                 </a>
@@ -49,7 +49,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white" style={{ fontSize: '18px' }}>
                   先輩が教えるおすすめバイト
                 </a>
@@ -64,7 +64,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                 height: '65px',
               }}
             >
-              <Link href="">
+              <Link href="/">
                 <a className="text-white " style={{ fontSize: '18px' }}>
                   自転車ってどこで買うの？
                 </a>
@@ -92,7 +92,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white" style={{ fontSize: '18px' }}>
                       新生活の初め方
                     </a>
@@ -108,7 +108,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white" style={{ fontSize: '18px' }}>
                       先輩が教えるおすすめバイト
                     </a>
@@ -124,7 +124,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
                     height: '65px',
                   }}
                 >
-                  <Link href="">
+                  <Link href="/">
                     <a className="text-white " style={{ fontSize: '18px' }}>
                       自転車ってどこで買うの？
                     </a>
