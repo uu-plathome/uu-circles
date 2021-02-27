@@ -73,17 +73,33 @@ class IndexCircleNewJoyUsecase
                     return $endDate->isPast();
                 }
 
+                if ($circleNewJoy->start_date) {
+                    $endDate = new Carbon($circleNewJoy->start_date);
+
+                    return $endDate->isPast();
+                }
+
+                if ($circleNewJoy->end_date) {
+                    $endDate = new Carbon($circleNewJoy->end_date);
+
+                    return $endDate->isPast();
+                }
+
                 return false;
             }
         );
 
         $today = $circleNewJoys->filter(
             function (CircleNewJoy $circleNewJoy) {
-                if ($circleNewJoy->start_date && $circleNewJoy->end_date) {
+                if ($circleNewJoy->start_date) {
                     $startDate = new Carbon($circleNewJoy->start_date);
+                    return $startDate->isToday();
+                }
+
+                if ($circleNewJoy->end_date) {
                     $endDate = new Carbon($circleNewJoy->end_date);
 
-                    return $startDate->isToday() || $endDate->isToday();
+                    return $endDate->isToday();
                 }
 
                 return false;
@@ -105,7 +121,7 @@ class IndexCircleNewJoyUsecase
 
         $future = $circleNewJoys->filter(
             function (CircleNewJoy $circleNewJoy) {
-                if ($circleNewJoy->start_date && $circleNewJoy->end_date) {
+                if ($circleNewJoy->start_date) {
                     $startDate = new Carbon($circleNewJoy->start_date);
 
                     return $startDate->isFuture();
