@@ -33,3 +33,11 @@ body {
 .tag-title::before {
   content: '#';
 }
+
+/* swiper右左デザイン */
+.swiper-button-next::after {
+  color: #c4c4c4 !important;
+}
+.swiper-button-prev::after {
+  color: #c4c4c4 !important;
+}
