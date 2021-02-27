@@ -13,7 +13,9 @@ type Props = {
 const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
   return (
     <div className="pb-16">
-      <h2 className="font-bold text-lg md:text-center pl-4 mb-3">今日の新歓</h2>
+      <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
+        主催サークル
+      </h2>
       <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
         <a>
           <div
