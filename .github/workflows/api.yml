@@ -18,7 +18,7 @@ jobs:
       - name: composer install
         run: docker-compose exec -T app composer install
       - name: init link and cache
-        run: docker-compose exec -T app php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: docker-compose exec -T app php -r "copy('.env.example', '.env');"
       - name: Generate key
         run: docker-compose exec -T app php artisan key:generate
       - name: Directory Permissions
