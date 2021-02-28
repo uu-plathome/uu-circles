@@ -56,6 +56,7 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
                 label="公開開始日時"
                 name="publishFrom"
                 id="publishFrom"
+                required
                 { ...form.publishFrom }
             />
 
