@@ -28,7 +28,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
             >
               <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
                 <p className="text-xs leading-5">
-                  {getDOW(circleNewJoy.start_date)}
+                  {getDOW(circleNewJoy.startDate)}
                 </p>
               </div>
               <div
@@ -36,9 +36,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 style={{ borderRadius: '0 0 10 10 ' }}
               >
                 <p className="text-xs leading-4">
-                  {getMonth(circleNewJoy.start_date)}月
+                  {getMonth(circleNewJoy.startDate)}月
                 </p>
-                <p className="text-2xl">{getDay(circleNewJoy.start_date)}</p>
+                <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
               </div>
             </section>
           </div>
@@ -61,7 +61,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 新歓日時
               </h4>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-                {getFullJPDate(circleNewJoy.start_date, circleNewJoy.end_date)}
+                {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
               </h4>
             </section>
             <section className="my-6 border-b border-gray-600">
@@ -69,7 +69,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 集合場所
               </h4>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-                {circleNewJoy.place_of_activity}
+                {__(circleNewJoy.placeOfActivity)}
               </h4>
             </section>
             <section className="my-6 ">
@@ -99,13 +99,13 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
           <section className="my-6 border-b border-gray-600">
             <h4 className="text-gray-500 text-base text-gray-400">新歓日時</h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {getFullJPDate(circleNewJoy.start_date, circleNewJoy.end_date)}
+              {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
             </h4>
           </section>
           <section className="my-6 border-b border-gray-600">
             <h4 className="text-gray-500 text-base text-gray-400">集合場所</h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {circleNewJoy.place_of_activity}
+              {__(circleNewJoy.placeOfActivity)}
             </h4>
           </section>
           <section className="my-6 ">

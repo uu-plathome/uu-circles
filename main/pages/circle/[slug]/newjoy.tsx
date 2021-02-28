@@ -17,7 +17,6 @@ import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCirc
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
 
-
 type Props = {
   /** サークル */ circle?: Circle
   errorCode?: number
@@ -81,7 +80,7 @@ const Page: NextPage<Props> = ({
                           circleNewJoys={todayCircleNewJoys}
                         />
                       ) : (
-                        <p>今日の新歓はありません</p>
+                        <p className="text-center">今日の新歓はありません</p>
                       )}
                     </div>
 
@@ -116,12 +115,14 @@ const Page: NextPage<Props> = ({
                       > */}
                         <div className="mt-6 w-full">
                           <YellowButton width={'222px'}>
-                            <h4 className="text-sm">
-                              他のサークルの新歓も見る
-                            </h4>
-                            <h3 className="text-base font-bold">
-                              今日の新歓をチェック！
-                            </h3>
+                            <div className="py-2">
+                              <h4 className="text-xs">
+                                他のサークルの新歓も見る
+                              </h4>
+                              <h3 className="text-sm font-bold">
+                                今日の新歓をチェック！
+                              </h3>
+                            </div>
                           </YellowButton>
                         </div>
                       </a>
@@ -156,7 +157,7 @@ const Page: NextPage<Props> = ({
                       circleNewJoys={todayCircleNewJoys}
                     />
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
@@ -209,7 +210,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       todayCircleNewJoys,
       allTodayCircleNewJoys,
     } = await getCircleNewJoyBySlug(params.slug)
-  
+
     return {
       props: {
         circle,
@@ -222,11 +223,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
-        res.statusCode = 404;
-        return { props: { errorCode: 404 } }
+      res.statusCode = 404
+      return { props: { errorCode: 404 } }
     }
 
-    res.statusCode = 500;
+    res.statusCode = 500
     return { props: { errorCode: 500 } }
   }
 }
