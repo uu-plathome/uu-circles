@@ -18,7 +18,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
             <div className="mx-auto" style={{ maxWidth: 700 }}>
                 <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-4">
                         <div className="flex items-center">
-                            <div className="md:hidden pr-2">
+                            <div className="md:hidden pr-4">
                                 <button onClick={onClick}>
                                     <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
                                 </button>

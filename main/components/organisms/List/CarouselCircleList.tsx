@@ -44,11 +44,12 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                         alt={`${circle.name}のビラ`}
                         width={width}
                         height={height}
+                        className="rounded"
                       />
                     </a>
                   </Link>
 
-                  <h3 className="text-center">{circle.name}</h3>
+                  <h3 className="text-center text-sm text-gray-600 pt-1">{circle.name}</h3>
                 </div>
               </div>
             )
@@ -69,11 +70,12 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                             alt={`${circle.name}のビラ`}
                             width={width}
                             height={height}
+                            className="rounded"
                           />
                         </a>
                       </Link>
 
-                      <h3 className="text-center">{circle.name}</h3>
+                      <h3 className="text-center text-sm text-gray-600 pt-1">{circle.name}</h3>
                     </div>
                   </div>
                 </SwiperSlide>
