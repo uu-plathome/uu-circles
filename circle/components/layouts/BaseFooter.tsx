@@ -3,7 +3,7 @@ import { FC } from "react";
 type Props = {}
 const BaseFooter: FC<Props> = () => {
     return (
-        <div className="bg-gray-100 px-6">
+        <div className="bg-gray-50 px-6">
             <div className="pt-8 text-center">
                 <hr className="border border-gray-200"/>
                 <div className="pt-8 pb-16">
