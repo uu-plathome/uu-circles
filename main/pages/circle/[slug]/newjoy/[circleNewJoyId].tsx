@@ -46,12 +46,13 @@ const Page: NextPage<Props> = ({
   }
 
   const { isMd } = useMediaQuery()
+  // console.log(circleNewJoy)
   return (
     <div>
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:py-20 px-4 md:text-center text-left">
+            <h1 className="text-2xl pl-4 py-8 md:py-20 md:text-center text-left">
               新歓イベント日程詳細
             </h1>
             {isMd ? (
@@ -73,12 +74,14 @@ const Page: NextPage<Props> = ({
                       > */}
                         <div className="mt-6 w-full">
                           <YellowButton width={'222px'}>
-                            <h4 className="text-sm">
-                              他のサークルの新歓も見る
-                            </h4>
-                            <h3 className="text-base font-bold">
-                              今日の新歓をチェック！
-                            </h3>
+                            <div className="py-2">
+                              <h4 className="text-xs">
+                                他のサークルの新歓も見る
+                              </h4>
+                              <h3 className="text-sm font-bold">
+                                今日の新歓をチェック！
+                              </h3>
+                            </div>
                           </YellowButton>
                         </div>
                       </a>
@@ -113,7 +116,7 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
@@ -208,7 +211,7 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
