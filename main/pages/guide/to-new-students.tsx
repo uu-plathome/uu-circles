@@ -46,9 +46,11 @@ const Page: NextPage<Props> = () => {
                         <p className="pb-6 px-4">ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
                         実際にサークル情報を見てみましょう。</p>
 
-                        <GreenLgButton>
-                            UU-Circleのトップ画面へ
-                        </GreenLgButton>
+                        <div className="pb-8 pt-4">
+                            <GreenLgButton href="/">
+                                UU-Circleのトップ画面へ
+                            </GreenLgButton>
+                        </div>
 
                         <SubHeader>2.オンライン新歓会場に参加してみよう</SubHeader>
 
@@ -58,9 +60,11 @@ const Page: NextPage<Props> = () => {
                             、サークルが新歓の告知から説明会まで行ってくれます。まだ入っていない人は下のボタンをタップ！</p>
                         </div>
 
-                        <GreenLgButton>
-                            オンライン新歓会場への参加方法へ
-                        </GreenLgButton>
+                        <div className="pb-8 pt-4">
+                            <GreenLgButton href="/guide/discord">
+                                オンライン新歓会場への参加方法へ
+                            </GreenLgButton>
+                        </div>
 
                         <SubHeader>3.いつ・どんな新歓があるか確認してみよう</SubHeader>
 
@@ -70,9 +74,11 @@ const Page: NextPage<Props> = () => {
                             </p>
                         </div>
 
-                        <GreenLgButton>
-                            今日の新歓ページへ
-                        </GreenLgButton>
+                        <div className="pb-8 pt-4">
+                            <GreenLgButton href="/circle/newjoy">
+                                今日の新歓ページへ
+                            </GreenLgButton>
+                        </div>
 
                         <SubHeader>4.宇都宮大学の情報を知ろう</SubHeader>
 
@@ -83,9 +89,11 @@ const Page: NextPage<Props> = () => {
                             <p>是非チェックしてホーム画面に追加してね！</p>
                         </div>
 
-                        <GreenLgButton>
-                            メディアサイトuu-yellへ
-                        </GreenLgButton>
+                        <div className="pb-8 pt-4">
+                            <GreenLgButton href="https://media.uu-circles.com">
+                                メディアサイトuu-yellへ
+                            </GreenLgButton>
+                        </div>
 
                         <SubHeader>5.先輩のお話を聞いてみよう</SubHeader>
 
