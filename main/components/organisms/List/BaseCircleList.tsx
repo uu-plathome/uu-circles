@@ -24,17 +24,31 @@ const BaseCircleList: FC<Props> = ({ circles }) => {
                                         alt={`${circle.name}のビラ`}
                                         width={width} 
                                         height={height}
+                                        className="rounded"
                                     />
                                 </a>
                             </Link>
 
-                            <h3 className="text-center">
+                            <h3 className="text-center text-sm text-gray-600 pt-1">
                                 { circle.name }
                             </h3>
                         </div>
                     )
                 }) }
             </div>
+
+            {circles.length === 0 ? (
+                <div className="pt-4 pb-12">
+                    <p className="text-black mb-4">サークルが見つかりませんでした。</p>
+                    <p className="text-blue-500">
+                        <Link href="/circle">
+                            <a className="underline">
+                                サークル一覧へ戻る
+                            </a>
+                        </Link>
+                    </p>
+                </div>
+            ) : ''}
         </div>
     )
 }

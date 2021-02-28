@@ -38,6 +38,6 @@ class UpdateAdminUserController extends Controller
 
     private function canSelectedRoles($user): array
     {
-        return $user->adminUser->isSystem() ? [Role::MANAGER, Role::COMMON] : [Role::SYSTEM, Role::MANAGER, Role::COMMON];
+        return $user->adminUser->isSystem() ? [Role::SYSTEM, Role::MANAGER, Role::COMMON] : [Role::MANAGER, Role::COMMON];
     }
 }

@@ -88,9 +88,9 @@ export const ja = {
     [CircleTagModel.ONLY_THURSDAY]: '',
     [CircleTagModel.ONLY_FRIDAY]: '',
     [CircleTagModel.HOLIDAY]: '休日でも一緒だよ^ ^',
-    [CircleTagModel.URGENT_RECRUITMENT]: '紛れもない大御所',
-    [CircleTagModel.MYSTERY]: '見学だけでもお願いします',
-    [CircleTagModel.MAMMOTH]: '得体のしれない怪団体',
+    [CircleTagModel.MAMMOTH]: '紛れもない大御所',
+    [CircleTagModel.URGENT_RECRUITMENT]: '見学だけでもお願いします',
+    [CircleTagModel.MYSTERY]: '得体のしれない怪団体',
   },
   CircleTagText: {
     [CircleTagModel.SPORT]: '誰かと一緒に体を動かすことで、心身ともに充実させましょう。学業の傍ら、楽しく血行を改善してみませんか？',

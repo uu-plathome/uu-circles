@@ -156,7 +156,7 @@ const BaseFooter: FC<Props> = () => {
                 </BaseContainer>
 
                 <BaseContainer>
-                    <div className="pt-6">
+                    <div className="pt-10">
                         <h2 className="text-lg mb-6">メニュー</h2>
                         
                         <ul>
@@ -170,7 +170,16 @@ const BaseFooter: FC<Props> = () => {
                                     <a className="text-gray-400 font-bold text-sm">今日の新歓</a>
                                 </Link>
                             </li>
-                            <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">運営団体について</a></li>
+                            <li className="mb-3">
+                                <Link href="/guide/discord">
+                                    <a className="text-gray-400 font-bold text-sm">オンライン新歓に参加しよう！</a>
+                                </Link>
+                            </li>
+                            <li className="mb-3">
+                                <Link href="/guide/management-team">
+                                    <a className="text-gray-400 font-bold text-sm">運営団体について</a>
+                                </Link>
+                            </li>
                             <li className="mb-3"><a href="https://forms.gle/1oULcDjiPaknvfvc8" target="_blank" rel="noreferrer" className="text-gray-400 font-bold text-sm">お問い合わせ</a></li>
                             <li className="mb-3"><a href="" className="text-gray-400 font-bold text-sm">ヘルプ</a></li>
                         </ul>
@@ -181,7 +190,9 @@ const BaseFooter: FC<Props> = () => {
                     <BaseContainer>
                         <hr className="border border-gray-200"/>
                         <div className="pt-8 pb-16">
-                            <a href="" className="text-gray-400 px-2 text-xs">運営団体</a>
+                            <Link href="/guide/management-team">
+                                <a className="text-gray-400 px-2 text-xs">運営団体</a>
+                            </Link>
 
                             <Link href="/terms">
                                 <a className="text-gray-400 px-2 text-xs">利用規約</a>

@@ -3,6 +3,7 @@ volumes:
   php-fpm-socket:
   pma-session-store:
   db-store:
+  db-store-test:
   vendor-store:
   node_modules-store:
 services:
@@ -30,6 +31,13 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+
+  dbtest:
+    build: ./infra/docker/mysql
+    ports:
+      - 3307:3306
+    volumes:
+      - db-store-test:/var/lib/mysql
 
   cs:
     image: herloct/php-cs-fixer

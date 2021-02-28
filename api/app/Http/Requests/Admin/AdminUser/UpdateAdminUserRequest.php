@@ -36,7 +36,7 @@ class UpdateAdminUserRequest extends FormRequest
             UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
             UserProperty::display_name => ['required', 'string', 'max:50'],
             UserProperty::active       => ['required', 'boolean'],
-            AdminUserProperty::role  => ['required', 'string'],
+            AdminUserProperty::role    => ['required', 'string'],
         ]);
     }
 
