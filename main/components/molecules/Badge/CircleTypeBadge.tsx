@@ -55,13 +55,14 @@ const CircleTypeBadge: FC<Props> = ({ circleType }) => {
                 text-white 
                 text-sm 
                 font-bold 
-                p-2 
+                p-1
                 rounded-full 
                 md:rounded-none 
-                w-14 
-                h-14 
+                w-12
+                h-12
                 md:w-auto 
                 md:h-auto 
+                md:p-2
                 flex 
                 justify-center 
                 items-center

@@ -52,14 +52,15 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
 
                             <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
                                 <div>
-                                    <p>{ circle.prefixName }</p>
-                                    <h1 className="text-2xl font-bold">{ circle.name }</h1>
+                                    <p className="text-sm">{ circle.prefixName }</p>
+                                    <h1 className="text-lg md:text-2xl font-bold">{ circle.name }</h1>
                                 </div>
 
                                 <div>
                                     <CircleTypeBadge circleType={circle.circleType as CircleType} />
                                 </div>
                             </div>
+
                             <div className="flex justify-between md:justify-start bg-white px-4 md:px-10 py-2">
                                 <div className="md:mr-4">
                                     <p>
