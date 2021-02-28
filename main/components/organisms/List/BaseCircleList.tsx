@@ -37,7 +37,7 @@ const BaseCircleList: FC<Props> = ({ circles }) => {
             </div>
 
             {circles.length === 0 ? (
-                <div className="pt-4">
+                <div className="pt-4 pb-12">
                     <p className="text-black mb-4">サークルが見つかりませんでした。</p>
                     <p className="text-blue-500">
                         <Link href="/circle">
