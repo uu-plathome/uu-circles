@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Main\Main;
+namespace Tests\Feature\App\Http\Controllers\Main\CircleNewJoy;
 
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class IndexControllerTest extends TestCase
+class TodayCircleNewJoyControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
@@ -21,7 +21,7 @@ class IndexControllerTest extends TestCase
         // GIVEN
 
         // WHEN
-        $response = $this->get('/api/main');
+        $response = $this->get('/api/circle/newjoy');
 
         // THEN
         $response->assertOk();

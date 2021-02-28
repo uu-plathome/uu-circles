@@ -26,9 +26,12 @@ Route::get('/main', IndexController::class)->name('main.index');
 
 // サークル
 Route::get('/circle', IndexCircleController::class)->name('main.circle');
-Route::get('/circle/category/{category}', SearchCategoryCircleController::class)->name('main.circle.category');
+Route::get('/circle/category/{category}', SearchCategoryCircleController::class)
+    ->name('main.circle.category');
 Route::get('/circle/tag/{tag}', SearchTagCircleController::class)->name('main.circle.tag');
 Route::get('/circle/newjoy', TodayCircleNewJoyController::class)->name('main.circleNewJoy.today');
 Route::get('/circle/{slug}', GetCircleController::class)->name('main.circle.show');
 Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('main.circleNewJoy.index');
-Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('main.circleNewJoy.show');
+Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)
+    ->name('main.circleNewJoy.show')
+    ->where(['circleNewJoyId' => '[0-9]+']);
