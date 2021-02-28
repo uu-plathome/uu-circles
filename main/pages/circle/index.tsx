@@ -24,10 +24,12 @@ const Page: NextPage<Props> = ({
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <h1 className="text-2xl py-8">サークル一覧</h1>
+                        <div className="px-4">
+                            <h1 className="text-2xl py-8">サークル一覧</h1>
 
-                        {/*  サークル一覧 */}
-                        <BaseCircleList circles={circles} />
+                            {/*  サークル一覧 */}
+                            <BaseCircleList circles={circles} />
+                        </div>
                     </TwoColumnContainer>
                 </div>
 
