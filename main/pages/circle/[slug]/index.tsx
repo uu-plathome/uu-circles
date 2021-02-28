@@ -100,6 +100,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                                                 alt={`${circle.name}新歓ビラ`}
                                                 width={width}
                                                 height={height}
+                                                className="rounded"
                                             />
                                         </a>
                                     </div>

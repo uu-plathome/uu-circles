@@ -19,23 +19,23 @@ const MainUucircleAd: FC<Props> = () => {
         <div className="bg-gray-100 md:grid md:grid-cols-2 gap-6 pt-10">
             <div className="mb-10 mx-auto md:ml-auto md:mr-0" style={{ width }}>
                 <a href="https://media.uu-circles.com/" target="_blank" rel="noreferrer">
-                    <Image src="/images/Ulab_site_ad.jpg" alt="メディアサイト" width={width} height={height} />
+                    <Image src="/images/Ulab_site_ad.jpg" alt="メディアサイト" width={width} height={height} className="rounded" />
                 </a>
-                <p className="text-sm mt-1 text-center">メディアサイト</p>
+                <p className="text-center text-sm text-gray-600 pt-1">メディアサイト</p>
             </div>
 
             <div className="mb-10 mx-auto md:mr-auto md:ml-0" style={{ width }}>
                 <a href="https://miyameshi.com/" target="_blank" rel="noreferrer">
-                    <Image src="/images/miyameshi-phone-top.jpg" alt="みやメシ.com" width={width} height={height} />
+                    <Image src="/images/miyameshi-phone-top.jpg" alt="みやメシ.com" width={width} height={height} className="rounded" />
                 </a>
-                <p className="text-sm mt-1 text-center">みやメシ.com</p>
+                <p className="text-center text-sm text-gray-600 pt-1">みやメシ.com</p>
             </div>
 
             <div className="mb-10 mx-auto md:ml-auto md:mr-0" style={{ width }}>
                 <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
-                    <Image src="/images/Ulab_site_ad.jpg" alt="u-lab公式サイト" width={width} height={height} />
+                    <Image src="/images/Ulab_site_ad.jpg" alt="u-lab公式サイト" width={width} height={height} className="rounded" />
                 </a>
-                <p className="text-sm mt-1 text-center">U-lab公式サイト</p>
+                <p className="text-center text-sm text-gray-600 pt-1">U-lab公式サイト</p>
             </div>
         </div>
     )
