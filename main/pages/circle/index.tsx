@@ -6,7 +6,6 @@ import { getAllCircleList } from "@/infra/api/circle";
 import { Circle } from "@/lib/types/model/Circle";
 import { TwoColumnContainer } from "@/components/molecules/Container/TwoColumnContainer";
 import { CircleSidebar } from "@/components/organisms/Circles/CircleSidebar";
-import Head from "next/head";
 import { BaseHead } from "@/components/layouts/BaseHead";
 
 type Props = {

@@ -52,6 +52,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
         </div>
 
         <MainUucircleTopButtons />
+
         <BaseContainer>
           <div className="px-6">
             <MainTagList />

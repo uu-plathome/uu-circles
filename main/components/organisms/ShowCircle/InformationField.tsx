@@ -21,15 +21,6 @@ const InformationField: FC<Props> = ({ circle }) => {
                     </p>
                 </div>
 
-                {circle.nameKana ? (
-                    <div className="border-b border-gray-400 py-4">
-                        <p className="text-sm text-gray-400 mb-2">団体・サークル名（カナ）</p>
-                        <p className="text-sm text-black">
-                            { circle.nameKana }
-                        </p>
-                    </div>
-                ) : ''}
-
                 {circle.description ? (
                     <div className="border-b border-gray-400 py-4">
                         <p className="text-sm text-gray-400 mb-2">サークル紹介文</p>
