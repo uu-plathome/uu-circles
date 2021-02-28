@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Feature\App\Http\Requests\Admin\CircleUser;
+namespace Tests\Feature\App\Http\Requests\Admin\CircleNewJoy;
 
-use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Tests\Feature\Traits\HasLang;
 use Tests\TestCase;
 
-class VerificationEmailCircleUserRequestTest extends TestCase
+class UpdateCircleNewJoyRequestTest extends TestCase
 {
     use HasLang;
 
@@ -19,7 +19,7 @@ class VerificationEmailCircleUserRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("VerificationEmailCircleUserRequestTest");
+        Log::info("UpdateCircleNewJoyRequestTest");
 
         $this->setUpHasLang();
         $request = $this->createRequest();
@@ -39,9 +39,9 @@ class VerificationEmailCircleUserRequestTest extends TestCase
         $this->attributesKey = null;
     }
 
-    private function createRequest(): VerificationEmailCircleUserRequest
+    private function createRequest(): UpdateCircleNewJoyRequest
     {
-        return new VerificationEmailCircleUserRequest();
+        return new UpdateCircleNewJoyRequest();
     }
 
     public function testPassing_rulesCountEqualsAttributesCount()
