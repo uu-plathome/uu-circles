@@ -30,6 +30,7 @@ jobs:
       - name: migrate
         run: |
           docker-compose exec -T app php artisan check:db
+          docker-compose up -d
           docker-compose exec -T app php artisan migrate:fresh
       - name: re migrate
         run: docker-compose exec -T app php artisan migrate:refresh --seed
