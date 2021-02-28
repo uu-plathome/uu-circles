@@ -9,7 +9,9 @@ use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
 use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class IndexCircleNewJoyController extends Controller
@@ -39,8 +41,18 @@ class IndexCircleNewJoyController extends Controller
         Log::debug("#IndexCircleNewJoyController args: slug=$slug");
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
-        $circleNewJoys = $this->indexCircleNewJoyUsecase->invoke($circle->id);
-        $allCircleNewJoys = $this->getTodayCircleNewJoyWithLimitUsecase->invoke();
+
+        $circleNewJoys = Cache::remember(
+            $this->getCircleNewJoysCacheKey(),
+            60,
+            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->id)
+        );
+
+        $allCircleNewJoys = Cache::remember(
+            $this->getAllCircleNewJoysCacheKey(),
+            60,
+            fn () => $this->getTodayCircleNewJoyWithLimitUsecase->invoke()
+        );
 
         return Arr::camel_keys([
             'circle'              => $circle->toArray(),
@@ -71,5 +83,17 @@ class IndexCircleNewJoyController extends Controller
                 ]
             )->values()->toArray(),
         ]);
+    }
+
+    private function getCircleNewJoysCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'IndexCircleNewJoyController.circleNewJoys' . $minutes;
+    }
+
+    private function getAllCircleNewJoysCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'IndexCircleNewJoyController.allCircleNewJoys' . $minutes;
     }
 }

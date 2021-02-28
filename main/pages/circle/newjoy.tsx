@@ -7,7 +7,6 @@ import {
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import Error from 'next/error'
 
@@ -20,8 +19,6 @@ const Page: NextPage<Props> = ({ errorCode, futureCircleNewJoys, todayCircleNewJ
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
-
-  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
 
   return (
     <div>
