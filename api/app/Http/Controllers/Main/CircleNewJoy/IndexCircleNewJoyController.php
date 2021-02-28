@@ -38,7 +38,9 @@ class IndexCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request, string $slug)
     {
-        Log::debug("#IndexCircleNewJoyController args: slug=$slug");
+        Log::debug("#IndexCircleNewJoyController args", [
+            'slug' => $slug
+        ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
 

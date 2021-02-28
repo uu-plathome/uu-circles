@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SearchCategoryCircleController extends Controller
 {
@@ -34,6 +35,10 @@ class SearchCategoryCircleController extends Controller
      */
     public function __invoke(Request $request, string $category)
     {
+        Log::debug("#IndexCircleController args", [
+            'category' => $category,
+        ]);
+
         if (!in_array($category, [self::club, self::official_organization, self::unofficial_organization, self::student_group])) {
             return abort(404);
         }
