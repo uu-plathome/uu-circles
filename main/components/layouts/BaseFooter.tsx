@@ -171,6 +171,11 @@ const BaseFooter: FC<Props> = () => {
                                 </Link>
                             </li>
                             <li className="mb-3">
+                                <Link href="/guide/discord">
+                                    <a className="text-gray-400 font-bold text-sm">オンライン新歓に参加しよう！</a>
+                                </Link>
+                            </li>
+                            <li className="mb-3">
                                 <Link href="/guide/management-team">
                                     <a className="text-gray-400 font-bold text-sm">運営団体について</a>
                                 </Link>
