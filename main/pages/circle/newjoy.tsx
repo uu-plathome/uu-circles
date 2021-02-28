@@ -15,16 +15,18 @@ type Props = {
   futureCircleNewJoys?: TodayCircleNewJoy[]
   todayCircleNewJoys?: TodayCircleNewJoy[]
 }
-const Page: NextPage<Props> = ({ errorCode, futureCircleNewJoys, todayCircleNewJoys }) => {
+const Page: NextPage<Props> = ({
+  errorCode,
+  futureCircleNewJoys,
+  todayCircleNewJoys,
+}) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
 
   return (
     <div>
-      <BaseHead
-        title="今日の新歓"
-      />
+      <BaseHead title="今日の新歓" />
 
       <BaseLayout>
         <div className="bg-gray-100 px-2">
@@ -41,7 +43,7 @@ const Page: NextPage<Props> = ({ errorCode, futureCircleNewJoys, todayCircleNewJ
                   circleNewJoys={todayCircleNewJoys}
                 />
               ) : (
-                <p>今日の新歓はありません</p>
+                <p className="text-center">今日の新歓はありません</p>
               )}
             </div>
 
@@ -65,13 +67,15 @@ const Page: NextPage<Props> = ({ errorCode, futureCircleNewJoys, todayCircleNewJ
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  res,
+}) => {
   try {
     const {
       futureCircleNewJoys,
       todayCircleNewJoys,
     } = await getTodayCircleNewJoy()
-  
+
     return {
       props: {
         futureCircleNewJoys,
@@ -79,7 +83,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => 
       },
     }
   } catch (e) {
-    res.statusCode = 500;
+    res.statusCode = 500
     return { props: { errorCode: 500 } }
   }
 }
