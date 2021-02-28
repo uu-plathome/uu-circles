@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { MainPageCircleList } from '@/components/organisms/List/MainPageCircleList'
+import { MainCircleList } from '@/components/organisms/Main/MainCircleList'
 import { getMain } from '@/infra/api/main'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -11,7 +11,6 @@ import { MainTagList } from '@/components/organisms/Main/MainTagList'
 import { GreenButton } from '@/components/atoms/button/GreenButton'
 import { Advertise } from '@/lib/types/model/Advertise'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { useEffect, useState } from 'react'
@@ -57,7 +56,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
             <MainTagList />
 
             {/*  サークル一覧 */}
-            <MainPageCircleList circles={circles} />
+            <MainCircleList circles={circles} />
 
             <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
               <GreenButton href="/circle">もっと見る</GreenButton>
