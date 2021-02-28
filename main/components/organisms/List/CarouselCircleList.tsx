@@ -11,7 +11,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
   circles: Circle[]
 }
-const MainPageCircleList: FC<Props> = ({ circles }) => {
+const CarouselCircleList: FC<Props> = ({ circles }) => {
   const width = 400
   // w : h = 210 : 297
   const height = (width * 297) / 210
@@ -83,4 +83,4 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
   )
 }
 
-export { MainPageCircleList }
+export { CarouselCircleList }
