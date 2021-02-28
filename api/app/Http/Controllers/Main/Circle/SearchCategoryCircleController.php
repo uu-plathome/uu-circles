@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main\Circle;
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\Usecases\Main\Circle\SearchCategoryCircleListUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -16,15 +17,15 @@ use Illuminate\Support\Facades\Log;
 
 class SearchCategoryCircleController extends Controller
 {
-    const official_organization = 'official_organization';
-    const unofficial_organization = 'unofficial_organization';
-    const student_group = 'student_group';
-    const club = 'club';
+    private GetRandomCircleUsecase $getRandomCircleUsecase;
 
     private SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase;
 
-    public function __construct(SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase)
-    {
+    public function __construct(
+        GetRandomCircleUsecase $getRandomCircleUsecase,
+        SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase
+    ) {
+        $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->searchCategoryCircleListUsecase = $searchCategoryCircleListUsecase;
     }
 
@@ -55,9 +56,23 @@ class SearchCategoryCircleController extends Controller
             return $this->searchCategoryCircleListUsecase->invoke($params);
         });
 
+        $recommendCircles = Cache::remember(
+            $this->getRecommendCirclesCacheKey(),
+            120,
+            fn () => $this->getRandomCircleUsecase->invoke(6)
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
+                    fn (CircleValueObject $circleValueObject) =>
+                    Arr::only($circleValueObject->toArray(), [
+                        'id', 'name', 'handbill_image_url', 'slug'
+                    ])
+                )->toArray()
+            ),
+            'recommendCircles' => Arr::camel_keys(
+                (new Collection($recommendCircles))->map(
                     fn (CircleValueObject $circleValueObject) =>
                     Arr::only($circleValueObject->toArray(), [
                         'id', 'name', 'handbill_image_url', 'slug'
@@ -71,5 +86,11 @@ class SearchCategoryCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
         return 'SearchCategoryCircleController.main' . $category . $minutes;
+    }
+
+    private function getRecommendCirclesCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'RecommendCircles' . $minutes;
     }
 }

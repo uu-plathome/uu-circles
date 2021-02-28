@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main\Circle;
 use App\Enum\SlugProperty\TagSlugProperty;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\Usecases\Main\Circle\SearchTagCircleListUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -16,10 +17,15 @@ use Illuminate\Support\Facades\Log;
 
 class SearchTagCircleController extends Controller
 {
+    private GetRandomCircleUsecase $getRandomCircleUsecase;
+
     private SearchTagCircleListUsecase $searchTagCircleListUsecase;
 
-    public function __construct(SearchTagCircleListUsecase $searchTagCircleListUsecase)
-    {
+    public function __construct(
+        GetRandomCircleUsecase $getRandomCircleUsecase,
+        SearchTagCircleListUsecase $searchTagCircleListUsecase
+    ) {
+        $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->searchTagCircleListUsecase = $searchTagCircleListUsecase;
     }
 
@@ -71,9 +77,23 @@ class SearchTagCircleController extends Controller
             fn () => $this->searchTagCircleListUsecase->invoke($param)
         );
 
+        $recommendCircles = Cache::remember(
+            $this->getRecommendCirclesCacheKey(),
+            120,
+            fn () => $this->getRandomCircleUsecase->invoke(6)
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
+                    fn (CircleValueObject $circleValueObject) =>
+                    Arr::only($circleValueObject->toArray(), [
+                        'id', 'name', 'handbill_image_url', 'slug'
+                    ])
+                )->toArray()
+            ),
+            'recommendCircles' => Arr::camel_keys(
+                (new Collection($recommendCircles))->map(
                     fn (CircleValueObject $circleValueObject) =>
                     Arr::only($circleValueObject->toArray(), [
                         'id', 'name', 'handbill_image_url', 'slug'
@@ -98,5 +118,11 @@ class SearchTagCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
         return 'SearchTagCircleController.main' . $tag . $minutes;
+    }
+
+    private function getRecommendCirclesCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'RecommendCircles' . $minutes;
     }
 }
