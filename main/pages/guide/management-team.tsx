@@ -20,7 +20,7 @@ const Page: NextPage<Props> = () => {
                             <p className="pt-2">3.クレジット</p>
                         </div>
                         <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">0.制作・運営団体U-labとは？</h2>
+                            <h2 className="text-2xl px-4 font-bold">0.制作・運営団体U-labとは？</h2>
                         </div>
                         <p className="px-4 pb-6">こんにちは、私たちは「地域に根差すテクノロジー集団」U-labです。</p>
                         <p className="px-4">
@@ -30,11 +30,13 @@ const Page: NextPage<Props> = () => {
                         </p>
 
                         <div className="flex justify-center items-center pt-6 pb-6">
-                            <a href="https://discord.com/download"><Image src="/images/ulab-bg.png" width="680" height="404" /></a>
+                            <a href="http://ulab-uu.com/" target="_blank">
+                                <Image src="/images/ulab-bg.png" width="680" height="404" />
+                            </a>
                         </div>
 
                         <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">1.このサイトを作った動機</h2>
+                            <h2 className="text-2xl px-4 font-bold">1.このサイトを作った動機</h2>
                         </div>
 
                         <p className="pb-6 px-4">
@@ -46,12 +48,14 @@ const Page: NextPage<Props> = () => {
                         </p>
 
                         <div className="flex justify-center items-center pt-6 pb-6">
-                            <a href="https://discord.com/download"><Image src="/images/uucircle2020-main.png" width="900" height="675" /></a>
+                            <a href="https://uu-circle20.firebaseapp.com/" target="_blank">
+                                <Image src="/images/uucircle2020-main.png" width="900" height="675" />
+                            </a>
                         </div>
 
 
                         <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">2.今後の展望</h2>
+                            <h2 className="text-2xl px-4 font-bold">2.今後の展望</h2>
                         </div>
 
                         <div className="px-4 pb-4">
@@ -65,11 +69,13 @@ const Page: NextPage<Props> = () => {
                         </div>
 
                         <div className="flex justify-center items-center pt-6 pb-6">
-                            <a href="https://discord.com/download"><Image src="/images/future-uucircle.png" width="1020" height="544" /></a>
+                            <a href="http://ulab-uu.com/" target="_blank">
+                                <Image src="/images/future-uucircle.png" width="1020" height="544" />
+                            </a>
                         </div>
 
                         <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-                            <h2 className="text-2xl px-4 text-lg font-bold">3.クレジット</h2>
+                            <h2 className="text-2xl px-4 font-bold">3.クレジット</h2>
                         </div>
 
                         <div className="px-4 pb-12">
@@ -82,7 +88,7 @@ const Page: NextPage<Props> = () => {
 
                         <div className="px-4 pb-6">
                             <p className="font-bold pb-2">プロジェクト責任者</p>
-                            <p>U-lab代表　3年 飯泉一馬</p>
+                            <p>U-lab代表 3年 飯泉一馬</p>
                         </div>
 
                         <div className="px-4 pb-6">
