@@ -21,6 +21,10 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
+:root {
+  --swiper-navigation-size: 28px;
+}
+
 .min-w-120 {
   min-width: 120px;
 }
