@@ -156,7 +156,7 @@ const BaseFooter: FC<Props> = () => {
                 </BaseContainer>
 
                 <BaseContainer>
-                    <div className="pt-6">
+                    <div className="pt-10">
                         <h2 className="text-lg mb-6">メニュー</h2>
                         
                         <ul>
