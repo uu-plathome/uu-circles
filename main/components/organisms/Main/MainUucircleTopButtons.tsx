@@ -8,29 +8,15 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {}
 const MainUucircleTopButtons: FC<Props> = () => {
-  const { isMd } = useMediaQuery()
+  const { isSm } = useMediaQuery()
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isMd ? (
-        <nav style={{ margin: 'auto!important' }}>
-          <button
-            className="mx-3 my-3"
-            style={{
-              // backgroundColor: '#faf6e3',
-              width: '280px',
-              height: '65px',
-            }}
-          >
+      {isSm ? (
+        <nav className="flex">
+          <div className="m-4">
             <Link href="/">
-              <a
-                className="text-gray-900 text-2xl"
-                style={
-                  {
-                    // borderBottom: '3px solid #66c7eb',
-                  }
-                }
-              >
+              <a className="text-gray-900 text-2xl">
                 <Image
                   width="286"
                   height="65"
@@ -38,25 +24,17 @@ const MainUucircleTopButtons: FC<Props> = () => {
                 />
               </a>
             </Link>
-          </button>
+          </div>
 
-          <button
-            className="mx-3 my-3"
+          <div
+            className="m-4"
             style={{
-              // backgroundColor: '#faf6e3',
               width: '280px',
               height: '65px',
             }}
           >
             <Link href="/circle/newjoy">
-              <a
-                className="text-gray-900 text-2xl"
-                style={
-                  {
-                    // borderBottom: '3px solid #66c7eb',
-                  }
-                }
-              >
+              <a className="text-gray-900 text-2xl">
                 <Image
                   width="286"
                   height="65"
@@ -64,25 +42,17 @@ const MainUucircleTopButtons: FC<Props> = () => {
                 />
               </a>
             </Link>
-          </button>
+          </div>
 
-          <button
-            className="mx-3 my-3"
+          <div
+            className="m-4"
             style={{
-              // backgroundColor: '#faf6e3',
               width: '280px',
               height: '65px',
             }}
           >
             <Link href="/guide/discord">
-              <a
-                className="text-gray-900 text-2xl"
-                style={
-                  {
-                    // borderBottom: '3px solid #66c7eb',
-                  }
-                }
-              >
+              <a className="text-gray-900 text-2xl">
                 <Image
                   width="286"
                   height="65"
@@ -90,88 +60,50 @@ const MainUucircleTopButtons: FC<Props> = () => {
                 />
               </a>
             </Link>
-          </button>
+          </div>
         </nav>
       ) : (
         <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
           <nav className="mx-3" style={{ margin: 'auto!important' }}>
-            <SwiperSlide className="text-center">
-              <button
-                style={{
-                  // backgroundColor: '#faf6e3',
-                  width: '280px',
-                  height: '65px',
-                }}
-              >
+            <SwiperSlide>
+              <div className="mx-auto"  style={{ width: 280, height: 65 }}>
                 <Link href="/">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
+                  <a className="text-gray-900 block shadow-md" style={{ width: '100%', height: '100%' }}>
                     <Image
-                      width="286"
+                      width="280"
                       height="65"
                       src="/images/topButtons/Rectangle15.png"
                     />
                   </a>
                 </Link>
-              </button>
+              </div>
             </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={{
-                  // backgroundColor: '#faf6e3',
-                  width: '280px',
-                  height: '65px',
-                }}
-              >
+            <SwiperSlide>
+              <div className="mx-auto"  style={{ width: 280, height: 65 }}>
                 <Link href="/">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
+                  <a className="text-gray-900 block shadow-md" style={{ width: '100%', height: '100%' }}>
                     <Image
-                      width="286"
+                      width="280"
                       height="65"
                       src="/images/topButtons/shinkan1.png"
                     />
                   </a>
                 </Link>
-              </button>
+              </div>
             </SwiperSlide>
-            <SwiperSlide className="text-center">
-              <button
-                style={{
-                  // backgroundColor: '#faf6e3',
-                  width: '280px',
-                  height: '65px',
-                }}
-              >
-                <Link href="/guide/discode">
-                  <a
-                    className="text-gray-900 text-2xl"
-                    style={
-                      {
-                        // borderBottom: '3px solid #66c7eb',
-                      }
-                    }
-                  >
+            <SwiperSlide>
+              <div className="mx-auto"  style={{ width: 280, height: 65 }}>
+                <Link href="/guide/discord">
+                  <a className="text-gray-900 block shadow-md" style={{ width: '100%', height: '100%' }}>
                     <Image
-                      width="286"
+                      width="280"
                       height="65"
                       src="/images/topButtons/discordBunner1.png"
+                      className="shadow-md"
                     />
                   </a>
                 </Link>
-              </button>
+              </div>
             </SwiperSlide>
           </nav>
         </Swiper>
