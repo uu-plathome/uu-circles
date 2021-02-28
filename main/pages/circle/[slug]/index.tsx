@@ -31,8 +31,8 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
     }
 
     // w : h = 210 : 297
-    const width = 300
-    const height = 300 * 297 / 210
+    const width = 150
+    const height = 150 * 297 / 210
     return (
         <div>
             <BaseHead
