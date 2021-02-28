@@ -39,9 +39,24 @@ class RegisterCircleNewJoyRequest extends FormRequest
             ],
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
-            CircleNewJoyProperty::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
+            CircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
             CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
             CircleNewJoyProperty::release                  => ['boolean', 'nullable'],
+        ]);
+    }
+
+    public function attributes()
+    {
+        return Arr::camel_keys([
+            CircleNewJoyProperty::title                    => __('circleNewJoy.' . CircleNewJoyProperty::title),
+            CircleNewJoyProperty::description              => __('circleNewJoy.' . CircleNewJoyProperty::description),
+            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity),
+            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity_detail),
+            CircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
+            CircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
+            CircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
+            CircleNewJoyProperty::release                  => __('circleNewJoy.' . CircleNewJoyProperty::release),
+            CircleNewJoyProperty::publish_from             => __('circleNewJoy.' . CircleNewJoyProperty::publish_from),
         ]);
     }
 

@@ -21,6 +21,10 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
+:root {
+  --swiper-navigation-size: 24px;
+}
+
 .min-w-120 {
   min-width: 120px;
 }
@@ -35,8 +39,14 @@ body {
 }
 
 /* swiper右左デザイン */
+.swiper-button-next {
+  margin-right: 8px;
+}
 .swiper-button-next::after {
   color: #c4c4c4 !important;
+}
+.swiper-button-prev {
+  margin-left: 8px;
 }
 .swiper-button-prev::after {
   color: #c4c4c4 !important;

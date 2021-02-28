@@ -40,7 +40,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 name="description"
                 id="description"
                 expand
-                maxLength={100}
+                maxLength={50}
                 {...form.description}
             />
 

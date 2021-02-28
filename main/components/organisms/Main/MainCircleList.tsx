@@ -6,7 +6,7 @@ import { Circle } from "@/lib/types/model/Circle";
 type Props = {
     circles: Circle[]
 }
-const MainPageCircleList: FC<Props> = ({ circles }) => {
+const MainCircleList: FC<Props> = ({ circles }) => {
     const width = 400
     // w : h = 210 : 297
     const height = width * 297 / 210
@@ -24,11 +24,12 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
                                         alt={`${circle.name}のビラ`}
                                         width={width} 
                                         height={height}
+                                        className="rounded"
                                     />
                                 </a>
                             </Link>
 
-                            <h3 className="text-center">
+                            <h3 className="text-center text-sm text-gray-600 pt-1">
                                 { circle.name }
                             </h3>
                         </div>
@@ -39,4 +40,4 @@ const MainPageCircleList: FC<Props> = ({ circles }) => {
     )
 }
 
-export { MainPageCircleList }
+export { MainCircleList }

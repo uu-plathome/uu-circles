@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Color from 'colors'
 
 type Props = {
@@ -12,21 +11,18 @@ type Props = {
 }
 const BaseHeader: FC<Props> = ({ onClick }) => {
     const router = useRouter()
-    const {isMd} = useMediaQuery()
 
     return (
         <div className="border-b border-gray-300">
             <div className="bg-white">
             <div className="mx-auto" style={{ maxWidth: 700 }}>
-                <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-2">
+                <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-4">
                         <div className="flex items-center">
-                            {!isMd ? (
-                                <div className="pr-2">
-                                    <button onClick={onClick}>
-                                        <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
-                                    </button>
-                                </div>
-                            ): ''}
+                            <div className="md:hidden pr-4">
+                                <button onClick={onClick}>
+                                    <FontAwesomeIcon size="lg" color={Color.gray[400]} icon={faBars} />
+                                </button>
+                            </div>
 
                             <h1 className="text-sm md:text-lg">
                                 {router.pathname === '/' ? (

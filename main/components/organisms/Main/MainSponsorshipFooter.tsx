@@ -14,7 +14,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         <div className="bg-gray-100 md:px-6 justify-center">
             <div className="md:flex justify-center md:mx-auto" style={{ maxWidth: 700 }}>
                 {advertises && advertises[0] ? (
-                    <div className="md:mr-2">
+                    <div className="md:mr-2 rounded">
                         <a href={advertises[0].link} target="_blank" rel="noopener">
                             <Image 
                                 src={ advertises[0].mainImageUrl ? advertises[0].mainImageUrl : "/images/company_ad_tmp.png" }
@@ -31,7 +31,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 ) : ''}
 
                 {advertises && advertises[1] ? (
-                    <div className="hidden md:block md:ml-2">
+                    <div className="hidden md:block md:ml-2 rounded">
                         <a href={advertises[1].link} target="_blank" rel="noopener">
                             <Image 
                                 src={ advertises[1].mainImageUrl ? advertises[1].mainImageUrl : "/images/company_ad_tmp.png" }
@@ -49,8 +49,8 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
             </div>
 
             <div className="mx-auto md:mx-6 pb-10 md:flex items-center justify-center text-center">
-                <div className="mt-8 mb-10 mx-auto md:ml-0 md:mr-10" style={{ width: 280 }}>
-                    <h2 className="text-lg font-bold">協賛してくださる企業様募集</h2>
+                <div className="my-8 mx-auto md:ml-0 md:mr-10" style={{ width: 280 }}>
+                    <h2 className="text-lg font-bold mb-2">協賛してくださる企業様募集</h2>
                     <p className="text-sm">当ウェブサイトは宇都宮の多くの企業の方々に支えられて運営することができています。</p>
                 </div>
 

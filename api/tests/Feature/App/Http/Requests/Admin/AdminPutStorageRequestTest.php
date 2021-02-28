@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Requests;
 
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Tests\Feature\Traits\HasLang;
 use Tests\TestCase;
 
@@ -18,12 +19,16 @@ class AdminPutStorageRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Log::info("AdminPutStorageRequestTest");
 
         $this->setUpHasLang();
         $request = $this->createRequest();
         $this->rules = array_keys($request->rules());
+        Log::info("rules", [$this->rules]);
         $this->attributesValue = Arr::flatten($request->attributes());
+        Log::info("attributesValue", [$this->attributesValue]);
         $this->attributesKey = array_keys($request->attributes());
+        Log::info("attributesKey", [$this->attributesKey]);
     }
 
     protected function tearDown(): void

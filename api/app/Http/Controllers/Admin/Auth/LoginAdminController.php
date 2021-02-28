@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\Property\UserProperty;
+use App\Exceptions\VerifyEmailException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Models\User;
@@ -99,6 +100,7 @@ class LoginAdminController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
+        /** @var User $user */
         $user = $this->guard()->user();
 
         if ($user && !$user->hasVerifiedEmail()) {
