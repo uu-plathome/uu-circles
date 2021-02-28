@@ -23,11 +23,12 @@ const CircleListItemTableColumn: FC<{
     )
 }
 const CircleListItem: FC<Props> = ({ circle }) => {
+    const imageLink = circle.mainImageUrl || circle.handbillImageUrl || `/images/no-image.png`
     return (
         <div className="text-white flex mb-4">
         <div className="hidden lg:block">
             <Image
-                src={circle.mainImageUrl ? circle.mainImageUrl : `/images/no-image.png`}
+                src={imageLink}
                 width="100"
                 height="100"
                 layout={"fixed"}
@@ -40,7 +41,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
             <div className="flex items-center mb-4 lg:mb-0">
                 <div className="lg:hidden mr-2">
                     <Image
-                        src={circle.mainImageUrl ? circle.mainImageUrl : `/images/no-image.png`}
+                        src={imageLink}
                         width="100"
                         height="100"
                         layout={"fixed"}

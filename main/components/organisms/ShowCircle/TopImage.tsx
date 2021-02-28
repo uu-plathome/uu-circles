@@ -63,7 +63,7 @@ const TopImage: FC<Props> = ({ circle }) => {
                 return (
                     <div key={image + index} className="px-1 w-1/6">
                         <Image
-                            onClick={() => slideTo(index)}
+                            onClick={() => slideTo(index + 1)}
                             src={image}
                             alt={`${circle.name}の活動の様子`}
                             width={100}

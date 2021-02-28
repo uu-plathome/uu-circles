@@ -88,9 +88,9 @@ export const ja = {
     [CircleTagModel.ONLY_THURSDAY]: '',
     [CircleTagModel.ONLY_FRIDAY]: '',
     [CircleTagModel.HOLIDAY]: '休日でも一緒だよ^ ^',
-    [CircleTagModel.URGENT_RECRUITMENT]: '紛れもない大御所',
-    [CircleTagModel.MYSTERY]: '見学だけでもお願いします',
-    [CircleTagModel.MAMMOTH]: '得体のしれない怪団体',
+    [CircleTagModel.MAMMOTH]: '紛れもない大御所',
+    [CircleTagModel.URGENT_RECRUITMENT]: '見学だけでもお願いします',
+    [CircleTagModel.MYSTERY]: '得体のしれない怪団体',
   },
   CircleTagText: {
     [CircleTagModel.SPORT]: '誰かと一緒に体を動かすことで、心身ともに充実させましょう。学業の傍ら、楽しく血行を改善してみませんか？',
@@ -115,9 +115,9 @@ export const ja = {
     [CircleTagModel.ONLY_THURSDAY]: '',
     [CircleTagModel.ONLY_FRIDAY]: '',
     [CircleTagModel.HOLIDAY]: '休日だろうと駆り出される団体です。果たしてそこは天国か地獄か。',
-    [CircleTagModel.URGENT_RECRUITMENT]: '活動人数が50人を超える団体です。賑やかなのが好きな人には推奨します。名前を覚えるのが苦手な人には非推奨です。',
-    [CircleTagModel.MYSTERY]: '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
-    [CircleTagModel.MAMMOTH]: '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
+    [CircleTagModel.MAMMOTH]: '活動人数が50人を超える団体です。賑やかなのが好きな人には推奨します。名前を覚えるのが苦手な人には非推奨です。',
+    [CircleTagModel.URGENT_RECRUITMENT]: '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
+    [CircleTagModel.MYSTERY]: '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
   },
 }
 
