@@ -22,12 +22,12 @@ const buttonClassName = `
     text-white
     uppercase
     transition
-    bg-green-600
-    rounded
+    bg-green-500
+    rounded-2xl
     shadow
     ripple
     hover:shadow-lg
-    hover:bg-green-700
+    hover:opacity-80
     focus:outline-none
 `
 const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {

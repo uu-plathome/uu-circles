@@ -65,7 +65,7 @@ const BaseTextField: FC<Props> = ({
                 />
 
                 {suffix ? (
-                    <p className="ml-1 text-white">{suffix}</p>
+                    <p className="ml-1 text-black">{suffix}</p>
                 ) : ''}
             </div>
             {error ? (

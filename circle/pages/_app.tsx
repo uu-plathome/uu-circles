@@ -72,7 +72,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </Head>
 
         {loading ?
-          <div className="text-white">loading...</div> :
+          <div className="text-black">loading...</div> :
           <Component {...pageProps} />
         }
       </>
