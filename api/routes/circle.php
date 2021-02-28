@@ -7,6 +7,7 @@ use App\Http\Controllers\Circle\Auth\VerificationConfirmController;
 use App\Http\Controllers\Circle\Auth\VerificationResendController;
 use App\Http\Controllers\Circle\Auth\VerificationVerifyController;
 use App\Support\Arr;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 Route::middleware('guest:api')->group(function () {
@@ -24,6 +25,12 @@ Route::middleware('guest:api')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
-        return Arr::camel_keys($request->user()->toArray());
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+        if ($user->circleUser) {
+            return Arr::camel_keys($request->user()->toArray());
+        }
+
+        throw new AuthorizationException();
     });
 });

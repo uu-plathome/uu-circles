@@ -160,7 +160,7 @@ export const resendEmailCircleUser = async (email: string) => {
   try {
     const { data } = await axiosInstance.post<{
       status: boolean
-    }>(`/admin/api/email/resend`, {
+    }>(`/circle/api/email/resend`, {
       email,
     })
 

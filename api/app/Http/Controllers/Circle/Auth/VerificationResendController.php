@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Circle\Auth;
 use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
