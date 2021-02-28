@@ -11,6 +11,12 @@ class ShowCircleNewJoyControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Log::info("ShowCircleNewJoyControllerTest");
+    }
+
     /**
      * 各テストの前にデータベースをシードする必要があるかどうかを示す
      *
@@ -20,6 +26,8 @@ class ShowCircleNewJoyControllerTest extends TestCase
 
     public function testRequest()
     {
+        Log::info("testRequest");
+
         // GIVEN
         $circle = Circle::whereRelease(true)
             ->hasByNonDependentSubquery('circleNewJoys')
