@@ -8,7 +8,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 const SpButtonGroup = () => {
   return (
-    <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
+    <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation loop>
       <nav className="mx-4">
         <SwiperSlide>
           <div className="mx-auto" style={{ width: 280, height: 65 }}>
@@ -97,11 +97,11 @@ const PcButtonGroup = () => {
 
 type Props = {}
 const MainUucircleTopButtons: FC<Props> = () => {
-  const { isSm } = useMediaQuery()
+  const { isMd } = useMediaQuery()
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isSm ? (
+      {isMd ? (
         <PcButtonGroup />
       ) : (
         <SpButtonGroup />
