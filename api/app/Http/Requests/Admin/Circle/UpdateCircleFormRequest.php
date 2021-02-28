@@ -54,7 +54,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'string',
                 Rule::in(CircleType::getAll())
             ],
-            CircleInformationProperty::description                => ['nullable', 'string', 'max:100'],
+            CircleInformationProperty::description                => ['nullable', 'string', 'max:50'],
             CircleInformationProperty::common_place_of_activity          => [
                 'nullable',
                 'string',

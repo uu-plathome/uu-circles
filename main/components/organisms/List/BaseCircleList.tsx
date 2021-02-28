@@ -28,7 +28,7 @@ const BaseCircleList: FC<Props> = ({ circles }) => {
                                 </a>
                             </Link>
 
-                            <h3 className="text-center">
+                            <h3 className="text-center text-sm md:text-base">
                                 { circle.name }
                             </h3>
                         </div>
