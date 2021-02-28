@@ -32,7 +32,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
   return (
     <div>
       {isMd ? (
-        <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
           {circles.map((circle) => {
             return (
               <div key={circle.id}>
