@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SearchTagCircleController extends Controller
 {
@@ -30,6 +31,10 @@ class SearchTagCircleController extends Controller
      */
     public function __invoke(Request $request, string $tag)
     {
+        Log::debug("#SearchTagCircleController args", [
+            'tag' => $tag,
+        ]);
+
         if (!$this->isExistTag($tag)) {
             return abort(404);
         }

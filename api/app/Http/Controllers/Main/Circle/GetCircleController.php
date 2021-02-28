@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class GetCircleController extends Controller
 {
@@ -36,6 +37,10 @@ class GetCircleController extends Controller
      */
     public function __invoke(Request $request, string $slug)
     {
+        Log::debug("#GetCircleController args", [
+            'slug' => $slug
+        ]);
+
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
 
         $circleNewJoys = Cache::remember(

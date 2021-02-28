@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -33,6 +34,8 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
+        Log::debug("#IndexController args: none");
+
         $circles = Cache::remember($this->getCacheKey(), 60, function () {
             return $this->getRandomCircleUsecase->invoke(12);
         });

@@ -40,21 +40,24 @@ class ShowCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request, string $slug, int $circleNewJoyId)
     {
-        Log::debug("#ShowCircleNewJoyController args: slug=$slug, circleNewJoyId=$circleNewJoyId");
+        Log::debug("#ShowCircleNewJoyController args", [
+            'slug'           => $slug,
+            'circleNewJoyId' => $circleNewJoyId,
+        ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
 
         $circleNewJoys = Cache::remember(
-            $this->getCircleNewJoysCacheKey(),
+            $this->getCircleNewJoysCacheKey($slug, $circleNewJoyId),
             60,
-            $this->indexCircleNewJoyUsecase->invoke($circle->id, $circleNewJoyId)
+            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->id, $circleNewJoyId)
         );
-        if (!$circleNewJoys['circleNewJoy']) {
+        if (!$circleNewJoys || !$circleNewJoys['circleNewJoy']) {
             throw new ModelNotFoundException();
         }
 
         $allCircleNewJoys = Cache::remember(
-            $this->getAllCircleNewJoysCacheKey(),
+            $this->getAllCircleNewJoysCacheKey($slug, $circleNewJoyId),
             60,
             fn () => $this->getTodayCircleNewJoyWithLimitUsecase->invoke()
         );
@@ -91,15 +94,15 @@ class ShowCircleNewJoyController extends Controller
         ]);
     }
 
-    private function getCircleNewJoysCacheKey(): string
+    private function getCircleNewJoysCacheKey(string $slug, int $circleNewJoyId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'ShowCircleNewJoyController.circleNewJoys' . $minutes;
+        return 'ShowCircleNewJoyController.circleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
     }
 
-    private function getAllCircleNewJoysCacheKey(): string
+    private function getAllCircleNewJoysCacheKey(string $slug, int $circleNewJoyId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'ShowCircleNewJoyController.allCircleNewJoys' . $minutes;
+        return 'ShowCircleNewJoyController.allCircleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
     }
 }
