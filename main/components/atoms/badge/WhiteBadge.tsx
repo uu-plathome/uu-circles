@@ -10,7 +10,7 @@ const WhiteBadge: FC<Props> = ({ children, href, as }) => {
         <div>
             <Link href={href} as={as}>
                 <a>
-                    <div className="text-xs md:text-sm border border-gray-200 rounded-2xl bg-white shadow hover:bg-gray-50 py-1 px-2 md:px-4">
+                    <div className="text-gray-600 text-xs md:text-sm border border-gray-200 rounded-2xl bg-white shadow hover:bg-gray-50 py-2 px-3 md:px-4">
                         { children }
                     </div>
                 </a>

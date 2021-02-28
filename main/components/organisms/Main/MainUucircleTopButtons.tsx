@@ -97,11 +97,11 @@ const PcButtonGroup = () => {
 
 type Props = {}
 const MainUucircleTopButtons: FC<Props> = () => {
-  const { isSm } = useMediaQuery()
+  const { isMd } = useMediaQuery()
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isSm ? (
+      {isMd ? (
         <PcButtonGroup />
       ) : (
         <SpButtonGroup />
