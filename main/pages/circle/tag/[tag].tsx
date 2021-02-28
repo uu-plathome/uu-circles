@@ -8,17 +8,17 @@ import { TwoColumnContainer } from "@/components/molecules/Container/TwoColumnCo
 import { CircleSidebar } from "@/components/organisms/Circles/CircleSidebar";
 import { useRouter } from "next/dist/client/router";
 import { __ } from "@/lang/ja";
-import { categoryToCircleType } from "@/lib/utils/category/Category";
-import { Category } from "@/lib/enum/app/Category";
-import Head from "next/head";
 import { BaseHead } from "@/components/layouts/BaseHead";
+import { CarouselCircleList } from "@/components/organisms/List/CarouselCircleList";
 
 type Props = {
     errorCode?: number
     circles?: Circle[]
+    recommendCircles?: Circle[]
 }
 const Page: NextPage<Props> = ({
-    circles
+    circles,
+    recommendCircles
 }) => {
     const router = useRouter()
     const { tag } = router.query
@@ -44,6 +44,12 @@ const Page: NextPage<Props> = ({
 
                             {/*  サークル一覧 */}
                             <BaseCircleList circles={circles} />
+
+                            <div className="pb-8">
+                                <h2 className="text-lg py-8">他のサークルも見る</h2>
+
+                                <CarouselCircleList circles={recommendCircles} />
+                            </div>
                         </div>
                     </TwoColumnContainer>
                 </div>
@@ -62,12 +68,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
     }
 
     const {
-        circles 
+        circles,
+        recommendCircles
     } = await getCircleByTag(params.tag)
 
     return {
         props: {
-            circles
+            circles,
+            recommendCircles
         }
     }
 }

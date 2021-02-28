@@ -50,30 +50,36 @@ export const getCircleBySlug = async (slug: string): Promise<{
 
 export const getCircleByCategory = async (category: string): Promise<{
     circles: Circle[]
+    recommendCircles: Circle[]
 }> => {
     type Response = {
         data: Circle[]
+        recommendCircles: Circle[]
     }
     const { data } = await axiosInstance.get<Response>(
         linkConst.CIRCLE.CATEGORY(category)
     )
 
     return {
-        circles: data.data
+        circles: data.data,
+        recommendCircles: data.recommendCircles
     }
 }
 
 export const getCircleByTag = async (tag: string): Promise<{
-    circles: Circle[]
+    circles: Circle[],
+    recommendCircles: Circle[]
 }> => {
     type Response = {
-        data: Circle[]
+        data: Circle[],
+        recommendCircles: Circle[]
     }
     const { data } = await axiosInstance.get<Response>(
         `${linkConst.CIRCLE.GROUP}/tag/${tag}`
     )
 
     return {
-        circles: data.data
+        circles: data.data,
+        recommendCircles: data.recommendCircles
     }
 }
