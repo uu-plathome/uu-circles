@@ -51,7 +51,7 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:py-20 px-4 md:text-center text-left">
+            <h1 className="text-2xl pl-4 py-8 md:py-20 md:text-center text-left">
               新歓イベント日程詳細
             </h1>
             {isMd ? (
@@ -113,7 +113,7 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
@@ -208,7 +208,7 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="pl-4 text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
