@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Advertise } from '@/lib/types/model/Advertise';
 import { RedButton } from '@/components/atoms/buttons/RedButton';
 import { GrayButton } from '@/components/atoms/buttons/GrayButton';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 type Props = {
     advertise: Advertise
@@ -84,15 +85,16 @@ const ListItemTableColumn: FC<{
     )
 }
 const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
+    const { isMd } = useMediaQuery()
+
     return (
         <div className="text-white flex mb-4">
         <div className="hidden lg:block">
             <Image
                 src={advertise.mainImageUrl ? advertise.mainImageUrl : `/images/no-image.png`}
-                width="100"
-                height="100"
+                width={ isMd ? 150 : 100}
+                height={ isMd ? 150 * 218 / 375 : 100 * 218 / 375 }
                 layout={"fixed"}
-                objectFit={"contain"}
                 className="square-image"
             />
         </div>
@@ -102,14 +104,13 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
                 <div className="lg:hidden mr-2">
                     <Image
                         src={advertise.mainImageUrl ? advertise.mainImageUrl : `/images/no-image.png`}
-                        width="100"
-                        height="100"
+                        width={ isMd ? 150 : 100}
+                        height={ isMd ? 150 * 218 / 375 : 100 * 218 / 375 }
                         layout={"fixed"}
-                        objectFit={"contain"}
                         className="square-image"
                     />
                 </div>
-                <h2 className="font-bold text-lg text-gray-300 mb-2">{ advertise.title }</h2>
+                <h2 className="font-bold md:text-lg text-gray-300 mb-2">{ advertise.title }</h2>
             </div>
 
             <div className="flex flex-wrap w-full">

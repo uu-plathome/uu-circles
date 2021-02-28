@@ -17,6 +17,9 @@ import { HiraToKana } from '@/lib/utils/String'
 import Head from 'next/head'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { useDelayedEffect } from '@/hooks/useDelayedEffect'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import Color from 'colors'
 
 const EditPage: NextPage = () => {
     const [circle, setCircle] = useState<Circle|undefined>(undefined)
@@ -451,67 +454,82 @@ const EditPage: NextPage = () => {
                 >
                     <div className="border-2 border-gray-800 px-2 py-4">
                         { circle ? (
-                            <EditCircleForm
-                                onDropMainImage={onDropMainImage}
-                                onDropHandbillImage={onDropHandbillImage}
-                                onDropActivityImage={onDropActivityImage}
-                                onSubmit={onSubmit}
-                                form={{
-                                    release,
-                                    name,
-                                    slug,
-                                    nameKana,
-                                    shortName,
-                                    prefixName,
-                                    description,
-                                    circleType,
-                                    isClubActivities,
-                                    appealingPoint1,
-                                    appealingPoint2,
-                                    appealingPoint3,
-                                    commonPlaceOfActivity,
-                                    commonPlaceOfActivityDetail,
-                                    commonDateOfActivityMonday,
-                                    commonDateOfActivityTuesday,
-                                    commonDateOfActivityWednesday,
-                                    commonDateOfActivityThursday,
-                                    commonDateOfActivityFriday,
-                                    commonDateOfActivitySaturday,
-                                    commonDateOfActivitySunday,
-                                    commonDateOfActivityDetail,
-                                    isOnlineActivity,
-                                    onlinePlaceOfActivityDetail,
-                                    onlineDateOfActivityMonday,
-                                    onlineDateOfActivityTuesday,
-                                    onlineDateOfActivityWednesday,
-                                    onlineDateOfActivityThursday,
-                                    onlineDateOfActivityFriday,
-                                    onlineDateOfActivitySaturday,
-                                    onlineDateOfActivitySunday,
-                                    onlineDateOfActivityDetail,
-                                    admissionFeePerYear,
-                                    numberOfMembers,
-                                    publicEmail,
-                                    twitterUrl,
-                                    facebookUrl,
-                                    instagramUrl,
-                                    lineUrl,
-                                    youtubeUrl,
-                                    homepageUrl,
-                                    peingUrl,
-                                    githubUrl,
-                                    tiktokUrl,
-                                    participationUrl,
-                                    mainImageUrl,
-                                    handbillImageUrl,
-                                    activityImageUrl1,
-                                    activityImageUrl2,
-                                    activityImageUrl3,
-                                    activityImageUrl4,
-                                    activityImageUrl5,
-                                    activityImageUrl6,
-                                }}
-                            />
+                            <>
+                                {!handbillImageUrl.value ? (
+                                    <div className="border-2 border-white p-4 text-white mb-4 rounded">
+                                        <p className="text-red-600 text-lg mb-2">
+                                            <FontAwesomeIcon icon={faExclamationTriangle} color={Color.red[600]} className="mr-2" />
+                                            サークル新歓ビラ画像は必ず登録してください。
+                                        </p>
+                                        <p>
+                                            {/* <a href="https://uu-cirlces.com/circle">サークル一覧</a> */}
+                                            サークル一覧などに表示されない可能性があります。
+                                        </p>
+                                    </div>
+                                ) : ''}
+
+                                <EditCircleForm
+                                    onDropMainImage={onDropMainImage}
+                                    onDropHandbillImage={onDropHandbillImage}
+                                    onDropActivityImage={onDropActivityImage}
+                                    onSubmit={onSubmit}
+                                    form={{
+                                        release,
+                                        name,
+                                        slug,
+                                        nameKana,
+                                        shortName,
+                                        prefixName,
+                                        description,
+                                        circleType,
+                                        isClubActivities,
+                                        appealingPoint1,
+                                        appealingPoint2,
+                                        appealingPoint3,
+                                        commonPlaceOfActivity,
+                                        commonPlaceOfActivityDetail,
+                                        commonDateOfActivityMonday,
+                                        commonDateOfActivityTuesday,
+                                        commonDateOfActivityWednesday,
+                                        commonDateOfActivityThursday,
+                                        commonDateOfActivityFriday,
+                                        commonDateOfActivitySaturday,
+                                        commonDateOfActivitySunday,
+                                        commonDateOfActivityDetail,
+                                        isOnlineActivity,
+                                        onlinePlaceOfActivityDetail,
+                                        onlineDateOfActivityMonday,
+                                        onlineDateOfActivityTuesday,
+                                        onlineDateOfActivityWednesday,
+                                        onlineDateOfActivityThursday,
+                                        onlineDateOfActivityFriday,
+                                        onlineDateOfActivitySaturday,
+                                        onlineDateOfActivitySunday,
+                                        onlineDateOfActivityDetail,
+                                        admissionFeePerYear,
+                                        numberOfMembers,
+                                        publicEmail,
+                                        twitterUrl,
+                                        facebookUrl,
+                                        instagramUrl,
+                                        lineUrl,
+                                        youtubeUrl,
+                                        homepageUrl,
+                                        peingUrl,
+                                        githubUrl,
+                                        tiktokUrl,
+                                        participationUrl,
+                                        mainImageUrl,
+                                        handbillImageUrl,
+                                        activityImageUrl1,
+                                        activityImageUrl2,
+                                        activityImageUrl3,
+                                        activityImageUrl4,
+                                        activityImageUrl5,
+                                        activityImageUrl6,
+                                    }}
+                                />
+                            </>
                         ) : (
                             <p className="text-white">Loading...</p>
                         )}
