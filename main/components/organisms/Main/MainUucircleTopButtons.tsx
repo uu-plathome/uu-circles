@@ -9,7 +9,20 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {}
 const MainUucircleTopButtons: FC<Props> = () => {
   const { isMd } = useMediaQuery()
+  const params: Swiper = {
+    //Swiperの設定
 
+    initialSlide: 1,
+    spaceBetween: 50,
+    slidesPerView: 1,
+    centeredSlides: true,
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: false,
+    // },
+    // loop: true,
+    navigation: true,
+  }
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
       {isMd ? (
@@ -93,7 +106,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
           </button>
         </nav>
       ) : (
-        <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation>
+        <Swiper {...params}>
           <nav className="mx-3" style={{ margin: 'auto!important' }}>
             <SwiperSlide className="text-center">
               <button

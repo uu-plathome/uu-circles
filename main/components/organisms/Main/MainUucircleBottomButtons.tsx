@@ -8,7 +8,20 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {}
 const MainUucircleBottomButtons: FC<Props> = () => {
   const { isMd } = useMediaQuery()
+  const params: Swiper = {
+    //Swiperの設定
 
+    initialSlide: 1,
+    spaceBetween: 50,
+    slidesPerView: 1,
+    centeredSlides: true,
+    // autoplay: {
+    //   delay: 4000,
+    //   disableOnInteraction: false,
+    // },
+    // loop: true,
+    navigation: true,
+  }
   return (
     <div className="bg-gray-100  pt-10 pb-10 ">
       <div className="text-center mb-4 mx-8">
@@ -70,12 +83,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
             </button>
           </nav>
         ) : (
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={1}
-            initialSlide={1}
-            navigation
-          >
+          <Swiper {...params}>
             <nav
               className=""
               style={{ margin: '0 auto!important' }}

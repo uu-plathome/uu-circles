@@ -34,10 +34,14 @@ body {
   content: '#';
 }
 
-/* swiper右左デザイン */
+/* swiper右左デザイン 上書き*/
 .swiper-button-next::after {
+  transform: scale(0.7, 0.7) !important;
   color: #c4c4c4 !important;
+  margin-right: 5px;
 }
 .swiper-button-prev::after {
+  transform: scale(0.7, 0.7) !important;
   color: #c4c4c4 !important;
+  margin-left: 5px;
 }
