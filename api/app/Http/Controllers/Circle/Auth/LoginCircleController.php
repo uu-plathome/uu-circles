@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Enum\Property\UserProperty;
+use App\Exceptions\VerifyEmailException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Models\User;
 use App\Support\Arr;
-use App\Usecases\LoginAdminUserUsecase;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

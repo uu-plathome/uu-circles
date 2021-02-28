@@ -18,7 +18,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
         <div className="border-b border-gray-300">
             <div className="bg-white">
             <div className="mx-auto" style={{ maxWidth: 700 }}>
-                <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-2">
+                <div id="site_title" className="px-4 sm:px-0 xl:container flex justify-between items-center py-4">
                         <div className="flex items-center">
                             {!isMd ? (
                                 <div className="pr-2">
