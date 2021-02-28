@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class TodayCircleNewJoyController extends Controller
@@ -29,7 +31,11 @@ class TodayCircleNewJoyController extends Controller
     {
         Log::debug("#TodayCircleNewJoyController args: none");
 
-        $circleNewJoys = $this->getTodayCircleNewJoyUsecase->invoke();
+        $circleNewJoys = Cache::remember(
+            $this->getCircleNewJoysCacheKey(),
+            60,
+            fn () => $this->getTodayCircleNewJoyUsecase->invoke()
+        );
 
         return Arr::camel_keys([
             'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
@@ -51,5 +57,11 @@ class TodayCircleNewJoyController extends Controller
                 ]
             )->values()->toArray(),
         ]);
+    }
+
+    private function getCircleNewJoysCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'TodayCircleNewJoyController.circleNewJoys' . $minutes;
     }
 }
