@@ -46,6 +46,7 @@ const Page: NextPage<Props> = ({
   }
 
   const { isMd } = useMediaQuery()
+  // console.log(circleNewJoy)
   return (
     <div>
       <BaseLayout>
@@ -73,12 +74,14 @@ const Page: NextPage<Props> = ({
                       > */}
                         <div className="mt-6 w-full">
                           <YellowButton width={'222px'}>
-                            <h4 className="text-sm">
-                              他のサークルの新歓も見る
-                            </h4>
-                            <h3 className="text-base font-bold">
-                              今日の新歓をチェック！
-                            </h3>
+                            <div className="py-2">
+                              <h4 className="text-xs">
+                                他のサークルの新歓も見る
+                              </h4>
+                              <h3 className="text-sm font-bold">
+                                今日の新歓をチェック！
+                              </h3>
+                            </div>
                           </YellowButton>
                         </div>
                       </a>
@@ -208,7 +211,7 @@ const Page: NextPage<Props> = ({
                       />
                     </div>
                   ) : (
-                    <p className="pl-4 text-center">今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
