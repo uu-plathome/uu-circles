@@ -65,7 +65,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
           </div>
         </BaseContainer>
 
-        <div>
+        <div className="bg-gray-100">
           {/*  フッター */}
 
           <MainUucircleAd />

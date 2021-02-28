@@ -39,7 +39,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             ],
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
-            CircleNewJoyProperty::start_date               => ['date', 'nullable', 'date_format:Y-m-d H:i'],
+            CircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
             CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
             CircleNewJoyProperty::release                  => ['boolean', 'nullable'],
         ]);
