@@ -29,7 +29,7 @@ jobs:
           docker-compose exec -T app php artisan config:cache
       - name: migrate
         run: |
-          docker-compose exec -T app cat .env
+          docker-compose exec -T app php artisan check:db
           docker-compose exec -T app php artisan migrate:fresh
       - name: re migrate
         run: docker-compose exec -T app php artisan migrate:refresh --seed
