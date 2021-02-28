@@ -68,6 +68,7 @@ namespace App\Models{
  * App\Models\Circle
  *
  * @property int $id
+ * @property string $name サークル名
  * @property string $slug circle slug
  * @property bool $release 公開設定
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -86,6 +87,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Circle query()
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Circle whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereRelease($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereUpdatedAt($value)
@@ -123,30 +125,29 @@ namespace App\Models{
  * @property int $id
  * @property int $circle_id
  * @property string|null $circle_type 'OFFICIAL_ORGANIZATION': 公認団体, 'UNOFFICIAL_ORGANIZATION': 非公認団体, 'SENDING_ORGANIZATION': 届出団体, 'STUDENT_GROUP': 学生団体
- * @property string $name サークル名
  * @property string|null $name_kana サークル名(カナ)
  * @property string|null $short_name サークル名(通称)
  * @property string|null $prefix_name サークル名(肩書)
  * @property string|null $description サークル紹介文
  * @property string|null $common_place_of_activity 通常活動場所
  * @property string|null $common_place_of_activity_detail 通常活動場所詳細
- * @property bool|null $common_date_of_activity_monday 月曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_tuesday 火曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_wednesday 水曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_thursday 木曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_friday 金曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_saturday 土曜日に通常活動しているか
- * @property bool|null $common_date_of_activity_sunday 日曜日に通常活動しているか
+ * @property bool $common_date_of_activity_monday 月曜日に通常活動しているか
+ * @property bool $common_date_of_activity_tuesday 火曜日に通常活動しているか
+ * @property bool $common_date_of_activity_wednesday 水曜日に通常活動しているか
+ * @property bool $common_date_of_activity_thursday 木曜日に通常活動しているか
+ * @property bool $common_date_of_activity_friday 金曜日に通常活動しているか
+ * @property bool $common_date_of_activity_saturday 土曜日に通常活動しているか
+ * @property bool $common_date_of_activity_sunday 日曜日に通常活動しているか
  * @property string|null $common_date_of_activity_detail 活動日時詳細
  * @property bool $is_online_activity オンライン活動するか
  * @property string|null $online_place_of_activity_detail オンライン活動場所詳細
- * @property bool|null $online_date_of_activity_monday 月曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_tuesday 火曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_wednesday 水曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_thursday 木曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_friday 金曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_saturday 土曜日にオンライン活動しているか
- * @property bool|null $online_date_of_activity_sunday 日曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_monday 月曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_tuesday 火曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_wednesday 水曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_thursday 木曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_friday 金曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_saturday 土曜日にオンライン活動しているか
+ * @property bool $online_date_of_activity_sunday 日曜日にオンライン活動しているか
  * @property string|null $online_date_of_activity_detail オンライン活動日時詳細
  * @property int|null $admission_fee_per_year 年間費用
  * @property int|null $number_of_members 所属人数
@@ -215,7 +216,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereLineUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMammoth()
- * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereNameKana($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereNumberOfMembers($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereOnlineDateOfActivityDetail($value)
