@@ -20,7 +20,7 @@ const generalSiderbarList = [
     { name: 'ダッシュボード', link: '/', icon: faHome, exact: true, role: [Role.SYSTEM, Role.MANAGER, Role.COMMON] },
     { name: 'サークル', link: '/circle', icon: faBuilding, exact: false, role: [Role.SYSTEM, Role.MANAGER, Role.COMMON]  },
     { name: '管理者管理', link: '/user/admin', icon: faUser, exact: false, role: [Role.SYSTEM, Role.MANAGER] },
-    { name: '広告管理', link: '/advertise', icon: faAd, exact: false, role: [Role.SYSTEM, Role.MANAGER] },
+    { name: '広告管理', link: '/advertise', icon: faAd, exact: false, role: [Role.SYSTEM] },
 ] as SidebarItem[]
 
 /**
