@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class ShowCircleNewJoyController extends Controller
@@ -42,12 +43,21 @@ class ShowCircleNewJoyController extends Controller
         Log::debug("#ShowCircleNewJoyController args: slug=$slug, circleNewJoyId=$circleNewJoyId");
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
-        $circleNewJoys = $this->indexCircleNewJoyUsecase->invoke($circle->id, $circleNewJoyId);
-        $allCircleNewJoys = $this->getTodayCircleNewJoyWithLimitUsecase->invoke();
 
+        $circleNewJoys = Cache::remember(
+            $this->getCircleNewJoysCacheKey(),
+            60,
+            $this->indexCircleNewJoyUsecase->invoke($circle->id, $circleNewJoyId)
+        );
         if (!$circleNewJoys['circleNewJoy']) {
             throw new ModelNotFoundException();
         }
+
+        $allCircleNewJoys = Cache::remember(
+            $this->getAllCircleNewJoysCacheKey(),
+            60,
+            fn () => $this->getTodayCircleNewJoyWithLimitUsecase->invoke()
+        );
 
         return Arr::camel_keys([
             'circle'       => $circle->toArray(),
@@ -79,5 +89,17 @@ class ShowCircleNewJoyController extends Controller
                 ]
             )->values()->toArray(),
         ]);
+    }
+
+    private function getCircleNewJoysCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'ShowCircleNewJoyController.circleNewJoys' . $minutes;
+    }
+
+    private function getAllCircleNewJoysCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'ShowCircleNewJoyController.allCircleNewJoys' . $minutes;
     }
 }

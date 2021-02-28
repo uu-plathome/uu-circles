@@ -9,7 +9,9 @@ use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\Usecases\Main\Circle\SearchTagCircleListUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class SearchTagCircleController extends Controller
 {
@@ -58,7 +60,11 @@ class SearchTagCircleController extends Controller
         $param->mammoth = $tag === TagSlugProperty::mammoth;
         $param->urgent_recruitment = $tag === TagSlugProperty::urgent_recruitment;
         $param->mystery = $tag === TagSlugProperty::mystery;
-        $circles = $this->searchTagCircleListUsecase->invoke($param);
+        $circles = Cache::remember(
+            $this->getCacheKey($tag),
+            60,
+            fn () => $this->searchTagCircleListUsecase->invoke($param)
+        );
 
         return [
             'data' => Arr::camel_keys(
@@ -81,5 +87,11 @@ class SearchTagCircleController extends Controller
     private function isExistTag(string $tag): bool
     {
         return in_array($tag, TagSlugProperty::getAll(), true);
+    }
+
+    private function getCacheKey(string $tag): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'SearchTagCircleController.main' . $tag . $minutes;
     }
 }

@@ -64,6 +64,6 @@ class SearchCategoryCircleController extends Controller
     private function getCacheKey(string $category): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main' . $category . $minutes;
+        return 'SearchCategoryCircleController.main' . $category . $minutes;
     }
 }
