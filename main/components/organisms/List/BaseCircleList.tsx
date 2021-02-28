@@ -24,6 +24,7 @@ const BaseCircleList: FC<Props> = ({ circles }) => {
                                         alt={`${circle.name}のビラ`}
                                         width={width} 
                                         height={height}
+                                        className="rounded"
                                     />
                                 </a>
                             </Link>
