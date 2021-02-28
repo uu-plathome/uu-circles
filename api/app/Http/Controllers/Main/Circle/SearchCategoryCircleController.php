@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main\Circle;
 
+use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SearchCategoryCircleController extends Controller
 {
@@ -34,16 +36,20 @@ class SearchCategoryCircleController extends Controller
      */
     public function __invoke(Request $request, string $category)
     {
-        if (!in_array($category, [self::club, self::official_organization, self::unofficial_organization, self::student_group])) {
+        Log::debug("#SearchCategoryCircleController args", [
+            'category' => $category,
+        ]);
+
+        if (!in_array($category, CategorySlugProperty::getAll())) {
             return abort(404);
         }
 
         $params = new SearchCategoryCircleListParam();
-        $params->club = $category === self::club;
-        $params->officialOrganization = $category === self::official_organization;
-        $params->unofficialOrganization = $category === self::unofficial_organization;
-        $params->sendingOrganization = $category === self::official_organization;
-        $params->studentGroup = $category === self::student_group;
+        $params->club = $category === CategorySlugProperty::club;
+        $params->officialOrganization = $category === CategorySlugProperty::official_organization;
+        $params->unofficialOrganization = $category === CategorySlugProperty::unofficial_organization;
+        $params->sendingOrganization = $category === CategorySlugProperty::official_organization;
+        $params->studentGroup = $category === CategorySlugProperty::student_group;
 
         $circles = Cache::remember($this->getCacheKey($category), 60, function () use ($params) {
             return $this->searchCategoryCircleListUsecase->invoke($params);
@@ -64,6 +70,6 @@ class SearchCategoryCircleController extends Controller
     private function getCacheKey(string $category): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main' . $category . $minutes;
+        return 'SearchCategoryCircleController.main' . $category . $minutes;
     }
 }

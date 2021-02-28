@@ -23,7 +23,9 @@ const BaseLayout: FC = ({ children }) => {
                     { children }
                 </div>
             ) : (
-                <BaseSpMenu />
+                <div className="md:hidden">
+                    <BaseSpMenu />
+                </div>
             )}
         </div>
     )

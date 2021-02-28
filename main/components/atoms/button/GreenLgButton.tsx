@@ -14,16 +14,18 @@ const GreenLgButton: React.FC<Props> = ({ children, as, href, onClick, type }) =
 
     if (href) {
         return (
-            <Link href={href} as={as}>
-                <a className="mb-8 hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none">
-                    { children }
-                </a>
-            </Link>
+            <div>
+                <Link href={href} as={as}>
+                    <a className="hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none">
+                        { children }
+                    </a>
+                </Link>
+            </div>
         )
     } else {
         return (
             <button
-                className="mb-8 hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none"
+                className="hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none"
                 onClick={onClick}
                 type={type ? type : 'button'}
             >

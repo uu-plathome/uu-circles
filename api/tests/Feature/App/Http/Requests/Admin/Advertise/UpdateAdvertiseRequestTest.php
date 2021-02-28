@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\Feature\App\Http\Requests;
+namespace Tests\Feature\App\Http\Requests\Admin\Advertise;
 
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Tests\Feature\Traits\HasLang;
 use Tests\TestCase;
 
@@ -18,12 +19,16 @@ class UpdateAdvertiseRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Log::info("UpdateAdvertiseRequestTest");
 
         $this->setUpHasLang();
         $request = $this->createRequest();
         $this->rules = array_keys($request->rules());
+        Log::info("rules", [$this->rules]);
         $this->attributesValue = Arr::flatten($request->attributes());
+        Log::info("attributesValue", [$this->attributesValue]);
         $this->attributesKey = array_keys($request->attributes());
+        Log::info("attributesKey", [$this->attributesKey]);
     }
 
     protected function tearDown(): void

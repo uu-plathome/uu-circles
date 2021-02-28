@@ -45,6 +45,21 @@ class RegisterCircleNewJoyRequest extends FormRequest
         ]);
     }
 
+    public function attributes()
+    {
+        return Arr::camel_keys([
+            CircleNewJoyProperty::title                    => __('circleNewJoy.' . CircleNewJoyProperty::title),
+            CircleNewJoyProperty::description              => __('circleNewJoy.' . CircleNewJoyProperty::description),
+            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity),
+            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity_detail),
+            CircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
+            CircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
+            CircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
+            CircleNewJoyProperty::release                  => __('circleNewJoy.' . CircleNewJoyProperty::release),
+            CircleNewJoyProperty::publish_from             => __('circleNewJoy.' . CircleNewJoyProperty::publish_from),
+        ]);
+    }
+
     public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
     {
         $request = Arr::snake_keys($this->validated());
