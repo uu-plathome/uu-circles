@@ -7,12 +7,23 @@ import { Circle } from '@/lib/types/model/Circle'
 import { TwoColumnContainer } from '@/components/molecules/Container/TwoColumnContainer'
 import { CircleSidebar } from '@/components/organisms/Circles/CircleSidebar'
 import { BaseHead } from '@/components/layouts/BaseHead'
+import { SearchTextField } from '@/components/atoms/form/SearchTextField'
+import { useStringInput } from '@/hooks/useInput'
+import { useRouter } from 'next/dist/client/router'
+import { FormEvent } from 'react'
 
 type Props = {
   errorCode?: number
   circles: Circle[]
 }
 const Page: NextPage<Props> = ({ circles }) => {
+  const router = useRouter()
+  const name = useStringInput('')
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    router.push(`/circle/search/[name]`, `/circle/search/${name.value}`)
+  }
+
   return (
     <div>
       <BaseHead title="サークル一覧" />
@@ -22,6 +33,12 @@ const Page: NextPage<Props> = ({ circles }) => {
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-7">
               <h1 className="text-2xl py-8">サークル一覧</h1>
+
+              <div className="md:hidden mb-8">
+                <form onSubmit={onSubmit}>
+                  <SearchTextField id="search" name="search" expand {...name} />
+                </form>
+              </div>
 
               {/*  サークル一覧 */}
               <BaseCircleList circles={circles} />
