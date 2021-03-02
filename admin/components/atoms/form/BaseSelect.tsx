@@ -2,29 +2,35 @@ import React from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 export type SelectItem = {
-    value: string|number
+    value: string | number
     label?: string
 }
 
 export type Props = {
     id: string
     name: string
-    value: string|number
+    value: string | number
     required?: boolean
     placeholder?: string
     items: SelectItem[]
     error?: string
     onChange(e: any): void
 } & BaseLabelProps
-const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, required, placeholder, error, onChange }) => {
+const BaseSelect: React.FC<Props> = ({
+    label,
+    id,
+    name,
+    note,
+    value,
+    items,
+    required,
+    placeholder,
+    error,
+    onChange,
+}) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
-            <BaseLabel
-                label={label}
-                note={note}
-                required={required}
-                id={id}
-            />
+            <BaseLabel label={label} note={note} required={required} id={id} />
 
             <select
                 id={id}
@@ -35,15 +41,17 @@ const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, requ
             >
                 {items.map((selectItem: SelectItem) => {
                     return (
-                        <option key={`${id}-${selectItem.value || 'null'}`} value={selectItem.value}>
+                        <option
+                            key={`${id}-${selectItem.value || 'null'}`}
+                            value={selectItem.value}
+                        >
                             {selectItem.label || selectItem.value}
                         </option>
-                )})}
+                    )
+                })}
             </select>
 
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }

@@ -1,14 +1,12 @@
-import { FC } from "react";
+import { FC } from 'react'
 
-type Props = {
-
-}
+type Props = {}
 const LightBlueButton: FC = ({ children }) => {
-    return (
-        <div className="bg-blue-300 text-white text-lg rounded text-center p-6">
-            { children }
-        </div>
-    )
+  return (
+    <div className="bg-blue-300 text-white text-lg rounded text-center p-6">
+      {children}
+    </div>
+  )
 }
 
 export { LightBlueButton }

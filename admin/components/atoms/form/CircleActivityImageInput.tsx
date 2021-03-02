@@ -1,7 +1,7 @@
-import { UseStringInput } from "@/hooks/useInput"
-import { createRef, FC, useEffect, useState } from "react"
-import { useDropzone } from "react-dropzone"
-import { BaseLabel } from "./BaseLabel"
+import { UseStringInput } from '@/hooks/useInput'
+import { createRef, FC, useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { BaseLabel } from './BaseLabel'
 
 const inputClass = `
     transition
@@ -24,26 +24,34 @@ interface ImageInputProps {
     onDrop(acceptedFiles: any): void
     width: number
 }
-const ImageInput: FC<ImageInputProps> = ({ onDrop, id, label, preview, width }) => {
+const ImageInput: FC<ImageInputProps> = ({
+    onDrop,
+    id,
+    label,
+    preview,
+    width,
+}) => {
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
     const [height, setHeight] = useState(0)
     useEffect(() => {
         // w : h = 375 : 200
-        setHeight(width * 200 / 375)
+        setHeight((width * 200) / 375)
     }, [width])
 
     return (
         <div id={id} className="flex justify-center">
-            <div
-                {...getRootProps()}
-                className={inputClass}>
+            <div {...getRootProps()} className={inputClass}>
                 <input {...getInputProps()} />
 
                 <div className="text-center">
-                    <img src={preview} alt={label} style={{
-                        width,
-                        height,
-                    }} />
+                    <img
+                        src={preview}
+                        alt={label}
+                        style={{
+                            width,
+                            height,
+                        }}
+                    />
                 </div>
             </div>
         </div>
@@ -51,7 +59,7 @@ const ImageInput: FC<ImageInputProps> = ({ onDrop, id, label, preview, width }) 
 }
 
 interface Props {
-    onDrop(acceptedFiles: any, idx: 1|2|3|4|5|6): void
+    onDrop(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
     activityImageUrl1: UseStringInput
     activityImageUrl2: UseStringInput
     activityImageUrl3: UseStringInput
@@ -59,15 +67,36 @@ interface Props {
     activityImageUrl5: UseStringInput
     activityImageUrl6: UseStringInput
 }
-const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activityImageUrl2, activityImageUrl3, activityImageUrl4, activityImageUrl5, activityImageUrl6 }) => {
-    const [ error, setError ] = useState('')
-    const [ width, setWidth ] = useState(0)
+const CircleActivityImageInput: FC<Props> = ({
+    onDrop,
+    activityImageUrl1,
+    activityImageUrl2,
+    activityImageUrl3,
+    activityImageUrl4,
+    activityImageUrl5,
+    activityImageUrl6,
+}) => {
+    const [error, setError] = useState('')
+    const [width, setWidth] = useState(0)
     const ref = createRef<HTMLDivElement>()
     useEffect(() => {
         setError(
-            activityImageUrl1.error || activityImageUrl2.error || activityImageUrl3.error || activityImageUrl4.error || activityImageUrl5.error || activityImageUrl6.error || ''
+            activityImageUrl1.error ||
+                activityImageUrl2.error ||
+                activityImageUrl3.error ||
+                activityImageUrl4.error ||
+                activityImageUrl5.error ||
+                activityImageUrl6.error ||
+                ''
         )
-    }, [activityImageUrl1.error, activityImageUrl2.error, activityImageUrl3.error, activityImageUrl4.error, activityImageUrl5.error, activityImageUrl6.error])
+    }, [
+        activityImageUrl1.error,
+        activityImageUrl2.error,
+        activityImageUrl3.error,
+        activityImageUrl4.error,
+        activityImageUrl5.error,
+        activityImageUrl6.error,
+    ])
 
     useEffect(() => {
         if (ref.current.clientWidth) {
@@ -79,7 +108,9 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
         <div className="mb-4">
             <BaseLabel
                 label="活動画像"
-                note={'最適なアスペクト比は375:200です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
+                note={
+                    '最適なアスペクト比は375:200です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'
+                }
                 id="activityImageUrl"
             />
 
@@ -92,7 +123,7 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                             activityImageUrl1.value
                                 ? activityImageUrl1.value
                                 : `/images/no-image.png`
-                            }
+                        }
                         onDrop={(acceptedFiles) => onDrop(acceptedFiles, 1)}
                         width={width}
                     />
@@ -106,7 +137,7 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                             activityImageUrl2.value
                                 ? activityImageUrl2.value
                                 : `/images/no-image.png`
-                            }
+                        }
                         width={width}
                         onDrop={(acceptedFiles) => onDrop(acceptedFiles, 2)}
                     />
@@ -119,7 +150,7 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                         activityImageUrl3.value
                             ? activityImageUrl3.value
                             : `/images/no-image.png`
-                        }
+                    }
                     width={width}
                     onDrop={(acceptedFiles) => onDrop(acceptedFiles, 3)}
                 />
@@ -134,7 +165,7 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                             activityImageUrl4.value
                                 ? activityImageUrl4.value
                                 : `/images/no-image.png`
-                            }
+                        }
                         width={width}
                         onDrop={(acceptedFiles) => onDrop(acceptedFiles, 4)}
                     />
@@ -148,7 +179,7 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                             activityImageUrl5.value
                                 ? activityImageUrl5.value
                                 : `/images/no-image.png`
-                            }
+                        }
                         width={width}
                         onDrop={(acceptedFiles) => onDrop(acceptedFiles, 5)}
                     />
@@ -161,14 +192,12 @@ const CircleActivityImageInput: FC<Props> = ({ onDrop, activityImageUrl1, activi
                         activityImageUrl6.value
                             ? activityImageUrl6.value
                             : `/images/no-image.png`
-                        }
+                    }
                     width={width}
                     onDrop={(acceptedFiles) => onDrop(acceptedFiles, 6)}
                 />
             </div>
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }

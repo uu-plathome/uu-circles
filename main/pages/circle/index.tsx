@@ -13,8 +13,8 @@ import { useRouter } from "next/dist/client/router";
 import { FormEvent } from "react";
 
 type Props = {
-    errorCode?: number
-    circles: Circle[]
+  errorCode?: number
+  circles: Circle[]
 }
 const Page: NextPage<Props> = ({
     circles
@@ -32,11 +32,11 @@ const Page: NextPage<Props> = ({
                 title="サークル一覧"
             />
 
-            <BaseLayout>
-                <div className="bg-gray-100 px-2">
-                    <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <div className="px-7">
-                            <h1 className="text-2xl py-8">サークル一覧</h1>
+      <BaseLayout>
+        <div className="bg-gray-100 px-2">
+          <TwoColumnContainer sidebar={<CircleSidebar />}>
+            <div className="px-7">
+              <h1 className="text-2xl py-8">サークル一覧</h1>
 
                             <div className="md:hidden mb-8">
                                 <form onSubmit={onSubmit}>
@@ -59,19 +59,17 @@ const Page: NextPage<Props> = ({
                 <BaseFooter />
             </BaseLayout>
         </div>
-    )
+  )
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-    const {
-        circles 
-    } = await getAllCircleList()
+  const { circles } = await getAllCircleList()
 
-    return {
-        props: {
-            circles
-        }
-    }
+  return {
+    props: {
+      circles,
+    },
+  }
 }
 
 export default Page

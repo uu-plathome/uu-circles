@@ -16,8 +16,13 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
             className = idx % 3 === 2 ? 'place-self-start' : className
 
             return (
-              <div key={circleNewJoy.circleNewJoy.id} className={`md:px-4 ${className}`}>
-                <CircleNewJoyListItemForNoSlug todayCircleNewJoy={circleNewJoy} />
+              <div
+                key={circleNewJoy.circleNewJoy.id}
+                className={`md:px-4 ${className}`}
+              >
+                <CircleNewJoyListItemForNoSlug
+                  todayCircleNewJoy={circleNewJoy}
+                />
               </div>
             )
           })}

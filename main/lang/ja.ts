@@ -52,18 +52,24 @@ export const ja = {
     [Week.SUNDAY]: '日曜日',
   },
   CircleTypeTitle: {
-    [CircleType.OFFICIAL_ORGANIZATION]: "サークル活動の王道",
-    [CircleType.UNOFFICIAL_ORGANIZATION]: "公に認められなくても良い。大学内の自由な自治体",
-    [CircleType.SENDING_ORGANIZATION]: "公認を目指して邁進中",
-    [CircleType.STUDENT_GROUP]: "社会のために。過去と未来の自分のために",
-    CLUB: "大学の1つの顔",
+    [CircleType.OFFICIAL_ORGANIZATION]: 'サークル活動の王道',
+    [CircleType.UNOFFICIAL_ORGANIZATION]:
+      '公に認められなくても良い。大学内の自由な自治体',
+    [CircleType.SENDING_ORGANIZATION]: '公認を目指して邁進中',
+    [CircleType.STUDENT_GROUP]: '社会のために。過去と未来の自分のために',
+    CLUB: '大学の1つの顔',
   },
   CircleTypeText: {
-    [CircleType.OFFICIAL_ORGANIZATION]: "大学公認のサークルです。何かと不安なあなたにも。折り紙付きの安心感が、あなたの新入生生活を充実したものにします。確実なスタートダッシュを決めて、今後の生活とサークルを盛り上げてみませんか？",
-    [CircleType.UNOFFICIAL_ORGANIZATION]: "学校非公認で活動しているサークルです。学校に認められてはいませんが、縛られもしていません。公認サークルには見えない可能性、一緒に切り拓きませんか？",
-    [CircleType.SENDING_ORGANIZATION]: "公認サークルになりたい非公認サークルです。大輪の花が眠っているかもしれません。可能性のつぼみを一緒に開きませんか？",
-    [CircleType.STUDENT_GROUP]: "サークルと違い、外部を対象にした活動を主とする集団です。（就職にも有利かも。）このサイトも学生集団制作です。一緒に過去の自分をサポートし、未来の自分の成功に繋げましょう。",
-    CLUB: "その分野での大学の代表となるのが部活動です。大学の名前を背負って、宇都宮大学という集団の一つの顔を担ってみませんか？"
+    [CircleType.OFFICIAL_ORGANIZATION]:
+      '大学公認のサークルです。何かと不安なあなたにも。折り紙付きの安心感が、あなたの新入生生活を充実したものにします。確実なスタートダッシュを決めて、今後の生活とサークルを盛り上げてみませんか？',
+    [CircleType.UNOFFICIAL_ORGANIZATION]:
+      '学校非公認で活動しているサークルです。学校に認められてはいませんが、縛られもしていません。公認サークルには見えない可能性、一緒に切り拓きませんか？',
+    [CircleType.SENDING_ORGANIZATION]:
+      '公認サークルになりたい非公認サークルです。大輪の花が眠っているかもしれません。可能性のつぼみを一緒に開きませんか？',
+    [CircleType.STUDENT_GROUP]:
+      'サークルと違い、外部を対象にした活動を主とする集団です。（就職にも有利かも。）このサイトも学生集団制作です。一緒に過去の自分をサポートし、未来の自分の成功に繋げましょう。',
+    CLUB:
+      'その分野での大学の代表となるのが部活動です。大学の名前を背負って、宇都宮大学という集団の一つの顔を担ってみませんか？',
   },
   CircleTagTitle: {
     [CircleTagModel.SPORT]: '質実剛健への道',
@@ -93,17 +99,28 @@ export const ja = {
     [CircleTagModel.MYSTERY]: '得体のしれない怪団体',
   },
   CircleTagText: {
-    [CircleTagModel.SPORT]: '誰かと一緒に体を動かすことで、心身ともに充実させましょう。学業の傍ら、楽しく血行を改善してみませんか？',
-    [CircleTagModel.MUSIC]: '気持ちを音に乗せたい、誰かに笑顔を届けたい…音にかける思いは人それぞれです。あなただけの音楽、奏でてみませんか？',
-    [CircleTagModel.CULTURE]: '何かを考えたり、感じたり。頭と心で、しめやかな彩りを持った活動を楽しみましょう。',
-    [CircleTagModel.NATURE]: '人社会のことばかり話される昨今。今一度、同じ地球に住まう他者に目を向けてみませんか。',
-    [CircleTagModel.COMMUNITY]: '町を見直し、考え、盛り上げる。地域の人を筆頭に、色んな人の笑顔をつくる経験、してみませんか。',
-    [CircleTagModel.INTERNATIONAL]: '多様性が叫ばれるのを聞いているだけではつまらない、とは思いませんか？言語すら違う相手と通じ合うことで、自分の幅を１つ広げましょう。',
-    [CircleTagModel.INCARE]: '他大学の学生とも交流を持ち、自分を広げましょう。他のサークルでは味わえない刺激、欲しくありませんか？',
-    [CircleTagModel.PROGRAMMING]: '作業が機械で自動化されていく時代、需要が多い知識を身に着けてみませんか？まずはサークルで、自分の需要を実現する術を体験してみましょう。',
-    [CircleTagModel.VOLUNTEER]: '見知らぬ誰かを笑顔にするために、今日も活動します。かつてあなたを笑顔にした誰かに、なってみませんか。',
-    [CircleTagModel.ACTIVE_ACTIVITY]: '活動の多い団体です。ブラックなのか、楽しくてつい、なのか、それは我々にもわかりかねます。',
-    [CircleTagModel.LOOSE]: '活動にあまり厳しくない団体です。勉強だけで体力を使い切ってしまっても大丈夫。わずかな余力で、学生生活に花を添えてみませんか？',
+    [CircleTagModel.SPORT]:
+      '誰かと一緒に体を動かすことで、心身ともに充実させましょう。学業の傍ら、楽しく血行を改善してみませんか？',
+    [CircleTagModel.MUSIC]:
+      '気持ちを音に乗せたい、誰かに笑顔を届けたい…音にかける思いは人それぞれです。あなただけの音楽、奏でてみませんか？',
+    [CircleTagModel.CULTURE]:
+      '何かを考えたり、感じたり。頭と心で、しめやかな彩りを持った活動を楽しみましょう。',
+    [CircleTagModel.NATURE]:
+      '人社会のことばかり話される昨今。今一度、同じ地球に住まう他者に目を向けてみませんか。',
+    [CircleTagModel.COMMUNITY]:
+      '町を見直し、考え、盛り上げる。地域の人を筆頭に、色んな人の笑顔をつくる経験、してみませんか。',
+    [CircleTagModel.INTERNATIONAL]:
+      '多様性が叫ばれるのを聞いているだけではつまらない、とは思いませんか？言語すら違う相手と通じ合うことで、自分の幅を１つ広げましょう。',
+    [CircleTagModel.INCARE]:
+      '他大学の学生とも交流を持ち、自分を広げましょう。他のサークルでは味わえない刺激、欲しくありませんか？',
+    [CircleTagModel.PROGRAMMING]:
+      '作業が機械で自動化されていく時代、需要が多い知識を身に着けてみませんか？まずはサークルで、自分の需要を実現する術を体験してみましょう。',
+    [CircleTagModel.VOLUNTEER]:
+      '見知らぬ誰かを笑顔にするために、今日も活動します。かつてあなたを笑顔にした誰かに、なってみませんか。',
+    [CircleTagModel.ACTIVE_ACTIVITY]:
+      '活動の多い団体です。ブラックなのか、楽しくてつい、なのか、それは我々にもわかりかねます。',
+    [CircleTagModel.LOOSE]:
+      '活動にあまり厳しくない団体です。勉強だけで体力を使い切ってしまっても大丈夫。わずかな余力で、学生生活に花を添えてみませんか？',
     [CircleTagModel.MONDAY]: '',
     [CircleTagModel.TUESDAY]: '',
     [CircleTagModel.WEDNESDAY]: '',
@@ -114,10 +131,14 @@ export const ja = {
     [CircleTagModel.ONLY_WEDNESDAY]: '',
     [CircleTagModel.ONLY_THURSDAY]: '',
     [CircleTagModel.ONLY_FRIDAY]: '',
-    [CircleTagModel.HOLIDAY]: '休日だろうと駆り出される団体です。果たしてそこは天国か地獄か。',
-    [CircleTagModel.MAMMOTH]: '活動人数が50人を超える団体です。賑やかなのが好きな人には推奨します。名前を覚えるのが苦手な人には非推奨です。',
-    [CircleTagModel.URGENT_RECRUITMENT]: '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
-    [CircleTagModel.MYSTERY]: '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
+    [CircleTagModel.HOLIDAY]:
+      '休日だろうと駆り出される団体です。果たしてそこは天国か地獄か。',
+    [CircleTagModel.MAMMOTH]:
+      '活動人数が50人を超える団体です。賑やかなのが好きな人には推奨します。名前を覚えるのが苦手な人には非推奨です。',
+    [CircleTagModel.URGENT_RECRUITMENT]:
+      '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
+    [CircleTagModel.MYSTERY]:
+      '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
   },
 }
 

@@ -1,17 +1,17 @@
-import { AuthHeader } from "@/components/layouts/AuthHeader"
-import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
-import { forgotPassword } from "@/infra/api/auth"
-import { useInput } from "@/hooks/useInput"
-import { NextPage } from "next"
+import { AuthHeader } from '@/components/layouts/AuthHeader'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { forgotPassword } from '@/infra/api/auth'
+import { useInput } from '@/hooks/useInput'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useState } from "react"
-import { AuthContext } from "@/contexts/AuthContext"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
-import { isForgotPasswordAdminRequestValidationError } from "@/lib/types/api/ForgotPasswordAdminRequest"
-import Link from "next/link"
-import Head from "next/head"
+import { useContext, useState } from 'react'
+import { AuthContext } from '@/contexts/AuthContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { isForgotPasswordAdminRequestValidationError } from '@/lib/types/api/ForgotPasswordAdminRequest'
+import Link from 'next/link'
+import Head from 'next/head'
 
 const Login: NextPage = () => {
     const email = useInput('')
@@ -31,12 +31,18 @@ const Login: NextPage = () => {
         const data = await forgotPassword(email.value)
 
         if (isForgotPasswordAdminRequestValidationError(data)) {
-            email.setError(data.errors.email && Array.isArray(data.errors.email) ? data.errors.email[0] : '')     
+            email.setError(
+                data.errors.email && Array.isArray(data.errors.email)
+                    ? data.errors.email[0]
+                    : ''
+            )
             return
         }
 
         if (data && data.type === 'success') {
-            setSuccess(`${email.value}にパスワードを変更するためのメールを送信しました。`)
+            setSuccess(
+                `${email.value}にパスワードを変更するためのメールを送信しました。`
+            )
             return
         }
 
@@ -54,15 +60,23 @@ const Login: NextPage = () => {
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">
                     <div className="border-2 border-white rounded p-4">
-                        <h1 className="text-white text-center text-2xl mb-4">パスワードを変更する</h1>
+                        <h1 className="text-white text-center text-2xl mb-4">
+                            パスワードを変更する
+                        </h1>
 
                         {error ? (
                             <div className="p-4 mb-4">
                                 <p className="text-white text-lg">
-                                    <FontAwesomeIcon icon={ faExclamationTriangle } color="red" /> { error }
+                                    <FontAwesomeIcon
+                                        icon={faExclamationTriangle}
+                                        color="red"
+                                    />{' '}
+                                    {error}
                                 </p>
                             </div>
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
 
                         {!success ? (
                             <div>
@@ -73,7 +87,7 @@ const Login: NextPage = () => {
                                             id="email"
                                             name="email"
                                             expand
-                                            { ...email }
+                                            {...email}
                                         />
                                     </div>
 
@@ -92,7 +106,6 @@ const Login: NextPage = () => {
                                     </Link>
                                 </div>
                             </div>
-
                         ) : (
                             <p className="text-white">{success}</p>
                         )}
