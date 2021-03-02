@@ -1,16 +1,23 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
 import { YellowButton } from '@/components/atoms/button/YellowButton'
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Color from 'colors'
+import { SearchTextField } from "../atoms/form/SearchTextField";
+import { useStringInput } from "@/hooks/useInput";
 
 type Props = {
     onClick?(): void
 }
 const BaseHeader: FC<Props> = ({ onClick }) => {
     const router = useRouter()
+    const name = useStringInput('')
+    const onSubmit = (event: FormEvent) => {
+        event.preventDefault()
+        router.push(`/circle/search/[name]`, `/circle/search/${name.value}`)
+    }
 
     return (
         <div className="border-b border-gray-300">
@@ -33,6 +40,16 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
                                     </Link>
                                 )}
                             </h1>
+
+                            <div className="hidden md:block ml-4">
+                                <form onSubmit={onSubmit}>
+                                    <SearchTextField 
+                                        id="search"
+                                        name="search"
+                                        { ...name }
+                                    />
+                                </form>
+                            </div>
                         </div>
 
                         <div className="flex items-center">

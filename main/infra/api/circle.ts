@@ -83,3 +83,22 @@ export const getCircleByTag = async (tag: string): Promise<{
         recommendCircles: data.recommendCircles
     }
 }
+
+
+export const searchCircle = async (search: string): Promise<{
+    circles: Circle[],
+    recommendCircles: Circle[]
+}> => {
+    type Response = {
+        data: Circle[],
+        recommendCircles: Circle[]
+    }
+    const { data } = await axiosInstance.get<Response>(
+        `${linkConst.CIRCLE.GROUP}/search/${search}`
+    )
+
+    return {
+        circles: data.data,
+        recommendCircles: data.recommendCircles
+    }
+}
