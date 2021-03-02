@@ -39,5 +39,21 @@ class SearchCategoryCircleControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+        $this->assertArrayHasKey('recommendCircles', $response);
+        $this->assertNotCount(0, $response['recommendCircles']);
+    }
+
+    public function testRequest_存在しないカテゴリーは404である()
+    {
+        Log::info("testRequest_存在しないカテゴリーは404である");
+
+        // GIVEN
+        $category = 'aaaaa';
+
+        // WHEN
+        $response = $this->get("/api/circle/category/$category");
+
+        // THEN
+        $response->assertNotFound();
     }
 }

@@ -26,17 +26,38 @@ class SearchNameCircleControllerTest extends TestCase
      */
     protected $seed = true;
 
-    public function testRequest()
+    public function testRequest_ランダムな文字列()
     {
-        Log::info("testRequest");
+        Log::info("testRequest_ランダムな文字列");
 
         // GIVEN
         $search = Str::random(2);
+        Log::info($search);
 
         // WHEN
         $response = $this->get("/api/circle/search/$search");
 
         // THEN
         $response->assertOk();
+        $this->assertArrayHasKey('recommendCircles', $response);
+        $this->assertNotCount(0, $response['recommendCircles']);
+    }
+
+    public function testRequest_Ulabがみつかる()
+    {
+        Log::info("testRequest_Ulabがみつかる");
+
+        // GIVEN
+        $search = 'U-lab';
+
+        // WHEN
+        $response = $this->get("/api/circle/search/$search");
+
+        // THEN
+        $response->assertOk();
+        $this->assertArrayHasKey('data', $response);
+        $this->assertArrayHasKey('recommendCircles', $response);
+        $this->assertNotCount(0, $response['data']);
+        $this->assertNotCount(0, $response['recommendCircles']);
     }
 }
