@@ -39,4 +39,18 @@ class GetCircleControllerTest extends TestCase
         // THEN
         $response->assertOk();
     }
+
+    public function testRequest_存在しないサークルは404である()
+    {
+        Log::info("testRequest");
+
+        // GIVEN
+        $slug = 'aaaaabbbbbccccc';
+
+        // WHEN
+        $response = $this->get("/api/circle/{$slug}");
+
+        // THEN
+        $response->assertNotFound();
+    }
 }
