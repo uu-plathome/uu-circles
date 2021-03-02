@@ -35,6 +35,7 @@ jobs:
           prettier: true
           eslint_dir: ./main
           prettier_dir: ./main
+          auto_fix: true
 
   build:
     runs-on: ubuntu-latest
