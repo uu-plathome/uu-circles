@@ -63,10 +63,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
             {circles.map((circle) => {
               return (
                 <SwiperSlide key={circle.id}>
-                  <div
-                    key={circle.id}
-                    className="pb-10 flex justify-center"
-                  >
+                  <div key={circle.id} className="pb-10 flex justify-center">
                     <div>
                       <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
                         <a>
