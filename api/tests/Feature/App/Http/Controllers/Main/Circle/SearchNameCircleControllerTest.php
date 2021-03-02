@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Models\Circle;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Tests\Traits\RefreshDatabaseLite;
@@ -17,6 +18,7 @@ class SearchNameCircleControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("SearchNameCircleControllerTest");
+        Cache::clear();
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\TagSlugProperty;
-use App\Models\Circle;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -16,6 +16,7 @@ class SearchTagCircleControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("SearchTagCircleControllerTest");
+        Cache::clear();
     }
 
     /**
