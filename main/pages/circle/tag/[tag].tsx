@@ -32,7 +32,7 @@ const Page: NextPage<Props> = ({
             <BaseLayout>
                 <div className="bg-gray-100 px-2">
                     <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <div className="px-4">
+                        <div className="px-6">
                             <h1 className="text-2xl py-8">{ __(String(tag).toUpperCase()) }</h1>
 
                             {__(String(tag).toUpperCase(), "CircleTagTitle") ? (
