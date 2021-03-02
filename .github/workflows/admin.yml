@@ -33,6 +33,8 @@ jobs:
           # Enable linters
           eslint: true
           prettier: true
+          eslint_dir: ./admin
+          prettier_dir: ./admin
           
   build:
     runs-on: ubuntu-latest
