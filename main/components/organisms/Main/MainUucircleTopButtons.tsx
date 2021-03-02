@@ -8,12 +8,21 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 const SpButtonGroup = () => {
   return (
-    <Swiper spaceBetween={50} slidesPerView={1} initialSlide={1} navigation loop>
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      initialSlide={1}
+      navigation
+      loop
+    >
       <nav className="mx-4">
         <SwiperSlide>
           <div className="mx-auto" style={{ width: 280, height: 65 }}>
             <Link href="/">
-              <a className="text-gray-900 block shadow rounded" style={{ width: '100%', height: '100%' }}>
+              <a
+                className="text-gray-900 block shadow rounded"
+                style={{ width: '100%', height: '100%' }}
+              >
                 <Image
                   width="280"
                   height="65"
@@ -26,7 +35,10 @@ const SpButtonGroup = () => {
         <SwiperSlide>
           <div className="mx-auto" style={{ width: 280, height: 65 }}>
             <Link href="/">
-              <a className="text-gray-900 block shadow rounded" style={{ width: '100%', height: '100%' }}>
+              <a
+                className="text-gray-900 block shadow rounded"
+                style={{ width: '100%', height: '100%' }}
+              >
                 <Image
                   width="280"
                   height="65"
@@ -39,7 +51,10 @@ const SpButtonGroup = () => {
         <SwiperSlide>
           <div className="mx-auto" style={{ width: 280, height: 65 }}>
             <Link href="/guide/discord">
-              <a className="text-gray-900 block shadow rounded" style={{ width: '100%', height: '100%' }}>
+              <a
+                className="text-gray-900 block shadow rounded"
+                style={{ width: '100%', height: '100%' }}
+              >
                 <Image
                   width="280"
                   height="65"
@@ -58,7 +73,10 @@ const PcButtonGroup = () => {
     <nav className="flex">
       <div className="m-4">
         <Link href="/">
-          <a className="text-gray-900 block shadow rounded" style={{ width: 280, height: 65 }}>
+          <a
+            className="text-gray-900 block shadow rounded"
+            style={{ width: 280, height: 65 }}
+          >
             <Image
               width="280"
               height="65"
@@ -70,7 +88,10 @@ const PcButtonGroup = () => {
 
       <div className="m-4">
         <Link href="/circle/newjoy">
-          <a className="text-gray-900 block shadow rounded" style={{ width: 280, height: 65 }}>
+          <a
+            className="text-gray-900 block shadow rounded"
+            style={{ width: 280, height: 65 }}
+          >
             <Image
               width="280"
               height="65"
@@ -82,7 +103,10 @@ const PcButtonGroup = () => {
 
       <div className="m-4">
         <Link href="/guide/discord">
-          <a className="text-gray-900 block shadow rounded" style={{ width: 280, height: 65 }}>
+          <a
+            className="text-gray-900 block shadow rounded"
+            style={{ width: 280, height: 65 }}
+          >
             <Image
               width="280"
               height="65"
@@ -101,11 +125,7 @@ const MainUucircleTopButtons: FC<Props> = () => {
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isMd ? (
-        <PcButtonGroup />
-      ) : (
-        <SpButtonGroup />
-      )}
+      {isMd ? <PcButtonGroup /> : <SpButtonGroup />}
     </div>
   )
 }
