@@ -38,7 +38,7 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
                 {__(String(categoryToCircleType(category as Category)))}
               </h1>
 
-              <p className="text-base pb-4">
+              <p className="text-base pb-4 font-bold">
                 {__(
                   String(categoryToCircleType(category as Category)),
                   'CircleTypeTitle'
