@@ -6,7 +6,10 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
-import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest'
+import {
+    isUpdateCircleUserRequestValidationError,
+    UpdateCircleUserRequest,
+} from '@/lib/types/api/UpdateCircleUserRequest'
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
@@ -29,21 +32,17 @@ const CreatePage: NextPage = () => {
         }
 
         f()
-    }, [ id, userId ])
+    }, [id, userId])
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const data = await updateCircleUser(
-            Number(id),
-            Number(userId),
-            {
-                type: 'UpdateCircleUserRequest',
-                username: username.value,
-                displayName: displayName.value,
-                active: active.toBoolean
-            } as UpdateCircleUserRequest
-        )
+        const data = await updateCircleUser(Number(id), Number(userId), {
+            type: 'UpdateCircleUserRequest',
+            username: username.value,
+            displayName: displayName.value,
+            active: active.toBoolean,
+        } as UpdateCircleUserRequest)
 
         if (isUpdateCircleUserRequestValidationError(data)) {
             username.setErrors(data.errors.username)
@@ -62,14 +61,10 @@ const CreatePage: NextPage = () => {
                 <title>部員アカウント編集</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="部員アカウント編集"
-                >
+                <BaseWrapper title="部員アカウント編集">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <EditCircleUserForm
                             onSubmit={onSubmit}

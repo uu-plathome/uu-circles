@@ -1,17 +1,17 @@
-import { AuthHeader } from "@/components/layouts/AuthHeader"
-import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { resetPassword } from "@/infra/api/auth"
-import { useInput } from "@/hooks/useInput"
-import { NextPage } from "next"
+import { AuthHeader } from '@/components/layouts/AuthHeader'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { resetPassword } from '@/infra/api/auth'
+import { useInput } from '@/hooks/useInput'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useContext, useState } from "react"
-import { AuthContext } from "@/contexts/AuthContext"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
-import { isResetPasswordAdminRequestValidationError } from "@/lib/types/api/ResetPasswordAdminRequest"
-import { GreenButton } from "@/components/atoms/buttons/GreenButton"
-import Head from "next/head"
-import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
+import { useContext, useState } from 'react'
+import { AuthContext } from '@/contexts/AuthContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { isResetPasswordAdminRequestValidationError } from '@/lib/types/api/ResetPasswordAdminRequest'
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import Head from 'next/head'
+import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
 
 const PasswordConfirmPage: NextPage = () => {
     const password = useInput('')
@@ -35,11 +35,15 @@ const PasswordConfirmPage: NextPage = () => {
             type: 'ResetPasswordAdminRequest',
             email,
             token,
-            password: password.value
+            password: password.value,
         })
 
         if (isResetPasswordAdminRequestValidationError(data)) {
-            password.setError(data.errors.password && Array.isArray(data.errors.password) ? data.errors.password[0] : '')
+            password.setError(
+                data.errors.password && Array.isArray(data.errors.password)
+                    ? data.errors.password[0]
+                    : ''
+            )
 
             if (data.errors.email && Array.isArray(data.errors.email)) {
                 setError('エラーが発生しました。')
@@ -71,24 +75,32 @@ const PasswordConfirmPage: NextPage = () => {
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">
                     <div className="border-2 border-white rounded p-4">
-                        <h1 className="text-white text-center text-2xl mb-4">新しいパスワード</h1>
+                        <h1 className="text-white text-center text-2xl mb-4">
+                            新しいパスワード
+                        </h1>
 
                         {error ? (
                             <div className="p-4 mb-4">
                                 <p className="text-white text-lg">
-                                    <FontAwesomeIcon icon={ faExclamationTriangle } color="red" /> { error }
+                                    <FontAwesomeIcon
+                                        icon={faExclamationTriangle}
+                                        color="red"
+                                    />{' '}
+                                    {error}
                                 </p>
                             </div>
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
 
-                        { !success ? (
+                        {!success ? (
                             <form onSubmit={onSubmit}>
                                 <div className="px-4 mb-4">
                                     <SimplePasswordTextField
                                         label="新しいパスワード"
                                         id="password"
                                         name="password"
-                                        { ...password }
+                                        {...password}
                                     />
                                 </div>
 
@@ -100,7 +112,9 @@ const PasswordConfirmPage: NextPage = () => {
                             </form>
                         ) : (
                             <div>
-                                <p className="text-white">パスワードを変更しました。ログイン画面へ進んでください。</p>
+                                <p className="text-white">
+                                    パスワードを変更しました。ログイン画面へ進んでください。
+                                </p>
 
                                 <div className="text-center">
                                     <GreenButton href="/auth/PasswordConfirmPage">
@@ -108,7 +122,7 @@ const PasswordConfirmPage: NextPage = () => {
                                     </GreenButton>
                                 </div>
                             </div>
-                        ) }
+                        )}
                     </div>
                 </div>
             </div>

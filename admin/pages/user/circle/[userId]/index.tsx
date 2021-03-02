@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import Head from 'next/head';
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -17,7 +17,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const IndexPage: NextPage = () => {
     const [circles, setCircles] = useState<Circle[]>([])
-    const [user, setUser] = useState<User|null>(null)
+    const [user, setUser] = useState<User | null>(null)
     const { success, setSuccess } = useSuccess('')
     const [error, setError] = useState<string>('')
     const router = useRouter()
@@ -26,7 +26,9 @@ const IndexPage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const { circles, user } = await getCircleListByUserId(Number(userId))
+            const { circles, user } = await getCircleListByUserId(
+                Number(userId)
+            )
             setCircles(circles)
             setUser(user)
         }
@@ -34,7 +36,10 @@ const IndexPage: NextPage = () => {
     }, [])
 
     const onDeleteRelation = async (circleId: number) => {
-        const data = await deleteRelationBetweenUserAndCircle(Number(userId), circleId)
+        const data = await deleteRelationBetweenUserAndCircle(
+            Number(userId),
+            circleId
+        )
 
         if (data && data.type === 'ValidationError') {
             setError(data.errors.data)
@@ -53,46 +58,45 @@ const IndexPage: NextPage = () => {
                 <title>所属サークル追加</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
                 <BaseWrapper
-                    title={user ? `${user.displayName}さんの所属サークル` : '所属サークル' }
+                    title={
+                        user
+                            ? `${user.displayName}さんの所属サークル`
+                            : '所属サークル'
+                    }
                     actionText="所属サークル追加"
                     actionHref="/user/circle/[userId]/relation"
                     actionAs={`/user/circle/${userId}/relation`}
                 >
+                    {success ? <SuccessBunner text={success} /> : ''}
+                    {error ? <DangerBunner text={error} /> : ''}
 
-                    {
-                        success ? (
-                            <SuccessBunner text={success} />
-                        ) : ''
-                    }
-                    {
-                        error ? (
-                            <DangerBunner text={error} />
-                        ) : ''
-                    }
-                    
                     <div className="border-2 border-gray-800 p-2">
-                        {circles.length > 0 ? (
-                            circles.map((circle: Circle) => {
-                                return <CircleUserRelationListItem
-                                    key={`circle-${circle.id}`}
-                                    circle={circle}
-                                    userId={Number(userId)}
-                                    onDeleteRelation={onDeleteRelation}
-                                />
-                            })
-                        ) : ''}
+                        {circles.length > 0
+                            ? circles.map((circle: Circle) => {
+                                  return (
+                                      <CircleUserRelationListItem
+                                          key={`circle-${circle.id}`}
+                                          circle={circle}
+                                          userId={Number(userId)}
+                                          onDeleteRelation={onDeleteRelation}
+                                      />
+                                  )
+                              })
+                            : ''}
 
                         {circles.length === 0 ? (
                             <div className="py-4">
-                                <p className="text-white">まだサークルが登録されていません</p>
+                                <p className="text-white">
+                                    まだサークルが登録されていません
+                                </p>
                             </div>
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

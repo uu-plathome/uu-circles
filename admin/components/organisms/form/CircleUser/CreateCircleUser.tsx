@@ -1,7 +1,7 @@
-import { GreenButton } from "@/components/atoms/buttons/GreenButton";
-import { BaseTextField } from "@/components/atoms/form/BaseTextField";
-import { UseStringInput } from "@/hooks/useInput";
-import { FC, FormEvent } from "react";
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { UseStringInput } from '@/hooks/useInput'
+import { FC, FormEvent } from 'react'
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
@@ -19,7 +19,7 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                 name="email"
                 id="email"
                 required
-                { ...form.email }
+                {...form.email}
             />
 
             <BaseTextField
@@ -27,7 +27,7 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                 name="username"
                 id="username"
                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                { ...form.username }
+                {...form.username}
             />
 
             <BaseTextField
@@ -36,13 +36,11 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                 id="display_name"
                 placeholder="u-lab"
                 note="入力がない場合は、自動で決まります"
-                { ...form.displayName }
+                {...form.displayName}
             />
 
             <div className="flex justify-center mt-8">
-                <GreenButton type="submit">
-                    進む
-                </GreenButton>
+                <GreenButton type="submit">進む</GreenButton>
             </div>
         </form>
     )

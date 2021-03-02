@@ -1,7 +1,7 @@
-import Link, { LinkProps } from "next/link";
-import React from "react";
-import { UrlObject } from 'url';
-type Url = string | UrlObject;
+import Link, { LinkProps } from 'next/link'
+import React from 'react'
+import { UrlObject } from 'url'
+type Url = string | UrlObject
 
 type Props = {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
@@ -10,12 +10,18 @@ type Props = {
     href?: LinkProps['href']
 }
 
-const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
-
+const GreenButton: React.FC<Props> = ({
+    children,
+    as,
+    href,
+    onClick,
+    type,
+}) => {
     if (href) {
         return (
             <Link href={href} as={as}>
-                <a className={`
+                <a
+                    className={`
                     min-w-120
                     inline-block
                     px-6
@@ -34,8 +40,9 @@ const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => 
                     hover:shadow-lg
                     hover:opacity-80
                     focus:outline-none
-                `}>
-                    { children }
+                `}
+                >
+                    {children}
                 </a>
             </Link>
         )
@@ -65,7 +72,7 @@ const GreenButton: React.FC<Props> = ({ children, as, href, onClick, type }) => 
                 onClick={onClick}
                 type={type ? type : 'button'}
             >
-                { children }
+                {children}
             </button>
         )
     }

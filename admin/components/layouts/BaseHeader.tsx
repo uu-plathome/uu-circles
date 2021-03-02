@@ -10,7 +10,7 @@ type Props = {
     onClick?(): void
 }
 const BaseHeader: React.FC<Props> = ({ onClick }) => {
-    const {isMd} = useMediaQuery()
+    const { isMd } = useMediaQuery()
 
     return (
         <div className="border-b-2 border-gray-100 shadow">
@@ -20,10 +20,16 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
                         {!isMd ? (
                             <div className="pr-2">
                                 <button onClick={onClick}>
-                                    <FontAwesomeIcon size="lg" color="#fff" icon={faBars} />
+                                    <FontAwesomeIcon
+                                        size="lg"
+                                        color="#fff"
+                                        icon={faBars}
+                                    />
                                 </button>
                             </div>
-                        ): ''}
+                        ) : (
+                            ''
+                        )}
 
                         <Link href="/">
                             <a className="text-white text-xl hover:underline">
@@ -34,7 +40,10 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
 
                     <Link href="/logout">
                         <a className="text-white hover:underline">
-                            <FontAwesomeIcon color={ Color.red[600] } icon={ faUser } />
+                            <FontAwesomeIcon
+                                color={Color.red[600]}
+                                icon={faUser}
+                            />
                             <span className="ml-2">ログアウト</span>
                         </a>
                     </Link>

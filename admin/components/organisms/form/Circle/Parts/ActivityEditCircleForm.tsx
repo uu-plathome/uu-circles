@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react"
-import { BaseSelect } from "@/components/atoms/form/BaseSelect"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
-import { UseBooleanInput, UseStringInput } from "@/hooks/useInput"
-import { __ } from "@/lang/ja"
-import { getAllPlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity"
-import { getAllWeek, Week } from "@/lib/enum/api/Week"
-import { BaseCheckBox } from "@/components/atoms/form/BaseCheckBox"
+import { FC, useEffect, useState } from 'react'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { __ } from '@/lang/ja'
+import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { getAllWeek, Week } from '@/lib/enum/api/Week'
+import { BaseCheckBox } from '@/components/atoms/form/BaseCheckBox'
 
 type Props = {
     form: {
@@ -32,8 +32,14 @@ type Props = {
     }
 }
 const ActivityEditCircleForm: FC<Props> = ({ form }) => {
-    const [ checkedCommonDateOfActivity, setCheckedCommonDateOfActivity] = useState<string[]>([])
-    const [ checkedOnlineDateOfActivity, setCheckedOnlineDateOfActivity] = useState<string[]>([])
+    const [
+        checkedCommonDateOfActivity,
+        setCheckedCommonDateOfActivity,
+    ] = useState<string[]>([])
+    const [
+        checkedOnlineDateOfActivity,
+        setCheckedOnlineDateOfActivity,
+    ] = useState<string[]>([])
 
     // 通常活動日
     useEffect(() => {
@@ -92,56 +98,88 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
     const onChangeCommonDateOfActivity = (e) => {
         const newVal = e.target.value
         if (newVal === Week.MONDAY) {
-            form.commonDateOfActivityMonday.set(!form.commonDateOfActivityMonday.toBoolean)
+            form.commonDateOfActivityMonday.set(
+                !form.commonDateOfActivityMonday.toBoolean
+            )
         }
         if (newVal === Week.MONDAY) {
-            form.commonDateOfActivityMonday.set(!form.commonDateOfActivityMonday.toBoolean)
+            form.commonDateOfActivityMonday.set(
+                !form.commonDateOfActivityMonday.toBoolean
+            )
         }
         if (newVal === Week.TUESDAY) {
-            form.commonDateOfActivityTuesday.set(!form.commonDateOfActivityTuesday.toBoolean)
+            form.commonDateOfActivityTuesday.set(
+                !form.commonDateOfActivityTuesday.toBoolean
+            )
         }
         if (newVal === Week.WEDNESDAY) {
-            form.commonDateOfActivityWednesday.set(!form.commonDateOfActivityWednesday.toBoolean)
+            form.commonDateOfActivityWednesday.set(
+                !form.commonDateOfActivityWednesday.toBoolean
+            )
         }
         if (newVal === Week.THURSDAY) {
-            form.commonDateOfActivityThursday.set(!form.commonDateOfActivityThursday.toBoolean)
+            form.commonDateOfActivityThursday.set(
+                !form.commonDateOfActivityThursday.toBoolean
+            )
         }
         if (newVal === Week.FRIDAY) {
-            form.commonDateOfActivityFriday.set(!form.commonDateOfActivityFriday.toBoolean)
+            form.commonDateOfActivityFriday.set(
+                !form.commonDateOfActivityFriday.toBoolean
+            )
         }
         if (newVal === Week.SATURDAY) {
-            form.commonDateOfActivitySaturday.set(!form.commonDateOfActivitySaturday.toBoolean)
+            form.commonDateOfActivitySaturday.set(
+                !form.commonDateOfActivitySaturday.toBoolean
+            )
         }
         if (newVal === Week.SUNDAY) {
-            form.commonDateOfActivitySunday.set(!form.commonDateOfActivitySunday.toBoolean)
+            form.commonDateOfActivitySunday.set(
+                !form.commonDateOfActivitySunday.toBoolean
+            )
         }
     }
 
     const onChangeOnlineDateOfActivity = (e) => {
         const newVal = e.target.value
         if (newVal === Week.MONDAY) {
-            form.onlineDateOfActivityMonday.set(!form.onlineDateOfActivityMonday.toBoolean)
+            form.onlineDateOfActivityMonday.set(
+                !form.onlineDateOfActivityMonday.toBoolean
+            )
         }
         if (newVal === Week.MONDAY) {
-            form.onlineDateOfActivityMonday.set(!form.onlineDateOfActivityMonday.toBoolean)
+            form.onlineDateOfActivityMonday.set(
+                !form.onlineDateOfActivityMonday.toBoolean
+            )
         }
         if (newVal === Week.TUESDAY) {
-            form.onlineDateOfActivityTuesday.set(!form.onlineDateOfActivityTuesday.toBoolean)
+            form.onlineDateOfActivityTuesday.set(
+                !form.onlineDateOfActivityTuesday.toBoolean
+            )
         }
         if (newVal === Week.WEDNESDAY) {
-            form.onlineDateOfActivityWednesday.set(!form.onlineDateOfActivityWednesday.toBoolean)
+            form.onlineDateOfActivityWednesday.set(
+                !form.onlineDateOfActivityWednesday.toBoolean
+            )
         }
         if (newVal === Week.THURSDAY) {
-            form.onlineDateOfActivityThursday.set(!form.onlineDateOfActivityThursday.toBoolean)
+            form.onlineDateOfActivityThursday.set(
+                !form.onlineDateOfActivityThursday.toBoolean
+            )
         }
         if (newVal === Week.FRIDAY) {
-            form.onlineDateOfActivityFriday.set(!form.onlineDateOfActivityFriday.toBoolean)
+            form.onlineDateOfActivityFriday.set(
+                !form.onlineDateOfActivityFriday.toBoolean
+            )
         }
         if (newVal === Week.SATURDAY) {
-            form.onlineDateOfActivitySaturday.set(!form.onlineDateOfActivitySaturday.toBoolean)
+            form.onlineDateOfActivitySaturday.set(
+                !form.onlineDateOfActivitySaturday.toBoolean
+            )
         }
         if (newVal === Week.SUNDAY) {
-            form.onlineDateOfActivitySunday.set(!form.onlineDateOfActivitySunday.toBoolean)
+            form.onlineDateOfActivitySunday.set(
+                !form.onlineDateOfActivitySunday.toBoolean
+            )
         }
     }
 
@@ -152,10 +190,10 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 id="commonPlaceOfActivity"
                 name="commonPlaceOfActivity"
                 items={[
-                ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
-                    value: _placeOfActivity,
-                    label: __(_placeOfActivity),
-                })),
+                    ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
+                        value: _placeOfActivity,
+                        label: __(_placeOfActivity),
+                    })),
                 ]}
                 {...form.commonPlaceOfActivity}
             />
@@ -178,8 +216,8 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                     ...getAllWeek().map((_week) => ({
                         value: _week,
                         checked: checkedCommonDateOfActivity.includes(_week),
-                        label: __(_week, 'Week')
-                    }))
+                        label: __(_week, 'Week'),
+                    })),
                 ]}
                 error={
                     form.commonDateOfActivityMonday.error ||
@@ -209,47 +247,49 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
                 id="doOnlineActivity"
                 name="doOnlineActivity"
                 items={[
-                { value: 'true', label: 'オンラインしている' },
-                { value: 'false', label: 'オフラインのみ' },
+                    { value: 'true', label: 'オンラインしている' },
+                    { value: 'false', label: 'オフラインのみ' },
                 ]}
                 {...form.isOnlineActivity}
             />
 
             {form.isOnlineActivity.toBoolean ? (
                 <div>
-                <BaseCheckBox
-                    id="onlineDateOfActivity"
-                    name="onlineDateOfActivity"
-                    label="オンライン活動日"
-                    items={[
-                        ...getAllWeek().map((_week) => ({
-                            value: _week,
-                            checked: checkedOnlineDateOfActivity.includes(_week),
-                            label: __(_week, 'Week')
-                        }))
-                    ]}
-                    error={
-                        form.onlineDateOfActivityMonday.error ||
-                        form.onlineDateOfActivityTuesday.error ||
-                        form.onlineDateOfActivityWednesday.error ||
-                        form.onlineDateOfActivityThursday.error ||
-                        form.onlineDateOfActivityFriday.error ||
-                        form.onlineDateOfActivitySaturday.error ||
-                        form.onlineDateOfActivitySunday.error
-                    }
-                    onChange={onChangeOnlineDateOfActivity}
-                    mdCols={4}
-                ></BaseCheckBox>
+                    <BaseCheckBox
+                        id="onlineDateOfActivity"
+                        name="onlineDateOfActivity"
+                        label="オンライン活動日"
+                        items={[
+                            ...getAllWeek().map((_week) => ({
+                                value: _week,
+                                checked: checkedOnlineDateOfActivity.includes(
+                                    _week
+                                ),
+                                label: __(_week, 'Week'),
+                            })),
+                        ]}
+                        error={
+                            form.onlineDateOfActivityMonday.error ||
+                            form.onlineDateOfActivityTuesday.error ||
+                            form.onlineDateOfActivityWednesday.error ||
+                            form.onlineDateOfActivityThursday.error ||
+                            form.onlineDateOfActivityFriday.error ||
+                            form.onlineDateOfActivitySaturday.error ||
+                            form.onlineDateOfActivitySunday.error
+                        }
+                        onChange={onChangeOnlineDateOfActivity}
+                        mdCols={4}
+                    ></BaseCheckBox>
 
-                <BaseTextField
-                    label="オンライン活動日時詳細"
-                    name="onlineDateOfActivityDetail"
-                    id="onlineDateOfActivityDetail"
-                    expand
-                    note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
-                    maxLength={255}
-                    {...form.onlineDateOfActivityDetail}
-                />
+                    <BaseTextField
+                        label="オンライン活動日時詳細"
+                        name="onlineDateOfActivityDetail"
+                        id="onlineDateOfActivityDetail"
+                        expand
+                        note="例）月曜日: 18:00-20:00 / 土曜日: 全日"
+                        maxLength={255}
+                        {...form.onlineDateOfActivityDetail}
+                    />
                 </div>
             ) : (
                 ''

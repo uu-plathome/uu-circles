@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 type Props = {
-    type: "button" | "submit" | "reset",
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    type: 'button' | 'submit' | 'reset'
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 const BlueButton: React.FC<Props> = ({ children, onClick, type }) => {
     return (
@@ -11,7 +11,7 @@ const BlueButton: React.FC<Props> = ({ children, onClick, type }) => {
             onClick={onClick}
             type={type}
         >
-            { children }
+            {children}
         </button>
     )
 }
