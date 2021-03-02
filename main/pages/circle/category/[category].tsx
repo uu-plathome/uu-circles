@@ -30,14 +30,26 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
         )} カテゴリー検索`}
       />
 
-            <BaseLayout>
-                <div className="bg-gray-100 px-2">
-                    <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <div className="px-5">
-                            <h1 className="text-2xl py-8">{ __(String(categoryToCircleType(category as Category))) }</h1>
-                            
-                            <p className="text-base pb-4 font-bold">{ __(String(categoryToCircleType(category as Category)), "CircleTypeTitle") }</p>
-                            <p className="text-sm pb-8">{ __(String(categoryToCircleType(category as Category)), "CircleTypeText") }</p>
+      <BaseLayout>
+        <div className="bg-gray-100 px-2">
+          <TwoColumnContainer sidebar={<CircleSidebar />}>
+            <div className="px-5">
+              <h1 className="text-2xl py-8">
+                {__(String(categoryToCircleType(category as Category)))}
+              </h1>
+
+              <p className="text-base pb-4 font-bold">
+                {__(
+                  String(categoryToCircleType(category as Category)),
+                  'CircleTypeTitle'
+                )}
+              </p>
+              <p className="text-sm pb-8">
+                {__(
+                  String(categoryToCircleType(category as Category)),
+                  'CircleTypeText'
+                )}
+              </p>
 
               {/*  サークル一覧 */}
               <BaseCircleList circles={circles} />
