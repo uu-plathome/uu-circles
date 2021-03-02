@@ -65,7 +65,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                 <SwiperSlide key={circle.id}>
                   <div
                     key={circle.id}
-                    className="mb-6 md:mb-16 flex justify-center"
+                    className="pb-10 flex justify-center"
                   >
                     <div>
                       <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
