@@ -15,12 +15,12 @@ const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
 
       <div className="md:flex justify-center flex-wrap">
         {circleNewJoys.map((circleNewJoy, idx) => {
-          let className = idx === 0 ? 'place-self-end' : ''
-          className = idx === 1 ? 'place-self-center' : className
-          className = idx === 2 ? 'place-self-start' : className
+          let className = idx === 0 ? 'place-self-end md:mr-auto' : ''
+          className = idx === 1 ? 'place-self-center md:mr-auto' : className
+          className = idx === 2 ? 'place-self-start md:mr-auto' : className
 
           return (
-            <div key={circleNewJoy.id} className={`md:px-4 ${className}`}>
+            <div key={circleNewJoy.id} className={`${className}`}>
               <CircleNewJoyListItemSP slug={slug} circleNewJoy={circleNewJoy} />
             </div>
           )

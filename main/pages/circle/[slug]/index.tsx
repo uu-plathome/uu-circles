@@ -105,7 +105,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                     新歓ビラ
                   </h2>
 
-                  <div className="flex justify-center">
+                  <div className="flex justify-center md:justify-start">
                     <a href={circle.handbillImageUrl} target="_blank">
                       <Image
                         src={circle.handbillImageUrl}
