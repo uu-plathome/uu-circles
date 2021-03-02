@@ -1,17 +1,21 @@
-import { FC } from "react"
-import { UseBooleanInput, UseNumberInput, UseStringInput } from "@/hooks/useInput"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
-import { BaseSelect } from "@/components/atoms/form/BaseSelect"
-import { getAllCircleType } from "@/lib/enum/api/CircleType"
-import { __ } from "@/lang/ja"
-import { CircleMainImageInput } from "@/components/atoms/form/CircleMainImageInput"
-import { CircleHandbillImageInput } from "@/components/atoms/form/CircleHandbillImageInput"
-import { CircleActivityImageInput } from "@/components/atoms/form/CircleActivityImageInput"
+import { FC } from 'react'
+import {
+    UseBooleanInput,
+    UseNumberInput,
+    UseStringInput,
+} from '@/hooks/useInput'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { getAllCircleType } from '@/lib/enum/api/CircleType'
+import { __ } from '@/lang/ja'
+import { CircleMainImageInput } from '@/components/atoms/form/CircleMainImageInput'
+import { CircleHandbillImageInput } from '@/components/atoms/form/CircleHandbillImageInput'
+import { CircleActivityImageInput } from '@/components/atoms/form/CircleActivityImageInput'
 
 export type Props = {
     onDropMainImage(acceptedFiles: any): void
     onDropHandbillImage(acceptedFiles: any): void
-    onDropActivityImage(acceptedFiles: any, idx: 1|2|3|4|5|6): void
+    onDropActivityImage(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
     form: {
         description: UseStringInput
         circleType: UseStringInput
@@ -32,7 +36,12 @@ export type Props = {
         activityImageUrl6: UseStringInput
     }
 }
-const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHandbillImage, onDropActivityImage }) => {
+const CommonInfoEditCircleForm: FC<Props> = ({
+    form,
+    onDropMainImage,
+    onDropHandbillImage,
+    onDropActivityImage,
+}) => {
     return (
         <div>
             <BaseTextField
@@ -76,11 +85,11 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 id="circleType"
                 name="circleType"
                 items={[
-                ...getAllCircleType().map((_circleType) => ({
-                    value: _circleType,
-                    label: __(_circleType),
-                })),
-                { value: '', label: '不明' },
+                    ...getAllCircleType().map((_circleType) => ({
+                        value: _circleType,
+                        label: __(_circleType),
+                    })),
+                    { value: '', label: '不明' },
                 ]}
                 {...form.circleType}
             />
@@ -128,9 +137,9 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 label="ロゴ・プロフィール画像"
                 id="mainImageUrl"
                 preview={
-                form.mainImageUrl.value
-                    ? form.mainImageUrl.value
-                    : `/images/no-image.png`
+                    form.mainImageUrl.value
+                        ? form.mainImageUrl.value
+                        : `/images/no-image.png`
                 }
                 onDrop={onDropMainImage}
                 error={form.mainImageUrl.error}
@@ -140,9 +149,9 @@ const CommonInfoEditCircleForm: FC<Props> = ({ form, onDropMainImage, onDropHand
                 label="サークル新歓ビラ画像"
                 id="handbillImageUrl"
                 preview={
-                form.handbillImageUrl.value
-                    ? form.handbillImageUrl.value
-                    : `/images/no-image.png`
+                    form.handbillImageUrl.value
+                        ? form.handbillImageUrl.value
+                        : `/images/no-image.png`
                 }
                 onDrop={onDropHandbillImage}
                 error={form.handbillImageUrl.error}

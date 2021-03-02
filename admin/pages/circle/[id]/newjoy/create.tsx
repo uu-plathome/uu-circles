@@ -5,7 +5,10 @@ import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
-import { isRegisterCircleNewJoyRequestValidationError, RegisterCircleNewJoyRequest } from '@/lib/types/api/RegisterCircleNewJoyRequest'
+import {
+    isRegisterCircleNewJoyRequestValidationError,
+    RegisterCircleNewJoyRequest,
+} from '@/lib/types/api/RegisterCircleNewJoyRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -29,25 +32,26 @@ const CreatePage: NextPage = () => {
     const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
     const release = useBooleanInput(true)
 
-    const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () => showCircle(Number(id)))
+    const { data: circle } = useSWR(
+        [`/admin/api/circle/${id}`, Number(id)],
+        () => showCircle(Number(id))
+    )
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const data = await createCircleNewJoy(
-            Number(id),
-            {
-                type: 'RegisterCircleNewJoyRequest',
-                title: title.value,
-                description: description.value,
-                url: url.value,
-                placeOfActivity: placeOfActivity.value,
-                placeOfActivityDetail: placeOfActivityDetail.value,
-                publishFrom: publishFrom.value,
-                startDate: startDate.value,
-                endDate: endDate.value,
-                release: release.toBoolean,
-            } as RegisterCircleNewJoyRequest)
+        const data = await createCircleNewJoy(Number(id), {
+            type: 'RegisterCircleNewJoyRequest',
+            title: title.value,
+            description: description.value,
+            url: url.value,
+            placeOfActivity: placeOfActivity.value,
+            placeOfActivityDetail: placeOfActivityDetail.value,
+            publishFrom: publishFrom.value,
+            startDate: startDate.value,
+            endDate: endDate.value,
+            release: release.toBoolean,
+        } as RegisterCircleNewJoyRequest)
 
         if (data && isRegisterCircleNewJoyRequestValidationError(data)) {
             title.setErrors(data.errors.title)
@@ -72,14 +76,10 @@ const CreatePage: NextPage = () => {
                 <title>新歓作成</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="新歓作成"
-                >
+                <BaseWrapper title="新歓作成">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         {circle ? (
                             <CreateCircleNewJoyForm
@@ -97,7 +97,9 @@ const CreatePage: NextPage = () => {
                                     release,
                                 }}
                             />
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

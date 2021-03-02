@@ -1,19 +1,22 @@
-import { AuthHeader } from "@/components/layouts/AuthHeader"
-import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
-import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
-import { login } from "@/infra/api/auth"
-import { useStringInput } from "@/hooks/useInput"
-import { NextPage } from "next"
+import { AuthHeader } from '@/components/layouts/AuthHeader'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
+import { login } from '@/infra/api/auth'
+import { useStringInput } from '@/hooks/useInput'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useState } from "react"
-import { AuthContext } from "@/contexts/AuthContext"
-import { isLoginAdminFormRequestValidationError, LoginAdminFormRequest } from "@/lib/types/api/LoginAdminFormRequest"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons"
+import { FormEvent, useContext, useState } from 'react'
+import { AuthContext } from '@/contexts/AuthContext'
+import {
+    isLoginAdminFormRequestValidationError,
+    LoginAdminFormRequest,
+} from '@/lib/types/api/LoginAdminFormRequest'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { isUser } from '@/lib/types/model/User'
-import Link from "next/link"
-import Head from "next/head"
+import Link from 'next/link'
+import Head from 'next/head'
 
 const Login: NextPage = () => {
     const [error, setError] = useState('')
@@ -32,7 +35,7 @@ const Login: NextPage = () => {
 
         const data = await login({
             usernameOrEmail: usernameOrEmail.value,
-            password: password.value
+            password: password.value,
         } as LoginAdminFormRequest)
 
         if (isLoginAdminFormRequestValidationError(data)) {
@@ -69,15 +72,23 @@ const Login: NextPage = () => {
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">
                     <div className="border-2 border-white rounded p-4">
-                        <h1 className="text-white text-center text-2xl mb-4">ログイン</h1>
+                        <h1 className="text-white text-center text-2xl mb-4">
+                            ログイン
+                        </h1>
 
                         {error ? (
                             <div className="p-4 mb-4">
                                 <p className="text-white text-lg">
-                                    <FontAwesomeIcon icon={ faExclamationTriangle } color="red" /> { error }
+                                    <FontAwesomeIcon
+                                        icon={faExclamationTriangle}
+                                        color="red"
+                                    />{' '}
+                                    {error}
                                 </p>
                             </div>
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
 
                         <form onSubmit={onSubmit}>
                             <div className="px-4 mb-4">
@@ -86,21 +97,19 @@ const Login: NextPage = () => {
                                     id="username_or_email"
                                     name="username_or_email"
                                     expand
-                                    { ...usernameOrEmail }
+                                    {...usernameOrEmail}
                                 />
 
                                 <SimplePasswordTextField
                                     label="パスワード"
                                     id="password"
                                     name="password"
-                                    { ...password }
+                                    {...password}
                                 />
                             </div>
 
                             <div className="text-center">
-                                <BlueButton type="submit">
-                                    ログイン
-                                </BlueButton>
+                                <BlueButton type="submit">ログイン</BlueButton>
                             </div>
                         </form>
 

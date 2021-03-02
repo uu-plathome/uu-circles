@@ -4,14 +4,14 @@ import { axiosInstance } from '.'
 import { linkConst } from './linkConst'
 
 export const getMain = async () => {
-    type Response = {
-        data: Circle[]
-        advertises: Advertise[]
-    }
-    const { data } = await axiosInstance.get<Response>(linkConst.MAIN.INDEX)
+  type Response = {
+    data: Circle[]
+    advertises: Advertise[]
+  }
+  const { data } = await axiosInstance.get<Response>(linkConst.MAIN.INDEX)
 
-    return {
-        circles: data.data,
-        advertises: data.advertises
-    }
+  return {
+    circles: data.data,
+    advertises: data.advertises,
+  }
 }

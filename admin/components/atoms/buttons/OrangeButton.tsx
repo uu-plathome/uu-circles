@@ -1,18 +1,18 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link'
+import React from 'react'
 
 type Props = {
-    type?: "button" | "submit" | "reset"
+    type?: 'button' | 'submit' | 'reset'
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
     href?: string
 }
 
 const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
-
     if (href) {
         return (
             <Link href={href}>
-                <a className={`
+                <a
+                    className={`
                     min-w-120
                     inline-block
                     px-6
@@ -31,8 +31,9 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
                     hover:shadow-lg
                     hover:opacity-80
                     focus:outline-none
-                `}>
-                    { children }
+                `}
+                >
+                    {children}
                 </a>
             </Link>
         )
@@ -62,7 +63,7 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
                 onClick={onClick}
                 type={type ? type : 'button'}
             >
-                { children }
+                {children}
             </button>
         )
     }

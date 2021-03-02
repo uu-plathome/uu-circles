@@ -1,4 +1,3 @@
-
 export const Role = {
   /**
    * システム管理者
@@ -13,12 +12,11 @@ export const Role = {
   /**
    * 一般
    */
-  COMMON: 'COMMON'
+  COMMON: 'COMMON',
 } as const
 
 export type RoleKey = keyof typeof Role
 export type Role = typeof Role[keyof typeof Role]
-
 
 export const getAllRole = (): Role[] => Object.values(Role)
 

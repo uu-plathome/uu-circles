@@ -1,14 +1,14 @@
-import { GreenButton } from "@/components/atoms/buttons/GreenButton";
-import { BaseDate } from "@/components/atoms/form/BaseDate";
-import { BaseDatetime } from "@/components/atoms/form/BaseDatetime";
-import { BaseSelect } from "@/components/atoms/form/BaseSelect";
-import { BaseTextField } from "@/components/atoms/form/BaseTextField";
-import { FormHeader } from "@/components/atoms/header/FormHeader";
-import { UseBooleanInput, UseDateInput, UseStringInput } from "@/hooks/useInput";
-import { __ } from "@/lang/ja";
-import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
-import { Circle } from "@/lib/types/model/Circle";
-import { FC, FormEvent } from "react";
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseDate } from '@/components/atoms/form/BaseDate'
+import { BaseDatetime } from '@/components/atoms/form/BaseDatetime'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { FormHeader } from '@/components/atoms/header/FormHeader'
+import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
+import { __ } from '@/lang/ja'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { Circle } from '@/lib/types/model/Circle'
+import { FC, FormEvent } from 'react'
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
@@ -31,7 +31,6 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
             <FormHeader>新歓基本情報</FormHeader>
 
             <div className="mb-8">
-
                 <BaseTextField
                     label="新歓名"
                     name="title"
@@ -40,7 +39,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     maxLength={30}
                     prefix={circle.shortName || circle.name}
                     expand
-                    { ...form.title }
+                    {...form.title}
                 />
 
                 <BaseTextField
@@ -49,7 +48,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     id="description"
                     expand
                     maxLength={100}
-                    { ...form.description }
+                    {...form.description}
                 />
 
                 <BaseSelect
@@ -57,10 +56,16 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     id="placeOfActivity"
                     name="placeOfActivity"
                     items={[
-                        { value: PlaceOfActivity.DISCORD, label: __(PlaceOfActivity.DISCORD) },
-                        { value: PlaceOfActivity.OTHER, label: __(PlaceOfActivity.OTHER) },
+                        {
+                            value: PlaceOfActivity.DISCORD,
+                            label: __(PlaceOfActivity.DISCORD),
+                        },
+                        {
+                            value: PlaceOfActivity.OTHER,
+                            label: __(PlaceOfActivity.OTHER),
+                        },
                     ]}
-                    { ...form.placeOfActivity }
+                    {...form.placeOfActivity}
                 />
 
                 {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
@@ -70,22 +75,24 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                         id="placeOfActivityDetail"
                         expand
                         maxLength={100}
-                        { ...form.placeOfActivityDetail }
+                        {...form.placeOfActivityDetail}
                     />
-                ) : ''}
+                ) : (
+                    ''
+                )}
 
                 <BaseDatetime
                     label="新歓開始日時"
                     name="startDate"
                     id="startDate"
-                    { ...form.startDate }
+                    {...form.startDate}
                 />
 
                 <BaseDatetime
                     label="新歓終了日時"
                     name="endDate"
                     id="endDate"
-                    { ...form.endDate }
+                    {...form.endDate}
                 />
 
                 <BaseTextField
@@ -96,7 +103,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     expand
                     maxLength={255}
                     note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
-                    { ...form.url }
+                    {...form.url}
                 />
             </div>
 
@@ -111,7 +118,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                         { value: 'true', label: '公開' },
                         { value: 'false', label: '非公開' },
                     ]}
-                    { ...form.release }
+                    {...form.release}
                 />
 
                 <BaseDate
@@ -119,14 +126,12 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     name="publishFrom"
                     id="publishFrom"
                     note="予約投稿をしない場合は、空にしてください。"
-                    { ...form.publishFrom }
+                    {...form.publishFrom}
                 />
             </div>
 
             <div className="flex justify-center">
-                <GreenButton type="submit">
-                    進む
-                </GreenButton>
+                <GreenButton type="submit">進む</GreenButton>
             </div>
         </form>
     )

@@ -1,14 +1,20 @@
-import { FC } from "react";
-import { GreenButton } from "../atoms/buttons/GreenButton";
-import { BaseSidebar } from "./BaseSidebar";
+import { FC } from 'react'
+import { GreenButton } from '../atoms/buttons/GreenButton'
+import { BaseSidebar } from './BaseSidebar'
 
 type Props = {
-    title: string,
+    title: string
     actionHref?: string
     actionAs?: string
     actionText?: string
 }
-const BaseWrapper: FC<Props> = ({ title, actionHref, actionAs, actionText, children }) => {
+const BaseWrapper: FC<Props> = ({
+    title,
+    actionHref,
+    actionAs,
+    actionText,
+    children,
+}) => {
     return (
         <main className="flex flex-wrap">
             <div className="w-full md:w-1/3 lg:w-1/5">
@@ -19,21 +25,21 @@ const BaseWrapper: FC<Props> = ({ title, actionHref, actionAs, actionText, child
                 <div className="pt-20 md:pt-10 pb-10">
                     <div className="md:flex justify-between mb-8">
                         <h1 className="text-2xl text-gray-100 mb-4 md:mb-0">
-                            { title }
+                            {title}
                         </h1>
 
                         {actionText ? (
                             <div className="text-right">
                                 <GreenButton href={actionHref} as={actionAs}>
-                                    { actionText }
+                                    {actionText}
                                 </GreenButton>
                             </div>
-                        ) : '' }
+                        ) : (
+                            ''
+                        )}
                     </div>
 
-                    <div>
-                        { children }
-                    </div>
+                    <div>{children}</div>
                 </div>
             </div>
         </main>

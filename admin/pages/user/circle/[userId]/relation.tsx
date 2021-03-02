@@ -18,9 +18,9 @@ import Head from 'next/head'
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const [relationedCircles, setRelationedCircles] = useState<Circle[]>([])
-    const [ selectItems, setSelectItems ] = useState<SelectItem[]>([])
+    const [selectItems, setSelectItems] = useState<SelectItem[]>([])
     const [allCirlces, setAllCircles] = useState<Circle[]>([])
-    const [user, setUser] = useState<User|null>(null)
+    const [user, setUser] = useState<User | null>(null)
     const { userId } = router.query
     const [error, setError] = useState<string>('')
     const circleId = useNumberInput(0)
@@ -28,21 +28,31 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const relationedCircles = await getCircleListByUserId(Number(userId))
+            const relationedCircles = await getCircleListByUserId(
+                Number(userId)
+            )
             const allCircles = await getCircleList()
 
             setUser(relationedCircles.user)
             setRelationedCircles(relationedCircles.circles)
             setAllCircles(allCircles)
-            const relationedCirclesIds = relationedCircles.circles.map((circle: Circle) => circle.id)
+            const relationedCirclesIds = relationedCircles.circles.map(
+                (circle: Circle) => circle.id
+            )
             const newSelectItems = [
                 { value: 0, label: '選択してください' },
-                ...allCircles.filter(
-                    (circle: Circle) => !relationedCirclesIds.includes(circle.id)
-                ).map((circle: Circle) => ({
-                    value: circle.id,
-                    label: circle.name
-                } as SelectItem))
+                ...allCircles
+                    .filter(
+                        (circle: Circle) =>
+                            !relationedCirclesIds.includes(circle.id)
+                    )
+                    .map(
+                        (circle: Circle) =>
+                            ({
+                                value: circle.id,
+                                label: circle.name,
+                            } as SelectItem)
+                    ),
             ]
             setSelectItems(newSelectItems)
         }
@@ -77,21 +87,12 @@ const CreatePage: NextPage = () => {
                 <title>サークルと連携する</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="サークルと連携する"
-                >
+                <BaseWrapper title="サークルと連携する">
                     <div className="border-2 border-gray-800 px-2 py-4">
-
-                        {
-                            error ? (
-                                <DangerBunner text={error} />
-                            ) : ''
-                        }
+                        {error ? <DangerBunner text={error} /> : ''}
 
                         {selectItems.length > 0 ? (
                             <form onSubmit={onSubmit}>
@@ -101,16 +102,18 @@ const CreatePage: NextPage = () => {
                                     label="サークルと連携する"
                                     required
                                     items={selectItems}
-                                    { ...circleId }
+                                    {...circleId}
                                 />
-        
+
                                 <div className="flex justify-center mt-8">
                                     <GreenButton type="submit">
                                         追加
                                     </GreenButton>
                                 </div>
                             </form>
-                        ) : 'loading...'}
+                        ) : (
+                            'loading...'
+                        )}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

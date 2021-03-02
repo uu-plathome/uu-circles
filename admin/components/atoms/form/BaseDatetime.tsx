@@ -11,7 +11,8 @@ export type Props = {
     placeholder?: InputHTMLAttributes<any>['placeholder']
     prefix?: string
     suffix?: string
-} & BaseLabelProps & UseDateInput
+} & BaseLabelProps &
+    UseDateInput
 const BaseDatetime: FC<Props> = ({
     label,
     id,
@@ -22,21 +23,14 @@ const BaseDatetime: FC<Props> = ({
     prefix,
     suffix,
     error,
-    onChangeDate
+    onChangeDate,
 }) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
-            <BaseLabel
-                label={label}
-                note={note}
-                required={required}
-                id={id}
-            />
+            <BaseLabel label={label} note={note} required={required} id={id} />
 
             <div className="flex items-end">
-                {prefix ? (
-                    <p className="ml-1 text-white">{prefix}</p>
-                ) : ''}
+                {prefix ? <p className="ml-1 text-white">{prefix}</p> : ''}
 
                 <DatePicker
                     dateFormat="yyyy-MM-dd HH:mm"
@@ -48,16 +42,12 @@ const BaseDatetime: FC<Props> = ({
                     autoComplete="off"
                     isClearable
                     onChange={(date) => onChangeDate(date)}
-                    onFocus = {(e: any)=> e.target.readOnly = true}
+                    onFocus={(e: any) => (e.target.readOnly = true)}
                 />
 
-                {suffix ? (
-                    <p className="ml-1 text-white">{suffix}</p>
-                ) : ''}
+                {suffix ? <p className="ml-1 text-white">{suffix}</p> : ''}
             </div>
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }
