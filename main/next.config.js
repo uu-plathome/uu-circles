@@ -1,4 +1,4 @@
-const withPWA = require("next-pwa");
+const withPWA = require('next-pwa')
 
 module.exports = withPWA({
   env: {
@@ -18,6 +18,6 @@ module.exports = withPWA({
   },
 
   pwa: {
-    dest: "public", // swの出力ディレクトリ
+    dest: 'public', // swの出力ディレクトリ
   },
-});
+})

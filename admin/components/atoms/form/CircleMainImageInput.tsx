@@ -1,6 +1,6 @@
-import { FC } from "react"
-import { useDropzone } from "react-dropzone"
-import { BaseLabel } from "./BaseLabel"
+import { FC } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { BaseLabel } from './BaseLabel'
 
 const inputClass = `
     transition
@@ -25,7 +25,15 @@ interface Props {
     error: string
     width?: number
 }
-const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview, error, width = 210 }) => {
+const CircleMainImageInput: FC<Props> = ({
+    label,
+    required,
+    id,
+    onDrop,
+    preview,
+    error,
+    width = 210,
+}) => {
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
     const height = width
 
@@ -33,7 +41,9 @@ const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview,
         <div className="mb-4">
             <BaseLabel
                 label={label}
-                note={'最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
+                note={
+                    '最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'
+                }
                 required={required}
                 id={id}
             />
@@ -47,14 +57,16 @@ const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview,
                     <input {...getInputProps()} />
 
                     <div className="text-center">
-                        <img src={preview} alt={label} style={{ width, height }} />
+                        <img
+                            src={preview}
+                            alt={label}
+                            style={{ width, height }}
+                        />
                     </div>
                 </div>
             </div>
 
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }

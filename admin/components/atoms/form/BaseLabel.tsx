@@ -24,19 +24,19 @@ const BaseLabel: React.FC<Props> = ({ label, id, note, required }) => {
                     className="text-white mr-2"
                     htmlFor={id}
                     id={`base_label_${id}`}
-                >{label}</label>
+                >
+                    {label}
+                </label>
                 {required ? (
                     <span className="text-white text-xs bg-red-600 rounded p-1">
                         必須
                     </span>
-                ) : ''}
+                ) : (
+                    ''
+                )}
             </div>
 
-            <div>
-                {note ? (
-                    <p className={noteClassName}>※{note}</p>
-                ) : ''}
-            </div>
+            <div>{note ? <p className={noteClassName}>※{note}</p> : ''}</div>
         </div>
     )
 }

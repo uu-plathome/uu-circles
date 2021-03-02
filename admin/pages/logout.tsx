@@ -14,13 +14,9 @@ const Logout: NextPage = () => {
         }
 
         f()
-    }, [ authContext.accessToken ])
+    }, [authContext.accessToken])
 
-    return (
-        <div>
-            logout...
-        </div>
-    )
+    return <div>logout...</div>
 }
 
 export default Logout

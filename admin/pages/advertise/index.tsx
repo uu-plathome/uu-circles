@@ -14,13 +14,12 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
-
 const IndexPage: NextPage = () => {
-    const [ advertises, setAdvertise ] = useState<Advertise[]>([])
-    const [ error, setError ] = useState<string>('')
+    const [advertises, setAdvertise] = useState<Advertise[]>([])
+    const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
-    const [ isOpen, setIsOpen ] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     const fetchAdvertise = async () => {
         setAdvertise(await getAdvertiseList())
@@ -49,9 +48,7 @@ const IndexPage: NextPage = () => {
                 <title>広告管理</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
                 <BaseWrapper
@@ -59,36 +56,34 @@ const IndexPage: NextPage = () => {
                     actionText="広告発行"
                     actionHref="/advertise/create"
                 >
-                    {
-                        success ? (
-                            <SuccessBunner text={success} />
-                        ) : ''
-                    }
+                    {success ? <SuccessBunner text={success} /> : ''}
 
-                    {
-                        error ? (
-                            <DangerBunner text={error} />
-                        ) : ''
-                    }
+                    {error ? <DangerBunner text={error} /> : ''}
 
                     <SubmitLoading isOpen={isOpen} />
 
                     <div className="border-2 border-gray-800 p-2">
-                        {advertises.length > 0 ? (
-                            advertises.map((advertise: Advertise) => {
-                                return <AdvertiseListItem
-                                    key={`circle-${advertise.id}`}
-                                    advertise={advertise}
-                                    onDelete={onDelete}
-                                />
-                            })
-                        ) : ''}
+                        {advertises.length > 0
+                            ? advertises.map((advertise: Advertise) => {
+                                  return (
+                                      <AdvertiseListItem
+                                          key={`circle-${advertise.id}`}
+                                          advertise={advertise}
+                                          onDelete={onDelete}
+                                      />
+                                  )
+                              })
+                            : ''}
 
                         {advertises.length === 0 ? (
                             <div className="py-4">
-                                <p className="text-white">まだ広告が登録されていません</p>
+                                <p className="text-white">
+                                    まだ広告が登録されていません
+                                </p>
                             </div>
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </BaseWrapper>
             </BaseContainer>
