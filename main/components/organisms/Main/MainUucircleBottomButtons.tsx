@@ -11,7 +11,10 @@ const MainUucircleBottomButtons: FC<Props> = () => {
 
   return (
     <div className="bg-gray-100  pt-10 pb-10 ">
-      <div className="text-center my-8 mx-auto" style={{ width: isMd ? 'auto' : 280 }}>
+      <div
+        className="text-center my-8 mx-auto"
+        style={{ width: isMd ? 'auto' : 280 }}
+      >
         <h2 className="text-lg font-bold mb-2">新宇大生必見の情報サイト！</h2>
         <p className="text-sm">
           アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
