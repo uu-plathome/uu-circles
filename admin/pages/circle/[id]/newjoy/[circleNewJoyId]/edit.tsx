@@ -1,11 +1,17 @@
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
-import { getCircleNewJoy, updateCircleNewJoy } from '@/infra/api/cirecle_new_joy'
+import {
+    getCircleNewJoy,
+    updateCircleNewJoy,
+} from '@/infra/api/cirecle_new_joy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
-import { isUpdateCircleNewJoyRequestValidationError, UpdateCircleNewJoyRequest } from '@/lib/types/api/UpdateCircleNewJoyRequest'
+import {
+    isUpdateCircleNewJoyRequestValidationError,
+    UpdateCircleNewJoyRequest,
+} from '@/lib/types/api/UpdateCircleNewJoyRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/EditCircleNewJoyForm'
@@ -15,7 +21,7 @@ import Head from 'next/head'
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { id, circleNewJoyId } = router.query
-    const [circle, setCircle] = useState<Circle|null>(null)
+    const [circle, setCircle] = useState<Circle | null>(null)
     const { isMd } = useMediaQuery()
 
     const title = useStringInput('')
@@ -30,10 +36,10 @@ const CreatePage: NextPage = () => {
 
     useEffect(() => {
         const f = async () => {
-            const {
-                circle: newCircle,
-                circleNewJoy
-            } = await getCircleNewJoy(Number(id), Number(circleNewJoyId))
+            const { circle: newCircle, circleNewJoy } = await getCircleNewJoy(
+                Number(id),
+                Number(circleNewJoyId)
+            )
             setCircle(newCircle)
 
             title.set(circleNewJoy.title)
@@ -61,13 +67,17 @@ const CreatePage: NextPage = () => {
                 title: title.value,
                 description: description.value,
                 url: url.value,
-                placeOfActivity: placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
+                placeOfActivity:
+                    placeOfActivity.value !== 'null'
+                        ? placeOfActivity.value
+                        : null,
                 placeOfActivityDetail: placeOfActivityDetail.value,
                 publishFrom: publishFrom.value,
                 startDate: startDate.value,
                 endDate: endDate.value,
                 release: release.value === 'true',
-            } as UpdateCircleNewJoyRequest)
+            } as UpdateCircleNewJoyRequest
+        )
 
         if (data && isUpdateCircleNewJoyRequestValidationError(data)) {
             title.setErrors(data.errors.title)
@@ -92,17 +102,13 @@ const CreatePage: NextPage = () => {
                 <title>新歓編集</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="新歓編集"
-                >
+                <BaseWrapper title="新歓編集">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         {circle ? (
-                            <EditCircleNewJoyForm 
+                            <EditCircleNewJoyForm
                                 onSubmit={onSubmit}
                                 circle={circle}
                                 form={{
@@ -117,7 +123,9 @@ const CreatePage: NextPage = () => {
                                     release,
                                 }}
                             />
-                        ) : ''}
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

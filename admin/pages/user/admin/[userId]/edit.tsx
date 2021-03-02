@@ -9,7 +9,10 @@ import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
-import { isUpdateAdminUserRequestValidationError, UpdateAdminUserRequest } from '@/lib/types/api/UpdateAdminUserRequest'
+import {
+    isUpdateAdminUserRequestValidationError,
+    UpdateAdminUserRequest,
+} from '@/lib/types/api/UpdateAdminUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Role } from '@/lib/enum/api/Role'
@@ -20,7 +23,7 @@ import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 const CreatePage: NextPage = () => {
     const router = useRouter()
     const { role: ownRole } = useContext(AuthContext)
-    const [ isOpen, setIsOpen ] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     const { userId } = router.query
     const { isMd } = useMediaQuery()
 
@@ -41,28 +44,24 @@ const CreatePage: NextPage = () => {
             const foundUser = await getAdminUser(Number(userId))
             username.set(foundUser.username)
             displayName.set(foundUser.displayName)
-            active.set(foundUser.active),
-            role.set(foundUser.role)
+            active.set(foundUser.active), role.set(foundUser.role)
             email.set(foundUser.email)
         }
 
         f()
-    }, [ userId ])
+    }, [userId])
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setIsOpen(true)
 
-        const data = await updateAdminUser(
-            Number(userId),
-            {
-                type: 'UpdateAdminUserRequest',
-                username: username.value,
-                displayName: displayName.value,
-                active: active.toBoolean,
-                role: role.value
-            } as UpdateAdminUserRequest
-        )
+        const data = await updateAdminUser(Number(userId), {
+            type: 'UpdateAdminUserRequest',
+            username: username.value,
+            displayName: displayName.value,
+            active: active.toBoolean,
+            role: role.value,
+        } as UpdateAdminUserRequest)
 
         if (isUpdateAdminUserRequestValidationError(data)) {
             username.setErrors(data.errors.username)
@@ -98,16 +97,12 @@ const CreatePage: NextPage = () => {
                 <title>管理者アカウント編集</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
-                <BaseWrapper
-                    title="管理者アカウント編集"
-                >
+                <BaseWrapper title="管理者アカウント編集">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <form onSubmit={onSubmit}>
                             <BaseTextField
@@ -119,7 +114,7 @@ const CreatePage: NextPage = () => {
                                 placeholder="u-ta"
                                 maxLength={30}
                                 note="アルファベット、ハイフンのみ。"
-                                { ...username }
+                                {...username}
                             />
 
                             <BaseTextField
@@ -129,7 +124,7 @@ const CreatePage: NextPage = () => {
                                 placeholder="宇都宮太郎"
                                 required
                                 maxLength={50}
-                                { ...displayName }
+                                {...displayName}
                             />
 
                             <BaseSelect
@@ -141,7 +136,7 @@ const CreatePage: NextPage = () => {
                                     { value: 'true', label: '有効' },
                                     { value: 'false', label: '無効' },
                                 ]}
-                                { ...active }
+                                {...active}
                             />
 
                             <BaseSelect
@@ -150,7 +145,7 @@ const CreatePage: NextPage = () => {
                                 id="role"
                                 required
                                 items={roleList()}
-                                { ...role }
+                                {...role}
                             />
 
                             <BaseTextField
@@ -160,13 +155,11 @@ const CreatePage: NextPage = () => {
                                 required
                                 expand
                                 disabled
-                                { ...email }
+                                {...email}
                             />
 
                             <div className="flex justify-center mt-8">
-                                <GreenButton type="submit">
-                                    進む
-                                </GreenButton>
+                                <GreenButton type="submit">進む</GreenButton>
                             </div>
                         </form>
                     </div>

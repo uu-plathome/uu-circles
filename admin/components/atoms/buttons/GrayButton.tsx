@@ -1,7 +1,7 @@
-import Link, { LinkProps } from "next/link";
-import React from "react";
-import { UrlObject } from 'url';
-type Url = string | UrlObject;
+import Link, { LinkProps } from 'next/link'
+import React from 'react'
+import { UrlObject } from 'url'
+type Url = string | UrlObject
 
 type Props = {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
@@ -31,13 +31,10 @@ const buttonClassName = `
     focus:outline-none
 `
 const GrayButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
-
     if (href) {
         return (
             <Link href={href} as={as}>
-                <a className={buttonClassName}>
-                    { children }
-                </a>
+                <a className={buttonClassName}>{children}</a>
             </Link>
         )
     } else {
@@ -47,7 +44,7 @@ const GrayButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
                 onClick={onClick}
                 type={type ? type : 'button'}
             >
-                { children }
+                {children}
             </button>
         )
     }

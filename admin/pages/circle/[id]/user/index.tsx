@@ -3,7 +3,11 @@ import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
-import { deleteCircleUser, getCircleUserList, resendEmailCircleUser } from '@/infra/api/circle_user'
+import {
+    deleteCircleUser,
+    getCircleUserList,
+    resendEmailCircleUser,
+} from '@/infra/api/circle_user'
 import { useRouter } from 'next/router'
 import { User } from '@/lib/types/model/User'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -12,7 +16,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
 
 const IndexPage: NextPage = () => {
-    const router = useRouter();
+    const router = useRouter()
     const [users, setUsers] = useState<User[]>([])
     const [success, setSuccess] = useState<boolean>(false)
     const { id } = router.query
@@ -49,9 +53,7 @@ const IndexPage: NextPage = () => {
                 <title>サークルユーザー管理</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
                 <BaseWrapper
@@ -60,21 +62,19 @@ const IndexPage: NextPage = () => {
                     actionAs={`/circle/${id}/user/create`}
                     actionText="アカウント新規作成"
                 >
-                    {
-                        success ? (
-                            <SuccessBunner text="Success" />
-                        ) : ''
-                    }
+                    {success ? <SuccessBunner text="Success" /> : ''}
 
                     <div className="border-2 border-gray-800 p-2">
                         {users.map((user: User) => {
-                            return <CircleUserListItem
-                                circleId={Number(id)}
-                                key={`user-${user.id}`} 
-                                user={user}
-                                onResendEmail={onResendEmail}
-                                onDelete={onDeleteUser}
-                            />
+                            return (
+                                <CircleUserListItem
+                                    circleId={Number(id)}
+                                    key={`user-${user.id}`}
+                                    user={user}
+                                    onResendEmail={onResendEmail}
+                                    onDelete={onDeleteUser}
+                                />
+                            )
                         })}
                     </div>
                 </BaseWrapper>

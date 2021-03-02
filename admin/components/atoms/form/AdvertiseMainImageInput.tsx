@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react"
-import { useDropzone } from "react-dropzone"
-import { BaseLabel } from "./BaseLabel"
+import { FC, useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { BaseLabel } from './BaseLabel'
 
 const inputClass = `
     transition
@@ -25,19 +25,29 @@ interface Props {
     error: string
     width?: number
 }
-const AdvertiseMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview, error, width = 210 }) => {
+const AdvertiseMainImageInput: FC<Props> = ({
+    label,
+    required,
+    id,
+    onDrop,
+    preview,
+    error,
+    width = 210,
+}) => {
     const { getRootProps, getInputProps } = useDropzone({ onDrop })
     const [height, setHeight] = useState(0)
     useEffect(() => {
         // w : h = 375 : 218
-        setHeight(width * 218 / 375)
+        setHeight((width * 218) / 375)
     }, [width])
 
     return (
         <div className="mb-4">
             <BaseLabel
                 label={label}
-                note={'最適なアスペクト比は375:218です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
+                note={
+                    '最適なアスペクト比は375:218です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'
+                }
                 required={required}
                 id={id}
             />
@@ -51,14 +61,16 @@ const AdvertiseMainImageInput: FC<Props> = ({ label, required, id, onDrop, previ
                     <input {...getInputProps()} />
 
                     <div className="text-center">
-                        <img src={preview} alt={label} style={{ width, height }} />
+                        <img
+                            src={preview}
+                            alt={label}
+                            style={{ width, height }}
+                        />
                     </div>
                 </div>
             </div>
 
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }

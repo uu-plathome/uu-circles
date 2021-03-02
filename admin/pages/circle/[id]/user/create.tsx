@@ -5,7 +5,10 @@ import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { createCircleUser } from '@/infra/api/circle_user'
-import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest'
+import {
+    isRegisterCircleUserRequestValidationError,
+    RegisterCircleUserRequest,
+} from '@/lib/types/api/RegisterCircleUserRequest'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -23,15 +26,12 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const data = await createCircleUser(
-            Number(id),
-            {
-                type: 'RegisterCircleUserRequest',
-                username: username.value,
-                displayName: displayName.value,
-                email: email.value
-            } as RegisterCircleUserRequest
-        )
+        const data = await createCircleUser(Number(id), {
+            type: 'RegisterCircleUserRequest',
+            username: username.value,
+            displayName: displayName.value,
+            email: email.value,
+        } as RegisterCircleUserRequest)
 
         if (isRegisterCircleUserRequestValidationError(data)) {
             username.setErrors(data.errors.username)
@@ -50,14 +50,10 @@ const CreatePage: NextPage = () => {
                 <title>部員アカウント新規作成</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="部員アカウント新規作成"
-                >
+                <BaseWrapper title="部員アカウント新規作成">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleUserForm
                             onSubmit={onSubmit}

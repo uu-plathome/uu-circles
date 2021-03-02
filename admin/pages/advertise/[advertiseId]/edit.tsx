@@ -24,7 +24,7 @@ const CreatePage: NextPage = () => {
     const mainImageUrl = useStringInput('')
     const active = useBooleanInput(true)
     const publishTo = useDateInput(null, 'YYYY-MM-DD')
-    const publishFrom = useDateInput(null,  'YYYY-MM-DD')
+    const publishFrom = useDateInput(null, 'YYYY-MM-DD')
 
     useEffect(() => {
         const f = async () => {
@@ -42,18 +42,15 @@ const CreatePage: NextPage = () => {
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const data = await updateAdvertise(
-            Number(advertiseId),
-            {
-                type: 'UpdateAdvertiseRequest',
-                title: title.value,
-                link: link.value,
-                mainImageUrl: mainImageUrl.value,
-                active: active.toBoolean,
-                publishTo: publishTo.value,
-                publishFrom: publishFrom.value,
-            }
-        )
+        const data = await updateAdvertise(Number(advertiseId), {
+            type: 'UpdateAdvertiseRequest',
+            title: title.value,
+            link: link.value,
+            mainImageUrl: mainImageUrl.value,
+            active: active.toBoolean,
+            publishTo: publishTo.value,
+            publishFrom: publishFrom.value,
+        })
 
         if (isUpdateAdvertiseRequestValidationError(data)) {
             title.setErrors(data.errors.title)
@@ -87,13 +84,15 @@ const CreatePage: NextPage = () => {
                             }
                             mainImageUrl.set(data.url)
                         } catch (e) {
-                            mainImageUrl.setError('エラーが発生しました。別の画像を試してください。')
+                            mainImageUrl.setError(
+                                'エラーが発生しました。別の画像を試してください。'
+                            )
                         }
                     },
                     error(err) {
-                        console.error(err.message);
+                        console.error(err.message)
                     },
-                });
+                })
             }
             reader.readAsDataURL(file)
         })
@@ -105,14 +104,10 @@ const CreatePage: NextPage = () => {
                 <title>広告発行</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <BaseContainer>
-                <BaseWrapper
-                    title="広告発行"
-                >
+                <BaseWrapper title="広告発行">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <EditAdvertiseForm
                             onDropMainImage={onDropMainImage}

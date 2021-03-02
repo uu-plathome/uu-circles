@@ -1,8 +1,8 @@
-import { GreenButton } from "@/components/atoms/buttons/GreenButton";
-import { BaseSelect } from "@/components/atoms/form/BaseSelect";
-import { BaseTextField } from "@/components/atoms/form/BaseTextField";
-import { UseBooleanInput, UseStringInput } from "@/hooks/useInput";
-import { FC, FormEvent } from "react";
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { FC, FormEvent } from 'react'
 
 type Props = {
     onSubmit(e: FormEvent<HTMLFormElement>): void
@@ -21,7 +21,7 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                 id="username"
                 required
                 note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-                { ...form.username }
+                {...form.username}
             />
 
             <BaseTextField
@@ -31,7 +31,7 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                 placeholder="u-lab"
                 required
                 note="入力がない場合は、自動で決まります"
-                { ...form.displayName }
+                {...form.displayName}
             />
 
             <BaseSelect
@@ -43,13 +43,11 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
                     { value: 'true', label: '有効' },
                     { value: 'false', label: '無効' },
                 ]}
-                { ...form.active }
+                {...form.active}
             />
 
             <div className="flex justify-center mt-8">
-                <GreenButton type="submit">
-                    進む
-                </GreenButton>
+                <GreenButton type="submit">進む</GreenButton>
             </div>
         </form>
     )
