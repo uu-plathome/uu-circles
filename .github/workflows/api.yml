@@ -25,6 +25,7 @@ jobs:
         run: |
           composer install --prefer-dist --no-suggest --no-progress --no-ansi --no-interaction
           echo "${PWD}/vendor/bin" >> $GITHUB_PATH
+        working-directory: ./api
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
