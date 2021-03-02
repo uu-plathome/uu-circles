@@ -30,10 +30,6 @@ class SearchCategoryCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
-        $circle = Circle::whereRelease(true)->inRandomOrder()->first();
-        $this->assertNotNull($circle);
-        Log::info($circle);
-
         $categoryList = CategorySlugProperty::getAll();
         $category = $categoryList[array_rand($categoryList)];
         Log::info($category);

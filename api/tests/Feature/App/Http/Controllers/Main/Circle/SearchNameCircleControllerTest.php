@@ -2,20 +2,21 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
-use App\Enum\SlugProperty\TagSlugProperty;
+use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Models\Circle;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class SearchTagCircleControllerTest extends TestCase
+class SearchNameCircleControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("SearchTagCircleControllerTest");
+        Log::info("SearchNameCircleControllerTest");
     }
 
     /**
@@ -30,12 +31,10 @@ class SearchTagCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
-        $tagList = TagSlugProperty::getAll();
-        $tag = $tagList[array_rand($tagList)];
-        Log::info($tag);
+        $search = Str::random(2);
 
         // WHEN
-        $response = $this->get("/api/circle/tag/$tag");
+        $response = $this->get("/api/circle/search/$search");
 
         // THEN
         $response->assertOk();
