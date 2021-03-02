@@ -22,6 +22,8 @@ const Page: NextPage<Props> = ({
 }) => {
     const router = useRouter()
     const { tag } = router.query
+    const circleTagTitle = __(String(tag).toUpperCase(), "CircleTagTitle")
+    const circleTagText = __(String(tag).toUpperCase(), "CircleTagText")
 
     return (
         <div>
@@ -35,11 +37,11 @@ const Page: NextPage<Props> = ({
                         <div className="px-5">
                             <h1 className="text-2xl py-8">{ __(String(tag).toUpperCase()) }</h1>
 
-                            {__(String(tag).toUpperCase(), "CircleTagTitle") ? (
-                                <p className="text-base pb-4">{ __(String(tag).toUpperCase(), "CircleTagTitle") }</p>
+                            {circleTagTitle ? (
+                                <p className="text-base pb-4 font-bold">{ circleTagTitle }</p>
                             ) : ''}
-                            {__(String(tag).toUpperCase(), "CircleTagText") ? (
-                                <p className="text-sm pb-8">{ __(String(tag).toUpperCase(), "CircleTagText") }</p>
+                            {circleTagText? (
+                                <p className="text-sm pb-8">{ circleTagText }</p>
                             ) : ''}
 
                             {/*  サークル一覧 */}
