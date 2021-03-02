@@ -84,27 +84,28 @@ export const getCircleByTag = async (
     `${linkConst.CIRCLE.GROUP}/tag/${tag}`
   )
 
-    return {
-        circles: data.data,
-        recommendCircles: data.recommendCircles
-    }
+  return {
+    circles: data.data,
+    recommendCircles: data.recommendCircles,
+  }
 }
 
-
-export const searchCircle = async (search: string): Promise<{
-    circles: Circle[],
-    recommendCircles: Circle[]
+export const searchCircle = async (
+  search: string
+): Promise<{
+  circles: Circle[]
+  recommendCircles: Circle[]
 }> => {
-    type Response = {
-        data: Circle[],
-        recommendCircles: Circle[]
-    }
-    const { data } = await axiosInstance.get<Response>(
-        `${linkConst.CIRCLE.GROUP}/search/${search}`
-    )
+  type Response = {
+    data: Circle[]
+    recommendCircles: Circle[]
+  }
+  const { data } = await axiosInstance.get<Response>(
+    `${linkConst.CIRCLE.GROUP}/search/${search}`
+  )
 
-    return {
-        circles: data.data,
-        recommendCircles: data.recommendCircles
-    }
+  return {
+    circles: data.data,
+    recommendCircles: data.recommendCircles,
+  }
 }

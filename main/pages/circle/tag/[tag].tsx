@@ -16,33 +16,32 @@ type Props = {
   circles?: Circle[]
   recommendCircles?: Circle[]
 }
-const Page: NextPage<Props> = ({
-    circles,
-    recommendCircles
-}) => {
-    const router = useRouter()
-    const { tag } = router.query
-    const circleTagTitle = __(String(tag).toUpperCase(), "CircleTagTitle")
-    const circleTagText = __(String(tag).toUpperCase(), "CircleTagText")
+const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
+  const router = useRouter()
+  const { tag } = router.query
+  const circleTagTitle = __(String(tag).toUpperCase(), 'CircleTagTitle')
+  const circleTagText = __(String(tag).toUpperCase(), 'CircleTagText')
 
-    return (
-        <div>
-            <BaseHead
-                title={ `${__(String(tag).toUpperCase())}タグ検索` }
-            />
+  return (
+    <div>
+      <BaseHead title={`${__(String(tag).toUpperCase())}タグ検索`} />
 
-            <BaseLayout>
-                <div className="bg-gray-100 px-2">
-                    <TwoColumnContainer sidebar={<CircleSidebar />}>
-                        <div className="px-5">
-                            <h1 className="text-2xl py-8">{ __(String(tag).toUpperCase()) }</h1>
+      <BaseLayout>
+        <div className="bg-gray-100 px-2">
+          <TwoColumnContainer sidebar={<CircleSidebar />}>
+            <div className="px-5">
+              <h1 className="text-2xl py-8">{__(String(tag).toUpperCase())}</h1>
 
-                            {circleTagTitle ? (
-                                <p className="text-base pb-4 font-bold">{ circleTagTitle }</p>
-                            ) : ''}
-                            {circleTagText? (
-                                <p className="text-sm pb-8">{ circleTagText }</p>
-                            ) : ''}
+              {circleTagTitle ? (
+                <p className="text-base pb-4 font-bold">{circleTagTitle}</p>
+              ) : (
+                ''
+              )}
+              {circleTagText ? (
+                <p className="text-sm pb-8">{circleTagText}</p>
+              ) : (
+                ''
+              )}
 
               {/*  サークル一覧 */}
               <BaseCircleList circles={circles} />

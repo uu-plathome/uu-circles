@@ -81,9 +81,9 @@ export const getFullJPDate = (
   }
   const date = dayjs(originStartDate)
 
-  const fullDate=date.format('YYYY年M月D日')
-  
-  return (fullDate+"　"+getTime(originStartDate,originEndDate))
+  const fullDate = date.format('YYYY年M月D日')
+
+  return fullDate + '　' + getTime(originStartDate, originEndDate)
 }
 
 export const isDate = (strDate: string) => {
