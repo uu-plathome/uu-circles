@@ -21,7 +21,7 @@ const inputClass = `
 export type Props = {
     id: string
     name: InputHTMLAttributes<any>['name']
-    value: string|number
+    value: string | number
     required?: boolean
     type?: InputHTMLAttributes<any>['type']
     placeholder?: InputHTMLAttributes<any>['placeholder']
@@ -41,18 +41,13 @@ const SimplePasswordTextField: FC<Props> = ({
     pattern,
     error,
     disabled,
-    onChange
+    onChange,
 }) => {
     const [visible, setVisible] = useState(false)
 
     return (
         <div className="flex flex-col space-y-1 mb-4">
-            <BaseLabel
-                label={label}
-                note={note}
-                required={required}
-                id={id}
-            />
+            <BaseLabel label={label} note={note} required={required} id={id} />
 
             <div className="relative">
                 <input
@@ -67,7 +62,7 @@ const SimplePasswordTextField: FC<Props> = ({
                     pattern={pattern}
                     disabled={disabled}
                     style={{
-                        width: '100%'
+                        width: '100%',
                     }}
                 />
 
@@ -85,7 +80,9 @@ const SimplePasswordTextField: FC<Props> = ({
             <div className="flex justify-between">
                 {error ? (
                     <p className="text-sm text-red-400">{error}</p>
-                ) : <span> </span>}
+                ) : (
+                    <span> </span>
+                )}
             </div>
         </div>
     )

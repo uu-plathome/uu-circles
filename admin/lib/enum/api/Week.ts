@@ -1,4 +1,3 @@
-
 export const Week = {
   /**
    * 月曜日
@@ -33,12 +32,11 @@ export const Week = {
   /**
    * 日曜日
    */
-  SUNDAY: 'SUNDAY'
+  SUNDAY: 'SUNDAY',
 } as const
 
 export type WeekKey = keyof typeof Week
 export type Week = typeof Week[keyof typeof Week]
-
 
 export const getAllWeek = (): Week[] => Object.values(Week)
 

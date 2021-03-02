@@ -6,7 +6,10 @@ import { useDelayedEffect } from '@/hooks/useDelayedEffect'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createCircle } from '@/infra/api/circle'
-import { CreateCircleFormRequest, isCreateCircleFormRequestValidationError } from '@/lib/types/api/CreateCircleFormRequest'
+import {
+    CreateCircleFormRequest,
+    isCreateCircleFormRequestValidationError,
+} from '@/lib/types/api/CreateCircleFormRequest'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -58,22 +61,18 @@ const CreatePage: NextPage = () => {
                 <title>サークル新規作成</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <SubmitLoading isOpen={isOpen} />
 
             <BaseContainer>
-                <BaseWrapper
-                    title="サークル新規作成"
-                >
+                <BaseWrapper title="サークル新規作成">
                     <div className="border-2 border-gray-800 px-2 py-4">
                         <CreateCircleForm
                             onSubmit={onSubmit}
                             form={{
                                 name,
-                                slug
+                                slug,
                             }}
                         />
                     </div>

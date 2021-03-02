@@ -7,9 +7,7 @@ import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
-}> = ({
-  todayCircleNewJoy
-}) => {
+}> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
 
@@ -26,9 +24,7 @@ const PcLayout: FC<{
         }}
       >
         <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
-          <p className="text-xs leading-5">
-            {getDOW(circleNewJoy.startDate)}
-          </p>
+          <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
         </div>
         <div
           className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
@@ -118,9 +114,7 @@ const PcLayout: FC<{
 
 const SpLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
-}> = ({
-  todayCircleNewJoy
-}) => {
+}> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
 
@@ -179,13 +173,13 @@ const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
 
   return (
     <div>
-        <div className="hidden md:block">
-          <PcLayout todayCircleNewJoy={todayCircleNewJoy} />
-        </div>
+      <div className="hidden md:block">
+        <PcLayout todayCircleNewJoy={todayCircleNewJoy} />
+      </div>
 
-        <div className="md:hidden">
-          <SpLayout todayCircleNewJoy={todayCircleNewJoy} />
-        </div>
+      <div className="md:hidden">
+        <SpLayout todayCircleNewJoy={todayCircleNewJoy} />
+      </div>
     </div>
   )
 }

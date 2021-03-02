@@ -17,7 +17,6 @@ import { useRouter } from 'next/router'
 import { Role } from '@/lib/enum/api/Role'
 import { AuthContext } from '@/contexts/AuthContext'
 
-
 const useSuccess = <T,>(initialState: T) => {
     const [success, setSuccess] = useState<T>(initialState)
 
@@ -31,7 +30,7 @@ const useSuccess = <T,>(initialState: T) => {
 
     return {
         success,
-        setSuccess: newSetSuceess
+        setSuccess: newSetSuceess,
     }
 }
 
@@ -42,11 +41,8 @@ const IndexPage: NextPage = () => {
     const [error, setError] = useState<string>('')
     const { success, setSuccess } = useSuccess<string>('')
     const { isMd } = useMediaQuery()
-    const [ isOpen, setIsOpen ] = useState(false)
-    const { data: authUser } = useSWR(
-        '/admin/api/user',
-        getAuthUser
-    )
+    const [isOpen, setIsOpen] = useState(false)
+    const { data: authUser } = useSWR('/admin/api/user', getAuthUser)
 
     useEffect(() => {
         if (!ownRole || ownRole === Role.COMMON) {
@@ -72,9 +68,7 @@ const IndexPage: NextPage = () => {
                 <title>管理者アカウント管理画面</title>
             </Head>
 
-            {isMd ? (
-                <BaseHeader />
-            ) : ''}
+            {isMd ? <BaseHeader /> : ''}
 
             <SubmitLoading isOpen={isOpen} />
 
@@ -84,29 +78,23 @@ const IndexPage: NextPage = () => {
                     actionHref="/user/admin/create"
                     actionText="管理者アカウント作成"
                 >
-                    {
-                        success ? (
-                            <SuccessBunner text={success} />
-                        ) : ''
-                    }
+                    {success ? <SuccessBunner text={success} /> : ''}
 
-                    {
-                        error ? (
-                            <DangerBunner text={error} />
-                        ) : ''
-                    }
+                    {error ? <DangerBunner text={error} /> : ''}
 
                     <div className="border-2 border-gray-800 p-2">
-                        {users? (
-                            users.map((user: User) => {
-                                return <AdminUserListItem
-                                    key={`user-${user.id}`}
-                                    authUser={authUser}
-                                    user={user}
-                                    onResendEmail={onResendEmail}
-                                />
-                            })
-                        ) : ''}
+                        {users
+                            ? users.map((user: User) => {
+                                  return (
+                                      <AdminUserListItem
+                                          key={`user-${user.id}`}
+                                          authUser={authUser}
+                                          user={user}
+                                          onResendEmail={onResendEmail}
+                                      />
+                                  )
+                              })
+                            : ''}
                     </div>
                 </BaseWrapper>
             </BaseContainer>

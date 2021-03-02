@@ -15,23 +15,28 @@ export type Props = {
     error?: string
     onChange(e: any): void
 } & BaseLabelProps
-const BaseRadio: React.FC<Props> = ({ label, id, name, note, value, items, required, error, onChange }) => {
+const BaseRadio: React.FC<Props> = ({
+    label,
+    id,
+    name,
+    note,
+    value,
+    items,
+    required,
+    error,
+    onChange,
+}) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
-            <BaseLabel
-                label={label}
-                note={note}
-                required={required}
-                id={id}
-            />
+            <BaseLabel label={label} note={note} required={required} id={id} />
 
             <div>
                 {items.map((selectItem: SelectItem) => {
                     return (
                         <div key={`${id}-${selectItem.value || 'null'}`}>
-                            <label
-                                htmlFor={`${id}_${value}`}
-                            >{selectItem.label || selectItem.value}</label>
+                            <label htmlFor={`${id}_${value}`}>
+                                {selectItem.label || selectItem.value}
+                            </label>
 
                             <input
                                 id={`${id}_${value}`}
@@ -47,9 +52,7 @@ const BaseRadio: React.FC<Props> = ({ label, id, name, note, value, items, requi
                 })}
             </div>
 
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+            {error ? <p className="text-sm text-red-400">{error}</p> : ''}
         </div>
     )
 }

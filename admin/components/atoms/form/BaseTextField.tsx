@@ -19,12 +19,12 @@ const inputClass = `
 export type Props = {
     id: string
     name: InputHTMLAttributes<any>['name']
-    value: string|number
+    value: string | number
     expand?: boolean
     required?: boolean
     type?: InputHTMLAttributes<any>['type']
     placeholder?: InputHTMLAttributes<any>['placeholder']
-    prefix?: string|any
+    prefix?: string | any
     suffix?: string
     error?: string
     maxLength?: number
@@ -48,9 +48,9 @@ const BaseTextField: FC<Props> = ({
     suffix,
     error,
     disabled,
-    onChange
+    onChange,
 }) => {
-    const [ counter, setCounter ] = useState<number>(0)
+    const [counter, setCounter] = useState<number>(0)
 
     useDelayedEffect(
         () => {
@@ -66,19 +66,19 @@ const BaseTextField: FC<Props> = ({
 
     return (
         <div className="flex flex-col space-y-1 mb-4">
-            <BaseLabel
-                label={label}
-                note={note}
-                required={required}
-                id={id}
-            />
+            <BaseLabel label={label} note={note} required={required} id={id} />
 
             <div className="flex items-end">
                 {prefix ? (
-                    <p className="rounded whitespace-nowrap bg-gray-200 text-black-900 px-2 md:px-4 flex items-center text-xs md:text-base" style={{ height: 42 }}>
+                    <p
+                        className="rounded whitespace-nowrap bg-gray-200 text-black-900 px-2 md:px-4 flex items-center text-xs md:text-base"
+                        style={{ height: 42 }}
+                    >
                         <span>{prefix}</span>
                     </p>
-                ) : ''}
+                ) : (
+                    ''
+                )}
 
                 <input
                     type={type}
@@ -92,24 +92,22 @@ const BaseTextField: FC<Props> = ({
                     pattern={pattern}
                     disabled={disabled}
                     style={{
-                        width: expand ? '100%' : 'auto'
+                        width: expand ? '100%' : 'auto',
                     }}
                 />
 
-                {suffix ? (
-                    <p className="ml-1 text-white">{suffix}</p>
-                ) : ''}
+                {suffix ? <p className="ml-1 text-white">{suffix}</p> : ''}
             </div>
 
             <div className="flex justify-between">
                 {error ? (
                     <p className="text-sm text-red-400">{error}</p>
-                ) : <span> </span>}
+                ) : (
+                    <span> </span>
+                )}
                 <p className="text-sm text-white">
-                    <span>{ counter }</span>
-                    {maxLength ? (
-                        <span> / { maxLength }</span>
-                    ) : '' }
+                    <span>{counter}</span>
+                    {maxLength ? <span> / {maxLength}</span> : ''}
                 </p>
             </div>
         </div>
