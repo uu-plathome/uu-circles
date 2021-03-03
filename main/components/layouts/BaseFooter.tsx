@@ -84,6 +84,11 @@ const tagOtherItems: TagItem[] = [
     as: `/circle/tag/${TagSlugProperty.mammoth}`,
   },
   {
+    text: 'オンライン活動',
+    href: '/circle/tag/[tag]',
+    as: `/circle/tag/${TagSlugProperty.online}`,
+  },
+  {
     text: __(CircleTagModel.ACTIVE_ACTIVITY),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.active_activity}`,
