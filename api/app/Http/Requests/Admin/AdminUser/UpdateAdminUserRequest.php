@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Requests\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;

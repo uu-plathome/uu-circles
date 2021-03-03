@@ -37,7 +37,7 @@ class CreateCircleFormRequest extends FormRequest
                 'string',
                 'unique:circles',
                 'max:50',
-                new SmallAlphaNum,
+                new SmallAlphaNum(),
                 Rule::notIn(['newjoy']),
             ],
             CircleProperty::release          => ['required', 'boolean'],
