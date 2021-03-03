@@ -21,7 +21,9 @@ class VerifyEmailCircleUser extends Notification
         $appUrl = Config::get('app.admin_url') . '/auth/circle';
 
         $url = URL::temporarySignedRoute(
-            'circle.verification.verify', Carbon::now()->addWeek(), ['userId' => $notifiable->id]
+            'circle.verification.verify',
+            Carbon::now()->addWeek(),
+            ['userId' => $notifiable->id]
         );
 
         return str_replace(url('/circle/api'), $appUrl, $url);

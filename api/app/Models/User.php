@@ -114,7 +114,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationAdminUserNotification()
     {
-        $this->notify(new VerifyEmailAdminUser);
+        $this->notify(new VerifyEmailAdminUser());
     }
 
     /**
@@ -124,7 +124,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationCircleUserNotification()
     {
-        $this->notify(new VerifyEmailCircleUser);
+        $this->notify(new VerifyEmailCircleUser());
     }
 
     /**

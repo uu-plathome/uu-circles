@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Requests\Circle\Auth;
 
 use App\Rules\RegexPassword;

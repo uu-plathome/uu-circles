@@ -41,7 +41,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'string',
                 'max:50',
                 'unique:circles,slug,' . $this->id . 'id',
-                new SmallAlphaNum,
+                new SmallAlphaNum(),
                 Rule::notIn(['newjoy']),
             ],
             CircleProperty::release                               => ['required', 'boolean'],
