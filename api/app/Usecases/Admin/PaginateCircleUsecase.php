@@ -18,10 +18,12 @@ class PaginateCircleUsecase
     public function invoke(PaginateCircleUsecaseParams $params): array
     {
         $cursor = [];
-        if ($params->id)
+        if ($params->id) {
             $cursor['id'] = $params->id;
-        if ($params->updated_at)
+        }
+        if ($params->updated_at) {
             $cursor['updated_at'] = $params->updated_at;
+        }
 
         $circles = Circle::with([
             'circleInformation',

@@ -56,8 +56,9 @@ class RegisterCircleNewJoyRequestTest extends TestCase
     public function testPassing_attributesの翻訳が行われているか()
     {
         foreach ($this->attributesValue as $attribute) {
-            if (is_string($attribute))
+            if (is_string($attribute)) {
                 $this->assertHasLangMultipleLocales($attribute, $this->locales, null);
+            }
         }
     }
 }
