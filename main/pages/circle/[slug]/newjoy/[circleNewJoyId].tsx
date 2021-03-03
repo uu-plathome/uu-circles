@@ -11,7 +11,7 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
+import { InformationCircleBesideNewJoyPCWithButton } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPCWithButton'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { PageNotFoundError } from '@/infra/api/error'
@@ -65,7 +65,9 @@ const Page: NextPage<Props> = ({
                   <div className="col-span-2  ml-6">
                     <h2 className="text-xl">主催サークル</h2>
 
-                    <InformationCircleBesideNewJoyPC circle={circle} />
+                    <InformationCircleBesideNewJoyPCWithButton
+                      circle={circle}
+                    />
                     <Link href="/circle/newjoy" as={'/circle/newjoy'}>
                       <a>
                         {/* <div
