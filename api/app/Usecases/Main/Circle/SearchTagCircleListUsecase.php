@@ -130,6 +130,11 @@ class SearchTagCircleListUsecase
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereOnlyFriday();
                     });
+                })->when($param->online, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereIsOnlineActivity();
+                    });
                 });
             })
             ->when($this->shouldCircleTagSearch($param), function ($query) use ($param) {

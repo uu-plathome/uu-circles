@@ -71,6 +71,7 @@ class SearchTagCircleController extends Controller
         $param->mammoth = $tag === TagSlugProperty::mammoth;
         $param->urgent_recruitment = $tag === TagSlugProperty::urgent_recruitment;
         $param->mystery = $tag === TagSlugProperty::mystery;
+        $param->online = $tag === TagSlugProperty::online;
         $circles = Cache::remember(
             $this->getCacheKey($tag),
             60,
