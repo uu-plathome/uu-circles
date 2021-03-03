@@ -27,9 +27,11 @@ class SearchNameCircleListUsecase
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->where(function ($query) use ($param) {
+                // カタカナに変換
+                $katakana = mb_convert_kana($param->name, "K");
                 $query->where('circles.name', 'like', "%$param->name%")
                     ->orWhere('circles.slug', "%$param->name%")
-                    ->orWhere('circle_information.name_kana', 'like', "%$param->name%")
+                    ->orWhere('circle_information.name_kana', 'like', "%$katakana%")
                     ->orWhere('circle_information.short_name', 'like', "%$param->name%")
                     ->orWhere('circle_information.prefix_name', 'like', "%$param->name%");
             })
