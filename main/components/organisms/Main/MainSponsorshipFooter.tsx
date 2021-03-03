@@ -15,7 +15,6 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   // w : h = 375 : 218
   const height = (width * 218) / 375
 
-
   return (
     <div className="bg-gray-100 md:px-6 justify-center">
       <div
