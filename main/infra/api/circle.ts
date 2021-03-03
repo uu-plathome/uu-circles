@@ -101,7 +101,7 @@ export const searchCircle = async (
     recommendCircles: Circle[]
   }
   const { data } = await axiosInstance.get<Response>(
-    `${linkConst.CIRCLE.GROUP}/search/${search}`
+    encodeURI(`${linkConst.CIRCLE.GROUP}/search/${search}`)
   )
 
   return {

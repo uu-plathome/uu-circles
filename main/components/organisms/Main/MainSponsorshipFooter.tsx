@@ -2,14 +2,20 @@ import { LightBlueButton } from '@/components/atoms/button/LightBlueButton'
 import { FC } from 'react'
 import Image from 'next/image'
 import { Advertise } from '@/lib/types/model/Advertise'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useWindowResize } from '@/hooks/useWindowResize'
 
 type Props = {
   advertises: Advertise[]
 }
 const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
-  const width = 375
+  const { isMd } = useMediaQuery()
+  const { width: windowWidth } = useWindowResize()
+  const width = isMd ? 375 : windowWidth
   // w : h = 375 : 218
   const height = (width * 218) / 375
+
+
   return (
     <div className="bg-gray-100 md:px-6 justify-center">
       <div
@@ -17,7 +23,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         style={{ maxWidth: 700 }}
       >
         {advertises && advertises[0] ? (
-          <div className="md:mr-2 rounded">
+          <div className="mx-auto md:ml-0 md:mr-2 rounded">
             <a href={advertises[0].link} target="_blank" rel="noopener">
               <Image
                 src={
@@ -26,7 +32,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                     : '/images/company_ad_tmp.png'
                 }
                 alt="協賛企業広告"
-                width={width}
+                width={width || 0}
                 height={height}
               />
             </a>

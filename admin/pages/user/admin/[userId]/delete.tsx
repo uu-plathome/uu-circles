@@ -15,80 +15,80 @@ import { FormEvent, useContext, useEffect, useState } from 'react'
 import useSWR from 'swr'
 
 const DeletePage: NextPage = () => {
-    const router = useRouter()
-    const { role: ownRole } = useContext(AuthContext)
-    const { userId } = router.query
-    const { isMd } = useMediaQuery()
-    const [isOpen, setIsOpen] = useState(false)
-    const [error, setError] = useState(
-        '本当に削除しますか。削除したら元に戻せません。'
-    )
-    const { data: user } = useSWR(
-        ['/admin/api/admin-user/[userId]', Number(userId)],
-        () => getAdminUser(Number(userId))
-    )
-    const { data: authUser } = useSWR('/admin/api/user', getAuthUser)
+  const router = useRouter()
+  const { role: ownRole } = useContext(AuthContext)
+  const { userId } = router.query
+  const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(false)
+  const [error, setError] = useState(
+    '本当に削除しますか。削除したら元に戻せません。'
+  )
+  const { data: user } = useSWR(
+    ['/admin/api/admin-user/[userId]', Number(userId)],
+    () => getAdminUser(Number(userId))
+  )
+  const { data: authUser } = useSWR('/admin/api/user', getAuthUser)
 
-    useEffect(() => {
-        if (!ownRole || ownRole === Role.COMMON) {
-            router.push('/')
-        }
-    }, [])
+  useEffect(() => {
+    if (!ownRole || ownRole === Role.COMMON) {
+      router.push('/')
+    }
+  }, [])
 
-    useEffect(() => {
-        if (authUser && Number(userId) === authUser.id) {
-            router.push('/user/admin')
-            return
-        }
-    }, [authUser, userId])
+  useEffect(() => {
+    if (authUser && Number(userId) === authUser.id) {
+      router.push('/user/admin')
+      return
+    }
+  }, [authUser, userId])
 
-    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        setIsOpen(true)
-        setError('')
-        const data = await deleteAdminUser(Number(userId))
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setIsOpen(true)
+    setError('')
+    const data = await deleteAdminUser(Number(userId))
 
-        if (data && data.type === 'DeleteAdminUserValidationError') {
-            setError(data.errors.data)
-            setIsOpen(false)
-            return
-        }
-
-        if (data && data.type === 'success') {
-            router.push('/user/admin')
-            setIsOpen(false)
-            return
-        }
-
-        setIsOpen(false)
-        console.error('onSubmitで不適切な処理があります。')
+    if (data && data.type === 'DeleteAdminUserValidationError') {
+      setError(data.errors.data)
+      setIsOpen(false)
+      return
     }
 
-    return (
-        <div>
-            {isMd ? <BaseHeader /> : ''}
+    if (data && data.type === 'success') {
+      router.push('/user/admin')
+      setIsOpen(false)
+      return
+    }
 
-            <SubmitLoading isOpen={isOpen} />
+    setIsOpen(false)
+    console.error('onSubmitで不適切な処理があります。')
+  }
 
-            <BaseContainer>
-                <BaseWrapper
-                    title={user ? `${user.displayName}の削除をしますか` : ''}
-                    actionHref="/user/admin"
-                    actionText="管理者アカウント一覧に戻る"
-                >
-                    <div className="border-2 border-gray-800 p-2">
-                        {error ? <DangerBunner text={error} /> : ''}
+  return (
+    <div>
+      {isMd ? <BaseHeader /> : ''}
 
-                        <form onSubmit={onSubmit}>
-                            <div className="text-center">
-                                <RedButton type="submit">削除する</RedButton>
-                            </div>
-                        </form>
-                    </div>
-                </BaseWrapper>
-            </BaseContainer>
-        </div>
-    )
+      <SubmitLoading isOpen={isOpen} />
+
+      <BaseContainer>
+        <BaseWrapper
+          title={user ? `${user.displayName}の削除をしますか` : ''}
+          actionHref="/user/admin"
+          actionText="管理者アカウント一覧に戻る"
+        >
+          <div className="border-2 border-gray-800 p-2">
+            {error ? <DangerBunner text={error} /> : ''}
+
+            <form onSubmit={onSubmit}>
+              <div className="text-center">
+                <RedButton type="submit">削除する</RedButton>
+              </div>
+            </form>
+          </div>
+        </BaseWrapper>
+      </BaseContainer>
+    </div>
+  )
 }
 
 export default DeletePage

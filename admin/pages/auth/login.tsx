@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import { FormEvent, useContext, useState } from 'react'
 import { AuthContext } from '@/contexts/AuthContext'
 import {
-    isLoginAdminFormRequestValidationError,
-    LoginAdminFormRequest,
+  isLoginAdminFormRequestValidationError,
+  LoginAdminFormRequest,
 } from '@/lib/types/api/LoginAdminFormRequest'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -19,112 +19,105 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 const Login: NextPage = () => {
-    const [error, setError] = useState('')
-    const router = useRouter()
-    const authContext = useContext(AuthContext)
-    const usernameOrEmail = useStringInput('')
-    const password = useStringInput('')
+  const [error, setError] = useState('')
+  const router = useRouter()
+  const authContext = useContext(AuthContext)
+  const usernameOrEmail = useStringInput('')
+  const password = useStringInput('')
 
-    if (authContext.accessToken) {
-        router.push('/')
+  if (authContext.accessToken) {
+    router.push('/')
+  }
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setError('')
+
+    const data = await login({
+      usernameOrEmail: usernameOrEmail.value,
+      password: password.value,
+    } as LoginAdminFormRequest)
+
+    if (isLoginAdminFormRequestValidationError(data)) {
+      usernameOrEmail.setErrors(data.errors.usernameOrEmail)
+      password.setErrors(data.errors.password)
+      return
     }
 
-    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        setError('')
-
-        const data = await login({
-            usernameOrEmail: usernameOrEmail.value,
-            password: password.value,
-        } as LoginAdminFormRequest)
-
-        if (isLoginAdminFormRequestValidationError(data)) {
-            usernameOrEmail.setErrors(data.errors.usernameOrEmail)
-            password.setErrors(data.errors.password)
-            return
-        }
-
-        if (data && isUser(data)) {
-            authContext.setAccessToken(data.apiToken)
-            authContext.setRole(data.role)
-            await router.push('/')
-            return
-        }
-
-        if (data && data.type === 'LoginAdminMainFormRequestValidationError') {
-            if (data.errors.data) {
-                setError(data.errors.data)
-                return
-            }
-        }
-
-        setError('エラーが発生しました')
+    if (data && isUser(data)) {
+      authContext.setAccessToken(data.apiToken)
+      authContext.setRole(data.role)
+      await router.push('/')
+      return
     }
 
-    return (
-        <div>
-            <Head>
-                <title>ログイン</title>
-            </Head>
+    if (data && data.type === 'LoginAdminMainFormRequestValidationError') {
+      if (data.errors.data) {
+        setError(data.errors.data)
+        return
+      }
+    }
 
-            <AuthHeader />
+    setError('エラーが発生しました')
+  }
 
-            <div className="xl:container">
-                <div className="max-w-screen-md mx-auto mt-16">
-                    <div className="border-2 border-white rounded p-4">
-                        <h1 className="text-white text-center text-2xl mb-4">
-                            ログイン
-                        </h1>
+  return (
+    <div>
+      <Head>
+        <title>ログイン</title>
+      </Head>
 
-                        {error ? (
-                            <div className="p-4 mb-4">
-                                <p className="text-white text-lg">
-                                    <FontAwesomeIcon
-                                        icon={faExclamationTriangle}
-                                        color="red"
-                                    />{' '}
-                                    {error}
-                                </p>
-                            </div>
-                        ) : (
-                            ''
-                        )}
+      <AuthHeader />
 
-                        <form onSubmit={onSubmit}>
-                            <div className="px-4 mb-4">
-                                <BaseTextField
-                                    label="メールアドレスかユーザー名"
-                                    id="username_or_email"
-                                    name="username_or_email"
-                                    expand
-                                    {...usernameOrEmail}
-                                />
+      <div className="xl:container">
+        <div className="max-w-screen-md mx-auto mt-16">
+          <div className="border-2 border-white rounded p-4">
+            <h1 className="text-white text-center text-2xl mb-4">ログイン</h1>
 
-                                <SimplePasswordTextField
-                                    label="パスワード"
-                                    id="password"
-                                    name="password"
-                                    {...password}
-                                />
-                            </div>
+            {error ? (
+              <div className="p-4 mb-4">
+                <p className="text-white text-lg">
+                  <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
+                  {error}
+                </p>
+              </div>
+            ) : (
+              ''
+            )}
 
-                            <div className="text-center">
-                                <BlueButton type="submit">ログイン</BlueButton>
-                            </div>
-                        </form>
+            <form onSubmit={onSubmit}>
+              <div className="px-4 mb-4">
+                <BaseTextField
+                  label="メールアドレスかユーザー名"
+                  id="username_or_email"
+                  name="username_or_email"
+                  expand
+                  {...usernameOrEmail}
+                />
 
-                        <div className="text-white text-right mt-8 mb-4">
-                            <Link href="/auth/password/reset">
-                                <a className="underline">
-                                    パスワードを忘れた場合はこちら
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                <SimplePasswordTextField
+                  label="パスワード"
+                  id="password"
+                  name="password"
+                  {...password}
+                />
+              </div>
+
+              <div className="text-center">
+                <BlueButton type="submit">ログイン</BlueButton>
+              </div>
+            </form>
+
+            <div className="text-white text-right mt-8 mb-4">
+              <Link href="/auth/password/reset">
+                <a className="underline">パスワードを忘れた場合はこちら</a>
+              </Link>
             </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Login
