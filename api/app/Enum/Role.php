@@ -2,6 +2,9 @@
 
 namespace App\Enum;
 
+/**
+ * 権限
+ */
 class Role
 {
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Enum\SlugProperty;
 
+/**
+ * /api/circle/tag/{tag}のtagのパス一覧
+ */
 class TagSlugProperty
 {
     const sport = 'sport';
@@ -29,6 +32,7 @@ class TagSlugProperty
     const mammoth = 'mammoth';
     const urgent_recruitment = 'urgent_recruitment';
     const mystery = 'mystery';
+    const online = 'online';
 
     public static function getAll(): array
     {
@@ -58,6 +62,7 @@ class TagSlugProperty
             self::mammoth,
             self::urgent_recruitment,
             self::mystery,
+            self::online,
         ];
     }
 }

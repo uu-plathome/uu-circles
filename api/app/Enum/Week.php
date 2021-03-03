@@ -2,6 +2,9 @@
 
 namespace App\Enum;
 
+/**
+ * 曜日
+ */
 class Week
 {
     /**

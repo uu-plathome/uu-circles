@@ -140,9 +140,7 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isMammoth('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isUrgentRecruitment', () => {
-    expect(TestFunc.TagSlugProperty.urgent_recruitment).toBe(
-      'urgent_recruitment'
-    )
+    expect(TestFunc.TagSlugProperty.urgent_recruitment).toBe('urgent_recruitment')
     expect(TestFunc.isTagSlugProperty('urgent_recruitment')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('urgent_recruitment')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('aaaaabbbbcccc')).toBeFalsy()
@@ -152,5 +150,11 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isTagSlugProperty('mystery')).toBeTruthy()
     expect(TestFunc.isMystery('mystery')).toBeTruthy()
     expect(TestFunc.isMystery('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isOnline', () => {
+    expect(TestFunc.TagSlugProperty.online).toBe('online')
+    expect(TestFunc.isTagSlugProperty('online')).toBeTruthy()
+    expect(TestFunc.isOnline('online')).toBeTruthy()
+    expect(TestFunc.isOnline('aaaaabbbbcccc')).toBeFalsy()
   })
 })
