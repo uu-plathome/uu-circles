@@ -1,12 +1,12 @@
-# サークルビラ一覧
+# UU-Circles
 
-https://uu-circles.com/
+サイト: https://uu-circles.com/
 
 ## Description
 
 ### API
 
-- Laravel 8 / PHP 7.4
+- Laravel 8 / PHP 7.4 / MySQL
 
 ### Main
 
@@ -57,18 +57,30 @@ $ cd main & npm i
 $ cd main & npm run dev
 ```
 
+## コマンド
+
+### API
+
+```shell
+# テスト
+$ docker-compose app composer test
+
+# コード整形
+$ docker-compose app composer sniffer
+```
+
 ## 管理者ログイン
 
 - ユーザー名: tester
 - パスワード： Test1234@@
 
-# Deploy api For Production
+## Deploy api For Production
 
 ```shell
 $ git push main:develop/production -f
 ```
 
-# Deploy For Apache
+## Deploy For Apache
 
 Apache にデプロイする時の.htaccess の例
 
