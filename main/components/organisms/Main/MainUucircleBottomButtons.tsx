@@ -5,8 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
-type Props = {}
-const MainUucircleBottomButtons: FC<Props> = () => {
+const MainUucircleBottomButtons: FC = () => {
   const { isMd } = useMediaQuery()
 
   return (
@@ -78,6 +77,7 @@ const MainUucircleBottomButtons: FC<Props> = () => {
             spaceBetween={50}
             slidesPerView={1}
             initialSlide={1}
+            loop
             navigation
           >
             <nav

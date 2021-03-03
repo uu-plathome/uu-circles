@@ -133,7 +133,7 @@ class SearchTagCircleListUsecase
                 })->when($param->online, function ($query) {
                     $query->orWhere(function ($query) {
                         /** @var \App\Models\CircleInformation $query */
-                        $query->whereIsOnlineActivity();
+                        $query->whereIsOnlineActivity(true);
                     });
                 });
             })

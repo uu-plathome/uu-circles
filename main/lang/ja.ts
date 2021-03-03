@@ -2,6 +2,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Week } from '@/lib/enum/api/Week'
 
 export const ja = {
@@ -41,6 +42,7 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  [TagSlugProperty.online.toUpperCase()]: 'オンライン活動',
   CLUB: '部活',
   Week: {
     [Week.MONDAY]: '月曜日',
@@ -97,6 +99,7 @@ export const ja = {
     [CircleTagModel.MAMMOTH]: '紛れもない大御所',
     [CircleTagModel.URGENT_RECRUITMENT]: '見学だけでもお願いします',
     [CircleTagModel.MYSTERY]: '得体のしれない怪団体',
+    [TagSlugProperty.online.toUpperCase()]: '',
   },
   CircleTagText: {
     [CircleTagModel.SPORT]:
@@ -139,6 +142,7 @@ export const ja = {
       '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
     [CircleTagModel.MYSTERY]:
       '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
+    [TagSlugProperty.online.toUpperCase()]: ''
   },
 }
 

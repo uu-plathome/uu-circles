@@ -60,7 +60,6 @@ const CreateAdvertiseForm: FC<Props> = ({
                 label="公開開始日時"
                 name="publishFrom"
                 id="publishFrom"
-                required
                 {...form.publishFrom}
             />
 

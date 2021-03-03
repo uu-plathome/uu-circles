@@ -85,6 +85,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
                     label="新歓開始日時"
                     name="startDate"
                     id="startDate"
+                    required
                     {...form.startDate}
                 />
 
