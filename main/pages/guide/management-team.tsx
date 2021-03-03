@@ -138,14 +138,17 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="px-4 pb-4">
-              <p>
-                UU-Circlesでは、開発の様子を公開しています。
-              </p>
+              <p>UU-Circlesでは、開発の様子を公開しています。</p>
             </div>
 
             <div className="pb-36">
               <p className="px-4">
-                <a href="https://github.com/H37kouya/uu-circle" target="_blank" rel="noopener" className="flex items-center">
+                <a
+                  href="https://github.com/H37kouya/uu-circle"
+                  target="_blank"
+                  rel="noopener"
+                  className="flex items-center"
+                >
                   <FontAwesomeIcon icon={faGithub} size="2x" />
                   <span className="underline ml-4">GitHubを見る</span>
                 </a>

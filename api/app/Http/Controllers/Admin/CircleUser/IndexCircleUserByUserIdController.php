@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\User;
