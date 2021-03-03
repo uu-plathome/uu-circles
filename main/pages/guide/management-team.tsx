@@ -3,6 +3,9 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import Image from 'next/image'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 type Props = {}
 const Page: NextPage<Props> = () => {
@@ -32,6 +35,20 @@ const Page: NextPage<Props> = () => {
               主な活動はデザインセンスやプログラミング技術の向上や街を舞台にした
               作品展示、今までにないようなwebサービスの考案から開発などを行っています。
             </p>
+
+            <div className="pt-4">
+              <p className="px-4 mb-4">
+                <Link href="/circle/u-lab">
+                  <a className="underline">U-labのサークル情報を見る→</a>
+                </Link>
+              </p>
+
+              <p className="px-4">
+                <Link href="/circle/u-lab/newjoy">
+                  <a className="underline">U-labの新歓を見る→</a>
+                </Link>
+              </p>
+            </div>
 
             <div className="flex justify-center items-center pt-6 pb-6">
               <a href="http://ulab-uu.com/" target="_blank">
@@ -109,11 +126,30 @@ const Page: NextPage<Props> = () => {
               <p>U-lab 3年 樋口航也</p>
             </div>
 
-            <div className="px-4 pb-36">
+            <div className="px-4 pb-12">
               <p className="font-bold pb-2">開発サポートメンバー</p>
               <p>U-lab 1年 小畑</p>
               <p>U-lab 1年 浅野</p>
               <p>U-lab 1年 佐藤</p>
+            </div>
+
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">4.開発の様子</h2>
+            </div>
+
+            <div className="px-4 pb-4">
+              <p>
+                UU-Circlesでは、開発の様子を公開しています。
+              </p>
+            </div>
+
+            <div className="pb-36">
+              <p className="px-4">
+                <a href="https://github.com/H37kouya/uu-circle" target="_blank" rel="noopener" className="flex items-center">
+                  <FontAwesomeIcon icon={faGithub} size="2x" />
+                  <span className="underline ml-4">GitHubを見る</span>
+                </a>
+              </p>
             </div>
           </BaseContainer>
         </div>
