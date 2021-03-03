@@ -2,17 +2,17 @@ import Link from 'next/link'
 import React from 'react'
 
 type Props = {
-    type?: 'button' | 'submit' | 'reset'
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-    href?: string
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  href?: string
 }
 
 const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
-    if (href) {
-        return (
-            <Link href={href}>
-                <a
-                    className={`
+  if (href) {
+    return (
+      <Link href={href}>
+        <a
+          className={`
                     min-w-120
                     inline-block
                     px-6
@@ -32,15 +32,15 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
                     hover:opacity-80
                     focus:outline-none
                 `}
-                >
-                    {children}
-                </a>
-            </Link>
-        )
-    } else {
-        return (
-            <button
-                className={`
+        >
+          {children}
+        </a>
+      </Link>
+    )
+  } else {
+    return (
+      <button
+        className={`
                     min-w-120
                     inline-block
                     px-6
@@ -60,13 +60,13 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
                     hover:opacity-80
                     focus:outline-none
                 `}
-                onClick={onClick}
-                type={type ? type : 'button'}
-            >
-                {children}
-            </button>
-        )
-    }
+        onClick={onClick}
+        type={type ? type : 'button'}
+      >
+        {children}
+      </button>
+    )
+  }
 }
 
 export { OrangeButton }
