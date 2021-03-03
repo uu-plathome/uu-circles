@@ -69,7 +69,9 @@ const BaseSpMenu: FC = () => {
 
           <MenuItem href="/guide/to-new-students">新入生の方へ</MenuItem>
 
-          <MenuExternalItem href="https://media.uu-circles.com">uu-yell</MenuExternalItem>
+          <MenuExternalItem href="https://media.uu-circles.com">
+            uu-yell
+          </MenuExternalItem>
 
           <MenuExternalItem href="https://forms.gle/1oULcDjiPaknvfvc8">
             お問い合わせ
