@@ -21,7 +21,11 @@ const Page: NextPage<Props> = ({ circles }) => {
   const name = useStringInput('')
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    router.push(`/circle/search/[name]`, `/circle/search/${name.value}`)
+    if (name.value) {
+      router.push(`/circle/search/[name]`, `/circle/search/${name.value}`)
+    } else {
+      router.push(`/circle`)
+    }
   }
 
   return (
