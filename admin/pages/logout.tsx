@@ -4,19 +4,19 @@ import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 
 const Logout: NextPage = () => {
-    const authContext = useContext(AuthContext)
-    const router = useRouter()
+  const authContext = useContext(AuthContext)
+  const router = useRouter()
 
-    useEffect(() => {
-        const f = async () => {
-            authContext.setAccessToken('')
-            await router.push('/auth/login')
-        }
+  useEffect(() => {
+    const f = async () => {
+      authContext.setAccessToken('')
+      await router.push('/auth/login')
+    }
 
-        f()
-    }, [authContext.accessToken])
+    f()
+  }, [authContext.accessToken])
 
-    return <div>logout...</div>
+  return <div>logout...</div>
 }
 
 export default Logout
