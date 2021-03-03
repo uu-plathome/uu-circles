@@ -26,4 +26,5 @@ class SearchTagCircleListParam
     public bool $mammoth = false;
     public bool $urgent_recruitment = false;
     public bool $mystery = false;
+    public bool $online = false;
 }

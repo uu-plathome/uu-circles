@@ -1,3 +1,6 @@
+/**
+ * 権限
+ */
 export const Role = {
   /**
    * システム管理者
@@ -12,16 +15,23 @@ export const Role = {
   /**
    * 一般
    */
-  COMMON: 'COMMON',
+  COMMON: 'COMMON'
 } as const
 
 export type RoleKey = keyof typeof Role
 export type Role = typeof Role[keyof typeof Role]
 
+/**
+ * 権限
+ */
 export const getAllRole = (): Role[] => Object.values(Role)
-
+/**
+ * 権限
+ */
 export const getAllRoleKey = (): RoleKey[] => Object.keys(Role) as RoleKey[]
-
+/**
+ * 権限
+ */
 export const isRole = (s: any): s is Role => Object.values(Role).includes(s)
 
 /**

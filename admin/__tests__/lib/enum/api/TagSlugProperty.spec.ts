@@ -153,4 +153,10 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isMystery('mystery')).toBeTruthy()
     expect(TestFunc.isMystery('aaaaabbbbcccc')).toBeFalsy()
   })
+  it('isOnline', () => {
+    expect(TestFunc.TagSlugProperty.online).toBe('online')
+    expect(TestFunc.isTagSlugProperty('online')).toBeTruthy()
+    expect(TestFunc.isOnline('online')).toBeTruthy()
+    expect(TestFunc.isOnline('aaaaabbbbcccc')).toBeFalsy()
+  })
 })

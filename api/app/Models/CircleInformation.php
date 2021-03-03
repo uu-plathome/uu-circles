@@ -91,6 +91,17 @@ class CircleInformation extends Model
     }
 
     /**
+     * カタカナに強制変換
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNameKanaAttribute($value)
+    {
+        $this->attributes['name_kana'] = mb_convert_kana($value, "KVC");
+    }
+
+    /**
      * 週の活動日数
      *
      * @return integer
