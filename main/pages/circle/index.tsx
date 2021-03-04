@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
@@ -60,13 +60,14 @@ const Page: NextPage<Props> = ({ circles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const { circles } = await getAllCircleList()
 
   return {
     props: {
       circles,
     },
+    revalidate: 60,
   }
 }
 
