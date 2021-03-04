@@ -11,6 +11,7 @@ import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { useStringInput } from '@/hooks/useInput'
 import { useRouter } from 'next/dist/client/router'
 import { FormEvent } from 'react'
+import { RecommendTagList } from '@/components/organisms/Circles/RecommendTagList'
 
 type Props = {
   errorCode?: number
@@ -43,6 +44,8 @@ const Page: NextPage<Props> = ({ circles }) => {
                   <SearchTextField id="search" name="search" expand {...name} />
                 </form>
               </div>
+
+              <RecommendTagList />
 
               {/*  サークル一覧 */}
               <BaseCircleList circles={circles} />
