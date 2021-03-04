@@ -63,12 +63,10 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.tag || Array.isArray(params.tag)) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
@@ -84,7 +82,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: getAllTagSlugProperty().map(tag => `/circle/tag/${tag}`),
+  paths: getAllTagSlugProperty().map((tag) => `/circle/tag/${tag}`),
   fallback: true,
 })
 

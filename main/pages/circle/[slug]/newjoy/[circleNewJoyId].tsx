@@ -210,12 +210,10 @@ const Page: NextPage<Props> = ({
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({
-  params
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.slug || Array.isArray(params.slug)) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
@@ -244,7 +242,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   } catch (e) {
     if (e instanceof PageNotFoundError) {
       return {
-        notFound: true
+        notFound: true,
       }
     }
 
