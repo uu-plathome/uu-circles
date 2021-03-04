@@ -54,7 +54,7 @@ const IndexPage: NextPage = () => {
           updatedAt: null,
           previos: false,
           next: true,
-          name: name.value
+          name: name.value,
         })
       )
     }
@@ -69,7 +69,7 @@ const IndexPage: NextPage = () => {
       updatedAt: null,
       previos: false,
       next: true,
-      name: name.value
+      name: name.value,
     })
   }
 
@@ -97,11 +97,13 @@ const IndexPage: NextPage = () => {
                     id="nameSearch"
                     name="nameSearch"
                     expand
-                    { ...name }
+                    {...name}
                   />
                 </form>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
 
             {circles && circles.records.length > 0
               ? circles.records.map((circle: Circle) => {
@@ -132,7 +134,7 @@ const IndexPage: NextPage = () => {
                       ...circles.previousCursor,
                       previos: true,
                       next: false,
-                      name: name.value
+                      name: name.value,
                     })
                   }
                 >
@@ -151,7 +153,7 @@ const IndexPage: NextPage = () => {
                       ...circles.nextCursor,
                       previos: false,
                       next: true,
-                      name: name.value
+                      name: name.value,
                     })
                   }
                 >
