@@ -54,7 +54,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'string',
                 Rule::in(CircleType::getAll())
             ],
-            CircleInformationProperty::description                => ['nullable', 'string', 'max:50'],
+            CircleInformationProperty::description                => ['nullable', 'string', 'max:500'],
             CircleInformationProperty::common_place_of_activity          => [
                 'nullable',
                 'string',
@@ -124,9 +124,9 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationProperty::admission_fee_per_year              => ['nullable', 'integer', 'max:10000000'],
             CircleInformationProperty::number_of_members          => ['nullable', 'integer', 'max:10000'],
             CircleInformationProperty::is_club_activities  => ['nullable', 'boolean'],
-            CircleInformationProperty::appealing_point1    => ['nullable', 'string', 'max:30'],
-            CircleInformationProperty::appealing_point2    => ['nullable', 'string', 'max:30'],
-            CircleInformationProperty::appealing_point3    => ['nullable', 'string', 'max:30'],
+            CircleInformationProperty::appealing_point1    => ['nullable', 'string', 'max:50'],
+            CircleInformationProperty::appealing_point2    => ['nullable', 'string', 'max:50'],
+            CircleInformationProperty::appealing_point3    => ['nullable', 'string', 'max:50'],
             CircleInformationProperty::public_email        => ['nullable', 'string', 'email', 'max:255'],
             CircleInformationProperty::twitter_url         => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationProperty::facebook_url        => ['nullable', 'string', 'url', 'max:255'],

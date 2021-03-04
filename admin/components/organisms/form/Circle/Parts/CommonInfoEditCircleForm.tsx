@@ -11,6 +11,7 @@ import { __ } from '@/lang/ja'
 import { CircleMainImageInput } from '@/components/atoms/form/CircleMainImageInput'
 import { CircleHandbillImageInput } from '@/components/atoms/form/CircleHandbillImageInput'
 import { CircleActivityImageInput } from '@/components/atoms/form/CircleActivityImageInput'
+import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 
 export type Props = {
   onDropMainImage(acceptedFiles: any): void
@@ -44,12 +45,12 @@ const CommonInfoEditCircleForm: FC<Props> = ({
 }) => {
   return (
     <div>
-      <BaseTextField
+      <BaseTextarea
         label="サークル紹介文"
         name="description"
         id="description"
         expand
-        maxLength={50}
+        maxLength={300}
         {...form.description}
       />
 
@@ -58,7 +59,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({
         name="appealingPoint1"
         id="appealingPoint1"
         expand
-        maxLength={30}
+        maxLength={50}
         {...form.appealingPoint1}
       />
 
@@ -67,7 +68,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({
         name="appealingPoint2"
         id="appealingPoint2"
         expand
-        maxLength={30}
+        maxLength={50}
         {...form.appealingPoint2}
       />
 
@@ -76,7 +77,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({
         name="appealingPoint3"
         id="appealingPoint3"
         expand
-        maxLength={30}
+        maxLength={50}
         {...form.appealingPoint3}
       />
 

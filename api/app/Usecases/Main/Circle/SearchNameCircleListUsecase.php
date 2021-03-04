@@ -5,7 +5,6 @@ namespace App\Usecases\Main\Circle;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\ValueObjects\CircleValueObject;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SearchNameCircleListUsecase
 {

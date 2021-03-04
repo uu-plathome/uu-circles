@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { MainCircleList } from '@/components/organisms/Main/MainCircleList'
 import { getMain } from '@/infra/api/main'
@@ -81,7 +81,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const { circles, advertises } = await getMain()
 
   return {
@@ -89,6 +89,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       advertises,
       circles,
     },
+    revalidate: 60,
   }
 }
 

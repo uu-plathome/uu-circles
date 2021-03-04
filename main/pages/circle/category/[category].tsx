@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
@@ -12,6 +12,7 @@ import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { Category } from '@/lib/enum/app/Category'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
+import { getAllCategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 
 type Props = {
   errorCode?: number
@@ -21,6 +22,10 @@ type Props = {
 const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   const router = useRouter()
   const { category } = router.query
+
+  if (!circles) {
+    return <div></div>
+  }
 
   return (
     <div>
@@ -70,13 +75,11 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  params,
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.category || Array.isArray(params.category)) {
-    res.statusCode = 404
-    return { props: { errorCode: 404 } }
+    return {
+      notFound: true,
+    }
   }
 
   const { circles, recommendCircles } = await getCircleByCategory(
@@ -88,7 +91,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       circles,
       recommendCircles,
     },
+    revalidate: 60,
   }
 }
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: true,
+})
 
 export default Page

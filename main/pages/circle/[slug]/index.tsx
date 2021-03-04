@@ -1,4 +1,9 @@
-import { GetServerSideProps, NextPage } from 'next'
+import {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from 'next'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
@@ -32,6 +37,10 @@ type Props = {
 const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
+  }
+
+  if (!circle) {
+    return <div></div>
   }
 
   // w : h = 210 : 297
@@ -168,13 +177,11 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  params,
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.slug || Array.isArray(params.slug)) {
-    res.statusCode = 404
-    return { props: { errorCode: 404 } }
+    return {
+      notFound: true,
+    }
   }
 
   try {
@@ -185,16 +192,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
         circle,
         circleNewJoys,
       },
+      revalidate: 60,
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
-      res.statusCode = 404
-      return { props: { errorCode: 404 } }
+      return {
+        notFound: true,
+      }
     }
 
-    res.statusCode = 500
     return { props: { errorCode: 500 } }
   }
 }
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: true,
+})
 
 export default Page

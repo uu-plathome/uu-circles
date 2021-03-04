@@ -81,6 +81,7 @@ const EditCircleForm: FC<Props> = ({
           label="公開設定"
           id="release"
           name="release"
+          required
           items={[
             { value: 'true', label: '公開' },
             { value: 'false', label: '非公開' },

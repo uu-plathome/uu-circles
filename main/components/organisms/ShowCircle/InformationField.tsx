@@ -25,7 +25,9 @@ const InformationField: FC<Props> = ({ circle }) => {
           {circle.description ? (
             <div className="border-b border-gray-400 py-4">
               <p className="text-sm text-gray-400 mb-2">サークル紹介文</p>
-              <p className="text-sm text-black">{circle.description}</p>
+              <p className="text-sm text-black whitespace-pre-wrap">
+                {circle.description}
+              </p>
             </div>
           ) : (
             ''
@@ -79,7 +81,7 @@ const InformationField: FC<Props> = ({ circle }) => {
 
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">通常活動場所詳細</p>
-            <p className="text-sm text-black">
+            <p className="text-sm text-black whitespace-pre-wrap">
               {circle.commonPlaceOfActivityDetail}
             </p>
           </div>
@@ -177,7 +179,7 @@ const InformationField: FC<Props> = ({ circle }) => {
           {circle.isOnlineActivity && circle.onlineDateOfActivityDetail ? (
             <div className="border-b border-gray-400 py-4">
               <p className="text-sm text-gray-400 mb-2">オンライン活動場所</p>
-              <p className="text-sm text-black">
+              <p className="text-sm text-black whitespace-pre-wrap">
                 {circle.onlineDateOfActivityDetail}
               </p>
             </div>
