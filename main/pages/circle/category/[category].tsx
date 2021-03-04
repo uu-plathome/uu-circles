@@ -96,9 +96,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: getAllCategorySlugProperty().map(
-    (category) => `/circle/category/${category}`
-  ),
+  paths: [],
   fallback: true,
 })
 

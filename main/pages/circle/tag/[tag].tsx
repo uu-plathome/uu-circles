@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: getAllTagSlugProperty().map((tag) => `/circle/tag/${tag}`),
+  paths: [],
   fallback: true,
 })
 
