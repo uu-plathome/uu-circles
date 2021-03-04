@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import {
   getTodayCircleNewJoy,
@@ -67,9 +67,7 @@ const Page: NextPage<Props> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
     const {
       futureCircleNewJoys,
@@ -81,9 +79,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
         futureCircleNewJoys,
         todayCircleNewJoys,
       },
+      revalidate: 120,
     }
   } catch (e) {
-    res.statusCode = 500
     return { props: { errorCode: 500 } }
   }
 }
