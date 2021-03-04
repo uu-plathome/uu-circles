@@ -2,6 +2,7 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseDate } from '@/components/atoms/form/BaseDate'
 import { BaseDatetime } from '@/components/atoms/form/BaseDatetime'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
@@ -42,12 +43,12 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           {...form.title}
         />
 
-        <BaseTextField
+        <BaseTextarea
           label="新歓説明"
           name="description"
           id="description"
           expand
-          maxLength={100}
+          maxLength={150}
           {...form.description}
         />
 
@@ -69,7 +70,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
         />
 
         {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
-          <BaseTextField
+          <BaseTextarea
             label="新歓活動場所詳細"
             name="placeOfActivityDetail"
             id="placeOfActivityDetail"
