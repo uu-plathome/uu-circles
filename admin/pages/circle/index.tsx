@@ -19,8 +19,8 @@ import { useStringInput } from '@/hooks/useInput'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 
 type PaginateCircleCursor = {
-  id: number
-  updatedAt: string
+  'circles.id'?: number
+  'circleInformation.updatedAt'?: string
   previos: boolean
   next: boolean
   name?: string
@@ -50,8 +50,8 @@ const IndexPage: NextPage = () => {
     const f = async () => {
       setCircles(
         await paginateCircleList({
-          id: null,
-          updatedAt: null,
+          'circles.id': null,
+          'circleInformation.updatedAt': null,
           previos: false,
           next: true,
           name: name.value
