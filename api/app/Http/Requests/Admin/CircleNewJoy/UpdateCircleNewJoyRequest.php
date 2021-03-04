@@ -31,7 +31,7 @@ class UpdateCircleNewJoyRequest extends FormRequest
     {
         return Arr::camel_keys([
             CircleNewJoyProperty::title                    => ['required', 'string', 'max:30'],
-            CircleNewJoyProperty::description              => ['string', 'nullable', 'max:100'],
+            CircleNewJoyProperty::description              => ['string', 'nullable', 'max:150'],
             CircleNewJoyProperty::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyProperty::place_of_activity        => [
                 'string',

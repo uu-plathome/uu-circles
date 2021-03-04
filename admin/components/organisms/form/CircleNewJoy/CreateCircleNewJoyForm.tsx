@@ -9,6 +9,7 @@ import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { FC, FormEvent } from 'react'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { Circle } from '@/lib/types/model/Circle'
+import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void
@@ -42,12 +43,12 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           {...form.title}
         />
 
-        <BaseTextField
+        <BaseTextarea
           label="新歓説明"
           name="description"
           id="description"
           expand
-          maxLength={100}
+          maxLength={150}
           {...form.description}
         />
 
