@@ -31,8 +31,8 @@ export const createCircle = async (circle: CreateCircleFormRequest) => {
 }
 
 type PaginateCircleCursor = {
-  'circles.id': number
-  'circleInformation.updatedAt': string
+  'circles.id'?: number
+  'circleInformation.updatedAt'?: string
   previos: boolean
   next: boolean
   name?: string
