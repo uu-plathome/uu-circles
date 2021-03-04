@@ -65,8 +65,8 @@ const IndexPage: NextPage = () => {
     event.preventDefault()
 
     foundCircleList({
-      id: null,
-      updatedAt: null,
+      'circles.id': null,
+      'circleInformation.updatedAt': null,
       previos: false,
       next: true,
       name: name.value,

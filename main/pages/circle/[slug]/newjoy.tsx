@@ -40,6 +40,10 @@ const Page: NextPage<Props> = ({
     return <Error statusCode={errorCode} />
   }
 
+  if (!circle) {
+    return <div></div>
+  }
+
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   return (
     <div>

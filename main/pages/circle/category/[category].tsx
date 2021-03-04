@@ -23,6 +23,10 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   const router = useRouter()
   const { category } = router.query
 
+  if (!circles) {
+    return <div></div>
+  }
+
   return (
     <div>
       <BaseHead

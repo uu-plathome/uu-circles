@@ -23,6 +23,10 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   const circleTagTitle = __(String(tag).toUpperCase(), 'CircleTagTitle')
   const circleTagText = __(String(tag).toUpperCase(), 'CircleTagText')
 
+  if (!circles) {
+    return <div></div>
+  }
+
   return (
     <div>
       <BaseHead title={`${__(String(tag).toUpperCase())}タグ検索`} />
