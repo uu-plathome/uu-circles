@@ -79,6 +79,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
       circles,
       recommendCircles,
     },
+    revalidate: 60,
   }
 }
 
