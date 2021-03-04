@@ -25,7 +25,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Enable linters
           php_codesniffer: true
-          php_codesniffer_dir: ./main
+          php_codesniffer_dir: ./api
           auto_fix: true
 
   admin-run-linters:
