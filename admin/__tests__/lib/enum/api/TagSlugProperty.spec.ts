@@ -140,7 +140,9 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isMammoth('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isUrgentRecruitment', () => {
-    expect(TestFunc.TagSlugProperty.urgent_recruitment).toBe('urgent_recruitment')
+    expect(TestFunc.TagSlugProperty.urgent_recruitment).toBe(
+      'urgent_recruitment'
+    )
     expect(TestFunc.isTagSlugProperty('urgent_recruitment')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('urgent_recruitment')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('aaaaabbbbcccc')).toBeFalsy()

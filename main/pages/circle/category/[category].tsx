@@ -71,12 +71,10 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.category || Array.isArray(params.category)) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
@@ -94,7 +92,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: getAllCategorySlugProperty().map(category => `/circle/category/${category}`),
+  paths: getAllCategorySlugProperty().map(
+    (category) => `/circle/category/${category}`
+  ),
   fallback: true,
 })
 
