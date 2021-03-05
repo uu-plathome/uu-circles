@@ -5,7 +5,6 @@ namespace App\Http\Requests\Admin\Circle;
 use App\Enum\Property\CircleInformationProperty;
 use App\Enum\Property\CircleProperty;
 use App\Enum\CircleType;
-use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
@@ -45,6 +44,7 @@ class UpdateCircleFormRequest extends FormRequest
                 Rule::notIn(['newjoy']),
             ],
             CircleProperty::release                               => ['required', 'boolean'],
+            CircleProperty::is_main_fixed                         => ['nullable', 'boolean'],
             CircleProperty::name                                  => ['required', 'string', 'max:50'],
             CircleInformationProperty::name_kana                  => ['nullable', 'string', 'max:100'],
             CircleInformationProperty::short_name                 => ['nullable', 'string', 'max:20'],

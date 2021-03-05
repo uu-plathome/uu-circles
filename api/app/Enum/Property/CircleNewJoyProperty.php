@@ -2,8 +2,12 @@
 
 namespace App\Enum\Property;
 
-class CircleNewJoyProperty extends BaseProperty
+class CircleNewJoyProperty
 {
+    const id = 'id';
+    const created_at = 'created_at';
+    const updated_at = 'updated_at';
+
     const circle_id = 'circle_id';
     const title = 'title';
     const description = 'description';
