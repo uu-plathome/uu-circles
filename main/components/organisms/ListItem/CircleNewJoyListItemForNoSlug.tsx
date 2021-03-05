@@ -5,11 +5,16 @@ import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 
+const computedCircleNewJoyTitle = (
+  todayCircleNewJoy: TodayCircleNewJoy
+) => `${todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title}`
+
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
+  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
 
   return (
     <div
@@ -36,10 +41,10 @@ const PcLayout: FC<{
           <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
         </div>
       </section>
-      <section className=" bg-white px-2 pl-3 w-80">
+      <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
           <h2 className="font-bold text-xl text-center">
-            {circleNewJoy.title}
+            {title}
           </h2>
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">場所</p>
@@ -74,32 +79,21 @@ const PcLayout: FC<{
         className="border-l-2 border-gray-600 h-full pl-2"
         style={{ width: '250px' }}
       >
-        <h3 className="text-xs  ">主催サークル</h3>
+        <h3 className="text-xs">主催サークル</h3>
         <Link href="/circle/[slug]" as={`/circle/${slug}`}>
           <div className="pl-2 flex justify-around items-center">
-            {todayCircleNewJoy.mainImageUrl == null ? (
-              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                <Image
-                  src={'/images/no-image.png'}
-                  alt={`${todayCircleNewJoy.name}のアイコン`}
-                  className="mx-auto"
-                  width={44}
-                  height={44}
-                />
-              </div>
-            ) : (
-              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                <Image
-                  src={todayCircleNewJoy.mainImageUrl}
-                  alt={`${todayCircleNewJoy.name}のアイコン`}
-                  className="mx-auto"
-                  width={44}
-                  height={44}
-                />
-              </div>
-            )}
+            <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+              <Image
+                src={todayCircleNewJoy.mainImageUrl ? todayCircleNewJoy.mainImageUrl : '/images/no-image.png'}
+                alt={`${todayCircleNewJoy.name}のアイコン`}
+                className="mx-auto"
+                width={44}
+                height={44}
+              />
+            </div>
+
             <div className="pl-2 mt-2" style={{ width: '280px' }}>
-              <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
+              <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
 
               <a className="inline text-xl border-b font-bold">
                 {todayCircleNewJoy.name}
@@ -117,6 +111,7 @@ const SpLayout: FC<{
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
+  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
 
   return (
     // スマホレイアウト
@@ -125,7 +120,7 @@ const SpLayout: FC<{
       style={{ width: 320 }}
     >
       <div className=" pr-2" style={{ minWidth: 230 }}>
-        <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
+        <h3 className="text-black font-bold mb-1">{title}</h3>
         <p className="text-sm border-b border-gray-400 flex mb-1">
           <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
             場所
