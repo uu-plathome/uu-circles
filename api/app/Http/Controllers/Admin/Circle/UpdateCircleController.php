@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
 use App\Usecases\Admin\UpdateCircleUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UpdateCircleController extends Controller
 {
@@ -27,8 +28,15 @@ class UpdateCircleController extends Controller
      */
     public function __invoke(UpdateCircleFormRequest $request): array
     {
+        Log::debug('UpdateCircleController args none');
+
+        /** @var \App\Models\User */
+        $user = $request->user();
+        $role = $user->adminUser->role;
+
         $circle = $this->updateCircleUsecase->invoke(
-            $request->makeCircleValueObject()
+            $request->makeCircleValueObject(),
+            $role
         );
 
         return [
