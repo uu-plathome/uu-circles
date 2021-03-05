@@ -74,7 +74,7 @@ const EditCircleForm: FC<Props> = ({
   onDropActivityImage,
   onSubmit,
   form,
-  role
+  role,
 }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -108,7 +108,9 @@ const EditCircleForm: FC<Props> = ({
             {...form.isMainFixed}
           />
         </div>
-      ) : ''}
+      ) : (
+        ''
+      )}
 
       <FormHeader>サークル名情報</FormHeader>
 
