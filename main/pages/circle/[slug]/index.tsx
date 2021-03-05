@@ -124,6 +124,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                         width={width}
                         height={height}
                         className="rounded"
+                        objectFit="cover"
                       />
                     </a>
                   </div>
