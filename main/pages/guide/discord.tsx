@@ -54,7 +54,7 @@ const Page: NextPage = () => {
             </div>
 
             <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
+              <h2 className="text-2xl px-4 font-bold">
                 2.アカウントを作成
               </h2>
             </div>

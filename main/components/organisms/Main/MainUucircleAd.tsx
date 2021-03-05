@@ -29,6 +29,7 @@ const MainUucircleAd: FC<Props> = () => {
             width={width}
             height={height}
             className="rounded"
+            objectFit="cover"
           />
         </a>
         <p className="text-center text-sm text-gray-600 pt-1">メディアサイト</p>
@@ -42,6 +43,7 @@ const MainUucircleAd: FC<Props> = () => {
             width={width}
             height={height}
             className="rounded"
+            objectFit="cover"
           />
         </a>
         <p className="text-center text-sm text-gray-600 pt-1">みやメシ.com</p>
@@ -55,6 +57,7 @@ const MainUucircleAd: FC<Props> = () => {
             width={width}
             height={height}
             className="rounded"
+            objectFit="cover"
           />
         </a>
         <p className="text-center text-sm text-gray-600 pt-1">
