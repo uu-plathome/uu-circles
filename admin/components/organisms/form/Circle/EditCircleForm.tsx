@@ -31,6 +31,7 @@ type Props = {
   onDropActivityImage(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
+    isMainFixed: UseBooleanInput
     release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
@@ -87,6 +88,20 @@ const EditCircleForm: FC<Props> = ({
             { value: 'false', label: '非公開' },
           ]}
           {...form.release}
+        />
+      </div>
+
+      <div className="mb-8">
+        <BaseSelect
+          label="メイン画面に固定するか"
+          id="isMainFixed"
+          name="isMainFixed"
+          required
+          items={[
+            { value: 'true', label: '固定' },
+            { value: 'false', label: '固定しない' },
+          ]}
+          {...form.isMainFixed}
         />
       </div>
 
