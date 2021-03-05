@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Main\Main;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
-use App\Usecases\Main\Circle\GetRandomCircleUsecase;
+use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Log;
 class IndexController extends Controller
 {
     private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
-    private GetRandomCircleUsecase $getRandomCircleUsecase;
+    private GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase;
 
     public function __construct(
         GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
-        GetRandomCircleUsecase $getRandomCircleUsecase
+        GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase
     ) {
         $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
-        $this->getRandomCircleUsecase = $getRandomCircleUsecase;
+        $this->getRandomCircleWithMainFixedUsecase = $getRandomCircleWithMainFixedUsecase;
     }
 
     /**
@@ -36,9 +36,11 @@ class IndexController extends Controller
     {
         Log::debug("#IndexController args: none");
 
-        $circles = Cache::remember($this->getCacheKey(), 60, function () {
-            return $this->getRandomCircleUsecase->invoke(12);
-        });
+        $circles = Cache::remember(
+            $this->getCacheKey(),
+            60,
+            fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(12)
+        );
 
         $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60, function () {
             return $this->getRandomAdvertiseUsecase->invoke(2);

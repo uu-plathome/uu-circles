@@ -15,6 +15,11 @@ class AddIsMainFixedToCircles extends Migration
     {
         Schema::table('circles', function (Blueprint $table) {
             $table->boolean('is_main_fixed')->default(false)->comment('メイン画面に固定するかどうか');
+
+            $table->index([
+                'release',
+                'is_main_fixed'
+            ]);
         });
     }
 
@@ -27,6 +32,11 @@ class AddIsMainFixedToCircles extends Migration
     {
         Schema::table('circles', function (Blueprint $table) {
             $table->dropColumn('is_main_fixed');
+
+            $table->dropIndex([
+                'release',
+                'is_main_fixed'
+            ]);
         });
     }
 }
