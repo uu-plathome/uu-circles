@@ -35,6 +35,7 @@ const EditPage: NextPage = () => {
   const name = useStringInput('')
   const slug = useStringInput('')
   const release = useBooleanInput(false)
+  const isMainFixed = useBooleanInput(false)
   const circleType = useStringInput('')
   const nameKana = useStringInput('')
   const shortName = useStringInput('')
@@ -96,6 +97,7 @@ const EditPage: NextPage = () => {
         name.set(foundCircle.name)
         slug.set(foundCircle.slug)
         release.set(foundCircle.release)
+        isMainFixed.set(foundCircle.isMainFixed)
         nameKana.set(foundCircle.nameKana)
         shortName.set(foundCircle.shortName)
         prefixName.set(foundCircle.prefixName)
@@ -356,6 +358,7 @@ const EditPage: NextPage = () => {
         name: name.value,
         slug: slug.value.toLowerCase(),
         release: release.toBoolean,
+        isMainFixed: isMainFixed.toBoolean,
         nameKana: HiraToKana(nameKana.value),
         circleType: circleType.value,
         shortName: shortName.value,
@@ -413,6 +416,7 @@ const EditPage: NextPage = () => {
         slug.setErrors(data.errors.slug)
         nameKana.setErrors(data.errors.nameKana)
         release.setErrors(data.errors.release)
+        isMainFixed.setErrors(data.errors.isMainFixed)
         circleType.setErrors(data.errors.circleType)
         shortName.setErrors(data.errors.shortName)
         prefixName.setErrors(data.errors.prefixName)
@@ -550,6 +554,7 @@ const EditPage: NextPage = () => {
                     release,
                     name,
                     slug,
+                    isMainFixed,
                     nameKana,
                     shortName,
                     prefixName,
