@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import Compressor from 'compressorjs'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
@@ -27,9 +27,11 @@ import { useDelayedEffect } from '@/hooks/useDelayedEffect'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import Color from 'colors'
+import { AuthContext } from '@/contexts/AuthContext'
 
 const EditPage: NextPage = () => {
   const [circle, setCircle] = useState<Circle | undefined>(undefined)
+  const authUser = useContext(AuthContext)
   const router = useRouter()
   const { isMd } = useMediaQuery()
   const name = useStringInput('')
@@ -550,6 +552,7 @@ const EditPage: NextPage = () => {
                   onDropHandbillImage={onDropHandbillImage}
                   onDropActivityImage={onDropActivityImage}
                   onSubmit={onSubmit}
+                  role={authUser.role}
                   form={{
                     release,
                     name,
