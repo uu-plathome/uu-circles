@@ -13,7 +13,8 @@ export type TodayCircleNewJoy = {
   slug: string
   circleType: CircleType
   mainImageUrl: string
-  name: string
+  /** サークル名 */ name: string
+  /** サークル省略名 */ shortName?: string
   circleNewJoy: CircleNewJoy
 }
 /**
