@@ -3,6 +3,7 @@ export interface Circle {
   id: number
   slug: string
   release: boolean
+  isMainFixed: boolean
   circleType: string
   name: string
   nameKana: string

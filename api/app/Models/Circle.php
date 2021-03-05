@@ -14,10 +14,12 @@ class Circle extends Model
         CircleProperty::name,
         CircleProperty::slug,
         CircleProperty::release,
+        CircleProperty::is_main_fixed,
     ];
 
     protected $casts = [
-        CircleProperty::release => 'boolean',
+        CircleProperty::release       => 'boolean',
+        CircleProperty::is_main_fixed => 'boolean',
     ];
 
     public function circleInformation(): HasOne

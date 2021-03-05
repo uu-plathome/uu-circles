@@ -3,6 +3,7 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { isSystem, Role } from '@/lib/enum/api/Role'
 import {
   faFacebook,
   faGithub,
@@ -30,7 +31,9 @@ type Props = {
   onDropHandbillImage(acceptedFiles: any): void
   onDropActivityImage(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
+  role?: Role
   form: {
+    isMainFixed: UseBooleanInput
     release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
@@ -71,6 +74,7 @@ const EditCircleForm: FC<Props> = ({
   onDropActivityImage,
   onSubmit,
   form,
+  role,
 }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -89,6 +93,24 @@ const EditCircleForm: FC<Props> = ({
           {...form.release}
         />
       </div>
+
+      {role && isSystem(role) ? (
+        <div className="mb-8">
+          <BaseSelect
+            label="メイン画面に固定するか"
+            id="isMainFixed"
+            name="isMainFixed"
+            required
+            items={[
+              { value: 'true', label: '固定' },
+              { value: 'false', label: '固定しない' },
+            ]}
+            {...form.isMainFixed}
+          />
+        </div>
+      ) : (
+        ''
+      )}
 
       <FormHeader>サークル名情報</FormHeader>
 
