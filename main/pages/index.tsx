@@ -35,9 +35,9 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
   return (
     <div>
       <Head>
-        <title>UU-circles</title>
-        <meta property="og:title" content={`UU-circles`} />
-        <meta property="og:site_name" content="UU-circles" />
+        <title>UU-Circles</title>
+        <meta property="og:title" content={`UU-Circles`} />
+        <meta property="og:site_name" content="UU-Circles" />
         <meta property="og:type" content={'website'} />
         <meta property="og:url" content={`https://uu-circles.com/`} />
         <meta name="twitter:site" content="@Ulab_uu" />
