@@ -53,7 +53,7 @@ const MainUucircleTopCarousel: FC = () => {
               width={width || 1000}
               height={height}
               objectFit="cover"
-              alt="UU-circlesへようこそ！"
+              alt="UU-Circlesへようこそ！"
             />
           </SwiperSlide>
           <SwiperSlide>
