@@ -31,7 +31,9 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:py-20 md:text-center">今日の新歓</h1>
+            <h1 className="text-2xl py-8 md:py-20 md:text-center">
+              今日の新歓
+            </h1>
 
             <h2 className="md:hidden font-bold text-lg md:text-center pl-1 mb-3">
               今日開催予定の新歓イベント

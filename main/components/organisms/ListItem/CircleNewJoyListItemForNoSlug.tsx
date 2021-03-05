@@ -8,9 +8,10 @@ import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 /**
  * 新歓タイトル
  */
-const computedCircleNewJoyTitle = (
-  todayCircleNewJoy: TodayCircleNewJoy
-) => `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title}`
+const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
+  }`
 
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
@@ -46,9 +47,7 @@ const PcLayout: FC<{
       </section>
       <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
-          <h2 className="font-bold text-xl text-center">
-            {title}
-          </h2>
+          <h2 className="font-bold text-xl text-center">{title}</h2>
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">場所</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
@@ -87,7 +86,11 @@ const PcLayout: FC<{
           <div className="pl-2 flex justify-around items-center">
             <div className="  w-12 h-12 flex items-center justify-center rounded-full">
               <Image
-                src={todayCircleNewJoy.mainImageUrl ? todayCircleNewJoy.mainImageUrl : '/images/no-image.png'}
+                src={
+                  todayCircleNewJoy.mainImageUrl
+                    ? todayCircleNewJoy.mainImageUrl
+                    : '/images/no-image.png'
+                }
                 alt={`${todayCircleNewJoy.name}のアイコン`}
                 className="mx-auto"
                 width={44}
@@ -151,12 +154,12 @@ const SpLayout: FC<{
           </div>
         </div>
         <div className="mr-4">
-            <div
-              className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center"
-              style={{ width: 52, height: 52 }}
-            >
-              詳細
-            </div>
+          <div
+            className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center"
+            style={{ width: 52, height: 52 }}
+          >
+            詳細
+          </div>
         </div>
       </div>
     </Link>

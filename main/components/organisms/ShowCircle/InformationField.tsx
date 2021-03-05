@@ -19,7 +19,9 @@ const InformationField: FC<Props> = ({ circle }) => {
             <p className="text-sm text-black">
               {circle.prefixName ? (
                 <span className="mr-4">{circle.prefixName}</span>
-              ) : ''}
+              ) : (
+                ''
+              )}
               {circle.name}
             </p>
           </div>
