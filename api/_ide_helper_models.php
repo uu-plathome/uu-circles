@@ -73,6 +73,7 @@ namespace App\Models{
  * @property bool $release 公開設定
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property bool $is_main_fixed メイン画面に固定するかどうか
  * @property-read \App\Models\CircleHandbill|null $circleHandbill
  * @property-read \App\Models\CircleInformation|null $circleInformation
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleInvitation[] $circleInvitation
@@ -87,6 +88,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Circle query()
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsMainFixed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereRelease($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circle whereSlug($value)
