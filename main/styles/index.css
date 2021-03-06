@@ -13,7 +13,7 @@ body {
 
 /* Write your own custom component styles here */
 .btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  @apply px-4 py-2 font-bold text-white bg-blue-600 rounded;
 }
 
 /* Start purging... */

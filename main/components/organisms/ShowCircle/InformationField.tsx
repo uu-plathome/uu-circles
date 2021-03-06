@@ -288,7 +288,7 @@ const InformationField: FC<Props> = ({ circle }) => {
               <p className="text-sm text-gray-400 mb-2">新歓・活動参加用URL</p>
               <div>
                 <a
-                  className="text-blue-500 underline"
+                  className="text-blue-600 underline"
                   href={circle.participationUrl}
                   target="_blank"
                   rel="noreferrer"

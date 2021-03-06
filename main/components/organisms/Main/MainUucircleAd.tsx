@@ -24,7 +24,7 @@ const MainUucircleAd: FC<Props> = () => {
           rel="noreferrer"
         >
           <Image
-            src="/images/uuyell-poster.png"
+            src="/images/uuyell-post.png"
             alt="メディアサイト"
             width={width}
             height={height}
@@ -38,7 +38,7 @@ const MainUucircleAd: FC<Props> = () => {
       <div className="mb-10 mx-auto md:mr-auto md:ml-0" style={{ width }}>
         <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
           <Image
-            src="/images/Ulab_site_ad.jpg"
+            src="/images/ulab-post.png"
             alt="u-lab公式サイト"
             width={width}
             height={height}

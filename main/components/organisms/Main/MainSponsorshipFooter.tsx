@@ -77,12 +77,12 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
       <div className="mx-auto md:mx-6 pb-10 md:flex items-center justify-center text-center">
         <div className="my-8 mx-auto md:ml-0 md:mr-10" style={{ width: 280 }}>
           <h2 className="text-lg font-bold mb-2">協賛してくださる企業様募集</h2>
-          <p className="text-sm">
+          <p className="text-sm pb-4 md:pb-0">
             当ウェブサイトは宇都宮の多くの企業の方々に支えられて運営することができています。
           </p>
         </div>
 
-        <div className="mx-auto md:mx-0" style={{ width: 280 }}>
+        <div className="mx-auto md:mx-0 pb-8 md:pb-0" style={{ width: 280 }}>
           <LightBlueButton
             href="https://forms.gle/1oULcDjiPaknvfvc8"
             target="_blank"
