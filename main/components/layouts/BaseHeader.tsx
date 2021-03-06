@@ -42,12 +42,12 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
                 </button>
               </div>
 
-              <h1 className="text-sm md:text-lg">
+              <h1 className="text-base md:text-lg">
                 {router.pathname === '/' ? (
-                  <p>UU-circles</p>
+                  <p>UU-Circles</p>
                 ) : (
                   <Link href="/">
-                    <a>UU-circles</a>
+                    <a>UU-Circles</a>
                   </Link>
                 )}
               </h1>

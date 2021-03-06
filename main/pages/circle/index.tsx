@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
@@ -11,6 +11,7 @@ import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { useStringInput } from '@/hooks/useInput'
 import { useRouter } from 'next/dist/client/router'
 import { FormEvent } from 'react'
+import { RecommendTagList } from '@/components/organisms/Circles/RecommendTagList'
 
 type Props = {
   errorCode?: number
@@ -44,6 +45,8 @@ const Page: NextPage<Props> = ({ circles }) => {
                 </form>
               </div>
 
+              <RecommendTagList />
+
               {/*  サークル一覧 */}
               <BaseCircleList circles={circles} />
             </div>
@@ -57,13 +60,14 @@ const Page: NextPage<Props> = ({ circles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const { circles } = await getAllCircleList()
 
   return {
     props: {
       circles,
     },
+    revalidate: 60,
   }
 }
 

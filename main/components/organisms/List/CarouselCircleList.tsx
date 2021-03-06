@@ -45,6 +45,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                         width={width}
                         height={height}
                         className="rounded"
+                        objectFit="cover"
                       />
                     </a>
                   </Link>
@@ -73,6 +74,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                             width={width}
                             height={height}
                             className="rounded"
+                            objectFit="cover"
                           />
                         </a>
                       </Link>

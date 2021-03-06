@@ -8,4 +8,5 @@ class PaginateCircleUsecaseParams
     public ?string $updated_at;
     public bool $previos;
     public bool $next;
+    public ?string $name;
 }

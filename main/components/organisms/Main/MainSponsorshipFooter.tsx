@@ -33,6 +33,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 alt="協賛企業広告"
                 width={width || 0}
                 height={height}
+                objectFit="cover"
               />
             </a>
 
@@ -58,6 +59,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 alt="協賛企業広告"
                 width={width}
                 height={height}
+                objectFit="cover"
               />
             </a>
 

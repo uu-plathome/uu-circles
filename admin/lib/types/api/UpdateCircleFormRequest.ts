@@ -5,6 +5,7 @@ export interface UpdateCircleFormRequest {
   type: 'UpdateCircleFormRequest'
   slug: string
   release: boolean
+  isMainFixed?: boolean
   name: string
   nameKana?: string
   shortName?: string
@@ -66,6 +67,7 @@ export interface UpdateCircleFormRequestValidationError {
   errors: {
     slug?: string[]
     release?: string[]
+    isMainFixed?: string[]
     name?: string[]
     nameKana?: string[]
     shortName?: string[]

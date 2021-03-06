@@ -5,12 +5,37 @@ import Image from 'next/image'
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 
+/**
+ * 新歓タイトル
+ */
+const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
+  }`
+export const getCircleNameSize = (circleShowName: string) => {
+  if (circleShowName.length <= 9) {
+    return 'text-xl'
+  } else if (circleShowName.length <= 11) {
+    return 'text-base'
+  } else if (circleShowName.length <= 13) {
+    return 'text-sm'
+  } else {
+    return 'text-xs'
+  }
+}
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
-
+  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
+  //shortNameあればそれ使い、なければnmaeを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
+  const circleShowNameRaw =
+    todayCircleNewJoy.shortName || todayCircleNewJoy.name
+  const circleShowName =
+    circleShowNameRaw.length <= 15
+      ? circleShowNameRaw
+      : circleShowNameRaw.substr(0, 14) + '…'
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -36,11 +61,9 @@ const PcLayout: FC<{
           <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
         </div>
       </section>
-      <section className=" bg-white px-2 pl-3 w-80">
+      <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
-          <h2 className="font-bold text-xl text-center">
-            {circleNewJoy.title}
-          </h2>
+          <h2 className="font-bold text-xl text-center">{title}</h2>
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">場所</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
@@ -74,35 +97,30 @@ const PcLayout: FC<{
         className="border-l-2 border-gray-600 h-full pl-2"
         style={{ width: '250px' }}
       >
-        <h3 className="text-xs  ">主催サークル</h3>
+        <h3 className="text-xs">主催サークル</h3>
         <Link href="/circle/[slug]" as={`/circle/${slug}`}>
           <div className="pl-2 flex justify-around items-center">
-            {todayCircleNewJoy.mainImageUrl == null ? (
-              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                <Image
-                  src={'/images/no-image.png'}
-                  alt={`${todayCircleNewJoy.name}のアイコン`}
-                  className="mx-auto"
-                  width={44}
-                  height={44}
-                />
-              </div>
-            ) : (
-              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-                <Image
-                  src={todayCircleNewJoy.mainImageUrl}
-                  alt={`${todayCircleNewJoy.name}のアイコン`}
-                  className="mx-auto"
-                  width={44}
-                  height={44}
-                />
-              </div>
-            )}
-            <div className="pl-2 mt-2" style={{ width: '280px' }}>
-              <p className="text-sm ">{__(todayCircleNewJoy.circleType)}</p>
+            <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+              <Image
+                src={
+                  todayCircleNewJoy.mainImageUrl
+                    ? todayCircleNewJoy.mainImageUrl
+                    : '/images/no-image.png'
+                }
+                alt={`${todayCircleNewJoy.name}のアイコン`}
+                className="mx-auto"
+                width={44}
+                height={44}
+              />
+            </div>
 
-              <a className="inline text-xl border-b font-bold">
-                {todayCircleNewJoy.name}
+            <div className="pl-2 mt-2" style={{ width: '280px' }}>
+              <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
+
+              <a className="inline  border-b font-bold">
+                <span className={getCircleNameSize(circleShowName)}>
+                  {circleShowName}
+                </span>
               </a>
             </div>
           </div>
@@ -117,51 +135,52 @@ const SpLayout: FC<{
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
+  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
 
   return (
     // スマホレイアウト
-    <div
-      className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
-      style={{ width: 320 }}
+    <Link
+      href="/circle/[slug]/newjoy/[circleNewJoy]"
+      as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
     >
-      <div className=" pr-2" style={{ minWidth: 230 }}>
-        <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
-        <p className="text-sm border-b border-gray-400 flex mb-1">
-          <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
-            場所
-          </span>
-          <span className="block  text-center mx-auto">
-            {__(circleNewJoy.placeOfActivity)}
-          </span>
-        </p>
-        <div className="text-sm flex">
-          <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
-            <span className="text-gray-400 text-xs pl-1">日時</span>
-            <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
-          </div>
+      <div
+        className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+        style={{ width: 320 }}
+      >
+        <div className=" pr-2" style={{ minWidth: 230 }}>
+          <h3 className="text-black font-bold mb-1">{title}</h3>
+          <p className="text-sm border-b border-gray-400 flex mb-1">
+            <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
+              場所
+            </span>
+            <span className="block  text-center mx-auto">
+              {__(circleNewJoy.placeOfActivity)}
+            </span>
+          </p>
+          <div className="text-sm flex">
+            <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
+              <span className="text-gray-400 text-xs pl-1">日時</span>
+              <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
+            </div>
 
-          <span
-            className="block  text-center border-b border-gray-400 whitespace-nowrap"
-            style={{ minWidth: 87 }}
-          >
-            {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
-          </span>
+            <span
+              className="block  text-center border-b border-gray-400 whitespace-nowrap"
+              style={{ minWidth: 87 }}
+            >
+              {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="mr-4">
-        <Link
-          href="/circle/[slug]/newjoy/[circleNewJoy]"
-          as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
-        >
+        <div className="mr-4">
           <div
             className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center"
             style={{ width: 52, height: 52 }}
           >
             詳細
           </div>
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

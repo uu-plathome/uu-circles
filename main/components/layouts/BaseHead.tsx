@@ -9,9 +9,9 @@ const BaseHead: FC<Props> = ({ title }) => {
   const router = useRouter()
   return (
     <Head>
-      <title>{title} | UU-circles</title>
-      <meta property="og:title" content={`${title} | UU-circles`} />
-      <meta property="og:site_name" content="UU-circles" />
+      <title>{title} | UU-Circles</title>
+      <meta property="og:title" content={`${title} | UU-Circles`} />
+      <meta property="og:site_name" content="UU-Circles" />
       <meta
         property="og:type"
         content={router.pathname === '/' ? 'website' : 'article'}

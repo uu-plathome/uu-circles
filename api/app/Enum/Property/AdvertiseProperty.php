@@ -2,8 +2,12 @@
 
 namespace App\Enum\Property;
 
-class AdvertiseProperty extends BaseProperty
+class AdvertiseProperty
 {
+    const id = 'id';
+    const created_at = 'created_at';
+    const updated_at = 'updated_at';
+
     const title = 'title';
     const link = 'link';
     const main_image_url = 'main_image_url';

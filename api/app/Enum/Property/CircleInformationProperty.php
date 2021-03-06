@@ -2,8 +2,12 @@
 
 namespace App\Enum\Property;
 
-class CircleInformationProperty extends BaseProperty
+class CircleInformationProperty
 {
+    const id = 'id';
+    const created_at = 'created_at';
+    const updated_at = 'updated_at';
+
     const circle_id = 'circle_id';
     const circle_type = 'circle_type';
     const name_kana = 'name_kana';

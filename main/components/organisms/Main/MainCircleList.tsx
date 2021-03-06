@@ -25,6 +25,7 @@ const MainCircleList: FC<Props> = ({ circles }) => {
                     width={width}
                     height={height}
                     className="rounded"
+                    objectFit="cover"
                   />
                 </a>
               </Link>

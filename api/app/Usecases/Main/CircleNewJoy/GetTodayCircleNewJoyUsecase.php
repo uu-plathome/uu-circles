@@ -15,9 +15,9 @@ class GetTodayCircleNewJoyUsecase
      *
      * 今日の新歓と明日以降の10件の新歓を取得
      *
-     * @return void
+     * @return array
      */
-    public function invoke()
+    public function invoke(): array
     {
         Log::debug("#GetTodayCircleNewJoyUsecase args: none");
 
@@ -26,7 +26,7 @@ class GetTodayCircleNewJoyUsecase
 
         $todayCircleNewJoysQuery = CircleNewJoy::with([
             'circle:id,slug,release,name',
-            'circle.circleInformation:circle_id,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -43,7 +43,7 @@ class GetTodayCircleNewJoyUsecase
 
         $fetchCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release,name',
-            'circle.circleInformation:circle_id,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url'
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -74,6 +74,7 @@ class GetTodayCircleNewJoyUsecase
                     fn (CircleNewJoy $circleNewJoy) => [
                         'slug'                    => $circleNewJoy->circle['slug'],
                         'name'                    => $circleNewJoy->circle['name'],
+                        'short_name'              => $circleNewJoy->circle->circleInformation['short_name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
                         'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
@@ -84,6 +85,7 @@ class GetTodayCircleNewJoyUsecase
                     fn (CircleNewJoy $circleNewJoy) => [
                         'slug'                    => $circleNewJoy->circle['slug'],
                         'name'                    => $circleNewJoy->circle['name'],
+                        'short_name'              => $circleNewJoy->circle->circleInformation['short_name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
                         'circleNewJoyValueObject' => circleNewJoyValueObject::byEloquent($circleNewJoy)
