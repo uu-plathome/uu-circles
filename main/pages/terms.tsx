@@ -36,7 +36,7 @@ const Page: NextPage = () => {
       <BaseHead title="利用規約" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2 pb-20">
+        <div className="bg-gray-100 px-6 pb-20">
           <BaseContainer>
             <h1 className="text-2xl py-8 text-center">利用規約</h1>
 

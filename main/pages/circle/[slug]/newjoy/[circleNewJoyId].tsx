@@ -9,7 +9,6 @@ import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { InformationCircleBesideNewJoyPCWithButton } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPCWithButton'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
@@ -48,7 +47,6 @@ const Page: NextPage<Props> = ({
     return <div></div>
   }
 
-  const { isMd } = useMediaQuery()
   // console.log(circleNewJoy)
   return (
     <div>
@@ -162,7 +160,7 @@ const Page: NextPage<Props> = ({
                       開催中
                     </h2>
 
-                    <IndexCircleNewJoyListPC
+                    <IndexCircleNewJoyListSP
                       slug={circle.slug}
                       circleNewJoys={nowCircleNewJoys}
                     />
@@ -216,6 +214,7 @@ const Page: NextPage<Props> = ({
                     <p className="text-center">開催済みの新歓はありません</p>
                   )}
                 </div>
+
                 <InformationCircleBesideNewJoySP circle={circle} />
               </div>
 
