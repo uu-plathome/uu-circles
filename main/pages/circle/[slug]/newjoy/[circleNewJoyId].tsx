@@ -55,23 +55,25 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
+
             <h1 className="text-2xl pl-4 py-8 md:py-20 md:text-center text-left">
               新歓イベント日程詳細
             </h1>
-            {isMd ? (
-              //PC
-              <div>
+
+              {/* PC */}
+              <div className="hidden md:block">
                 <div className="pb-16 grid grid-cols-7">
                   <div className="col-span-5">
                     <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
                   </div>
+
                   <div className="col-span-2  ml-6">
                     <h2 className="text-xl">主催サークル</h2>
 
                     <InformationCircleBesideNewJoyPCWithButton
                       circle={circle}
                     />
-                    <Link href="/circle/newjoy" as={'/circle/newjoy'}>
+                    <Link href="/circle/newjoy">
                       <a>
                         {/* <div
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
@@ -93,22 +95,22 @@ const Page: NextPage<Props> = ({
                     </Link>
                   </div>
                 </div>
-                <>
+
+                <div className="pb-16">
+                  <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                    開催中
+                  </h2>
                   {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
-                    <div className="pb-16">
-                      <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                        開催中
-                      </h2>
 
                       <IndexCircleNewJoyListPC
                         slug={circle.slug}
                         circleNewJoys={nowCircleNewJoys}
                       />
-                    </div>
                   ) : (
-                    ''
-                  )}{' '}
-                </>
+                    <p className="text-center">開催中の新歓はありません</p>
+                  )}
+                </div>
+
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                     今日の新歓
@@ -124,6 +126,7 @@ const Page: NextPage<Props> = ({
                     <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
+
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
                     開催予定
@@ -146,28 +149,28 @@ const Page: NextPage<Props> = ({
                   />
                 </div>
               </div>
-            ) : (
-              // SP
-              <div>
-                <>
-                  <div className="pb-16">
-                    <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
-                  </div>
-                  {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
-                    <div className="pb-16">
-                      <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                        開催中
-                      </h2>
 
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={nowCircleNewJoys}
-                      />
-                    </div>
-                  ) : (
-                    ''
-                  )}{' '}
-                </>
+              {/* SP */}
+              <div className="md:hidden">
+                <div className="pb-16">
+                  <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+                </div>
+
+                {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
+                  <div className="pb-16">
+                    <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
+                      開催中
+                    </h2>
+
+                    <IndexCircleNewJoyListPC
+                      slug={circle.slug}
+                      circleNewJoys={nowCircleNewJoys}
+                    />
+                  </div>
+                ) : (
+                  <p className="text-center">開催中の新歓はありません</p>
+                )}
+
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     今日の新歓
@@ -183,27 +186,39 @@ const Page: NextPage<Props> = ({
                     <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
+
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={futureCircleNewJoys}
-                  />
+
+                  {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={futureCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催予定の新歓はありません</p>
+                  )}
                 </div>
+
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={pastCircleNewJoys}
-                  />
+
+                  {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={pastCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催済みの新歓はありません</p>
+                  )}
                 </div>
                 <InformationCircleBesideNewJoySP circle={circle} />
               </div>
-            )}
+
           </BaseContainer>
         </div>
 
