@@ -34,8 +34,6 @@ const PcLayout: FC<{
       : circleShowName.length <= 13
       ? 'text-sm'
       : 'text-xs'
-
-  // console.log(todayCircleNewJoy)
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
