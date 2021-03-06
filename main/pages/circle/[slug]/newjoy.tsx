@@ -89,20 +89,30 @@ const Page: NextPage<Props> = ({
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={futureCircleNewJoys}
-                      />
+                      {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={futureCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催予定の新歓はありません
+                        </p>
+                      )}
                     </div>
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={pastCircleNewJoys}
-                      />
+                      {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={pastCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催済みの新歓はありません
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -116,7 +126,7 @@ const Page: NextPage<Props> = ({
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
                         style={{ width: 222 }}
                       > */}
-                        <div className="mt-6 w-full">
+                        <div className="my-6 w-full">
                           <YellowButton width={'222px'}>
                             <div className="py-2">
                               <h4 className="text-xs">
@@ -167,19 +177,27 @@ const Page: NextPage<Props> = ({
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={futureCircleNewJoys}
-                  />
+                  {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={futureCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催予定の新歓はありません</p>
+                  )}
                 </div>
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={pastCircleNewJoys}
-                  />
+                  {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={pastCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催済みの新歓はありません</p>
+                  )}
                 </div>
 
                 <InformationCircleBesideNewJoySP circle={circle} />
