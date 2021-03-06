@@ -116,7 +116,7 @@ const Page: NextPage<Props> = ({
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
                         style={{ width: 222 }}
                       > */}
-                        <div className="mt-6 w-full">
+                        <div className="my-6 w-full">
                           <YellowButton width={'222px'}>
                             <div className="py-2">
                               <h4 className="text-xs">
