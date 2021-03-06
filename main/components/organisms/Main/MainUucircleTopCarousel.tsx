@@ -40,12 +40,14 @@ const MainUucircleTopCarousel: FC = () => {
       <Swiper {...params}>
         <nav>
           <SwiperSlide>
-            <Image
-              width={width || 1000}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <a href="http://ulab-uu.com/" target="_blank" rel="noopener">
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                src="/images/topCarousel/Rectangle16.png"
+              />
+            </a>
           </SwiperSlide>
           <SwiperSlide>
             <Image
@@ -57,12 +59,14 @@ const MainUucircleTopCarousel: FC = () => {
             />
           </SwiperSlide>
           <SwiperSlide>
-            <Image
-              width={width || 1000}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <a href="http://ulab-uu.com/" target="_blank" rel="noopener">
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                src="/images/topCarousel/Rectangle16.png"
+              />
+            </a>
           </SwiperSlide>
         </nav>
       </Swiper>
