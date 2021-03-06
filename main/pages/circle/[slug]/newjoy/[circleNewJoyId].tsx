@@ -3,17 +3,16 @@ import Link from 'next/link'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
-import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
 import { CircleNewJoyDetail } from '@/components/organisms/Newjoy/CircleNewJoyDetail'
 import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { InformationCircleBesideNewJoyPCWithButton } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPCWithButton'
-import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
+import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
 
 type Props = {
   errorCode?: number
@@ -150,74 +149,15 @@ const Page: NextPage<Props> = ({
 
               {/* SP */}
               <div className="md:hidden">
-                <div className="pb-16">
-                  <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
-                </div>
-
-                {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
-                  <div className="pb-16">
-                    <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                      開催中
-                    </h2>
-
-                    <IndexCircleNewJoyListSP
-                      slug={circle.slug}
-                      circleNewJoys={nowCircleNewJoys}
-                    />
-                  </div>
-                ) : (
-                  <p className="text-center">開催中の新歓はありません</p>
-                )}
-
-                <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
-                    今日の新歓
-                  </h2>
-                  {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                    <div>
-                      <IndexCircleNewJoyListSP
-                        slug={circle.slug}
-                        circleNewJoys={todayCircleNewJoys}
-                      />
-                    </div>
-                  ) : (
-                    <p className="text-center">今日の新歓はありません</p>
-                  )}
-                </div>
-
-                <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
-                    開催予定
-                  </h2>
-
-                  {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
-                    <IndexCircleNewJoyListSP
-                      slug={circle.slug}
-                      circleNewJoys={futureCircleNewJoys}
-                    />
-                  ) : (
-                    <p className="text-center">開催予定の新歓はありません</p>
-                  )}
-                </div>
-
-                <div className="pb-16">
-                  <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
-                    開催済み
-                  </h2>
-
-                  {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
-                    <IndexCircleNewJoyListSP
-                      slug={circle.slug}
-                      circleNewJoys={pastCircleNewJoys}
-                    />
-                  ) : (
-                    <p className="text-center">開催済みの新歓はありません</p>
-                  )}
-                </div>
-
-                <InformationCircleBesideNewJoySP circle={circle} />
+                <ShowCircleNewJoySpLayout
+                  circle={circle}
+                  circleNewJoy={circleNewJoy}
+                  pastCircleNewJoys={pastCircleNewJoys}
+                  futureCircleNewJoys={futureCircleNewJoys}
+                  nowCircleNewJoys={nowCircleNewJoys}
+                  todayCircleNewJoys={todayCircleNewJoys}
+                />
               </div>
-
           </BaseContainer>
         </div>
 
