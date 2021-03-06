@@ -23,7 +23,7 @@ const Page: NextPage<Props> = () => {
           <BaseContainer>
             <div className="flex justify-center items-center pt-6">
               <a href="https://discord.com/download">
-                <Image src="/images/rookie.png" width="328" height="76" />
+              <Image src="/images/topButtons/Rectangle15.png" width="328" height="76" />
               </a>
             </div>
             <h1 className="text-2xl pt-6 pb-8 px-4">新入生へ</h1>
