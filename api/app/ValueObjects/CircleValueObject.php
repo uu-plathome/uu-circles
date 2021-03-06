@@ -16,6 +16,7 @@ class CircleValueObject
     public ?string $slug;
     public bool $release;
     public string $name;
+    public bool $is_main_fixed;
     public ?string $circle_type;
     public ?string $name_kana;
     public ?string $short_name;
@@ -82,6 +83,7 @@ class CircleValueObject
         $circleValueObject->slug = $circle->slug;
         $circleValueObject->release = $circle->release;
         $circleValueObject->name = $circle->name;
+        $circleValueObject->is_main_fixed = !!$circle->is_main_fixed;
 
         $circleValueObject->circle_type = $circleInformation ? $circleInformation->circle_type : null;
         $circleValueObject->name_kana = $circleInformation ? $circleInformation->name_kana : null;
@@ -145,11 +147,12 @@ class CircleValueObject
     public function toCircleProperty(): Circle
     {
         $circle = new Circle([
-            CircleProperty::name       => $this->name,
-            CircleProperty::slug       => $this->slug,
-            CircleProperty::release    => $this->release,
-            CircleProperty::created_at => $this->created_at,
-            CircleProperty::updated_at => $this->updated_at,
+            CircleProperty::name          => $this->name,
+            CircleProperty::slug          => $this->slug,
+            CircleProperty::release       => $this->release,
+            CircleProperty::is_main_fixed => $this->is_main_fixed,
+            CircleProperty::created_at    => $this->created_at,
+            CircleProperty::updated_at    => $this->updated_at,
         ]);
         $circle->id = $this->id;
         return $circle;
@@ -222,12 +225,13 @@ class CircleValueObject
     public function toArray(): array
     {
         return [
-            CircleProperty::id         => $this->id,
-            CircleProperty::slug       => $this->slug,
-            CircleProperty::release    => $this->release,
-            CircleProperty::name       => $this->name,
-            CircleProperty::created_at => $this->created_at,
-            CircleProperty::updated_at => $this->updated_at,
+            CircleProperty::id            => $this->id,
+            CircleProperty::slug          => $this->slug,
+            CircleProperty::release       => $this->release,
+            CircleProperty::name          => $this->name,
+            CircleProperty::is_main_fixed => $this->is_main_fixed,
+            CircleProperty::created_at    => $this->created_at,
+            CircleProperty::updated_at    => $this->updated_at,
             CircleInformationProperty::circle_type => $this->circle_type,
             CircleInformationProperty::name_kana => $this->name_kana,
             CircleInformationProperty::short_name => $this->short_name,

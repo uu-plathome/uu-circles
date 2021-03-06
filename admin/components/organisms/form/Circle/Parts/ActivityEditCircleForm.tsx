@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
-import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { getAllWeek, Week } from '@/lib/enum/api/Week'
 import { BaseCheckBox } from '@/components/atoms/form/BaseCheckBox'
+import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 
 type Props = {
   form: {
@@ -198,7 +198,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         {...form.commonPlaceOfActivity}
       />
 
-      <BaseTextField
+      <BaseTextarea
         label="通常活動場所詳細"
         name="placeOfActivityDetail"
         id="placeOfActivityDetail"
@@ -232,7 +232,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         mdCols={4}
       ></BaseCheckBox>
 
-      <BaseTextField
+      <BaseTextarea
         label="通常活動日時詳細"
         name="commonDateOfActivityDetail"
         id="commonDateOfActivityDetail"
@@ -279,7 +279,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
             mdCols={4}
           ></BaseCheckBox>
 
-          <BaseTextField
+          <BaseTextarea
             label="オンライン活動日時詳細"
             name="onlineDateOfActivityDetail"
             id="onlineDateOfActivityDetail"

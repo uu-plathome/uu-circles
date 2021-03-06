@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import {
   getTodayCircleNewJoy,
@@ -31,7 +31,9 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:py-20 text-center">今日の新歓</h1>
+            <h1 className="text-2xl py-8 md:py-20 md:text-center">
+              今日の新歓
+            </h1>
 
             <h2 className="md:hidden font-bold text-lg md:text-center pl-1 mb-3">
               今日開催予定の新歓イベント
@@ -67,9 +69,7 @@ const Page: NextPage<Props> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
     const {
       futureCircleNewJoys,
@@ -81,9 +81,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
         futureCircleNewJoys,
         todayCircleNewJoys,
       },
+      revalidate: 120,
     }
   } catch (e) {
-    res.statusCode = 500
     return { props: { errorCode: 500 } }
   }
 }

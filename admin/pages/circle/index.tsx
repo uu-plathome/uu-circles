@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Color from 'colors'
@@ -15,12 +15,15 @@ import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
+import { useStringInput } from '@/hooks/useInput'
+import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 
 type PaginateCircleCursor = {
-  id: number
-  updatedAt: string
+  'circles.id'?: number
+  'circleInformation.updatedAt'?: string
   previos: boolean
   next: boolean
+  name?: string
 } | null
 const IndexPage: NextPage = () => {
   const [circles, setCircles] = useState<{
@@ -31,6 +34,7 @@ const IndexPage: NextPage = () => {
     records: Circle[]
   }>(undefined)
   const { isMd } = useMediaQuery()
+  const name = useStringInput('')
 
   const foundCircleList = async (cursor: PaginateCircleCursor = null) => {
     setCircles(await paginateCircleList(cursor))
@@ -46,15 +50,28 @@ const IndexPage: NextPage = () => {
     const f = async () => {
       setCircles(
         await paginateCircleList({
-          id: null,
-          updatedAt: null,
+          'circles.id': null,
+          'circleInformation.updatedAt': null,
           previos: false,
           next: true,
+          name: name.value,
         })
       )
     }
     f()
   }, [])
+
+  const onSearchSubmit = (event: FormEvent) => {
+    event.preventDefault()
+
+    foundCircleList({
+      'circles.id': null,
+      'circleInformation.updatedAt': null,
+      previos: false,
+      next: true,
+      name: name.value,
+    })
+  }
 
   return (
     <div id="top">
@@ -71,6 +88,23 @@ const IndexPage: NextPage = () => {
           actionHref="/circle/create"
         >
           <div className="border-2 border-gray-800 p-2">
+            {circles ? (
+              <div className="py-4 mb-8">
+                <p className="text-white">サークル名検索</p>
+
+                <form onSubmit={onSearchSubmit}>
+                  <SearchTextField
+                    id="nameSearch"
+                    name="nameSearch"
+                    expand
+                    {...name}
+                  />
+                </form>
+              </div>
+            ) : (
+              ''
+            )}
+
             {circles && circles.records.length > 0
               ? circles.records.map((circle: Circle) => {
                   return (
@@ -100,6 +134,7 @@ const IndexPage: NextPage = () => {
                       ...circles.previousCursor,
                       previos: true,
                       next: false,
+                      name: name.value,
                     })
                   }
                 >
@@ -118,6 +153,7 @@ const IndexPage: NextPage = () => {
                       ...circles.nextCursor,
                       previos: false,
                       next: true,
+                      name: name.value,
                     })
                   }
                 >

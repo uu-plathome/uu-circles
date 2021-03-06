@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
@@ -10,6 +10,7 @@ import { useRouter } from 'next/dist/client/router'
 import { __ } from '@/lang/ja'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
+import { getAllTagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 
 type Props = {
   errorCode?: number
@@ -21,6 +22,10 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   const { tag } = router.query
   const circleTagTitle = __(String(tag).toUpperCase(), 'CircleTagTitle')
   const circleTagText = __(String(tag).toUpperCase(), 'CircleTagText')
+
+  if (!circles) {
+    return <div></div>
+  }
 
   return (
     <div>
@@ -62,13 +67,11 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  params,
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.tag || Array.isArray(params.tag)) {
-    res.statusCode = 404
-    return { props: { errorCode: 404 } }
+    return {
+      notFound: true,
+    }
   }
 
   const { circles, recommendCircles } = await getCircleByTag(params.tag)
@@ -78,7 +81,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       circles,
       recommendCircles,
     },
+    revalidate: 60,
   }
 }
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: true,
+})
 
 export default Page

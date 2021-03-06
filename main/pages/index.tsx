@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { MainCircleList } from '@/components/organisms/Main/MainCircleList'
 import { getMain } from '@/infra/api/main'
@@ -35,9 +35,9 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
   return (
     <div>
       <Head>
-        <title>UU-circles</title>
-        <meta property="og:title" content={`UU-circles`} />
-        <meta property="og:site_name" content="UU-circles" />
+        <title>UU-Circles</title>
+        <meta property="og:title" content={`UU-Circles`} />
+        <meta property="og:site_name" content="UU-Circles" />
         <meta property="og:type" content={'website'} />
         <meta property="og:url" content={`https://uu-circles.com/`} />
         <meta name="twitter:site" content="@Ulab_uu" />
@@ -81,7 +81,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const { circles, advertises } = await getMain()
 
   return {
@@ -89,6 +89,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       advertises,
       circles,
     },
+    revalidate: 60,
   }
 }
 

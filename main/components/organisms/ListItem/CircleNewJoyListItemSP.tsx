@@ -12,7 +12,7 @@ const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
   //日時、時間でwidth指定しているのは、時間が開始のみのときに画面崩れるのを防止するためです！！！！
   return (
     <div
-      className="border border-4 border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+      className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
       style={{ width: 320 }}
     >
       <div className="w-full pr-3">
