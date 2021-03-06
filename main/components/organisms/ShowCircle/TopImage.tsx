@@ -53,6 +53,7 @@ const TopImage: FC<Props> = ({ circle }) => {
                 alt={`${circle.name}の活動の様子`}
                 width={700}
                 height={(700 * 200) / 375}
+                objectFit="cover"
               />
             </SwiperSlide>
           )
@@ -70,6 +71,7 @@ const TopImage: FC<Props> = ({ circle }) => {
                 alt={`${circle.name}の活動の様子`}
                 width={100}
                 height={(100 * 200) / 375}
+                objectFit="cover"
               />
             </div>
           )
