@@ -86,7 +86,9 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
           <LightBlueButton
             href="https://forms.gle/1oULcDjiPaknvfvc8"
             target="_blank"
-          >協賛を考えている企業様へ</LightBlueButton>
+          >
+            協賛を考えている企業様へ
+          </LightBlueButton>
         </div>
       </div>
     </div>
