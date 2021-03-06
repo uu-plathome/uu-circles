@@ -102,9 +102,7 @@ const Page: NextPage = () => {
             </div>
 
             <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">
-                5.表示名を変更する
-              </h2>
+              <h2 className="text-2xl px-4 font-bold">5.表示名を変更する</h2>
             </div>
 
             <div className="px-4 pb-6">
@@ -117,9 +115,7 @@ const Page: NextPage = () => {
             </div>
 
             <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">
-                6.新歓に参加しよう！
-              </h2>
+              <h2 className="text-2xl px-4 font-bold">6.新歓に参加しよう！</h2>
             </div>
 
             <div className="px-4 pb-24">
