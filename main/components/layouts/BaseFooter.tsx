@@ -199,7 +199,7 @@ const BaseFooter: FC<Props> = () => {
             <Link href="/circle/newjoy">
               <a>
                 <Image
-                  className="border-2 border-red-900"
+                  className="border-2 border-red-900 rounded"
                   src="/images/topButtons/shinkan1.png"
                   width={340}
                   height={92}
@@ -210,12 +210,16 @@ const BaseFooter: FC<Props> = () => {
           </div>
 
           <div className="md:mb-10 text-center">
-            <Image
-              className="border-2 border-red-900"
-              src="/images/media_postar_tmp.png"
-              width={340}
-              height={92}
-            />
+            <Link href="/guide/discord">
+              <a>
+                <Image
+                  className="border-2 border-red-900 rounded"
+                  src="/images/topButtons/discordBunner1.png"
+                  width={340}
+                  height={92}
+                />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
