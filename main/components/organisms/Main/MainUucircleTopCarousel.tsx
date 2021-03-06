@@ -40,7 +40,11 @@ const MainUucircleTopCarousel: FC = () => {
       <Swiper {...params}>
         <nav>
           <SwiperSlide>
-            <a href="https://camp-fire.jp/projects/view/335734" target="_blank" rel="noopener">
+            <a
+              href="https://camp-fire.jp/projects/view/335734"
+              target="_blank"
+              rel="noopener"
+            >
               <Image
                 width={width || 1000}
                 height={height}
