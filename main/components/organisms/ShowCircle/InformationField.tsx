@@ -91,7 +91,9 @@ const InformationField: FC<Props> = ({ circle }) => {
                 {circle.commonPlaceOfActivityDetail}
               </p>
             </div>
-          ) : ''}
+          ) : (
+            ''
+          )}
 
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">通常活動日</p>
