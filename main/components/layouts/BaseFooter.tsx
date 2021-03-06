@@ -181,11 +181,13 @@ const BaseFooter: FC<Props> = () => {
     <div className="bg-gray-100">
       {width ? (
         <div className="md:px-6 md:mb-10 text-center">
-          <Image
-            src="/images/media_postar_tmp.png"
-            width={width > 700 ? 700 : width}
-            height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
-          />
+          <a href="https://media.uu-circles.com/" target="_blank">
+            <Image
+              src="/images/uuyell-poster.png"
+              width={width > 700 ? 700 : width}
+              height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
+            />
+          </a>
         </div>
       ) : (
         ''
@@ -194,12 +196,17 @@ const BaseFooter: FC<Props> = () => {
       <div className="hidden md:flex justify-center">
         <div className="grid grid-cols-2 gap-6" style={{ maxWidth: 700 }}>
           <div className="md:mb-10 text-center">
-            <Image
-              className="border-2 border-red-900"
-              src="/images/media_postar_tmp.png"
-              width={340}
-              height={92}
-            />
+            <Link href="/circle/newjoy">
+              <a>
+                <Image
+                  className="border-2 border-red-900"
+                  src="/images/topButtons/shinkan1.png"
+                  width={340}
+                  height={92}
+                  objectFit="cover"
+                />
+              </a>
+            </Link>
           </div>
 
           <div className="md:mb-10 text-center">

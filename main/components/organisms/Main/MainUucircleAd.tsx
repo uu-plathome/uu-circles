@@ -24,7 +24,7 @@ const MainUucircleAd: FC<Props> = () => {
           rel="noreferrer"
         >
           <Image
-            src="/images/Ulab_site_ad.jpg"
+            src="/images/uuyell-poster.png"
             alt="メディアサイト"
             width={width}
             height={height}
@@ -36,20 +36,6 @@ const MainUucircleAd: FC<Props> = () => {
       </div>
 
       <div className="mb-10 mx-auto md:mr-auto md:ml-0" style={{ width }}>
-        <a href="https://miyameshi.com/" target="_blank" rel="noreferrer">
-          <Image
-            src="/images/miyameshi-phone-top.jpg"
-            alt="みやメシ.com"
-            width={width}
-            height={height}
-            className="rounded"
-            objectFit="cover"
-          />
-        </a>
-        <p className="text-center text-sm text-gray-600 pt-1">みやメシ.com</p>
-      </div>
-
-      <div className="mb-10 mx-auto md:ml-auto md:mr-0" style={{ width }}>
         <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
           <Image
             src="/images/Ulab_site_ad.jpg"
@@ -63,6 +49,20 @@ const MainUucircleAd: FC<Props> = () => {
         <p className="text-center text-sm text-gray-600 pt-1">
           U-lab公式サイト
         </p>
+      </div>
+
+      <div className="mb-10 mx-auto md:ml-auto md:mr-0" style={{ width }}>
+        <a href="https://miyameshi.com/" target="_blank" rel="noreferrer">
+          <Image
+            src="/images/miyameshi-phone-top.jpg"
+            alt="みやメシ.com"
+            width={width}
+            height={height}
+            className="rounded"
+            objectFit="cover"
+          />
+        </a>
+        <p className="text-center text-sm text-gray-600 pt-1">みやメシ.com</p>
       </div>
     </div>
   )

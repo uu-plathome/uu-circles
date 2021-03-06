@@ -95,7 +95,7 @@ const PcButtonGroup = () => {
       <div className="m-4">
         <PcButton
           href="/guide/discord"
-          src="/images/topButtons/discordBunner1.png"
+          src="/images/online.png"
         />
       </div>
     </nav>
