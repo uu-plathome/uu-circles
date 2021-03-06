@@ -34,7 +34,12 @@ const MainUucircleBottomButtons: FC = () => {
                 height: '65px',
               }}
             >
-              <a href="https://media.uu-circles.com/2021/03/circle-select/" className="text-white" style={{ fontSize: '18px' }} target="_blank">
+              <a
+                href="https://media.uu-circles.com/2021/03/circle-select/"
+                className="text-white"
+                style={{ fontSize: '18px' }}
+                target="_blank"
+              >
                 先輩達のサークル選び
               </a>
             </button>
@@ -60,7 +65,12 @@ const MainUucircleBottomButtons: FC = () => {
                 height: '65px',
               }}
             >
-              <a href="https://media.uu-circles.com/2021/03/region-uu/" className="text-white " style={{ fontSize: '18px' }} target="_blank">
+              <a
+                href="https://media.uu-circles.com/2021/03/region-uu/"
+                className="text-white "
+                style={{ fontSize: '18px' }}
+                target="_blank"
+              >
                 地域で活躍する宇大生
               </a>
             </button>
