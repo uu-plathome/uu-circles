@@ -1,9 +1,9 @@
-import { Circle } from "@/lib/types/model/Circle"
-import { CircleNewJoy } from "@/lib/types/model/CircleNewJoy"
-import { FC } from "react"
-import { IndexCircleNewJoyListSP } from "../List/IndexCircleNewJoyListSP"
-import { CircleNewJoyDetail } from "../Newjoy/CircleNewJoyDetail"
-import { InformationCircleBesideNewJoySP } from "../ShowCircle/InformationCircleBesideNewJoySP"
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { FC } from 'react'
+import { IndexCircleNewJoyListSP } from '../List/IndexCircleNewJoyListSP'
+import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
+import { InformationCircleBesideNewJoySP } from '../ShowCircle/InformationCircleBesideNewJoySP'
 
 type ShowCircleNewJoySpLayoutProps = {
   /** サークル */ circle?: Circle
@@ -23,7 +23,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
   pastCircleNewJoys,
   futureCircleNewJoys,
   nowCircleNewJoys,
-  todayCircleNewJoys
+  todayCircleNewJoys,
 }) => {
   return (
     <div>
@@ -33,9 +33,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
 
       {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
         <div className="pb-16">
-          <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-            開催中
-          </h2>
+          <h2 className="font-bold text-lg md:text-center pl-1 mb-3">開催中</h2>
 
           <IndexCircleNewJoyListSP
             slug={circle.slug}
@@ -63,9 +61,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
       </div>
 
       <div className="pb-16">
-        <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
-          開催予定
-        </h2>
+        <h2 className="font-bold text-lg md:text-center pl-4 mb-3">開催予定</h2>
 
         {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
           <IndexCircleNewJoyListSP
@@ -78,9 +74,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
       </div>
 
       <div className="pb-16">
-        <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
-          開催済み
-        </h2>
+        <h2 className="font-bold text-lg md:text-center pl-4 mb-3">開催済み</h2>
 
         {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
           <IndexCircleNewJoyListSP

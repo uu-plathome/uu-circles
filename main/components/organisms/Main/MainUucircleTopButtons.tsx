@@ -19,11 +19,7 @@ const SpButton: FC<SpButtonProps> = ({ href, src }) => {
           className="text-gray-900 block shadow rounded"
           style={{ width: '100%', height: '100%' }}
         >
-          <Image
-            width="280"
-            height="65"
-            src={src}
-          />
+          <Image width="280" height="65" src={src} />
         </a>
       </Link>
     </div>
@@ -40,15 +36,24 @@ const SpButtonGroup = () => {
     >
       <nav className="mx-4">
         <SwiperSlide>
-          <SpButton href="/guide/to-new-students" src="/images/topButtons/Rectangle15.png" />
+          <SpButton
+            href="/guide/to-new-students"
+            src="/images/topButtons/Rectangle15.png"
+          />
         </SwiperSlide>
 
         <SwiperSlide>
-          <SpButton href="/circle/newjoy" src="/images/topButtons/shinkan1.png" />
+          <SpButton
+            href="/circle/newjoy"
+            src="/images/topButtons/shinkan1.png"
+          />
         </SwiperSlide>
 
         <SwiperSlide>
-          <SpButton href="/guide/discord" src="/images/topButtons/discordBunner1.png" />
+          <SpButton
+            href="/guide/discord"
+            src="/images/topButtons/discordBunner1.png"
+          />
         </SwiperSlide>
       </nav>
     </Swiper>
@@ -67,11 +72,7 @@ const PcButton: FC<PcButtonProps> = ({ href, src }) => {
           className="text-gray-900 block shadow rounded"
           style={{ width: '100%', height: '100%' }}
         >
-          <Image
-            width="280"
-            height="65"
-            src={src}
-          />
+          <Image width="280" height="65" src={src} />
         </a>
       </Link>
     </div>
@@ -81,7 +82,10 @@ const PcButtonGroup = () => {
   return (
     <nav className="flex">
       <div className="m-4">
-        <PcButton href="/guide/to-new-students" src="/images/topButtons/Rectangle15.png" />
+        <PcButton
+          href="/guide/to-new-students"
+          src="/images/topButtons/Rectangle15.png"
+        />
       </div>
 
       <div className="m-4">
@@ -89,7 +93,10 @@ const PcButtonGroup = () => {
       </div>
 
       <div className="m-4">
-        <PcButton href="/guide/discord" src="/images/topButtons/discordBunner1.png" />
+        <PcButton
+          href="/guide/discord"
+          src="/images/topButtons/discordBunner1.png"
+        />
       </div>
     </nav>
   )
