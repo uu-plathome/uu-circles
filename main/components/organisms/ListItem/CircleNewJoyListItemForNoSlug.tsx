@@ -12,7 +12,17 @@ const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
   `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
     todayCircleNewJoy.circleNewJoy.title
   }`
-
+export const getCircleNameSize = (circleShowName: string) => {
+  if (circleShowName.length <= 9) {
+    return 'text-xl'
+  } else if (circleShowName.length <= 11) {
+    return 'text-base'
+  } else if (circleShowName.length <= 13) {
+    return 'text-sm'
+  } else {
+    return 'text-xs'
+  }
+}
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
 }> = ({ todayCircleNewJoy }) => {
@@ -26,14 +36,6 @@ const PcLayout: FC<{
     circleShowNameRaw.length <= 15
       ? circleShowNameRaw
       : circleShowNameRaw.substr(0, 14) + '…'
-  const circleNameSize =
-    circleShowName.length <= 9
-      ? 'text-xl'
-      : circleShowName.length <= 11
-      ? 'text-base'
-      : circleShowName.length <= 13
-      ? 'text-sm'
-      : 'text-xs'
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -116,7 +118,9 @@ const PcLayout: FC<{
               <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
 
               <a className="inline  border-b font-bold">
-                <span className={circleNameSize}>{circleShowName}</span>
+                <span className={getCircleNameSize(circleShowName)}>
+                  {circleShowName}
+                </span>
               </a>
             </div>
           </div>
