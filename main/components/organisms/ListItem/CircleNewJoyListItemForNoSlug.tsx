@@ -12,14 +12,30 @@ const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
   `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
     todayCircleNewJoy.circleNewJoy.title
   }`
-
+export const getCircleNameSize = (circleShowName: string) => {
+  if (circleShowName.length <= 9) {
+    return 'text-xl'
+  } else if (circleShowName.length <= 11) {
+    return 'text-base'
+  } else if (circleShowName.length <= 13) {
+    return 'text-sm'
+  } else {
+    return 'text-xs'
+  }
+}
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   const title = computedCircleNewJoyTitle(todayCircleNewJoy)
-
+  //shortNameあればそれ使い、なければnmaeを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
+  const circleShowNameRaw =
+    todayCircleNewJoy.shortName || todayCircleNewJoy.name
+  const circleShowName =
+    circleShowNameRaw.length <= 15
+      ? circleShowNameRaw
+      : circleShowNameRaw.substr(0, 14) + '…'
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -101,8 +117,10 @@ const PcLayout: FC<{
             <div className="pl-2 mt-2" style={{ width: '280px' }}>
               <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
 
-              <a className="inline text-xl border-b font-bold">
-                {todayCircleNewJoy.name}
+              <a className="inline  border-b font-bold">
+                <span className={getCircleNameSize(circleShowName)}>
+                  {circleShowName}
+                </span>
               </a>
             </div>
           </div>
