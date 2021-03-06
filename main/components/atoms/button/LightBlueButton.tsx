@@ -1,11 +1,18 @@
 import { FC } from 'react'
 
-type Props = {}
-const LightBlueButton: FC = ({ children }) => {
+type Props = {
+  href?: string
+  target?: string
+}
+const LightBlueButton: FC<Props> = ({ children, href, target }) => {
   return (
-    <div className="bg-blue-300 text-white text-lg rounded text-center p-6">
+    <a
+      className="bg-blue-300 text-white text-lg rounded text-center p-6 hover:shadow-lg hover:opacity-80 focus:outline-none"
+      href={href}
+      target={target}
+    >
       {children}
-    </div>
+    </a>
   )
 }
 

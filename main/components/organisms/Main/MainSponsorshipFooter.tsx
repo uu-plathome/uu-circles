@@ -83,7 +83,12 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         </div>
 
         <div className="mx-auto md:mx-0" style={{ width: 280 }}>
-          <LightBlueButton>協賛を考えている企業様へ</LightBlueButton>
+          <LightBlueButton
+            href="https://forms.gle/1oULcDjiPaknvfvc8"
+            target="_blank"
+          >
+            協賛を考えている企業様へ
+          </LightBlueButton>
         </div>
       </div>
     </div>

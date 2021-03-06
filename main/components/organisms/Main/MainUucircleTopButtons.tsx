@@ -93,10 +93,7 @@ const PcButtonGroup = () => {
       </div>
 
       <div className="m-4">
-        <PcButton
-          href="/guide/discord"
-          src="/images/topButtons/discordBunner1.png"
-        />
+        <PcButton href="/guide/discord" src="/images/online.png" />
       </div>
     </nav>
   )
