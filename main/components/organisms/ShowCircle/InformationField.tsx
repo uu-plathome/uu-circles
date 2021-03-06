@@ -1,5 +1,6 @@
 import { __ } from '@/lang/ja'
 import { isCircleType } from '@/lib/enum/api/CircleType'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/lib/types/model/Circle'
 import { FC } from 'react'
 import { SnsList } from './SnsList'
@@ -79,16 +80,20 @@ const InformationField: FC<Props> = ({ circle }) => {
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">通常活動場所</p>
             <p className="text-sm text-black">
-              {__(circle.commonPlaceOfActivity)}
+              {__(circle.commonPlaceOfActivity) || __(PlaceOfActivity.OTHER)}
             </p>
           </div>
 
-          <div className="border-b border-gray-400 py-4">
-            <p className="text-sm text-gray-400 mb-2">通常活動場所詳細</p>
-            <p className="text-sm text-black whitespace-pre-wrap">
-              {circle.commonPlaceOfActivityDetail}
-            </p>
-          </div>
+          {circle.commonPlaceOfActivityDetail ? (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">通常活動場所詳細</p>
+              <p className="text-sm text-black whitespace-pre-wrap">
+                {circle.commonPlaceOfActivityDetail}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
 
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">通常活動日</p>
