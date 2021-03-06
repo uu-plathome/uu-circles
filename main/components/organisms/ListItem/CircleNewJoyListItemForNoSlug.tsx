@@ -87,7 +87,7 @@ const PcLayout: FC<{
           href="/circle/[slug]/newjoy/[circleNewJoy.id]"
           as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
         >
-          <a className="text-blue-500 border-b border-blue-500 text-xs w-20 ">
+          <a className="text-blue-600 border-b border-blue-600 text-xs w-20 ">
             もっと詳しく
           </a>
         </Link>

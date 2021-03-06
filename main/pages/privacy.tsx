@@ -184,7 +184,7 @@ const Page: NextPage = () => {
                 <Paragraph>
                   リンク：
                   <a
-                    className="text-blue-500 underline"
+                    className="text-blue-600 underline"
                     href="https://forms.gle/1oULcDjiPaknvfvc8"
                   >
                     https://forms.gle/1oULcDjiPaknvfvc8

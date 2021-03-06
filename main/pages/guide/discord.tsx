@@ -4,6 +4,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import Image from 'next/image'
 import { BaseHead } from '@/components/layouts/BaseHead'
+import { GreenButton } from '@/components/atoms/button/GreenButton'
 
 const Page: NextPage = () => {
   return (
@@ -31,15 +32,15 @@ const Page: NextPage = () => {
               <p className="pt-2">5.表示名を変更する</p>
               <p className="pt-2">6.新歓に参加しよう！</p>
             </div>
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">0.Discordとは</h2>
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">0.Discordとは</h2>
             </div>
             <p className="px-4 pb-6">
               個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね
             </p>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">
                 1.アプリをインストール
               </h2>
             </div>
@@ -53,7 +54,7 @@ const Page: NextPage = () => {
               </a>
             </div>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
               <h2 className="text-2xl px-4 font-bold">2.アカウントを作成</h2>
             </div>
 
@@ -65,20 +66,30 @@ const Page: NextPage = () => {
               <p>↓Discordを使ったことがある人はここから！↓</p>
             </div>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">
                 3.Googleフォームに入力
               </h2>
             </div>
 
             <div className="px-4 pb-6">
-              <p>
+              <p className="mb-4">
                 以下のURLから、メールアドレスと、Discordのアカウント名を入力しよう。
+              </p>
+
+              <p>
+                <a
+                  className="underline"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSciZMsDgqmcMXIxWszTfLF9jbMB8MrTw_HspSAzvF_XjIv9fA/viewform"
+                  target="_blank"
+                >
+                  Google Formへ
+                </a>
               </p>
             </div>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">
                 4.招待URLから新歓会場へ！
               </h2>
             </div>
@@ -90,10 +101,8 @@ const Page: NextPage = () => {
               <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
             </div>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
-                5.表示名を変更する
-              </h2>
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">5.表示名を変更する</h2>
             </div>
 
             <div className="px-4 pb-6">
@@ -105,10 +114,8 @@ const Page: NextPage = () => {
               <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
             </div>
 
-            <div className="border-l-4 border-green-400 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 text-lg font-bold">
-                6.新歓に参加しよう！
-              </h2>
+            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
+              <h2 className="text-2xl px-4 font-bold">6.新歓に参加しよう！</h2>
             </div>
 
             <div className="px-4 pb-24">
