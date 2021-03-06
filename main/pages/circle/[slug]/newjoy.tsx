@@ -89,20 +89,30 @@ const Page: NextPage<Props> = ({
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={futureCircleNewJoys}
-                      />
+                      {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={futureCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催予定の新歓はありません
+                        </p>
+                      )}
                     </div>
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={pastCircleNewJoys}
-                      />
+                      {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={pastCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催済みの新歓はありません
+                        </p>
+                      )}
                     </div>
                   </div>
 
