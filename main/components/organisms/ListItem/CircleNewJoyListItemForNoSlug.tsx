@@ -99,31 +99,33 @@ const PcLayout: FC<{
       >
         <h3 className="text-xs">主催サークル</h3>
         <Link href="/circle/[slug]" as={`/circle/${slug}`}>
-          <div className="pl-2 flex justify-around items-center">
-            <div className="  w-12 h-12 flex items-center justify-center rounded-full">
-              <Image
-                src={
-                  todayCircleNewJoy.mainImageUrl
-                    ? todayCircleNewJoy.mainImageUrl
-                    : '/images/no-image.png'
-                }
-                alt={`${todayCircleNewJoy.name}のアイコン`}
-                className="mx-auto"
-                width={44}
-                height={44}
-              />
-            </div>
+          <a>
+            <div className="pl-2 flex justify-around items-center">
+              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+                <Image
+                  src={
+                    todayCircleNewJoy.mainImageUrl
+                      ? todayCircleNewJoy.mainImageUrl
+                      : '/images/no-image.png'
+                  }
+                  alt={`${todayCircleNewJoy.name}のアイコン`}
+                  className="mx-auto"
+                  width={44}
+                  height={44}
+                />
+              </div>
 
-            <div className="pl-2 mt-2" style={{ width: '280px' }}>
-              <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
+              <div className="pl-2 mt-2" style={{ width: '280px' }}>
+                <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
 
-              <a className="inline  border-b font-bold">
-                <span className={getCircleNameSize(circleShowName)}>
-                  {circleShowName}
-                </span>
-              </a>
+                <p className="inline  border-b font-bold cursor-pointer">
+                  <span className={getCircleNameSize(circleShowName)}>
+                    {circleShowName}
+                  </span>
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
         </Link>
       </section>
     </div>
