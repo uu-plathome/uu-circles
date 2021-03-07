@@ -41,7 +41,7 @@ const MainUucircleTopCarousel: FC = () => {
         <nav>
           <SwiperSlide>
             <a
-              href="https://camp-fire.jp/projects/view/335734"
+              href="https://forms.gle/bhFsNAoqK5zoiD447"
               target="_blank"
               rel="noopener"
             >
@@ -49,7 +49,8 @@ const MainUucircleTopCarousel: FC = () => {
                 width={width || 1000}
                 height={height}
                 objectFit="cover"
-                src="/images/syschismo.png"
+                alt="新入生イベントアンケート"
+                src="/images/ulab-event.png"
               />
             </a>
           </SwiperSlide>
@@ -63,12 +64,32 @@ const MainUucircleTopCarousel: FC = () => {
             />
           </SwiperSlide>
           <SwiperSlide>
-            <a href="http://ulab-uu.com/" target="_blank" rel="noopener">
+            <a
+              href="https://docs.google.com/forms/d/1SwV5gS1OzgwAHcUwiGEPYSfPOly1_enMjlRV-hdOSLI/viewform?fbclid=IwAR2nd-MEHi46FHGojZwdfGO4yx2fIAup71Q_NIrZUPV6-5n80wjSwJSp13A"
+              target="_blank"
+              rel="noopener"
+            >
               <Image
                 width={width || 1000}
                 height={height}
                 objectFit="cover"
-                src="/images/topCarousel/Rectangle16.png"
+                alt="EngineerMix"
+                src="/images/engineermix.jpg"
+              />
+            </a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <a
+              href="https://camp-fire.jp/projects/view/335734"
+              target="_blank"
+              rel="noopener"
+            >
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                alt="Syschismo"
+                src="/images/syschismo.png"
               />
             </a>
           </SwiperSlide>
