@@ -20,7 +20,10 @@ const BaseHead: FC<Props> = ({ title }) => {
         property="og:url"
         content={`https://uu-circles.com${router.asPath}`}
       ></meta>
-      <meta name="og:image" content="https://uu-circles.com/images/uucircles_ogp.png" />
+      <meta
+        name="og:image"
+        content="https://uu-circles.com/images/uucircles_ogp.png"
+      />
       <meta name="twitter:site" content="@Ulab_uu" />
       <meta name="twitter:card" content="summary" />
     </Head>
