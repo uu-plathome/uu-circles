@@ -13,7 +13,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content="#ff0000" />
           <meta name="format-detection" content="telephone=no" />
-          <meta name="robots" content="noindex, nofollow" />
 
           {/** M PLUS 1p */}
           <link
