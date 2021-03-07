@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
+        <Head prefix="og: http://ogp.me/ns#">
           <meta name="theme-color" content="#ff0000" />
           <meta name="format-detection" content="telephone=no" />
 
