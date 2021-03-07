@@ -2,88 +2,32 @@
 
 サイト: https://uu-circles.com/
 
+<p align="center">
+<img src="./docs/uu-circles.png" alt="サークル一覧" />
+</p>
+
+メディアサイト: https://media.uu-circles.com/
+
+<p align="center">
+<img src="./docs/uuyell-post.png" alt="メディアサイト" />
+</p>
+
 ## Description
 
-### API
+開発者へ: [development.md](./docs/development.md)
 
-- Laravel 8 / PHP 7.4 / MySQL
+## 機能
 
-### Main
+### メイン画面
 
-- Next.js v9.5 / Node.js v14 or v15
+- サークル一覧
+- サークル一覧 タグ検索
+- サークル一覧 カテゴリー検索
+- 今日の新歓
+- 新歓一覧
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
+### 管理者画面
 
-### Admin
-
-- Next.js v9.5 / Node.js v14 or v15
-
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
-
-## 起動
-
-```shell
-# API
-$ docker-compose up -d
-
-# APIはじめて
-$ docker-compose build
-
-$ docker-compose up -d
-
-$ docker-compose exec app php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-$ docker-compose exec app composer install
-
-$ docker-compose exec app php artisan key:generate
-
-$ docker-compose exec app php artisan storage:link
-
-$ docker-compose exec app chmod -R 777 storage
-
-$ docker-compose exec app chmod -R 777 bootstrap/cache
-
-$ docker-compose exec app php artisan config:cache
-
-$ docker-compose exec app php artisan migrate:fresh --seed
-
-
-# Admin
-$ cd admin & npm i
-$ cd admin & npm run dev
-
-# Main
-$ cd main & npm i
-$ cd main & npm run dev
-```
-
-## コマンド
-
-### API
-
-```shell
-# テスト
-$ docker-compose app composer test
-
-# コード整形
-$ docker-compose app composer sniffer
-```
-
-## 管理者ログイン
-
-- ユーザー名: tester
-- パスワード： Test1234@@
-
-## Deploy api For Production
-
-```shell
-$ git push main:develop/production -f
-```
-
-## Deploy For Apache
-
-Apache にデプロイする時の.htaccess の例
-
-```shell
-$ mv ./server/.htaccess .htaccess
-```
+- サークル管理
+- 新歓管理
+- 広告管理
