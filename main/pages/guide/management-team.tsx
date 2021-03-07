@@ -6,11 +6,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { BaseHead } from '@/components/layouts/BaseHead'
 
 type Props = {}
 const Page: NextPage<Props> = () => {
   return (
     <div>
+      <BaseHead title={`制作・運営団体`} />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>

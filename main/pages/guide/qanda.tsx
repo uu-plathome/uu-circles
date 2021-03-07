@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { GreenLgButton } from '@/components/atoms/button/GreenLgButton'
 import { FC } from 'react'
 import Link from 'next/link'
+import { BaseHead } from '@/components/layouts/BaseHead'
 
 const SubHeaderGreen: FC = ({ children }) => {
   return (
@@ -27,8 +28,10 @@ type Props = {}
 const Page: NextPage<Props> = () => {
   return (
     <div>
+      <BaseHead title={`Q and A`} />
+
       <BaseLayout>
-        <div className="bg-gray-100 px-2">
+        <div className="bg-gray-100 px-2 pb-36">
           <BaseContainer>
             <div className="bg-green-500 py-6">
               <p className="text-center text-5xl text-white">Q and A</p>
@@ -56,11 +59,13 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
             </div>
 
-            <Link href="/guide/discord">
-              <a>
-                <Image src="/images/banner.png" width="328" height="76" />
-              </a>
-            </Link>
+            <div className="flex md:block justify-center">
+              <Link href="/guide/discord">
+                <a>
+                  <Image src="/images/online.png" width="280" height="65" />
+                </a>
+              </Link>
+            </div>
 
             <div className="pb-6">
               <SubHeaderGreen>
@@ -70,6 +75,16 @@ const Page: NextPage<Props> = () => {
                 A.
                 以下のメディアサイトに情報がまとめてありますので一度ご確認ください。情報が無い場合はDiscordなどで聞いてみてください。また、緊急でない場合はオンライン新歓での話の種なんかにもしてみてください。
               </SubHeaderPink>
+            </div>
+
+            <div className="flex md:block justify-center">
+              <a href="https://media.uu-circles.com/" target="_blank">
+                <Image
+                  src="/images/uuyell-poster.png"
+                  width="280"
+                  height={(280 * 888) / 1501}
+                />
+              </a>
             </div>
 
             <div className="pb-6">
@@ -112,6 +127,12 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
             </div>
 
+            <div className="pb-8 pt-4">
+              <GreenLgButton href="/circle/u-lab">
+                U-lab新歓ページ
+              </GreenLgButton>
+            </div>
+
             <div className="pb-6">
               <SubHeaderGreen>
                 Q.
@@ -120,6 +141,26 @@ const Page: NextPage<Props> = () => {
               <SubHeaderPink>
                 A. 新歓実行委員に直接お問い合わせください。
               </SubHeaderPink>
+            </div>
+
+            <div className="pb-8 pt-4 pl-4">
+              <p className="mb-4">
+                <Link href="/guide/discord">
+                  <a className="text-blue-600 underline">
+                    新歓実行委員の新歓ページ
+                  </a>
+                </Link>
+              </p>
+
+              <p className="mb-4">
+                <a
+                  href="https://twitter.com/minegaokasai"
+                  target="_blank"
+                  className="text-blue-600 underline"
+                >
+                  新歓実行委員のTwitter
+                </a>
+              </p>
             </div>
 
             <div className="pb-6">
