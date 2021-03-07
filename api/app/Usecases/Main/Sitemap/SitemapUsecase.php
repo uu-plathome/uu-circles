@@ -42,6 +42,14 @@ class SitemapUsecase
                 '2021-03-07',
             ),
             SitemapDto::of(
+                $url . '/terms',
+                '2021-03-07',
+            ),
+            SitemapDto::of(
+                $url . '/privacy',
+                '2021-03-07',
+            ),
+            SitemapDto::of(
                 $url . '/circle',
                 '2021-03-07',
             ),

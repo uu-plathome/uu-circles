@@ -6,7 +6,9 @@ use App\Dto\SitemapDto;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Sitemap\SitemapUsecase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class SitemapController extends Controller
@@ -18,12 +20,18 @@ class SitemapController extends Controller
         $this->sitemapUsecase = $sitemapUsecase;
     }
 
+    /**
+     * @return array
+     */
     public function __invoke()
     {
         Log::debug('SitemapController args none');
 
-        $sitemaps = $this->sitemapUsecase->invoke();
-        Log::debug('', [$sitemaps]);
+        $sitemaps = Cache::remember(
+            $this->getCacheKey(),
+            60,
+            fn () => $this->sitemapUsecase->invoke()
+        );
 
         return [
             'data' => Arr::camel_keys(
@@ -32,5 +40,11 @@ class SitemapController extends Controller
                 )->toArray()
             )
         ];
+    }
+
+    private function getCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+        return 'SitemapController' . $minutes;
     }
 }
