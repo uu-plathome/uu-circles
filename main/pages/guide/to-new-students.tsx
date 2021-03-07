@@ -5,6 +5,7 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import Image from 'next/image'
 import { GreenLgButton } from '@/components/atoms/button/GreenLgButton'
 import { FC } from 'react'
+import { BaseHead } from '@/components/layouts/BaseHead'
 
 const SubHeader: FC = ({ children }) => {
   return (
@@ -18,6 +19,8 @@ type Props = {}
 const Page: NextPage<Props> = () => {
   return (
     <div>
+      <BaseHead title={`新入生へ`} />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>

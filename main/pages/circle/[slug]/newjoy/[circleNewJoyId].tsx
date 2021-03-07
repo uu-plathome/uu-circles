@@ -13,6 +13,7 @@ import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
 import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
+import { BaseHead } from '@/components/layouts/BaseHead'
 
 type Props = {
   errorCode?: number
@@ -36,8 +37,6 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
 }) => {
-  // console.log(circleNewJoy)
-
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
@@ -46,9 +45,10 @@ const Page: NextPage<Props> = ({
     return <div></div>
   }
 
-  // console.log(circleNewJoy)
   return (
     <div>
+      <BaseHead title={`${circleNewJoy.title}の新歓イベント日程詳細`} />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
