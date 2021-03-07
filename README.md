@@ -3,13 +3,13 @@
 サイト: https://uu-circles.com/
 
 <p align="center">
-![サークル一覧](./docs/uu-circles.png "サークル一覧")
+<img src="./docs/uu-circles.png" alt="サークル一覧" />
 </p>
 
 メディアサイト: https://media.uu-circles.com/
 
 <p align="center">
-![メディアサイト](./docs/uuyell-post.png "メディアサイト")
+<img src="./docs/uuyell-post.png" alt="メディアサイト" />
 </p>
 
 ## Description
