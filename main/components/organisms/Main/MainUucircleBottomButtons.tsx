@@ -51,11 +51,9 @@ const MainUucircleBottomButtons: FC = () => {
                 height: '65px',
               }}
             >
-              <Link href="/">
-                <a className="text-white" style={{ fontSize: '18px' }}>
-                  C.C.Sに取材してみた
-                </a>
-              </Link>
+              <a href="https://media.uu-circles.com/2021/03/ccs-iv/" className="text-white" style={{ fontSize: '18px' }} target="_blank">
+                C.C.Sに取材してみた
+              </a>
             </button>
 
             <button
@@ -90,47 +88,51 @@ const MainUucircleBottomButtons: FC = () => {
             >
               <SwiperSlide className="text-center">
                 <button
-                  className="rounded px-5 py-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
+                  className="rounded px-5 py-3 my-3 mx-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
                   style={{
                     width: '280px',
                     height: '65px',
                   }}
                 >
-                  <Link href="/">
-                    <a className="text-white" style={{ fontSize: '18px' }}>
-                      新生活の初め方
-                    </a>
-                  </Link>
+                  <a
+                    href="https://media.uu-circles.com/2021/03/circle-select/"
+                    className="text-white"
+                    style={{ fontSize: '18px' }}
+                    target="_blank"
+                  >
+                    先輩達のサークル選び
+                  </a>
                 </button>
               </SwiperSlide>
               <SwiperSlide className="text-center">
                 <button
-                  className="rounded px-5 py-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
+                  className="rounded px-5 py-3 my-3 mx-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
                   style={{
                     width: '280px',
                     height: '65px',
                   }}
                 >
-                  <Link href="/">
-                    <a className="text-white" style={{ fontSize: '18px' }}>
-                      先輩が教えるおすすめバイト
-                    </a>
-                  </Link>
+                  <a href="https://media.uu-circles.com/2021/03/ccs-iv/" className="text-white" style={{ fontSize: '18px' }} target="_blank">
+                    C.C.Sに取材してみた
+                  </a>
                 </button>
               </SwiperSlide>
               <SwiperSlide className="text-center">
                 <button
-                  className="rounded px-5 py-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
+                  className="rounded px-5 py-3 my-3 mx-3 bg-green-500 hover:opacity-80 hover:shadow-lg"
                   style={{
                     width: '280px',
                     height: '65px',
                   }}
                 >
-                  <Link href="/">
-                    <a className="text-white " style={{ fontSize: '18px' }}>
-                      自転車ってどこで買うの？
-                    </a>
-                  </Link>
+                  <a
+                    href="https://media.uu-circles.com/2021/03/region-uu/"
+                    className="text-white "
+                    style={{ fontSize: '18px' }}
+                    target="_blank"
+                  >
+                    地域で活躍する宇大生
+                  </a>
                 </button>
               </SwiperSlide>
             </nav>
