@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { GreenLgButton } from '@/components/atoms/button/GreenLgButton'
 import { FC } from 'react'
 import Link from 'next/link'
+import { BaseHead } from '@/components/layouts/BaseHead'
 
 const SubHeaderGreen: FC = ({ children }) => {
   return (
@@ -27,6 +28,8 @@ type Props = {}
 const Page: NextPage<Props> = () => {
   return (
     <div>
+      <BaseHead title={`Q and A`} />
+
       <BaseLayout>
         <div className="bg-gray-100 px-2">
           <BaseContainer>
