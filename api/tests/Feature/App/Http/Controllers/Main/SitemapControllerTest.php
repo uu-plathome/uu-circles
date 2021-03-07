@@ -34,6 +34,8 @@ class SitemapControllerTest extends TestCase
             $url,
             $url . '/circle',
             $url . '/circle/newjoy',
+            $url . '/terms',
+            $url . '/privacy',
             $url . '/guide/discord',
             $url . '/guide/management-team',
             $url . '/guide/to-new-students',
