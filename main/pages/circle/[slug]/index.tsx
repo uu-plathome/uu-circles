@@ -72,7 +72,9 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                   />
                 </div>
               </div>
+
               <div className="flex justify-between md:justify-start bg-white px-4 md:px-10 py-2">
+                {/* 活動人数 */}
                 <div className="md:mr-4">
                   <p>
                     <FontAwesomeIcon
@@ -82,6 +84,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                     <span className="pl-2">{circle.numberOfMembers}人</span>
                   </p>
                 </div>
+                {/* 週の活動日数 */}
                 <div className="md:mr-4">
                   <p>
                     <FontAwesomeIcon
@@ -91,6 +94,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
                     <span className="pl-2">週{circle.weeklyActivityDays}</span>
                   </p>
                 </div>
+                {/* 年間費用 */}
                 <div className="md:mr-4">
                   <p>
                     <FontAwesomeIcon color={Color.gray[600]} icon={faWallet} />
