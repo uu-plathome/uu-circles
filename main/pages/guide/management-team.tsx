@@ -131,9 +131,9 @@ const Page: NextPage<Props> = () => {
 
             <div className="px-4 pb-12">
               <p className="font-bold pb-2">開発サポートメンバー</p>
-              <p>U-lab 1年 小畑</p>
-              <p>U-lab 1年 浅野</p>
-              <p>U-lab 1年 佐藤</p>
+              <p>U-lab 1年 小畑 尚史</p>
+              <p>U-lab 1年 浅野 亮太</p>
+              <p>U-lab 1年 佐藤 歩夢</p>
             </div>
 
             <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
