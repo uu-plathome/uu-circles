@@ -40,7 +40,9 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
         <meta property="og:site_name" content="UU-Circles" />
         <meta property="og:type" content={'website'} />
         <meta property="og:url" content={`https://uu-circles.com/`} />
+        <meta name="og:image" content="https://uu-circles.com/images/uucircles_ogp.png" />
         <meta name="twitter:site" content="@Ulab_uu" />
+        <meta name="twitter:card" content="summary" />
       </Head>
 
       <BaseLayout>
