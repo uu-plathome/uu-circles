@@ -79,7 +79,11 @@ const Page: NextPage<Props> = () => {
 
             <div className="flex md:block justify-center">
               <a href="https://media.uu-circles.com/" target="_blank">
-                <Image src="/images/uuyell-poster.png" width="280" height={280 * 888 /1501 } />
+                <Image
+                  src="/images/uuyell-poster.png"
+                  width="280"
+                  height={(280 * 888) / 1501}
+                />
               </a>
             </div>
 
@@ -149,7 +153,11 @@ const Page: NextPage<Props> = () => {
               </p>
 
               <p className="mb-4">
-                <a href="https://twitter.com/minegaokasai" target="_blank" className="text-blue-600 underline">
+                <a
+                  href="https://twitter.com/minegaokasai"
+                  target="_blank"
+                  className="text-blue-600 underline"
+                >
                   新歓実行委員のTwitter
                 </a>
               </p>
