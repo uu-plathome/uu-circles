@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Main\SitemapController;
 use App\Http\Controllers\Main\Circle\GetCircleController;
 use App\Http\Controllers\Main\Circle\IndexCircleController;
 use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
@@ -24,6 +25,7 @@ use Illuminate\Http\Request;
 
 // トップページ用
 Route::get('/main', IndexController::class)->name('main.index');
+Route::get('/sitemap', SitemapController::class)->name('api.sitemap');
 
 // サークル
 Route::get('/circle', IndexCircleController::class)->name('main.circle');
