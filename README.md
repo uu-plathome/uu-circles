@@ -1,9 +1,20 @@
 # UU-Circles
 
 サイト: https://uu-circles.com/
+
+<p align="center">
+![サークル一覧](./docs/uu-circles.png "サークル一覧")
+</p>
+
 メディアサイト: https://media.uu-circles.com/
 
+<p align="center">
+![メディアサイト](./docs/uuyell-post.png "メディアサイト")
+</p>
+
 ## Description
+
+開発者へ: [development.md](./docs/development.md)
 
 ## 機能
 
