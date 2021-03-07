@@ -228,7 +228,9 @@ const BaseFooter: FC<Props> = () => {
         <BaseContainer>
           <div className="flex">
             <div className="pt-6 w-1/2 md:w-3/4">
-              <h2 id="footer_tag_list" className="text-lg mb-6">全てのタグ</h2>
+              <h2 id="footer_tag_list" className="text-lg mb-6">
+                全てのタグ
+              </h2>
 
               <ul className="grid grid-cols-1 md:grid-cols-3">
                 {tagAlwaysItems.map((_tagItem, idx) => (
@@ -343,9 +345,7 @@ const BaseFooter: FC<Props> = () => {
               </li>
               <li className="mb-3">
                 <Link href="/guide/qanda">
-                  <a className="text-gray-400 font-bold text-sm">
-                    Q and A
-                  </a>
+                  <a className="text-gray-400 font-bold text-sm">Q and A</a>
                 </Link>
               </li>
             </ul>
