@@ -69,6 +69,8 @@ const BaseSpMenu: FC = () => {
 
           <MenuItem href="/guide/to-new-students">新入生の方へ</MenuItem>
 
+          <MenuItem href="/guide/discord">オンライン新歓に参加しよう！</MenuItem>
+
           <MenuExternalItem href="https://media.uu-circles.com">
             uu-yell
           </MenuExternalItem>
