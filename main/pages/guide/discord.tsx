@@ -4,7 +4,6 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import Image from 'next/image'
 import { BaseHead } from '@/components/layouts/BaseHead'
-import { GreenButton } from '@/components/atoms/button/GreenButton'
 
 const Page: NextPage = () => {
   return (
