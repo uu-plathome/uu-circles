@@ -5,6 +5,7 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import Image from 'next/image'
 import { GreenLgButton } from '@/components/atoms/button/GreenLgButton'
 import { FC } from 'react'
+import Link from 'next/link'
 
 const SubHeaderGreen: FC = ({ children }) => {
   return (
@@ -44,7 +45,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="pb-8 pt-4">
-              <GreenLgButton href="/">タグ一覧へ</GreenLgButton>
+              <GreenLgButton href="#footer_tag_list">タグ一覧へ</GreenLgButton>
             </div>
 
             <div className="pb-6">
@@ -55,9 +56,11 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
             </div>
 
-            <a href="https://discord.com/download">
-              <Image src="/images/banner.png" width="328" height="76" />
-            </a>
+            <Link href="/guide/discord">
+              <a>
+                <Image src="/images/banner.png" width="328" height="76" />
+              </a>
+            </Link>
 
             <div className="pb-6">
               <SubHeaderGreen>
@@ -79,9 +82,9 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
             </div>
 
-            <a href="https://discord.com/download">
-              <Image src="/images/uuyell-banner.jpg" width="328" height="76" />
-            </a>
+            <div className="pb-8 pt-4">
+              <GreenLgButton href="/circle">サークル一覧へ</GreenLgButton>
+            </div>
 
             <div className="pb-6">
               <SubHeaderGreen>
@@ -93,7 +96,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="pb-8 pt-4">
-              <GreenLgButton href="/">お問い合わせへ</GreenLgButton>
+              <GreenLgButton href="https://forms.gle/1oULcDjiPaknvfvc8">お問い合わせへ</GreenLgButton>
             </div>
 
             <div className="pb-6">
@@ -127,7 +130,7 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
 
               <div className="pb-8 pt-4">
-                <GreenLgButton href="/">運営団体へ</GreenLgButton>　
+                <GreenLgButton href="/guide/to-new-students">運営団体へ</GreenLgButton>
               </div>
 
               <SubHeaderPink>
@@ -136,7 +139,7 @@ const Page: NextPage<Props> = () => {
               </SubHeaderPink>
 
               <div className="pb-8 pt-4">
-                <GreenLgButton href="/">お問い合わせへ</GreenLgButton>
+                <GreenLgButton href="https://forms.gle/1oULcDjiPaknvfvc8">お問い合わせへ</GreenLgButton>
               </div>
             </div>
 
@@ -150,7 +153,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="pb-8 pt-4">
-              <GreenLgButton href="/">お問い合わせへ</GreenLgButton>
+              <GreenLgButton href="https://forms.gle/1oULcDjiPaknvfvc8">お問い合わせへ</GreenLgButton>
             </div>
           </BaseContainer>
         </div>
