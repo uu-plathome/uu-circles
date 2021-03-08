@@ -10,7 +10,10 @@ import { useRouter } from 'next/dist/client/router'
 import { __ } from '@/lang/ja'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
-import { getAllTagSlugProperty, TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
+import {
+  getAllTagSlugProperty,
+  TagSlugProperty,
+} from '@/lib/enum/api/TagSlugProperty'
 
 type Props = {
   errorCode?: number
