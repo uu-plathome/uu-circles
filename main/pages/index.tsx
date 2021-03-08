@@ -37,7 +37,10 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
       <Head>
         <title>UU-Circles</title>
         <meta property="og:title" content={`UU-Circles`} />
-        <meta property="og:description" content={`宇都宮大学のサークル一覧。なりたいジブンをさがす春。`} />
+        <meta
+          property="og:description"
+          content={`宇都宮大学のサークル一覧。なりたいジブンをさがす春。`}
+        />
         <meta property="og:site_name" content="UU-Circles" />
         <meta property="og:type" content={'website'} />
         <meta property="og:url" content={`https://uu-circles.com/`} />
