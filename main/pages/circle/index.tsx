@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       circles,
     },
-    revalidate: 60,
+    revalidate: 120,
   }
 }
 

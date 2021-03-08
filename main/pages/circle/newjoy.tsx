@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         futureCircleNewJoys,
         todayCircleNewJoys,
       },
-      revalidate: 120,
+      revalidate: 180,
     }
   } catch (e) {
     return { props: { errorCode: 500 } }

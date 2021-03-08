@@ -12,7 +12,7 @@ import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { Category } from '@/lib/enum/app/Category'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
-import { getAllCategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
+import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 
 type Props = {
   errorCode?: number
@@ -91,12 +91,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circles,
       recommendCircles,
     },
-    revalidate: 60,
+    revalidate: 120,
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [],
+  paths: [
+    `/category/${CategorySlugProperty.official_organization}`,
+    `/category/${CategorySlugProperty.unofficial_organization}`,
+    `/category/${CategorySlugProperty.club}`,
+    `/category/${CategorySlugProperty.student_group}`,
+  ],
   fallback: true,
 })
 
