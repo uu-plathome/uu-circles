@@ -10,7 +10,10 @@ import { useRouter } from 'next/dist/client/router'
 import { __ } from '@/lang/ja'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
-import { getAllTagSlugProperty, TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
+import {
+  getAllTagSlugProperty,
+  TagSlugProperty,
+} from '@/lib/enum/api/TagSlugProperty'
 
 type Props = {
   errorCode?: number
@@ -86,7 +89,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: getAllTagSlugProperty().map(tag => `/tag/${tag}`),
+  paths: getAllTagSlugProperty().map((tag) => `/tag/${tag}`),
   fallback: true,
 })
 
