@@ -97,10 +97,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [
-    `/category/${CategorySlugProperty.official_organization}`,
-    `/category/${CategorySlugProperty.unofficial_organization}`,
-    `/category/${CategorySlugProperty.club}`,
-    `/category/${CategorySlugProperty.student_group}`,
+    `/circle/category/${CategorySlugProperty.official_organization}`,
+    `/circle/category/${CategorySlugProperty.unofficial_organization}`,
+    `/circle/category/${CategorySlugProperty.club}`,
+    `/circle/category/${CategorySlugProperty.student_group}`,
   ],
   fallback: true,
 })
