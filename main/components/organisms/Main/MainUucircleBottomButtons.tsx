@@ -51,7 +51,12 @@ const MainUucircleBottomButtons: FC = () => {
                 height: '65px',
               }}
             >
-              <a href="https://media.uu-circles.com/2021/03/ccs-iv/" className="text-white" style={{ fontSize: '18px' }} target="_blank">
+              <a
+                href="https://media.uu-circles.com/2021/03/ccs-iv/"
+                className="text-white"
+                style={{ fontSize: '18px' }}
+                target="_blank"
+              >
                 C.C.Sに取材してみた
               </a>
             </button>
@@ -112,7 +117,12 @@ const MainUucircleBottomButtons: FC = () => {
                     height: '65px',
                   }}
                 >
-                  <a href="https://media.uu-circles.com/2021/03/ccs-iv/" className="text-white" style={{ fontSize: '18px' }} target="_blank">
+                  <a
+                    href="https://media.uu-circles.com/2021/03/ccs-iv/"
+                    className="text-white"
+                    style={{ fontSize: '18px' }}
+                    target="_blank"
+                  >
                     C.C.Sに取材してみた
                   </a>
                 </button>
