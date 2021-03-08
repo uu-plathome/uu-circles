@@ -197,7 +197,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         circle,
         circleNewJoys,
       },
-      revalidate: 60,
+      revalidate: 120,
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
