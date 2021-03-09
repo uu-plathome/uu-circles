@@ -2,26 +2,22 @@
  * リクエストボディ
  */
 export interface LoginAdminFormRequest {
-  type: 'LoginAdminFormRequest'
-  usernameOrEmail: string
-  password: string
+    type: 'LoginAdminFormRequest'
+    usernameOrEmail: string
+    password: string
 }
 
 /**
  * バリデーションエラー
  */
 export interface LoginAdminFormRequestValidationError {
-  type: 'LoginAdminFormRequestValidationError'
-  errors: {
-    usernameOrEmail?: string[]
-    password?: string[]
-  }
-  message: string
+    type: 'LoginAdminFormRequestValidationError'
+    errors: {
+        usernameOrEmail?: string[]
+        password?: string[]
+    }
+    message: string
 }
 
-export const isLoginAdminFormRequest = (v: any): v is LoginAdminFormRequest =>
-  v && v.type === 'LoginAdminFormRequest'
-export const isLoginAdminFormRequestValidationError = (
-  v: any
-): v is LoginAdminFormRequestValidationError =>
-  v && v.type === 'LoginAdminFormRequestValidationError'
+export const isLoginAdminFormRequest = (v: any): v is LoginAdminFormRequest => v && v.type === 'LoginAdminFormRequest'
+export const isLoginAdminFormRequestValidationError = (v: any): v is LoginAdminFormRequestValidationError => v && v.type === 'LoginAdminFormRequestValidationError'

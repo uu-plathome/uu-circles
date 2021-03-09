@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "compressorjs": "^1.0.7",
     "dayjs": "^1.10.4",
     "next": "latest",
     "react": "^16.13.1",
