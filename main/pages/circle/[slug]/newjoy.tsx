@@ -1,6 +1,5 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
@@ -16,7 +15,6 @@ import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCirc
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
-
 
 type Props = {
   /** サークル */ circle?: Circle
@@ -40,6 +38,10 @@ const Page: NextPage<Props> = ({
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
+  }
+
+  if (!circle) {
+    return <div></div>
   }
 
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
@@ -81,26 +83,36 @@ const Page: NextPage<Props> = ({
                           circleNewJoys={todayCircleNewJoys}
                         />
                       ) : (
-                        <p>今日の新歓はありません</p>
+                        <p className="text-center">今日の新歓はありません</p>
                       )}
                     </div>
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={futureCircleNewJoys}
-                      />
+                      {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={futureCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催予定の新歓はありません
+                        </p>
+                      )}
                     </div>
 
                     <div className="pb-16">
                       <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
-
-                      <IndexCircleNewJoyListPC
-                        slug={circle.slug}
-                        circleNewJoys={pastCircleNewJoys}
-                      />
+                      {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                        <IndexCircleNewJoyListPC
+                          slug={circle.slug}
+                          circleNewJoys={pastCircleNewJoys}
+                        />
+                      ) : (
+                        <p className="text-center">
+                          開催済みの新歓はありません
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -114,14 +126,16 @@ const Page: NextPage<Props> = ({
                         className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
                         style={{ width: 222 }}
                       > */}
-                        <div className="mt-6 w-full">
+                        <div className="my-6 w-full">
                           <YellowButton width={'222px'}>
-                            <h4 className="text-sm">
-                              他のサークルの新歓も見る
-                            </h4>
-                            <h3 className="text-base font-bold">
-                              今日の新歓をチェック！
-                            </h3>
+                            <div className="py-2">
+                              <h4 className="text-xs">
+                                他のサークルの新歓も見る
+                              </h4>
+                              <h3 className="text-sm font-bold">
+                                今日の新歓をチェック！
+                              </h3>
+                            </div>
                           </YellowButton>
                         </div>
                       </a>
@@ -156,26 +170,34 @@ const Page: NextPage<Props> = ({
                       circleNewJoys={todayCircleNewJoys}
                     />
                   ) : (
-                    <p>今日の新歓はありません</p>
+                    <p className="text-center">今日の新歓はありません</p>
                   )}
                 </div>
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催予定
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={futureCircleNewJoys}
-                  />
+                  {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={futureCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催予定の新歓はありません</p>
+                  )}
                 </div>
                 <div className="pb-16">
                   <h2 className="font-bold text-lg md:text-center pl-4 mb-3">
                     開催済み
                   </h2>
-                  <IndexCircleNewJoyListSP
-                    slug={circle.slug}
-                    circleNewJoys={pastCircleNewJoys}
-                  />
+                  {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
+                    <IndexCircleNewJoyListSP
+                      slug={circle.slug}
+                      circleNewJoys={pastCircleNewJoys}
+                    />
+                  ) : (
+                    <p className="text-center">開催済みの新歓はありません</p>
+                  )}
                 </div>
 
                 <InformationCircleBesideNewJoySP circle={circle} />
@@ -191,13 +213,11 @@ const Page: NextPage<Props> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({
-  params,
-  res,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!params.slug || Array.isArray(params.slug)) {
-    res.statusCode = 404
-    return { props: { errorCode: 404 } }
+    return {
+      notFound: true,
+    }
   }
 
   try {
@@ -209,7 +229,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       todayCircleNewJoys,
       allTodayCircleNewJoys,
     } = await getCircleNewJoyBySlug(params.slug)
-  
+
     return {
       props: {
         circle,
@@ -219,16 +239,22 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
         todayCircleNewJoys,
         allTodayCircleNewJoys,
       },
+      revalidate: 120,
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
-        res.statusCode = 404;
-        return { props: { errorCode: 404 } }
+      return {
+        notFound: true,
+      }
     }
 
-    res.statusCode = 500;
     return { props: { errorCode: 500 } }
   }
 }
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: true,
+})
 
 export default Page

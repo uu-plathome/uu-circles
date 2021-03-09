@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests\Admin\CircleUser;
-
 
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;

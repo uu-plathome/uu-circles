@@ -1,11 +1,5 @@
-
-
 const AuthCard = () => {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>
 }
 
 export { AuthCard }

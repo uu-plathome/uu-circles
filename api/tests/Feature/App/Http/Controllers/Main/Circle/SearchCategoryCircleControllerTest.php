@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Models\Circle;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -16,6 +17,7 @@ class SearchCategoryCircleControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("SearchCategoryCircleControllerTest");
+        Cache::clear();
     }
 
     /**
@@ -30,10 +32,6 @@ class SearchCategoryCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
-        $circle = Circle::whereRelease(true)->inRandomOrder()->first();
-        $this->assertNotNull($circle);
-        Log::info($circle);
-
         $categoryList = CategorySlugProperty::getAll();
         $category = $categoryList[array_rand($categoryList)];
         Log::info($category);
@@ -43,5 +41,21 @@ class SearchCategoryCircleControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+        $this->assertArrayHasKey('recommendCircles', $response);
+        $this->assertNotCount(0, $response['recommendCircles']);
+    }
+
+    public function testRequest_存在しないカテゴリーは404である()
+    {
+        Log::info("testRequest_存在しないカテゴリーは404である");
+
+        // GIVEN
+        $category = 'aaaaa';
+
+        // WHEN
+        $response = $this->get("/api/circle/category/$category");
+
+        // THEN
+        $response->assertNotFound();
     }
 }

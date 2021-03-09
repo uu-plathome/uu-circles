@@ -44,11 +44,15 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                         alt={`${circle.name}のビラ`}
                         width={width}
                         height={height}
+                        className="rounded"
+                        objectFit="cover"
                       />
                     </a>
                   </Link>
 
-                  <h3 className="text-center">{circle.name}</h3>
+                  <h3 className="text-center text-sm text-gray-600 pt-1">
+                    {circle.name}
+                  </h3>
                 </div>
               </div>
             )
@@ -60,7 +64,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
             {circles.map((circle) => {
               return (
                 <SwiperSlide key={circle.id}>
-                  <div key={circle.id} className="mb-6 md:mb-16 flex justify-center">
+                  <div key={circle.id} className="pb-10 flex justify-center">
                     <div>
                       <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
                         <a>
@@ -69,11 +73,15 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                             alt={`${circle.name}のビラ`}
                             width={width}
                             height={height}
+                            className="rounded"
+                            objectFit="cover"
                           />
                         </a>
                       </Link>
 
-                      <h3 className="text-center">{circle.name}</h3>
+                      <h3 className="text-center text-sm text-gray-600 pt-1">
+                        {circle.name}
+                      </h3>
                     </div>
                   </div>
                 </SwiperSlide>

@@ -1,10 +1,9 @@
-
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { NextPage } from 'next'
 import { BaseHeader } from '../components/layouts/BaseHeader'
-import Head from 'next/head';
+import Head from 'next/head'
 import Link from 'next/link'
 
 const IndexPage: NextPage = () => {
@@ -16,19 +15,13 @@ const IndexPage: NextPage = () => {
         <title>ダッシュボード</title>
       </Head>
 
-      {isMd ? (
-        <BaseHeader />
-      ) : ''}
+      {isMd ? <BaseHeader /> : ''}
 
       <BaseContainer>
-        <BaseWrapper
-          title="ダッシュボード"
-        >
+        <BaseWrapper title="ダッシュボード">
           <div className="pl-4">
             <ul>
-              <li className="text-white pb-4">
-                メニュー
-              </li>
+              <li className="text-white pb-4">メニュー</li>
               <li className="text-white pb-4 list-disc ml-4">
                 <Link href="/circle">
                   <a className="text-white underline">サークル一覧へ</a>

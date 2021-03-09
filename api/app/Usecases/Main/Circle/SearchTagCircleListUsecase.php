@@ -130,11 +130,25 @@ class SearchTagCircleListUsecase
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereOnlyFriday();
                     });
+                })->when($param->online, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereIsOnlineActivity(true);
+                    });
                 });
             })
             ->when($this->shouldCircleTagSearch($param), function ($query) use ($param) {
                 $query->hasByNonDependentSubquery('circleTag', function ($query) use ($param) {
-                    $query->when($param->nature, function ($query) {
+                    $query->when($param->sport, function ($query) {
+                        /** @var \App\Models\CircleTag $query */
+                        $query->orWhere('sport', true);
+                    })->when($param->music, function ($query) {
+                        /** @var \App\Models\CircleTag $query */
+                        $query->orWhere('music', true);
+                    })->when($param->culture, function ($query) {
+                        /** @var \App\Models\CircleTag $query */
+                        $query->orWhere('culture', true);
+                    })->when($param->nature, function ($query) {
                         /** @var \App\Models\CircleTag $query */
                         $query->orWhere('nature', true);
                     })->when($param->community, function ($query) {

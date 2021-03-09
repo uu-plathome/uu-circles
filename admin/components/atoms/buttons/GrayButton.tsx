@@ -1,13 +1,13 @@
-import Link, { LinkProps } from "next/link";
-import React from "react";
-import { UrlObject } from 'url';
-type Url = string | UrlObject;
+import Link, { LinkProps } from 'next/link'
+import React from 'react'
+import { UrlObject } from 'url'
+type Url = string | UrlObject
 
 type Props = {
-    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
-    as?: Url
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-    href?: LinkProps['href']
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type']
+  as?: Url
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  href?: LinkProps['href']
 }
 
 const buttonClassName = `
@@ -31,26 +31,23 @@ const buttonClassName = `
     focus:outline-none
 `
 const GrayButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
-
-    if (href) {
-        return (
-            <Link href={href} as={as}>
-                <a className={buttonClassName}>
-                    { children }
-                </a>
-            </Link>
-        )
-    } else {
-        return (
-            <button
-                className={buttonClassName}
-                onClick={onClick}
-                type={type ? type : 'button'}
-            >
-                { children }
-            </button>
-        )
-    }
+  if (href) {
+    return (
+      <Link href={href} as={as}>
+        <a className={buttonClassName}>{children}</a>
+      </Link>
+    )
+  } else {
+    return (
+      <button
+        className={buttonClassName}
+        onClick={onClick}
+        type={type ? type : 'button'}
+      >
+        {children}
+      </button>
+    )
+  }
 }
 
 export { GrayButton }

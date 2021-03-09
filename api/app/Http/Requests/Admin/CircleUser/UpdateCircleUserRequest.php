@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests\Admin\CircleUser;
-
 
 use App\Enum\Property\UserProperty;
 use App\Support\Arr;

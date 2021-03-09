@@ -1,6 +1,6 @@
-import { FC } from "react"
-import { useDropzone } from "react-dropzone"
-import { BaseLabel } from "./BaseLabel"
+import { FC } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { BaseLabel } from './BaseLabel'
 
 const inputClass = `
     transition
@@ -17,46 +17,54 @@ const inputClass = `
 `
 
 interface Props {
-    label: string
-    id: string
-    required?: boolean
-    preview: string
-    onDrop(acceptedFiles: any): void
-    error: string
-    width?: number
+  label: string
+  id: string
+  required?: boolean
+  preview: string
+  onDrop(acceptedFiles: any): void
+  error: string
+  width?: number
 }
-const CircleMainImageInput: FC<Props> = ({ label, required, id, onDrop, preview, error, width = 210 }) => {
-    const { getRootProps, getInputProps } = useDropzone({ onDrop })
-    const height = width
+const CircleMainImageInput: FC<Props> = ({
+  label,
+  required,
+  id,
+  onDrop,
+  preview,
+  error,
+  width = 210,
+}) => {
+  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const height = width
 
-    return (
-        <div className="mb-4">
-            <BaseLabel
-                label={label}
-                note={'最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'}
-                required={required}
-                id={id}
-            />
+  return (
+    <div className="mb-4">
+      <BaseLabel
+        label={label}
+        note={
+          '最適なアスペクト比は1:1です。画像編集ソフトなどを使って最適なサイズに変更するようにお願いします。'
+        }
+        required={required}
+        id={id}
+      />
 
-            <div className="flex justify-center">
-                <div
-                    {...getRootProps()}
-                    className={inputClass}
-                    style={{ width, height }}
-                >
-                    <input {...getInputProps()} />
+      <div className="flex justify-center">
+        <div
+          {...getRootProps()}
+          className={inputClass}
+          style={{ width, height }}
+        >
+          <input {...getInputProps()} />
 
-                    <div className="text-center">
-                        <img src={preview} alt={label} style={{ width, height }} />
-                    </div>
-                </div>
-            </div>
-
-            {error ? (
-                <p className="text-sm text-red-400">{error}</p>
-            ) : ''}
+          <div className="text-center">
+            <img src={preview} alt={label} style={{ width, height }} />
+          </div>
         </div>
-    )
+      </div>
+
+      {error ? <p className="text-sm text-red-400">{error}</p> : ''}
+    </div>
+  )
 }
 
 export { CircleMainImageInput }

@@ -13,7 +13,7 @@ body {
 
 /* Write your own custom component styles here */
 .btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  @apply px-4 py-2 font-bold text-white bg-blue-600 rounded;
 }
 
 /* Start purging... */
@@ -22,7 +22,7 @@ body {
 
 /* Your own custom utilities */
 :root {
-  --swiper-navigation-size: 28px;
+  --swiper-navigation-size: 24px;
 }
 
 .min-w-120 {
@@ -39,8 +39,14 @@ body {
 }
 
 /* swiper右左デザイン */
+.swiper-button-next {
+  margin-right: 8px;
+}
 .swiper-button-next::after {
   color: #c4c4c4 !important;
+}
+.swiper-button-prev {
+  margin-left: 8px;
 }
 .swiper-button-prev::after {
   color: #c4c4c4 !important;
