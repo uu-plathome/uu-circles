@@ -18,21 +18,34 @@ class PaginateCircleUsecase
     public function invoke(PaginateCircleUsecaseParams $params): array
     {
         $cursor = [];
-        if ($params->id)
-            $cursor['id'] = $params->id;
-        if ($params->updated_at)
-            $cursor['updated_at'] = $params->updated_at;
+        if ($params->id) {
+            $cursor['circles.id'] = $params->id;
+        }
+        if ($params->updated_at) {
+            $cursor['circle_information.updated_at'] = $params->updated_at;
+        }
 
         $circles = Circle::with([
             'circleInformation',
             'circleHandbill',
-        ])->hasByNonDependentSubquery('circleInformation')
+        ])->hasByJoin('circleInformation')
+            ->when($params->name, function ($query) use ($params) {
+                $query->where(function ($query) use ($params) {
+                    // カタカナに変換
+                    $katakana = mb_convert_kana($params->name, "K");
+                    $query->where('circles.name', 'like', "%$params->name%")
+                        ->orWhere('circles.slug', "%$params->name%")
+                        ->orWhere('circle_information.name_kana', 'like', "%$katakana%")
+                        ->orWhere('circle_information.short_name', 'like', "%$params->name%")
+                        ->orWhere('circle_information.prefix_name', 'like', "%$params->name%");
+                });
+            })
             ->lampager()
             ->forward($params->next)
             ->backward($params->previos)
             ->limit(10)
-            ->orderByDesc('updated_at')
-            ->orderByDesc('id')
+            ->orderByDesc('circle_information.updated_at')
+            ->orderByDesc('circles.id')
             ->seekable()
             ->paginate($cursor)
             ->toArray(JSON_PRETTY_PRINT);

@@ -1,4 +1,6 @@
-
+/**
+ * 曜日
+ */
 export const Week = {
   /**
    * 月曜日
@@ -39,11 +41,17 @@ export const Week = {
 export type WeekKey = keyof typeof Week
 export type Week = typeof Week[keyof typeof Week]
 
-
+/**
+ * 曜日
+ */
 export const getAllWeek = (): Week[] => Object.values(Week)
-
+/**
+ * 曜日
+ */
 export const getAllWeekKey = (): WeekKey[] => Object.keys(Week) as WeekKey[]
-
+/**
+ * 曜日
+ */
 export const isWeek = (s: any): s is Week => Object.values(Week).includes(s)
 
 /**

@@ -2,10 +2,12 @@
 
 namespace App\Enum\Property;
 
-use App\Enum\Property\BaseProperty;
-
-class UserProperty extends BaseProperty
+class UserProperty
 {
+    const id = 'id';
+    const created_at = 'created_at';
+    const updated_at = 'updated_at';
+
     const username = 'username';
     const display_name = 'display_name';
     const email = 'email';

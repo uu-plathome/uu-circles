@@ -40,12 +40,19 @@ const MainUucircleTopCarousel: FC = () => {
       <Swiper {...params}>
         <nav>
           <SwiperSlide>
-            <Image
-              width={width || 1000}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <a
+              href="https://forms.gle/bhFsNAoqK5zoiD447"
+              target="_blank"
+              rel="noopener"
+            >
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                alt="新入生イベントアンケート"
+                src="/images/ulab-event.png"
+              />
+            </a>
           </SwiperSlide>
           <SwiperSlide>
             <Image
@@ -53,16 +60,38 @@ const MainUucircleTopCarousel: FC = () => {
               width={width || 1000}
               height={height}
               objectFit="cover"
-              alt="UU-circlesへようこそ！"
+              alt="UU-Circlesへようこそ！"
             />
           </SwiperSlide>
           <SwiperSlide>
-            <Image
-              width={width || 1000}
-              height={height}
-              objectFit="cover"
-              src="/images/topCarousel/Rectangle16.png"
-            />
+            <a
+              href="https://docs.google.com/forms/d/1SwV5gS1OzgwAHcUwiGEPYSfPOly1_enMjlRV-hdOSLI/viewform?fbclid=IwAR2nd-MEHi46FHGojZwdfGO4yx2fIAup71Q_NIrZUPV6-5n80wjSwJSp13A"
+              target="_blank"
+              rel="noopener"
+            >
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                alt="EngineerMix"
+                src="/images/engineermix.jpg"
+              />
+            </a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <a
+              href="https://camp-fire.jp/projects/view/335734"
+              target="_blank"
+              rel="noopener"
+            >
+              <Image
+                width={width || 1000}
+                height={height}
+                objectFit="cover"
+                alt="Syschismo"
+                src="/images/syschismo.png"
+              />
+            </a>
           </SwiperSlide>
         </nav>
       </Swiper>

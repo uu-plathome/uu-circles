@@ -25,7 +25,7 @@ class TodayCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function __invoke(Request $request)
     {
@@ -42,6 +42,7 @@ class TodayCircleNewJoyController extends Controller
                 fn (array $arr) => [
                     'slug'           => $arr['slug'],
                     'name'           => $arr['name'],
+                    'short_name'     => $arr['short_name'],
                     'circle_type'    => $arr['circle_type'],
                     'main_image_url' => $arr['main_image_url'],
                     'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
@@ -51,6 +52,7 @@ class TodayCircleNewJoyController extends Controller
                 fn (array $arr) => [
                     'slug'           => $arr['slug'],
                     'name'           => $arr['name'],
+                    'short_name'     => $arr['short_name'],
                     'circle_type'    => $arr['circle_type'],
                     'main_image_url' => $arr['main_image_url'],
                     'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()

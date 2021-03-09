@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Usecases\Admin;
-
 
 use App\Enum\Property\UserProperty;
 use App\Models\User;

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Main\SitemapController;
 use App\Http\Controllers\Main\Circle\GetCircleController;
 use App\Http\Controllers\Main\Circle\IndexCircleController;
 use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
+use App\Http\Controllers\Main\Circle\SearchNameCircleController;
 use App\Http\Controllers\Main\Circle\SearchTagCircleController;
 use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
@@ -23,9 +25,11 @@ use Illuminate\Http\Request;
 
 // トップページ用
 Route::get('/main', IndexController::class)->name('main.index');
+Route::get('/sitemap', SitemapController::class)->name('api.sitemap');
 
 // サークル
 Route::get('/circle', IndexCircleController::class)->name('main.circle');
+Route::get('/circle/search/{search}', SearchNameCircleController::class)->name('main.circleNewJoy.today');
 Route::get('/circle/category/{category}', SearchCategoryCircleController::class)
     ->name('main.circle.category');
 Route::get('/circle/tag/{tag}', SearchTagCircleController::class)->name('main.circle.tag');

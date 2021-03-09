@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Models\Circle;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -15,6 +16,7 @@ class ShowCircleNewJoyControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("ShowCircleNewJoyControllerTest");
+        Cache::clear();
     }
 
     /**

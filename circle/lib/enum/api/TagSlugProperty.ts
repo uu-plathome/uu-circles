@@ -1,4 +1,6 @@
-
+/**
+ * /api/circle/tag/{tag}のtagのパス一覧
+ */
 export const TagSlugProperty = {
   sport: 'sport',
 
@@ -48,17 +50,25 @@ export const TagSlugProperty = {
 
   urgent_recruitment: 'urgent_recruitment',
 
-  mystery: 'mystery'
+  mystery: 'mystery',
+
+  online: 'online'
 } as const
 
 export type TagSlugPropertyKey = keyof typeof TagSlugProperty
 export type TagSlugProperty = typeof TagSlugProperty[keyof typeof TagSlugProperty]
 
-
+/**
+ * /api/circle/tag/{tag}のtagのパス一覧
+ */
 export const getAllTagSlugProperty = (): TagSlugProperty[] => Object.values(TagSlugProperty)
-
+/**
+ * /api/circle/tag/{tag}のtagのパス一覧
+ */
 export const getAllTagSlugPropertyKey = (): TagSlugPropertyKey[] => Object.keys(TagSlugProperty) as TagSlugPropertyKey[]
-
+/**
+ * /api/circle/tag/{tag}のtagのパス一覧
+ */
 export const isTagSlugProperty = (s: any): s is TagSlugProperty => Object.values(TagSlugProperty).includes(s)
 
 export const isSport = (v: any): v is 'sport' => v === TagSlugProperty.sport
@@ -86,3 +96,4 @@ export const isHoliday = (v: any): v is 'holiday' => v === TagSlugProperty.holid
 export const isMammoth = (v: any): v is 'mammoth' => v === TagSlugProperty.mammoth
 export const isUrgentRecruitment = (v: any): v is 'urgent_recruitment' => v === TagSlugProperty.urgent_recruitment
 export const isMystery = (v: any): v is 'mystery' => v === TagSlugProperty.mystery
+export const isOnline = (v: any): v is 'online' => v === TagSlugProperty.online

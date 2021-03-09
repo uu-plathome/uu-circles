@@ -2,24 +2,38 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
+import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { isSystem, Role } from '@/lib/enum/api/Role'
 import {
-  UseBooleanInput,
-  UseStringInput,
-} from '@/hooks/useInput'
-import { faFacebook, faGithub, faInstagram, faLine, faTiktok, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLine,
+  faTiktok,
+  faTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
 import { faHome, faLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, FormEvent } from 'react'
 import { ActivityEditCircleForm } from './Parts/ActivityEditCircleForm'
-import { CommonInfoEditCircleForm, Props as CommonInfoEditCircleFormProps } from './Parts/CommonInfoEditCircleForm'
-import { NameEditCircleForm, Props as NameEditCircleFormProps } from './Parts/NameEditCircleForm'
+import {
+  CommonInfoEditCircleForm,
+  Props as CommonInfoEditCircleFormProps,
+} from './Parts/CommonInfoEditCircleForm'
+import {
+  NameEditCircleForm,
+  Props as NameEditCircleFormProps,
+} from './Parts/NameEditCircleForm'
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
   onDropHandbillImage(acceptedFiles: any): void
-  onDropActivityImage(acceptedFiles: any, idx: 1|2|3|4|5|6): void
+  onDropActivityImage(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
+  role?: Role
   form: {
+    isMainFixed: UseBooleanInput
     release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
@@ -51,12 +65,19 @@ type Props = {
     githubUrl: UseStringInput
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
-  } & NameEditCircleFormProps['form'] & CommonInfoEditCircleFormProps['form']
+  } & NameEditCircleFormProps['form'] &
+    CommonInfoEditCircleFormProps['form']
 }
-const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDropActivityImage, onSubmit, form }) => {
+const EditCircleForm: FC<Props> = ({
+  onDropMainImage,
+  onDropHandbillImage,
+  onDropActivityImage,
+  onSubmit,
+  form,
+  role,
+}) => {
   return (
     <form onSubmit={onSubmit}>
-
       <FormHeader>公開設定</FormHeader>
 
       <div className="mb-8">
@@ -64,6 +85,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
           label="公開設定"
           id="release"
           name="release"
+          required
           items={[
             { value: 'true', label: '公開' },
             { value: 'false', label: '非公開' },
@@ -71,6 +93,24 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
           {...form.release}
         />
       </div>
+
+      {role && isSystem(role) ? (
+        <div className="mb-8">
+          <BaseSelect
+            label="メイン画面に固定するか"
+            id="isMainFixed"
+            name="isMainFixed"
+            required
+            items={[
+              { value: 'true', label: '固定' },
+              { value: 'false', label: '固定しない' },
+            ]}
+            {...form.isMainFixed}
+          />
+        </div>
+      ) : (
+        ''
+      )}
 
       <FormHeader>サークル名情報</FormHeader>
 
@@ -142,8 +182,7 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
         }}
       />
 
-
-    <FormHeader>SNS情報</FormHeader>
+      <FormHeader>SNS情報</FormHeader>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
         <div>
@@ -154,7 +193,13 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             placeholder="https://twitter.com/"
             maxLength={255}
-            prefix={<FontAwesomeIcon icon={faTwitter} color="rgb(29, 161, 242)" size="lg" />}
+            prefix={
+              <FontAwesomeIcon
+                icon={faTwitter}
+                color="rgb(29, 161, 242)"
+                size="lg"
+              />
+            }
             {...form.twitterUrl}
           />
         </div>
@@ -167,7 +212,9 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             placeholder="https://ja-jp.facebook.com/"
             maxLength={255}
-            prefix={<FontAwesomeIcon icon={faFacebook} color="#3B5998" size="lg" />}
+            prefix={
+              <FontAwesomeIcon icon={faFacebook} color="#3B5998" size="lg" />
+            }
             {...form.facebookUrl}
           />
         </div>
@@ -180,7 +227,13 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             placeholder="https://instagram.com"
             maxLength={255}
-            prefix={<FontAwesomeIcon icon={faInstagram} color="rgb（76, 76, 76）" size="lg" />}
+            prefix={
+              <FontAwesomeIcon
+                icon={faInstagram}
+                color="rgb（76, 76, 76）"
+                size="lg"
+              />
+            }
             {...form.instagramUrl}
           />
         </div>
@@ -205,7 +258,9 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             maxLength={255}
             placeholder="https://youtube.com"
-            prefix={<FontAwesomeIcon icon={faYoutube} color="#dd4b39" size="lg" />}
+            prefix={
+              <FontAwesomeIcon icon={faYoutube} color="#dd4b39" size="lg" />
+            }
             {...form.youtubeUrl}
           />
         </div>
@@ -230,7 +285,9 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             maxLength={255}
             placeholder="https://www.tiktok.com/ja-JP/"
-            prefix={<FontAwesomeIcon icon={faTiktok} color="#010101" size="lg" />}
+            prefix={
+              <FontAwesomeIcon icon={faTiktok} color="#010101" size="lg" />
+            }
             {...form.tiktokUrl}
           />
         </div>
@@ -243,7 +300,9 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             expand
             placeholder="https://github.com"
             maxLength={255}
-            prefix={<FontAwesomeIcon icon={faGithub} color="#171515" size="lg" />}
+            prefix={
+              <FontAwesomeIcon icon={faGithub} color="#171515" size="lg" />
+            }
             {...form.githubUrl}
           />
         </div>
@@ -259,7 +318,6 @@ const EditCircleForm: FC<Props> = ({ onDropMainImage, onDropHandbillImage, onDro
             {...form.peingUrl}
           />
         </div>
-
       </div>
 
       <div>

@@ -30,18 +30,9 @@ const InformationCircleBesideNewJoyPC: FC<Props> = ({ circle }) => {
 
       <nav className="text-right">
         <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
-          <a className="text-xs text-blue-500 underline">もっと詳しく</a>
+          <a className="text-xs text-blue-600 underline">もっと詳しく</a>
         </Link>
       </nav>
-      <div className="mt-4">
-        <nav className="text-center ">
-          <Link href="" as={''}>
-            <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
-              新歓日程
-            </a>
-          </Link>
-        </nav>
-      </div>
     </div>
   )
 }

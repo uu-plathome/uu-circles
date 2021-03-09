@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Models\Circle;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -15,6 +16,7 @@ class GetCircleControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("GetCircleControllerTest");
+        Cache::clear();
     }
 
     /**
@@ -38,5 +40,19 @@ class GetCircleControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+    }
+
+    public function testRequest_存在しないサークルは404である()
+    {
+        Log::info("testRequest");
+
+        // GIVEN
+        $slug = 'aaaaabbbbbccccc';
+
+        // WHEN
+        $response = $this->get("/api/circle/{$slug}");
+
+        // THEN
+        $response->assertNotFound();
     }
 }
