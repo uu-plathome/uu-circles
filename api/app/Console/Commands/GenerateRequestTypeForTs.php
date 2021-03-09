@@ -26,6 +26,7 @@ use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
 use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
+use App\Http\Requests\Circle\CirclePutStorageRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -91,6 +92,7 @@ class GenerateRequestTypeForTs extends Command
             ResetPasswordCircleRequest::class,
             VerificationEmailCircleUserRequest::class,
             VerificationResendCircleUserFormRequest::class,
+            CirclePutStorageRequest::class,
         ];
     }
 
