@@ -6,9 +6,12 @@ use App\Http\Controllers\Circle\Auth\ResetPasswordCircleController;
 use App\Http\Controllers\Circle\Auth\VerificationConfirmController;
 use App\Http\Controllers\Circle\Auth\VerificationResendController;
 use App\Http\Controllers\Circle\Auth\VerificationVerifyController;
+use App\Http\Controllers\Circle\Circle\IndexCircleController;
+use App\Http\Controllers\Circle\Circle\ShowCircleController;
 use App\Support\Arr;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:api')->group(function () {
     Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
@@ -33,4 +36,7 @@ Route::middleware('auth:api')->group(function () {
 
         throw new AuthorizationException();
     });
+
+    Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
+    Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
 });
