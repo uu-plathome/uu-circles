@@ -2,7 +2,6 @@ import discord
 import settings
 
 TOKEN = settings.TOKEN
-
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
