@@ -1,25 +1,32 @@
 import discord
+from discord.ext import tasks, commands
 import settings
+import datetime
 
 TOKEN = settings.TOKEN
+CHANNEL_ID = int(settings.CHANNEL_ID)
+
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-# # 起動時に動作する処理
-# @client.event
-# async def on_ready():
-# 	# 起動したらターミナルにログイン通知が表示される
-# 	print('ログインしました')
+#ループ処理
+@tasks.loop(seconds=60)
+async def loop():
+	#see(https://teratail.com/questions/273362)
+	#loopがbotとdiscordの接続より早く始まっちゃうので一旦待たせる
+	await client.wait_until_ready()
 
-# # メッセージ受信時に動作する処理
-# @client.event
-# async def on_message(message):
-# 	# メッセージ送信者がBotだった場合は無視する
-# 	if message.author.bot:
-# 		return
-# 	# 「/neko」と発言したら「にゃーん」が返る処理
-# 	if message.content == '/neko':
-# 		await message.channel.send('にゃーん')
+	#現在時刻を取得
+	# now = datetime.datetime.now().strftime('%H:%M')
 
-# # Botの起動とDiscordサーバーへの接続
-# client.run(TOKEN)
+	#チャンネルの取得とテキストの送信
+	channel = client.get_channel(CHANNEL_ID)
+	await channel.send('hello')
+
+	# 朝7時の場合の処理
+	# if now = '07:00':
+	# 	channel = client.get_channel(CHANNEL_ID)
+	# 	await channel.send('AM 7:00')
+
+loop.start()
+client.run(TOKEN)
