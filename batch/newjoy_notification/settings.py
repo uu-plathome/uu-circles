@@ -8,4 +8,4 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(verbose=True, dotenv_path=dotenv_path)
 
 TOKEN = os.environ.get("TOKEN")
-print(TOKEN)
+CHANNEL_ID = os.environ.get("CHANNEL_ID")
