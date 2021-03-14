@@ -1,0 +1,71 @@
+name: StatusCheck
+
+on:
+  schedule:
+    # 5:00 (JST) に処理を実行する。 
+    - cron: '0 20 * * *'
+
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: api-main
+        run: |
+          if (curl "https://api.uu-circles.com/api/main" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://api.uu-circles.com/api/main'
+          else
+            echo 'Failed https://api.uu-circles.com/api/main'
+            exit 1
+          fi
+
+      - name: front-main
+        run: |
+          if (curl "https://uu-circles.com" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://uu-circles.com'
+          else
+            echo 'Failed https://uu-circles.com'
+            exit 1
+          fi
+
+      - name: api-circle
+        run: |
+          if (curl "https://api.uu-circles.com/api/circle" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://api.uu-circles.com/api/circle'
+          else
+            echo 'Failed https://api.uu-circles.com/api/circle'
+            exit 1
+          fi
+
+      - name: front-circle
+        run: |
+          if (curl "https://uu-circles.com/circle" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://uu-circles.com/circle'
+          else
+            echo 'Failed https://uu-circles.com/circle'
+            exit 1
+          fi
+
+      - name: api-circle
+        run: |
+          if (curl "https://api.uu-circles.com/api/circle/newjoy" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://api.uu-circles.com/api/circle/newjoy'
+          else
+            echo 'Failed https://api.uu-circles.com/api/circle/newjoy'
+            exit 1
+          fi
+
+      - name: front-circle
+        run: |
+          if (curl "https://uu-circles.com/circle/newjoy" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://uu-circles.com/circle/newjoy'
+          else
+            echo 'Failed https://uu-circles.com/circle/newjoy'
+            exit 1
+          fi
