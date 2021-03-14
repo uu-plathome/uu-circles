@@ -6,14 +6,13 @@ import { useRouter } from 'next/router';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
-import axios from 'axios';
 
 const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)
   const setAccessToken = (newAccessToken?: string) => {
     _setAccessToken(newAccessToken || '')
-    
-    axios.defaults.headers.common['Authorization'] = newAccessToken ?  `Bearer ${newAccessToken}` : ''
+
+    axiosInstance.defaults.headers.common['Authorization'] = newAccessToken ?  `Bearer ${newAccessToken}` : ''
     localStorage.setItem('accessToken', newAccessToken || '')
   }
 

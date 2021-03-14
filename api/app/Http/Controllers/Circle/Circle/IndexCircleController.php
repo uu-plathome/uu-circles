@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Circle\Circle;
 
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use Illuminate\Http\Request;
 
 class IndexCircleController extends Controller
@@ -18,8 +19,10 @@ class IndexCircleController extends Controller
 
         $circles = $user->circleUser->circle;
 
-        return [
-            'data' => $circles,
-        ];
+        return Arr::camel_keys([
+            'data' => [
+                Arr::except($circles->toArray(), ['is_main_fixed'])
+            ],
+        ]);
     }
 }

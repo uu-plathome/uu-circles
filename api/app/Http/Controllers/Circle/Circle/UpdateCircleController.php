@@ -20,7 +20,6 @@ class UpdateCircleController extends Controller
         $this->updateCircleUsecase = $updateCircleUsecase;
     }
 
-
     /**
      * Handle the incoming request.
      *

@@ -74,11 +74,11 @@ const Page: NextPage = () => {
     const activityImageUrl5 = useStringInput('')
     const activityImageUrl6 = useStringInput('')
     const [isOpen, setIsOpen] = useState(false)
-    const { id } = router.query
+    const { circleId } = router.query
 
     useEffect(() => {
       const f = async () => {
-        const foundCircle = await showCircle(Number(id))
+        const foundCircle = await showCircle(Number(circleId))
         setCircle(foundCircle)
         if (foundCircle) {
           name.set(foundCircle.name)
@@ -329,8 +329,8 @@ const Page: NextPage = () => {
       event.preventDefault()
       setIsOpen(true)
 
-      if (!Array.isArray(id)) {
-        const data = await updateCircle(Number(id), {
+      if (!Array.isArray(circleId)) {
+        const data = await updateCircle(Number(circleId), {
           type: 'UpdateCircleFormRequest',
           name: name.value,
           release: release.toBoolean,
