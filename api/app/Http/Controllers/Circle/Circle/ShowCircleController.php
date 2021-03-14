@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Circle\Circle;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Circle\Traits\Permission;
+use App\Http\Controllers\Circle\Traits\Permission;
 use App\Models\Circle;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
