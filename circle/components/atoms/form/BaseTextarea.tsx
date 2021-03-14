@@ -1,5 +1,5 @@
 import { useDelayedEffect } from '@/hooks/useDelayedEffect'
-import { FC, InputHTMLAttributes, useState } from 'react'
+import { FC, TextareaHTMLAttributes, useState } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
 
 const inputClass = `
@@ -18,33 +18,29 @@ const inputClass = `
 
 export type Props = {
   id: string
-  name: InputHTMLAttributes<any>['name']
+  name: TextareaHTMLAttributes<any>['name']
   value: string | number
   expand?: boolean
   required?: boolean
-  type?: InputHTMLAttributes<any>['type']
-  placeholder?: InputHTMLAttributes<any>['placeholder']
+  placeholder?: TextareaHTMLAttributes<any>['placeholder']
   prefix?: string | any
   suffix?: string
   error?: string
   maxLength?: number
-  pattern?: string
   disabled?: boolean
   onChange(e: any): void
 } & BaseLabelProps
-const BaseTextField: FC<Props> = ({
+const BaseTextarea: FC<Props> = ({
   label,
   id,
   name,
   note,
   value,
   expand,
-  type = 'text',
   required,
   placeholder,
   prefix,
   maxLength,
-  pattern,
   suffix,
   error,
   disabled,
@@ -80,8 +76,7 @@ const BaseTextField: FC<Props> = ({
           ''
         )}
 
-        <input
-          type={type}
+        <textarea
           id={id}
           name={name}
           value={value}
@@ -89,14 +84,14 @@ const BaseTextField: FC<Props> = ({
           onChange={onChange}
           maxLength={maxLength}
           className={inputClass}
-          pattern={pattern}
           disabled={disabled}
+          rows={maxLength ? Math.ceil(maxLength / 40) : 4}
           style={{
             width: expand ? '100%' : 'auto',
           }}
         />
 
-        {suffix ? <p className="ml-1 text-black">{suffix}</p> : ''}
+        {suffix ? <p className="ml-1 text-white">{suffix}</p> : ''}
       </div>
 
       <div className="flex justify-between">
@@ -105,7 +100,7 @@ const BaseTextField: FC<Props> = ({
         ) : (
           <span> </span>
         )}
-        <p className="text-sm text-black">
+        <p className="text-sm text-white">
           <span>{counter}</span>
           {maxLength ? <span> / {maxLength}</span> : ''}
         </p>
@@ -114,4 +109,4 @@ const BaseTextField: FC<Props> = ({
   )
 }
 
-export { BaseTextField }
+export { BaseTextarea }

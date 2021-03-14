@@ -8,6 +8,7 @@ use App\Http\Controllers\Circle\Auth\VerificationResendController;
 use App\Http\Controllers\Circle\Auth\VerificationVerifyController;
 use App\Http\Controllers\Circle\Circle\IndexCircleController;
 use App\Http\Controllers\Circle\Circle\ShowCircleController;
+use App\Http\Controllers\Circle\Circle\UpdateCircleController;
 use App\Support\Arr;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -39,4 +40,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
+    Route::put('/circle/{circleId}', UpdateCircleController::class)->name('circle.circle.update');
 });
