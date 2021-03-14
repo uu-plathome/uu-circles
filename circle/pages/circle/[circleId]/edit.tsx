@@ -1,5 +1,6 @@
 import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
+import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { EditCircleForm } from "@/components/organisms/Form/Circle/EditCircleForm";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useDelayedEffect } from "@/hooks/useDelayedEffect";
@@ -487,72 +488,74 @@ const Page: NextPage = () => {
     return (
         <div>
           <BaseLayout user={authContext.user}>
-            <div className="pb-32 md:pb-72">
-              <h1 className="text-lg font-bold text-center pt-10 pb-6">サークル編集</h1>
+            <BaseContainer>
+              <div className="pb-32 md:pb-72">
+                <h1 className="text-lg font-bold text-center pt-10 pb-6">サークル編集</h1>
 
-              <div>
-                <EditCircleForm
-                  onDropMainImage={onDropMainImage}
-                  onDropHandbillImage={onDropHandbillImage}
-                  onDropActivityImage={onDropActivityImage}
-                  onSubmit={onSubmit}
-                  form={{
-                    release,
-                    name,
-                    nameKana,
-                    shortName,
-                    prefixName,
-                    description,
-                    circleType,
-                    isClubActivities,
-                    appealingPoint1,
-                    appealingPoint2,
-                    appealingPoint3,
-                    commonPlaceOfActivity,
-                    commonPlaceOfActivityDetail,
-                    commonDateOfActivityMonday,
-                    commonDateOfActivityTuesday,
-                    commonDateOfActivityWednesday,
-                    commonDateOfActivityThursday,
-                    commonDateOfActivityFriday,
-                    commonDateOfActivitySaturday,
-                    commonDateOfActivitySunday,
-                    commonDateOfActivityDetail,
-                    isOnlineActivity,
-                    onlinePlaceOfActivityDetail,
-                    onlineDateOfActivityMonday,
-                    onlineDateOfActivityTuesday,
-                    onlineDateOfActivityWednesday,
-                    onlineDateOfActivityThursday,
-                    onlineDateOfActivityFriday,
-                    onlineDateOfActivitySaturday,
-                    onlineDateOfActivitySunday,
-                    onlineDateOfActivityDetail,
-                    admissionFeePerYear,
-                    numberOfMembers,
-                    publicEmail,
-                    twitterUrl,
-                    facebookUrl,
-                    instagramUrl,
-                    lineUrl,
-                    youtubeUrl,
-                    homepageUrl,
-                    peingUrl,
-                    githubUrl,
-                    tiktokUrl,
-                    participationUrl,
-                    mainImageUrl,
-                    handbillImageUrl,
-                    activityImageUrl1,
-                    activityImageUrl2,
-                    activityImageUrl3,
-                    activityImageUrl4,
-                    activityImageUrl5,
-                    activityImageUrl6,
-                  }}
-                />
+                <div>
+                  <EditCircleForm
+                    onDropMainImage={onDropMainImage}
+                    onDropHandbillImage={onDropHandbillImage}
+                    onDropActivityImage={onDropActivityImage}
+                    onSubmit={onSubmit}
+                    form={{
+                      release,
+                      name,
+                      nameKana,
+                      shortName,
+                      prefixName,
+                      description,
+                      circleType,
+                      isClubActivities,
+                      appealingPoint1,
+                      appealingPoint2,
+                      appealingPoint3,
+                      commonPlaceOfActivity,
+                      commonPlaceOfActivityDetail,
+                      commonDateOfActivityMonday,
+                      commonDateOfActivityTuesday,
+                      commonDateOfActivityWednesday,
+                      commonDateOfActivityThursday,
+                      commonDateOfActivityFriday,
+                      commonDateOfActivitySaturday,
+                      commonDateOfActivitySunday,
+                      commonDateOfActivityDetail,
+                      isOnlineActivity,
+                      onlinePlaceOfActivityDetail,
+                      onlineDateOfActivityMonday,
+                      onlineDateOfActivityTuesday,
+                      onlineDateOfActivityWednesday,
+                      onlineDateOfActivityThursday,
+                      onlineDateOfActivityFriday,
+                      onlineDateOfActivitySaturday,
+                      onlineDateOfActivitySunday,
+                      onlineDateOfActivityDetail,
+                      admissionFeePerYear,
+                      numberOfMembers,
+                      publicEmail,
+                      twitterUrl,
+                      facebookUrl,
+                      instagramUrl,
+                      lineUrl,
+                      youtubeUrl,
+                      homepageUrl,
+                      peingUrl,
+                      githubUrl,
+                      tiktokUrl,
+                      participationUrl,
+                      mainImageUrl,
+                      handbillImageUrl,
+                      activityImageUrl1,
+                      activityImageUrl2,
+                      activityImageUrl3,
+                      activityImageUrl4,
+                      activityImageUrl5,
+                      activityImageUrl6,
+                    }}
+                  />
+                </div>
               </div>
-            </div>
+            </BaseContainer>
 
             <BaseFooter />
           </BaseLayout>

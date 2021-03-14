@@ -22,7 +22,7 @@ class ShowCircleController extends Controller
         /** @var Circle $circle */
         $circle = Circle::with(['circleInformation', 'circleHandbill'])
             ->whereRelease(true)
-            ->hasByNonDependentSubquery('circleUser', function ($query) use ($user) {
+            ->hasByNonDependentSubquery('circleUsers', function ($query) use ($user) {
                 /** @var \App\Models\CircleUser $query */
                 $query->whereUserId($user->id);
             })
