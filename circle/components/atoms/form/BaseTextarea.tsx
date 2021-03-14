@@ -91,7 +91,7 @@ const BaseTextarea: FC<Props> = ({
           }}
         />
 
-        {suffix ? <p className="ml-1 text-white">{suffix}</p> : ''}
+        {suffix ? <p className="ml-1 text-black">{suffix}</p> : ''}
       </div>
 
       <div className="flex justify-between">
@@ -100,7 +100,7 @@ const BaseTextarea: FC<Props> = ({
         ) : (
           <span> </span>
         )}
-        <p className="text-sm text-white">
+        <p className="text-sm text-black">
           <span>{counter}</span>
           {maxLength ? <span> / {maxLength}</span> : ''}
         </p>

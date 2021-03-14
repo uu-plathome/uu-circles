@@ -15,10 +15,12 @@ export const getCircleList = async (): Promise<Circle[]> => {
 }
 
 export const showCircle = async (id: number): Promise<Circle> => {
+  console.log(`showCircle args id=${id}`)
   const { data } = await axiosInstance.get<{
     data: Circle
   }>(`/circle/api/circle/${id}`)
 
+  console.log(`showCircle ret`, data)
   return data.data
 }
 
