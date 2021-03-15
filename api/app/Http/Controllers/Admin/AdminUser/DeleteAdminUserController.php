@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\AdminUser;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminUser\DeleteAdminUserRequest;
 use App\Models\AdminUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,8 +19,10 @@ class DeleteAdminUserController extends Controller
      * @return bool[]
      * @throws ValidationException
      */
-    public function __invoke(Request $request, int $userId): array
+    public function __invoke(DeleteAdminUserRequest $request, int $userId): array
     {
+        Log::debug("DeleteAdminUserController args userId=$userId");
+
         if (Auth::id() === $userId) {
             throw ValidationException::withMessages([
                 'data' => '自身のアカウントは削除できません。他のアカウントにログインしてください。',
