@@ -32,24 +32,24 @@ async def loop():
 
 	#チャンネルの取得とテキストの送信
 	# 朝7時の場合の処理
-	if now == '22:31':
+	if now == '07:00':
 		channel = client.get_channel(CHANNEL_ID)
 		#アナウンス
 		text = []
-		await channel.send('***今日の新歓 '+datetime.datetime.now().strftime('%Y.%m.%d***'))
+		await channel.send('***☀️今日の新歓 '+datetime.datetime.now().strftime('%Y.%m.%d***'))
 		for i, j in enumerate(r['todayCircleNewJoys']):
 			#日付を整形
 			StartDay = j['circleNewJoy']['startDate'][5:7]+'月'+j['circleNewJoy']['startDate'][8:10]+'日'+j['circleNewJoy']['startDate'][11:16]
 			EndDay = j['circleNewJoy']['endDate'][5:7]+'月'+j['circleNewJoy']['endDate'][8:10]+'日'+j['circleNewJoy']['endDate'][11:16]
 			#送信するテキストの整形
-			text = '***'+str(i+1)+'***,  サークル名: ***'+j['name']+'***\n'
-			text +='日にち: ***'+StartDay+' ~ '+EndDay+'***\n'
-			text += '場所: ***'+j['circleNewJoy']['placeOfActivity']+'***\n'
-			text += 'ひとこと: ***'+j['circleNewJoy']['description']+'***\n'
+			text = '***'+str(i+1)+'***,  サークル名📛: ***'+j['name']+'***\n'
+			text +='日にち🗓: ***'+StartDay+' ~ '+EndDay+'***\n'
+			text += '場所🧭: ***'+j['circleNewJoy']['placeOfActivity']+'***\n'
+			text += 'ひとこと📣: ***'+j['circleNewJoy']['description']+'***\n'
 			if (j['circleNewJoy']['url'] is not None):
-				text += '新歓URL: '+str(j['circleNewJoy']['url'])+'\n'
-			text += 'サークルを見る: *** https://uu-circles.com/circle/'+j['slug']+'***\n\n'
-			await channel.send(text+'\n\n')
+				text += '新歓URL💻: '+str(j['circleNewJoy']['url'])+'\n'
+			text += 'サークルを見る👀: *** https://uu-circles.com/circle/'+j['slug']+'***\n\n'
+			await channel.send(text+'\n---------------------------\n')
 
 
 loop.start()
