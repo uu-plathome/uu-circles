@@ -58,7 +58,13 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
+        /** @var \App\Models\User $user */
         $user = $request->user();
+
+        if (!$user->adminUser) {
+            return abort(400);
+        }
+
         return Arr::camel_keys(
             AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
         );
