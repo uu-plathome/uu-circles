@@ -1,5 +1,6 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
@@ -36,39 +37,49 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseContainer>
         <div className="pb-32 md:pb-72">
           {circle ? (
             <div>
               <h1 className="text-lg font-bold text-center pt-10 pb-6">{ circle.name }</h1>
 
-              <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
-                <a>
-                  <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6" style={{ width: 280 }}>
-                    <div className="flex justify-between">
-                      <FontAwesomeIcon icon={faFileAlt} />
-                      <div className="text-center">
-                        <p className="font-lg font-bold">サークル情報の編集</p>
+              <div className="mb-4 text-center">
+                <div className="mb-8">
+                  <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
+                    <a>
+                      <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto" style={{ width: 280 }}>
+                        <div className="flex justify-between items-center px-4" style={{ width: 280 }}>
+                          <FontAwesomeIcon icon={faFileAlt} size="lg" />
+                          <div className="text-center">
+                            <p className="font-lg font-bold">サークル情報の編集</p>
+                          </div>
+                          <div></div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </a>
-              </Link>
+                    </a>
+                  </Link>
+                </div>
 
-              <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
-                <a>
-                  <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6" style={{ width: 280 }}>
-                    <div className="flex justify-between">
-                      <FontAwesomeIcon icon={faCalendarAlt} />
-                      <div className="text-center">
-                        <p className="font-lg font-bold">新歓イベントの追加・編集</p>
+                <div className="mb-8">
+                  <Link href="/circle/[circleId]/newjoy" as={`/circle/${circle.id}/newjoy`}>
+                    <a>
+                      <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto" style={{ width: 280 }}>
+                        <div className="flex justify-between items-center px-4" style={{ width: 280 }}>
+                          <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
+                          <div className="text-center">
+                            <p className="font-lg font-bold">新歓イベントの追加・編集</p>
+                          </div>
+                          <div></div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </a>
-              </Link>
+                    </a>
+                  </Link>
+                </div>
+              </div>
             </div>
           ) : ''}
         </div>
+        </BaseContainer>
 
         <BaseFooter />
       </BaseLayout>

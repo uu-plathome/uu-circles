@@ -1,12 +1,11 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AuthContext } from '@/contexts/AuthContext'
-import { showCircle } from '@/infra/api/circle'
+import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
 import { Circle } from '@/lib/types/model/Circle'
-import { faCalendarAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { NextPage } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 
@@ -23,11 +22,17 @@ const useCircleId = () => {
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const [circle, setCircle] = useState<Circle>()
+  const [circleNewjoys, setCircleNewjoys] = useState<CircleNewJoy[]>()
   const { circleId } = useCircleId()
 
   useEffect(() => {
     const f = async () => {
-      setCircle(await showCircle(circleId))
+      const {
+        circle: _circle,
+        circleNewJoys: _circleNewJoys
+      } = await getCircleNewJoyList(circleId)
+      setCircle(_circle)
+      setCircleNewjoys(_circleNewJoys)
     }
 
     f()
@@ -36,40 +41,16 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-        <div className="pb-32 md:pb-72">
-          {circle ? (
-            <div>
-              <h1 className="text-lg font-bold text-center pt-10 pb-6">{ circle.name }</h1>
+        <BaseContainer>
+          <div className="pb-32 md:pb-72">
+            {circle ? (
+              <div>
+                <h1 className="text-lg font-bold text-center pt-10 pb-6">新歓イベントの追加・編集</h1>
 
-              <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
-                <a>
-                  <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6" style={{ width: 280 }}>
-                    <div className="flex justify-between">
-                      <FontAwesomeIcon icon={faFileAlt} />
-                      <div className="text-center">
-                        <p className="font-lg font-bold">サークル情報の編集</p>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </Link>
-
-              <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
-                <a>
-                  <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6" style={{ width: 280 }}>
-                    <div className="flex justify-between">
-                      <FontAwesomeIcon icon={faCalendarAlt} />
-                      <div className="text-center">
-                        <p className="font-lg font-bold">新歓イベントの追加・編集</p>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </Link>
-            </div>
-          ) : ''}
-        </div>
-
+              </div>
+            ) : ''}
+          </div>
+        </BaseContainer>
         <BaseFooter />
       </BaseLayout>
     </div>
