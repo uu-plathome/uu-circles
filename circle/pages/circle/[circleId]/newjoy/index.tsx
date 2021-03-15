@@ -1,6 +1,7 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
 import { Circle } from '@/lib/types/model/Circle'
@@ -47,6 +48,9 @@ const IndexPage: NextPage = () => {
               <div>
                 <h1 className="text-lg font-bold text-center pt-10 pb-6">新歓イベントの追加・編集</h1>
 
+                {circleNewjoys && circleNewjoys.length > 0 ? (
+                  <IndexCircleNewJoyList circleId={circleId} circleNewJoys={circleNewjoys} />
+                ) : ''}
               </div>
             ) : ''}
           </div>
