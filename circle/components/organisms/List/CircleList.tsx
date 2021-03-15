@@ -6,7 +6,7 @@ const CircleListItem: FC<{
   circle: Circle
 }> = ({ circle }) => {
     return (
-        <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
+        <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
             <a>
               <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6" style={{ width: 280 }}>
                   <p className="font-lg font-bold">{ circle.name }</p>
