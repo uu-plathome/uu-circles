@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordAdminController;
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
 use App\Http\Controllers\Admin\Auth\RegisterAdminController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordAdminController;
+use App\Http\Controllers\Admin\Auth\ShowOwnAdminUserController;
 use App\Http\Controllers\Admin\Auth\VerificationConfirmController;
 use App\Http\Controllers\Admin\Auth\VerificationResendController;
 use App\Http\Controllers\Admin\Auth\VerificationVerifyController;
@@ -38,13 +39,10 @@ use App\Http\Controllers\Admin\CircleUser\RegisterCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Admin\PutStorageController;
-use App\Support\Arr;
-use App\ValueObjects\AdminUserValueObject;
-use Illuminate\Http\Request;
 
 Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
 
-Route::group(['middleware' => 'guest:api'], function () {
+Route::group(['middleware' => 'guest:adminUser'], function () {
     Route::post('/login', LoginAdminController::class)->name('admin.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
@@ -56,13 +54,8 @@ Route::group(['middleware' => 'guest:api'], function () {
     });
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        $user = $request->user();
-        return Arr::camel_keys(
-            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
-        );
-    });
+Route::middleware('auth:adminUser')->group(function () {
+    Route::get('/user', ShowOwnAdminUserController::class);
 
     // AdminUser 管理者アカウント
     Route::get('/admin-user', IndexAdminUserController::class);
