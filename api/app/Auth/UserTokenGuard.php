@@ -3,26 +3,16 @@
 namespace App\Auth;
 
 use App\Enum\Property\UserProperty;
+use App\Models\AdminUser;
+use App\Models\CircleUser;
 use App\Models\User;
 use Illuminate\Auth\TokenGuard;
-use App\Auth\UserProvider;
-use Illuminate\Http\Request;
 
 class UserTokenGuard extends TokenGuard
 {
-    public function __construct(
-        UserProvider $provider,
-        Request $request,
-        $inputKey = 'api_token',
-        $storageKey = 'api_token',
-        $hash = false
-    ) {
-        $this->hash = $hash;
-        $this->request = $request;
-        $this->provider = $provider;
-        $this->inputKey = $inputKey;
-        $this->storageKey = $storageKey;
-    }
+    protected ?AdminUser $adminUser = null;
+
+    protected ?CircleUser $circleUser = null;
 
     /**
      * Get the currently authenticated user.
@@ -44,11 +34,49 @@ class UserTokenGuard extends TokenGuard
 
         if (!empty($token)) {
             $user = $this->provider->retrieveByCredentials([
-                $this->storageKey => $this->hash ? hash('sha256', $token) : $token,
+                $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
                 UserProperty::active => true
             ]);
         }
 
         return $this->user = $user;
+    }
+
+    /**
+     * Get the currently authenticated user.
+     *
+     * @return AdminUser|null
+     */
+    public function adminUser(): ?AdminUser
+    {
+        // If we've already retrieved the user for the current request we can just
+        // return it back immediately. We do not want to fetch the user data on
+        // every call to this method because that would be tremendously slow.
+        if (!is_null($this->adminUser)) {
+            return $this->adminUser;
+        }
+
+        $adminUser = $this->user->adminUser;
+
+        return $this->adminUser = $adminUser;
+    }
+
+    /**
+     * Get the currently authenticated user.
+     *
+     * @return CircleUser|null
+     */
+    public function circleUser(): ?CircleUser
+    {
+        // If we've already retrieved the user for the current request we can just
+        // return it back immediately. We do not want to fetch the user data on
+        // every call to this method because that would be tremendously slow.
+        if (!is_null($this->circleUser)) {
+            return $this->circleUser;
+        }
+
+        $circleUser = $this->user->circleUser;
+
+        return $this->circleUser = $circleUser;
     }
 }
