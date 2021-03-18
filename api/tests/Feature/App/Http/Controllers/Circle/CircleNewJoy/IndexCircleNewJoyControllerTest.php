@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class ShowCircleControllerTest extends TestCase
+class IndexCircleNewJoyControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowCircleControllerTest");
+        Log::info("IndexCircleNewJoyControllerTest");
     }
 
     /**
@@ -37,7 +37,7 @@ class ShowCircleControllerTest extends TestCase
         $this->assertNotNull($user);
 
         // WHEN
-        $response = $this->get("/circle/api/circle/{$user->circleUser->circle_id}", [
+        $response = $this->get("/circle/api/circle/{$user->circleUser->circle_id}/newjoy", [
             'Authorization' => "Bearer $user->api_token",
         ]);
 
