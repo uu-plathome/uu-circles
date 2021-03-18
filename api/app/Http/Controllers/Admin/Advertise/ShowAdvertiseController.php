@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ShowAdvertiseController extends Controller
 {
@@ -18,6 +19,8 @@ class ShowAdvertiseController extends Controller
      */
     public function __invoke(Request $request, int $advertiseId): array
     {
+        Log::debug("ShowAdvertiseController args advertiseId=$advertiseId");
+
         $advertise = Advertise::findOrFail($advertiseId)->toArray();
 
         return [

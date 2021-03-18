@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
 use App\Usecases\Admin\UpdateAdminUserUsecase;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -26,6 +27,8 @@ class UpdateAdminUserController extends Controller
      */
     public function __invoke(UpdateAdminUserRequest $request, int $userId)
     {
+        Log::debug("UpdateAdminUserController args userId=$userId");
+
         $request->validate([
             'role' => [Rule::in($this->canSelectedRoles($request->user()))]
         ]);
