@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class IndexCircleNewJoyUsecase
 {
     /**
-     * invoke
+     * 新歓一覧の取得
      *
      * @return CircleNewJoyValueObject[]
      */
