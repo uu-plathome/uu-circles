@@ -12,6 +12,7 @@ use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -32,6 +33,8 @@ class LoginAdminController extends Controller
      */
     public function __invoke(LoginAdminFormRequest $request)
     {
+        Log::debug("LoginAdminController args none");
+
         $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
 
         $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
@@ -52,7 +55,10 @@ class LoginAdminController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
+        Log::debug("LoginAdminController attemptLogin");
+
         $token = $this->guard()->attempt($this->credentials($request));
+        Log::debug("LoginAdminController attemptLogin token=$token");
 
         if (!$token) {
             return false;
@@ -60,10 +66,14 @@ class LoginAdminController extends Controller
 
         /** @var User $user */
         $user = $this->guard()->user();
+
+        $hasVerifiedEmail = $user->hasVerifiedEmail();
         // メールアドレスが認証されているか
+        Log::debug("LoginAdminController attemptLogin hasVerifiedEmail=$hasVerifiedEmail");
         if (!$user->hasVerifiedEmail()) {
             return false;
         }
+
         // 管理者かどうか
         if (!$user->isAdminUser()) {
             return false;
@@ -80,6 +90,8 @@ class LoginAdminController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
+        Log::debug("LoginAdminController sendLoginResponse");
+
         $this->clearLoginAttempts($request);
 
         /** @var User $user */
@@ -100,6 +112,8 @@ class LoginAdminController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
+        Log::debug("LoginAdminController sendFailedLoginResponse");
+
         /** @var User $user */
         $user = $this->guard()->user();
 
