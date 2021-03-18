@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CircleNewJoy;
+namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;

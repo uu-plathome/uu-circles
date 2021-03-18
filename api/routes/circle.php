@@ -10,9 +10,11 @@ use App\Http\Controllers\Circle\Auth\VerificationVerifyController;
 use App\Http\Controllers\Circle\Circle\IndexCircleController;
 use App\Http\Controllers\Circle\Circle\ShowCircleController;
 use App\Http\Controllers\Circle\Circle\UpdateCircleController;
-use App\Support\Arr;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Circle\CircleNewJoy\DeleteCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleNewJoy\IndexCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleNewJoy\RegisterCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleNewJoy\ShowCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleNewJoy\UpdateCircleNewJoyController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:adminUser')->group(function () {
@@ -34,4 +36,10 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
     Route::put('/circle/{circleId}', UpdateCircleController::class)->name('circle.circle.update');
+
+    Route::get('/circle/{circleId}/newjoy', IndexCircleNewJoyController::class)->name('circle.circleNewJoy.index');
+    Route::post('/circle/{circleId}/newjoy', RegisterCircleNewJoyController::class)->name('circle.circleNewJoy.register');
+    Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('circle.circleNewJoy.show');
+    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', UpdateCircleNewJoyController::class)->name('circle.circleNewJoy.update');
+    Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', DeleteCircleNewJoyController::class)->name('circle.circleNewJoy.delete');
 });
