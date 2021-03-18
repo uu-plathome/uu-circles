@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CircleNewJoy;
+namespace App\Http\Controllers\Circle\CircleNewJoy;
 
+use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 
 class UpdateCircleNewJoyController extends Controller
 {
+    use Permission;
+
     private UpdateCircleNewJoyUsecase $updateCircleNewJoyUsecase;
 
     public function __construct(UpdateCircleNewJoyUsecase $updateCircleNewJoyUsecase)
@@ -35,6 +38,10 @@ class UpdateCircleNewJoyController extends Controller
             'circleId'       => $circleId,
             'circleNewJoyId' => $circleNewJoyId,
         ]);
+
+        /** @var \App\Models\User */
+        $user = $request->user();
+        $this->permissionCircle($user, $circleId);
 
         $param = $request->makeUpdateCircleNewJoyUsecaseParam();
 
