@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class UpdateCircleNewJoyUsecase
 {
     /**
-     * 新規新歓を更新する
+     * 新歓情報を更新する
      *
      * @param int $circleId
      * @param int $circleNewJoyId
