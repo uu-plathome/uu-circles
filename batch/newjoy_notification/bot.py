@@ -4,6 +4,7 @@ import settings
 import datetime
 import requests
 import json
+import io
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
@@ -19,38 +20,52 @@ r = requests.get(API_URL, params=payload).json()
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
+###GET_TIME###
+day = datetime.datetime.now()
+now = day.strftime('%Y.%m.%d')
+
 ###SET_LOOP###
 #ループ処理
-@tasks.loop(seconds=60)
-async def loop():
-	#see(https://teratail.com/questions/273362)
-	#loopがbotとdiscordの接続より早く始まっちゃうので一旦待たせる
-	await client.wait_until_ready()
+@client.event
+async def on_ready():
+	channel = client.get_channel(CHANNEL_ID)
+	#アナウンス
+	text = []
+	if (len(r['futureCircleNewJoys']) == 0):
+		await channel.send('***:crescent_moon:今日の新歓はありません***')
+	else:
+		await channel.send('***☀️今日の新歓 '+now+'***')
+		for idx, newjoy in enumerate(r['futureCircleNewJoys']):
+			await channel.send('\n---------------------------\n')
 
-	#現在時刻を取得
-	now = datetime.datetime.now().strftime('%H:%M')
+			#新歓の開始と終了の時刻を取得
+			start_day=newjoy['circleNewJoy']['startDate']
+			end_day = newjoy['circleNewJoy']['endDate']
+			if (start_day is not None):
+				format_startDay = datetime.datetime.strptime(start_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+			if (end_day is not None):
+				format_endDay = datetime.datetime.strptime(end_day, '%Y-%m-%dT%H:%M:%S.%fZ')
 
-	#チャンネルの取得とテキストの送信
-	# 朝7時の場合の処理
-	if now == '07:00':
-		channel = client.get_channel(CHANNEL_ID)
-		#アナウンス
-		text = []
-		await channel.send('***☀️今日の新歓 '+datetime.datetime.now().strftime('%Y.%m.%d***'))
-		for i, j in enumerate(r['todayCircleNewJoys']):
-			#日付を整形
-			StartDay = j['circleNewJoy']['startDate'][5:7]+'月'+j['circleNewJoy']['startDate'][8:10]+'日'+j['circleNewJoy']['startDate'][11:16]
-			EndDay = j['circleNewJoy']['endDate'][5:7]+'月'+j['circleNewJoy']['endDate'][8:10]+'日'+j['circleNewJoy']['endDate'][11:16]
 			#送信するテキストの整形
-			text = '***'+str(i+1)+'***,  サークル名📛: ***'+j['name']+'***\n'
-			text +='日にち🗓: ***'+StartDay+' ~ '+EndDay+'***\n'
-			text += '場所🧭: ***'+j['circleNewJoy']['placeOfActivity']+'***\n'
-			text += 'ひとこと📣: ***'+j['circleNewJoy']['description']+'***\n'
-			if (j['circleNewJoy']['url'] is not None):
-				text += '新歓URL💻: '+str(j['circleNewJoy']['url'])+'\n'
-			text += 'サークルを見る👀: *** https://uu-circles.com/circle/'+j['slug']+'***\n\n'
-			await channel.send(text+'\n---------------------------\n')
+			text = '***'+str(idx+1)+',***\n:ballot_box_with_check: '+newjoy['name']+'\n'
 
+			if (newjoy['circleNewJoy']['title'] is not None):
+				text += '📛新歓名: ***'+newjoy['circleNewJoy']['title']+'***\n'
 
-loop.start()
+			if (format_startDay is not None and format_endDay is not None):
+				text +='🗓日にち: ***'+str(format_startDay)+' ~ '+str(format_endDay)+'***\n'
+
+			if (newjoy['circleNewJoy']['placeOfActivity'] is not None):
+				text += '🧭場所: ***'+newjoy['circleNewJoy']['placeOfActivity']+'***\n'
+
+			if (newjoy['circleNewJoy']['description'] is not None):
+				text += '📣ひとこと: ***'+newjoy['circleNewJoy']['description']+'***\n'
+
+			if (newjoy['circleNewJoy']['url'] is not None):
+				text += '💻新歓URL: '+str(newjoy['circleNewJoy']['url'])+'\n'
+
+			if (newjoy['slug'] is not None):
+			text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
+			await channel.send(text)
+	
 client.run(TOKEN)
