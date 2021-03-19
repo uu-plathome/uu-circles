@@ -14,6 +14,7 @@ import useSWR from 'swr'
 import { showCircle } from '@/infra/api/circle'
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { AuthContext } from "@/contexts/AuthContext";
+import Link from "next/link";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -72,6 +73,14 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseContainer>
           <div className="px-2 py-4">
+            <p className="pt-8">
+              <Link href="/circle/[circleId]/newjoy" as={`/circle/${Number(circleId)}/newjoy`}>
+                <a className="underline text-blue-500">
+                  新歓一覧に戻る
+                </a>
+              </Link>
+            </p>
+
             {circle ? (
               <CreateCircleNewJoyForm
                 onSubmit={onSubmit}
