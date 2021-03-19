@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import '../styles/index.css'
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/infra/api';
 import { User } from '@/lib/types/model/User';
+
+import 'react-datepicker/dist/react-datepicker.css'
+import '../styles/index.css'
 
 const useAccessToken = (initialState: string) => {
   const [ accessToken, _setAccessToken ] = useState(initialState)

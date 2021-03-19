@@ -19,7 +19,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout';
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
-  const { id, circleNewJoyId } = router.query
+  const { circleId, circleNewJoyId } = router.query
   const [circle, setCircle] = useState<Circle | null>(null)
 
   const title = useStringInput('')
@@ -35,7 +35,7 @@ const CreatePage: NextPage = () => {
   useEffect(() => {
     const f = async () => {
       const { circle: newCircle, circleNewJoy } = await getCircleNewJoy(
-        Number(id),
+        Number(circleId),
         Number(circleNewJoyId)
       )
       setCircle(newCircle)
@@ -57,7 +57,7 @@ const CreatePage: NextPage = () => {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const data = await updateCircleNewJoy(Number(id), Number(circleNewJoyId), {
+    const data = await updateCircleNewJoy(Number(circleId), Number(circleNewJoyId), {
       type: 'UpdateCircleNewJoyRequest',
       title: title.value,
       description: description.value,
@@ -85,14 +85,14 @@ const CreatePage: NextPage = () => {
       return
     }
 
-    await router.push(`/circle/${id}/newjoy`)
+    await router.push(`/circle/${Number(circleId)}/newjoy`)
   }
 
   return (
     <div>
       <BaseLayout user={authContext.user}>
         <BaseContainer>
-          <div className="border-2 border-gray-800 px-2 py-4">
+          <div className="px-2 py-4">
             {circle ? (
               <EditCircleNewJoyForm
                 onSubmit={onSubmit}

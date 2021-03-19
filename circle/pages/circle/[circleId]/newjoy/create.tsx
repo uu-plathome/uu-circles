@@ -18,7 +18,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
-  const { id } = router.query
+  const { circleId } = router.query
 
   const title = useStringInput('')
   const description = useStringInput('')
@@ -30,14 +30,14 @@ const CreatePage: NextPage = () => {
   const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
-  const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () =>
-    showCircle(Number(id))
+  const { data: circle } = useSWR([`/admin/api/circle/${circleId}`, Number(circleId)], () =>
+    showCircle(Number(circleId))
   )
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const data = await createCircleNewJoy(Number(id), {
+    const data = await createCircleNewJoy(Number(circleId), {
       type: 'RegisterCircleNewJoyRequest',
       title: title.value,
       description: description.value,
@@ -71,7 +71,7 @@ const CreatePage: NextPage = () => {
     <div>
       <BaseLayout user={authContext.user}>
         <BaseContainer>
-          <div className="border-2 border-gray-800 px-2 py-4">
+          <div className="px-2 py-4">
             {circle ? (
               <CreateCircleNewJoyForm
                 onSubmit={onSubmit}

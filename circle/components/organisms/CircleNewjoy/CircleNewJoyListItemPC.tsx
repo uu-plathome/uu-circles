@@ -34,7 +34,8 @@ const CircleNewJoyListItemPC: FC<Props> = ({ circleId, circleNewJoy }) => {
           <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
         </div>
       </section>
-      <section className=" bg-white px-2 pl-3 w-80">
+
+      <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
           <h2 className="font-bold text-xl text-center">
             {circleNewJoy.title}
@@ -54,10 +55,11 @@ const CircleNewJoyListItemPC: FC<Props> = ({ circleId, circleNewJoy }) => {
           </div>
         </div>
       </section>
+
       <section className="h-full w-20" style={{ paddingTop: '50px' }}>
         <Link
-          href="/circle/[circleId]/newjoy/[circleNewJoy.id]"
-          as={`/circle/${circleId}/newjoy/${circleNewJoy.id}`}
+          href="/circle/[circleId]/newjoy/[circleNewJoyId]/edit"
+          as={`/circle/${circleId}/newjoy/${circleNewJoy.id}/edit`}
         >
           <a className="text-blue-600 border-b border-blue-600 text-xs w-20">
             もっと詳しく
