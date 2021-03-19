@@ -35,6 +35,13 @@ class IndexCircleControllerTest extends TestCase
         ])
             ->whereActive(true)
             ->hasByNonDependentSubquery('circleUsers')
+            ->hasByNonDependentSubquery('circleUsers', function ($query) {
+                /** @var \App\Models\CircleUser $query */
+                $query->hasByNonDependentSubquery('circle', function ($query) {
+                    /** @var \App\Models\Circle $query */
+                    $query->whereRelease(true);
+                });
+            })
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
@@ -46,5 +53,8 @@ class IndexCircleControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+        $this->assertIsObject($response);
+        $this->assertIsArray($response['data']);
+        $this->assertIsArray($response['data'][0]);
     }
 }

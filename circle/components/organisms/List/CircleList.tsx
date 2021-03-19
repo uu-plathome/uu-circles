@@ -24,7 +24,7 @@ const CircleList: FC<Props> = ({ circles }) => {
         <div>
           {circles.map((circle) => {
             return (
-              <div key={circle.id} className="mb-4 flex justify-center">
+              <div key={`CircleList-${circle.id}`} className="mb-4 flex justify-center">
                   <CircleListItem circle={circle} />
               </div>
             )

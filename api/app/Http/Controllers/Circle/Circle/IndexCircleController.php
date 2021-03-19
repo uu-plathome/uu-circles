@@ -9,6 +9,7 @@ use App\Models\CircleUser;
 use App\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class IndexCircleController extends Controller
 {
@@ -25,7 +26,13 @@ class IndexCircleController extends Controller
         $circleIds = $user->circleUsers->map(
             fn (CircleUser $circleUser) => $circleUser->circle_id
         )->all();
-        $circles = Circle::whereIn('id', $circleIds)->get();
+        $circles = Circle::whereRelease(true)
+            ->whereIn('id', $circleIds)
+            ->get();
+
+        if ($circles->count() === 0) {
+            throw new NotFoundHttpException();
+        }
 
         Log::debug('IndexCircleController', [
             'circles'   => $circles,
@@ -33,9 +40,7 @@ class IndexCircleController extends Controller
         ]);
 
         return Arr::camel_keys([
-            'data' => [
-                Arr::except($circles->toArray(), ['is_main_fixed'])
-            ],
+            'data' => $circles->toArray(),
         ]);
     }
 }
