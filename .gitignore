@@ -63,3 +63,4 @@ fabric.properties
 .DS_store
 .venv
 venv
+.pyc
