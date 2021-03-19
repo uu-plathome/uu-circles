@@ -31,13 +31,15 @@ class ShowCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUser')
+            ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
+        $circleUser = $user->circleUsers()->inRandomOrder()->first();
+        $this->assertNotNull($circleUser);
 
         // WHEN
-        $response = $this->get("/circle/api/circle/{$user->circleUser->circle_id}", [
+        $response = $this->get("/circle/api/circle/{$circleUser->circle_id}", [
             'Authorization' => "Bearer $user->api_token",
         ]);
 

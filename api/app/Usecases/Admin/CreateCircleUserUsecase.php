@@ -39,7 +39,7 @@ class CreateCircleUserUsecase
         DB::beginTransaction();
         try {
             $user->save();
-            $user->circleUser()->create([
+            $user->circleUsers()->create([
                 'circle_id' => $circleId,
             ]);
 

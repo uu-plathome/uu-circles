@@ -22,7 +22,7 @@ class ShowOwnCircleUserController extends Controller
 
         /** @var \App\Models\User $user */
         $user = $request->user();
-        if (!$user->circleUser) {
+        if (!$user->circleUsers) {
             Log::info("[INFO] ShowOwnCircleUserController code=400, userId=$user->id");
             throw new AuthorizationException();
         }

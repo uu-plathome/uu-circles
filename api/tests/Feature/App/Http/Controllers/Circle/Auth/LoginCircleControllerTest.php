@@ -33,7 +33,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUser')
+            ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
@@ -59,7 +59,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUser')
+            ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
@@ -85,7 +85,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUser')
+            ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);

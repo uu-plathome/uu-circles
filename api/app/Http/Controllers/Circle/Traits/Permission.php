@@ -10,14 +10,14 @@ trait Permission
 {
     public function permissionWithGetUser(User $user)
     {
-        if (!$user->circleUser) {
+        if (!$user->circleUsers) {
             throw new AuthorizationException();
         }
     }
 
     public function permissionCircle(User $user, int $circleId)
     {
-        if (!$user->circleUser) {
+        if (!$user->circleUsers) {
             throw new AuthorizationException();
         }
 

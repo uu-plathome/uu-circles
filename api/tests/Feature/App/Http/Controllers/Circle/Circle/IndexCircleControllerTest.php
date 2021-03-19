@@ -30,8 +30,11 @@ class IndexCircleControllerTest extends TestCase
 
         // GIVEN
         /** @var \App\Models\User $user */
-        $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUser')
+        $user = User::with([
+            'circleUsers',
+        ])
+            ->whereActive(true)
+            ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
