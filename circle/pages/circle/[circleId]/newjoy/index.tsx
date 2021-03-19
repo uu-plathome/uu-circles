@@ -1,3 +1,4 @@
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -48,8 +49,23 @@ const IndexPage: NextPage = () => {
               <div>
                 <h1 className="text-lg font-bold text-center pt-10 pb-6">新歓イベントの追加・編集</h1>
 
+                <div className="flex justify-center">
+                  <GreenButton
+                    href={`/circle/[circleId]/newjoy/create`}
+                    as={`/circle/${Number(circleId)}/newjoy/create`}
+                  >
+                    新規作成
+                  </GreenButton>
+                </div>
+
                 {circleNewjoys && circleNewjoys.length > 0 ? (
-                  <IndexCircleNewJoyList circleId={circleId} circleNewJoys={circleNewjoys} />
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      予定している新歓一覧
+                    </h2>
+
+                    <IndexCircleNewJoyList circleId={circleId} circleNewJoys={circleNewjoys} />
+                  </div>
                 ) : ''}
               </div>
             ) : ''}

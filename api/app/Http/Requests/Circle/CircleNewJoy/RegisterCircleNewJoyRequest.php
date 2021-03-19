@@ -7,6 +7,7 @@ use App\Enum\PlaceOfActivity;
 use App\Support\Arr;
 use App\Usecases\CircleManagement\CircleNewJoy\CreateCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -71,9 +72,9 @@ class RegisterCircleNewJoyRequest extends FormRequest
         $param->url = Arr::get($request, 'url');
         $param->place_of_activity = Arr::get($request, 'place_of_activity');
         $param->place_of_activity = Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '';
-        $param->publish_from = Arr::get($request, 'publish_from');
-        $param->start_date = Arr::get($request, 'start_date');
-        $param->end_date = Arr::get($request, 'end_date');
+        $param->publish_from = Arr::get($request, 'publish_from') ? new Carbon(Arr::get($request, 'publish_from')) : null;
+        $param->start_date = Arr::get($request, 'start_date') ? new Carbon(Arr::get($request, 'start_date')) : null;
+        $param->end_date = Arr::get($request, 'end_date') ? new Carbon(Arr::get($request, 'end_date')) : null;
         $param->release = Arr::get($request, 'release');
 
         return $param;
