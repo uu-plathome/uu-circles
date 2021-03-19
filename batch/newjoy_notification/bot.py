@@ -32,7 +32,6 @@ now = day.strftime('%Y.%m.%d')
 #and(https://stackoverflow.com/questions/52241051/i-want-to-let-my-discord-bot-send-images-gifs) or (https://qiita.com/chatrate/items/aa6625f6663fa2ca33d6)
 # a=io.BytesIO(requests.get('https://static.uu-circles.com/images/IojibzABkvLaBiYMPnW4mjn7Uo8Fc0ffZSY8SSeZ.png').content)
 # a_img=Image.open(a)
-# plt.imshow(a_img)
 
 
 # ###SET_LOOP###
