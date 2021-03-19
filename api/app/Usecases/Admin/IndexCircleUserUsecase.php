@@ -15,8 +15,8 @@ class IndexCircleUserUsecase
      */
     public function invoke(int $circleId): array
     {
-        $circleUsers = User::with('circleUser')
-            ->whereHas('circleUser', function ($query) use ($circleId) {
+        $circleUsers = User::with('circleUsers')
+            ->whereHas('circleUsers', function ($query) use ($circleId) {
                 $query->whereCircleId($circleId);
             })->get();
 

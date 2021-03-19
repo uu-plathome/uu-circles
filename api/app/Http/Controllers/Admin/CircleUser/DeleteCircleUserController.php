@@ -13,7 +13,7 @@ class DeleteCircleUserController extends Controller
     {
         Circle::findOrFail($circleId);
         $user = User::findOrFail($userId);
-        $user->circleUser()->delete();
+        $user->circleUsers()->delete();
         $user->delete();
 
         return [
