@@ -15,6 +15,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { EditCircleNewJoyForm } from '@/components/organisms/Form/CircleNewJoy/EditCircleNewJoyForm'
 import { AuthContext } from '@/contexts/AuthContext';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
+import Link from "next/link";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -93,6 +94,14 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseContainer>
           <div className="px-2 py-4">
+            <p className="pt-8">
+              <Link href="/circle/[circleId]/newjoy" as={`/circle/${Number(circleId)}/newjoy`}>
+                <a className="underline text-blue-500">
+                  新歓一覧に戻る
+                </a>
+              </Link>
+            </p>
+
             {circle ? (
               <EditCircleNewJoyForm
                 onSubmit={onSubmit}
