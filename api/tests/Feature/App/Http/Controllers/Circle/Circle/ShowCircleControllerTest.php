@@ -32,6 +32,13 @@ class ShowCircleControllerTest extends TestCase
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
             ->hasByNonDependentSubquery('circleUsers')
+            ->hasByNonDependentSubquery('circleUsers', function ($query) {
+                /** @var \App\Models\CircleUser $query */
+                $query->hasByNonDependentSubquery('circle', function ($query) {
+                    /** @var \App\Models\Circle $query */
+                    $query->whereRelease(true);
+                });
+            })
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
