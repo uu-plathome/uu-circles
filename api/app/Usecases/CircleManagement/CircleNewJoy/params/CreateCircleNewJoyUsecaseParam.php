@@ -9,12 +9,12 @@ class CreateCircleNewJoyUsecaseParam
     public int $circle_id;
 
     public string $title;
-    public ?string $description;
-    public ?string $url;
-    public ?string $place_of_activity;
-    public ?string $place_of_activity_detail;
-    public ?Carbon $publish_from;
-    public ?Carbon $start_date;
-    public ?Carbon $end_date;
-    public ?bool $release;
+    public ?string $description = null;
+    public ?string $url = null;
+    public ?string $place_of_activity = null;
+    public ?string $place_of_activity_detail = null;
+    public ?Carbon $publish_from = null;
+    public ?Carbon $start_date = null;
+    public ?Carbon $end_date = null;
+    public ?bool $release = null;
 }
