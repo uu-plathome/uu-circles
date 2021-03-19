@@ -12,8 +12,11 @@ import { isCirclePutStorageRequestValidationError } from "@/lib/types/api/Circle
 import { isUpdateCircleFormRequestValidationError, UpdateCircleFormRequest } from "@/lib/types/api/UpdateCircleFormRequest";
 import { Circle } from "@/lib/types/model/Circle";
 import { HiraToKana } from "@/lib/utils/String";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Compressor from "compressorjs";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useContext, useEffect, useState } from "react";
 
@@ -488,9 +491,20 @@ const Page: NextPage = () => {
     return (
         <div>
           <BaseLayout user={authContext.user}>
+            <h1 className="text-lg font-bold bg-white text-center py-6">
+              <FontAwesomeIcon icon={faFileAlt} className="mr-4" size="lg" />
+              <span>{ circle ? circle.name : 'サークル' }の編集</span>
+            </h1>
+
             <BaseContainer>
               <div className="pb-32 md:pb-72">
-                <h1 className="text-lg font-bold text-center pt-10 pb-6">サークル編集</h1>
+                <p className="pt-8">
+                  <Link href="/circle/[circleId]" as={`/circle/${Number(circleId)}`}>
+                    <a className="underline text-blue-500">
+                      ← 戻る
+                    </a>
+                  </Link>
+                </p>
 
                 <div>
                   <EditCircleForm

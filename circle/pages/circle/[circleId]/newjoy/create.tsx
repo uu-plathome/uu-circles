@@ -15,6 +15,8 @@ import { showCircle } from '@/infra/api/circle'
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { AuthContext } from "@/contexts/AuthContext";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -71,6 +73,11 @@ const CreatePage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <h1 className="text-lg font-bold bg-white text-center py-6">
+          <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
+          新歓新規追加
+        </h1>
+
         <BaseContainer>
           <div className="px-2 py-4">
             <p className="pt-8">

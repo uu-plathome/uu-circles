@@ -7,6 +7,8 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -43,12 +45,16 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
+
+        <h1 className="text-lg font-bold bg-white text-center py-6">
+          <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
+          新歓イベントの追加・編集
+        </h1>
+
         <BaseContainer>
-          <div className="pb-32 md:pb-72">
+          <div className="pt-8 pb-32 md:pb-72">
             {circle ? (
               <div>
-                <h1 className="text-lg font-bold text-center pt-10 pb-6">新歓イベントの追加・編集</h1>
-
                 <div className="flex justify-center">
                   <GreenButton
                     href={`/circle/[circleId]/newjoy/create`}
