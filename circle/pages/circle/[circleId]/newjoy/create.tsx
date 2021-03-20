@@ -3,7 +3,7 @@ import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { createCircleNewJoy } from '@/infra/api/circleNewjoy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import {
   isRegisterCircleNewJoyRequestValidationError,
   RegisterCircleNewJoyRequest,
@@ -18,10 +18,12 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
+import { SubmitLoading } from "@/components/atoms/loading/SubmitLoading";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
   const { circleId } = router.query
 
   const title = useStringInput('')
@@ -40,6 +42,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await createCircleNewJoy(Number(circleId), {
       type: 'RegisterCircleNewJoyRequest',
@@ -64,6 +67,7 @@ const CreatePage: NextPage = () => {
       startDate.setErrors(data.errors.startDate)
       endDate.setErrors(data.errors.endDate)
       release.setErrors(data.errors.release)
+      setIsOpen(false)
 
       return
     }
@@ -88,6 +92,8 @@ const CreatePage: NextPage = () => {
                 </a>
               </Link>
             </p>
+
+            <SubmitLoading isOpen={isOpen} />
 
             {circle ? (
               <CreateCircleNewJoyForm

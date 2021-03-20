@@ -1,3 +1,4 @@
+import { SubmitLoading } from "@/components/atoms/loading/SubmitLoading";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { BaseLayout } from "@/components/layouts/BaseLayout";
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
@@ -505,6 +506,8 @@ const Page: NextPage = () => {
                     </a>
                   </Link>
                 </p>
+
+                <SubmitLoading isOpen={isOpen} />
 
                 <div>
                   <EditCircleForm
