@@ -7,6 +7,8 @@ import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 
 export const getCircleList = async (): Promise<Circle[]> => {
+  console.log('getCircleList args none')
+
   const { data } = await axiosInstance.get<{
     data: Circle[]
   }>(`/circle/api/circle`)
@@ -16,6 +18,7 @@ export const getCircleList = async (): Promise<Circle[]> => {
 
 export const showCircle = async (id: number): Promise<Circle> => {
   console.log(`showCircle args id=${id}`)
+
   const { data } = await axiosInstance.get<{
     data: Circle
   }>(`/circle/api/circle/${id}`)
@@ -25,13 +28,18 @@ export const showCircle = async (id: number): Promise<Circle> => {
 }
 
 export const updateCircle = async (
-  id: number,
+  circleId: number,
   circle: UpdateCircleFormRequest
 ) => {
+  console.log('updateCircle args', {
+    circleId,
+    circle,
+  })
+
   try {
     const { data } = await axiosInstance.put<{
       data: Circle
-    }>(`/admin/api/circle/${id}`, circle)
+    }>(`/admin/api/circle/${circleId}`, circle)
 
     return data.data
   } catch (_e) {
