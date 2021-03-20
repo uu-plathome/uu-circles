@@ -21,6 +21,7 @@ import { BaseFooter } from "@/components/layouts/BaseFooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { SubmitLoading } from "@/components/atoms/loading/SubmitLoading";
+import { PlaceOfActivity } from "@/lib/enum/api/PlaceOfActivity";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -32,7 +33,7 @@ const CreatePage: NextPage = () => {
   const title = useStringInput('')
   const description = useStringInput('')
   const url = useStringInput('')
-  const placeOfActivity = useStringInput('')
+  const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
   const placeOfActivityDetail = useStringInput('')
   const publishFrom = useDateInput(null, 'YYYY-MM-DD')
   const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
@@ -69,8 +70,7 @@ const CreatePage: NextPage = () => {
       title: title.value,
       description: description.value,
       url: url.value,
-      placeOfActivity:
-        placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
+      placeOfActivity: placeOfActivity.value,
       placeOfActivityDetail: placeOfActivityDetail.value,
       publishFrom: publishFrom.value,
       startDate: startDate.value,

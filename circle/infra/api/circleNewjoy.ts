@@ -41,6 +41,11 @@ export const updateCircleNewJoy = async (
   circleNewJoyId: number,
   circleNewJoy: UpdateCircleNewJoyRequest
 ) => {
+  console.log('updateCircleNewJoy args', {
+    circleId,
+    circleNewJoyId,
+    circleNewJoy,
+  })
   try {
     const { data } = await axiosInstance.put(
       `/circle/api/circle/${circleId}/newjoy/${circleNewJoyId}`,

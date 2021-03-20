@@ -16,7 +16,7 @@ export type Props = {
     error?: string
     onChange(e: any): void
 } & BaseLabelProps
-const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, required, placeholder, error, onChange }) => {
+const BaseSelect: React.FC<Props> = ({ label, id, name, note, value, items, required, error, onChange }) => {
     return (
         <div className="flex flex-col space-y-1 mb-4">
             <BaseLabel
