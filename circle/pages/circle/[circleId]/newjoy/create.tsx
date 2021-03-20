@@ -17,6 +17,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { BaseFooter } from "@/components/layouts/BaseFooter";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -109,6 +110,8 @@ const CreatePage: NextPage = () => {
             )}
           </div>
         </BaseContainer>
+
+        <BaseFooter />
       </BaseLayout>
     </div>
   )

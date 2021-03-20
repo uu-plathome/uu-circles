@@ -77,6 +77,7 @@ const IndexPage: NextPage = () => {
             ) : ''}
           </div>
         </BaseContainer>
+
         <BaseFooter />
       </BaseLayout>
     </div>
