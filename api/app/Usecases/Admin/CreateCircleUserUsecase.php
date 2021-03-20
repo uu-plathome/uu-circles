@@ -8,6 +8,7 @@ use App\Models\User;
 use App\ValueObjects\CircleUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class CreateCircleUserUsecase
@@ -24,6 +25,11 @@ class CreateCircleUserUsecase
         int $circleId,
         CircleUserValueObject $circleValueObject
     ) {
+        Log::debug("CreateCircleUserUsecase args", [
+            'circleId'              => $circleId,
+            'CircleUserValueObject' => $circleValueObject,
+        ]);
+
         if (!Circle::whereId($circleId)->exists()) {
             throw new Exception("$circleId のサークルが存在しません");
         }
@@ -48,6 +54,11 @@ class CreateCircleUserUsecase
 
             DB::commit();
         } catch (Exception $e) {
+            Log::error("CreateCircleUserUsecase [ERROR]", [
+                'circleId'              => $circleId,
+                'CircleUserValueObject' => $circleValueObject,
+            ]);
+
             DB::rollBack();
             throw $e;
         }

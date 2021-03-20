@@ -27,9 +27,9 @@ class RegisterCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash'],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username'],
             UserProperty::display_name => ['nullable', 'string', 'max:50'],
-            UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
         ]);
     }
 
