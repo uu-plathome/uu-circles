@@ -3,12 +3,16 @@ import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 
 export const putStorage = async (file: Blob | string) => {
+  console.log('putStorage args', {
+    file,
+  })
+
   try {
     const formData = new FormData()
     formData.append('file', file)
     const { data } = await axiosInstance.post<{
       url: string
-    }>('/admin/api/storage', formData)
+    }>('/circle/api/storage', formData)
 
     return {
       url: data.url,

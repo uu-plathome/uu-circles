@@ -13,12 +13,17 @@ import { axiosInstance } from '.'
 
 export const createCircleNewJoy = async (
   circleId: number,
-  circle: RegisterCircleNewJoyRequest
+  circleNewjoy: RegisterCircleNewJoyRequest
 ) => {
+  console.log('createCircleNewJoy args', {
+    circleId,
+    circleNewjoy,
+  })
+
   try {
     const { data } = await axiosInstance.post(
       `/circle/api/circle/${circleId}/newjoy`,
-      circle
+      circleNewjoy
     )
 
     return data.data
@@ -46,6 +51,7 @@ export const updateCircleNewJoy = async (
     circleNewJoyId,
     circleNewJoy,
   })
+
   try {
     const { data } = await axiosInstance.put(
       `/circle/api/circle/${circleId}/newjoy/${circleNewJoyId}`,
@@ -68,6 +74,10 @@ export const updateCircleNewJoy = async (
 }
 
 export const getCircleNewJoyList = async (circleId: number) => {
+  console.log('getCircleNewJoyList args', {
+    circleId,
+  })
+
   const { data } = await axiosInstance.get<{
     circle: Circle
     circleNewJoys: CircleNewJoy[]
@@ -83,6 +93,11 @@ export const getCircleNewJoy = async (
   circleId: number,
   circleNewJoyId: number
 ) => {
+  console.log('getCircleNewJoy args', {
+    circleId,
+    circleNewJoyId,
+  })
+
   const { data } = await axiosInstance.get<{
     circle: Circle
     circleNewJoy: CircleNewJoy
@@ -98,6 +113,11 @@ export const deleteCircleNewJoy = async (
   circleId: number,
   circleNewJoyId: number
 ) => {
+  console.log('deleteCircleNewJoy args', {
+    circleId,
+    circleNewJoyId,
+  })
+
   try {
     await axiosInstance.delete<{
       success: true
