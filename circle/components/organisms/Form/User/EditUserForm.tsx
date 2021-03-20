@@ -19,6 +19,7 @@ const EditUserForm: FC<Props> = ({ onSubmit, form }) => {
         name="username"
         id="username"
         required
+        prefix="@"
         note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
         expand
         {...form.username}
