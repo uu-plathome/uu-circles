@@ -1,12 +1,13 @@
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import {
+  deleteCircleNewJoy,
   getCircleNewJoy,
   updateCircleNewJoy,
 } from '@/infra/api/circleNewjoy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, MouseEvent, useContext, useEffect, useState } from 'react'
 import {
   isUpdateCircleNewJoyRequestValidationError,
   UpdateCircleNewJoyRequest,
@@ -17,12 +18,16 @@ import { AuthContext } from '@/contexts/AuthContext';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import Link from "next/link";
 import { BaseFooter } from "@/components/layouts/BaseFooter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { SubmitLoading } from "@/components/atoms/loading/SubmitLoading";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
   const { circleId, circleNewJoyId } = router.query
   const [circle, setCircle] = useState<Circle | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   const title = useStringInput('')
   const description = useStringInput('')
@@ -90,9 +95,29 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${Number(circleId)}/newjoy`)
   }
 
+  const onDelete = async (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    setIsOpen(true)
+
+    try {
+      await deleteCircleNewJoy(Number(circleId), Number(circleNewJoyId))
+    } catch (e) {
+      alert('エラーが発生しました。')
+      setIsOpen(false)
+      return
+    }
+
+    await router.push(`/circle/${Number(circleId)}/newjoy`)
+  }
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <h1 className="text-lg font-bold bg-white text-center py-6">
+          <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
+          新歓イベントの編集
+        </h1>
+
         <BaseContainer>
           <div className="px-2 py-4">
             <p className="pt-8">
@@ -103,22 +128,32 @@ const CreatePage: NextPage = () => {
               </Link>
             </p>
 
+            <SubmitLoading isOpen={isOpen} />
+
             {circle ? (
-              <EditCircleNewJoyForm
-                onSubmit={onSubmit}
-                circle={circle}
-                form={{
-                  title,
-                  description,
-                  url,
-                  placeOfActivity,
-                  placeOfActivityDetail,
-                  publishFrom,
-                  startDate,
-                  endDate,
-                  release,
-                }}
-              />
+              <div>
+                <EditCircleNewJoyForm
+                  onSubmit={onSubmit}
+                  circle={circle}
+                  form={{
+                    title,
+                    description,
+                    url,
+                    placeOfActivity,
+                    placeOfActivityDetail,
+                    publishFrom,
+                    startDate,
+                    endDate,
+                    release,
+                  }}
+                />
+
+                <div className="text-center pt-16 pb-8">
+                  <a onClick={onDelete} className="text-red-600 hover:underline">
+                    この新歓イベントを削除
+                  </a>
+                </div>
+              </div>
             ) : (
               ''
             )}

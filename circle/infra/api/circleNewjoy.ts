@@ -88,3 +88,22 @@ export const getCircleNewJoy = async (
     circleNewJoy: data.circleNewJoy,
   }
 }
+
+export const deleteCircleNewJoy = async (
+  circleId: number,
+  circleNewJoyId: number
+) => {
+  try {
+    await axiosInstance.delete<{
+      success: true
+    }>(`/circle/api/circle/${circleId}/newjoy/${circleNewJoyId}`)
+
+    return {
+      type: 'Success',
+    } as {
+      type: 'Success'
+    }
+  } catch (_e) {
+    console.error(_e)
+  }
+}
