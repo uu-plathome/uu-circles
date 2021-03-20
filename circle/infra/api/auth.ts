@@ -2,6 +2,10 @@ import {
   LoginCircleFormRequest,
   LoginCircleFormRequestValidationError,
 } from '@/lib/types/api/LoginCircleFormRequest'
+import {
+  UpdateOwnUserRequest,
+  UpdateOwnUserRequestValidationError,
+} from '@/lib/types/api/UpdateOwnUserRequest'
 import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
 import { User } from '@/lib/types/model/User'
@@ -179,6 +183,35 @@ export const resendEmailCircleUser = async (email: string) => {
         ...e.response.data,
         type: 'VerificationResendCircleUserFormRequestValidationError',
       } as VerificationResendCircleUserFormRequestValidationError
+    }
+
+    console.error(e)
+  }
+}
+
+export const updateUser = async (user: UpdateOwnUserRequest) => {
+  console.log('updateUser args', {
+    user,
+  })
+
+  try {
+    const { data } = await axiosInstance.put<{
+      data: User
+    }>(`/circle/api/user`, user)
+
+    console.log('updateUser ret', {
+      data,
+    })
+
+    return data.data
+  } catch (_e) {
+    const e = _e as AxiosError<UpdateOwnUserRequestValidationError>
+
+    if (e.response && e.response.status === 422 && e.response.data) {
+      return {
+        ...e.response.data,
+        type: 'UpdateOwnUserRequestValidationError',
+      } as UpdateOwnUserRequestValidationError
     }
 
     console.error(e)
