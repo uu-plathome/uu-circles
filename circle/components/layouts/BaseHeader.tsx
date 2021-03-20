@@ -45,7 +45,7 @@ const BaseHeader: FC<Props> = ({ onClick, user }) => {
 
                         <div className="flex items-center">
                             <p className="mr-4 text-xs sm:text-sm">
-                                <Link href="/circle">
+                                <Link href="/">
                                     <a className="underline">
                                         {user ? user.displayName || user.username : ''}
                                     </a>
