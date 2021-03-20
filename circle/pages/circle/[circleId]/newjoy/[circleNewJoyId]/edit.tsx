@@ -121,7 +121,7 @@ const CreatePage: NextPage = () => {
         </h1>
 
         <BaseContainer>
-          <div className="px-2 py-4">
+          <div className="px-4 py-4">
             <p className="pt-8">
               <Link href="/circle/[circleId]/newjoy" as={`/circle/${Number(circleId)}/newjoy`}>
                 <a className="underline text-blue-500">

@@ -25,7 +25,6 @@ const Page: NextPage = () => {
     const authContext = useContext(AuthContext)
     const [circle, setCircle] = useState<Circle | undefined>(undefined)
     const router = useRouter()
-    const { isMd } = useMediaQuery()
     const name = useStringInput('')
     const release = useBooleanInput(false)
     const circleType = useStringInput('')
@@ -498,7 +497,7 @@ const Page: NextPage = () => {
             </h1>
 
             <BaseContainer>
-              <div className="pb-32 md:pb-72">
+              <div className="pb-32 md:pb-72 px-4">
                 <p className="pt-8">
                   <Link href="/circle/[circleId]" as={`/circle/${Number(circleId)}`}>
                     <a className="underline text-blue-500">
