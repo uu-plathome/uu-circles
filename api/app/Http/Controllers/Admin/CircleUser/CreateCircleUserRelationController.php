@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin\CircleUser;
 use App\Models\Circle;
 use App\Models\CircleUser;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class CreateCircleUserRelationController
@@ -22,13 +24,28 @@ class CreateCircleUserRelationController
      */
     public function __invoke(Request $request, int $userId, int $circleId)
     {
+        Log::debug('CreateCircleUserRelationController args', [
+            'userId'   => $userId,
+            'circleId' => $circleId,
+        ]);
+
         if (!Circle::exists($circleId)) {
+            Log::warning('[WARNING] CreateCircleUserRelationController 指定されたサークルが存在しません。', [
+                'userId'   => $userId,
+                'circleId' => $circleId,
+            ]);
+
             throw ValidationException::withMessages([
                 'data' => '指定されたサークルが存在しません。',
             ]);
         }
 
         if (!User::exists($circleId)) {
+            Log::warning('[WARNING] CreateCircleUserRelationController 指定されたユーザーが存在しません。', [
+                'userId'   => $userId,
+                'circleId' => $circleId,
+            ]);
+
             throw ValidationException::withMessages([
                 'data' => '指定されたユーザーが存在しません。',
             ]);
@@ -49,6 +66,11 @@ class CreateCircleUserRelationController
 
             DB::commit();
         } catch (Exception $e) {
+            Log::warning('[ERROR] CreateCircleUserRelationController', [
+                'userId'   => $userId,
+                'circleId' => $circleId,
+            ]);
+
             DB::rollBack();
             throw $e;
         }

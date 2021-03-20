@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
-import Image from 'next/image'
 import {
   faCheckCircle,
   faTimesCircle,

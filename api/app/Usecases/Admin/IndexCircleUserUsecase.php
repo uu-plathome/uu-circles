@@ -4,6 +4,7 @@ namespace App\Usecases\Admin;
 
 use App\Models\User;
 use App\ValueObjects\CircleUserValueObject;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleUserUsecase
 {
@@ -15,6 +16,8 @@ class IndexCircleUserUsecase
      */
     public function invoke(int $circleId): array
     {
+        Log::debug("IndexCircleUserUsecase args circleId=$circleId");
+
         $circleUsers = User::with('circleUsers')
             ->whereHas('circleUsers', function ($query) use ($circleId) {
                 $query->whereCircleId($circleId);
