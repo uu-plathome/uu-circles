@@ -1,0 +1,90 @@
+import { FormEvent, useContext, useEffect, useState } from 'react'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
+import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useStringInput } from '@/hooks/useInput';
+import { EditUserForm } from '@/components/organisms/Form/User/EditUserForm';
+import { updateUser } from '@/infra/api/auth';
+import { isUpdateOwnUserRequestValidationError, UpdateOwnUserRequest } from '@/lib/types/api/UpdateOwnUserRequest';
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
+import { BaseFooter } from '@/components/layouts/BaseFooter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+const CreatePage: NextPage = () => {
+  const authContext = useContext(AuthContext)
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const username = useStringInput('')
+  const displayName = useStringInput('')
+  const email = useStringInput('')
+
+  useEffect(() => {
+    if (!isOpen) {
+      username.set(authContext.user.username)
+      displayName.set(authContext.user.displayName)
+      email.set(authContext.user.email)
+    }
+  }, [authContext])
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setIsOpen(true)
+
+    const data = await updateUser({
+      type: 'UpdateOwnUserRequest',
+      username: username.value,
+      displayName: displayName.value,
+    } as UpdateOwnUserRequest)
+
+    if (isUpdateOwnUserRequestValidationError(data)) {
+      username.setErrors(data.errors.username)
+      displayName.setErrors(data.errors.displayName)
+      setIsOpen(false)
+
+      return
+    }
+
+    console.log('onSubmit', {
+      data,
+      authContextUser: authContext.user
+    })
+    authContext.setUser(data)
+
+    await router.push(`/`)
+  }
+
+  return (
+    <div>
+      <BaseLayout user={authContext.user}>
+        <h1 className="text-lg font-bold bg-white text-center py-6">
+          <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
+          ユーザー情報編集
+        </h1>
+
+        <BaseContainer>
+          <div className="px-2 pt-8 pb-32">
+
+            <SubmitLoading isOpen={isOpen} />
+
+            <EditUserForm
+              onSubmit={onSubmit}
+              form={{
+                username,
+                displayName,
+                email,
+              }}
+            />
+          </div>
+        </BaseContainer>
+
+        <BaseFooter />
+      </BaseLayout>
+    </div>
+  )
+}
+
+export default CreatePage

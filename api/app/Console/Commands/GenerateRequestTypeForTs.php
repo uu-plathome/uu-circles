@@ -30,6 +30,7 @@ use App\Http\Requests\Circle\Circle\UpdateCircleFormRequest as CircleUpdateCircl
 use App\Http\Requests\Circle\CircleNewJoy\RegisterCircleNewJoyRequest as CircleNewJoyRegisterCircleNewJoyRequest;
 use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest as CircleNewJoyUpdateCircleNewJoyRequest;
 use App\Http\Requests\Circle\CirclePutStorageRequest;
+use App\Http\Requests\Circle\User\UpdateOwnUserRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -99,6 +100,7 @@ class GenerateRequestTypeForTs extends Command
             CircleUpdateCircleFormRequest::class,
             CircleNewJoyRegisterCircleNewJoyRequest::class,
             CircleNewJoyUpdateCircleNewJoyRequest::class,
+            UpdateOwnUserRequest::class,
         ];
     }
 

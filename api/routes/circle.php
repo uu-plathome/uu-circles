@@ -15,6 +15,7 @@ use App\Http\Controllers\Circle\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\RegisterCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\UpdateCircleNewJoyController;
+use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:adminUser')->group(function () {
@@ -32,6 +33,7 @@ Route::middleware('guest:adminUser')->group(function () {
 
 Route::middleware('auth:adminUser')->group(function () {
     Route::get('/user', ShowOwnCircleUserController::class);
+    Route::put('/user', UpdateOwnUserController::class);
 
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
