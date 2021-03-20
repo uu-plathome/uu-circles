@@ -20,6 +20,8 @@
     "react-datepicker": "^3.6.0",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
+    "react-loading": "^2.0.3",
+    "react-modal": "^3.12.1",
     "swr": "^0.3.11"
   },
   "devDependencies": {

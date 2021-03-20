@@ -76,7 +76,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
-          新歓新規追加
+          新歓イベントの新規追加
         </h1>
 
         <BaseContainer>
