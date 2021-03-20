@@ -16,6 +16,7 @@ import { EditCircleNewJoyForm } from '@/components/organisms/Form/CircleNewJoy/E
 import { AuthContext } from '@/contexts/AuthContext';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import Link from "next/link";
+import { BaseFooter } from "@/components/layouts/BaseFooter";
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -123,6 +124,8 @@ const CreatePage: NextPage = () => {
             )}
           </div>
         </BaseContainer>
+
+        <BaseFooter />
       </BaseLayout>
     </div>
   )
