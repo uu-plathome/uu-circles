@@ -68,14 +68,14 @@ const Login: NextPage = () => {
         <div>
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">
-                    <div className="border-2 border-white rounded p-4">
+                    <div className="rounded p-4">
                         <h1 className="text-black text-center text-2xl mb-4">パスワード設定</h1>
 
                         {success ? (
                             <div>
                                 <p>パスワードを設定しました</p>
 
-                                <OrangeButton href="/auth/login">
+                                <OrangeButton href="/login">
                                     ログインへ
                                 </OrangeButton>
                             </div>
@@ -90,6 +90,7 @@ const Login: NextPage = () => {
                                         label="パスワード"
                                         id="password"
                                         name="password"
+                                        expand
                                         { ...password }
                                     />
                                 </div>
