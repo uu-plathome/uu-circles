@@ -22,6 +22,7 @@ class IndexCircleByUserIdUsecase
         $circles = Circle::with([
             'circleInformation',
             'circleUsers',
+            'circleHandbill',
         ])->hasByNonDependentSubquery('circleInformation')
             ->hasByNonDependentSubquery('circleUsers', function (Builder $query) use ($userId) {
                 $query->whereUserId($userId);
@@ -33,7 +34,7 @@ class IndexCircleByUserIdUsecase
             CircleValueObject::byEloquent(
                 $circle,
                 $circle->circleInformation,
-                null
+                $circle->circleHandbill
             )
         )->all();
     }
