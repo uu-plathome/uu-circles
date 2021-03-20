@@ -10,6 +10,7 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -37,16 +38,22 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        {/* <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           { circle ? circle.name : '' }
-        </h1>
+        </h1> */}
 
         <BaseContainer>
-          <div className="pt-8 pb-32 md:pb-72">
+
+          <div className="pb-32 md:pb-72">
             {circle ? (
               <div>
-                <div className="mb-4 text-center">
+                <CircleNameHeader
+                  name={circle.name}
+                  circleId={circleId}
+                />
+
+                <div className="pt-8 mb-4 text-center">
                   <div className="mb-8">
                     <Link href="/circle/[circleId]/edit" as={`/circle/${circle.id}/edit`}>
                       <a>

@@ -2,6 +2,7 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
@@ -52,7 +53,7 @@ const IndexPage: NextPage = () => {
         </h1>
 
         <BaseContainer>
-          <div className="pt-8 pb-32 md:pb-72">
+          <div className="pt-8 pb-32">
             {circle ? (
               <div>
                 <div className="flex justify-center">
@@ -73,6 +74,13 @@ const IndexPage: NextPage = () => {
                     <IndexCircleNewJoyList circleId={circleId} circleNewJoys={circleNewjoys} />
                   </div>
                 ) : ''}
+
+                <div className="mt-32 border-t border-gray-300">
+                  <CircleNameHeader
+                    name={circle.name}
+                    circleId={circleId}
+                  />
+                </div>
               </div>
             ) : ''}
           </div>
