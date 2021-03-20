@@ -7,6 +7,7 @@ use App\Enum\PlaceOfActivity;
 use App\Support\Arr;
 use App\Usecases\CircleManagement\CircleNewJoy\UpdateCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -34,6 +35,7 @@ class UpdateCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::description              => ['string', 'nullable', 'max:150'],
             CircleNewJoyProperty::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyProperty::place_of_activity        => [
+                'required',
                 'string',
                 Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
             ],
@@ -51,12 +53,12 @@ class UpdateCircleNewJoyRequest extends FormRequest
 
         $param = new UpdateCircleNewJoyUsecaseParam();
         $param->circle_id = $this->circleId;
-        $param->circle_newjoy_id = $this->circleNewjoyId;
+        $param->circle_newjoy_id = $this->circleNewJoyId;
         $param->title = Arr::get($request, 'title');
         $param->description = Arr::get($request, 'description');
         $param->url = Arr::get($request, 'url');
         $param->place_of_activity = Arr::get($request, 'place_of_activity');
-        $param->place_of_activity = Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '';
+        $param->place_of_activity_detail = Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '';
         $param->publish_from = Arr::get($request, 'publish_from') ? new Carbon(Arr::get($request, 'publish_from')) : null;
         $param->start_date = Arr::get($request, 'start_date') ? new Carbon(Arr::get($request, 'start_date')) : null;
         $param->end_date = Arr::get($request, 'end_date') ? new Carbon(Arr::get($request, 'end_date')) : null;
