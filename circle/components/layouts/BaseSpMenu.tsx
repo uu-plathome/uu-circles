@@ -1,3 +1,6 @@
+import colors from "@/colors"
+import { faBuilding, faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { FC } from "react"
 
@@ -23,24 +26,29 @@ const BaseSpMenu: FC = () => {
         <div>
             <div>
                 <ul>
-                    <MenuItem href="/circle">
-                        団体・サークルを探す
+                    <MenuItem href="/">
+                      <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
+                      サークル一覧
                     </MenuItem>
 
-                    <MenuItem href="/circle/newjoy">
-                        今日の新歓イベント
+                    <MenuItem href="/user/edit">
+                    <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
+                      アカウント情報
                     </MenuItem>
 
-                    <MenuItem href="/circle">
-                        全てのカテゴリー
-                    </MenuItem>
+                    <MenuItem href="/logout">
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        size="lg"
+                        color={colors.red[500]}
+                        className="mr-4"
+                      />
 
-                    <MenuItem href="/circle">
-                        全てのタグ
+                      ログアウト
                     </MenuItem>
                 </ul>
             </div>
-            
+
         </div>
     )
 }

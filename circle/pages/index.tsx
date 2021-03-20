@@ -4,6 +4,8 @@ import { CircleList } from '@/components/organisms/List/CircleList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
+import { faBuilding } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 
@@ -22,9 +24,12 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-        <div className="pb-32 md:pb-72">
-          <h1 className="text-lg font-bold text-center pt-10 pb-6">編集可能サークル</h1>
+        <h1 className="text-lg font-bold bg-white text-center py-6">
+          <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
+          サークル一覧
+        </h1>
 
+        <div className="pt-8 pb-32 md:pb-72">
           <div>
             {circles && circles.length > 0 ? (
               <CircleList circles={circles} />
