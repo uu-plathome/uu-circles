@@ -6,6 +6,7 @@ use App\Models\Circle;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CreateCircleNewJoyUsecase
 {
@@ -19,6 +20,11 @@ class CreateCircleNewJoyUsecase
      */
     public function invoke(int $circleId, CircleNewJoyValueObject $circleNewJoyValueObject)
     {
+        Log::debug("CreateCircleNewJoyUsecase args", [
+            'circleId' => $circleId,
+            'CircleNewJoyValueObject' => $circleNewJoyValueObject,
+        ]);
+
         $circleNewJoy = $circleNewJoyValueObject->toArray();
 
         DB::beginTransaction();
