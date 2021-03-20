@@ -36,7 +36,7 @@ const CircleUserRelationListItem: FC<Props> = ({
   onDeleteRelation,
 }) => {
   return (
-    <div className="text-white flex">
+    <div className="text-white flex mb-4">
       <div className="ml-2 w-full">
         <h2 className="font-bold text-lg text-gray-300 mb-2">{circle.name}</h2>
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Log;
 
 class IndexAdminUserUsecase
 {
@@ -17,6 +18,8 @@ class IndexAdminUserUsecase
      */
     public function invoke(string $ownRole = Role::MANAGER): array
     {
+        Log::debug("IndexAdminUserUsecase args ownRole=$ownRole");
+
         if ($ownRole === Role::COMMON) {
             throw new Exception("この権限では、管理者アカウント一覧は取得できません。 ownRole=$ownRole");
         }

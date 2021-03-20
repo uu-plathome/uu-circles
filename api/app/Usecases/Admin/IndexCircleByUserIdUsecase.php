@@ -5,6 +5,7 @@ namespace App\Usecases\Admin;
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleByUserIdUsecase
 {
@@ -16,6 +17,8 @@ class IndexCircleByUserIdUsecase
      */
     public function invoke(int $userId): array
     {
+        Log::debug("IndexCircleByUserIdUsecase args userId=$userId");
+
         $circles = Circle::with([
             'circleInformation',
             'circleUsers',
