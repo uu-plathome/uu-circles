@@ -12,6 +12,8 @@ import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
 import { BaseFooter } from '@/components/layouts/BaseFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import Colors from '@/colors';
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -78,6 +80,15 @@ const CreatePage: NextPage = () => {
                 email,
               }}
             />
+
+            <div className="text-center pt-12 border-t border-gray-300 mt-12">
+              <Link href="/logout">
+                <a className="text-red-500 hover:underline">
+                  <FontAwesomeIcon icon={faUser} color={Colors.red[500]} size="lg" />
+                  ログアウト
+                </a>
+              </Link>
+            </div>
           </div>
         </BaseContainer>
 

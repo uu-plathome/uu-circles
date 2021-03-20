@@ -47,6 +47,7 @@ const Login: NextPage = () => {
 
         if (data && isUser(data)) {
             authContext.setAccessToken(data.apiToken)
+            authContext.setUser(data)
             await router.push('/')
             return
         }
@@ -64,7 +65,7 @@ const Login: NextPage = () => {
     return (
         <div>
             <MainHeader />
-            
+
             <div className="xl:container pb-20">
                 <div className="max-w-screen-md mx-auto mt-8">
                     <div className="p-4">
