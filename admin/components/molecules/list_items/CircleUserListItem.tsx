@@ -24,7 +24,7 @@ const CircleUserListItem: FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className="ml-2 w-full">
+      <div className="ml-2 w-full mb-4">
         <h2 className="font-bold text-lg text-gray-300 mb-2">
           {user.displayName}
         </h2>
