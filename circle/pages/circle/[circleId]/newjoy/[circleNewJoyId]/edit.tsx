@@ -64,6 +64,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await updateCircleNewJoy(Number(circleId), Number(circleNewJoyId), {
       type: 'UpdateCircleNewJoyRequest',
@@ -88,6 +89,7 @@ const CreatePage: NextPage = () => {
       startDate.setErrors(data.errors.startDate)
       endDate.setErrors(data.errors.endDate)
       release.setErrors(data.errors.release)
+      setIsOpen(false)
 
       return
     }
