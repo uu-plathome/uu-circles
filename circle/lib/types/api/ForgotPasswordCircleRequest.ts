@@ -2,19 +2,19 @@
  * リクエストボディ
  */
 export interface ForgotPasswordCircleRequest {
-    type: 'ForgotPasswordCircleRequest'
-    email: string
+  type: 'ForgotPasswordCircleRequest'
+  email: string
 }
 
 /**
  * バリデーションエラー
  */
 export interface ForgotPasswordCircleRequestValidationError {
-    type: 'ForgotPasswordCircleRequestValidationError'
-    errors: {
-        email?: string[]
-    }
-    message: string
+  type: 'ForgotPasswordCircleRequestValidationError'
+  errors: {
+    email?: string[]
+  }
+  message: string
 }
 
 export const isForgotPasswordCircleRequest = (v: any): v is ForgotPasswordCircleRequest => v && v.type === 'ForgotPasswordCircleRequest'

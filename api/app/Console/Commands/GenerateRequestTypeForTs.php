@@ -175,8 +175,8 @@ class GenerateRequestTypeForTs extends Command
 
             $operator = in_array('nullable', $arrVal) ? '?:' : ':';
 
-            $requestBodyObject .= "    {$key}{$operator} {$type}\n";
-            $validationObject .= "        {$key}?: string[]\n";
+            $requestBodyObject .= "  {$key}{$operator} {$type}\n";
+            $validationObject .= "    {$key}?: string[]\n";
         }
         $requestBodyObject = substr($requestBodyObject, 0, -1);
         $validationObject = substr($validationObject, 0, -1);
