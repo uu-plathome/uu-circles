@@ -5,8 +5,6 @@ import datetime
 import requests
 import json
 import io
-from PIL import Image
-import matplotlib.pyplot as plt
 
 
 ###SET_ENVIRONMENT_VALUES###
