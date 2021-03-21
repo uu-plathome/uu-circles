@@ -70,7 +70,7 @@ async def on_ready():
 				text += '💻新歓URL: '+str(newjoy['circleNewJoy']['url'])+'\n'
 
 			if (newjoy['slug'] is not None):
-			text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
+				text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
 			await channel.send(text)
 	
 client.run(TOKEN)
