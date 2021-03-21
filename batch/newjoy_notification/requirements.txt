@@ -1,0 +1,11 @@
+###### Requirements without Version Specifiers ######`
+python-dotenv
+discord
+discord.py
+requests
+
+###### Requirements with Version Specifiers ######`
+python-dotenv >= 0.15.0
+discord.py == 1.6.0
+discord == 1.0.1
+requests >= 2.25.1
