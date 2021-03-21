@@ -16,12 +16,11 @@ import { CreateCircleUserForm } from '@/components/organisms/Form/CircleUser/Cre
 
 const useParams = () => {
   const router = useRouter()
-  const { circleId, userId } = router.query
+  const { circleId } = router.query
 
   return {
     isError: !circleId || Array.isArray(circleId),
-    circleId: Number(circleId),
-    userId: Number(userId),
+    circleId: Number(circleId)
   }
 }
 
@@ -29,7 +28,7 @@ const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const { circleId, userId } = useParams()
+  const { circleId } = useParams()
 
   const username = useStringInput('')
   const displayName = useStringInput('')
@@ -41,7 +40,6 @@ const CreatePage: NextPage = () => {
 
     const data = await createCircleUser(
       circleId,
-      userId,
       {
         type: 'RegisterCircleUserRequest',
         email: email.value,
@@ -61,7 +59,7 @@ const CreatePage: NextPage = () => {
 
     console.log('onSubmit Done')
 
-    await router.push(`/`)
+    await router.push(`/circle/${circleId}/user`)
   }
 
   return (
