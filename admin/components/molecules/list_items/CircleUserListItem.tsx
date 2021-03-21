@@ -170,10 +170,7 @@ const CircleUserListItem: FC<Props> = ({
               削除する
             </p>
             <div className="flex justify-center h-7 items-center">
-              <DeleteButton
-                user={user}
-                onDelete={() => onDelete(user.id)}
-              />
+              <DeleteButton user={user} onDelete={() => onDelete(user.id)} />
             </div>
           </div>
         </div>
