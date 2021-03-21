@@ -2,19 +2,19 @@
  * リクエストボディ
  */
 export interface VerificationResendCircleUserFormRequest {
-    type: 'VerificationResendCircleUserFormRequest'
-    email: string
+  type: 'VerificationResendCircleUserFormRequest'
+  email: string
 }
 
 /**
  * バリデーションエラー
  */
 export interface VerificationResendCircleUserFormRequestValidationError {
-    type: 'VerificationResendCircleUserFormRequestValidationError'
-    errors: {
-        email?: string[]
-    }
-    message: string
+  type: 'VerificationResendCircleUserFormRequestValidationError'
+  errors: {
+    email?: string[]
+  }
+  message: string
 }
 
 export const isVerificationResendCircleUserFormRequest = (v: any): v is VerificationResendCircleUserFormRequest => v && v.type === 'VerificationResendCircleUserFormRequest'

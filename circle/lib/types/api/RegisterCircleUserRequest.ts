@@ -2,23 +2,23 @@
  * リクエストボディ
  */
 export interface RegisterCircleUserRequest {
-    type: 'RegisterCircleUserRequest'
-    username: string
-    displayName?: string
-    email: string
+  type: 'RegisterCircleUserRequest'
+  username: string
+  displayName?: string
+  email: string
 }
 
 /**
  * バリデーションエラー
  */
 export interface RegisterCircleUserRequestValidationError {
-    type: 'RegisterCircleUserRequestValidationError'
-    errors: {
-        username?: string[]
-        displayName?: string[]
-        email?: string[]
-    }
-    message: string
+  type: 'RegisterCircleUserRequestValidationError'
+  errors: {
+    username?: string[]
+    displayName?: string[]
+    email?: string[]
+  }
+  message: string
 }
 
 export const isRegisterCircleUserRequest = (v: any): v is RegisterCircleUserRequest => v && v.type === 'RegisterCircleUserRequest'
