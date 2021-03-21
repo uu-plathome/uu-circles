@@ -66,7 +66,6 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onWithdrawal }) => {
   )
 }
 
-
 const CircleWithdrawalListItem: FC<{
   circle: Circle,
   onWithdrawal(): void
