@@ -84,8 +84,11 @@ export const withdrawalOwnCircle = async (circleId: number) => {
  * @param circleId
  * @returns
  */
-export const withdrawalCircle = async (circleId: number, userId: number) => {
-  console.log('withdrawalCircle args', {
+export const withdrawalOtherCircle = async (
+  circleId: number,
+  userId: number
+) => {
+  console.log('withdrawalOtherCircle args', {
     circleId,
     userId,
   })

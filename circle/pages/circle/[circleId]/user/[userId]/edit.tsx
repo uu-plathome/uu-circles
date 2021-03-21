@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FC, FormEvent, useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
@@ -10,9 +10,73 @@ import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
 import { BaseFooter } from '@/components/layouts/BaseFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { withdrawalOtherCircle } from '@/infra/api/circle';
 import { getCircleUser, updateCircleUser } from '@/infra/api/circleUser';
 import { EditCircleUserForm } from '@/components/organisms/Form/CircleUser/EditCircleUserForm';
 import Link from 'next/link';
+import { GrayButton } from '@/components/atoms/buttons/GrayButton';
+import { RedButton } from '@/components/atoms/buttons/RedButton';
+import { User } from '@/lib/types/model/User';
+import Modal from 'react-modal'
+
+const customStyles = {
+  content: {
+    padding: '20px 12px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '300px',
+    height: '200px',
+  },
+}
+
+type DeleteButtonProps = {
+  user: User
+  onWithdrawal(): void
+}
+const DeleteButton: FC<DeleteButtonProps> = ({ user, onWithdrawal }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const onClickDeleteButton = () => {
+    setIsOpen(false)
+    onWithdrawal()
+  }
+
+  return (
+    <div>
+      <div className="text-center pt-12 border-t border-gray-300 mt-12">
+        <a className="text-red-500 hover:underline" onClick={() => onWithdrawal()}>
+          サークルから脱退させる
+        </a>
+      </div>
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={() => setIsOpen(false)}
+        style={customStyles}
+        contentLabel="サークルを脱退"
+      >
+        <h2 className="text-center text-lg mb-4 font-bold">
+          本当にサークルを脱退しますか？
+        </h2>
+
+        <p className="mb-8 text-center">{user.displayName}</p>
+
+        <div className="flex justify-center">
+          <div className="mx-2">
+            <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+          </div>
+          <div className="mx-2">
+            <RedButton onClick={onClickDeleteButton}>脱退</RedButton>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  )
+}
 
 const useParams = () => {
   const router = useRouter()
@@ -30,6 +94,7 @@ const CreatePage: NextPage = () => {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { circleId, userId } = useParams()
+  const [user, setUser] = useState<User|undefined>(undefined)
 
   const username = useStringInput('')
   const displayName = useStringInput('')
@@ -38,6 +103,7 @@ const CreatePage: NextPage = () => {
   useEffect(() => {
     const f = async () => {
       const { user: data } = await getCircleUser(circleId, userId)
+      setUser(data)
       username.set(data.username)
       displayName.set(data.displayName)
       email.set(data.email)
@@ -73,6 +139,16 @@ const CreatePage: NextPage = () => {
     await router.push(`/`)
   }
 
+  const onWithdrawal = async () => {
+    setIsOpen(true)
+
+    await withdrawalOtherCircle(circleId, userId)
+
+    setIsOpen(false)
+
+    await router.push(`/circle/${circleId}/user`)
+  }
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
@@ -101,6 +177,8 @@ const CreatePage: NextPage = () => {
                 email,
               }}
             />
+
+            <DeleteButton user={user} onWithdrawal={onWithdrawal} />
           </div>
         </BaseContainer>
 
