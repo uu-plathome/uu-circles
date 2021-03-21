@@ -39,7 +39,7 @@ export const updateCircle = async (
   try {
     const { data } = await axiosInstance.put<{
       data: Circle
-    }>(`/admin/api/circle/${circleId}`, circle)
+    }>(`/circle/api/circle/${circleId}`, circle)
 
     return data.data
   } catch (_e) {

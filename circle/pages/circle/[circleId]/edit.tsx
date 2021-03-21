@@ -6,7 +6,6 @@ import { EditCircleForm } from "@/components/organisms/Form/Circle/EditCircleFor
 import { AuthContext } from "@/contexts/AuthContext";
 import { useDelayedEffect } from "@/hooks/useDelayedEffect";
 import { useBooleanInput, useNumberInput, useStringInput } from "@/hooks/useInput";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { showCircle, updateCircle } from "@/infra/api/circle";
 import { putStorage } from "@/infra/api/storage";
 import { isCirclePutStorageRequestValidationError } from "@/lib/types/api/CirclePutStorageRequest";
@@ -484,7 +483,7 @@ const Page: NextPage = () => {
         }
 
         setIsOpen(false)
-        await router.push('/circle')
+        await router.push('/')
       }
     }
 
