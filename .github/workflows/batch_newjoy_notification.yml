@@ -1,9 +1,10 @@
 name: Python package
 
 on:
-  schedule:
-    # 7:00 (JST) に処理を実行する。
-    - cron: "0 22 * * *"
+  push:
+  # schedule:
+  #   # 7:00 (JST) に処理を実行する。
+  #   - cron: "0 22 * * *"
 
 jobs:
   run_batch_newjoy_notification:
