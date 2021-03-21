@@ -9,8 +9,8 @@ type Props = {
 const CircleUserListItem: FC<Props> = ({ circleId, user }) => {
   return (
     <Link
-      href="/circle/[circleId]/user/"
-      as={`/circle/${circleId}/user`}
+      href="/circle/[circleId]/user/[userId]/edit"
+      as={`/circle/${circleId}/user/${user.id}/edit`}
     >
       <a>
         <div

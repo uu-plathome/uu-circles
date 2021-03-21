@@ -18,7 +18,9 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         label="メールアドレス"
         name="email"
         id="email"
+        expand
         required
+        placeholder="example@example.com"
         {...form.email}
       />
 
@@ -26,7 +28,9 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         label="ユーザー名"
         name="username"
         id="username"
-        note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+        expand
+        required
+        prefix="@"
         {...form.username}
       />
 
@@ -35,6 +39,7 @@ const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         name="display_name"
         id="display_name"
         placeholder="u-lab"
+        expand
         note="入力がない場合は、自動で決まります"
         {...form.displayName}
       />
