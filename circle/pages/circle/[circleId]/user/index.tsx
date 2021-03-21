@@ -71,8 +71,7 @@ const IndexPage: NextPage = () => {
                 {circle ? (
                   <div className="mt-32 border-t border-gray-300">
                     <CircleNameHeader
-                      name={circle.name}
-                      circleId={circleId}
+                      circle={circle}
                     />
                   </div>
                 ) : ''}

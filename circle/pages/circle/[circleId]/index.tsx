@@ -49,8 +49,7 @@ const IndexPage: NextPage = () => {
             {circle ? (
               <div>
                 <CircleNameHeader
-                  name={circle.name}
-                  circleId={circleId}
+                  circle={circle}
                 />
 
                 <div className="pt-8 mb-4 text-center">
@@ -78,6 +77,22 @@ const IndexPage: NextPage = () => {
                             <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
                             <div className="text-center">
                               <p className="font-lg font-bold">新歓イベントの追加・編集</p>
+                            </div>
+                            <div></div>
+                          </div>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+
+                  <div className="mb-8">
+                    <Link href="/circle/[circleId]/user" as={`/circle/${circle.id}/user`}>
+                      <a>
+                        <div className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto" style={{ width: 280 }}>
+                          <div className="flex justify-between items-center px-4" style={{ width: 280 }}>
+                            <FontAwesomeIcon icon={faFileAlt} size="lg" />
+                            <div className="text-center">
+                              <p className="font-lg font-bold">部員アカウント管理</p>
                             </div>
                             <div></div>
                           </div>
