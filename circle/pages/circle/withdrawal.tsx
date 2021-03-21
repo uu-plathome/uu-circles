@@ -9,10 +9,12 @@ import { Circle } from '@/lib/types/model/Circle'
 import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
+  const router = useRouter()
   const [circles, setCircles] = useState<Circle[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
@@ -30,6 +32,7 @@ const IndexPage: NextPage = () => {
     await withdrawalCircle(circleId)
 
     setIsOpen(false)
+    await router.push('/')
   }
 
   return (
