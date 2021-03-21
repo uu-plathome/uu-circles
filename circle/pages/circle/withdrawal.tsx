@@ -4,7 +4,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { CircleWithdrawalList } from '@/components/organisms/List/CircleWithdrawalList'
 import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleList, withdrawalCircle } from '@/infra/api/circle'
+import { getCircleList, withdrawalOwnCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,7 +29,7 @@ const IndexPage: NextPage = () => {
   const onWithdrawal = async (circleId: number) => {
     setIsOpen(true)
 
-    await withdrawalCircle(circleId)
+    await withdrawalOwnCircle(circleId)
 
     setIsOpen(false)
     await router.push('/')

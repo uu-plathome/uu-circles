@@ -57,18 +57,43 @@ export const updateCircle = async (
 }
 
 /**
- * サークルを脱退する
+ * 自分自身をサークルを脱退する
  *
  * @param circleId
  * @returns
  */
-export const withdrawalCircle = async (circleId: number) => {
-  console.log('withdrawalCircle args', {
+export const withdrawalOwnCircle = async (circleId: number) => {
+  console.log('withdrawalOwnCircle args', {
     circleId,
   })
 
   try {
     await axiosInstance.post(`/circle/api/circle/${circleId}/withdrawal`)
+
+    return {
+      type: 'Success',
+    }
+  } catch (_e) {
+    console.error(_e)
+  }
+}
+
+/**
+ * 他人をサークルを脱退する
+ *
+ * @param circleId
+ * @returns
+ */
+export const withdrawalCircle = async (circleId: number, userId: number) => {
+  console.log('withdrawalCircle args', {
+    circleId,
+    userId,
+  })
+
+  try {
+    await axiosInstance.post(
+      `/circle/api/circle/${circleId}/withdrawal/${userId}`
+    )
 
     return {
       type: 'Success',
