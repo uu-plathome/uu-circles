@@ -55,3 +55,25 @@ export const updateCircle = async (
     console.error(e)
   }
 }
+
+/**
+ * サークルを脱退する
+ *
+ * @param circleId
+ * @returns
+ */
+export const withdrawalCircle = async (circleId: number) => {
+  console.log('withdrawalCircle args', {
+    circleId,
+  })
+
+  try {
+    await axiosInstance.post(`/circle/api/circle/${circleId}/withdrawal`)
+
+    return {
+      type: 'Success',
+    }
+  } catch (_e) {
+    console.error(_e)
+  }
+}
