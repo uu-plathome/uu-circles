@@ -1,7 +1,6 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { UseStringInput } from '@/hooks/useInput'
 import { FC, FormEvent } from 'react'
 
 type Props = {
@@ -9,7 +8,7 @@ type Props = {
   form: {
     username: UseStringInput
     displayName: UseStringInput
-    active: UseBooleanInput
+    email: UseStringInput
   }
 }
 const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
@@ -20,7 +19,9 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         name="username"
         id="username"
         required
+        prefix="@"
         note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
+        expand
         {...form.username}
       />
 
@@ -31,19 +32,17 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         placeholder="u-lab"
         required
         note="入力がない場合は、自動で決まります"
+        expand
         {...form.displayName}
       />
 
-      <BaseSelect
-        label="アカウントが有効かどうか"
-        name="active"
-        id="active"
-        required
-        items={[
-          { value: 'true', label: '有効' },
-          { value: 'false', label: '無効' },
-        ]}
-        {...form.active}
+      <BaseTextField
+        label="メールアドレス"
+        name="email"
+        id="email"
+        {...form.email}
+        expand
+        disabled={true}
       />
 
       <div className="flex justify-center mt-8">

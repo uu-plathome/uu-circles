@@ -1,18 +1,18 @@
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useStringInput } from '@/hooks/useInput';
-import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest';
+import { isRegisterCircleUserRequestValidationError, RegisterCircleUserRequest } from '@/lib/types/api/RegisterCircleUserRequest';
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
 import { BaseFooter } from '@/components/layouts/BaseFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { getCircleUser, updateCircleUser } from '@/infra/api/circleUser';
-import { EditCircleUserForm } from '@/components/organisms/Form/CircleUser/EditCircleUserForm';
+import { createCircleUser } from '@/infra/api/circleUser';
 import Link from 'next/link';
+import { CreateCircleUserForm } from '@/components/organisms/Form/CircleUser/CreateCircleUser';
 
 const useParams = () => {
   const router = useRouter()
@@ -35,32 +35,23 @@ const CreatePage: NextPage = () => {
   const displayName = useStringInput('')
   const email = useStringInput('')
 
-  useEffect(() => {
-    const f = async () => {
-      const { user: data } = await getCircleUser(circleId, userId)
-      username.set(data.username)
-      displayName.set(data.displayName)
-      email.set(data.email)
-    }
-
-    f()
-  }, [])
-
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsOpen(true)
 
-    const data = await updateCircleUser(
+    const data = await createCircleUser(
       circleId,
       userId,
       {
-        type: 'UpdateCircleUserRequest',
+        type: 'RegisterCircleUserRequest',
+        email: email.value,
         username: username.value,
         displayName: displayName.value,
-      } as UpdateCircleUserRequest
+      } as RegisterCircleUserRequest
     )
 
-    if (isUpdateCircleUserRequestValidationError(data)) {
+    if (isRegisterCircleUserRequestValidationError(data)) {
+      email.setErrors(data.errors.email)
       username.setErrors(data.errors.username)
       displayName.setErrors(data.errors.displayName)
       setIsOpen(false)
@@ -78,7 +69,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
-          部員アカウント情報編集
+          部員アカウント新規追加
         </h1>
 
         <BaseContainer>
@@ -93,7 +84,7 @@ const CreatePage: NextPage = () => {
 
             <SubmitLoading isOpen={isOpen} />
 
-            <EditCircleUserForm
+            <CreateCircleUserForm
               onSubmit={onSubmit}
               form={{
                 username,

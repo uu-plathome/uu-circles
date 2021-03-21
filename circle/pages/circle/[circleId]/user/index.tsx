@@ -55,8 +55,8 @@ const IndexPage: NextPage = () => {
               <div>
                 <div className="flex justify-center">
                   <GreenButton
-                    href={`/circle/[circleId]/newjoy/create`}
-                    as={`/circle/${Number(circleId)}/newjoy/create`}
+                    href={`/circle/[circleId]/user/create`}
+                    as={`/circle/${Number(circleId)}/user/create`}
                   >
                     新規部員アカウント作成
                   </GreenButton>
