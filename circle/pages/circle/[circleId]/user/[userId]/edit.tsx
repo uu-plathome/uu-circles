@@ -15,10 +15,22 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Colors from '@/colors';
 
+const useParams = () => {
+  const router = useRouter()
+  const { circleId, userId } = router.query
+
+  return {
+    isError: !circleId || Array.isArray(circleId),
+    circleId: Number(circleId),
+    userId: Number(userId),
+  }
+}
+
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
+  const { circleId, userId } = useParams()
 
   const username = useStringInput('')
   const displayName = useStringInput('')
@@ -64,7 +76,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
-          部員アカウント編集
+          ユーザー情報編集
         </h1>
 
         <BaseContainer>

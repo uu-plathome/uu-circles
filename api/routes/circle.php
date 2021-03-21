@@ -16,6 +16,8 @@ use App\Http\Controllers\Circle\CircleNewJoy\RegisterCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\UpdateCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleUser\IndexCircleUserController;
+use App\Http\Controllers\Circle\CircleUser\RegisterCircleUserController;
+use App\Http\Controllers\Circle\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +52,6 @@ Route::middleware('auth:adminUser')->group(function () {
 
     // 部員アカウント
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class)->name('circle.circleUser.index');
+    Route::post('/circle/{circleId}/user', RegisterCircleUserController::class)->name('circle.circleUser.register');
+    Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class)->name('circle.circleUser.update');
 });
