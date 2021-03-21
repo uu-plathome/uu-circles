@@ -19,7 +19,8 @@ use App\Http\Controllers\Circle\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\RegisterCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\UpdateCircleUserController;
-use App\Http\Controllers\Circle\CircleUser\WithdrawalCircleUserController;
+use App\Http\Controllers\Circle\CircleUser\WithdrawalOtherCircleUserController;
+use App\Http\Controllers\Circle\CircleUser\WithdrawalOwnCircleUserController;
 use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,8 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
     Route::put('/circle/{circleId}', UpdateCircleController::class)->name('circle.circle.update');
-    Route::post('/circle/{circleId}/withdrawal', WithdrawalCircleUserController::class)->name('circle.circle.withdrawal');
+    Route::post('/circle/{circleId}/withdrawal', WithdrawalOwnCircleUserController::class)->name('circle.circle.withdrawal');
+    Route::post('/circle/{circleId}/withdrawal/{userId}', WithdrawalOtherCircleUserController::class)->name('circle.circle.withdrawal');
 
     // 新歓
     Route::get('/circle/{circleId}/newjoy', IndexCircleNewJoyController::class)->name('circle.circleNewJoy.index');

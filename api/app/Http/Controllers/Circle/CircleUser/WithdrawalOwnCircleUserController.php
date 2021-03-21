@@ -4,25 +4,24 @@ namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
-use App\Support\Arr;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class WithdrawalCircleUserController extends Controller
+class WithdrawalOwnCircleUserController extends Controller
 {
     use Permission;
 
     /**
-     * サークルを脱退する
+     * 自分をサークルを脱退する
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function __invoke(Request $request, int $circleId)
     {
-        Log::debug("WithdrawalCircleUserController args", [
+        Log::debug("WithdrawalOwnCircleUserController args", [
             'circleId' => $circleId,
         ]);
 
@@ -38,7 +37,7 @@ class WithdrawalCircleUserController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] WithdrawalCircleUserController", [
+            Log::error("[ERROR] WithdrawalOwnCircleUserController", [
                 'circleId' => $circleId,
             ]);
             DB::rollBack();
