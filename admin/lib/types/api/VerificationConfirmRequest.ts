@@ -17,5 +17,11 @@ export interface VerificationConfirmRequestValidationError {
   message: string
 }
 
-export const isVerificationConfirmRequest = (v: any): v is VerificationConfirmRequest => v && v.type === 'VerificationConfirmRequest'
-export const isVerificationConfirmRequestValidationError = (v: any): v is VerificationConfirmRequestValidationError => v && v.type === 'VerificationConfirmRequestValidationError'
+export const isVerificationConfirmRequest = (
+  v: any
+): v is VerificationConfirmRequest =>
+  v && v.type === 'VerificationConfirmRequest'
+export const isVerificationConfirmRequestValidationError = (
+  v: any
+): v is VerificationConfirmRequestValidationError =>
+  v && v.type === 'VerificationConfirmRequestValidationError'

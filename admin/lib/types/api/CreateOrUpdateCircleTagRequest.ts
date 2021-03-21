@@ -17,5 +17,11 @@ export interface CreateOrUpdateCircleTagRequestValidationError {
   message: string
 }
 
-export const isCreateOrUpdateCircleTagRequest = (v: any): v is CreateOrUpdateCircleTagRequest => v && v.type === 'CreateOrUpdateCircleTagRequest'
-export const isCreateOrUpdateCircleTagRequestValidationError = (v: any): v is CreateOrUpdateCircleTagRequestValidationError => v && v.type === 'CreateOrUpdateCircleTagRequestValidationError'
+export const isCreateOrUpdateCircleTagRequest = (
+  v: any
+): v is CreateOrUpdateCircleTagRequest =>
+  v && v.type === 'CreateOrUpdateCircleTagRequest'
+export const isCreateOrUpdateCircleTagRequestValidationError = (
+  v: any
+): v is CreateOrUpdateCircleTagRequestValidationError =>
+  v && v.type === 'CreateOrUpdateCircleTagRequestValidationError'
