@@ -1,5 +1,4 @@
 import {
-  GetServerSideProps,
   GetStaticPaths,
   GetStaticProps,
   NextPage,
@@ -28,9 +27,11 @@ import Image from 'next/image'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { PageNotFoundError } from '@/infra/api/error'
 import Error from 'next/error'
+import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 
 type Props = {
   circle?: Circle
+  circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
   errorCode?: number
 }
@@ -190,11 +191,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   try {
-    const { circle, circleNewJoys } = await getCircleBySlug(params.slug)
+    const { circle, circleTags, circleNewJoys } = await getCircleBySlug(params.slug)
 
     return {
       props: {
         circle,
+        circleTags,
         circleNewJoys,
       },
       revalidate: 120,
