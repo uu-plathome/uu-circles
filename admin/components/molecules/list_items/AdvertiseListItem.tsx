@@ -92,15 +92,15 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
   return (
     <div className="text-white flex mb-4">
       <div className="hidden lg:block">
-        <Image
+        <img
           src={
             advertise.mainImageUrl
               ? advertise.mainImageUrl
               : `/images/no-image.png`
           }
+          alt="広告画像"
           width={isMd ? 150 : 100}
           height={isMd ? (150 * 218) / 375 : (100 * 218) / 375}
-          layout={'fixed'}
           className="square-image"
         />
       </div>
@@ -108,15 +108,15 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <Image
+            <img
               src={
                 advertise.mainImageUrl
                   ? advertise.mainImageUrl
                   : `/images/no-image.png`
               }
+              alt="広告画像"
               width={isMd ? 150 : 100}
               height={isMd ? (150 * 218) / 375 : (100 * 218) / 375}
-              layout={'fixed'}
               className="square-image"
             />
           </div>
