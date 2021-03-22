@@ -30,7 +30,7 @@ class CreateOrUpdateCircleTagController extends Controller
 
         $this->createOrUpdateCircleTagUsecase->invoke(
             $circleId,
-            $request->makeCircleTagEntity()
+            $request->makeCircleTagEntitiy()
         );
 
         return [

@@ -2,7 +2,7 @@
 
 namespace App\Usecases\Admin;
 
-use App\Entity\CircleTagEntity;
+use App\Entity\CircleTagEntitiy;
 use App\Models\CircleTag;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +16,7 @@ class CreateOrUpdateCircleTagUsecase
      */
     public function invoke(
         int $circleId,
-        CircleTagEntity $circleTagsEntity
+        CircleTagEntitiy $circleTagsEntity
     ) {
         DB::beginTransaction();
         $shouldInsertCircleTag = $circleTagsEntity->toCircleTag();
