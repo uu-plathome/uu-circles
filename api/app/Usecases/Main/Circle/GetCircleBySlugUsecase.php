@@ -2,10 +2,7 @@
 
 namespace App\Usecases\Main\Circle;
 
-use App\Dto\MainDetailCircleDto;
-use App\Entity\CircleTagEntity;
 use App\Models\Circle;
-use App\Models\CircleTag;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +13,7 @@ class GetCircleBySlugUsecase
      *
      * @return CircleValueObject
      */
-    public function invoke(string $slug): MainDetailCircleDto
+    public function invoke(string $slug): CircleValueObject
     {
         Log::debug("#GetCircleBySlugUsecase args", [
             'slug' => $slug,
@@ -30,21 +27,10 @@ class GetCircleBySlugUsecase
             ->whereSlug($slug)
             ->firstOrFail();
 
-        $foundCircleTag = CircleTag::whereCircleId($circle->id)->first();
-
-        $circleTagEntity = CircleTagEntity::byEloquent(
-            $circle->circleInformation,
-            $foundCircleTag
-        );
-
-        $dto = new MainDetailCircleDto();
-        $dto->circleValueObject = CircleValueObject::byEloquent(
+        return CircleValueObject::byEloquent(
             $circle,
             $circle->circleInformation,
             $circle->circleHandbill
         );
-        $dto->circleTagEntity = $circleTagEntity;
-
-        return $dto;
     }
 }

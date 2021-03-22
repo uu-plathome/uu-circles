@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\CircleTag;
 
-use App\Entity\CircleTagEntity;
+use App\Entity\CircleTagEntitiy;
 use App\Enum\CircleTagModel;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
@@ -49,10 +49,10 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
         ]);
     }
 
-    public function makeCircleTagEntity(): CircleTagEntity
+    public function makeCircleTagEntitiy(): CircleTagEntitiy
     {
         $request = Arr::snake_keys($this->validated());
 
-        return CircleTagEntity::of($request['circle_tag'] ? $request['circle_tag'] : []);
+        return CircleTagEntitiy::of($request['circle_tag'] ? $request['circle_tag'] : []);
     }
 }
