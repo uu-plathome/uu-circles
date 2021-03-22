@@ -64,8 +64,8 @@ const CreateAdvertiseForm: FC<Props> = ({
         id="advertise_type"
         name="advertise_type"
         items={[
-          { value: AdvertiseType.COMMON, label: __(AdvertiseType.COMMON) },
-          { value: AdvertiseType.MAIN_TOP, label: __(AdvertiseType.MAIN_TOP) },
+          { value: AdvertiseType.COMMON, label: __(AdvertiseType.COMMON, 'advertiseType') },
+          { value: AdvertiseType.MAIN_TOP, label: __(AdvertiseType.MAIN_TOP, 'advertiseType') },
         ]}
         {...form.advertiseType}
       />
