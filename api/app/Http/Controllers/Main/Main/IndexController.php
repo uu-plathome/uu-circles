@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main\Main;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
 use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -16,13 +17,16 @@ use Illuminate\Support\Facades\Log;
 class IndexController extends Controller
 {
     private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
+    private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase;
     private GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase;
 
     public function __construct(
         GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
+        GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase,
         GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase
     ) {
         $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
+        $this->getMainTopAdvertiseUsecase = $getMainTopAdvertiseUsecase;
         $this->getRandomCircleWithMainFixedUsecase = $getRandomCircleWithMainFixedUsecase;
     }
 
@@ -46,6 +50,12 @@ class IndexController extends Controller
             return $this->getRandomAdvertiseUsecase->invoke(2);
         });
 
+        $mainAdvertises = Cache::remember(
+            $this->getMainTopAdvertiseCacheKey(),
+            60,
+            fn () => $this->getMainTopAdvertiseUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -55,7 +65,8 @@ class IndexController extends Controller
                     ])
                 )->toArray()
             ),
-            'advertises' => Arr::camel_keys($advertises),
+            'mainAdvertises' => Arr::camel_keys($mainAdvertises),
+            'advertises'     => Arr::camel_keys($advertises),
         ];
     }
 
@@ -63,6 +74,12 @@ class IndexController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
         return 'main' . $minutes . rand(0, 2);
+    }
+
+    private function getMainTopAdvertiseCacheKey(): string
+    {
+        $hour = Carbon::now()->format('YmdH');
+        return 'main.advertise.mainTop' . $hour;
     }
 
     private function getAdvertiseCacheKey(): string

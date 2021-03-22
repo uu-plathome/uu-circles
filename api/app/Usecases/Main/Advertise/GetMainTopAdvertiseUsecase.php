@@ -6,16 +6,14 @@ use App\Enum\AdvertiseType;
 use App\Models\Advertise;
 use Illuminate\Support\Carbon;
 
-class GetRandomAdvertiseUsecase
+class GetMainTopAdvertiseUsecase
 {
-    public function invoke(int $limit = 2)
+    public function invoke()
     {
         $now = Carbon::now();
 
         $advertises = Advertise::nowPublic($now)
-            ->whereAdvertiseType(AdvertiseType::COMMON)
-            ->inRandomOrder()
-            ->take($limit)
+            ->whereAdvertiseType(AdvertiseType::MAIN_TOP)
             ->get()
             ->toArray();
 
