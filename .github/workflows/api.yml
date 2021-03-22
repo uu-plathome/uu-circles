@@ -4,6 +4,14 @@ on:
   push:
     branches: [main, develop/production, develop/stg]
   pull_request:
+    paths:
+      - "api/**"
+      - "!**.md"
+      - "!.editorconfig"
+      - "!.gitignore"
+      - "!.gitattributes"
+      - "!_ide_helper.php"
+      - "!_ide_helper_models.php"
 
 jobs:
   laravel-tests:
