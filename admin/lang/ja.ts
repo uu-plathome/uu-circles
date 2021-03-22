@@ -63,6 +63,13 @@ export const ja = {
   },
 }
 
+/**
+ * 翻訳関数
+ *
+ * @param key
+ * @param namespace
+ * @returns
+ */
 export const __ = (key: string, namespace?: string) => {
   try {
     if (!namespace) {
