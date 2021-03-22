@@ -14,6 +14,6 @@ export const getMain = async () => {
   return {
     circles: data.data,
     advertises: data.advertises,
-    mainAdvertises: data.mainAdvertises
+    mainAdvertises: data.mainAdvertises,
   }
 }
