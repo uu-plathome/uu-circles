@@ -4,6 +4,8 @@ import { BaseDate } from '@/components/atoms/form/BaseDate'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
+import { __ } from '@/lang/ja'
+import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
 import { FC, FormEvent } from 'react'
 
 type Props = {
@@ -14,6 +16,7 @@ type Props = {
     link: UseStringInput
     mainImageUrl: UseStringInput
     active: UseBooleanInput
+    advertiseType: UseStringInput
     publishTo: UseDateInput
     publishFrom: UseDateInput
   }
@@ -50,6 +53,17 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
           { value: 'false', label: '非公開' },
         ]}
         {...form.active}
+      />
+
+      <BaseSelect
+        label="広告種類"
+        id="advertise_type"
+        name="advertise_type"
+        items={[
+          { value: AdvertiseType.COMMON, label: __(AdvertiseType.COMMON, 'advertiseType') },
+          { value: AdvertiseType.MAIN_TOP, label: __(AdvertiseType.MAIN_TOP, 'advertiseType') },
+        ]}
+        {...form.advertiseType}
       />
 
       <BaseDate
