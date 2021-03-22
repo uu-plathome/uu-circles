@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
 use Faker\Generator as Faker;
 
@@ -18,7 +19,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Advertise::class, function (Faker $faker) {
     return [
-        'title'    => 'みやメシ応援隊',
-        'link'     => 'https://ulab-uu.com',
+        AdvertiseProperty::title => 'みやメシ応援隊',
+        AdvertiseProperty::link => 'https://ulab-uu.com',
     ];
 });
