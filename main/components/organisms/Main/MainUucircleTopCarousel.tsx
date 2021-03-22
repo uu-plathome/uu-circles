@@ -53,25 +53,22 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
             />
           </SwiperSlide>
 
-          {advertises && advertises.map(advertise => {
-            return (
-              <SwiperSlide key={advertise.id}>
-                <a
-                  href={advertise.link}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <Image
-                    width={width || 1000}
-                    height={height}
-                    objectFit="cover"
-                    alt="新入生イベントアンケート"
-                    src={advertise.mainImageUrl || '/images/top-image.png'}
-                  />
-                </a>
-              </SwiperSlide>
-            )
-          })}
+          {advertises &&
+            advertises.map((advertise) => {
+              return (
+                <SwiperSlide key={advertise.id}>
+                  <a href={advertise.link} target="_blank" rel="noopener">
+                    <Image
+                      width={width || 1000}
+                      height={height}
+                      objectFit="cover"
+                      alt="新入生イベントアンケート"
+                      src={advertise.mainImageUrl || '/images/top-image.png'}
+                    />
+                  </a>
+                </SwiperSlide>
+              )
+            })}
         </nav>
       </Swiper>
     </div>
