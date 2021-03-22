@@ -64,7 +64,7 @@ const CreatePage: NextPage = () => {
       reader.onload = async (e) => {
         new Compressor(file, {
           quality: 1.0,
-          maxWidth: 800,
+          maxWidth: advertiseType.value === AdvertiseType.MAIN_TOP ? 800 : 2000,
           async success(result) {
             try {
               // Send the compressed image file to server with XMLHttpRequest.
