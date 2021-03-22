@@ -6,7 +6,7 @@ use App\Enum\CircleTagModel;
 use App\Models\CircleInformation;
 use App\Models\CircleTag;
 
-class CircleTagEntitiy
+class CircleTagEntity
 {
     /**
      * @var CircleTagModel[]
@@ -14,60 +14,60 @@ class CircleTagEntitiy
     public array $circleTag = [];
 
     public static function byEloquent(
-        CircleInformation $circleInformation,
-        CircleTag $circleTag
-    ): CircleTagEntitiy {
-        $circleTagEntity = new CircleTagEntitiy();
+        ?CircleInformation $circleInformation,
+        ?CircleTag $circleTag
+    ): CircleTagEntity {
+        $circleTagEntity = new CircleTagEntity();
 
-        if ($circleTag->sport) {
+        if ($circleTag && $circleTag->sport) {
             $circleTagEntity->circleTag[] = CircleTagModel::SPORT;
         }
-        if ($circleTag->music) {
+        if ($circleTag && $circleTag->music) {
             $circleTagEntity->circleTag[] = CircleTagModel::MUSIC;
         }
-        if ($circleTag->culture) {
+        if ($circleTag && $circleTag->culture) {
             $circleTagEntity->circleTag[] = CircleTagModel::CULTURE;
         }
-        if ($circleTag->volunteer) {
+        if ($circleTag && $circleTag->volunteer) {
             $circleTagEntity->circleTag[] = CircleTagModel::VOLUNTEER;
         }
-        if ($circleTag->nature) {
+        if ($circleTag && $circleTag->nature) {
             $circleTagEntity->circleTag[] = CircleTagModel::NATURE;
         }
-        if ($circleTag->international) {
+        if ($circleTag && $circleTag->international) {
             $circleTagEntity->circleTag[] = CircleTagModel::INTERNATIONAL;
         }
-        if ($circleTag->incare) {
+        if ($circleTag && $circleTag->incare) {
             $circleTagEntity->circleTag[] = CircleTagModel::INCARE;
         }
-        if ($circleTag->loose) {
+        if ($circleTag && $circleTag->loose) {
             $circleTagEntity->circleTag[] = CircleTagModel::LOOSE;
         }
-        if ($circleTag->community) {
+        if ($circleTag && $circleTag->community) {
             $circleTagEntity->circleTag[] = CircleTagModel::COMMUNITY;
         }
-        if ($circleTag->programming) {
+        if ($circleTag && $circleTag->programming) {
             $circleTagEntity->circleTag[] = CircleTagModel::PROGRAMMING;
         }
-        if ($circleTag->urgent_recruitment) {
+        if ($circleTag && $circleTag->urgent_recruitment) {
             $circleTagEntity->circleTag[] = CircleTagModel::URGENT_RECRUITMENT;
         }
-        if ($circleTag->mystery) {
+        if ($circleTag && $circleTag->mystery) {
             $circleTagEntity->circleTag[] = CircleTagModel::MYSTERY;
         }
-        if ($circleInformation->activeActivity) {
+        if ($circleInformation && $circleInformation->activeActivity) {
             $circleTagEntity->circleTag[] = CircleTagModel::ACTIVE_ACTIVITY;
         }
-        if ($circleInformation->mammoth) {
+        if ($circleInformation && $circleInformation->mammoth) {
             $circleTagEntity->circleTag[] = CircleTagModel::MAMMOTH;
         }
 
         return $circleTagEntity;
     }
 
-    public static function of(array $arr): CircleTagEntitiy
+    public static function of(array $arr): CircleTagEntity
     {
-        $circleTagEntity = new CircleTagEntitiy();
+        $circleTagEntity = new CircleTagEntity();
         $circleTagEntity->circleTag = $arr;
         return $circleTagEntity;
     }

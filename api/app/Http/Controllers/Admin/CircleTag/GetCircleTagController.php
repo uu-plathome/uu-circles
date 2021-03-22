@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\CircleTag;
 
-use App\Entity\CircleTagEntitiy;
+use App\Entity\CircleTagEntity;
 use App\Http\Controllers\Controller;
 use App\Models\CircleInformation;
 use App\Models\CircleTag;
@@ -26,7 +26,7 @@ class GetCircleTagController extends Controller
 
         return [
             'circleTag' => $circleInformation && $circleTag
-                ? CircleTagEntitiy::byEloquent($circleInformation, $circleTag)->toArray()
+                ? CircleTagEntity::byEloquent($circleInformation, $circleTag)->toArray()
                 : [],
         ];
     }
