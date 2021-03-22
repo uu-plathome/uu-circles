@@ -46,13 +46,13 @@ class IndexController extends Controller
             fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(12)
         );
 
-        $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60, function () {
+        $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60 * 5, function () {
             return $this->getRandomAdvertiseUsecase->invoke(2);
         });
 
         $mainAdvertises = Cache::remember(
             $this->getMainTopAdvertiseCacheKey(),
-            60,
+            60 * 30,
             fn () => $this->getMainTopAdvertiseUsecase->invoke()
         );
 
