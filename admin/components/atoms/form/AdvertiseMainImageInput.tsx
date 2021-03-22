@@ -61,7 +61,12 @@ const AdvertiseMainImageInput: FC<Props> = ({
           <input {...getInputProps()} />
 
           <div className="text-center">
-            <img src={preview} alt={label} style={{ width, height }} />
+            <img
+              className="object-cover"
+              src={preview}
+              alt={label}
+              style={{ width, height }}
+            />
           </div>
         </div>
       </div>

@@ -45,12 +45,14 @@ namespace App\Models{
  * @property \datetime|null $publish_from 公開終了日時
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $advertise_type 広告種類
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise nowPublic(\Illuminate\Support\Carbon $now)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise query()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereAdvertiseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereLink($value)

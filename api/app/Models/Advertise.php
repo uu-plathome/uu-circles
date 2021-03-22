@@ -13,6 +13,7 @@ class Advertise extends Model
         AdvertiseProperty::link,
         AdvertiseProperty::main_image_url,
         AdvertiseProperty::active,
+        AdvertiseProperty::advertise_type,
         AdvertiseProperty::publish_to,
         AdvertiseProperty::publish_from,
     ];
