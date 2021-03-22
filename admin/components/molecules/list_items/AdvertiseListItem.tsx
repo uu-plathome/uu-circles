@@ -75,7 +75,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
 }
 
 const ListItemTableColumn: FC<{
-  title: string,
+  title: string
   lg?: boolean
 }> = ({ children, title, lg }) => {
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
@@ -136,7 +136,7 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
             />
           </ListItemTableColumn>
           <ListItemTableColumn title="公開中" lg>
-            <p>{ __(advertise.advertiseType, 'advertiseType')}</p>
+            <p>{__(advertise.advertiseType, 'advertiseType')}</p>
           </ListItemTableColumn>
           <ListItemTableColumn title="編集する">
             <Link

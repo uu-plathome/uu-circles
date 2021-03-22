@@ -60,8 +60,14 @@ const EditAdvertiseForm: FC<Props> = ({ onSubmit, onDropMainImage, form }) => {
         id="advertise_type"
         name="advertise_type"
         items={[
-          { value: AdvertiseType.COMMON, label: __(AdvertiseType.COMMON, 'advertiseType') },
-          { value: AdvertiseType.MAIN_TOP, label: __(AdvertiseType.MAIN_TOP, 'advertiseType') },
+          {
+            value: AdvertiseType.COMMON,
+            label: __(AdvertiseType.COMMON, 'advertiseType'),
+          },
+          {
+            value: AdvertiseType.MAIN_TOP,
+            label: __(AdvertiseType.MAIN_TOP, 'advertiseType'),
+          },
         ]}
         {...form.advertiseType}
       />
