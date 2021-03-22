@@ -59,7 +59,7 @@ export const ja = {
   },
   advertiseType: {
     [AdvertiseType.COMMON]: '通常広告',
-    [AdvertiseType.MAIN_TOP]: 'メイントップ画面広告',
+    [AdvertiseType.MAIN_TOP]: 'トップ画面広告',
   },
 }
 
