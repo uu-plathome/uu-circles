@@ -15,8 +15,10 @@ use App\Http\Controllers\Circle\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\RegisterCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\UpdateCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleUser\ImportCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\RegisterCircleUserController;
+use App\Http\Controllers\Circle\CircleUser\SearchCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\WithdrawalOtherCircleUserController;
@@ -58,6 +60,8 @@ Route::middleware('auth:circleUser')->group(function () {
     // 部員アカウント
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class)->name('circle.circleUser.index');
     Route::post('/circle/{circleId}/user', RegisterCircleUserController::class)->name('circle.circleUser.register');
+    Route::post('/circle/{circleId}/user/{userId}', ImportCircleUserController::class)->name('circle.circleUser.import');
     Route::get('/circle/{circleId}/user/{userId}', ShowCircleUserController::class)->name('circle.circleUser.show');
     Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class)->name('circle.circleUser.update');
+    Route::get('/circle/{circleId}/user/search/{searchText}', SearchCircleUserController::class)->name('circle.circleUser.search');
 });

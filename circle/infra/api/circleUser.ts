@@ -1,4 +1,8 @@
 import {
+  ImportCircleUserRequest,
+  ImportCircleUserRequestValidationError,
+} from '@/lib/types/api/ImportCircleUserRequest'
+import {
   RegisterCircleUserRequest,
   RegisterCircleUserRequestValidationError,
 } from '@/lib/types/api/RegisterCircleUserRequest'
@@ -107,5 +111,54 @@ export const updateCircleUser = async (
     }
 
     console.error(e)
+  }
+}
+
+export const importCircleUser = async (
+  circleId: number,
+  userId: number,
+  user: ImportCircleUserRequest
+) => {
+  console.log('importCircleUser args', {
+    circleId,
+    userId,
+    user,
+  })
+
+  try {
+    await axiosInstance.post(
+      `/circle/api/circle/${circleId}/user/${userId}`,
+      user
+    )
+
+    return {
+      type: 'Success',
+    }
+  } catch (_e) {
+    const e = _e as AxiosError<ImportCircleUserRequestValidationError>
+
+    if (e.response && e.response.status === 422 && e.response.data) {
+      return {
+        ...e.response.data,
+        type: 'ImportCircleUserRequestValidationError',
+      } as ImportCircleUserRequestValidationError
+    }
+
+    console.error(e)
+  }
+}
+
+export const searchCircleUser = async (
+  circleId: number,
+  searchText: string
+) => {
+  console.log('searchCircleUser args', { circleId })
+
+  const { data } = await axiosInstance.get<{
+    data: User[]
+  }>(`/circle/api/circle/${circleId}/user/search/${searchText}`)
+
+  return {
+    users: data.data,
   }
 }
