@@ -1,3 +1,4 @@
+import { Role } from '@/lib/enum/api/Role'
 import {
   UpdateCircleFormRequest,
   UpdateCircleFormRequestValidationError,
@@ -16,15 +17,24 @@ export const getCircleList = async (): Promise<Circle[]> => {
   return data.data
 }
 
-export const showCircle = async (id: number): Promise<Circle> => {
+export const showCircle = async (
+  id: number
+): Promise<{
+  circle: Circle
+  role: Role
+}> => {
   console.log(`showCircle args id=${id}`)
 
   const { data } = await axiosInstance.get<{
     data: Circle
+    role: Role
   }>(`/circle/api/circle/${id}`)
 
   console.log(`showCircle ret`, data)
-  return data.data
+  return {
+    circle: data.data,
+    role: data.role,
+  }
 }
 
 export const updateCircle = async (

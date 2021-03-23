@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
+use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest;
@@ -14,6 +15,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class UpdateCircleUserController extends Controller
 {
@@ -34,14 +36,21 @@ class UpdateCircleUserController extends Controller
 
         /** @var \App\Models\User $authUser */
         $authUser = $request->user();
-        $this->permissionCircle($authUser, $circleId);
+        $this->permissionCircle($authUser, $circleId, [Role::MANAGER]);
 
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)->findOrFail($userId);
         $this->permissionCircle($user, $circleId);
 
+        $circleUser = CircleUser::whereUserId($userId)
+            ->whereCircleId($circleId)
+            ->firstOrFail();
+
         $request->validate([
-            UserProperty::username => 'unique:users,username,' . $user->id
+            UserProperty::username   => 'unique:users,username,' . $user->id,
+            CircleUserProperty::role => Rule::in(
+                $authUser->id === $user->id ? [Role::MANAGER, Role::COMMON] : [Role::MANAGER]
+            ),
         ]);
 
         $makeUpdateInput = [
@@ -54,11 +63,9 @@ class UpdateCircleUserController extends Controller
         try {
             $user->update($makeUpdateInput);
 
-            CircleUser::whereUserId($userId)
-                ->whereCircleId($circleId)
-                ->update([
-                    CircleUserProperty::role => $newRole,
-                ]);
+            $circleUser->update([
+                CircleUserProperty::role => $newRole,
+            ]);
 
             DB::commit();
         } catch (Exception $e) {

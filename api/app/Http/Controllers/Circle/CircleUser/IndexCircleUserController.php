@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\UserProperty;
+use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
@@ -22,7 +23,7 @@ class IndexCircleUserController extends Controller
 
         /** @var \App\Models\User */
         $user = $request->user();
-        $this->permissionCircle($user, $circleId);
+        $this->permissionCircle($user, $circleId, [Role::MANAGER]);
 
         $circle = Circle::whereRelease(true)->findOrFail($circleId);
         $circleUsers = User::whereActive(true)

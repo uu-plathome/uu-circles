@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\UserProperty;
+use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -23,7 +24,7 @@ class ShowCircleUserController extends Controller
 
         /** @var \App\Models\User $authUser */
         $authUser = $request->user();
-        $this->permissionCircle($authUser, $circleId);
+        $this->permissionCircle($authUser, $circleId, [Role::MANAGER]);
 
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)

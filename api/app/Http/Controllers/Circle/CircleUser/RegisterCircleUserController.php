@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
+use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest;
@@ -33,7 +34,7 @@ class RegisterCircleUserController extends Controller
 
         /** @var \App\Models\User $authUser */
         $authUser = $request->user();
-        $this->permissionCircle($authUser, $circleId);
+        $this->permissionCircle($authUser, $circleId, [Role::MANAGER]);
 
         $this->createCircleUserUsecase->invoke(
             $request->makeCreateCircleUserUsecaseParam()
