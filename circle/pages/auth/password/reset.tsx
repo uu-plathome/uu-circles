@@ -11,6 +11,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import Head from 'next/head'
 import { isForgotPasswordCircleRequestValidationError } from '@/lib/types/api/ForgotPasswordCircleRequest'
+import { MainHeader } from '@/components/layouts/MainHeader'
 
 const Login: NextPage = () => {
   const email = useInput('')
@@ -53,6 +54,8 @@ const Login: NextPage = () => {
       <Head>
         <title>パスワードを変更する</title>
       </Head>
+
+      <MainHeader />
 
       <div className="xl:container">
         <div className="max-w-screen-md mx-auto mt-16">

@@ -10,6 +10,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
 import { isResetPasswordCircleRequestValidationError } from '@/lib/types/api/ResetPasswordCircleRequest'
+import { MainHeader } from '@/components/layouts/MainHeader'
 
 const PasswordConfirmPage: NextPage = () => {
   const password = useInput('')
@@ -64,6 +65,8 @@ const PasswordConfirmPage: NextPage = () => {
 
   return (
     <div>
+      <MainHeader />
+
       <div className="xl:container">
         <div className="max-w-screen-md mx-auto mt-16">
           <div className="rounded p-4">
