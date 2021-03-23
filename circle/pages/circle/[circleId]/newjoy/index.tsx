@@ -11,6 +11,7 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 
@@ -56,6 +57,14 @@ const IndexPage: NextPage = () => {
           <div className="pt-8 pb-32">
             {circle ? (
               <div>
+                <p className="pt-8">
+                  <Link href="/circle/[circleId]" as={`/circle/${Number(circleId)}`}>
+                    <a className="underline text-blue-500">
+                      ← サークルに戻る
+                    </a>
+                  </Link>
+                </p>
+
                 <div className="flex justify-center">
                   <GreenButton
                     href={`/circle/[circleId]/newjoy/create`}
