@@ -6,6 +6,7 @@ export interface RegisterCircleNewJoyRequest {
   title: string
   description?: string
   url?: string
+  privateNewjoyLink?: string
   placeOfActivity: string
   placeOfActivityDetail?: string
   publishFrom?: any
@@ -23,6 +24,7 @@ export interface RegisterCircleNewJoyRequestValidationError {
     title?: string[]
     description?: string[]
     url?: string[]
+    privateNewjoyLink?: string[]
     placeOfActivity?: string[]
     placeOfActivityDetail?: string[]
     publishFrom?: string[]
