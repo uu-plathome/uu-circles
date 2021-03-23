@@ -8,6 +8,7 @@ import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
 import { isVerificationEmailCircleUserRequestValidationError } from "@/lib/types/api/VerificationEmailCircleUserRequest"
 import { checkVerifyCircleUser, verificationEmailCircleUser } from "@/infra/api/auth"
 import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
+import { MainHeader } from "@/components/layouts/MainHeader"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -66,6 +67,8 @@ const Login: NextPage = () => {
 
     return (
         <div>
+            <MainHeader />
+
             <div className="xl:container">
                 <div className="max-w-screen-md mx-auto mt-16">
                     <div className="rounded p-4">
