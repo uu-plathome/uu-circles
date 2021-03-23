@@ -12,6 +12,7 @@ import { LoginCircleFormRequest } from "@/lib/types/api/LoginCircleFormRequest"
 import { BaseFooter } from "@/components/layouts/BaseFooter"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
 import { MainHeader } from "@/components/layouts/MainHeader"
+import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
 
 const Login: NextPage = () => {
     const [error, setError] = useState('')
@@ -87,11 +88,10 @@ const Login: NextPage = () => {
                                     { ...usernameOrEmail }
                                 />
 
-                                <BaseTextField
+                                <SimplePasswordTextField
                                     label="パスワード"
                                     id="password"
                                     name="password"
-                                    expand
                                     { ...password }
                                 />
                             </div>
