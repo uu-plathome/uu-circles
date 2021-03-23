@@ -31,7 +31,6 @@ type Props = {
   onDropActivityImage(acceptedFiles: any, idx: 1 | 2 | 3 | 4 | 5 | 6): void
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
-    release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
     commonDateOfActivityMonday: UseBooleanInput
@@ -74,22 +73,6 @@ const EditCircleForm: FC<Props> = ({
 }) => {
   return (
     <form onSubmit={onSubmit}>
-      <FormHeader>公開設定</FormHeader>
-
-      <div className="mb-8">
-        <BaseSelect
-          label="公開設定"
-          id="release"
-          name="release"
-          required
-          items={[
-            { value: 'true', label: '公開' },
-            { value: 'false', label: '非公開' },
-          ]}
-          {...form.release}
-        />
-      </div>
-
       <FormHeader>サークル名情報</FormHeader>
 
       <div className="mb-8">

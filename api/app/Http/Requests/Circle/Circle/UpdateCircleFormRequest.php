@@ -34,7 +34,6 @@ class UpdateCircleFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            CircleProperty::release                               => ['required', 'boolean'],
             CircleProperty::name                                  => ['required', 'string', 'max:50'],
             CircleInformationProperty::name_kana                  => ['nullable', 'string', 'max:100'],
             CircleInformationProperty::short_name                 => ['nullable', 'string', 'max:20'],
