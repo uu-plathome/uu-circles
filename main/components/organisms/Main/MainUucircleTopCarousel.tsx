@@ -69,12 +69,12 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                     </a>
                   ) : (
                     <Image
-                        width={width || 1000}
-                        height={height}
-                        objectFit="cover"
-                        alt={`${advertise.title} - トップ広告`}
-                        src={advertise.mainImageUrl || '/images/top-image.png'}
-                      />
+                      width={width || 1000}
+                      height={height}
+                      objectFit="cover"
+                      alt={`${advertise.title} - トップ広告`}
+                      src={advertise.mainImageUrl || '/images/top-image.png'}
+                    />
                   )}
                 </SwiperSlide>
               )
