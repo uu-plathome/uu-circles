@@ -21,10 +21,5 @@ export interface RegisterCircleUserRequestValidationError {
   message: string
 }
 
-export const isRegisterCircleUserRequest = (
-  v: any
-): v is RegisterCircleUserRequest => v && v.type === 'RegisterCircleUserRequest'
-export const isRegisterCircleUserRequestValidationError = (
-  v: any
-): v is RegisterCircleUserRequestValidationError =>
-  v && v.type === 'RegisterCircleUserRequestValidationError'
+export const isRegisterCircleUserRequest = (v: any): v is RegisterCircleUserRequest => v && v.type === 'RegisterCircleUserRequest'
+export const isRegisterCircleUserRequestValidationError = (v: any): v is RegisterCircleUserRequestValidationError => v && v.type === 'RegisterCircleUserRequestValidationError'

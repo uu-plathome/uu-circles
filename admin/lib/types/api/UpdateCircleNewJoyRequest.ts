@@ -6,6 +6,7 @@ export interface UpdateCircleNewJoyRequest {
   title: string
   description?: string
   url?: string
+  privateNewjoyLink?: string
   placeOfActivity: string
   placeOfActivityDetail?: string
   publishFrom?: any
@@ -23,6 +24,7 @@ export interface UpdateCircleNewJoyRequestValidationError {
     title?: string[]
     description?: string[]
     url?: string[]
+    privateNewjoyLink?: string[]
     placeOfActivity?: string[]
     placeOfActivityDetail?: string[]
     publishFrom?: string[]
@@ -33,10 +35,5 @@ export interface UpdateCircleNewJoyRequestValidationError {
   message: string
 }
 
-export const isUpdateCircleNewJoyRequest = (
-  v: any
-): v is UpdateCircleNewJoyRequest => v && v.type === 'UpdateCircleNewJoyRequest'
-export const isUpdateCircleNewJoyRequestValidationError = (
-  v: any
-): v is UpdateCircleNewJoyRequestValidationError =>
-  v && v.type === 'UpdateCircleNewJoyRequestValidationError'
+export const isUpdateCircleNewJoyRequest = (v: any): v is UpdateCircleNewJoyRequest => v && v.type === 'UpdateCircleNewJoyRequest'
+export const isUpdateCircleNewJoyRequestValidationError = (v: any): v is UpdateCircleNewJoyRequestValidationError => v && v.type === 'UpdateCircleNewJoyRequestValidationError'

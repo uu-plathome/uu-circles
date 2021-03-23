@@ -3,7 +3,6 @@
  */
 export interface UpdateCircleFormRequest {
   type: 'UpdateCircleFormRequest'
-  release: boolean
   name: string
   nameKana?: string
   shortName?: string
@@ -63,7 +62,6 @@ export interface UpdateCircleFormRequest {
 export interface UpdateCircleFormRequestValidationError {
   type: 'UpdateCircleFormRequestValidationError'
   errors: {
-    release?: string[]
     name?: string[]
     nameKana?: string[]
     shortName?: string[]

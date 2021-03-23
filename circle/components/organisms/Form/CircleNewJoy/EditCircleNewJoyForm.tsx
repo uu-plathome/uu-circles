@@ -18,6 +18,7 @@ type Props = {
     release: UseBooleanInput
     title: UseStringInput
     url: UseStringInput
+    privateNewjoyLink: UseStringInput
     description: UseStringInput
     placeOfActivity: UseStringInput
     placeOfActivityDetail: UseStringInput
@@ -107,6 +108,17 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           maxLength={255}
           note="新歓の告知で使うURLをはってください。(Twitterなど)。zoomは安全上、控えてください"
           {...form.url}
+        />
+
+        <BaseTextField
+          label="新歓URL (Discord用)"
+          name="url"
+          id="url"
+          placeholder="https://ulab-uu.com/"
+          expand
+          maxLength={255}
+          note="新歓の告知で使うURLをはってください。Zoomなどをはると新入生が参加しやすいかも"
+          {...form.privateNewjoyLink}
         />
       </div>
 
