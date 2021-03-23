@@ -3,7 +3,7 @@
  */
 export interface CirclePutStorageRequest {
   type: 'CirclePutStorageRequest'
-  file: Blob|File
+  file: Blob | File
 }
 
 /**
@@ -17,5 +17,10 @@ export interface CirclePutStorageRequestValidationError {
   message: string
 }
 
-export const isCirclePutStorageRequest = (v: any): v is CirclePutStorageRequest => v && v.type === 'CirclePutStorageRequest'
-export const isCirclePutStorageRequestValidationError = (v: any): v is CirclePutStorageRequestValidationError => v && v.type === 'CirclePutStorageRequestValidationError'
+export const isCirclePutStorageRequest = (
+  v: any
+): v is CirclePutStorageRequest => v && v.type === 'CirclePutStorageRequest'
+export const isCirclePutStorageRequestValidationError = (
+  v: any
+): v is CirclePutStorageRequestValidationError =>
+  v && v.type === 'CirclePutStorageRequestValidationError'

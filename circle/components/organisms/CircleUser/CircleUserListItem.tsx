@@ -21,17 +21,15 @@ const CircleUserListItem: FC<Props> = ({ circleId, user }) => {
             <h3 className="text-black font-bold mb-1">{user.displayName}</h3>
 
             <p className="text-sm border-b border-gray-400 mb-1">
-              <span className="text-gray-400 text-xs pl-1 mb-2">ユーザー名</span>
-              <span className="block pl-1 pb-1">
-                @{user.username}
+              <span className="text-gray-400 text-xs pl-1 mb-2">
+                ユーザー名
               </span>
+              <span className="block pl-1 pb-1">@{user.username}</span>
             </p>
 
             <p className="text-sm border-b border-gray-400 mb-1">
               <span className="text-gray-400 text-xs pl-1 mb-2">メアド</span>
-              <span className="block pl-1 pb-1">
-                {user.email}
-              </span>
+              <span className="block pl-1 pb-1">{user.email}</span>
             </p>
           </div>
           <div>

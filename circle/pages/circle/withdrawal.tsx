@@ -47,12 +47,12 @@ const IndexPage: NextPage = () => {
 
         <div className="pt-8 pb-32 md:pb-72">
           <div className="flex justify-center pb-8">
-            <GreenButton href={`/`}>
-              サークル一覧へ戻る
-            </GreenButton>
+            <GreenButton href={`/`}>サークル一覧へ戻る</GreenButton>
           </div>
 
-          <h2 className="text-center font-bold mb-8 text-lg">どのサークルを脱退しますか？</h2>
+          <h2 className="text-center font-bold mb-8 text-lg">
+            どのサークルを脱退しますか？
+          </h2>
 
           <div>
             {circles && circles.length > 0 ? (
@@ -60,7 +60,9 @@ const IndexPage: NextPage = () => {
                 circles={circles}
                 onWithdrawal={onWithdrawal}
               />
-            ) : ''}
+            ) : (
+              ''
+            )}
           </div>
         </div>
 

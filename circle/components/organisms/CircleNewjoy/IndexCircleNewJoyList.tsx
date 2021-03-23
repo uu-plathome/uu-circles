@@ -11,11 +11,17 @@ const IndexCircleNewJoyList: FC<Props> = ({ circleId, circleNewJoys }) => {
   return (
     <div>
       <div className="md:hidden">
-        <IndexCircleNewJoyListSP circleId={circleId} circleNewJoys={circleNewJoys} />
+        <IndexCircleNewJoyListSP
+          circleId={circleId}
+          circleNewJoys={circleNewJoys}
+        />
       </div>
 
       <div className="hidden md:block">
-        <IndexCircleNewJoyListPC circleId={circleId} circleNewJoys={circleNewJoys} />
+        <IndexCircleNewJoyListPC
+          circleId={circleId}
+          circleNewJoys={circleNewJoys}
+        />
       </div>
     </div>
   )

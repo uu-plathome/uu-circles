@@ -1,19 +1,22 @@
 import { FormEvent, useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useStringInput } from '@/hooks/useInput';
-import { EditUserForm } from '@/components/organisms/Form/User/EditUserForm';
-import { updateUser } from '@/infra/api/auth';
-import { isUpdateOwnUserRequestValidationError, UpdateOwnUserRequest } from '@/lib/types/api/UpdateOwnUserRequest';
-import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
-import { BaseFooter } from '@/components/layouts/BaseFooter';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
-import Colors from '@/colors';
+import { useStringInput } from '@/hooks/useInput'
+import { EditUserForm } from '@/components/organisms/Form/User/EditUserForm'
+import { updateUser } from '@/infra/api/auth'
+import {
+  isUpdateOwnUserRequestValidationError,
+  UpdateOwnUserRequest,
+} from '@/lib/types/api/UpdateOwnUserRequest'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
+import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
+import Colors from '@/colors'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -52,7 +55,7 @@ const CreatePage: NextPage = () => {
 
     console.log('onSubmit', {
       data,
-      authContextUser: authContext.user
+      authContextUser: authContext.user,
     })
     authContext.setUser(data)
 
@@ -69,7 +72,6 @@ const CreatePage: NextPage = () => {
 
         <BaseContainer>
           <div className="px-2 pt-8 pb-32">
-
             <SubmitLoading isOpen={isOpen} />
 
             <EditUserForm
@@ -84,7 +86,11 @@ const CreatePage: NextPage = () => {
             <div className="text-center pt-12 border-t border-gray-300 mt-12">
               <Link href="/logout">
                 <a className="text-red-500 hover:underline">
-                  <FontAwesomeIcon icon={faUser} color={Colors.red[500]} size="lg" />
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    color={Colors.red[500]}
+                    size="lg"
+                  />
                   ログアウト
                 </a>
               </Link>

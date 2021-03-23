@@ -35,7 +35,7 @@ const IndexPage: NextPage = () => {
     const f = async () => {
       const {
         circle: _circle,
-        circleNewJoys: _circleNewJoys
+        circleNewJoys: _circleNewJoys,
       } = await getCircleNewJoyList(circleId)
       setCircle(_circle)
       setCircleNewjoys(_circleNewJoys)
@@ -47,7 +47,6 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           新歓イベントの追加・編集
@@ -58,10 +57,11 @@ const IndexPage: NextPage = () => {
             {circle ? (
               <div>
                 <p className="pt-8">
-                  <Link href="/circle/[circleId]" as={`/circle/${Number(circleId)}`}>
-                    <a className="underline text-blue-500">
-                      ← サークルに戻る
-                    </a>
+                  <Link
+                    href="/circle/[circleId]"
+                    as={`/circle/${Number(circleId)}`}
+                  >
+                    <a className="underline text-blue-500">← サークルに戻る</a>
                   </Link>
                 </p>
 
@@ -80,17 +80,22 @@ const IndexPage: NextPage = () => {
                       予定している新歓一覧
                     </h2>
 
-                    <IndexCircleNewJoyList circleId={circleId} circleNewJoys={circleNewjoys} />
+                    <IndexCircleNewJoyList
+                      circleId={circleId}
+                      circleNewJoys={circleNewjoys}
+                    />
                   </div>
-                ) : ''}
+                ) : (
+                  ''
+                )}
 
                 <div className="mt-32 border-t border-gray-300">
-                  <CircleNameHeader
-                    circle={circle}
-                  />
+                  <CircleNameHeader circle={circle} />
                 </div>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
           </div>
         </BaseContainer>
 

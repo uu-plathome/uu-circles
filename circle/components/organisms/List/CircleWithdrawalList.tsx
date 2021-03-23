@@ -1,7 +1,7 @@
-import { GrayButton } from "@/components/atoms/buttons/GrayButton"
-import { RedButton } from "@/components/atoms/buttons/RedButton"
-import { Circle } from "@/lib/types/model/Circle"
-import { FC, useState } from "react"
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import { RedButton } from '@/components/atoms/buttons/RedButton'
+import { Circle } from '@/lib/types/model/Circle'
+import { FC, useState } from 'react'
 import Modal from 'react-modal'
 
 const customStyles = {
@@ -32,12 +32,15 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onWithdrawal }) => {
 
   return (
     <div>
-      <a className="shadow hover:shadow-md cursor-pointer" onClick={() => setIsOpen(true)}>
+      <a
+        className="shadow hover:shadow-md cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
         <div
           className="flex justify-center items-center rounded border border-gray-200 bg-white py-6"
           style={{ width: 280 }}
         >
-          <p className="font-lg font-bold">{ circle.name }</p>
+          <p className="font-lg font-bold">{circle.name}</p>
         </div>
       </a>
 
@@ -67,12 +70,10 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onWithdrawal }) => {
 }
 
 const CircleWithdrawalListItem: FC<{
-  circle: Circle,
+  circle: Circle
   onWithdrawal(): void
 }> = ({ circle, onWithdrawal }) => {
-    return (
-      <DeleteButton circle={circle} onWithdrawal={onWithdrawal} />
-    )
+  return <DeleteButton circle={circle} onWithdrawal={onWithdrawal} />
 }
 
 type Props = {
@@ -80,20 +81,23 @@ type Props = {
   onWithdrawal(circleId: number): void
 }
 const CircleWithdrawalList: FC<Props> = ({ circles, onWithdrawal }) => {
-    return (
-        <div>
-          {circles.map((circle) => {
-            return (
-              <div key={`CircleWithdrawalList-${circle.id}`} className="mb-4 flex justify-center">
-                <CircleWithdrawalListItem
-                  circle={circle}
-                  onWithdrawal={() => onWithdrawal(circle.id)}
-                />
-              </div>
-            )
-          })}
-        </div>
-    )
+  return (
+    <div>
+      {circles.map((circle) => {
+        return (
+          <div
+            key={`CircleWithdrawalList-${circle.id}`}
+            className="mb-4 flex justify-center"
+          >
+            <CircleWithdrawalListItem
+              circle={circle}
+              onWithdrawal={() => onWithdrawal(circle.id)}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 export { CircleWithdrawalList }
