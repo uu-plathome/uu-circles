@@ -5,8 +5,9 @@ namespace App\Auth;
 use App\Enum\Property\UserProperty;
 use App\Models\CircleUser;
 use App\Models\User;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\TokenGuard;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 
 class CircleUserTokenGuard extends TokenGuard
 {
@@ -17,7 +18,7 @@ class CircleUserTokenGuard extends TokenGuard
      */
     protected $user;
 
-    protected ?CircleUser $circleUsers = null;
+    protected ?Collection $circleUsers = null;
 
     /**
      * Get the currently authenticated user.
@@ -26,6 +27,8 @@ class CircleUserTokenGuard extends TokenGuard
      */
     public function user()
     {
+        Log::debug("CircleUserTokenGuard#user");
+
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
         // every call to this method because that would be tremendously slow.
@@ -42,22 +45,27 @@ class CircleUserTokenGuard extends TokenGuard
                 $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
                 UserProperty::active => true
             ]);
-
-            if ($this->circleUsers() === null) {
-                return abort(400);
-            }
         }
 
-        return $this->user = $user;
+        $this->user = $user;
+
+        if (is_null($this->circleUsers())) {
+            $this->user = null;
+            return abort(400);
+        }
+
+        return $this->user;
     }
 
     /**
      * Get the currently authenticated user.
      *
-     * @return CircleUser|null
+     * @return Collection|null
      */
-    public function circleUsers(): ?CircleUser
+    public function circleUsers(): ?Collection
     {
+        Log::debug("CircleUserTokenGuard#circleUsers");
+
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
         // every call to this method because that would be tremendously slow.
@@ -65,7 +73,14 @@ class CircleUserTokenGuard extends TokenGuard
             return $this->circleUsers;
         }
 
-        /** @var \App\Models\CircleUser $circleUsers */
+        if (is_null($this->user)) {
+            return null;
+        }
+
+        Log::debug("CircleUserTokenGuard#val", [
+            'user' => $this->user,
+        ]);
+
         $circleUsers = $this->user->circleUsers;
 
         return $this->circleUsers = $circleUsers;
