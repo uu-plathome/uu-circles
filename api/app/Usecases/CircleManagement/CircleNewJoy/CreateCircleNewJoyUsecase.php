@@ -29,6 +29,7 @@ class CreateCircleNewJoyUsecase
             Property::title                    => $param->title,
             Property::description              => $param->description,
             Property::url                      => $param->url,
+            Property::private_newjoy_link      => $param->private_newjoy_link,
             Property::place_of_activity        => $param->place_of_activity,
             Property::place_of_activity_detail => $param->place_of_activity_detail,
             Property::publish_from             => $param->publish_from,
