@@ -94,7 +94,7 @@ const Login: NextPage = () => {
                 </form>
 
                 <div className="text-black text-right mt-8 mb-4">
-                  <Link href="/auth/login">
+                  <Link href="/login">
                     <a className="underline">ログインへ戻る</a>
                   </Link>
                 </div>
