@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\VerificationEmailCircleUserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
 class VerificationConfirmController extends Controller
@@ -19,8 +20,10 @@ class VerificationConfirmController extends Controller
      */
     public function __invoke(VerificationEmailCircleUserRequest $request, int $userId): JsonResponse
     {
+        Log::debug("VerificationConfirmController args userId=$userId");
+
         // 有効な署名かどうか
-        if (! URL::hasValidSignature($request)) {
+        if (!URL::hasValidSignature($request)) {
             return response()->json([
                 'status' => __('verification.invalid'),
             ], 400);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 
 class ResetPasswordCircleController extends Controller
@@ -14,6 +15,8 @@ class ResetPasswordCircleController extends Controller
 
     public function __invoke(ResetPasswordCircleRequest $request)
     {
+        Log::debug("ResetPasswordCircleController args none");
+
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
@@ -41,6 +44,8 @@ class ResetPasswordCircleController extends Controller
      */
     protected function sendResetResponse(Request $request, $response)
     {
+        Log::debug("ResetPasswordCircleController#sendResetResponse");
+
         return ['status' => trans($response)];
     }
 
@@ -53,6 +58,8 @@ class ResetPasswordCircleController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
+        Log::debug("ResetPasswordCircleController#sendResetFailedResponse");
+
         return response()->json(['email' => trans($response)], 400);
     }
 }
