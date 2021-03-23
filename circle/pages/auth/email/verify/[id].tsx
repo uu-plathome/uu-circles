@@ -8,6 +8,7 @@ import { AuthContext } from "@/contexts/AuthContext"
 import { OrangeButton } from "@/components/atoms/buttons/OrangeButton"
 import { isVerificationEmailCircleUserRequestValidationError } from "@/lib/types/api/VerificationEmailCircleUserRequest"
 import { checkVerifyCircleUser, verificationEmailCircleUser } from "@/infra/api/auth"
+import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
 
 const Login: NextPage = () => {
     const password = useInput('')
@@ -86,11 +87,10 @@ const Login: NextPage = () => {
                         {!success && !error ? (
                             <form onSubmit={onSubmit}>
                                 <div className="px-4 mb-4">
-                                    <BaseTextField
+                                    <SimplePasswordTextField
                                         label="パスワード"
                                         id="password"
                                         name="password"
-                                        expand
                                         { ...password }
                                     />
                                 </div>
