@@ -8,6 +8,10 @@ import { FC, FormEvent } from 'react'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void
+  /**
+   * 自分のアカウントではないかどうか
+   */
+  isOtherUser: boolean
   form: {
     username: UseStringInput
     displayName: UseStringInput
@@ -15,7 +19,7 @@ type Props = {
     role: UseStringInput
   }
 }
-const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
+const EditCircleUserForm: FC<Props> = ({ onSubmit, isOtherUser, form }) => {
   return (
     <form onSubmit={onSubmit}>
       <BaseTextField
@@ -54,6 +58,12 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
         name="role"
         id="role"
         required
+        disabled={!isOtherUser}
+        note={
+          !isOtherUser
+            ? '自分のアカウントの権限は変更できません。他のアカウントから変更してください。'
+            : 'サークル管理者は部員アカウントの管理ができます。'
+        }
         items={[
           { label: __(Role.MANAGER, 'CircleUserRole'), value: Role.MANAGER },
           { label: __(Role.COMMON, 'CircleUserRole'), value: Role.COMMON },
