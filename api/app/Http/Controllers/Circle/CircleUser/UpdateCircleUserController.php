@@ -49,7 +49,7 @@ class UpdateCircleUserController extends Controller
         $request->validate([
             UserProperty::username   => 'unique:users,username,' . $user->id,
             CircleUserProperty::role => Rule::in(
-                $authUser->id === $user->id ? [Role::MANAGER, Role::COMMON] : [Role::MANAGER]
+                $authUser->id !== $user->id ? [Role::MANAGER, Role::COMMON] : [Role::MANAGER]
             ),
         ]);
 
