@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests\Admin\CircleUser;
 
+use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
+use App\Enum\Role;
 use App\Support\Arr;
+use App\Usecases\Admin\CircleUser\Params\CreateCircleUserUsecaseParam;
 use App\ValueObjects\CircleUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterCircleUserRequest extends FormRequest
 {
@@ -30,18 +34,25 @@ class RegisterCircleUserRequest extends FormRequest
             UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username'],
             UserProperty::display_name => ['nullable', 'string', 'max:50'],
             UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            CircleUserProperty::role   => [
+                'required',
+                'string',
+                Rule::in([Role::MANAGER, Role::COMMON])
+            ],
         ]);
     }
 
-    public function makeCircleUserValueObject(): CircleUserValueObject
+    public function makeCreateCircleUserUsecaseParam(): CreateCircleUserUsecaseParam
     {
-        $request = $this->validated();
+        $request = Arr::snake_keys($this->validated());
 
-        return CircleUserValueObject::of([
-            'circle_id'             => $this->circleId,
-            UserProperty::username     => $request['username'],
-            UserProperty::display_name => $request['displayName'],
-            UserProperty::email        => $request['email'],
-        ]);
+        $param = new CreateCircleUserUsecaseParam();
+        $param->circle_id = $this->circleId;
+        $param->username = Arr::get($request, UserProperty::username);
+        $param->display_name = Arr::get($request, UserProperty::display_name);
+        $param->email = Arr::get($request, UserProperty::email);
+        $param->role = Arr::get($request, CircleUserProperty::role);
+
+        return $param;
     }
 }
