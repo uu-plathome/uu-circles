@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\Property\UserProperty;
 use App\Notifications\ResetPasswordAdminUser;
+use App\Notifications\ResetPasswordCircleUser;
 use App\Notifications\VerifyEmailAdminUser;
 use App\Notifications\VerifyEmailCircleUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -106,6 +107,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordAdminUser($token));
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param string $token
+     * @return void
+     */
+    public function sendCircleUserPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordCircleUser($token));
     }
 
     /**

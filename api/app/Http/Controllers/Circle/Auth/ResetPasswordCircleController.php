@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Circle\Auth;
 
+use App\Events\PasswordResetCircleUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class ResetPasswordCircleController extends Controller
 {
@@ -33,6 +35,28 @@ class ResetPasswordCircleController extends Controller
         return $response == Password::PASSWORD_RESET
             ? $this->sendResetResponse($request, $response)
             : $this->sendResetFailedResponse($request, $response);
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        Log::debug("ResetPasswordCircleController#resetPassword");
+
+        $this->setUserPassword($user, $password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordResetCircleUser($user));
+
+        $this->guard()->login($user);
     }
 
     /**
