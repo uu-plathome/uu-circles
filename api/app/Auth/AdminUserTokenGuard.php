@@ -40,7 +40,8 @@ class AdminUserTokenGuard extends TokenGuard
         $this->user = $user;
         if (is_null($this->adminUser())) {
             $this->user = null;
-            return abort(400);
+            $this->adminUser = null;
+            return null;
         }
 
         return $this->user;

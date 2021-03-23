@@ -19,6 +19,7 @@ const CreatePage: NextPage = () => {
   const { id, userId } = router.query
   const { isMd } = useMediaQuery()
 
+  const email = useStringInput('')
   const username = useStringInput('')
   const displayName = useStringInput('')
   const active = useBooleanInput(true)
@@ -26,6 +27,7 @@ const CreatePage: NextPage = () => {
   useEffect(() => {
     const f = async () => {
       const foundUser = await getCircleUser(Number(id), Number(userId))
+      email.set(foundUser.email)
       username.set(foundUser.username)
       displayName.set(foundUser.displayName)
       active.set(foundUser.active)
@@ -69,6 +71,7 @@ const CreatePage: NextPage = () => {
             <EditCircleUserForm
               onSubmit={onSubmit}
               form={{
+                email,
                 username,
                 displayName,
                 active,
