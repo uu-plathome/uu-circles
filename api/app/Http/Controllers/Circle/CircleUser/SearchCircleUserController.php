@@ -36,7 +36,8 @@ class SearchCircleUserController extends Controller
         $authUser = $request->user();
         $this->permissionCircle($authUser, $circleId, [Role::MANAGER]);
 
-        $resultUsers = User::whereActive(true)
+        $foundResultUsers = User::with('circleUsers')
+            ->whereActive(true)
             ->where(function ($query) use ($searchText) {
                 $query->where(UserProperty::email, 'like', "%$searchText%")
                     ->orWhere(UserProperty::display_name, 'like', "%$searchText%")
@@ -47,6 +48,14 @@ class SearchCircleUserController extends Controller
                 $query->where(CircleUserProperty::circle_id, '!=', $circleId);
             })
             ->get();
+
+        $resultUsers = $foundResultUsers->filter(function ($user) use ($circleId) {
+            $ids = $user->circleUsers->map(
+                fn ($circleUser) => $circleUser->circle_id
+            )->toArray();
+
+            return !in_array($circleId, $ids, true);
+        })->values();
 
         return [
             'data' => Arr::camel_keys($resultUsers->toArray()),

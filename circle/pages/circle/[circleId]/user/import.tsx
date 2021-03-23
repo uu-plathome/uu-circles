@@ -28,6 +28,7 @@ import {
   isImportCircleUserRequestValidationError,
 } from '@/lib/types/api/ImportCircleUserRequest'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 
 const useParams = () => {
   const router = useRouter()
@@ -58,6 +59,11 @@ const CreatePage: NextPage = () => {
     if (searchText.value && searchText.value.length > 2) {
       const data = await searchCircleUser(circleId, searchText.value)
       setUser(data.users)
+      searchText.setErrors(
+        data.users.length === 0
+          ? ['検索結果は0件でした。別のキーワードを試してください。']
+          : []
+      )
       setIsOpen(false)
       return
     }
@@ -118,12 +124,18 @@ const CreatePage: NextPage = () => {
               <p className="text-sm">ユーザー検索</p>
 
               <form onSubmit={onSearch}>
-                <SearchTextField
-                  id="searchUser"
-                  name="searchUser"
-                  expand
-                  {...searchText}
-                />
+                <div className="mb-4">
+                  <SearchTextField
+                    id="searchUser"
+                    name="searchUser"
+                    expand
+                    {...searchText}
+                  />
+                </div>
+
+                <div className="flex justify-center">
+                  <BlueButton type="submit">検索</BlueButton>
+                </div>
               </form>
             </div>
 
