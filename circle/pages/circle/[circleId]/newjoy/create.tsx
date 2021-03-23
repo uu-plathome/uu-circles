@@ -100,10 +100,10 @@ const CreatePage: NextPage = () => {
 
             <SubmitLoading isOpen={isOpen} />
 
-            {circle ? (
+            {circle && circle.circle ? (
               <CreateCircleNewJoyForm
                 onSubmit={onSubmit}
-                circle={circle}
+                circle={circle.circle}
                 form={{
                   title,
                   description,

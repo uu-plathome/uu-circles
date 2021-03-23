@@ -179,6 +179,7 @@ const CreatePage: NextPage = () => {
 
             <EditCircleUserForm
               onSubmit={onSubmit}
+              isOtherUser={user && authContext.user.id !== user.id}
               form={{
                 username,
                 displayName,
