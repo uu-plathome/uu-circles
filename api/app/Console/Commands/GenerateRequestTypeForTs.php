@@ -30,6 +30,7 @@ use App\Http\Requests\Circle\Circle\UpdateCircleFormRequest as CircleUpdateCircl
 use App\Http\Requests\Circle\CircleNewJoy\RegisterCircleNewJoyRequest as CircleNewJoyRegisterCircleNewJoyRequest;
 use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest as CircleNewJoyUpdateCircleNewJoyRequest;
 use App\Http\Requests\Circle\CirclePutStorageRequest;
+use App\Http\Requests\Circle\CircleUser\ImportCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest as CircleUserRegisterCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest as CircleUserUpdateCircleUserRequest;
 use App\Http\Requests\Circle\User\UpdateOwnUserRequest;
@@ -105,6 +106,7 @@ class GenerateRequestTypeForTs extends Command
             UpdateOwnUserRequest::class,
             CircleUserUpdateCircleUserRequest::class,
             CircleUserRegisterCircleUserRequest::class,
+            ImportCircleUserRequest::class,
         ];
     }
 
