@@ -13,6 +13,7 @@ import { BaseFooter } from "@/components/layouts/BaseFooter"
 import { GreenButton } from "@/components/atoms/buttons/GreenButton"
 import { MainHeader } from "@/components/layouts/MainHeader"
 import { SimplePasswordTextField } from "@/components/atoms/form/SimplePasswordTextField"
+import Link from "next/link"
 
 const Login: NextPage = () => {
     const [error, setError] = useState('')
@@ -103,13 +104,13 @@ const Login: NextPage = () => {
                             </div>
                         </form>
 
-                        {/* <div className="text-black text-right mt-8 mb-4">
+                        <div className="text-black text-right mt-8 mb-4">
                             <Link href="/auth/password/reset">
                                 <a className="underline">
                                     パスワードを忘れた場合はこちら
                                 </a>
                             </Link>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

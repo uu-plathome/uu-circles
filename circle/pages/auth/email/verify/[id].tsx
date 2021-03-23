@@ -1,5 +1,4 @@
 import { BlueButton } from "@/components/atoms/buttons/BlueButton"
-import { BaseTextField } from "@/components/atoms/form/BaseTextField"
 import { useInput } from "@/hooks/useInput"
 import { NextPage } from "next"
 import { useRouter } from 'next/router'

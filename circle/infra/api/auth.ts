@@ -1,7 +1,15 @@
 import {
+  ForgotPasswordCircleRequest,
+  ForgotPasswordCircleRequestValidationError,
+} from '@/lib/types/api/ForgotPasswordCircleRequest'
+import {
   LoginCircleFormRequest,
   LoginCircleFormRequestValidationError,
 } from '@/lib/types/api/LoginCircleFormRequest'
+import {
+  ResetPasswordCircleRequest,
+  ResetPasswordCircleRequestValidationError,
+} from '@/lib/types/api/ResetPasswordCircleRequest'
 import {
   UpdateOwnUserRequest,
   UpdateOwnUserRequestValidationError,
@@ -212,6 +220,72 @@ export const updateUser = async (user: UpdateOwnUserRequest) => {
         ...e.response.data,
         type: 'UpdateOwnUserRequestValidationError',
       } as UpdateOwnUserRequestValidationError
+    }
+
+    console.error(e)
+  }
+}
+
+/**
+ * Passwordを変更するためのメールを送信する
+ *
+ * @param email
+ */
+export const forgotPassword = async (email: string) => {
+  try {
+    const { data } = await axiosInstance.post<{
+      status: string
+    }>(`/circle/api/password/reset`, {
+      email,
+    } as ForgotPasswordCircleRequest)
+
+    return {
+      ...data,
+      type: 'success',
+    } as {
+      status: string
+      type: 'success'
+    }
+  } catch (_e) {
+    const e = _e as AxiosError<ForgotPasswordCircleRequestValidationError>
+
+    if (e.response && e.response.status === 422) {
+      return {
+        ...e.response.data,
+        type: 'ForgotPasswordCircleRequestValidationError',
+      } as ForgotPasswordCircleRequestValidationError
+    }
+
+    console.error(e)
+  }
+}
+
+/**
+ * Passwordを変更するためのメールを送信する
+ *
+ * @param email
+ */
+export const resetPassword = async (request: ResetPasswordCircleRequest) => {
+  try {
+    const { data } = await axiosInstance.post<{
+      status: string
+    }>(`/circle/api/password/confirm`, request)
+
+    return {
+      ...data,
+      type: 'success',
+    } as {
+      status: string
+      type: 'success'
+    }
+  } catch (_e) {
+    const e = _e as AxiosError<ResetPasswordCircleRequestValidationError>
+
+    if (e.response && e.response.status === 422) {
+      return {
+        ...e.response.data,
+        type: 'ResetPasswordCircleRequestValidationError',
+      } as ResetPasswordCircleRequestValidationError
     }
 
     console.error(e)
