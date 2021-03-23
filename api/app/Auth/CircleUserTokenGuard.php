@@ -10,12 +10,19 @@ use Illuminate\Auth\TokenGuard;
 
 class CircleUserTokenGuard extends TokenGuard
 {
-    protected ?CircleUser $circleUser = null;
+    /**
+     * The currently authenticated user.
+     *
+     * @var User
+     */
+    protected $user;
+
+    protected ?CircleUser $circleUsers = null;
 
     /**
      * Get the currently authenticated user.
      *
-     * @return User|\Illuminate\Contracts\Auth\Authenticatable|null
+     * @return User|null
      */
     public function user()
     {
@@ -36,7 +43,7 @@ class CircleUserTokenGuard extends TokenGuard
                 UserProperty::active => true
             ]);
 
-            if ($this->circleUser() === null) {
+            if ($this->circleUsers() === null) {
                 return abort(400);
             }
         }
@@ -49,18 +56,18 @@ class CircleUserTokenGuard extends TokenGuard
      *
      * @return CircleUser|null
      */
-    public function circleUser(): ?CircleUser
+    public function circleUsers(): ?CircleUser
     {
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
         // every call to this method because that would be tremendously slow.
-        if (!is_null($this->circleUser)) {
-            return $this->circleUser;
+        if (!is_null($this->circleUsers)) {
+            return $this->circleUsers;
         }
 
-        /** @var \App\Models\CircleUser $circleUser */
-        $circleUser = $this->user->circleUser;
+        /** @var \App\Models\CircleUser $circleUsers */
+        $circleUsers = $this->user->circleUsers;
 
-        return $this->circleUser = $circleUser;
+        return $this->circleUsers = $circleUsers;
     }
 }
