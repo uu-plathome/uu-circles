@@ -143,7 +143,7 @@ const CreatePage: NextPage = () => {
 
     console.log('onSubmit Done')
 
-    await router.push(`/`)
+    await router.push(`/circle/${circleId}/user`)
   }
 
   const onWithdrawal = async () => {

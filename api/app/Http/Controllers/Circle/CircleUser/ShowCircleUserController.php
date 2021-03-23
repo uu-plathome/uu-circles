@@ -6,6 +6,7 @@ use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
+use App\Models\CircleUser;
 use App\Models\User;
 use App\Support\Arr;
 use Illuminate\Http\Request;
@@ -38,8 +39,15 @@ class ShowCircleUserController extends Controller
             ->findOrFail($userId);
         $this->permissionCircle($user, $circleId);
 
+        $circleUser = CircleUser::whereUserId($userId)
+            ->whereCircleId($circleId)
+            ->firstOrFail('role');
+
         return [
-            'data' => Arr::camel_keys($user->toArray()),
+            'data' => Arr::camel_keys(array_merge(
+                $user->toArray(),
+                ['role' => $circleUser->role]
+            )),
         ];
     }
 }
