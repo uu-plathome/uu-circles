@@ -57,7 +57,7 @@ export const createCircleUser = async (
   })
 
   try {
-    await axiosInstance.post(`/admin/api/circle/${circleId}/user`, user)
+    await axiosInstance.post(`/circle/api/circle/${circleId}/user`, user)
 
     return {
       type: 'Success',
@@ -89,7 +89,7 @@ export const updateCircleUser = async (
 
   try {
     await axiosInstance.put(
-      `/admin/api/circle/${circleId}/user/${userId}`,
+      `/circle/api/circle/${circleId}/user/${userId}`,
       user
     )
 
