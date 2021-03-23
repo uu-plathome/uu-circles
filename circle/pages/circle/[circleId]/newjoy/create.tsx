@@ -38,7 +38,7 @@ const CreatePage: NextPage = () => {
   const release = useBooleanInput(true)
 
   const { data: circle } = useSWR(
-    [`/admin/api/circle/${circleId}`, Number(circleId)],
+    [`/circle/api/circle/${circleId}`, Number(circleId)],
     () => showCircle(Number(circleId))
   )
 

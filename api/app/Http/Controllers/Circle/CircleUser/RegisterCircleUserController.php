@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
+use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest;
 use App\Usecases\CircleManagement\CircleUser\CreateCircleUserUsecase;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 
 class RegisterCircleUserController extends Controller
 {
+    use Permission;
+
     private CreateCircleUserUsecase $createCircleUserUsecase;
 
     public function __construct(CreateCircleUserUsecase $createCircleUserUsecase)

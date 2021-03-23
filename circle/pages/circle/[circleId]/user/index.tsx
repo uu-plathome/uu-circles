@@ -44,7 +44,6 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント一覧
@@ -53,14 +52,17 @@ const IndexPage: NextPage = () => {
         <BaseContainer>
           <div className="pt-8 pb-32">
             {circle ? (
-              <p className="pt-8">
-                <Link href="/circle/[circleId]" as={`/circle/${Number(circleId)}`}>
-                  <a className="underline text-blue-500">
-                    ← サークルに戻る
-                  </a>
+              <p className="px-4 pt-8 pb-4">
+                <Link
+                  href="/circle/[circleId]"
+                  as={`/circle/${Number(circleId)}`}
+                >
+                  <a className="underline text-blue-500">← サークルに戻る</a>
                 </Link>
               </p>
-            ) : ''}
+            ) : (
+              ''
+            )}
 
             {users ? (
               <div>
@@ -77,17 +79,21 @@ const IndexPage: NextPage = () => {
                   <div className="pt-8">
                     <IndexCircleUserList circleId={circleId} users={users} />
                   </div>
-                ) : ''}
+                ) : (
+                  ''
+                )}
 
                 {circle ? (
                   <div className="mt-32 border-t border-gray-300">
-                    <CircleNameHeader
-                      circle={circle}
-                    />
+                    <CircleNameHeader circle={circle} />
                   </div>
-                ) : ''}
+                ) : (
+                  ''
+                )}
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
           </div>
         </BaseContainer>
 

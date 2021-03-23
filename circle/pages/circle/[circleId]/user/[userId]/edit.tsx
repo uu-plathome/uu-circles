@@ -1,23 +1,27 @@
 import { FC, FormEvent, useContext, useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { BaseContainer } from "@/components/molecules/Container/BaseContainer";
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useStringInput } from '@/hooks/useInput';
-import { isUpdateCircleUserRequestValidationError, UpdateCircleUserRequest } from '@/lib/types/api/UpdateCircleUserRequest';
-import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading';
-import { BaseFooter } from '@/components/layouts/BaseFooter';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { withdrawalOtherCircle } from '@/infra/api/circle';
-import { getCircleUser, updateCircleUser } from '@/infra/api/circleUser';
-import { EditCircleUserForm } from '@/components/organisms/Form/CircleUser/EditCircleUserForm';
-import Link from 'next/link';
-import { GrayButton } from '@/components/atoms/buttons/GrayButton';
-import { RedButton } from '@/components/atoms/buttons/RedButton';
-import { User } from '@/lib/types/model/User';
+import { useStringInput } from '@/hooks/useInput'
+import {
+  isUpdateCircleUserRequestValidationError,
+  UpdateCircleUserRequest,
+} from '@/lib/types/api/UpdateCircleUserRequest'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
+import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { withdrawalOtherCircle } from '@/infra/api/circle'
+import { getCircleUser, updateCircleUser } from '@/infra/api/circleUser'
+import { EditCircleUserForm } from '@/components/organisms/Form/CircleUser/EditCircleUserForm'
+import Link from 'next/link'
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import { RedButton } from '@/components/atoms/buttons/RedButton'
+import { User } from '@/lib/types/model/User'
 import Modal from 'react-modal'
+import { Role } from '@/lib/enum/api/Role'
 
 const customStyles = {
   content: {
@@ -48,7 +52,10 @@ const DeleteButton: FC<DeleteButtonProps> = ({ user, onWithdrawal }) => {
   return (
     <div>
       <div className="text-center pt-12 border-t border-gray-300 mt-12">
-        <a className="text-red-500 hover:underline" onClick={() => setIsOpen(true)}>
+        <a
+          className="text-red-500 hover:underline"
+          onClick={() => setIsOpen(true)}
+        >
           サークルから脱退させる
         </a>
       </div>
@@ -94,11 +101,12 @@ const CreatePage: NextPage = () => {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { circleId, userId } = useParams()
-  const [user, setUser] = useState<User|undefined>(undefined)
+  const [user, setUser] = useState<User | undefined>(undefined)
 
   const username = useStringInput('')
   const displayName = useStringInput('')
   const email = useStringInput('')
+  const role = useStringInput(Role.COMMON)
 
   useEffect(() => {
     const f = async () => {
@@ -107,6 +115,7 @@ const CreatePage: NextPage = () => {
       username.set(data.username)
       displayName.set(data.displayName)
       email.set(data.email)
+      role.set(data.role)
     }
 
     f()
@@ -116,19 +125,17 @@ const CreatePage: NextPage = () => {
     event.preventDefault()
     setIsOpen(true)
 
-    const data = await updateCircleUser(
-      circleId,
-      userId,
-      {
-        type: 'UpdateCircleUserRequest',
-        username: username.value,
-        displayName: displayName.value,
-      } as UpdateCircleUserRequest
-    )
+    const data = await updateCircleUser(circleId, userId, {
+      type: 'UpdateCircleUserRequest',
+      username: username.value,
+      displayName: displayName.value,
+      role: role.value,
+    } as UpdateCircleUserRequest)
 
     if (isUpdateCircleUserRequestValidationError(data)) {
       username.setErrors(data.errors.username)
       displayName.setErrors(data.errors.displayName)
+      role.setErrors(data.errors.role)
       setIsOpen(false)
 
       return
@@ -160,10 +167,11 @@ const CreatePage: NextPage = () => {
         <BaseContainer>
           <div className="px-2 pt-8 pb-32">
             <p className="pb-8">
-              <Link href="/circle/[circleId]/user" as={`/circle/${Number(circleId)}/user`}>
-                <a className="underline text-blue-500">
-                  ← 戻る
-                </a>
+              <Link
+                href="/circle/[circleId]/user"
+                as={`/circle/${Number(circleId)}/user`}
+              >
+                <a className="underline text-blue-500">← 戻る</a>
               </Link>
             </p>
 
@@ -175,12 +183,15 @@ const CreatePage: NextPage = () => {
                 username,
                 displayName,
                 email,
+                role,
               }}
             />
 
             {user && user.id !== authContext.user.id ? (
               <DeleteButton user={user} onWithdrawal={onWithdrawal} />
-            ) : ''}
+            ) : (
+              ''
+            )}
           </div>
         </BaseContainer>
 
