@@ -84,7 +84,6 @@ const Page: NextPage = () => {
         setCircle(foundCircle)
         if (foundCircle) {
           name.set(foundCircle.name)
-          release.set(foundCircle.release)
           nameKana.set(foundCircle.nameKana)
           shortName.set(foundCircle.shortName)
           prefixName.set(foundCircle.prefixName)
