@@ -82,5 +82,5 @@ jobs:
             php artisan route:clear && \
             php artisan view:clear
             cd ~/uu-circles.com &&\
-            ln -s ~/uu-circles.com/work/api/${{ github.run_number }} ~/uu-circles.com/work/api/current
+            ln -nfs ~/uu-circles.com/work/api/${{ github.run_number }} ~/uu-circles.com/work/api/current
           '

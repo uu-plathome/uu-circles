@@ -7,6 +7,7 @@ export interface UpdateAdvertiseRequest {
   link?: string
   mainImageUrl?: string
   active?: boolean
+  advertiseType?: string
   publishFrom?: any
   publishTo?: any
 }
@@ -21,6 +22,7 @@ export interface UpdateAdvertiseRequestValidationError {
     link?: string[]
     mainImageUrl?: string[]
     active?: string[]
+    advertiseType?: string[]
     publishFrom?: string[]
     publishTo?: string[]
   }

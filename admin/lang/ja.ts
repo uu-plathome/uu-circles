@@ -1,3 +1,4 @@
+import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
@@ -56,8 +57,19 @@ export const ja = {
     [Week.SATURDAY]: '土曜日',
     [Week.SUNDAY]: '日曜日',
   },
+  advertiseType: {
+    [AdvertiseType.COMMON]: '通常広告',
+    [AdvertiseType.MAIN_TOP]: 'トップ画面広告',
+  },
 }
 
+/**
+ * 翻訳関数
+ *
+ * @param key
+ * @param namespace
+ * @returns
+ */
 export const __ = (key: string, namespace?: string) => {
   try {
     if (!namespace) {
