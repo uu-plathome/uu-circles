@@ -57,15 +57,25 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
             advertises.map((advertise) => {
               return (
                 <SwiperSlide key={advertise.id}>
-                  <a href={advertise.link} target="_blank" rel="noopener">
+                  {advertise.link ? (
+                    <a href={advertise.link} target="_blank" rel="noopener">
+                      <Image
+                        width={width || 1000}
+                        height={height}
+                        objectFit="cover"
+                        alt={`${advertise.title} - トップ広告`}
+                        src={advertise.mainImageUrl || '/images/top-image.png'}
+                      />
+                    </a>
+                  ) : (
                     <Image
-                      width={width || 1000}
-                      height={height}
-                      objectFit="cover"
-                      alt="新入生イベントアンケート"
-                      src={advertise.mainImageUrl || '/images/top-image.png'}
-                    />
-                  </a>
+                        width={width || 1000}
+                        height={height}
+                        objectFit="cover"
+                        alt={`${advertise.title} - トップ広告`}
+                        src={advertise.mainImageUrl || '/images/top-image.png'}
+                      />
+                  )}
                 </SwiperSlide>
               )
             })}
