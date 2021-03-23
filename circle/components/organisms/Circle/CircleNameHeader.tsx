@@ -1,8 +1,8 @@
-import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { Circle } from "@/lib/types/model/Circle"
-import Image from "next/image"
-import Link from "next/link"
-import { FC } from "react"
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Circle } from '@/lib/types/model/Circle'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
 
 type Props = {
   circle: Circle
@@ -17,7 +17,7 @@ const CircleNameHeader: FC<Props> = ({ circle }) => {
           <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
             <a>
               <Image
-                src={ circle.mainImageUrl || '/images/no-image.png' }
+                src={circle.mainImageUrl || '/images/no-image.png'}
                 width={isMd ? 80 : 62}
                 height={isMd ? 80 : 62}
                 className="rounded-full"
@@ -29,7 +29,7 @@ const CircleNameHeader: FC<Props> = ({ circle }) => {
         <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
           <a>
             <h1 className="text-black text-lg md:text-2xl font-bold">
-              { circle.name }
+              {circle.name}
             </h1>
           </a>
         </Link>

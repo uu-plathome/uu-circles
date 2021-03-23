@@ -34,18 +34,17 @@ const IndexPage: NextPage = () => {
           <div>
             {circles && circles.length > 0 ? (
               <CircleList circles={circles} />
-            ) : ''}
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="text-center pt-32">
             <Link href="/circle/withdrawal">
-              <a className="text-red-600 hover:underline">
-                サークルを脱退する
-              </a>
+              <a className="text-red-600 hover:underline">サークルを脱退する</a>
             </Link>
           </div>
         </div>
-
 
         <BaseFooter />
       </BaseLayout>
