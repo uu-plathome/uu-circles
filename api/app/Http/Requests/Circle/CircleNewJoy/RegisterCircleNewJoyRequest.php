@@ -34,6 +34,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::title                    => ['required', 'string', 'max:30'],
             CircleNewJoyProperty::description              => ['string', 'nullable', 'max:150'],
             CircleNewJoyProperty::url                      => ['string', 'nullable', 'url', 'max:255'],
+            CircleNewJoyProperty::private_newjoy_link      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyProperty::place_of_activity        => [
                 'string',
                 Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
@@ -56,6 +57,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
             CircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
             CircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
+            CircleNewJoyProperty::private_newjoy_link      => __('circleNewJoy.' . CircleNewJoyProperty::private_newjoy_link),
             CircleNewJoyProperty::release                  => __('circleNewJoy.' . CircleNewJoyProperty::release),
             CircleNewJoyProperty::publish_from             => __('circleNewJoy.' . CircleNewJoyProperty::publish_from),
         ]);

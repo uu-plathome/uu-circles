@@ -14,6 +14,7 @@ class CircleNewJoyProperty
     const url = 'url';
     const place_of_activity = 'place_of_activity';
     const place_of_activity_detail = 'place_of_activity_detail';
+    const private_newjoy_link = 'private_newjoy_link';
     const publish_from = 'publish_from';
     const start_date = 'start_date';
     const end_date = 'end_date';
