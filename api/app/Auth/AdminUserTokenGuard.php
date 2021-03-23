@@ -8,11 +8,9 @@ use App\Models\CircleUser;
 use App\Models\User;
 use Illuminate\Auth\TokenGuard;
 
-class UserTokenGuard extends TokenGuard
+class AdminUserTokenGuard extends TokenGuard
 {
     protected ?AdminUser $adminUser = null;
-
-    protected ?CircleUser $circleUser = null;
 
     /**
      * Get the currently authenticated user.
@@ -37,6 +35,10 @@ class UserTokenGuard extends TokenGuard
                 $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
                 UserProperty::active => true
             ]);
+
+            if ($this->adminUser() === null) {
+                return abort(400);
+            }
         }
 
         return $this->user = $user;
@@ -59,24 +61,5 @@ class UserTokenGuard extends TokenGuard
         $adminUser = $this->user->adminUser;
 
         return $this->adminUser = $adminUser;
-    }
-
-    /**
-     * Get the currently authenticated user.
-     *
-     * @return CircleUser|null
-     */
-    public function circleUser(): ?CircleUser
-    {
-        // If we've already retrieved the user for the current request we can just
-        // return it back immediately. We do not want to fetch the user data on
-        // every call to this method because that would be tremendously slow.
-        if (!is_null($this->circleUser)) {
-            return $this->circleUser;
-        }
-
-        $circleUser = $this->user->circleUser;
-
-        return $this->circleUser = $circleUser;
     }
 }

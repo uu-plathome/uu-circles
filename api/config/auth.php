@@ -51,6 +51,12 @@ return [
             'driver'   => 'adminUserGuard',
             'provider' => 'users',
             'hash'     => false,
+        ],
+
+        'circleUser' => [
+            'driver'   => 'circleUserGuard',
+            'provider' => 'users',
+            'hash'     => false,
         ]
     ],
 

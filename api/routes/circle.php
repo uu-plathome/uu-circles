@@ -24,7 +24,7 @@ use App\Http\Controllers\Circle\CircleUser\WithdrawalOwnCircleUserController;
 use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest:adminUser')->group(function () {
+Route::middleware('guest:circleUser')->group(function () {
     Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
@@ -37,7 +37,7 @@ Route::middleware('guest:adminUser')->group(function () {
     });
 });
 
-Route::middleware('auth:adminUser')->group(function () {
+Route::middleware('auth:circleUser')->group(function () {
     Route::get('/user', ShowOwnCircleUserController::class);
     Route::put('/user', UpdateOwnUserController::class);
 
