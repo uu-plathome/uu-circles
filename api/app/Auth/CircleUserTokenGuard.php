@@ -51,7 +51,8 @@ class CircleUserTokenGuard extends TokenGuard
 
         if (is_null($this->circleUsers())) {
             $this->user = null;
-            return abort(400);
+            $this->circleUsers = null;
+            return null;
         }
 
         return $this->user;

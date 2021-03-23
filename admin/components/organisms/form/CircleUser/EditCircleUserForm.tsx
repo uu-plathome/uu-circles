@@ -7,6 +7,7 @@ import { FC, FormEvent } from 'react'
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void
   form: {
+    email: UseStringInput
     username: UseStringInput
     displayName: UseStringInput
     active: UseBooleanInput
@@ -44,6 +45,16 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
           { value: 'false', label: '無効' },
         ]}
         {...form.active}
+      />
+
+      <BaseTextField
+        label="メールアドレス"
+        name="email"
+        id="email"
+        required
+        expand
+        disabled
+        {...form.email}
       />
 
       <div className="flex justify-center mt-8">
