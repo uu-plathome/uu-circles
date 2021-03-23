@@ -5,8 +5,8 @@ import { linkConst } from './linkConst'
 
 export const getMain = async (): Promise<{
   circles: Circle[]
-  advertises: Advertise[],
-  mainAdvertises: Advertise[],
+  advertises: Advertise[]
+  mainAdvertises: Advertise[]
 }> => {
   type Response = {
     data: Circle[]
