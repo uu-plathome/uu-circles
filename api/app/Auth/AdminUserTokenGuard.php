@@ -35,13 +35,15 @@ class AdminUserTokenGuard extends TokenGuard
                 $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
                 UserProperty::active => true
             ]);
-
-            if ($this->adminUser() === null) {
-                return abort(400);
-            }
         }
 
-        return $this->user = $user;
+        $this->user = $user;
+        if (is_null($this->adminUser())) {
+            $this->user = null;
+            return abort(400);
+        }
+
+        return $this->user;
     }
 
     /**
