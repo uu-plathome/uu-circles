@@ -22,9 +22,9 @@ const ExistCircleUserInviteForm: FC<Props> = ({
   return (
     <form onSubmit={onSubmit}>
       <BaseSelect
-        label="権限"
-        name="role"
-        id="role"
+        label="ユーザー一覧"
+        name="id"
+        id="id"
         required
         note={
           canSelectUsers
