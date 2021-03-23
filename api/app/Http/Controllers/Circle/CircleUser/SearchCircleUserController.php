@@ -38,6 +38,7 @@ class SearchCircleUserController extends Controller
 
         $foundResultUsers = User::with('circleUsers')
             ->whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->where(function ($query) use ($searchText) {
                 $query->where(UserProperty::email, 'like', "%$searchText%")
                     ->orWhere(UserProperty::display_name, 'like', "%$searchText%")
