@@ -264,7 +264,7 @@ class GenerateRequestTypeForTs extends Command
                 $value === 'file' ||
                 $value === 'image'
             ) {
-                return 'Blob|File';
+                return 'Blob | File';
             }
 
             if ($value === 'array') {
