@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
@@ -28,7 +29,15 @@ class IndexCircleUserController extends Controller
             ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {
                 /** @var \App\Models\CircleUser $query */
                 $query->whereCircleId($circleId);
-            })->get();
+            })
+            ->select([
+                UserProperty::display_name,
+                UserProperty::email,
+                UserProperty::email_verified_at,
+                UserProperty::id,
+                UserProperty::username,
+            ])
+            ->get();
 
         return Arr::camel_keys([
             'circle' => Arr::camel_keys(
