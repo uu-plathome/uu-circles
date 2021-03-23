@@ -2,9 +2,11 @@
 
 namespace App\Usecases\Admin;
 
+use App\Enum\Property\CircleUserProperty;
 use App\Events\RegisteredCircleUser;
 use App\Models\Circle;
 use App\Models\User;
+use App\Usecases\Admin\CircleUser\Params\CreateCircleUserUsecaseParam;
 use App\ValueObjects\CircleUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -22,21 +24,19 @@ class CreateCircleUserUsecase
      * @throws Exception
      */
     public function invoke(
-        int $circleId,
-        CircleUserValueObject $circleValueObject
+        CreateCircleUserUsecaseParam $param
     ) {
         Log::debug("CreateCircleUserUsecase args", [
-            'circleId'              => $circleId,
-            'CircleUserValueObject' => $circleValueObject,
+            'CreateCircleUserUsecaseParam' => $param,
         ]);
 
-        if (!Circle::whereId($circleId)->exists()) {
-            throw new Exception("$circleId のサークルが存在しません");
+        if (!Circle::whereId($param->circleId)->exists()) {
+            throw new Exception("$param->circleId のサークルが存在しません");
         }
 
         $user = new User();
-        $user->username = $circleValueObject->username ?? Str::random(12);
-        $user->email = $circleValueObject->email;
+        $user->username = $param->username ?? Str::random(12);
+        $user->email = $param->email;
         $user->active = true;
         $user->display_name ??= $user->username;
         $user->createRememberToken();
@@ -46,7 +46,8 @@ class CreateCircleUserUsecase
         try {
             $user->save();
             $user->circleUsers()->create([
-                'circle_id' => $circleId,
+                CircleUserProperty::circle_id => $param->circleId,
+                CircleUserProperty::role      => $param->role,
             ]);
 
             // 認証メールの通知
@@ -55,8 +56,7 @@ class CreateCircleUserUsecase
             DB::commit();
         } catch (Exception $e) {
             Log::error("CreateCircleUserUsecase [ERROR]", [
-                'circleId'              => $circleId,
-                'CircleUserValueObject' => $circleValueObject,
+                'CreateCircleUserUsecaseParam' => $param,
             ]);
 
             DB::rollBack();

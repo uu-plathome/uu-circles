@@ -30,8 +30,7 @@ class RegisterCircleUserController extends Controller
         Log::debug("RegisterCircleUserController args circleId=$circleId");
 
         $this->createCircleUserUsecase->invoke(
-            $circleId,
-            $request->makeCircleUserValueObject()
+            $request->makeCreateCircleUserUsecaseParam()
         );
     }
 }

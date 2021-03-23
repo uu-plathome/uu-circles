@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\CircleManagement\CircleUser\Params;
+namespace App\Usecases\Admin\CircleUser\Params;
 
 class CreateCircleUserUsecaseParam
 {

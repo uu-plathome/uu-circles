@@ -2,6 +2,7 @@
 
 namespace App\Usecases\CircleManagement\CircleUser;
 
+use App\Enum\Property\CircleUserProperty;
 use App\Events\RegisteredCircleUser;
 use App\Models\Circle;
 use App\Models\User;
@@ -45,7 +46,8 @@ class CreateCircleUserUsecase
         try {
             $user->save();
             $user->circleUsers()->create([
-                'circle_id' => $param->circle_id,
+                CircleUserProperty::circle_id => $param->circle_id,
+                CircleUserProperty::role      => $param->role,
             ]);
 
             // 認証メールの通知

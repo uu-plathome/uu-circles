@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
+use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest;
+use App\Models\CircleUser;
 use App\Models\User;
 use App\Support\Arr;
 use Exception;
@@ -46,10 +48,18 @@ class UpdateCircleUserController extends Controller
             UserProperty::display_name => $request->get(Str::camel(UserProperty::display_name)),
             UserProperty::username     => $request->get(Str::camel(UserProperty::username)),
         ];
+        $newRole = $request->get(Str::camel(CircleUserProperty::role));
 
         DB::beginTransaction();
         try {
             $user->update($makeUpdateInput);
+
+            CircleUser::whereUserId($userId)
+                ->whereCircleId($circleId)
+                ->update([
+                    CircleUserProperty::role => $newRole,
+                ]);
+
             DB::commit();
         } catch (Exception $e) {
             Log::error("[ERROR] UpdateCircleUserController", [
