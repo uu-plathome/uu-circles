@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
 use App\Events\RegisteredCircleUser;
@@ -30,8 +30,8 @@ class CreateCircleUserUsecase
             'CreateCircleUserUsecaseParam' => $param,
         ]);
 
-        if (!Circle::whereId($param->circleId)->exists()) {
-            throw new Exception("$param->circleId のサークルが存在しません");
+        if (!Circle::whereId($param->circle_id)->exists()) {
+            throw new Exception("$param->circle_id のサークルが存在しません");
         }
 
         $user = new User();
@@ -46,7 +46,7 @@ class CreateCircleUserUsecase
         try {
             $user->save();
             $user->circleUsers()->create([
-                CircleUserProperty::circle_id => $param->circleId,
+                CircleUserProperty::circle_id => $param->circle_id,
                 CircleUserProperty::role      => $param->role,
             ]);
 
