@@ -48,7 +48,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ user, onWithdrawal }) => {
   return (
     <div>
       <div className="text-center pt-12 border-t border-gray-300 mt-12">
-        <a className="text-red-500 hover:underline" onClick={() => onWithdrawal()}>
+        <a className="text-red-500 hover:underline" onClick={() => setIsOpen(true)}>
           サークルから脱退させる
         </a>
       </div>
@@ -178,7 +178,9 @@ const CreatePage: NextPage = () => {
               }}
             />
 
-            <DeleteButton user={user} onWithdrawal={onWithdrawal} />
+            {user && user.id !== authContext.user.id ? (
+              <DeleteButton user={user} onWithdrawal={onWithdrawal} />
+            ) : ''}
           </div>
         </BaseContainer>
 
