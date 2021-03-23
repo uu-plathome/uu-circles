@@ -60,6 +60,10 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           name="placeOfActivity"
           items={[
             {
+              value: '',
+              label: '',
+            },
+            {
               value: PlaceOfActivity.DISCORD,
               label: __(PlaceOfActivity.DISCORD),
             },
