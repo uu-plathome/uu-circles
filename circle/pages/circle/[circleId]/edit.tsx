@@ -25,7 +25,6 @@ const Page: NextPage = () => {
     const [circle, setCircle] = useState<Circle | undefined>(undefined)
     const router = useRouter()
     const name = useStringInput('')
-    const release = useBooleanInput(false)
     const circleType = useStringInput('')
     const nameKana = useStringInput('')
     const shortName = useStringInput('')
@@ -336,7 +335,6 @@ const Page: NextPage = () => {
         const data = await updateCircle(Number(circleId), {
           type: 'UpdateCircleFormRequest',
           name: name.value,
-          release: release.toBoolean,
           nameKana: HiraToKana(nameKana.value),
           circleType: circleType.value,
           shortName: shortName.value,
@@ -392,7 +390,6 @@ const Page: NextPage = () => {
         if (isUpdateCircleFormRequestValidationError(data)) {
           name.setErrors(data.errors.name)
           nameKana.setErrors(data.errors.nameKana)
-          release.setErrors(data.errors.release)
           circleType.setErrors(data.errors.circleType)
           shortName.setErrors(data.errors.shortName)
           prefixName.setErrors(data.errors.prefixName)
@@ -514,7 +511,6 @@ const Page: NextPage = () => {
                     onDropActivityImage={onDropActivityImage}
                     onSubmit={onSubmit}
                     form={{
-                      release,
                       name,
                       nameKana,
                       shortName,
