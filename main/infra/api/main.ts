@@ -3,7 +3,11 @@ import { Circle } from '@/lib/types/model/Circle'
 import { axiosInstance } from '.'
 import { linkConst } from './linkConst'
 
-export const getMain = async () => {
+export const getMain = async (): Promise<{
+  circles: Circle[]
+  advertises: Advertise[]
+  mainAdvertises: Advertise[]
+}> => {
   type Response = {
     data: Circle[]
     advertises: Advertise[]
