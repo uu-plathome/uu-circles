@@ -8,7 +8,7 @@ type Props = {
 }
 const IndexCircleNewJoyListPC: FC<Props> = ({ circleId, circleNewJoys }) => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-50">
       <div className="md:flex justify-center flex-wrap">
         {circleNewJoys &&
           circleNewJoys.map((circleNewJoy, idx) => {

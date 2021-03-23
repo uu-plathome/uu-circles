@@ -8,7 +8,7 @@ type Props = {
 }
 const IndexCircleUserList: FC<Props> = ({ circleId, users }) => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-50">
       <div className="md:flex justify-center flex-wrap">
         {users &&
           users.map((user, idx) => {
@@ -18,10 +18,7 @@ const IndexCircleUserList: FC<Props> = ({ circleId, users }) => {
 
             return (
               <div key={user.id} className={`md:px-4 ${className}`}>
-                <CircleUserListItem
-                  circleId={circleId}
-                  user={user}
-                />
+                <CircleUserListItem circleId={circleId} user={user} />
               </div>
             )
           })}
