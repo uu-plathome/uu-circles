@@ -11,10 +11,14 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { useEffect, useState } from 'react'
+import { Advertise } from '@/lib/types/model/Advertise'
 
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar, A11y])
 
-const MainUucircleTopCarousel: FC = () => {
+type Props = {
+  advertises: Advertise[]
+}
+const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
   const { isMd } = useMediaQuery()
   const { width } = useWindowResize()
   const [height, setHeight] = useState(0)
@@ -25,7 +29,7 @@ const MainUucircleTopCarousel: FC = () => {
 
   const params: Swiper = {
     //Swiperの設定
-    initialSlide: 1,
+    initialSlide: 0,
     spaceBetween: 50,
     centeredSlides: true,
     autoplay: {
@@ -40,21 +44,6 @@ const MainUucircleTopCarousel: FC = () => {
       <Swiper {...params}>
         <nav>
           <SwiperSlide>
-            <a
-              href="https://forms.gle/bhFsNAoqK5zoiD447"
-              target="_blank"
-              rel="noopener"
-            >
-              <Image
-                width={width || 1000}
-                height={height}
-                objectFit="cover"
-                alt="新入生イベントアンケート"
-                src="/images/ulab-event.png"
-              />
-            </a>
-          </SwiperSlide>
-          <SwiperSlide>
             <Image
               src="/images/top-image.png"
               width={width || 1000}
@@ -63,36 +52,33 @@ const MainUucircleTopCarousel: FC = () => {
               alt="UU-Circlesへようこそ！"
             />
           </SwiperSlide>
-          <SwiperSlide>
-            <a
-              href="https://docs.google.com/forms/d/1SwV5gS1OzgwAHcUwiGEPYSfPOly1_enMjlRV-hdOSLI/viewform?fbclid=IwAR2nd-MEHi46FHGojZwdfGO4yx2fIAup71Q_NIrZUPV6-5n80wjSwJSp13A"
-              target="_blank"
-              rel="noopener"
-            >
-              <Image
-                width={width || 1000}
-                height={height}
-                objectFit="cover"
-                alt="EngineerMix"
-                src="/images/engineermix.jpg"
-              />
-            </a>
-          </SwiperSlide>
-          <SwiperSlide>
-            <a
-              href="https://camp-fire.jp/projects/view/335734"
-              target="_blank"
-              rel="noopener"
-            >
-              <Image
-                width={width || 1000}
-                height={height}
-                objectFit="cover"
-                alt="Syschismo"
-                src="/images/syschismo.png"
-              />
-            </a>
-          </SwiperSlide>
+
+          {advertises &&
+            advertises.map((advertise) => {
+              return (
+                <SwiperSlide key={advertise.id}>
+                  {advertise.link ? (
+                    <a href={advertise.link} target="_blank" rel="noopener">
+                      <Image
+                        width={width || 1000}
+                        height={height}
+                        objectFit="cover"
+                        alt={`${advertise.title} - トップ広告`}
+                        src={advertise.mainImageUrl || '/images/top-image.png'}
+                      />
+                    </a>
+                  ) : (
+                    <Image
+                      width={width || 1000}
+                      height={height}
+                      objectFit="cover"
+                      alt={`${advertise.title} - トップ広告`}
+                      src={advertise.mainImageUrl || '/images/top-image.png'}
+                    />
+                  )}
+                </SwiperSlide>
+              )
+            })}
         </nav>
       </Swiper>
     </div>

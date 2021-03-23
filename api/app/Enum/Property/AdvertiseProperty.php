@@ -12,6 +12,7 @@ class AdvertiseProperty
     const link = 'link';
     const main_image_url = 'main_image_url';
     const active = 'active';
+    const advertise_type = 'advertise_type';
     const publish_to = 'publish_to';
     const publish_from = 'publish_from';
 }

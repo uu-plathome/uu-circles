@@ -35,6 +35,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
       <div className="hidden lg:block">
         <img
           src={imageLink}
+          alt="サークル画像"
           width="100"
           height="100"
           className="square-image object-contain"
@@ -46,6 +47,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
           <div className="lg:hidden mr-2">
             <img
               src={imageLink}
+              alt="サークル画像"
               width="100"
               height="100"
               className="square-image object-contain"
