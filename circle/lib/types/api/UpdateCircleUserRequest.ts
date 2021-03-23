@@ -5,6 +5,7 @@ export interface UpdateCircleUserRequest {
   type: 'UpdateCircleUserRequest'
   username: string
   displayName: string
+  role: string
 }
 
 /**
@@ -15,6 +16,7 @@ export interface UpdateCircleUserRequestValidationError {
   errors: {
     username?: string[]
     displayName?: string[]
+    role?: string[]
   }
   message: string
 }

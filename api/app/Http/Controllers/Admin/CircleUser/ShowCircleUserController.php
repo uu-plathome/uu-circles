@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
+use App\Models\CircleUser;
 use App\Models\User;
 use App\Support\Arr;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,9 +17,15 @@ class ShowCircleUserController extends Controller
         if (!$user->isCircleUser()) {
             throw new ModelNotFoundException();
         }
+        $circleUser = CircleUser::whereUserId($userId)
+            ->whereCircleId($circleId)
+            ->firstOrFail();
 
         return [
-            'data' => Arr::camel_keys($user->toArray()),
+            'data' => Arr::camel_keys(array_merge(
+                $user->toArray(),
+                ['role' => $circleUser->role]
+            )),
         ];
     }
 }

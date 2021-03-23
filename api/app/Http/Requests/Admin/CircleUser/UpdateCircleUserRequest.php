@@ -51,7 +51,7 @@ class UpdateCircleUserRequest extends FormRequest
         $param->circle_id = $this->circleId;
         $param->username = Arr::get($request, UserProperty::username);
         $param->display_name = Arr::get($request, UserProperty::display_name);
-        $param->email = Arr::get($request, UserProperty::email);
+        $param->active = Arr::get($request, UserProperty::active);
         $param->role = Arr::get($request, CircleUserProperty::role);
 
         return $param;

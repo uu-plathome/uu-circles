@@ -13,6 +13,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { Role } from '@/lib/enum/api/Role'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
@@ -22,6 +23,7 @@ const CreatePage: NextPage = () => {
   const username = useStringInput('')
   const displayName = useStringInput('')
   const email = useStringInput('')
+  const role = useStringInput(Role.COMMON)
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -31,12 +33,14 @@ const CreatePage: NextPage = () => {
       username: username.value,
       displayName: displayName.value,
       email: email.value,
+      role: role.value,
     } as RegisterCircleUserRequest)
 
     if (isRegisterCircleUserRequestValidationError(data)) {
       username.setErrors(data.errors.username)
       displayName.setErrors(data.errors.displayName)
       email.setErrors(data.errors.email)
+      role.setErrors(data.errors.role)
 
       return
     }
@@ -61,6 +65,7 @@ const CreatePage: NextPage = () => {
                 username,
                 displayName,
                 email,
+                role,
               }}
             />
           </div>

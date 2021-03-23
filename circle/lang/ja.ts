@@ -42,6 +42,10 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  CircleUserRole: {
+    [Role.MANAGER]: 'サークル管理者',
+    [Role.COMMON]: '一般ユーザー',
+  },
   Role: {
     [Role.SYSTEM]: 'システム管理者',
     [Role.MANAGER]: '管理者',

@@ -13,6 +13,7 @@ import {
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { Role } from '@/lib/enum/api/Role'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
@@ -22,6 +23,7 @@ const CreatePage: NextPage = () => {
   const email = useStringInput('')
   const username = useStringInput('')
   const displayName = useStringInput('')
+  const role = useStringInput(Role.COMMON)
   const active = useBooleanInput(true)
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const CreatePage: NextPage = () => {
       username.set(foundUser.username)
       displayName.set(foundUser.displayName)
       active.set(foundUser.active)
+      role.set(foundUser.role)
     }
 
     f()
@@ -44,12 +47,14 @@ const CreatePage: NextPage = () => {
       username: username.value,
       displayName: displayName.value,
       active: active.toBoolean,
+      role: role.value,
     } as UpdateCircleUserRequest)
 
     if (isUpdateCircleUserRequestValidationError(data)) {
       username.setErrors(data.errors.username)
       displayName.setErrors(data.errors.displayName)
       active.setErrors(data.errors.active)
+      role.setErrors(data.errors.role)
 
       return
     }
@@ -75,6 +80,7 @@ const CreatePage: NextPage = () => {
                 username,
                 displayName,
                 active,
+                role,
               }}
             />
           </div>

@@ -48,6 +48,10 @@ export const ja = {
     [Role.MANAGER]: '管理者',
     [Role.COMMON]: '一般ユーザー',
   },
+  CircleUserRole: {
+    [Role.MANAGER]: 'サークル管理者',
+    [Role.COMMON]: '一般ユーザー',
+  },
   Week: {
     [Week.MONDAY]: '月曜日',
     [Week.TUESDAY]: '火曜日',

@@ -6,6 +6,7 @@ export interface RegisterCircleUserRequest {
   username: string
   displayName?: string
   email: string
+  role: string
 }
 
 /**
@@ -17,6 +18,7 @@ export interface RegisterCircleUserRequestValidationError {
     username?: string[]
     displayName?: string[]
     email?: string[]
+    role?: string[]
   }
   message: string
 }

@@ -34,7 +34,7 @@ class UpdateCircleUserUsecase
 
         DB::beginTransaction();
         try {
-            User::findOrFail($param->userId)
+            User::findOrFail($param->user_id)
                 ->update($inputs);
 
             CircleUser::whereUserId($param->user_id)

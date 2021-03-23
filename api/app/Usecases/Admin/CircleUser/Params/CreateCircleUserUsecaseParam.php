@@ -2,9 +2,8 @@
 
 namespace App\Usecases\Admin\CircleUser\Params;
 
-class UpdateCircleUserUsecaseParam
+class CreateCircleUserUsecaseParam
 {
-    public int $user_id;
     public int $circle_id;
     public ?string $display_name = null;
     public string $username;
