@@ -1,6 +1,10 @@
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { EditCircleForm } from '@/components/organisms/Form/Circle/EditCircleForm'
 import { AuthContext } from '@/contexts/AuthContext'
@@ -19,7 +23,7 @@ import {
 } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
-import { faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Compressor from 'compressorjs'
 import { NextPage } from 'next'
@@ -490,9 +494,29 @@ const Page: NextPage = () => {
     }
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
+    ? [
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `${circle.shortName || circle.name}の編集`,
+            href: `/circle/[circleId]/edit`,
+            as: `/circle/${circle.id}/edit`,
+            active: true,
+          },
+        ],
+      ]
+    : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faFileAlt} className="mr-4" size="lg" />
           <span>{circle ? circle.name : 'サークル'}の編集</span>

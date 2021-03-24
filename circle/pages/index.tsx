@@ -1,5 +1,6 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseBreadcrumbs } from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 import { CircleList } from '@/components/organisms/List/CircleList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
@@ -25,6 +26,8 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={[]} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
           サークル一覧
