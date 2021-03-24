@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Circle\Auth;
 
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
@@ -31,11 +32,21 @@ class IndexCircleNewJoyControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
-            ->hasByNonDependentSubquery('circleUsers')
+            ->whereNotNull(UserProperty::email_verified_at)
+            ->hasByNonDependentSubquery('circleUsers', function ($query) {
+                $query->hasByNonDependentSubquery('circle', function ($query) {
+                    $query->whereRelease(true);
+                });
+            })
             ->inRandomOrder()
             ->first();
         $this->assertNotNull($user);
-        $circleUser = $user->circleUsers()->inRandomOrder()->first();
+        $circleUser = $user->circleUsers()
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                $query->whereRelease(true);
+            })
+            ->inRandomOrder()
+            ->first();
         $this->assertNotNull($circleUser);
 
         // WHEN

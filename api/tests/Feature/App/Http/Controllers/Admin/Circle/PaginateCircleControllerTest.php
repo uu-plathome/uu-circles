@@ -2,23 +2,18 @@
 
 namespace Tests\Feature\App\Http\Controllers\Admin\Advertise;
 
-use App\Enum\Property\AdvertiseProperty;
-use App\Models\Advertise;
-use App\Models\Circle;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class ShowCircleControllerTest extends TestCase
+class IndexCircleControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowCircleControllerTest");
+        Log::info("IndexCircleControllerTest");
     }
 
     /**
@@ -33,15 +28,9 @@ class ShowCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
-        /** @var Advertise $advertise */
-        $circle = Circle::inRandomOrder()->first();
-        Log::info('[GIVEN]', [
-            'circle' => $circle,
-            'id'     => $circle->id,
-        ]);
 
         // WHEN
-        $response = $this->get("/admin/api/circle/$circle->id", [
+        $response = $this->get('/admin/api/circle', [
             'Authorization' => 'Bearer test1234',
         ]);
 

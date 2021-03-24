@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Circle\Auth;
 
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
@@ -34,6 +35,7 @@ class IndexCircleControllerTest extends TestCase
             'circleUsers',
         ])
             ->whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->hasByNonDependentSubquery('circleUsers')
             ->hasByNonDependentSubquery('circleUsers', function ($query) {
                 /** @var \App\Models\CircleUser $query */
