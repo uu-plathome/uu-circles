@@ -35,13 +35,12 @@ const BaseBreadcrumbs: FC<Props> = ({ items }) => {
         {breadcrumbsItems &&
           breadcrumbsItems.map((item, idx) => {
             return (
-              <>
+              <div
+                key={`BaseBreadcrumbs-${idx}-${item.href}`}
+                className="inline"
+              >
                 {!item.href || !item.active ? (
-                  <Link
-                    key={`BaseBreadcrumbs-${idx}`}
-                    href={item.href}
-                    as={item.as}
-                  >
+                  <Link href={item.href} as={item.as}>
                     <a>
                       {item.icon ? (
                         <FontAwesomeIcon icon={item.icon} className="mr-1" />
@@ -57,7 +56,7 @@ const BaseBreadcrumbs: FC<Props> = ({ items }) => {
                     </a>
                   </Link>
                 ) : (
-                  <span key={`BaseBreadcrumbs-${idx}`}>
+                  <span>
                     {item.icon ? (
                       <FontAwesomeIcon icon={item.icon} className="mr-1" />
                     ) : (
@@ -71,7 +70,7 @@ const BaseBreadcrumbs: FC<Props> = ({ items }) => {
                     )}
                   </span>
                 )}
-              </>
+              </div>
             )
           })}
       </div>

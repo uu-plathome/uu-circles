@@ -17,6 +17,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import Colors from '@/colors'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -62,12 +66,24 @@ const CreatePage: NextPage = () => {
     await router.push(`/`)
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = [
+    ...[
+      {
+        text: '自分のアカウント編集',
+        href: `/user/edit`,
+        active: true,
+      },
+    ],
+  ]
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
-          部員アカウント編集
+          自分のアカウント編集
         </h1>
 
         <BaseContainer>
