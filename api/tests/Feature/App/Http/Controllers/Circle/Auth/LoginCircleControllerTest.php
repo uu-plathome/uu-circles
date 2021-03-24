@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Circle\Auth;
 
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -33,6 +34,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
@@ -59,6 +61,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
@@ -85,6 +88,7 @@ class LoginCircleControllerTest extends TestCase
         // GIVEN
         /** @var \App\Models\User $user */
         $user = User::whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
             ->hasByNonDependentSubquery('circleUsers')
             ->inRandomOrder()
             ->first();
@@ -97,5 +101,32 @@ class LoginCircleControllerTest extends TestCase
 
         // THEN
         $response->assertStatus(405);
+    }
+
+    public function testFailed_emailVerifiedAtがnullのとき、ログインできない()
+    {
+        Log::info("testFailed_emailVerifiedAtがnullのとき、ログインできない");
+
+        // GIVEN
+        /** @var \App\Models\User $user */
+        $user = User::whereActive(true)
+            ->hasByNonDependentSubquery('circleUsers')
+            ->inRandomOrder()
+            ->first();
+        $user->forceFill([
+            UserProperty::email_verified_at => null,
+        ])->save();
+        $user->refresh();
+        $this->assertNotNull($user);
+        $this->assertNull($user->email_verified_at);
+
+        // WHEN
+        $response = $this->post('/circle/api/login', [
+            'usernameOrEmail' => $user->username,
+            'password'        => 'Test1234@@',
+        ]);
+
+        // THEN
+        $response->assertStatus(302);
     }
 }

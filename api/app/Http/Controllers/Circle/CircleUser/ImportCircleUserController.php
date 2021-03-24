@@ -19,6 +19,8 @@ class ImportCircleUserController extends Controller
     use Permission;
 
     /**
+     * 既存部員アカウントをサークルと連携させる
+     *
      * @param ImportCircleUserRequest $request
      * @param int $circleId
      * @throws Exception
