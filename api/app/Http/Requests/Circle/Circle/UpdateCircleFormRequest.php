@@ -143,6 +143,8 @@ class UpdateCircleFormRequest extends FormRequest
         $circle = new Circle(
             Arr::snake_keys($this->validated())
         );
+        $circle->release = true;
+
         $circle->id = $this->circleId;
         return CircleValueObject::byEloquent(
             $circle,
