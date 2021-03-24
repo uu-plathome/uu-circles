@@ -23,7 +23,7 @@ import {
 } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
-import { faBuilding, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Compressor from 'compressorjs'
 import { NextPage } from 'next'
@@ -178,7 +178,7 @@ const Page: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async (_) => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,
@@ -211,7 +211,7 @@ const Page: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async (_) => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,
@@ -247,7 +247,7 @@ const Page: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async (_) => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,

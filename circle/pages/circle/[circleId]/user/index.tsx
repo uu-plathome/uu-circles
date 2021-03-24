@@ -1,6 +1,10 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { IndexCircleUserList } from '@/components/organisms/CircleUser/IndexCircleUserList'
@@ -41,23 +45,43 @@ const IndexPage: NextPage = () => {
     f()
   }, [])
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
+    ? [
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `部員アカウント一覧`,
+            href: `/circle/[circleId]/user`,
+            as: `/circle/${circle.id}/user`,
+            active: true,
+          },
+        ],
+      ]
+    : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント一覧
         </h1>
 
         <BaseContainer>
-          <div className="pt-8 pb-32">
+          <div className="pb-32">
             {circle ? (
-              <p className="px-4 pt-8 pb-4">
+              <p className="px-4 py-8">
                 <Link
                   href="/circle/[circleId]"
                   as={`/circle/${Number(circleId)}`}
                 >
-                  <a className="underline text-blue-500">← サークルに戻る</a>
+                  <a className="underline text-blue-500">←サークルに戻る</a>
                 </Link>
               </p>
             ) : (

@@ -17,6 +17,12 @@ import { createCircleUser } from '@/infra/api/circleUser'
 import Link from 'next/link'
 import { CreateCircleUserForm } from '@/components/organisms/Form/CircleUser/CreateCircleUser'
 import { Role } from '@/lib/enum/api/Role'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import useSWR from 'swr'
+import { showCircle } from '@/infra/api/circle'
 
 const useParams = () => {
   const router = useRouter()
@@ -33,6 +39,11 @@ const CreatePage: NextPage = () => {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { circleId } = useParams()
+
+  const { data: circle } = useSWR(
+    [`/circle/api/circle/${circleId}`, Number(circleId)],
+    () => showCircle(Number(circleId))
+  )
 
   const username = useStringInput('')
   const displayName = useStringInput('')
@@ -66,9 +77,35 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${circleId}/user`)
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] =
+    circle && circle.circle
+      ? [
+          ...[
+            {
+              text: circle.circle.shortName || circle.circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.circle.id}/user`,
+            },
+            {
+              text: `新規追加`,
+              href: `/circle/[circleId]/user/create`,
+              as: `/circle/${circle.circle.id}/user/create`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント新規追加
@@ -81,7 +118,9 @@ const CreatePage: NextPage = () => {
                 href="/circle/[circleId]/user"
                 as={`/circle/${Number(circleId)}/user`}
               >
-                <a className="underline text-blue-500">← 戻る</a>
+                <a className="underline text-blue-500">
+                  ←部員アカウント一覧に戻る
+                </a>
               </Link>
             </p>
 

@@ -5,19 +5,11 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useNumberInput, useStringInput } from '@/hooks/useInput'
-import {
-  isRegisterCircleUserRequestValidationError,
-  RegisterCircleUserRequest,
-} from '@/lib/types/api/RegisterCircleUserRequest'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import {
-  createCircleUser,
-  importCircleUser,
-  searchCircleUser,
-} from '@/infra/api/circleUser'
+import { importCircleUser, searchCircleUser } from '@/infra/api/circleUser'
 import Link from 'next/link'
 import { ExistCircleUserInviteForm } from '@/components/organisms/Form/CircleUser/ExistCircleUserInviteForm'
 import { Role } from '@/lib/enum/api/Role'
@@ -29,6 +21,12 @@ import {
 } from '@/lib/types/api/ImportCircleUserRequest'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import useSWR from 'swr'
+import { showCircle } from '@/infra/api/circle'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const useParams = () => {
   const router = useRouter()
@@ -47,6 +45,11 @@ const CreatePage: NextPage = () => {
   const [user, setUser] = useState<User[]>()
   const searchText = useStringInput('')
   const { circleId } = useParams()
+
+  const { data: circle } = useSWR(
+    [`/circle/api/circle/${circleId}`, circleId],
+    () => showCircle(circleId)
+  )
 
   const id = useNumberInput(null)
   const role = useStringInput(Role.COMMON)
@@ -99,12 +102,38 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${circleId}/user`)
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] =
+    circle && circle.circle
+      ? [
+          ...[
+            {
+              text: circle.circle.shortName || circle.circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.circle.id}/user`,
+            },
+            {
+              text: `既存部員アカウント招待`,
+              href: `/circle/[circleId]/user/import`,
+              as: `/circle/${circle.circle.id}/user/import`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
-          部員アカウント新規追加
+          既存部員アカウントを招待
         </h1>
 
         <BaseContainer>

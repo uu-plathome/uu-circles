@@ -77,7 +77,7 @@ const IndexPage: NextPage = () => {
         </h1>
 
         <BaseContainer>
-          <div className="pt-8 pb-32">
+          <div className="pb-32">
             {circle ? (
               <div>
                 <p className="py-8 px-4">

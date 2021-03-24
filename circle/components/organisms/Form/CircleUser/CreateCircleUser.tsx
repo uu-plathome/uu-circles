@@ -1,6 +1,7 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { Role } from '@/lib/enum/api/Role'
@@ -18,6 +19,8 @@ type Props = {
 const CreateCircleUserForm: FC<Props> = ({ onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
+      <FormHeader>部員情報</FormHeader>
+
       <BaseTextField
         label="メールアドレス"
         name="email"

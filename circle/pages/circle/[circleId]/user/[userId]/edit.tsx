@@ -13,7 +13,7 @@ import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { withdrawalOtherCircle } from '@/infra/api/circle'
+import { showCircle, withdrawalOtherCircle } from '@/infra/api/circle'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circleUser'
 import { EditCircleUserForm } from '@/components/organisms/Form/CircleUser/EditCircleUserForm'
 import Link from 'next/link'
@@ -22,6 +22,11 @@ import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { User } from '@/lib/types/model/User'
 import Modal from 'react-modal'
 import { Role } from '@/lib/enum/api/Role'
+import useSWR from 'swr'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const customStyles = {
   content: {
@@ -103,6 +108,11 @@ const CreatePage: NextPage = () => {
   const { circleId, userId } = useParams()
   const [user, setUser] = useState<User | undefined>(undefined)
 
+  const { data: circle } = useSWR(
+    [`/circle/api/circle/${circleId}`, circleId],
+    () => showCircle(circleId)
+  )
+
   const username = useStringInput('')
   const displayName = useStringInput('')
   const email = useStringInput('')
@@ -156,9 +166,35 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${circleId}/user`)
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] =
+    circle && circle.circle
+      ? [
+          ...[
+            {
+              text: circle.circle.shortName || circle.circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.circle.id}/user`,
+            },
+            {
+              text: `部員アカウント編集`,
+              href: `/circle/[circleId]/user/edit`,
+              as: `/circle/${circle.circle.id}/user/edit`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント情報編集
@@ -171,7 +207,9 @@ const CreatePage: NextPage = () => {
                 href="/circle/[circleId]/user"
                 as={`/circle/${Number(circleId)}/user`}
               >
-                <a className="underline text-blue-500">← 戻る</a>
+                <a className="underline text-blue-500">
+                  ←部員アカウント一覧に戻る
+                </a>
               </Link>
             </p>
 

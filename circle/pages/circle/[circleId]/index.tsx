@@ -4,11 +4,7 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
-import {
-  faBuilding,
-  faCalendarAlt,
-  faFileAlt,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
