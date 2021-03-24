@@ -4,7 +4,11 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
-import { faCalendarAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBuilding,
+  faCalendarAlt,
+  faFileAlt,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -12,6 +16,10 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { Role } from '@/lib/enum/api/Role'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -39,6 +47,19 @@ const IndexPage: NextPage = () => {
     f()
   }, [])
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
+    ? [
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+            active: true,
+          },
+        ],
+      ]
+    : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
@@ -46,6 +67,8 @@ const IndexPage: NextPage = () => {
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           { circle ? circle.name : '' }
         </h1> */}
+
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
         <BaseContainer>
           <div className="pb-32 md:pb-72">

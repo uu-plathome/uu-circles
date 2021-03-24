@@ -22,6 +22,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -120,9 +124,34 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${Number(circleId)}/newjoy`)
   }
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
+    ? [
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `新歓イベント一覧`,
+            href: `/circle/[circleId]/newjoy`,
+            as: `/circle/${circle.id}/newjoy`,
+          },
+          {
+            text: `新歓編集`,
+            href: `/circle/[circleId]/newjoy/[circleNewJoyId]/edit`,
+            as: `/circle/${circle.id}/newjoy/${circleNewJoyId}/edit`,
+            active: true,
+          },
+        ],
+      ]
+    : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           新歓イベントの編集
@@ -135,7 +164,9 @@ const CreatePage: NextPage = () => {
                 href="/circle/[circleId]/newjoy"
                 as={`/circle/${Number(circleId)}/newjoy`}
               >
-                <a className="underline text-blue-500">新歓一覧に戻る</a>
+                <a className="underline text-blue-500">
+                  ←新歓イベント一覧に戻る
+                </a>
               </Link>
             </p>
 

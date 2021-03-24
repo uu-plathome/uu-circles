@@ -1,6 +1,10 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
@@ -44,19 +48,39 @@ const IndexPage: NextPage = () => {
     f()
   }, [])
 
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
+    ? [
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `新歓イベント一覧`,
+            href: `/circle/[circleId]/newjoy`,
+            as: `/circle/${circle.id}/newjoy`,
+            active: true,
+          },
+        ],
+      ]
+    : []
+
   return (
     <div>
       <BaseLayout user={authContext.user}>
+        <BaseBreadcrumbs items={baseBreadcrumbsItems} />
+
         <h1 className="text-lg font-bold bg-white text-center py-6">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
-          新歓イベントの追加・編集
+          新歓イベント一覧
         </h1>
 
         <BaseContainer>
           <div className="pt-8 pb-32">
             {circle ? (
               <div>
-                <p className="pt-8">
+                <p className="py-8 px-4">
                   <Link
                     href="/circle/[circleId]"
                     as={`/circle/${Number(circleId)}`}
