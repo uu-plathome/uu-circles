@@ -1,17 +1,24 @@
 admin:
-- admin/**/*
+  - admin/**/*
+admin-package-json:
+  - admin/package.json
+  - admin/package-lock.json
+circle:
+  - circle/**/*
+circle-package-json:
+  - circle/package.json
+  - circle/package-lock.json
 api:
-- api/**/*
+  - api/**/*
 api-db:
-- api/database/migrations/*
+  - api/database/migrations/*
 api-model:
-- api/app/Models/*
+  - api/app/Models/*
 api-composer-json:
-- api/composer.json
-- api/composer.lock
-admin-packge-json:
-- admin/package.json
-- admin/package-lock.json
+  - api/composer.json
+  - api/composer.lock
+batch:
+  - batch/**/*
 docker:
-- ./infra/docker/*
-- docker-compose.yml
+  - ./infra/docker/*
+  - docker-compose.yml
