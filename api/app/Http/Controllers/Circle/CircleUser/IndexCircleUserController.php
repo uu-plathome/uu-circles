@@ -7,6 +7,7 @@ use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
+use App\Models\CircleUser;
 use App\Models\User;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
@@ -26,7 +27,8 @@ class IndexCircleUserController extends Controller
         $this->permissionCircle($user, $circleId, [Role::MANAGER]);
 
         $circle = Circle::whereRelease(true)->findOrFail($circleId);
-        $circleUsers = User::whereActive(true)
+        $circleUsers = User::with('circleUsers')
+            ->whereActive(true)
             ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {
                 /** @var \App\Models\CircleUser $query */
                 $query->whereCircleId($circleId);
@@ -49,7 +51,16 @@ class IndexCircleUserController extends Controller
                 )->toArray()
             ),
 
-            'data' => $circleUsers->toArray(),
+            'data' => $circleUsers->map(
+                fn (User $user) => array_merge(
+                    $user->toArray(),
+                    [
+                        'role' => $user->circleUsers->first(
+                            fn (CircleUser $circleUser) => $circleUser->circle_id === $circleId
+                        )->role
+                    ]
+                )
+            )->toArray(),
         ]);
     }
 }
