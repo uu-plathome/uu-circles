@@ -32,7 +32,7 @@ class IndexCircleNewJoyController extends Controller
         $this->permissionCircle($user, $circleId);
 
         $circle = Circle::whereRelease(true)->findOrFail($circleId);
-        $circleNewJoys = $this->indexCircleNewJoyUsecase->invoke($circleId);
+        $circleNewJoyDto = $this->indexCircleNewJoyUsecase->invoke($circleId);
 
         return [
             'circle' => Arr::camel_keys(
@@ -43,11 +43,10 @@ class IndexCircleNewJoyController extends Controller
                 )->toArray()
             ),
 
-            'circleNewJoys' => Arr::camel_keys(
-                (new Collection($circleNewJoys))->map(
-                    fn ($_o) => $_o->toArray()
-                )->toArray()
-            ),
+            'onReleaseFuture' => Arr::camel_keys($circleNewJoyDto->toArrayOnReleaseFuture()),
+            'onReleasePast'   => Arr::camel_keys($circleNewJoyDto->toArrayOnReleasePast()),
+            'onPrivateFuture' => Arr::camel_keys($circleNewJoyDto->toArrayOnPrivateFuture()),
+            'onPrivatePast'   => Arr::camel_keys($circleNewJoyDto->toArrayOnPrivatePast()),
         ];
     }
 }
