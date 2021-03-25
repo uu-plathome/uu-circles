@@ -31,14 +31,21 @@ const useCircleId = () => {
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [users, setUsers] = useState<User[]>()
+  const [circleUsersDoneEmailVerify, setCircleUsersDoneEmailVerify] = useState<
+    User[]
+  >()
+  const [
+    circleUsersNotDoneEmailVerify,
+    setCircleUsersNotDoneEmailVerify,
+  ] = useState<User[]>()
   const [circle, setCircle] = useState<Circle>()
   const { circleId } = useCircleId()
 
   useEffect(() => {
     const f = async () => {
       const data = await getCircleUserList(circleId)
-      setUsers(data.users)
+      setCircleUsersDoneEmailVerify(data.circleUsersDoneEmailVerify)
+      setCircleUsersNotDoneEmailVerify(data.circleUsersNotDoneEmailVerify)
       setCircle(data.circle)
     }
 
@@ -88,7 +95,7 @@ const IndexPage: NextPage = () => {
               ''
             )}
 
-            {users ? (
+            {circleUsersDoneEmailVerify ? (
               <div>
                 <div className="flex justify-center mb-8">
                   <GreenButton
@@ -108,9 +115,33 @@ const IndexPage: NextPage = () => {
                   </GreenButton>
                 </div>
 
-                {users && users.length > 0 ? (
-                  <div className="pt-8">
-                    <IndexCircleUserList circleId={circleId} users={users} />
+                {circleUsersDoneEmailVerify &&
+                circleUsersDoneEmailVerify.length > 0 ? (
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      認証済みの部員アカウント一覧
+                    </h2>
+
+                    <IndexCircleUserList
+                      circleId={circleId}
+                      users={circleUsersDoneEmailVerify}
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
+
+                {circleUsersNotDoneEmailVerify &&
+                circleUsersNotDoneEmailVerify.length > 0 ? (
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      未認証の部員アカウント一覧
+                    </h2>
+
+                    <IndexCircleUserList
+                      circleId={circleId}
+                      users={circleUsersNotDoneEmailVerify}
+                    />
                   </div>
                 ) : (
                   ''

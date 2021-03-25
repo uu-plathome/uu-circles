@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
-use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
-use App\Models\CircleUser;
-use App\Models\User;
 use App\Support\Arr;
+use App\Usecases\CircleManagement\CircleUser\IndexCircleUserUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -17,6 +15,13 @@ use Illuminate\Support\Facades\Log;
 class IndexCircleUserController extends Controller
 {
     use Permission;
+
+    private IndexCircleUserUsecase $indexCircleUserUsecase;
+
+    public function __construct(IndexCircleUserUsecase $indexCircleUserUsecase)
+    {
+        $this->indexCircleUserUsecase = $indexCircleUserUsecase;
+    }
 
     public function __invoke(Request $request, int $circleId)
     {
@@ -27,20 +32,7 @@ class IndexCircleUserController extends Controller
         $this->permissionCircle($user, $circleId, [Role::MANAGER]);
 
         $circle = Circle::whereRelease(true)->findOrFail($circleId);
-        $circleUsers = User::with('circleUsers')
-            ->whereActive(true)
-            ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {
-                /** @var \App\Models\CircleUser $query */
-                $query->whereCircleId($circleId);
-            })
-            ->select([
-                UserProperty::display_name,
-                UserProperty::email,
-                UserProperty::email_verified_at,
-                UserProperty::id,
-                UserProperty::username,
-            ])
-            ->get();
+        $circleUsers = $this->indexCircleUserUsecase->invoke($circleId);
 
         return Arr::camel_keys([
             'circle' => Arr::camel_keys(
@@ -51,16 +43,8 @@ class IndexCircleUserController extends Controller
                 )->toArray()
             ),
 
-            'data' => $circleUsers->map(
-                fn (User $user) => array_merge(
-                    $user->toArray(),
-                    [
-                        'role' => $user->circleUsers->first(
-                            fn (CircleUser $circleUser) => $circleUser->circle_id === $circleId
-                        )->role
-                    ]
-                )
-            )->toArray(),
+            'circleUsersDoneEmailVerify'    => $circleUsers->toArrayDone(),
+            'circleUsersNotDoneEmailVerify' => $circleUsers->toArrayNotDone(),
         ]);
     }
 }

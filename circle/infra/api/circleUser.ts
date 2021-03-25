@@ -15,22 +15,33 @@ import { User } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 
+/**
+ * 部員アカウント一覧を取得
+ *
+ * @param circleId
+ * @returns
+ */
 export const getCircleUserList = async (
   circleId: number
 ): Promise<{
   circle: Circle
-  users: User[]
+  /** 認証済みの部員アカウント一覧 */ circleUsersDoneEmailVerify: User[]
+  /** 未認証の部員アカウント一覧 */ circleUsersNotDoneEmailVerify: User[]
 }> => {
   console.log('getCircleList args', { circleId })
 
   const { data } = await axiosInstance.get<{
     circle: Circle
-    data: User[]
+    /** 認証済みの部員アカウント一覧 */ circleUsersDoneEmailVerify: User[]
+    /** 未認証の部員アカウント一覧 */ circleUsersNotDoneEmailVerify: User[]
   }>(`/circle/api/circle/${circleId}/user`)
 
   return {
     circle: data.circle,
-    users: data.data,
+    /** 認証済みの部員アカウント一覧 */
+    circleUsersDoneEmailVerify: data.circleUsersDoneEmailVerify,
+    /** 未認証の部員アカウント一覧 */
+    circleUsersNotDoneEmailVerify: data.circleUsersNotDoneEmailVerify,
   }
 }
 
