@@ -32,17 +32,26 @@ const useCircleId = () => {
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const [circle, setCircle] = useState<Circle>()
-  const [circleNewjoys, setCircleNewjoys] = useState<CircleNewJoy[]>()
+  const [onReleaseFuture, setOnReleaseFuture] = useState<CircleNewJoy[]>()
+  const [onReleasePast, setOnReleasePast] = useState<CircleNewJoy[]>()
+  const [onPrivateFuture, setOnPrivateFuture] = useState<CircleNewJoy[]>()
+  const [onPrivatePast, setOnPrivatePast] = useState<CircleNewJoy[]>()
   const { circleId } = useCircleId()
 
   useEffect(() => {
     const f = async () => {
       const {
         circle: _circle,
-        circleNewJoys: _circleNewJoys,
+        onReleaseFuture,
+        onReleasePast,
+        onPrivateFuture,
+        onPrivatePast,
       } = await getCircleNewJoyList(circleId)
       setCircle(_circle)
-      setCircleNewjoys(_circleNewJoys)
+      setOnReleaseFuture(onReleaseFuture)
+      setOnReleasePast(onReleasePast)
+      setOnPrivateFuture(onPrivateFuture)
+      setOnPrivatePast(onPrivatePast)
     }
 
     f()
@@ -98,15 +107,60 @@ const IndexPage: NextPage = () => {
                   </GreenButton>
                 </div>
 
-                {circleNewjoys && circleNewjoys.length > 0 ? (
+                {onReleaseFuture && onReleaseFuture.length > 0 ? (
                   <div>
                     <h2 className="text-lg font-bold text-center pt-10 pb-6">
-                      予定している新歓一覧
+                      予定している公開中の新歓一覧
                     </h2>
 
                     <IndexCircleNewJoyList
                       circleId={circleId}
-                      circleNewJoys={circleNewjoys}
+                      circleNewJoys={onReleaseFuture}
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
+
+                {onPrivateFuture && onPrivateFuture.length > 0 ? (
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      予定している非公開の新歓一覧
+                    </h2>
+
+                    <IndexCircleNewJoyList
+                      circleId={circleId}
+                      circleNewJoys={onPrivateFuture}
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
+
+                {onReleasePast && onReleasePast.length > 0 ? (
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      実施済みの公開中の新歓一覧
+                    </h2>
+
+                    <IndexCircleNewJoyList
+                      circleId={circleId}
+                      circleNewJoys={onReleasePast}
+                    />
+                  </div>
+                ) : (
+                  ''
+                )}
+
+                {onPrivatePast && onPrivatePast.length > 0 ? (
+                  <div>
+                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                      実施済みの非公開の新歓一覧
+                    </h2>
+
+                    <IndexCircleNewJoyList
+                      circleId={circleId}
+                      circleNewJoys={onPrivatePast}
                     />
                   </div>
                 ) : (

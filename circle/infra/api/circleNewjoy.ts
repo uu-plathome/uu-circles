@@ -73,19 +73,33 @@ export const updateCircleNewJoy = async (
   }
 }
 
-export const getCircleNewJoyList = async (circleId: number) => {
+export const getCircleNewJoyList = async (
+  circleId: number
+): Promise<{
+  circle: Circle
+  /** 未来の公開中の新歓一覧 */ onReleaseFuture: CircleNewJoy[]
+  /** 過去の公開中の新歓一覧 */ onReleasePast: CircleNewJoy[]
+  /** 未来の非公開の新歓一覧 */ onPrivateFuture: CircleNewJoy[]
+  /** 過去の非公開の新歓一覧 */ onPrivatePast: CircleNewJoy[]
+}> => {
   console.log('getCircleNewJoyList args', {
     circleId,
   })
 
   const { data } = await axiosInstance.get<{
     circle: Circle
-    circleNewJoys: CircleNewJoy[]
+    /** 未来の公開中の新歓一覧 */ onReleaseFuture: CircleNewJoy[]
+    /** 過去の公開中の新歓一覧 */ onReleasePast: CircleNewJoy[]
+    /** 未来の非公開の新歓一覧 */ onPrivateFuture: CircleNewJoy[]
+    /** 過去の非公開の新歓一覧 */ onPrivatePast: CircleNewJoy[]
   }>(`/circle/api/circle/${circleId}/newjoy`)
 
   return {
     circle: data.circle,
-    circleNewJoys: data.circleNewJoys,
+    /** 未来の公開中の新歓一覧 */ onReleaseFuture: data.onReleaseFuture,
+    /** 過去の公開中の新歓一覧 */ onReleasePast: data.onReleasePast,
+    /** 未来の非公開の新歓一覧 */ onPrivateFuture: data.onPrivateFuture,
+    /** 過去の非公開の新歓一覧 */ onPrivatePast: data.onPrivatePast,
   }
 }
 
