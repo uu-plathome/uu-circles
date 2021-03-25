@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { User } from '@/lib/types/model/User'
+import { isManager } from '@/lib/enum/api/Role'
 
 type Props = {
   circleId: number
@@ -18,7 +19,10 @@ const CircleUserListItem: FC<Props> = ({ circleId, user }) => {
           style={{ width: 320 }}
         >
           <div className="w-full pr-3">
-            <h3 className="text-black font-bold mb-1">{user.displayName}</h3>
+            <h3 className="text-black font-bold mb-1">
+              {isManager(user.role) ? '[管理者]' : ''}
+              {user.displayName}
+            </h3>
 
             <p className="text-sm border-b border-gray-400 mb-1">
               <span className="text-gray-400 text-xs pl-1 mb-2">
