@@ -8,6 +8,9 @@ $ scp u-lab:~/uu-circles.com/public_html/api/current/storage/logs/laravel.log la
 
 # API STG
 $ scp u-lab:~/uu-circles.com/public_html/api/current/storage/logs/laravel.log laravel_`date +%Y%m%d_%H-%M-%S`.log
+
+# .envのダウンロード
+$ scp u-lab:~/uu-circles.com/public_html/api/current/.env .env.production
 ```
 
 ##
