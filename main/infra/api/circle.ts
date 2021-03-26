@@ -1,3 +1,4 @@
+import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { AxiosError } from 'axios'
@@ -24,11 +25,13 @@ export const getCircleBySlug = async (
   slug: string
 ): Promise<{
   circle: Circle
+  circleTags: CircleTagModel[]
   circleNewJoys: CircleNewJoy[]
 }> => {
   try {
     type Response = {
       data: Circle
+      circleTags: CircleTagModel[]
       circleNewJoys: CircleNewJoy[]
     }
     const { data } = await axiosInstance.get<Response>(
@@ -37,6 +40,7 @@ export const getCircleBySlug = async (
 
     return {
       circle: data.data,
+      circleTags: data.circleTags,
       circleNewJoys: data.circleNewJoys,
     }
   } catch (_e) {
