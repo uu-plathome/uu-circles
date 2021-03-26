@@ -4,10 +4,8 @@ namespace App\Http\Requests\Circle\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
-use App\Enum\Role;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateCircleUserRequest extends FormRequest
 {
@@ -36,5 +34,14 @@ class UpdateCircleUserRequest extends FormRequest
                 'string',
             ]
         ]);
+    }
+
+    public function attributes()
+    {
+        return [
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+        ];
     }
 }

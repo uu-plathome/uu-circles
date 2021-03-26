@@ -30,4 +30,12 @@ class UpdateOwnUserRequest extends FormRequest
             UserProperty::display_name => ['required', 'string', 'max:50'],
         ]);
     }
+
+    public function attributes()
+    {
+        return [
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+        ];
+    }
 }
