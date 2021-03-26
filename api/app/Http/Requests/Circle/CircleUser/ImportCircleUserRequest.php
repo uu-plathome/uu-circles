@@ -35,4 +35,11 @@ class ImportCircleUserRequest extends FormRequest
             ]
         ]);
     }
+
+    public function attributes()
+    {
+        return [
+            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+        ];
+    }
 }

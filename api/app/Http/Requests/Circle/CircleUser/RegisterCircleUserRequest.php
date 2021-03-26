@@ -41,6 +41,16 @@ class RegisterCircleUserRequest extends FormRequest
         ]);
     }
 
+    public function attributes()
+    {
+        return [
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            UserProperty::email        => __('user.' . UserProperty::email),
+            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+        ];
+    }
+
     public function makeCreateCircleUserUsecaseParam(): CreateCircleUserUsecaseParam
     {
         $request = Arr::snake_keys($this->validated());
