@@ -50,7 +50,7 @@ class ShowCircleNewJoyController extends Controller
         $circleNewJoys = Cache::remember(
             $this->getCircleNewJoysCacheKey($slug, $circleNewJoyId),
             60,
-            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->id, $circleNewJoyId)
+            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->circleValueObject->id, $circleNewJoyId)
         );
         if (!$circleNewJoys || !$circleNewJoys['circleNewJoy']) {
             throw new ModelNotFoundException();
@@ -63,7 +63,7 @@ class ShowCircleNewJoyController extends Controller
         );
 
         return Arr::camel_keys([
-            'circle'       => $circle->toArray(),
+            'circle'       => $circle->circleValueObject->toArray(),
             'circleNewJoy' => $circleNewJoys['circleNewJoy']->toArray(),
             // 新歓開催済み
             'pastCircleNewJoys'   => (new Collection($circleNewJoys['pastCircleNewJoys']))->map(
