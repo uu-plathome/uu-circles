@@ -14,7 +14,7 @@ class GetCircleBySlugUsecase
     /**
      * Slugからサークルを取得する
      *
-     * @return CircleValueObject
+     * @return MainDetailCircleDto
      */
     public function invoke(string $slug): MainDetailCircleDto
     {
