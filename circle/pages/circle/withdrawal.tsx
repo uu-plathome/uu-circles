@@ -47,7 +47,9 @@ const IndexPage: NextPage = () => {
 
         <div className="pt-8 pb-32 md:pb-72">
           <div className="flex justify-center pb-8">
-            <GreenButton href={`/`}>サークル一覧へ戻る</GreenButton>
+            <GreenButton href={`/`} rounded>
+              サークル一覧へ戻る
+            </GreenButton>
           </div>
 
           <h2 className="text-center font-bold mb-8 text-lg">

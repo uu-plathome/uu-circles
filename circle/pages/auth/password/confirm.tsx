@@ -107,7 +107,7 @@ const PasswordConfirmPage: NextPage = () => {
                 </p>
 
                 <div className="text-center">
-                  <GreenButton href="/auth/PasswordConfirmPage">
+                  <GreenButton href="/auth/PasswordConfirmPage" rounded>
                     ログインへ進む
                   </GreenButton>
                 </div>

@@ -293,7 +293,9 @@ const EditCircleForm: FC<Props> = ({
       </div>
 
       <div className="flex justify-center mt-8">
-        <GreenButton type="submit">更新</GreenButton>
+        <GreenButton type="submit" rounded>
+          更新
+        </GreenButton>
       </div>
     </form>
   )

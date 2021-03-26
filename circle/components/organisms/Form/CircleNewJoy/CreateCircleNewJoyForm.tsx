@@ -145,7 +145,9 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
       </div>
 
       <div className="flex justify-center">
-        <GreenButton type="submit">進む</GreenButton>
+        <GreenButton type="submit" rounded>
+          進む
+        </GreenButton>
       </div>
     </form>
   )
