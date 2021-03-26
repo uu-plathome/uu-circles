@@ -1,8 +1,19 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Circle } from '@/lib/types/model/Circle'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
+
+/**
+ * サークルの画像のサイズ
+ */
+const MAIN_IMAGE_SIZE = {
+  MD_WIDTH: 80,
+  MD_HEIGHT: 80,
+  BASE_WIDTH: 62,
+  BASE_HEIGHT: 62,
+} as const
 
 type Props = {
   circle: Circle
@@ -17,9 +28,13 @@ const CircleNameHeader: FC<Props> = ({ circle }) => {
           <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
             <a>
               <Image
-                src={circle.mainImageUrl || '/images/no-image.png'}
-                width={isMd ? 80 : 62}
-                height={isMd ? 80 : 62}
+                src={circle.mainImageUrl || ImagePath.NO_IMAGE_PATH}
+                width={
+                  isMd ? MAIN_IMAGE_SIZE.MD_WIDTH : MAIN_IMAGE_SIZE.BASE_WIDTH
+                }
+                height={
+                  isMd ? MAIN_IMAGE_SIZE.MD_HEIGHT : MAIN_IMAGE_SIZE.BASE_HEIGHT
+                }
                 className="rounded-full"
               />
             </a>
