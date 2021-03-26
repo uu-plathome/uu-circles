@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 import requests
 import json
 import io
-
+import sys
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
@@ -81,7 +81,7 @@ async def on_ready():
 			if (newjoy['slug'] is not None):
 				text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
 			await channel.send(text)
-			if idx == len(r['futureCircleNewJoys']):
-				exit()
+			if idx + 1 == len(r['futureCircleNewJoys']):
+				sys.exit()
 	
 client.run(TOKEN)
