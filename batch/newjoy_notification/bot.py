@@ -28,9 +28,9 @@ client = discord.Client()
 #SEE THIS(https://qiita.com/b2bmakers/items/34ba70510e35d2c12e94)
 JST = timezone(timedelta(hours=+9), 'JST')
 def to_jst(time):
-	time=time.replace(tzinfo=timezone.utc)
-	time=time.astimezone(JST)
-	time=time.replace(tzinfo=None)
+	time = time.replace(tzinfo=timezone.utc)
+	time = time.astimezone(JST)
+	time = time.replace(tzinfo=None)
 	return time
 
 ###GET_TIME###
@@ -52,14 +52,14 @@ async def on_ready():
 			await channel.send('\n---------------------------\n')
 
 			#新歓の開始と終了の時刻を取得
-			start_day=newjoy['circleNewJoy']['startDate']
+			start_day = newjoy['circleNewJoy']['startDate']
 			end_day = newjoy['circleNewJoy']['endDate']
 			if (start_day is not None):
 				tmp_format_startDay = datetime.strptime(start_day, '%Y-%m-%dT%H:%M:%S.%fZ')
 				format_startDay=to_jst(tmp_format_startDay)
 			if (end_day is not None):
 				tmp_format_endDay = datetime.strptime(end_day, '%Y-%m-%dT%H:%M:%S.%fZ')
-				format_endDay=to_jst(tmp_format_endDay)
+				format_endDay = to_jst(tmp_format_endDay)
 
 			#送信するテキストの整形
 			text = '***'+str(idx+1)+',***\n:ballot_box_with_check: '+newjoy['name']+'\n'
