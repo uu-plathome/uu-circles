@@ -1,8 +1,4 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
@@ -35,7 +31,12 @@ type Props = {
   circleNewJoys?: CircleNewJoy[]
   errorCode?: number
 }
-const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
+const Page: NextPage<Props> = ({
+  circle,
+  circleTags,
+  circleNewJoys,
+  errorCode,
+}) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
@@ -170,7 +171,7 @@ const Page: NextPage<Props> = ({ circle, circleNewJoys, errorCode }) => {
               </div>
 
               <div className="order-4 md:order-3 pt-10">
-                <InformationField circle={circle} />
+                <InformationField circle={circle} circleTags={circleTags} />
               </div>
             </div>
           </BaseContainer>
@@ -191,7 +192,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   try {
-    const { circle, circleTags, circleNewJoys } = await getCircleBySlug(params.slug)
+    const { circle, circleTags, circleNewJoys } = await getCircleBySlug(
+      params.slug
+    )
 
     return {
       props: {

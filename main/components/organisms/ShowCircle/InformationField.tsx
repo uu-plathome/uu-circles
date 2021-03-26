@@ -1,14 +1,17 @@
 import { __ } from '@/lang/ja'
+import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { isCircleType } from '@/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/lib/types/model/Circle'
+import Link from 'next/link'
 import { FC } from 'react'
 import { SnsList } from './SnsList'
 
 type Props = {
   circle: Circle
+  circleTags: CircleTagModel[]
 }
-const InformationField: FC<Props> = ({ circle }) => {
+const InformationField: FC<Props> = ({ circle, circleTags }) => {
   return (
     <div>
       <h2 className="text-lg text-center mb-6 md:text-left">サークル詳細</h2>
@@ -301,10 +304,29 @@ const InformationField: FC<Props> = ({ circle }) => {
             ''
           )}
 
-          <div className="py-4">
+          <div className="py-4 border-b border-gray-400">
             <p className="text-sm text-gray-400 mb-2">各種SNS</p>
             <div>
               <SnsList circle={circle} />
+            </div>
+          </div>
+
+          <div className="py-4">
+            <p className="text-sm text-gray-400 mb-2">タグ</p>
+            <div className="grid grid-cols-3 gap-1">
+              {circleTags.map((circleTag) => {
+                return (
+                  <Link
+                    key={`circleTag-${circleTag}`}
+                    href={`/circle/tag/[tag]`}
+                    as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
+                  >
+                    <a className="tag-title text-gray-400 text-sm hover:underline">
+                      {__(circleTag)}
+                    </a>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </div>
