@@ -1,6 +1,8 @@
 <?php
 
 use App\Enum\Role;
+use App\Enum\SlackChannel;
+use App\Facade\Slack;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use Exception;
@@ -45,6 +47,8 @@ class DeleteCircleController extends Controller
             'circleInvitation'  => $circleInvitation,
             'circleInformation' => $circleInformation,
         ]);
+
+        Slack::channel(SlackChannel::delete)->send('Error!!');
 
         DB::beginTransaction();
         try {
