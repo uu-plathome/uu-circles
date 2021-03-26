@@ -2,7 +2,6 @@ import discord
 from discord.ext import tasks, commands
 import settings
 from datetime import datetime, timedelta, timezone
-from tzlocal import get_localzone
 import requests
 import json
 import io
@@ -10,11 +9,11 @@ import io
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
-# CHANNEL_ID = int(settings.CHANNEL_ID)
+CHANNEL_ID = int(settings.CHANNEL_ID)
 API_URL = settings.API_URL
 
 ###TEST_CHANNEL_ID###
-CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
+# CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
 
 ###GET_API_INFORMATION###
 payload = {'key': 'value'}
