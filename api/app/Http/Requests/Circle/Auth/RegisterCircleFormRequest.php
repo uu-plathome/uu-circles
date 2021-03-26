@@ -34,6 +34,15 @@ class RegisterCircleFormRequest extends FormRequest
         ]);
     }
 
+    public function attributes()
+    {
+        return [
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            UserProperty::email        => __('user.' . UserProperty::email),
+        ];
+    }
+
     public function makeCircleUserValueObject(): CircleUserValueObject
     {
         $user = new User();
