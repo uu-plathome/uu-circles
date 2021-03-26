@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Admin\Circle;
+
 use App\Enum\Role;
 use App\Enum\SlackChannel;
 use App\Facade\Slack;
@@ -31,7 +33,14 @@ class DeleteCircleController extends Controller
             return abort(403);
         }
 
-        $circle = Circle::findOrFail($circleId);
+        $circle = Circle::with([
+            'circleUsers',
+            'circleHandbill',
+            'circleNewJoys',
+            'circleTag',
+            'circleInvitation',
+            'circleInformation',
+        ])->findOrFail($circleId);
         $circleUsers = $circle->circleUsers();
         $circleHandbill = $circle->circleHandbill();
         $circleNewJoys = $circle->circleNewJoys();
@@ -40,15 +49,14 @@ class DeleteCircleController extends Controller
         $circleInformation = $circle->circleInformation();
         Log::info("DeleteCircleData", [
             'circle'            => $circle,
-            'circleUsers'       => $circleUsers,
-            'circleHandbill'    => $circleHandbill,
-            'circleNewJoys'     => $circleNewJoys,
-            'circleTag'         => $circleTag,
-            'circleInvitation'  => $circleInvitation,
-            'circleInformation' => $circleInformation,
         ]);
 
-        Slack::channel(SlackChannel::delete)->send('Error!!');
+        Slack::channel(SlackChannel::delete)->send(
+            json_encode([
+                'title'             => $circle->name . 'を削除します。',
+                'circle'            => $circle,
+            ])
+        );
 
         DB::beginTransaction();
         try {

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Auth\VerificationConfirmController;
 use App\Http\Controllers\Admin\Auth\VerificationResendController;
 use App\Http\Controllers\Admin\Auth\VerificationVerifyController;
 use App\Http\Controllers\Admin\Circle\CreateCircleController;
+use App\Http\Controllers\Admin\Circle\DeleteCircleController;
 use App\Http\Controllers\Admin\Circle\IndexCircleController;
 use App\Http\Controllers\Admin\Circle\PaginateCircleController;
 use App\Http\Controllers\Admin\Circle\ShowCircleController;
@@ -70,6 +71,7 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::post('/circle', CreateCircleController::class);
     Route::get('/circle/{id}', ShowCircleController::class);
     Route::put('/circle/{id}', UpdateCircleController::class);
+    Route::delete('/circle/{id}', DeleteCircleController::class);
 
     // CircleUser サークルユーザー
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class);
