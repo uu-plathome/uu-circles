@@ -490,7 +490,7 @@ const Page: NextPage = () => {
       }
 
       setIsOpen(false)
-      await router.push('/')
+      await router.push(`/circle/${circleId}`)
     }
   }
 
