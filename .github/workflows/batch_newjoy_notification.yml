@@ -4,6 +4,7 @@ on:
   schedule:
     # 7:00 (JST) に処理を実行する。
     - cron: "0 22 * * *"
+  push:
 
 jobs:
   run_batch_newjoy_notification:
@@ -15,6 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - uses: actions/set-timezone-action@v1.1
+        with:
+          timezoneLinux: "Asia/Tokyo"
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
