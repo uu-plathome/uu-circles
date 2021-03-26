@@ -1,11 +1,16 @@
 import React from 'react'
 
 type Props = {
-  type: 'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset'
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   rounded?: boolean
 }
-const BlueButton: React.FC<Props> = ({ children, onClick, type, rounded }) => {
+const BlueButton: React.FC<Props> = ({
+  children,
+  onClick,
+  type = 'button',
+  rounded,
+}) => {
   return (
     <button
       className={

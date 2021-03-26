@@ -102,7 +102,9 @@ const Login: NextPage = () => {
               </div>
 
               <div className="text-center mt-12">
-                <GreenButton type="submit">ログイン</GreenButton>
+                <GreenButton type="submit" rounded>
+                  ログイン
+                </GreenButton>
               </div>
             </form>
 

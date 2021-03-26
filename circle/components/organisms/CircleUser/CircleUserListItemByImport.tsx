@@ -1,8 +1,110 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { User } from '@/lib/types/model/User'
 import { isManager } from '@/lib/enum/api/Role'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import Modal from 'react-modal'
+
+const customStyles = {
+  content: {
+    padding: '20px 12px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '300px',
+    height: '200px',
+  },
+}
+
+type ManagerButtonProps = {
+  user: User
+  onClickManager(): void
+}
+const ManagerButton: FC<ManagerButtonProps> = ({ user, onClickManager }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const onClickManagerButton = () => {
+    setIsOpen(false)
+    onClickManager()
+  }
+
+  return (
+    <div>
+      <BlueButton onClick={() => setIsOpen(true)} rounded>
+        管理者
+      </BlueButton>
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={() => setIsOpen(false)}
+        style={customStyles}
+        contentLabel="サークルに招待する"
+      >
+        <h2 className="text-center text-lg mb-4 font-bold">
+          本当にサークルに招待しますか？
+        </h2>
+
+        <p className="mb-8 text-center">{user.displayName}</p>
+
+        <div className="flex justify-center">
+          <div className="mx-2">
+            <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+          </div>
+          <div className="mx-2">
+            <BlueButton onClick={onClickManagerButton}>招待</BlueButton>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  )
+}
+
+type CommonButtonProps = {
+  user: User
+  onClickCommon(): void
+}
+const CommonButton: FC<CommonButtonProps> = ({ user, onClickCommon }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const onClickCommonButton = () => {
+    setIsOpen(false)
+    onClickCommon()
+  }
+
+  return (
+    <div>
+      <GreenButton onClick={() => setIsOpen(true)} rounded>
+        一般
+      </GreenButton>
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={() => setIsOpen(false)}
+        style={customStyles}
+        contentLabel="サークルに招待する"
+      >
+        <h2 className="text-center text-lg mb-4 font-bold">
+          本当にサークルに招待しますか？
+        </h2>
+
+        <p className="mb-8 text-center">{user.displayName}</p>
+
+        <div className="flex justify-center">
+          <div className="mx-2">
+            <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
+          </div>
+          <div className="mx-2">
+            <GreenButton onClick={onClickCommonButton}>招待</GreenButton>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  )
+}
 
 type Props = {
   user: User
@@ -30,16 +132,16 @@ const CircleUserListItemByImport: FC<Props> = ({
           <span className="block pl-1 pb-1">@{user.username}</span>
         </p>
 
-        <div className="flex justify-center space-x-2">
-          <GreenButton onClick={() => onClickCommon(user.id)}>一般</GreenButton>
+        <div className="flex justify-center space-x-2 py-2">
+          <CommonButton
+            user={user}
+            onClickCommon={() => onClickCommon(user.id)}
+          />
 
-          <BlueButton
-            onClick={() => onClickManager(user.id)}
-            type="button"
-            rounded
-          >
-            管理者
-          </BlueButton>
+          <ManagerButton
+            user={user}
+            onClickManager={() => onClickManager(user.id)}
+          />
         </div>
       </div>
     </div>

@@ -59,7 +59,9 @@ const ExistCircleUserInviteForm: FC<Props> = ({
       />
 
       <div className="flex justify-center mt-8">
-        <GreenButton type="submit">進む</GreenButton>
+        <GreenButton type="submit" rounded>
+          進む
+        </GreenButton>
       </div>
     </form>
   )
