@@ -27,6 +27,8 @@ import {
   BaseBreadcrumbItem,
   BaseBreadcrumbs,
 } from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { IndexCircleUserListByImport } from '@/components/organisms/CircleUser/IndexCircleUserListByImport'
+import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 
 const useParams = () => {
   const router = useRouter()
@@ -51,8 +53,7 @@ const CreatePage: NextPage = () => {
     () => showCircle(circleId)
   )
 
-  const id = useNumberInput(null)
-  const role = useStringInput(Role.COMMON)
+  const role = useStringInput('')
 
   const onSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -75,19 +76,12 @@ const CreatePage: NextPage = () => {
     setIsOpen(false)
   }
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    if (!id.value) {
-      id.setErrors(['所属させたいユーザーを選択してください'])
-      return
-    }
-
+  const onSubmit = async (userId: number, newRole: Role) => {
     setIsOpen(true)
 
-    const data = await importCircleUser(circleId, id.toNumber, {
+    const data = await importCircleUser(circleId, userId, {
       type: 'ImportCircleUserRequest',
-      role: role.value,
+      role: newRole,
     } as ImportCircleUserRequest)
 
     if (isImportCircleUserRequestValidationError(data)) {
@@ -170,14 +164,21 @@ const CreatePage: NextPage = () => {
 
             <FormHeader>ユーザーを招待する</FormHeader>
 
-            <ExistCircleUserInviteForm
-              onSubmit={onSubmit}
-              canSelectUsers={user}
-              form={{
-                id,
-                role,
-              }}
-            />
+            {role.error ? <DangerBunner text={role.error} /> : ''}
+
+            {user && user.length > 0 ? (
+              <IndexCircleUserListByImport
+                users={user}
+                onClickCommon={(userId: number) =>
+                  onSubmit(userId, Role.COMMON)
+                }
+                onClickManager={(userId: number) =>
+                  onSubmit(userId, Role.MANAGER)
+                }
+              />
+            ) : (
+              <p>ユーザーを検索してください</p>
+            )}
           </div>
         </BaseContainer>
 
