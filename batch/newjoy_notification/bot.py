@@ -43,11 +43,11 @@ async def on_ready():
 	channel = client.get_channel(CHANNEL_ID)
 	#アナウンス
 	text = []
-	if (len(r['futureCircleNewJoys']) == 0):
+	if (len(r['todayCircleNewJoys']) == 0):
 		await channel.send('***:crescent_moon:今日の新歓はありません***')
 	else:
 		await channel.send('***☀️今日の新歓 '+now+'***')
-		for idx, newjoy in enumerate(r['futureCircleNewJoys']):
+		for idx, newjoy in enumerate(r['todayCircleNewJoys']):
 			await channel.send('\n---------------------------\n')
 
 			#新歓の開始と終了の時刻を取得
@@ -81,7 +81,7 @@ async def on_ready():
 			if (newjoy['slug'] is not None):
 				text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
 			await channel.send(text)
-			if idx + 1 == len(r['futureCircleNewJoys']):
+			if idx + 1 == len(r['todayCircleNewJoys']):
 				sys.exit()
 	
 client.run(TOKEN)
