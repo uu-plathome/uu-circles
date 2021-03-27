@@ -1,17 +1,19 @@
 import discord
 from discord.ext import tasks, commands
 import settings
-import datetime
+from datetime import datetime, timedelta, timezone
 import requests
 import json
 import io
-
+import sys
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
 CHANNEL_ID = int(settings.CHANNEL_ID)
 API_URL = settings.API_URL
 
+###TEST_CHANNEL_ID###
+# CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
 
 ###GET_API_INFORMATION###
 payload = {'key': 'value'}
@@ -21,11 +23,18 @@ r = requests.get(API_URL, params=payload).json()
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
+###TO_GET_JST_TIME_FUNC###
+#SEE THIS(https://qiita.com/b2bmakers/items/34ba70510e35d2c12e94)
+JST = timezone(timedelta(hours=+9), 'JST')
+def to_jst(time):
+	time = time.replace(tzinfo=timezone.utc)
+	time = time.astimezone(JST)
+	time = time.replace(tzinfo=None)
+	return time
+
 ###GET_TIME###
-day = datetime.datetime.now()
+day = datetime.now(JST)
 now = day.strftime('%Y.%m.%d')
-
-
 
 ###SET_LOOP###
 #ループ処理
@@ -42,12 +51,14 @@ async def on_ready():
 			await channel.send('\n---------------------------\n')
 
 			#新歓の開始と終了の時刻を取得
-			start_day=newjoy['circleNewJoy']['startDate']
+			start_day = newjoy['circleNewJoy']['startDate']
 			end_day = newjoy['circleNewJoy']['endDate']
 			if (start_day is not None):
-				format_startDay = datetime.datetime.strptime(start_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+				tmp_format_startDay = datetime.strptime(start_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+				format_startDay=to_jst(tmp_format_startDay)
 			if (end_day is not None):
-				format_endDay = datetime.datetime.strptime(end_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+				tmp_format_endDay = datetime.strptime(end_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+				format_endDay = to_jst(tmp_format_endDay)
 
 			#送信するテキストの整形
 			text = '***'+str(idx+1)+',***\n:ballot_box_with_check: '+newjoy['name']+'\n'
@@ -70,5 +81,7 @@ async def on_ready():
 			if (newjoy['slug'] is not None):
 				text += '👀サークルを見る: ** https://uu-circles.com/circle/'+newjoy['slug']+'**\n\n'
 			await channel.send(text)
+			if idx + 1 == len(r['todayCircleNewJoys']):
+				sys.exit()
 	
 client.run(TOKEN)
