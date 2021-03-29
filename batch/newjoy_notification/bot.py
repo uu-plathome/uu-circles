@@ -45,6 +45,7 @@ async def on_ready():
 	text = []
 	if (len(r['todayCircleNewJoys']) == 0):
 		await channel.send('***:crescent_moon:今日の新歓はありません***')
+		sys.exit()
 	else:
 		await channel.send('***☀️今日の新歓 '+now+'***')
 		for idx, newjoy in enumerate(r['todayCircleNewJoys']):
