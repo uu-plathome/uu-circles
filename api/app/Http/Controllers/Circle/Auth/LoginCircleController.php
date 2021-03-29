@@ -114,7 +114,7 @@ class LoginCircleController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'data' => 'ログインに失敗しました。メールアドレス、パスワードを再度、確認してください。',
+            'data' => 'ログインに失敗しました。メールアドレス、パスワードを再度、確認してください。またはサークルと紐づいていない可能性があります。なにかありましたら、管理者に連絡ください。',
         ]);
     }
 
