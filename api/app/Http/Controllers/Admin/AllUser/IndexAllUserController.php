@@ -28,7 +28,7 @@ class IndexAllUserController extends Controller
             'updated_at' => 'nullable|string',
             'previous'   => 'nullable|boolean',
             'next'       => 'nullable|boolean',
-            'search'       => 'nullable|string',
+            'search'     => 'nullable|string',
         ]));
         $requestId = $request->query('id', null);
         $requestUpdatedAt = $request->query(Str::camel('updated_at'), null);

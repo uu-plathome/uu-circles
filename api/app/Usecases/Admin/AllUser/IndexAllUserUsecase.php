@@ -33,7 +33,7 @@ class IndexAllUserUsecase
         }
 
         $allUser = User::whereDoesntHave('adminUser')
-            ->when($param->search, function (Builder $query) use ($param) {
+            ->when($param->search, function ($query) use ($param) {
                 $query->where(UserProperty::email, 'like', "%{$param->search}%")
                     ->orWhere(UserProperty::display_name, 'like', "%{$param->search}%")
                     ->orWhere(UserProperty::username, 'like', "%{$param->search}%");
