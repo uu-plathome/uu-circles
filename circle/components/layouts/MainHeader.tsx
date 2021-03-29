@@ -32,13 +32,7 @@ const MainHeader: FC<Props> = ({ onClick }) => {
               </div>
 
               <h1 className="text-sm md:text-lg">
-                {router.pathname === '/' ? (
-                  <p>UU-circles</p>
-                ) : (
-                  <Link href="https://uu-circles.com/">
-                    <a>UU-circles</a>
-                  </Link>
-                )}
+                <a href="https://uu-circles.com/">UU-circles</a>
               </h1>
             </div>
 

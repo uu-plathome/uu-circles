@@ -9,6 +9,13 @@ const BaseFooter: FC<Props> = () => {
         <hr className="border border-gray-200" />
         <div className="pt-8 pb-16">
           <a
+            href="https://uu-circles.com"
+            className="text-gray-400 px-2 text-xs"
+          >
+            UU-Circles
+          </a>
+
+          <a
             href="https://uu-circles.com/guide/management-team"
             className="text-gray-400 px-2 text-xs"
           >
