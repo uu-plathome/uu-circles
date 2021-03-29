@@ -29,7 +29,7 @@ import Compressor from 'compressorjs'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
 
 const Page: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -86,7 +86,7 @@ const Page: NextPage = () => {
   const activityImageUrl4 = useStringInput('')
   const activityImageUrl5 = useStringInput('')
   const activityImageUrl6 = useStringInput('')
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   const { circleId } = router.query
 
   useEffect(() => {
@@ -158,6 +158,7 @@ const Page: NextPage = () => {
         activityImageUrl5.set(foundCircle.activityImageUrl5)
         activityImageUrl6.set(foundCircle.activityImageUrl6)
       }
+      setIsOpen(false)
     }
 
     f()
@@ -494,23 +495,25 @@ const Page: NextPage = () => {
     }
   }
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
-    ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `${circle.shortName || circle.name}の編集`,
-            href: `/circle/[circleId]/edit`,
-            as: `/circle/${circle.id}/edit`,
-            active: true,
-          },
-        ],
-      ]
-    : []
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle
+      ? [
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `${circle.shortName || circle.name}の編集`,
+              href: `/circle/[circleId]/edit`,
+              as: `/circle/${circle.id}/edit`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+  }, [circle])
 
   return (
     <div>

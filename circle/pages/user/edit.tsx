@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -66,15 +66,17 @@ const CreatePage: NextPage = () => {
     await router.push(`/`)
   }
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = [
-    ...[
-      {
-        text: '自分のアカウント編集',
-        href: `/user/edit`,
-        active: true,
-      },
-    ],
-  ]
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return [
+      ...[
+        {
+          text: '自分のアカウント編集',
+          href: `/user/edit`,
+          active: true,
+        },
+      ],
+    ]
+  }, [])
 
   return (
     <div>

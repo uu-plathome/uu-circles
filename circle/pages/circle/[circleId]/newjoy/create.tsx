@@ -3,7 +3,7 @@ import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { createCircleNewJoy } from '@/infra/api/circleNewjoy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext, useMemo, useState } from 'react'
 import {
   isRegisterCircleNewJoyRequestValidationError,
   RegisterCircleNewJoyRequest,
@@ -83,8 +83,8 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${Number(circleId)}/newjoy`)
   }
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] =
-    circle && circle.circle
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle && circle.circle
       ? [
           ...[
             {
@@ -106,6 +106,7 @@ const CreatePage: NextPage = () => {
           ],
         ]
       : []
+  }, [circle])
 
   return (
     <div>

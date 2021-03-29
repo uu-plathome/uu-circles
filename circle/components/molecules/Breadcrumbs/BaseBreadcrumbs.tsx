@@ -1,7 +1,7 @@
 import { faHome, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { BaseContainer } from '../Container/BaseContainer'
 
 export type BaseBreadcrumbItem = {
@@ -17,18 +17,20 @@ type Props = {
 }
 
 const BaseBreadcrumbs: FC<Props> = ({ items }) => {
-  const breadcrumbsItems: BaseBreadcrumbItem[] = [
-    ...[
-      {
-        text: 'Home',
-        href: '/',
-        icon: faHome,
-      },
-    ],
-    ...items,
-  ]
-
-  console.log('BaseBreadcrumbs', breadcrumbsItems)
+  const breadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    const _breadcrumbsItems = [
+      ...[
+        {
+          text: 'Home',
+          href: '/',
+          icon: faHome,
+        },
+      ],
+      ...items,
+    ]
+    console.log('BaseBreadcrumbs', _breadcrumbsItems)
+    return _breadcrumbsItems
+  }, [items])
 
   return (
     <div className="">
