@@ -137,13 +137,11 @@ const CreatePage: NextPage = () => {
 
     const data = await updateCircleUser(circleId, userId, {
       type: 'UpdateCircleUserRequest',
-      username: username.value,
       displayName: displayName.value,
       role: role.value,
     } as UpdateCircleUserRequest)
 
     if (isUpdateCircleUserRequestValidationError(data)) {
-      username.setErrors(data.errors.username)
       displayName.setErrors(data.errors.displayName)
       role.setErrors(data.errors.role)
       setIsOpen(false)

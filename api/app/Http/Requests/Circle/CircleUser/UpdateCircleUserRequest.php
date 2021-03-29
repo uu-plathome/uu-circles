@@ -27,7 +27,6 @@ class UpdateCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash'],
             UserProperty::display_name => ['required', 'string', 'max:50'],
             CircleUserProperty::role   => [
                 'required',
@@ -39,7 +38,6 @@ class UpdateCircleUserRequest extends FormRequest
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.' . UserProperty::username),
             UserProperty::display_name => __('user.' . UserProperty::display_name),
             CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
         ];

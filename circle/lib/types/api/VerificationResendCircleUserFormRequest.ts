@@ -17,11 +17,5 @@ export interface VerificationResendCircleUserFormRequestValidationError {
   message: string
 }
 
-export const isVerificationResendCircleUserFormRequest = (
-  v: any
-): v is VerificationResendCircleUserFormRequest =>
-  v && v.type === 'VerificationResendCircleUserFormRequest'
-export const isVerificationResendCircleUserFormRequestValidationError = (
-  v: any
-): v is VerificationResendCircleUserFormRequestValidationError =>
-  v && v.type === 'VerificationResendCircleUserFormRequestValidationError'
+export const isVerificationResendCircleUserFormRequest = (v: any): v is VerificationResendCircleUserFormRequest => v && v.type === 'VerificationResendCircleUserFormRequest'
+export const isVerificationResendCircleUserFormRequestValidationError = (v: any): v is VerificationResendCircleUserFormRequestValidationError => v && v.type === 'VerificationResendCircleUserFormRequestValidationError'

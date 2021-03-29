@@ -47,7 +47,6 @@ class UpdateCircleUserController extends Controller
             ->firstOrFail();
 
         $request->validate([
-            UserProperty::username   => 'unique:users,username,' . $user->id,
             CircleUserProperty::role => Rule::in(
                 $authUser->id !== $user->id ? [Role::MANAGER, Role::COMMON] : [Role::MANAGER]
             ),
@@ -55,7 +54,6 @@ class UpdateCircleUserController extends Controller
 
         $makeUpdateInput = [
             UserProperty::display_name => $request->get(Str::camel(UserProperty::display_name)),
-            UserProperty::username     => $request->get(Str::camel(UserProperty::username)),
         ];
         $newRole = $request->get(Str::camel(CircleUserProperty::role));
 
