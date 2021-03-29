@@ -19,5 +19,9 @@ export interface LoginAdminFormRequestValidationError {
   message: string
 }
 
-export const isLoginAdminFormRequest = (v: any): v is LoginAdminFormRequest => v && v.type === 'LoginAdminFormRequest'
-export const isLoginAdminFormRequestValidationError = (v: any): v is LoginAdminFormRequestValidationError => v && v.type === 'LoginAdminFormRequestValidationError'
+export const isLoginAdminFormRequest = (v: any): v is LoginAdminFormRequest =>
+  v && v.type === 'LoginAdminFormRequest'
+export const isLoginAdminFormRequestValidationError = (
+  v: any
+): v is LoginAdminFormRequestValidationError =>
+  v && v.type === 'LoginAdminFormRequestValidationError'
