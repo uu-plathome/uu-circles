@@ -26,18 +26,6 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, isOtherUser, form }) => {
       <FormHeader>部員情報</FormHeader>
 
       <BaseTextField
-        label="ユーザー名"
-        name="username"
-        id="username"
-        required
-        prefix="@"
-        disabled
-        note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
-        expand
-        {...form.username}
-      />
-
-      <BaseTextField
         label="表示名"
         name="display_name"
         id="display_name"
@@ -46,15 +34,6 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, isOtherUser, form }) => {
         note="入力がない場合は、自動で決まります"
         expand
         {...form.displayName}
-      />
-
-      <BaseTextField
-        label="メールアドレス"
-        name="email"
-        id="email"
-        {...form.email}
-        expand
-        disabled={true}
       />
 
       <BaseSelect
@@ -73,6 +52,27 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, isOtherUser, form }) => {
           { label: __(Role.COMMON, 'CircleUserRole'), value: Role.COMMON },
         ]}
         {...form.role}
+      />
+
+      <BaseTextField
+        label="ユーザー名"
+        name="username"
+        id="username"
+        required
+        prefix="@"
+        disabled
+        note="他のユーザーのユーザー名は変更できません。"
+        expand
+        {...form.username}
+      />
+
+      <BaseTextField
+        label="メールアドレス"
+        name="email"
+        id="email"
+        {...form.email}
+        expand
+        disabled={true}
       />
 
       <div className="flex justify-center mt-8">
