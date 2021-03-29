@@ -36,7 +36,7 @@ class SearchCircleUserController extends Controller
         $authUser = $request->user();
         $this->permissionCircle($authUser, $circleId, [Role::MANAGER]);
 
-        $foundResultUsers = User::with('circleUsers')
+        $foundResultUsers = User::with(['circleUsers', 'adminUser'])
             ->whereActive(true)
             ->whereNotNull(UserProperty::email_verified_at)
             ->where(function ($query) use ($searchText) {
@@ -44,13 +44,20 @@ class SearchCircleUserController extends Controller
                     ->orWhere(UserProperty::display_name, 'like', "%$searchText%")
                     ->orWhere(UserProperty::username, 'like', "%$searchText%");
             })
-            ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {
-                /** @var \App\Models\CircleUser $query */
-                $query->where(CircleUserProperty::circle_id, '!=', $circleId);
-            })
             ->get();
 
         $resultUsers = $foundResultUsers->filter(function ($user) use ($circleId) {
+            // 管理者は検索結果に出さない
+            if (!is_null($user->adminUser)) {
+                return false;
+            }
+
+            // サークルに無所属のユーザーは検索結果に出す
+            if (is_null($user->circleUsers)) {
+                return true;
+            }
+
+            // サークルに所属していないユーザーは検索結果に出す
             $ids = $user->circleUsers->map(
                 fn ($circleUser) => $circleUser->circle_id
             )->toArray();
