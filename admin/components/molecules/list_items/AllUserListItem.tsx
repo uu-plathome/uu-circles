@@ -1,71 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import {
   faCheckCircle,
   faTimesCircle,
-  faTrash,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
 import { User } from '@/lib/types/model/User'
 import Link from 'next/link'
-import Modal from 'react-modal'
-import { GrayButton } from '@/components/atoms/buttons/GrayButton'
-import { RedButton } from '@/components/atoms/buttons/RedButton'
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '300px',
-    height: '200px',
-  },
-}
 
-type DeleteButtonProps = {
-  user: User
-  onDelete(): void
-}
-const DeleteButton: FC<DeleteButtonProps> = ({ user, onDelete }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const onClickDeleteButton = () => {
-    setIsOpen(false)
-    onDelete()
-  }
-
-  return (
-    <div>
-      <button onClick={() => setIsOpen(true)}>
-        <FontAwesomeIcon size="lg" color="red" icon={faTrash} />
-      </button>
-
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        style={customStyles}
-        contentLabel="部員アカウント削除"
-      >
-        <h2 className="text-center text-lg mb-4 font-bold">
-          本当に削除しますか？
-        </h2>
-
-        <p className="mb-8 text-center">{user.displayName}</p>
-
-        <div className="flex justify-center">
-          <div className="mx-2">
-            <GrayButton onClick={() => setIsOpen(false)}>閉じる</GrayButton>
-          </div>
-          <div className="mx-2">
-            <RedButton onClick={onClickDeleteButton}>削除</RedButton>
-          </div>
-        </div>
-      </Modal>
-    </div>
-  )
-}
 type Props = {
   user: User
   onResendEmail(email: string): void

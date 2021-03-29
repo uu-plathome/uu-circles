@@ -12,7 +12,6 @@ import Link from 'next/link'
 import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { Circle } from '@/lib/types/model/Circle'
 
 const customStyles = {
   content: {
