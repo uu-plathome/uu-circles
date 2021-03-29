@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext, useMemo, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
@@ -96,8 +96,8 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${circleId}/user`)
   }
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] =
-    circle && circle.circle
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle && circle.circle
       ? [
           ...[
             {
@@ -119,6 +119,7 @@ const CreatePage: NextPage = () => {
           ],
         ]
       : []
+  }, [circle])
 
   return (
     <div>

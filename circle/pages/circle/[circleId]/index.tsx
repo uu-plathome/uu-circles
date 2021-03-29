@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { Role } from '@/lib/enum/api/Role'
 import {
@@ -43,18 +43,20 @@ const IndexPage: NextPage = () => {
     f()
   }, [])
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
-    ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-            active: true,
-          },
-        ],
-      ]
-    : []
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle
+      ? [
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+  }, [circle])
 
   return (
     <div>

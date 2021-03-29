@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -52,23 +52,25 @@ const IndexPage: NextPage = () => {
     f()
   }, [])
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
-    ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `部員アカウント一覧`,
-            href: `/circle/[circleId]/user`,
-            as: `/circle/${circle.id}/user`,
-            active: true,
-          },
-        ],
-      ]
-    : []
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle
+      ? [
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.id}/user`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+  }, [circle])
 
   return (
     <div>

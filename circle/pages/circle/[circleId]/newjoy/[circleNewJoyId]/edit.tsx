@@ -7,7 +7,14 @@ import {
 } from '@/infra/api/circleNewjoy'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent, MouseEvent, useContext, useEffect, useState } from 'react'
+import {
+  FormEvent,
+  MouseEvent,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import {
   isUpdateCircleNewJoyRequestValidationError,
   UpdateCircleNewJoyRequest,
@@ -32,7 +39,7 @@ const CreatePage: NextPage = () => {
   const router = useRouter()
   const { circleId, circleNewJoyId } = router.query
   const [circle, setCircle] = useState<Circle | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const title = useStringInput('')
   const description = useStringInput('')
@@ -63,6 +70,7 @@ const CreatePage: NextPage = () => {
       startDate.set(circleNewJoy.startDate)
       endDate.set(circleNewJoy.endDate)
       release.set(circleNewJoy.release)
+      setIsOpen(false)
     }
 
     f()
@@ -124,28 +132,30 @@ const CreatePage: NextPage = () => {
     await router.push(`/circle/${Number(circleId)}/newjoy`)
   }
 
-  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = circle
-    ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `新歓イベント一覧`,
-            href: `/circle/[circleId]/newjoy`,
-            as: `/circle/${circle.id}/newjoy`,
-          },
-          {
-            text: `新歓編集`,
-            href: `/circle/[circleId]/newjoy/[circleNewJoyId]/edit`,
-            as: `/circle/${circle.id}/newjoy/${circleNewJoyId}/edit`,
-            active: true,
-          },
-        ],
-      ]
-    : []
+  const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    return circle
+      ? [
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `新歓イベント一覧`,
+              href: `/circle/[circleId]/newjoy`,
+              as: `/circle/${circle.id}/newjoy`,
+            },
+            {
+              text: `新歓編集`,
+              href: `/circle/[circleId]/newjoy/[circleNewJoyId]/edit`,
+              as: `/circle/${circle.id}/newjoy/${circleNewJoyId}/edit`,
+              active: true,
+            },
+          ],
+        ]
+      : []
+  }, [circle, circleNewJoyId])
 
   return (
     <div>
