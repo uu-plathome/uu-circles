@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
 import { getDate, getTime } from '@/lib/utils/Date'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import colors from '@/colors'
 
 type Props = {
   circleId: number
@@ -21,7 +24,16 @@ const CircleNewJoyListItemSP: FC<Props> = ({ circleId, circleNewJoy }) => {
           style={{ width: 320 }}
         >
           <div className="w-full pr-3">
-            <h3 className="text-black font-bold mb-1">{circleNewJoy.title}</h3>
+            <h2 className="text-black font-bold mb-1">
+              <FontAwesomeIcon
+                icon={circleNewJoy.release ? faCheck : faTimes}
+                color={
+                  circleNewJoy.release ? colors.green[700] : colors.red[500]
+                }
+                className="mr-2"
+              />
+              {circleNewJoy.title}
+            </h2>
             <p className="text-sm border-b border-gray-400 flex mb-1">
               <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
                 場所

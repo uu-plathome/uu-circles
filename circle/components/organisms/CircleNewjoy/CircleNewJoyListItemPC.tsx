@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { __ } from '@/lang/ja'
 import { getDOW, getMonth, getDay, getTime } from '@/lib/utils/Date'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import colors from '@/colors'
 
 type Props = {
   circleId: number
@@ -21,7 +24,7 @@ const CircleNewJoyListItemPC: FC<Props> = ({ circleId, circleNewJoy }) => {
           height: 70,
         }}
       >
-        <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
+        <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center">
           <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
         </div>
         <div
@@ -38,6 +41,11 @@ const CircleNewJoyListItemPC: FC<Props> = ({ circleId, circleNewJoy }) => {
       <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
           <h2 className="font-bold text-xl text-center">
+            <FontAwesomeIcon
+              icon={circleNewJoy.release ? faCheck : faTimes}
+              color={circleNewJoy.release ? colors.green[700] : colors.red[500]}
+              className="mr-2"
+            />
             {circleNewJoy.title}
           </h2>
           <div className="border-b-2  grid grid-cols-8">
