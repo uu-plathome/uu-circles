@@ -20,6 +20,7 @@ import {
 } from '@/infra/api/circle_user'
 import { User } from '@/lib/types/model/User'
 import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 type PaginateUserCursor = {
   id?: number
@@ -39,7 +40,6 @@ const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()
   const name = useStringInput('')
   const [isOpen, setIsOpen] = useState(false)
-  const [success, setSuccess] = useState(false)
 
   const foundAllUserList = async (cursor: PaginateUserCursor = null) => {
     setUsers(await paginateAllUserList(cursor))
@@ -81,12 +81,7 @@ const IndexPage: NextPage = () => {
   const onResendEmail = async (email: string) => {
     setIsOpen(true)
     await resendEmailCircleUser(email)
-    setSuccess(true)
     setIsOpen(false)
-
-    setTimeout(() => {
-      setSuccess(false)
-    }, 3000)
   }
 
   return (
@@ -104,6 +99,8 @@ const IndexPage: NextPage = () => {
           actionHref="/circle/create"
         >
           <div className="border-2 border-gray-800 p-2">
+            {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
+
             {users ? (
               <div className="py-4 mb-8">
                 <p className="text-white">ユーザー検索</p>
