@@ -21,11 +21,5 @@ export interface ResetPasswordCircleRequestValidationError {
   message: string
 }
 
-export const isResetPasswordCircleRequest = (
-  v: any
-): v is ResetPasswordCircleRequest =>
-  v && v.type === 'ResetPasswordCircleRequest'
-export const isResetPasswordCircleRequestValidationError = (
-  v: any
-): v is ResetPasswordCircleRequestValidationError =>
-  v && v.type === 'ResetPasswordCircleRequestValidationError'
+export const isResetPasswordCircleRequest = (v: any): v is ResetPasswordCircleRequest => v && v.type === 'ResetPasswordCircleRequest'
+export const isResetPasswordCircleRequestValidationError = (v: any): v is ResetPasswordCircleRequestValidationError => v && v.type === 'ResetPasswordCircleRequestValidationError'

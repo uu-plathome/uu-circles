@@ -31,6 +31,7 @@ const EditCircleUserForm: FC<Props> = ({ onSubmit, isOtherUser, form }) => {
         id="username"
         required
         prefix="@"
+        disabled
         note="アルファベット、ハイフンのみ。入力がない場合は、自動で決まります"
         expand
         {...form.username}
