@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\CircleTag\GetCircleTagController;
 use App\Http\Controllers\Admin\CircleUser\CreateCircleUserRelationController;
 use App\Http\Controllers\Admin\CircleUser\DeleteCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\DeleteCircleUserRelationController;
+use App\Http\Controllers\Admin\AllUser\IndexAllUserController;
 use App\Http\Controllers\Admin\CircleUser\IndexCircleUserByUserIdController;
 use App\Http\Controllers\Admin\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\RegisterCircleUserController;
@@ -74,6 +75,7 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::delete('/circle/{id}', DeleteCircleController::class);
 
     // CircleUser サークルユーザー
+    Route::get('/user/circle', IndexAllUserController::class);
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class);
     Route::post('/circle/{circleId}/user', RegisterCircleUserController::class);
     Route::get('/circle/{circleId}/user/{userId}', ShowCircleUserController::class);
@@ -94,7 +96,6 @@ Route::middleware('auth:adminUser')->group(function () {
     // CircleTag サークルタグ管理
     Route::get('/circle/{circleId}/tag', GetCircleTagController::class);
     Route::post('/circle/{circleId}/tag', CreateOrUpdateCircleTagController::class);
-
 
     // Advertise
     Route::get('/advertise', IndexAdvertiseController::class);
