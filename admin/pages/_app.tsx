@@ -7,9 +7,14 @@ import { axiosInstance } from '@/infra/api'
 import { User } from '@/lib/types/model/User'
 import { Role } from '@/lib/enum/api/Role'
 import * as gtag from '@/lib/utils/Gtag'
+import { Bugsnag } from '@/lib/utils/Bugsnag'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import '../styles/index.css'
+
+const ErrorBoundary = process.env.BUGSNAG_API_KEY
+  ? Bugsnag.getPlugin('react').createErrorBoundary(React)
+  : ({ children }) => <div>{children}</div>
 
 const useAccessToken = (initialState: string) => {
   const [accessToken, _setAccessToken] = useState(initialState)
@@ -88,20 +93,25 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [router.events])
 
   return (
-    <AuthContext.Provider
-      value={{ accessToken, setAccessToken, role, setRole }}
-    >
-      <>
-        <Head>
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-        </Head>
-        {loading ? (
-          <div className="text-white">loading...</div>
-        ) : (
-          <Component {...pageProps} />
-        )}
-      </>
-    </AuthContext.Provider>
+    <ErrorBoundary>
+      <AuthContext.Provider
+        value={{ accessToken, setAccessToken, role, setRole }}
+      >
+        <>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width,initial-scale=1"
+            />
+          </Head>
+          {loading ? (
+            <div className="text-white">loading...</div>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </>
+      </AuthContext.Provider>
+    </ErrorBoundary>
   )
 }
 
