@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { AuthContext } from '@/contexts/AuthContext'
 import { axiosInstance } from '@/infra/api'
 import { User } from '@/lib/types/model/User'
-import { Bugsnag } from '@/lib/utils/BugSnag'
+import { Bugsnag } from '@/lib/utils/Bugsnag'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import '../styles/index.css'
