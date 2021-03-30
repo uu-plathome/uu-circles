@@ -17,5 +17,11 @@ export interface ForgotPasswordCircleRequestValidationError {
   message: string
 }
 
-export const isForgotPasswordCircleRequest = (v: any): v is ForgotPasswordCircleRequest => v && v.type === 'ForgotPasswordCircleRequest'
-export const isForgotPasswordCircleRequestValidationError = (v: any): v is ForgotPasswordCircleRequestValidationError => v && v.type === 'ForgotPasswordCircleRequestValidationError'
+export const isForgotPasswordCircleRequest = (
+  v: any
+): v is ForgotPasswordCircleRequest =>
+  v && v.type === 'ForgotPasswordCircleRequest'
+export const isForgotPasswordCircleRequestValidationError = (
+  v: any
+): v is ForgotPasswordCircleRequestValidationError =>
+  v && v.type === 'ForgotPasswordCircleRequestValidationError'
