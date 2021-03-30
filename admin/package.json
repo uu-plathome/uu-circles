@@ -9,6 +9,8 @@
     "lint": "eslint . --fix --ext ts --ext tsx --ext js"
   },
   "dependencies": {
+    "@bugsnag/js": "^7.9.0",
+    "@bugsnag/plugin-react": "^7.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
