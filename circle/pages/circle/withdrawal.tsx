@@ -32,7 +32,13 @@ const IndexPage: NextPage = () => {
     await withdrawalOwnCircle(circleId)
 
     setIsOpen(false)
-    await router.push('/')
+
+    // 全てのサークルから脱退したとき、ログアウトする
+    if (circles && circles.length > 1) {
+      await router.push('/')
+    } else {
+      await router.push('/logout')
+    }
   }
 
   return (
