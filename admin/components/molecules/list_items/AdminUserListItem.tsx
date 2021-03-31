@@ -20,9 +20,19 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
   return (
     <div className="mb-4">
       <div className="ml-2 w-full">
-        <h2 className="font-bold text-lg text-gray-300 mb-2">
-          {user.displayName}
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="font-bold text-lg text-gray-300 mb-2">
+            {user.displayName}
+          </h2>
+
+          <div className="px-4">
+            <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
+              <a className="text-white underline text-sm md:text-base">
+                サークルに所属させる→
+              </a>
+            </Link>
+          </div>
+        </div>
 
         <div className="flex flex-wrap w-full">
           <div className="w-1/2 sm:w-1/3 lg:w-3/12 pr-2 mb-4 lg:mb-0">

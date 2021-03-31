@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Circle\Auth;
 
+use App\Enum\Property\UserProperty;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,14 @@ class ForgotPasswordCircleRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'email'    => 'required|string|email|max:255',
+            UserProperty::email => 'required|string|email|max:255',
         ]);
+    }
+
+    public function attributes()
+    {
+        return [
+            UserProperty::email => __('user.' . UserProperty::email),
+        ];
     }
 }

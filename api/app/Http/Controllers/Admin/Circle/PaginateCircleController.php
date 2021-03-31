@@ -27,6 +27,8 @@ class PaginateCircleController extends Controller
      */
     public function __invoke(Request $request): array
     {
+        Log::debug("PaginateCircleController args none");
+
         $request->validate(Arr::camel_keys([
             'id'         => 'nullable|integer',
             'updated_at' => 'nullable|string',

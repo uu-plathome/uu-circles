@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin\CircleUser;
 
+use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
-use App\Usecases\Admin\CreateCircleUserUsecase;
+use App\Usecases\Admin\CircleUser\CreateCircleUserUsecase;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class RegisterCircleUserController extends Controller
 {
@@ -25,9 +27,10 @@ class RegisterCircleUserController extends Controller
         RegisterCircleUserRequest $request,
         int $circleId
     ) {
+        Log::debug("RegisterCircleUserController args circleId=$circleId");
+
         $this->createCircleUserUsecase->invoke(
-            $circleId,
-            $request->makeCircleUserValueObject()
+            $request->makeCreateCircleUserUsecaseParam()
         );
     }
 }

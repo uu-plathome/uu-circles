@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main\Circle;
 
 use App\Http\Controllers\Controller;
+use App\Models\CircleTag;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetCircleNewJoyAllPeriodWithLimitByCircleId;
@@ -19,6 +20,9 @@ class GetCircleController extends Controller
 
     private GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId;
 
+    /**
+     * 新歓取得数
+     */
     const TAKE_NEWJOY_COUNT = 6;
 
     public function __construct(
@@ -44,13 +48,14 @@ class GetCircleController extends Controller
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
 
         $circleNewJoys = Cache::remember(
-            $this->getCacheKey($circle->id),
+            $this->getCacheKey($circle->circleValueObject->id),
             60,
-            fn () => $this->getCircleNewJoyAllPeriodWithLimitByCircleId->invoke($circle->id, self::TAKE_NEWJOY_COUNT)
+            fn () => $this->getCircleNewJoyAllPeriodWithLimitByCircleId->invoke($circle->circleValueObject->id, self::TAKE_NEWJOY_COUNT)
         );
 
         return Arr::camel_keys([
-            'data'          => $circle->toArray(),
+            'data'          => $circle->circleValueObject->toArray(),
+            'circleTags'    => $circle->circleTagEntity->toArray(),
             'circleNewJoys' => (new Collection($circleNewJoys))->map(
                 fn (CircleNewJoyValueObject $circleNewJoy) => $circleNewJoy->toArray()
             )->toArray(),

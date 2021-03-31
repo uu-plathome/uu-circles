@@ -47,7 +47,7 @@ class IndexCircleNewJoyController extends Controller
         $circleNewJoys = Cache::remember(
             $this->getCircleNewJoysCacheKey(),
             60,
-            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->id)
+            fn () => $this->indexCircleNewJoyUsecase->invoke($circle->circleValueObject->id)
         );
 
         $allCircleNewJoys = Cache::remember(
@@ -57,7 +57,7 @@ class IndexCircleNewJoyController extends Controller
         );
 
         return Arr::camel_keys([
-            'circle'              => $circle->toArray(),
+            'circle'              => $circle->circleValueObject->toArray(),
             // 新歓開催済み
             'pastCircleNewJoys'   => (new Collection($circleNewJoys['pastCircleNewJoys']))->map(
                 fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()

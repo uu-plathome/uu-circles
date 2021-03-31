@@ -57,7 +57,7 @@ class CirclesTableSeeder extends Seeder
                     'username'     => "udai-{$circle->id}",
                     'display_name' => "udai-{$circle->id}",
                 ])->each(function (User $user) use ($circle) {
-                    $user->circleUser()->create([
+                    $user->circleUsers()->create([
                         'circle_id' => $circle->id,
                     ]);
                 });
@@ -67,7 +67,7 @@ class CirclesTableSeeder extends Seeder
                     'display_name' => "no-udai-{$circle->id}",
                     'active'       => false,
                 ])->each(function (User $user) use ($circle) {
-                    $user->circleUser()->create([
+                    $user->circleUsers()->create([
                         'circle_id' => $circle->id,
                     ]);
                 });
@@ -94,7 +94,7 @@ class CirclesTableSeeder extends Seeder
                     'username'     => "udai-{$circle->id}",
                     'display_name' => "udai-{$circle->id}",
                 ])->each(function (User $user) use ($circle) {
-                    $user->circleUser()->create([
+                    $user->circleUsers()->create([
                         'circle_id' => $circle->id,
                     ]);
                 });
@@ -104,7 +104,7 @@ class CirclesTableSeeder extends Seeder
                     'display_name' => "no-udai-{$circle->id}",
                     'active'       => false,
                 ])->each(function (User $user) use ($circle) {
-                    $user->circleUser()->create([
+                    $user->circleUsers()->create([
                         'circle_id' => $circle->id,
                     ]);
                 });

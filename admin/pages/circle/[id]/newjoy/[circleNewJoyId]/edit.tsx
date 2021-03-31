@@ -27,6 +27,7 @@ const CreatePage: NextPage = () => {
   const title = useStringInput('')
   const description = useStringInput('')
   const url = useStringInput('')
+  const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput('')
   const placeOfActivityDetail = useStringInput('')
   const publishFrom = useDateInput(null, 'YYYY-MM-DD')
@@ -45,6 +46,7 @@ const CreatePage: NextPage = () => {
       title.set(circleNewJoy.title)
       description.set(circleNewJoy.description)
       url.set(circleNewJoy.url)
+      privateNewjoyLink.set(circleNewJoy.privateNewjoyLink)
       placeOfActivity.set(circleNewJoy.placeOfActivity)
       placeOfActivityDetail.set(circleNewJoy.placeOfActivityDetail)
       publishFrom.set(circleNewJoy.publishFrom)
@@ -64,6 +66,7 @@ const CreatePage: NextPage = () => {
       title: title.value,
       description: description.value,
       url: url.value,
+      privateNewjoyLink: privateNewjoyLink.value,
       placeOfActivity:
         placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
       placeOfActivityDetail: placeOfActivityDetail.value,
@@ -77,6 +80,7 @@ const CreatePage: NextPage = () => {
       title.setErrors(data.errors.title)
       description.setErrors(data.errors.description)
       url.setErrors(data.errors.url)
+      privateNewjoyLink.setErrors(data.errors.privateNewjoyLink)
       placeOfActivity.setErrors(data.errors.placeOfActivity)
       placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
       publishFrom.setErrors(data.errors.publishFrom)
@@ -109,6 +113,7 @@ const CreatePage: NextPage = () => {
                   title,
                   description,
                   url,
+                  privateNewjoyLink,
                   placeOfActivity,
                   placeOfActivityDetail,
                   publishFrom,

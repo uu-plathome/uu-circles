@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Circle\Auth;
 use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class VerificationResendController extends Controller
@@ -19,6 +22,8 @@ class VerificationResendController extends Controller
      */
     public function __invoke(VerificationResendCircleUserFormRequest $request): JsonResponse
     {
+        Log::debug("VerificationResendController args none");
+
         $email = $request->get(UserProperty::email);
 
         try {

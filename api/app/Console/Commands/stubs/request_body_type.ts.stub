@@ -2,7 +2,7 @@
  * リクエストボディ
  */
 export interface {{ $className }} {
-    type: '{{ $className }}'
+  type: '{{ $className }}'
 {{ $requestBodyObject }}
 }
 
@@ -10,11 +10,11 @@ export interface {{ $className }} {
  * バリデーションエラー
  */
 export interface {{ $className }}ValidationError {
-    type: '{{ $className }}ValidationError'
-    errors: {
+  type: '{{ $className }}ValidationError'
+  errors: {
 {{ $validationObject }}
-    }
-    message: string
+  }
+  message: string
 }
 
 export const is{{ $className }} = (v: any): v is {{ $className }} => v && v.type === '{{ $className }}'
