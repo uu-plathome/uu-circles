@@ -1,21 +1,23 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
+import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getFullJPDate } from '@/lib/utils/Date'
 import { FC } from 'react'
+
 type Props = {
+  circle: Circle
   circleNewJoy: CircleNewJoy
 }
-const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
+const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-  // console.log(circleNewJoy)
 
   return (
     <div>
       {isMd ? (
         // PCレイアウト
         <div
-          className=" bg-white rounded-lg  px-6 py-2 mx-auto mb-2 flex justify-center"
+          className="bg-white rounded-lg  px-6 py-2 mx-auto mb-2 flex justify-center"
           style={{ width: 500 }}
         >
           <div className="my-3 mr-6">
@@ -43,7 +45,6 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
             </section>
           </div>
           <div
-            className=""
             style={{
               width: 335,
             }}
@@ -53,9 +54,10 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 新歓イベント名
               </h4>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-                {circleNewJoy.title}
+                {circle.shortName || circle.name} {circleNewJoy.title}
               </h4>
             </section>
+
             <section className="my-6 border-b border-gray-600">
               <h4 className="text-gray-500 text-base text-gray-400">
                 新歓日時
@@ -64,6 +66,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
               </h4>
             </section>
+
             <section className="my-6 border-b border-gray-600">
               <h4 className="text-gray-500 text-base text-gray-400">
                 集合場所
@@ -72,6 +75,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
                 {__(circleNewJoy.placeOfActivity)}
               </h4>
             </section>
+
             <section className="my-6 ">
               <h4 className="text-gray-500 text-base text-gray-400">
                 新歓説明
@@ -93,22 +97,25 @@ const CircleNewJoyDetail: FC<Props> = ({ circleNewJoy }) => {
               新歓イベント名
             </h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {circleNewJoy.title}
+              {circle.shortName || circle.name} {circleNewJoy.title}
             </h4>
           </section>
+
           <section className="my-6 border-b border-gray-600">
             <h4 className="text-gray-500 text-base text-gray-400">新歓日時</h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
             </h4>
           </section>
+
           <section className="my-6 border-b border-gray-600">
             <h4 className="text-gray-500 text-base text-gray-400">集合場所</h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {__(circleNewJoy.placeOfActivity)}
             </h4>
           </section>
-          <section className="my-6 ">
+
+          <section className="my-6">
             <h4 className="text-gray-500 text-base text-gray-400">新歓説明</h4>
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {circleNewJoy.description}

@@ -32,7 +32,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
   return (
     <div>
       <div className="pb-16">
-        <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+        <CircleNewJoyDetail circle={circle} circleNewJoy={circleNewJoy} />
       </div>
 
       <InformationCircleBesideNewJoySP circle={circle} />
