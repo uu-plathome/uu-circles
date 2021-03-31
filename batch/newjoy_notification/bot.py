@@ -36,6 +36,7 @@ def to_jst(time):
 day = datetime.now(JST)
 now = day.strftime('%Y.%m.%d')
 
+
 ###SET_LOOP###
 #ループ処理
 @client.event
@@ -67,8 +68,10 @@ async def on_ready():
 			if (newjoy['circleNewJoy']['title'] is not None):
 				text += '📛新歓名: ***'+newjoy['circleNewJoy']['title']+'***\n'
 
-			if (format_startDay is not None and format_endDay is not None):
+			if (start_day != None and end_day != None):
 				text +='🗓日にち: ***'+str(format_startDay)+' ~ '+str(format_endDay)+'***\n'
+			elif (start_day != None and end_day == None):
+				text +='🗓日にち: ***'+str(format_startDay)+' ~***\n'
 
 			if (newjoy['circleNewJoy']['placeOfActivity'] is not None):
 				text += '🧭場所: ***'+newjoy['circleNewJoy']['placeOfActivity']+'***\n'
