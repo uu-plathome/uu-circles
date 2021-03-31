@@ -8,8 +8,8 @@ import { RecommendTagList } from '@/components/organisms/Circles/RecommendTagLis
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { useStringInput } from '@/hooks/useInput'
 import { getAllCircleList } from '@/infra/api/circle'
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { Circle } from '@/lib/types/model/Circle'
+import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { FormEvent } from 'react'
 

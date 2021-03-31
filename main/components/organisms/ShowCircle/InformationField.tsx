@@ -20,14 +20,14 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
         <div className="bg-white rounded md:w-full px-6 py-8">
           <div className="border-b border-gray-400 pb-4">
             <p className="text-sm text-gray-400 mb-2">団体・サークル名</p>
-            <p className="text-sm text-black">
-              {circle.prefixName ? (
+            {circle.prefixName ? (
+              <p className="text-xs text-black">
                 <span className="mr-4">{circle.prefixName}</span>
-              ) : (
-                ''
-              )}
-              {circle.name}
-            </p>
+              </p>
+            ) : (
+              ''
+            )}
+            <p className="text-sm text-black">{circle.name}</p>
           </div>
 
           {circle.description ? (
@@ -304,31 +304,35 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             ''
           )}
 
-          <div className="py-4 border-b border-gray-400">
+          <div className="py-4">
             <p className="text-sm text-gray-400 mb-2">各種SNS</p>
             <div>
               <SnsList circle={circle} />
             </div>
           </div>
 
-          <div className="py-4">
-            <p className="text-sm text-gray-400 mb-2">タグ</p>
-            <div className="grid grid-cols-3 gap-1">
-              {circleTags.map((circleTag) => {
-                return (
-                  <Link
-                    key={`circleTag-${circleTag}`}
-                    href={`/circle/tag/[tag]`}
-                    as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
-                  >
-                    <a className="tag-title text-gray-400 text-sm hover:underline">
-                      {__(circleTag)}
-                    </a>
-                  </Link>
-                )
-              })}
+          {circleTags && circleTags.length > 0 ? (
+            <div className="py-4 border-t border-gray-400">
+              <p className="text-sm text-gray-400 mb-2">タグ</p>
+              <div className="grid grid-cols-2 gap-1">
+                {circleTags.map((circleTag) => {
+                  return (
+                    <Link
+                      key={`circleTag-${circleTag}`}
+                      href={`/circle/tag/[tag]`}
+                      as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
+                    >
+                      <a className="tag-title text-gray-400 text-sm hover:underline">
+                        {__(circleTag)}
+                      </a>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
-          </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
