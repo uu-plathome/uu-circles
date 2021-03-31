@@ -1,9 +1,9 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from 'colors'
 import Link from 'next/link'
 import React from 'react'
-import Color from 'colors'
 import { BaseContainer } from './BaseContainer'
 
 type Props = {

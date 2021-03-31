@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import Link from 'next/link'
-import { User } from '@/lib/types/model/User'
 import { isManager } from '@/lib/enum/api/Role'
+import { User } from '@/lib/types/model/User'
+import Link from 'next/link'
+import { FC } from 'react'
 
 type Props = {
   circleId: number

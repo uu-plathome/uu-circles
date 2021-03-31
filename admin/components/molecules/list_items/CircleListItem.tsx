@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC } from 'react'
+import { __ } from '@/lang/ja'
+import { Circle } from '@/lib/types/model/Circle'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -7,9 +7,9 @@ import {
   faUserAlt,
   faTags,
 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import { __ } from '@/lang/ja'
-import { Circle } from '@/lib/types/model/Circle'
+import { FC } from 'react'
 
 type Props = {
   circle: Circle

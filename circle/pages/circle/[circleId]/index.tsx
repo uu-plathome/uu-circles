@@ -1,8 +1,14 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
+import {
+  BaseBreadcrumbItem,
+  BaseBreadcrumbs,
+} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
+import { Role } from '@/lib/enum/api/Role'
 import { Circle } from '@/lib/types/model/Circle'
 import { faCalendarAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,12 +16,6 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useMemo, useState } from 'react'
-import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
-import { Role } from '@/lib/enum/api/Role'
-import {
-  BaseBreadcrumbItem,
-  BaseBreadcrumbs,
-} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
 
 const useCircleId = () => {
   const router = useRouter()
