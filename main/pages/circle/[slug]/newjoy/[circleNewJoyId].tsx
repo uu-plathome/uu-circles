@@ -1,16 +1,16 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
-import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import Error from 'next/error'
-import { PageNotFoundError } from '@/infra/api/error'
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { ShowCircleNewJoyPcLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoyPcLayout'
 import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
 import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
+import { PageNotFoundError } from '@/infra/api/error'
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Error from 'next/error'
 
 type Props = {
   errorCode?: number

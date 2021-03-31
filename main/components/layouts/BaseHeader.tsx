@@ -1,12 +1,12 @@
-import { FC, FormEvent } from 'react'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
-import Link from 'next/link'
-import { useRouter } from 'next/dist/client/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import Color from 'colors'
-import { SearchTextField } from '../atoms/form/SearchTextField'
 import { useStringInput } from '@/hooks/useInput'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from 'colors'
+import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
+import { FC, FormEvent } from 'react'
+import { SearchTextField } from '../atoms/form/SearchTextField'
 
 type Props = {
   onClick?(): void

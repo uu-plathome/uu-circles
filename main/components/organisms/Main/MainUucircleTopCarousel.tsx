@@ -1,5 +1,9 @@
-import { FC } from 'react'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useWindowResize } from '@/hooks/useWindowResize'
+import { Advertise } from '@/lib/types/model/Advertise'
 import Image from 'next/image'
+import { FC } from 'react'
+import { useEffect, useState } from 'react'
 import SwiperCore, {
   Autoplay,
   Navigation,
@@ -8,10 +12,6 @@ import SwiperCore, {
   A11y,
 } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { useEffect, useState } from 'react'
-import { Advertise } from '@/lib/types/model/Advertise'
 
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar, A11y])
 

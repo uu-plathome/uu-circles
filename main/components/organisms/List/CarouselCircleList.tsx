@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Circle } from '@/lib/types/model/Circle'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Circle } from '@/lib/types/model/Circle'
+import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 

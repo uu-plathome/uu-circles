@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { FC } from 'react'
 import { CircleNewJoyListItemSP } from '../ListItem/CircleNewJoyListItemSP'
 
 type Props = {
@@ -16,7 +16,7 @@ const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
       <div className="md:flex justify-center flex-wrap">
         {circleNewJoys.map((circleNewJoy, idx) => {
           //コメントアウトしたロジックでなくても動いたため、臨時で置き換えました。3/6
-          let className = 'md:mr-auto'
+          const className = 'md:mr-auto'
           // let className = idx === 0 ? 'place-self-end md:mr-auto' : ''
           // className = idx === 1 ? 'place-self-center md:mr-auto' : className
           // className = idx === 2 ? 'place-self-start md:mr-auto' : className

@@ -1,7 +1,7 @@
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Circle } from '@/lib/types/model/Circle'
-import { axiosInstance } from '.'
 import { linkConst } from './linkConst'
+import { axiosInstance } from '.'
 
 export const getMain = async (): Promise<{
   circles: Circle[]
