@@ -38,6 +38,13 @@ body {
   content: '#';
 }
 
+.max-line-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* swiper右左デザイン */
 .swiper-button-next {
   margin-right: 8px;

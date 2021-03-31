@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react'
-import Image from 'next/image'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import Image from 'next/image'
+import { FC, useEffect, useState } from 'react'
 
 type Props = {}
 const MainUucircleAd: FC<Props> = () => {

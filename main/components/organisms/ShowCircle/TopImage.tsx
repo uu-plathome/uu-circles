@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react'
-import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Navigation, Pagination } from 'swiper'
 import { Circle } from '@/lib/types/model/Circle'
+import Image from 'next/image'
+import { FC, useEffect, useState } from 'react'
+import SwiperCore, { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 SwiperCore.use([Navigation, Pagination])
 

@@ -1,13 +1,13 @@
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { BaseHead } from '@/components/layouts/BaseHead'
+import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
 import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
 } from '@/infra/api/circleNewJoy'
-import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
-import { BaseHead } from '@/components/layouts/BaseHead'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 
 type Props = {

@@ -1,12 +1,12 @@
-import { NextPage } from 'next'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { BaseHead } from '@/components/layouts/BaseHead'
 
 type Props = {}
 const Page: NextPage<Props> = () => {
