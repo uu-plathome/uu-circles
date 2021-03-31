@@ -29,3 +29,15 @@ body {
   width: 100px !important;
   height: 100px !important;
 }
+
+.react-datepicker__header {
+  @apply bg-gray-200;
+}
+
+.react-datepicker__current-month {
+  @apply text-blue-800 text-sm;
+}
+
+.react-datepicker__input-container input {
+  @apply px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200;
+}

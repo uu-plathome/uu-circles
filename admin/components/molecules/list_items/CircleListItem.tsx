@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
-import Image from 'next/image'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -91,17 +90,13 @@ const CircleListItem: FC<Props> = ({ circle }) => {
               </a>
             </Link>
           </CircleListItemTableColumn>
-          {/* <CircleListItemTableColumn title="ユーザー">
-                    <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`} >
-                        <a>
-                            <FontAwesomeIcon
-                                size="lg"
-                                color="orange"
-                                icon={ faUserAlt }
-                            />
-                        </a>
-                    </Link>
-                </CircleListItemTableColumn> */}
+          <CircleListItemTableColumn title="ユーザー">
+            <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`}>
+              <a>
+                <FontAwesomeIcon size="lg" color="orange" icon={faUserAlt} />
+              </a>
+            </Link>
+          </CircleListItemTableColumn>
         </div>
       </div>
     </div>

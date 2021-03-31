@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Circle;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AdminPutStorageRequest;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Requests\Circle\CirclePutStorageRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,13 +12,20 @@ class PutStorageController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param AdminPutStorageRequest $request
+     * @param CirclePutStorageRequest $request
      * @return array
      */
-    public function __invoke(AdminPutStorageRequest $request): array
+    public function __invoke(CirclePutStorageRequest $request): array
     {
+        Log::debug('PutStorageController args none');
+
         $filename = $request->file('file')->store('');
         $url = Storage::url($filename);
+
+        Log::debug('PutStorageController trace', [
+            'filename' => $filename,
+            'url'      => $url,
+        ]);
 
         return [
             'url' => $url,

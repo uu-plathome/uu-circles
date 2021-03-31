@@ -3,6 +3,7 @@
 namespace App\Usecases\Admin;
 
 use App\Models\CircleInvitation;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class CreateCircleInvitationUsecase

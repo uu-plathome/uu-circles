@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react'
+import { FC, useContext, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   IconDefinition,
@@ -7,8 +7,6 @@ import {
   faBuilding,
   faUser,
   faAd,
-  faTimes,
-  faBars,
 } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
@@ -39,6 +37,13 @@ const generalSiderbarList = [
     icon: faBuilding,
     exact: false,
     role: [Role.SYSTEM, Role.MANAGER, Role.COMMON],
+  },
+  {
+    name: '部員アカウント',
+    link: '/user/circle',
+    icon: faUser,
+    exact: false,
+    role: [Role.SYSTEM, Role.MANAGER],
   },
   {
     name: '管理者管理',

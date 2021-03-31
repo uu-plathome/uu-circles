@@ -6,6 +6,7 @@ use App\Events\RegisteredAdminUser;
 use App\Events\RegisteredCircleUser;
 use App\Listeners\SendEmailVerificationAdminUserNotification;
 use App\Listeners\SendEmailVerificationCircleUserNotification;
+use App\Listeners\SendPasswordResetCircleUserNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         RegisteredCircleUser::class => [
             SendEmailVerificationCircleUserNotification::class,
+        ],
+        PasswordResetCircleUser::class => [
+            SendPasswordResetCircleUserNotification::class,
         ]
     ];
 

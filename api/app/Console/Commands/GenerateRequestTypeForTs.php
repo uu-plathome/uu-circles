@@ -26,6 +26,14 @@ use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
 use App\Http\Requests\Circle\Auth\ResetPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
+use App\Http\Requests\Circle\Circle\UpdateCircleFormRequest as CircleUpdateCircleFormRequest;
+use App\Http\Requests\Circle\CircleNewJoy\RegisterCircleNewJoyRequest as CircleNewJoyRegisterCircleNewJoyRequest;
+use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest as CircleNewJoyUpdateCircleNewJoyRequest;
+use App\Http\Requests\Circle\CirclePutStorageRequest;
+use App\Http\Requests\Circle\CircleUser\ImportCircleUserRequest;
+use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest as CircleUserRegisterCircleUserRequest;
+use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest as CircleUserUpdateCircleUserRequest;
+use App\Http\Requests\Circle\User\UpdateOwnUserRequest;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -91,6 +99,14 @@ class GenerateRequestTypeForTs extends Command
             ResetPasswordCircleRequest::class,
             VerificationEmailCircleUserRequest::class,
             VerificationResendCircleUserFormRequest::class,
+            CirclePutStorageRequest::class,
+            CircleUpdateCircleFormRequest::class,
+            CircleNewJoyRegisterCircleNewJoyRequest::class,
+            CircleNewJoyUpdateCircleNewJoyRequest::class,
+            UpdateOwnUserRequest::class,
+            CircleUserUpdateCircleUserRequest::class,
+            CircleUserRegisterCircleUserRequest::class,
+            ImportCircleUserRequest::class,
         ];
     }
 
@@ -161,8 +177,8 @@ class GenerateRequestTypeForTs extends Command
 
             $operator = in_array('nullable', $arrVal) ? '?:' : ':';
 
-            $requestBodyObject .= "    {$key}{$operator} {$type}\n";
-            $validationObject .= "        {$key}?: string[]\n";
+            $requestBodyObject .= "  {$key}{$operator} {$type}\n";
+            $validationObject .= "    {$key}?: string[]\n";
         }
         $requestBodyObject = substr($requestBodyObject, 0, -1);
         $validationObject = substr($validationObject, 0, -1);
@@ -248,7 +264,7 @@ class GenerateRequestTypeForTs extends Command
                 $value === 'file' ||
                 $value === 'image'
             ) {
-                return 'Blob|File';
+                return 'Blob | File';
             }
 
             if ($value === 'array') {

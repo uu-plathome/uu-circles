@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin\CircleUser;
 use App\Models\User;
 use App\Usecases\Admin\IndexCircleByUserIdUsecase;
 use App\Support\Arr;
+use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleUserByUserIdController
 {
@@ -18,12 +21,18 @@ class IndexCircleUserByUserIdController
 
     public function __invoke(Request $request, int $userId): array
     {
+        Log::debug("IndexCircleUserByUserIdController args userId=$userId");
+
         $user = User::findOrFail($userId);
         $circles = $this->indexCircleByUserIdUserUsecase->invoke($userId);
 
         return [
             'user'    => Arr::camel_keys($user->toArray()),
-            'circles' => Arr::camel_keys($circles),
+            'circles' => Arr::camel_keys(
+                (new Collection($circles))->map(
+                    fn (CircleValueObject $circleValueObject) => $circleValueObject->toArray()
+                )->toArray()
+            ),
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Usecases\Admin\IndexCircleUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleController extends Controller
 {
@@ -26,6 +27,8 @@ class IndexCircleController extends Controller
      */
     public function __invoke(Request $request): array
     {
+        Log::debug("IndexCircleController args none");
+
         $circles = $this->indexCircleUsecase->invoke();
 
         return [

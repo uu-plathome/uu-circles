@@ -9,6 +9,8 @@
     "lint": "eslint . --fix --ext ts --ext tsx --ext js"
   },
   "dependencies": {
+    "@bugsnag/js": "^7.9.0",
+    "@bugsnag/plugin-react": "^7.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -35,6 +37,7 @@
     "autoprefixer": "10.0.2",
     "babel-jest": "^25.2.3",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-react": "^7.19.0",

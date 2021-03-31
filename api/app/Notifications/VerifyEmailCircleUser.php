@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Carbon\Carbon;
 use Illuminate\Auth\Notifications\VerifyEmail as Notification;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
 class VerifyEmailCircleUser extends Notification
@@ -17,8 +18,11 @@ class VerifyEmailCircleUser extends Notification
      */
     protected function verificationUrl($notifiable): string
     {
-        // $appUrl = Config::get('app.client_url');
-        $appUrl = Config::get('app.admin_url') . '/auth/circle';
+        Log::debug("VerifyEmailCircleUser", [
+            'notifiable' => $notifiable,
+        ]);
+
+        $appUrl = Config::get('app.circle_url') . '/auth';
 
         $url = URL::temporarySignedRoute(
             'circle.verification.verify',
