@@ -35,12 +35,15 @@ const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
                 className="rounded-full border border-gray-300"
               />
             </div>
+
             <div className="w-full pr-2" style={{ width: 200 }}>
               <h3 className="text-black font-bold mb-1 text-sm">
                 {circle.name}
               </h3>
               <div>
-                <p className="text-xs text-gray-600">{circle.description}</p>
+                <p className="text-xs text-gray-600 max-line-4">
+                  {circle.description}
+                </p>
               </div>
             </div>
           </div>

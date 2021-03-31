@@ -1,19 +1,16 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-import { Circle } from '@/lib/types/model/Circle'
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircleNewJoyListPC'
-import { CircleNewJoyDetail } from '@/components/organisms/Newjoy/CircleNewJoyDetail'
-import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { InformationCircleBesideNewJoyPCWithButton } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPCWithButton'
-import { YellowButton } from '@/components/atoms/button/YellowButton'
-import { PageNotFoundError } from '@/infra/api/error'
-import Error from 'next/error'
-import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
+import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
+import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import Error from 'next/error'
+import { PageNotFoundError } from '@/infra/api/error'
+import { ShowCircleNewJoyPcLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoyPcLayout'
+import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
+import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 
 type Props = {
   errorCode?: number
@@ -58,89 +55,14 @@ const Page: NextPage<Props> = ({
 
             {/* PC */}
             <div className="hidden md:block">
-              <div className="pb-16 grid grid-cols-7">
-                <div className="col-span-5">
-                  <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
-                </div>
-
-                <div className="col-span-2  ml-6">
-                  <h2 className="text-xl">主催サークル</h2>
-
-                  <InformationCircleBesideNewJoyPCWithButton circle={circle} />
-                  <Link href="/circle/newjoy">
-                    <a>
-                      {/* <div
-                        className="rounded-md text-white bg-yellow-500 text-center px-2 py-2 mt-6"
-                        style={{ width: 222 }}
-                      > */}
-                      <div className="my-6 w-full">
-                        <YellowButton width={'222px'}>
-                          <div className="py-2">
-                            <h4 className="text-xs">
-                              他のサークルの新歓も見る
-                            </h4>
-                            <h3 className="text-sm font-bold">
-                              今日の新歓をチェック！
-                            </h3>
-                          </div>
-                        </YellowButton>
-                      </div>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="pb-16">
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                  開催中
-                </h2>
-                {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
-                  <IndexCircleNewJoyListPC
-                    slug={circle.slug}
-                    circleNewJoys={nowCircleNewJoys}
-                  />
-                ) : (
-                  <p className="text-center">開催中の新歓はありません</p>
-                )}
-              </div>
-
-              <div className="pb-16">
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                  今日の新歓
-                </h2>
-                {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
-                  <div>
-                    <IndexCircleNewJoyListPC
-                      slug={circle.slug}
-                      circleNewJoys={todayCircleNewJoys}
-                    />
-                  </div>
-                ) : (
-                  <p className="text-center">今日の新歓はありません</p>
-                )}
-              </div>
-
-              <div className="pb-16">
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                  開催予定
-                </h2>
-
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={futureCircleNewJoys}
-                />
-              </div>
-
-              <div className="pb-32">
-                <h2 className="font-bold text-lg md:text-center pl-1 mb-3">
-                  開催済み
-                </h2>
-
-                <IndexCircleNewJoyListPC
-                  slug={circle.slug}
-                  circleNewJoys={pastCircleNewJoys}
-                />
-              </div>
+              <ShowCircleNewJoyPcLayout
+                circle={circle}
+                circleNewJoy={circleNewJoy}
+                pastCircleNewJoys={pastCircleNewJoys}
+                futureCircleNewJoys={futureCircleNewJoys}
+                nowCircleNewJoys={nowCircleNewJoys}
+                todayCircleNewJoys={todayCircleNewJoys}
+              />
             </div>
 
             {/* SP */}
