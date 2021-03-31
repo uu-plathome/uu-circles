@@ -35,7 +35,7 @@ const ShowCircleNewJoyPcLayout: FC<Props> = ({
     <div>
       <div className="pb-16 grid grid-cols-7">
         <div className="col-span-5">
-          <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+          <CircleNewJoyDetail circle={circle} circleNewJoy={circleNewJoy} />
         </div>
 
         <div className="col-span-2  ml-6">
