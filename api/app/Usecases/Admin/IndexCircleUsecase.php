@@ -4,6 +4,7 @@ namespace App\Usecases\Admin;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Support\Facades\Log;
 
 class IndexCircleUsecase
 {
@@ -14,6 +15,8 @@ class IndexCircleUsecase
      */
     public function invoke(): array
     {
+        Log::debug("IndexCircleUsecase args none");
+
         $circles = Circle::with([
             'circleInformation',
             'circleHandbill',

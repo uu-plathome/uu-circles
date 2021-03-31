@@ -50,3 +50,7 @@ init:
 	docker-compose exec -T app chmod -R 777 storage &&\
 	docker-compose exec -T app chmod -R 777 bootstrap/cache &&\
 	docker-compose exec -T app php artisan config:cache
+dry-cs:
+	docker-compose run cs fix --dry-run -v --diff --diff-format udiff .
+fix-cs:
+	docker-compose run cs fix -v --diff --diff-format udiff .

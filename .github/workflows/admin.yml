@@ -7,6 +7,12 @@ on:
   push:
     branches: [main, develop/production, develop/stg]
   pull_request:
+    paths:
+      - "admin/**"
+      - "!**.md"
+      - "!.editorconfig"
+      - "!.gitignore"
+      - "!.gitattributes"
 
 jobs:
   build:

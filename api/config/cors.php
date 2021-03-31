@@ -28,8 +28,8 @@ return [
     */
     'allowed_origins' => [
         env('CLIENT_URL', 'http://localhost:3000'),
+        env('CIRCLE_URL', 'http://localhost:3001'),
         env('ADMIN_URL', 'http://localhost:3002'),
-        env('APP_ENV', 'production') === 'local' ? env('CIRCLE_URL', 'http://localhost:3001') : '',
     ],
 
     /*

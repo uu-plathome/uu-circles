@@ -11,6 +11,7 @@ use App\Support\Arr;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -31,6 +32,8 @@ class LoginCircleController extends Controller
      */
     public function __invoke(LoginCircleFormRequest $request)
     {
+        Log::debug("LoginCircleController args none");
+
         $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
 
         $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
@@ -51,6 +54,8 @@ class LoginCircleController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
+        Log::debug("LoginCircleController#attemptLogin");
+
         $token = $this->guard()->attempt($this->credentials($request));
 
         if (!$token) {
@@ -63,7 +68,7 @@ class LoginCircleController extends Controller
         if (!$user->hasVerifiedEmail()) {
             return false;
         }
-        // 管理者かどうか
+        // サークル管理者かどうか
         if (!$user->isCircleUser()) {
             return false;
         }
@@ -79,6 +84,8 @@ class LoginCircleController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
+        Log::debug("LoginCircleController#sendLoginResponse");
+
         $this->clearLoginAttempts($request);
 
         /** @var User $user */
@@ -97,6 +104,8 @@ class LoginCircleController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
+        Log::debug("LoginCircleController#sendFailedLoginResponse");
+
         /** @var User $user */
         $user = $this->guard()->user();
 
@@ -105,7 +114,7 @@ class LoginCircleController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'data' => 'ログインに失敗しました。メールアドレス、パスワードを再度、確認してください。',
+            'data' => 'ログインに失敗しました。メールアドレス、パスワードを再度、確認してください。またはサークルと紐づいていない可能性があります。なにかありましたら、管理者に連絡ください。',
         ]);
     }
 

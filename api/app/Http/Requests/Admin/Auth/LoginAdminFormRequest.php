@@ -26,7 +26,7 @@ class LoginAdminFormRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            'username_or_email' => ['required', 'string'],
+            'username_or_email'    => ['required', 'string'],
             UserProperty::password => ['required', 'string'],
         ]);
     }

@@ -7,6 +7,7 @@ use App\Models\Circle;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ShowCircleController extends Controller
 {
@@ -19,6 +20,8 @@ class ShowCircleController extends Controller
      */
     public function __invoke(Request $request, int $id): array
     {
+        Log::debug("ShowCircleController args none");
+
         $circle = Circle::findOrFail($id);
 
         return [

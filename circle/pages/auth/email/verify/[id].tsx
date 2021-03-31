@@ -1,5 +1,4 @@
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
-import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { useInput } from '@/hooks/useInput'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -11,6 +10,8 @@ import {
   checkVerifyCircleUser,
   verificationEmailCircleUser,
 } from '@/infra/api/auth'
+import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
+import { MainHeader } from '@/components/layouts/MainHeader'
 
 const Login: NextPage = () => {
   const password = useInput('')
@@ -78,10 +79,12 @@ const Login: NextPage = () => {
 
   return (
     <div>
+      <MainHeader />
+
       <div className="xl:container">
         <div className="max-w-screen-md mx-auto mt-16">
-          <div className="border-2 border-white rounded p-4">
-            <h1 className="text-white text-center text-2xl mb-4">
+          <div className="rounded p-4">
+            <h1 className="text-black text-center text-2xl mb-4">
               パスワード設定
             </h1>
 
@@ -89,7 +92,7 @@ const Login: NextPage = () => {
               <div>
                 <p>パスワードを設定しました</p>
 
-                <OrangeButton href="/auth/login">ログインへ</OrangeButton>
+                <OrangeButton href="/login">ログインへ</OrangeButton>
               </div>
             ) : (
               ''
@@ -98,7 +101,7 @@ const Login: NextPage = () => {
             {!success && !error ? (
               <form onSubmit={onSubmit}>
                 <div className="px-4 mb-4">
-                  <BaseTextField
+                  <SimplePasswordTextField
                     label="パスワード"
                     id="password"
                     name="password"

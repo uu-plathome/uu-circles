@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
-use App\Usecases\Admin\UpdateCircleUserUsecase;
-use Illuminate\Http\Request;
+use App\Usecases\Admin\CircleUser\UpdateCircleUserUsecase;
+use Illuminate\Support\Facades\Log;
 
 class UpdateCircleUserController extends Controller
 {
@@ -18,9 +18,10 @@ class UpdateCircleUserController extends Controller
 
     public function __invoke(UpdateCircleUserRequest $request, int $circleId, int $userId)
     {
+        Log::debug("RegisterCircleUserController args circleId=$circleId, userId=$userId");
+
         $this->updateCircleUserUsecase->invoke(
-            $userId,
-            $request->makeCircleUserValueObject()
+            $request->makeUpdateCircleUserUsecaseParam()
         );
     }
 }

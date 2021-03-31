@@ -2,6 +2,7 @@
 
 namespace App\Usecases\Main\Advertise;
 
+use App\Enum\AdvertiseType;
 use App\Models\Advertise;
 use Illuminate\Support\Carbon;
 
@@ -12,6 +13,7 @@ class GetRandomAdvertiseUsecase
         $now = Carbon::now();
 
         $advertises = Advertise::nowPublic($now)
+            ->whereAdvertiseType(AdvertiseType::COMMON)
             ->inRandomOrder()
             ->take($limit)
             ->get()

@@ -13,10 +13,12 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordAdminController;
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
 use App\Http\Controllers\Admin\Auth\RegisterAdminController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordAdminController;
+use App\Http\Controllers\Admin\Auth\ShowOwnAdminUserController;
 use App\Http\Controllers\Admin\Auth\VerificationConfirmController;
 use App\Http\Controllers\Admin\Auth\VerificationResendController;
 use App\Http\Controllers\Admin\Auth\VerificationVerifyController;
 use App\Http\Controllers\Admin\Circle\CreateCircleController;
+use App\Http\Controllers\Admin\Circle\DeleteCircleController;
 use App\Http\Controllers\Admin\Circle\IndexCircleController;
 use App\Http\Controllers\Admin\Circle\PaginateCircleController;
 use App\Http\Controllers\Admin\Circle\ShowCircleController;
@@ -32,19 +34,17 @@ use App\Http\Controllers\Admin\CircleTag\GetCircleTagController;
 use App\Http\Controllers\Admin\CircleUser\CreateCircleUserRelationController;
 use App\Http\Controllers\Admin\CircleUser\DeleteCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\DeleteCircleUserRelationController;
+use App\Http\Controllers\Admin\AllUser\IndexAllUserController;
 use App\Http\Controllers\Admin\CircleUser\IndexCircleUserByUserIdController;
 use App\Http\Controllers\Admin\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\RegisterCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Admin\PutStorageController;
-use App\Support\Arr;
-use App\ValueObjects\AdminUserValueObject;
-use Illuminate\Http\Request;
 
 Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
 
-Route::group(['middleware' => 'guest:api'], function () {
+Route::group(['middleware' => 'guest:adminUser'], function () {
     Route::post('/login', LoginAdminController::class)->name('admin.auth.login');
 
     Route::middleware('throttle:30,1')->group(function () {
@@ -56,13 +56,8 @@ Route::group(['middleware' => 'guest:api'], function () {
     });
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        $user = $request->user();
-        return Arr::camel_keys(
-            AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray(true)
-        );
-    });
+Route::middleware('auth:adminUser')->group(function () {
+    Route::get('/user', ShowOwnAdminUserController::class);
 
     // AdminUser 管理者アカウント
     Route::get('/admin-user', IndexAdminUserController::class);
@@ -77,8 +72,10 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/circle', CreateCircleController::class);
     Route::get('/circle/{id}', ShowCircleController::class);
     Route::put('/circle/{id}', UpdateCircleController::class);
+    Route::delete('/circle/{id}', DeleteCircleController::class);
 
     // CircleUser サークルユーザー
+    Route::get('/user/circle', IndexAllUserController::class);
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class);
     Route::post('/circle/{circleId}/user', RegisterCircleUserController::class);
     Route::get('/circle/{circleId}/user/{userId}', ShowCircleUserController::class);
@@ -99,7 +96,6 @@ Route::middleware('auth:api')->group(function () {
     // CircleTag サークルタグ管理
     Route::get('/circle/{circleId}/tag', GetCircleTagController::class);
     Route::post('/circle/{circleId}/tag', CreateOrUpdateCircleTagController::class);
-
 
     // Advertise
     Route::get('/advertise', IndexAdvertiseController::class);

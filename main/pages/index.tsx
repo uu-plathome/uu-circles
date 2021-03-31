@@ -21,9 +21,10 @@ import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircl
 
 type Props = {
   advertises: Advertise[]
+  mainAdvertises: Advertise[]
   circles: Circle[]
 }
-const Index: NextPage<Props> = ({ advertises, circles }) => {
+const Index: NextPage<Props> = ({ advertises, mainAdvertises, circles }) => {
   const { width } = useWindowResize()
   const { isMd } = useMediaQuery()
   const [height, setHeight] = useState(0)
@@ -53,7 +54,7 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
       </Head>
 
       <BaseLayout>
-        <MainUucircleTopCarousel />
+        <MainUucircleTopCarousel advertises={mainAdvertises} />
 
         <div style={{ marginTop: '-6px' }} className="bg-white">
           <p className="text-center py-8">新歓をハックする！</p>
@@ -91,12 +92,13 @@ const Index: NextPage<Props> = ({ advertises, circles }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, advertises } = await getMain()
+  const { circles, advertises, mainAdvertises } = await getMain()
 
   return {
     props: {
       advertises,
       circles,
+      mainAdvertises,
     },
     revalidate: 120,
   }

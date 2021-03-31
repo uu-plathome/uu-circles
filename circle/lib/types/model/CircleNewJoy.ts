@@ -5,6 +5,7 @@ export interface CircleNewJoy {
   title: string
   description: string
   url: string
+  privateNewjoyLink: string
   placeOfActivity: string
   placeOfActivityDetail: string
   publishFrom: string

@@ -14,6 +14,7 @@ class CircleNewJoyValueObject
     public string $title;
     public ?string $description;
     public ?string $url;
+    public ?string $private_newjoy_url;
     public ?string $place_of_activity;
     public ?string $place_of_activity_detail;
     public ?Carbon $publish_from;
@@ -31,6 +32,7 @@ class CircleNewJoyValueObject
         $circleNewJoyValueObject->title = Arr::get($inputs, CircleNewJoyProperty::title);
         $circleNewJoyValueObject->description = Arr::get($inputs, CircleNewJoyProperty::description);
         $circleNewJoyValueObject->url = Arr::get($inputs, CircleNewJoyProperty::url);
+        $circleNewJoyValueObject->private_newjoy_url = Arr::get($inputs, CircleNewJoyProperty::private_newjoy_link);
         $circleNewJoyValueObject->place_of_activity = Arr::get($inputs, CircleNewJoyProperty::place_of_activity);
         $circleNewJoyValueObject->place_of_activity_detail = Arr::get($inputs, CircleNewJoyProperty::place_of_activity_detail);
 
@@ -75,6 +77,7 @@ class CircleNewJoyValueObject
             CircleNewJoyProperty::title => $this->title,
             CircleNewJoyProperty::description => $this->description,
             CircleNewJoyProperty::url => $this->url,
+            CircleNewJoyProperty::private_newjoy_link => $this->private_newjoy_url,
             CircleNewJoyProperty::place_of_activity => $this->place_of_activity,
             CircleNewJoyProperty::place_of_activity_detail => $this->place_of_activity_detail,
             CircleNewJoyProperty::publish_from => $this->publish_from,

@@ -10,6 +10,10 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { isUser } from '@/lib/types/model/User'
 import { LoginCircleFormRequest } from '@/lib/types/api/LoginCircleFormRequest'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { MainHeader } from '@/components/layouts/MainHeader'
+import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
+import Link from 'next/link'
 
 const Login: NextPage = () => {
   const [error, setError] = useState('')
@@ -45,6 +49,7 @@ const Login: NextPage = () => {
 
     if (data && isUser(data)) {
       authContext.setAccessToken(data.apiToken)
+      authContext.setUser(data)
       await router.push('/')
       return
     }
@@ -61,12 +66,22 @@ const Login: NextPage = () => {
 
   return (
     <div>
-      <div className="xl:container">
-        <div className="max-w-screen-md mx-auto mt-16">
-          <div className="border-2 border-white rounded p-4">
-            <h1 className="text-white text-center text-2xl mb-4">ログイン</h1>
+      <MainHeader />
 
-            {error ? <DangerBunner text={error} /> : ''}
+      <div className="xl:container pb-20">
+        <div className="max-w-screen-md mx-auto mt-8">
+          <div className="p-4">
+            <h1 className="text-black text-center text-2xl mb-12 font-bold">
+              サークル管理者ログイン
+            </h1>
+
+            {error ? (
+              <div className="px-4 py-4">
+                <DangerBunner text={error} />
+              </div>
+            ) : (
+              ''
+            )}
 
             <form onSubmit={onSubmit}>
               <div className="px-4 mb-4">
@@ -78,27 +93,26 @@ const Login: NextPage = () => {
                   {...usernameOrEmail}
                 />
 
-                <BaseTextField
+                <SimplePasswordTextField
                   label="パスワード"
                   id="password"
                   name="password"
-                  expand
                   {...password}
                 />
               </div>
 
-              <div className="text-center">
-                <BlueButton type="submit">ログイン</BlueButton>
+              <div className="text-center mt-12">
+                <GreenButton type="submit" rounded>
+                  ログイン
+                </GreenButton>
               </div>
             </form>
 
-            {/* <div className="text-white text-right mt-8 mb-4">
-                            <Link href="/auth/password/reset">
-                                <a className="underline">
-                                    パスワードを忘れた場合はこちら
-                                </a>
-                            </Link>
-                        </div> */}
+            <div className="text-black text-right mt-8 mb-4">
+              <Link href="/auth/password/reset">
+                <a className="underline">パスワードを忘れた場合はこちら</a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CreateCircleController extends Controller
 {
@@ -27,6 +28,8 @@ class CreateCircleController extends Controller
      */
     public function __invoke(CreateCircleFormRequest $request)
     {
+        Log::debug("CreateCircleController args none");
+
         $circle = $this->createCircleUsecase->invoke(
             $request->makeCircleValueObject()
         );

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
 use App\Models\Advertise;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UpdateAdvertiseController extends Controller
 {
@@ -19,6 +19,8 @@ class UpdateAdvertiseController extends Controller
      */
     public function __invoke(UpdateAdvertiseRequest $request, int $advertiseId)
     {
+        Log::debug("UpdateAdvertiseController args advertiseId=$advertiseId");
+
         DB::beginTransaction();
 
         try {
@@ -29,6 +31,11 @@ class UpdateAdvertiseController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
+            Log::error("[ERROR] UpdateAdvertiseController", [
+                "advertise" => $request->makeAdvertise(),
+            ]);
+
             throw $e;
         }
     }

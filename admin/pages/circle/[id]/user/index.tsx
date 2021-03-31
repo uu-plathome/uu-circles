@@ -14,6 +14,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 
 const IndexPage: NextPage = () => {
   const router = useRouter()
@@ -21,6 +22,7 @@ const IndexPage: NextPage = () => {
   const [success, setSuccess] = useState<boolean>(false)
   const { id } = router.query
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const f = async () => {
@@ -32,15 +34,19 @@ const IndexPage: NextPage = () => {
   }, [])
 
   const onDeleteUser = async (circleUserId: number) => {
+    setIsOpen(true)
     await deleteCircleUser(Number(id), circleUserId)
 
     const foundUsers = await getCircleUserList(Number(id))
     setUsers(foundUsers.users)
+    setIsOpen(false)
   }
 
   const onResendEmail = async (email: string) => {
+    setIsOpen(true)
     await resendEmailCircleUser(email)
     setSuccess(true)
+    setIsOpen(false)
 
     setTimeout(() => {
       setSuccess(false)
@@ -63,6 +69,8 @@ const IndexPage: NextPage = () => {
           actionText="アカウント新規作成"
         >
           {success ? <SuccessBunner text="Success" /> : ''}
+
+          <SubmitLoading isOpen={isOpen} />
 
           <div className="border-2 border-gray-800 p-2">
             {users.map((user: User) => {

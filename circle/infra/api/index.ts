@@ -11,3 +11,15 @@ export const axiosInstance = axios.create({
   },
   withCredentials: true,
 })
+
+axiosInstance.interceptors.request.use((config) => {
+  console.log(`[Axios Request] ${config.baseURL}${config.url}`, config)
+  return config
+})
+axiosInstance.interceptors.response.use((response) => {
+  console.log(
+    `[Axios Response] ${response.config.baseURL}${response.config.url}`,
+    response
+  )
+  return response
+})

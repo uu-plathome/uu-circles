@@ -2,7 +2,6 @@ import {
   RegisterCircleUserRequest,
   RegisterCircleUserRequestValidationError,
 } from '@/lib/types/api/RegisterCircleUserRequest'
-import { UpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import {
   UpdateCircleUserRequest,
   UpdateCircleUserRequestValidationError,
@@ -288,4 +287,33 @@ export const deleteRelationBetweenUserAndCircle = async (
 
     console.error(e)
   }
+}
+
+type PaginateAllUserCursor = {
+  id?: number
+  updatedAt?: string
+  previous: boolean
+  next: boolean
+  name?: string
+} | null
+export const paginateAllUserList = async (cursor: PaginateAllUserCursor) => {
+  const { data } = await axiosInstance.get<{
+    data: {
+      hasNext: boolean | null
+      hasPrevious: boolean | null
+      nextCursor: PaginateAllUserCursor
+      previousCursor: PaginateAllUserCursor
+      records: User[]
+    }
+  }>('/admin/api/user/circle', {
+    params: {
+      id: cursor.id,
+      updatedAt: cursor.updatedAt,
+      previous: cursor.previous ? 1 : 0,
+      next: cursor.next ? 1 : 0,
+      search: cursor.name,
+    },
+  })
+
+  return data.data
 }
