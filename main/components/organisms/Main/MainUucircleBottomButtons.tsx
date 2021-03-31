@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Link from 'next/link'
+import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 const MainUucircleBottomButtons: FC = () => {
