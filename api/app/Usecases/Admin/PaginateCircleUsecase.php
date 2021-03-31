@@ -7,6 +7,7 @@ use App\Support\Arr;
 use App\Usecases\Admin\Params\PaginateCircleUsecaseParams;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class PaginateCircleUsecase
 {
@@ -17,6 +18,10 @@ class PaginateCircleUsecase
      */
     public function invoke(PaginateCircleUsecaseParams $params): array
     {
+        Log::debug("PaginateCircleUsecase args", [
+            'PaginateCircleUsecaseParams' => $params,
+        ]);
+
         $cursor = [];
         if ($params->id) {
             $cursor['circles.id'] = $params->id;

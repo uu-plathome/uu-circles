@@ -37,7 +37,7 @@ class GetCircleNewJoyAllPeriodWithLimitByCircleId
             ->get();
 
         // 新歓が$limit件に満たない時、過去の新歓も取得
-        if (count($circleNewJoys) < 3) {
+        if ($circleNewJoys->count() < $limit) {
             $count = count($circleNewJoys);
 
             $appendCircleNewJoys = CircleNewJoy::whereCircleId($circleId)

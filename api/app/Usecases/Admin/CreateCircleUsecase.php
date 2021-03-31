@@ -5,6 +5,7 @@ namespace App\Admin\Usecases;
 use App\ValueObjects\CircleValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CreateCircleUsecase
 {
@@ -17,6 +18,10 @@ class CreateCircleUsecase
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
+        Log::debug("CreateCircleUsecase args", [
+            'CircleUserValueObject' => $circleValueObject,
+        ]);
+
         $circle = $circleValueObject->toCircleProperty();
         $circle->createSlugWhenSlugNotExist();
         $circleInformation = $circleValueObject->toCircleInformationProperty();

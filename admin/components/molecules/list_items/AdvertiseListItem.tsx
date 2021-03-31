@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, useState } from 'react'
-import Image from 'next/image'
 import Modal from 'react-modal'
 import {
   faCheckCircle,
@@ -13,6 +12,7 @@ import { Advertise } from '@/lib/types/model/Advertise'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { __ } from '@/lang/ja'
 
 type Props = {
   advertise: Advertise
@@ -76,9 +76,11 @@ const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
 
 const ListItemTableColumn: FC<{
   title: string
-}> = ({ children, title }) => {
+  lg?: boolean
+}> = ({ children, title, lg }) => {
+  const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
-    <div className="w-1/3 lg:w-1/6 pr-2">
+    <div className={`${widthClass} pr-2`}>
       <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
         {title}
       </p>
@@ -92,15 +94,15 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
   return (
     <div className="text-white flex mb-4">
       <div className="hidden lg:block">
-        <Image
+        <img
           src={
             advertise.mainImageUrl
               ? advertise.mainImageUrl
               : `/images/no-image.png`
           }
+          alt="広告画像"
           width={isMd ? 150 : 100}
           height={isMd ? (150 * 218) / 375 : (100 * 218) / 375}
-          layout={'fixed'}
           className="square-image"
         />
       </div>
@@ -108,15 +110,15 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <Image
+            <img
               src={
                 advertise.mainImageUrl
                   ? advertise.mainImageUrl
                   : `/images/no-image.png`
               }
+              alt="広告画像"
               width={isMd ? 150 : 100}
               height={isMd ? (150 * 218) / 375 : (100 * 218) / 375}
-              layout={'fixed'}
               className="square-image"
             />
           </div>
@@ -132,6 +134,9 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
               color={advertise.active ? 'green' : 'red'}
               icon={advertise.active ? faCheckCircle : faTimesCircle}
             />
+          </ListItemTableColumn>
+          <ListItemTableColumn title="公開中" lg>
+            <p>{__(advertise.advertiseType, 'advertiseType')}</p>
           </ListItemTableColumn>
           <ListItemTableColumn title="編集する">
             <Link

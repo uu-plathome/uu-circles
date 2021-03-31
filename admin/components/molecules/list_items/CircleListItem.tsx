@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
-import Image from 'next/image'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -34,26 +33,24 @@ const CircleListItem: FC<Props> = ({ circle }) => {
   return (
     <div className="text-white flex mb-4">
       <div className="hidden lg:block">
-        <Image
+        <img
           src={imageLink}
+          alt="サークル画像"
           width="100"
           height="100"
-          layout={'fixed'}
-          objectFit={'contain'}
-          className="square-image"
+          className="square-image object-contain"
         />
       </div>
 
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <Image
+            <img
               src={imageLink}
+              alt="サークル画像"
               width="100"
               height="100"
-              layout={'fixed'}
-              objectFit={'contain'}
-              className="square-image"
+              className="square-image object-contain"
             />
           </div>
           <h2 className="font-bold text-lg text-gray-300 mb-2">
@@ -93,17 +90,13 @@ const CircleListItem: FC<Props> = ({ circle }) => {
               </a>
             </Link>
           </CircleListItemTableColumn>
-          {/* <CircleListItemTableColumn title="ユーザー">
-                    <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`} >
-                        <a>
-                            <FontAwesomeIcon
-                                size="lg"
-                                color="orange"
-                                icon={ faUserAlt }
-                            />
-                        </a>
-                    </Link>
-                </CircleListItemTableColumn> */}
+          <CircleListItemTableColumn title="ユーザー">
+            <Link href="/circle/[id]/user" as={`/circle/${circle.id}/user`}>
+              <a>
+                <FontAwesomeIcon size="lg" color="orange" icon={faUserAlt} />
+              </a>
+            </Link>
+          </CircleListItemTableColumn>
         </div>
       </div>
     </div>

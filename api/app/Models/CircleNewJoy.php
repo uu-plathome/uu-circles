@@ -16,6 +16,7 @@ class CircleNewJoy extends Model
         CircleNewJoyProperty::url,
         CircleNewJoyProperty::place_of_activity,
         CircleNewJoyProperty::place_of_activity_detail,
+        CircleNewJoyProperty::private_newjoy_link,
         CircleNewJoyProperty::publish_from,
         CircleNewJoyProperty::start_date,
         CircleNewJoyProperty::end_date,

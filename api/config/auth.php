@@ -37,15 +37,27 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'token',
             'provider' => 'users',
-            'hash' => false,
+            'hash'     => false,
         ],
+
+        'adminUser' => [
+            'driver'   => 'adminUserGuard',
+            'provider' => 'users',
+            'hash'     => false,
+        ],
+
+        'circleUser' => [
+            'driver'   => 'circleUserGuard',
+            'provider' => 'users',
+            'hash'     => false,
+        ]
     ],
 
     /*

@@ -4,6 +4,14 @@ on:
   push:
     branches: [main, develop/production, develop/stg]
   pull_request:
+    paths:
+      - "api/**"
+      - "!**.md"
+      - "!.editorconfig"
+      - "!.gitignore"
+      - "!.gitattributes"
+      - "!_ide_helper.php"
+      - "!_ide_helper_models.php"
 
 jobs:
   laravel-tests:
@@ -27,9 +35,12 @@ jobs:
           docker-compose exec -T app chmod -R 777 storage
           docker-compose exec -T app chmod -R 777 bootstrap/cache
           docker-compose exec -T app php artisan config:cache
+      - name: check
+        run: |
+          sh -c 'docker-compose logs -f db | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
+          sh -c 'docker-compose logs -f dbtest | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
       - name: migrate
         run: |
-          docker-compose exec -T app php artisan check:db
           docker-compose up -d
           docker-compose exec -T app php artisan migrate:fresh
       - name: re migrate
@@ -41,6 +52,38 @@ jobs:
           docker-compose exec -T app php artisan cache:clear
           docker-compose exec -T app php artisan config:clear
           docker-compose exec -T app php artisan view:clear
+
+  deploy-stg:
+    if: github.ref == 'refs/heads/develop/stg'
+    needs: [laravel-tests]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.XSERVER_SSH_KEY }}
+          USER_NAME: ${{ secrets.XSERVER_USER_NAME }}
+          HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+            cd ~/uu-circles.com/work/api-stg && \
+            mkdir ${{ github.run_number }} && \
+            cd ${{ github.run_number }} && \
+            git clone git@github.com:H37kouya/uu-circle.git && \
+            cd uu-circle/api && \
+            git reset --hard origin/develop/stg && \
+            cp ../../../.env .env && \
+            composer install && \
+            php artisan migrate --force && \
+            php artisan cache:clear && \
+            php artisan config:cache && \
+            php artisan route:clear && \
+            php artisan view:clear
+            cd ~/uu-circles.com && \
+            ln -nfs ~/uu-circles.com/work/api-stg/${{ github.run_number }} ~/uu-circles.com/work/api-stg/current
+          '
 
   deploy:
     if: github.ref == 'refs/heads/develop/production'
@@ -56,4 +99,20 @@ jobs:
           HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd ~/uu-circles.com/public_html/api/uu-circle && git fetch -p && git reset --hard origin/develop/production && cd api && composer install && php artisan migrate --force && php artisan cache:clear && php artisan config:cache && php artisan route:clear && php artisan view:clear'
+          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+            cd ~/uu-circles.com/work/api && \
+            mkdir ${{ github.run_number }} && \
+            cd ${{ github.run_number }} && \
+            git clone git@github.com:H37kouya/uu-circle.git && \
+            cd uu-circle/api && \
+            git reset --hard origin/develop/production && \
+            cp ../../../.env .env && \
+            composer install && \
+            php artisan migrate --force && \
+            php artisan cache:clear && \
+            php artisan config:cache && \
+            php artisan route:clear && \
+            php artisan view:clear
+            cd ~/uu-circles.com && \
+            ln -nfs ~/uu-circles.com/work/api/${{ github.run_number }} ~/uu-circles.com/work/api/current
+          '

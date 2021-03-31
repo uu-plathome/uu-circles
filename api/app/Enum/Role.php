@@ -13,7 +13,8 @@ class Role
     const SYSTEM = 'SYSTEM';
 
     /**
-     * 管理者
+     * AdminUser: 管理者
+     * CircleUser: サークル部長
      */
     const MANAGER = 'MANAGER';
 

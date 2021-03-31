@@ -13,6 +13,7 @@ export type Props = {
   required?: boolean
   placeholder?: string
   items: SelectItem[]
+  disabled?: boolean
   error?: string
   onChange(e: any): void
 } & BaseLabelProps
@@ -24,8 +25,8 @@ const BaseSelect: React.FC<Props> = ({
   value,
   items,
   required,
-  placeholder,
   error,
+  disabled,
   onChange,
 }) => {
   return (
@@ -38,6 +39,7 @@ const BaseSelect: React.FC<Props> = ({
         className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
         value={value}
         onChange={onChange}
+        disabled={disabled}
       >
         {items.map((selectItem: SelectItem) => {
           return (

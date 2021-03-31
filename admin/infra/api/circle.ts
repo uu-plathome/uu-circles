@@ -115,3 +115,13 @@ export const getCircleListByUserId = async (userId: number) => {
     user: data.user,
   }
 }
+
+export const deleteCircle = async (circleId: number) => {
+  try {
+    await axiosInstance.delete<{
+      data: Circle
+    }>(`/admin/api/circle/${circleId}`)
+  } catch (_e) {
+    console.error(_e)
+  }
+}

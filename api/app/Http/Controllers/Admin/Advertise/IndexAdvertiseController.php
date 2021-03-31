@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class IndexAdvertiseController extends Controller
 {
@@ -17,6 +18,8 @@ class IndexAdvertiseController extends Controller
      */
     public function __invoke(Request $request)
     {
+        Log::debug("IndexAdvertiseController args none");
+
         $advertises = Advertise::all()->toArray();
 
         return [

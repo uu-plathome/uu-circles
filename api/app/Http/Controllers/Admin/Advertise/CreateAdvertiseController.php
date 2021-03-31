@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
-use App\Models\Advertise;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CreateAdvertiseController extends Controller
 {
@@ -19,6 +18,8 @@ class CreateAdvertiseController extends Controller
      */
     public function __invoke(CreateAdvertiseRequest $request)
     {
+        Log::debug("CreateAdvertiseController args none");
+
         DB::beginTransaction();
 
         try {
@@ -26,6 +27,11 @@ class CreateAdvertiseController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
+            Log::error("[ERROR] CreateAdvertiseController", [
+                "advertise" => $request->makeAdvertise(),
+            ]);
+
             throw $e;
         }
     }

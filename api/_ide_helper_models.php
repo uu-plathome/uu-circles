@@ -45,12 +45,14 @@ namespace App\Models{
  * @property \datetime|null $publish_from 公開終了日時
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $advertise_type 広告種類
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise nowPublic(\Illuminate\Support\Carbon $now)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise query()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereAdvertiseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereLink($value)
@@ -289,6 +291,7 @@ namespace App\Models{
  * @property bool $release 公開設定
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $private_newjoy_link 非公開リンク
  * @property-read \App\Models\Circle $circle
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy newModelQuery()
@@ -302,6 +305,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePlaceOfActivityDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePrivateNewjoyLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereRelease($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleNewJoy whereStartDate($value)
@@ -364,6 +368,7 @@ namespace App\Models{
  * @property int $circle_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $role 権限
  * @property-read \App\Models\Circle $circle
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser newModelQuery()
@@ -372,6 +377,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereCircleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereUserId($value)
  */
@@ -394,7 +400,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\AdminUser|null $adminUser
- * @property-read \App\Models\CircleUser|null $circleUser
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleUser[] $circleUsers
+ * @property-read int|null $circle_users_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder|User canAdminLogin()

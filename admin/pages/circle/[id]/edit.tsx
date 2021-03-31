@@ -11,7 +11,7 @@ import {
   useNumberInput,
   useStringInput,
 } from '@/hooks/useInput'
-import { showCircle, updateCircle } from '@/infra/api/circle'
+import { deleteCircle, showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import {
@@ -28,6 +28,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import Color from 'colors'
 import { AuthContext } from '@/contexts/AuthContext'
+import { isSystem } from '@/lib/enum/api/Role'
+import { DeleteCircleButton } from '@/components/organisms/form/Circle/DeleteCircleButton'
 
 const EditPage: NextPage = () => {
   const [circle, setCircle] = useState<Circle | undefined>(undefined)
@@ -513,6 +515,14 @@ const EditPage: NextPage = () => {
     }
   }
 
+  const onDelete = async () => {
+    setIsOpen(true)
+    await deleteCircle(circle.id)
+
+    setIsOpen(false)
+    await router.push('/circle')
+  }
+
   return (
     <div>
       <Head>
@@ -528,6 +538,14 @@ const EditPage: NextPage = () => {
           <div className="border-2 border-gray-800 px-2 py-4">
             {circle ? (
               <>
+                {isSystem(authUser.role) ? (
+                  <div className="flex justify-end mb-2">
+                    <DeleteCircleButton circle={circle} onDelete={onDelete} />
+                  </div>
+                ) : (
+                  ''
+                )}
+
                 {!handbillImageUrl.value ? (
                   <div className="border-2 border-white p-4 text-white mb-4 rounded">
                     <p className="text-red-600 text-lg mb-2">

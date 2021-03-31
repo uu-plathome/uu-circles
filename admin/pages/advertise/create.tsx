@@ -13,6 +13,7 @@ import { putStorage } from '@/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Head from 'next/head'
+import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
@@ -22,6 +23,7 @@ const CreatePage: NextPage = () => {
   const link = useStringInput('')
   const mainImageUrl = useStringInput('')
   const active = useBooleanInput(true)
+  const advertiseType = useStringInput(AdvertiseType.COMMON)
   const publishTo = useDateInput(null, 'YYYY-MM-DD')
   const publishFrom = useDateInput(null, 'YYYY-MM-DD')
 
@@ -33,6 +35,7 @@ const CreatePage: NextPage = () => {
       link: link.value,
       title: title.value,
       mainImageUrl: mainImageUrl.value,
+      advertiseType: advertiseType.value,
       active: active.toBoolean,
       publishTo: publishTo.value,
       publishFrom: publishFrom.value,
@@ -43,6 +46,7 @@ const CreatePage: NextPage = () => {
       link.setErrors(data.errors.link)
       active.setErrors(data.errors.active)
       mainImageUrl.setErrors(data.errors.mainImageUrl)
+      advertiseType.setErrors(data.errors.advertiseType)
       publishTo.setErrors(data.errors.publishTo)
       publishFrom.setErrors(data.errors.publishFrom)
       return
@@ -60,7 +64,7 @@ const CreatePage: NextPage = () => {
       reader.onload = async (e) => {
         new Compressor(file, {
           quality: 1.0,
-          maxWidth: 800,
+          maxWidth: advertiseType.value === AdvertiseType.MAIN_TOP ? 800 : 2000,
           async success(result) {
             try {
               // Send the compressed image file to server with XMLHttpRequest.
@@ -103,6 +107,7 @@ const CreatePage: NextPage = () => {
                 link,
                 mainImageUrl,
                 active,
+                advertiseType,
                 publishTo,
                 publishFrom,
               }}

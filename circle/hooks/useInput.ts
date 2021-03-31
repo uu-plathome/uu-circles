@@ -1,3 +1,5 @@
+import { isDate, isDatetime } from '@/lib/utils/Date'
+import { dayjs } from '@/plugins/Dayjs'
 import { useState } from 'react'
 
 export const useInput = <T extends string>(initialValue: T) => {
@@ -63,7 +65,37 @@ export const useBooleanInput = (initialValue: boolean) => {
     toBoolean: _useInput.value === 'true',
   }
 }
+export const useDateInput = (
+  initialValue?: Date,
+  format = 'YYYY-MM-DD HH:mm'
+) => {
+  const initialValueStr = initialValue ? initialValue.toISOString() : ''
+  const _useInput = useInput(initialValueStr)
+  const set = (newVal?: Date | string) => {
+    if (typeof newVal === 'string' && (isDate(newVal) || isDatetime(newVal))) {
+      const val = dayjs(newVal)
+      _useInput.set(val.format(format))
+      return
+    }
+
+    if (newVal instanceof Date) {
+      const val = dayjs(newVal)
+      _useInput.set(val.format(format))
+      return
+    }
+
+    _useInput.set('')
+  }
+
+  return {
+    ..._useInput,
+    set,
+    onChangeDate: (date?: Date) => set(date),
+    toDateOrNull: _useInput.value ? new Date(_useInput.value) : null,
+  }
+}
 
 export type UseStringInput = ReturnType<typeof useStringInput>
 export type UseNumberInput = ReturnType<typeof useNumberInput>
 export type UseBooleanInput = ReturnType<typeof useBooleanInput>
+export type UseDateInput = ReturnType<typeof useDateInput>
