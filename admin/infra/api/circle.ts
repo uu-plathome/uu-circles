@@ -1,5 +1,3 @@
-import { axiosInstance } from '.'
-import { AxiosError } from 'axios'
 import {
   CreateCircleFormRequest,
   CreateCircleFormRequestValidationError,
@@ -10,6 +8,8 @@ import {
 } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { User } from '@/lib/types/model/User'
+import { AxiosError } from 'axios'
+import { axiosInstance } from '.'
 
 export const createCircle = async (circle: CreateCircleFormRequest) => {
   try {

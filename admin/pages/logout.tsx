@@ -1,7 +1,7 @@
 import { AuthContext } from '@/contexts/AuthContext'
-import { useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react'
 
 const Logout: NextPage = () => {
   const authContext = useContext(AuthContext)
