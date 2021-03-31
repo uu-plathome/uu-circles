@@ -1,15 +1,17 @@
+import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import Link from 'next/link'
 import { FC } from 'react'
-import { IndexCircleNewJoyListSP } from '../List/IndexCircleNewJoyListSP'
+import { IndexCircleNewJoyListPC } from '../List/IndexCircleNewJoyListPC'
 import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
-import { InformationCircleBesideNewJoySP } from '../ShowCircle/InformationCircleBesideNewJoySP'
+import { InformationCircleBesideNewJoyPCWithButton } from '../ShowCircle/InformationCircleBesideNewJoyPCWithButton'
 
 const CircleNewJoyTitle: FC = ({ children }) => {
   return <h2 className="font-bold text-center pl-1 mb-3">{children}</h2>
 }
 
-type ShowCircleNewJoySpLayoutProps = {
+type Props = {
   /** サークル */ circle?: Circle
   /** 新歓詳細 */ circleNewJoy?: CircleNewJoy
   /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
@@ -21,7 +23,7 @@ type ShowCircleNewJoySpLayoutProps = {
     circleNewJoy: CircleNewJoy
   }[]
 }
-const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
+const ShowCircleNewJoyPcLayout: FC<Props> = ({
   circle,
   circleNewJoy,
   pastCircleNewJoys,
@@ -31,17 +33,37 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
 }) => {
   return (
     <div>
-      <div className="pb-16">
-        <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
-      </div>
+      <div className="pb-16 grid grid-cols-7">
+        <div className="col-span-5">
+          <CircleNewJoyDetail circleNewJoy={circleNewJoy} />
+        </div>
 
-      <InformationCircleBesideNewJoySP circle={circle} />
+        <div className="col-span-2  ml-6">
+          <h2 className="text-xl">主催サークル</h2>
+
+          <InformationCircleBesideNewJoyPCWithButton circle={circle} />
+          <Link href="/circle/newjoy">
+            <a>
+              <div className="my-6 w-full">
+                <YellowButton width={'222px'}>
+                  <div className="py-2">
+                    <h4 className="text-xs">他のサークルの新歓も見る</h4>
+                    <h3 className="text-sm font-bold">
+                      今日の新歓をチェック！
+                    </h3>
+                  </div>
+                </YellowButton>
+              </div>
+            </a>
+          </Link>
+        </div>
+      </div>
 
       {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
         <div className="pb-16">
           <CircleNewJoyTitle>開催中</CircleNewJoyTitle>
 
-          <IndexCircleNewJoyListSP
+          <IndexCircleNewJoyListPC
             slug={circle.slug}
             circleNewJoys={nowCircleNewJoys}
           />
@@ -54,7 +76,7 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
         <div className="pb-16">
           <CircleNewJoyTitle>今日の新歓</CircleNewJoyTitle>
 
-          <IndexCircleNewJoyListSP
+          <IndexCircleNewJoyListPC
             slug={circle.slug}
             circleNewJoys={todayCircleNewJoys}
           />
@@ -66,30 +88,22 @@ const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
       <div className="pb-16">
         <CircleNewJoyTitle>開催予定</CircleNewJoyTitle>
 
-        {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
-          <IndexCircleNewJoyListSP
-            slug={circle.slug}
-            circleNewJoys={futureCircleNewJoys}
-          />
-        ) : (
-          <p className="text-center">開催予定の新歓はありません</p>
-        )}
+        <IndexCircleNewJoyListPC
+          slug={circle.slug}
+          circleNewJoys={futureCircleNewJoys}
+        />
       </div>
 
-      <div className="pb-16">
+      <div className="pb-32">
         <CircleNewJoyTitle>開催済み</CircleNewJoyTitle>
 
-        {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
-          <IndexCircleNewJoyListSP
-            slug={circle.slug}
-            circleNewJoys={pastCircleNewJoys}
-          />
-        ) : (
-          <p className="text-center">開催済みの新歓はありません</p>
-        )}
+        <IndexCircleNewJoyListPC
+          slug={circle.slug}
+          circleNewJoys={pastCircleNewJoys}
+        />
       </div>
     </div>
   )
 }
 
-export { ShowCircleNewJoySpLayout }
+export { ShowCircleNewJoyPcLayout }
