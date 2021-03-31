@@ -1,5 +1,3 @@
-import { __ } from '@/lang/ja'
-import { isCircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import Image from 'next/image'
 import Link from 'next/link'
