@@ -1,5 +1,6 @@
-import { FC, useContext, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Role } from '@/lib/enum/api/Role'
 import {
   IconDefinition,
   faChevronRight,
@@ -8,12 +9,11 @@ import {
   faUser,
   faAd,
 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { FC, useContext, useState } from 'react'
 import { BaseHeader } from './BaseHeader'
-import { AuthContext } from '@/contexts/AuthContext'
-import { Role } from '@/lib/enum/api/Role'
 
 interface SidebarItem {
   name: string

@@ -1,6 +1,6 @@
+import { UrlObject } from 'url'
 import Link, { LinkProps } from 'next/link'
 import React from 'react'
-import { UrlObject } from 'url'
 type Url = string | UrlObject
 
 type Props = {

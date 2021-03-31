@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC } from 'react'
+import { __ } from '@/lang/ja'
+import { User } from '@/lib/types/model/User'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -7,9 +7,9 @@ import {
   faTrash,
   faMinus,
 } from '@fortawesome/free-solid-svg-icons'
-import { User } from '@/lib/types/model/User'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import { __ } from '@/lang/ja'
+import { FC } from 'react'
 
 type Props = {
   user: User

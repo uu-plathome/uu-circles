@@ -1,5 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC, useState } from 'react'
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import { RedButton } from '@/components/atoms/buttons/RedButton'
+import { User } from '@/lib/types/model/User'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -7,11 +8,10 @@ import {
   faTrash,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons'
-import { User } from '@/lib/types/model/User'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import { FC, useState } from 'react'
 import Modal from 'react-modal'
-import { GrayButton } from '@/components/atoms/buttons/GrayButton'
-import { RedButton } from '@/components/atoms/buttons/RedButton'
 
 const customStyles = {
   content: {
