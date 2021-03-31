@@ -6,18 +6,14 @@ import { MainCircleList } from '@/components/organisms/Main/MainCircleList'
 import { MainSponsorshipFooter } from '@/components/organisms/Main/MainSponsorshipFooter'
 import { MainTagList } from '@/components/organisms/Main/MainTagList'
 import { MainUucircleAd } from '@/components/organisms/Main/MainUucircleAd'
-import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getMain } from '@/infra/api/main'
-import { Circle } from '@/lib/types/model/Circle'
-import { Advertise } from '@/lib/types/model/Advertise'
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { useEffect, useState } from 'react'
-
 import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
+import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircleTopCarousel'
+import { getMain } from '@/infra/api/main'
+import { Advertise } from '@/lib/types/model/Advertise'
+import { Circle } from '@/lib/types/model/Circle'
+import { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 
 type Props = {
   advertises: Advertise[]
@@ -25,14 +21,6 @@ type Props = {
   circles: Circle[]
 }
 const Index: NextPage<Props> = ({ advertises, mainAdvertises, circles }) => {
-  const { width } = useWindowResize()
-  const { isMd } = useMediaQuery()
-  const [height, setHeight] = useState(0)
-
-  useEffect(() => {
-    setHeight(isMd ? 330 : (width * 4192) / 8001)
-  }, [isMd, width])
-
   return (
     <div>
       <Head>
