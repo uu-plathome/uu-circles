@@ -1,7 +1,7 @@
-import { FC } from 'react'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { IndexCircleNewJoyListSP } from './IndexCircleNewJoyListSP'
+import { FC } from 'react'
 import { IndexCircleNewJoyListPC } from './IndexCircleNewJoyListPC'
+import { IndexCircleNewJoyListSP } from './IndexCircleNewJoyListSP'
 
 type Props = {
   circleId: number
