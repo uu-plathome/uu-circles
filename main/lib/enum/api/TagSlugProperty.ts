@@ -53,6 +53,10 @@ export const TagSlugProperty = {
   mystery: 'mystery',
 
   online: 'online',
+
+  mine: 'mine',
+
+  yoto: 'yoto',
 } as const
 
 export type TagSlugPropertyKey = keyof typeof TagSlugProperty
@@ -118,3 +122,5 @@ export const isUrgentRecruitment = (v: any): v is 'urgent_recruitment' =>
 export const isMystery = (v: any): v is 'mystery' =>
   v === TagSlugProperty.mystery
 export const isOnline = (v: any): v is 'online' => v === TagSlugProperty.online
+export const isMine = (v: any): v is 'mine' => v === TagSlugProperty.mine
+export const isYoto = (v: any): v is 'yoto' => v === TagSlugProperty.yoto

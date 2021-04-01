@@ -148,6 +148,16 @@ const tagOtherItems: TagItem[] = [
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.holiday}`,
   },
+  {
+    text: __(CircleTagModel.MINE),
+    href: '/circle/tag/[tag]',
+    as: `/circle/tag/${TagSlugProperty.mine}`,
+  },
+  {
+    text: __(CircleTagModel.YOTO),
+    href: '/circle/tag/[tag]',
+    as: `/circle/tag/${TagSlugProperty.yoto}`,
+  },
 ]
 
 type TagItemFcProps = {

@@ -27,4 +27,6 @@ class SearchTagCircleListParam
     public bool $urgent_recruitment = false;
     public bool $mystery = false;
     public bool $online = false;
+    public bool $mine = false;
+    public bool $yoto = false;
 }

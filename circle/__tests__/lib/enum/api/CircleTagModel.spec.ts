@@ -153,4 +153,16 @@ describe('Enum CircleTagModel', () => {
     expect(TestFunc.isHoliday('HOLIDAY')).toBeTruthy()
     expect(TestFunc.isHoliday('aaaaabbbbcccc')).toBeFalsy()
   })
+  it('isMine', () => {
+    expect(TestFunc.CircleTagModel.MINE).toBe('MINE')
+    expect(TestFunc.isCircleTagModel('MINE')).toBeTruthy()
+    expect(TestFunc.isMine('MINE')).toBeTruthy()
+    expect(TestFunc.isMine('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isYoto', () => {
+    expect(TestFunc.CircleTagModel.YOTO).toBe('YOTO')
+    expect(TestFunc.isCircleTagModel('YOTO')).toBeTruthy()
+    expect(TestFunc.isYoto('YOTO')).toBeTruthy()
+    expect(TestFunc.isYoto('aaaaabbbbcccc')).toBeFalsy()
+  })
 })
