@@ -125,7 +125,17 @@ export const CircleTagModel = {
   /**
    * 休日活動
    */
-  HOLIDAY: 'HOLIDAY'
+  HOLIDAY: 'HOLIDAY',
+
+  /**
+   * 峰キャンパス
+   */
+  MINE: 'MINE',
+
+  /**
+   * 陽東キャンパス
+   */
+  YOTO: 'YOTO'
 } as const
 
 export type CircleTagModelKey = keyof typeof CircleTagModel
@@ -244,3 +254,11 @@ export const isOnlyFriday = (v: any): v is 'ONLY_FRIDAY' => v === CircleTagModel
  * 休日活動
  */
 export const isHoliday = (v: any): v is 'HOLIDAY' => v === CircleTagModel.HOLIDAY
+/**
+ * 峰キャンパス
+ */
+export const isMine = (v: any): v is 'MINE' => v === CircleTagModel.MINE
+/**
+ * 陽東キャンパス
+ */
+export const isYoto = (v: any): v is 'YOTO' => v === CircleTagModel.YOTO
