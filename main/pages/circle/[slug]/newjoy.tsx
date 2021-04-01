@@ -1,4 +1,3 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { YellowButton } from '@/components/atoms/button/YellowButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
@@ -8,6 +7,7 @@ import { IndexCircleNewJoyListPC } from '@/components/organisms/List/IndexCircle
 import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircleNewJoyListSP'
 import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { PageNotFoundError } from '@/infra/api/error'
 import { Circle } from '@/lib/types/model/Circle'

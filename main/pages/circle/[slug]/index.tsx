@@ -7,7 +7,11 @@ import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AppealingPoint } from '@/components/organisms/ShowCircle/AppealingPoint'
 import { InformationField } from '@/components/organisms/ShowCircle/InformationField'
 import { NewJoyList } from '@/components/organisms/ShowCircle/NewJoyList'
+import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
 import { getCircleBySlug } from '@/infra/api/circle'
+import { PageNotFoundError } from '@/infra/api/error'
+import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { CircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import {
@@ -17,13 +21,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
-import { CircleType } from '@/lib/enum/api/CircleType'
-import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
-import { PageNotFoundError } from '@/infra/api/error'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 
 type Props = {
   circle?: Circle
@@ -123,7 +123,11 @@ const Page: NextPage<Props> = ({
                   </h2>
 
                   <div className="flex justify-center md:justify-start">
-                    <a href={circle.handbillImageUrl} target="_blank">
+                    <a
+                      href={circle.handbillImageUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <Image
                         src={circle.handbillImageUrl}
                         alt={`${circle.name}新歓ビラ`}
