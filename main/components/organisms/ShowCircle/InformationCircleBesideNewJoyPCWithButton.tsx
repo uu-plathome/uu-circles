@@ -24,7 +24,9 @@ const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
       </div>
       <h4 className="text-base text-center">{circle.prefixName}</h4>
       <h3 className="text-xl text-center mt-3 mb-4">{circle.name}</h3>
-      <p className="text-xs text-left mx-auto">{circle.description}</p>
+      <p className="text-xs text-left mx-auto whitespace-pre-wrap">
+        {circle.description}
+      </p>
 
       <nav className="text-right">
         <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
