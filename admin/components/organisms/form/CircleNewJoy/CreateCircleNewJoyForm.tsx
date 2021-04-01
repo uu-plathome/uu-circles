@@ -54,6 +54,7 @@ const CreateCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
         />
 
         <BaseSelect
+          required
           label="活動場所"
           id="placeOfActivity"
           name="placeOfActivity"
