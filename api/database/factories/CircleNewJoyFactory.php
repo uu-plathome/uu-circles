@@ -23,7 +23,7 @@ use Illuminate\Support\Carbon;
 $factory->define(CircleNewJoy::class, function (Faker $faker) {
     return [
         CircleNewJoyProperty::title             => '交流会',
-        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::DISCORD,
+        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::NEWJOY_DISCORD,
         CircleNewJoyProperty::description       => 'ぜひ参加してください',
         CircleNewJoyProperty::release           => true,
         CircleNewJoyProperty::start_date        => Carbon::now()->subHour(1)->copy(),
@@ -34,7 +34,7 @@ $factory->define(CircleNewJoy::class, function (Faker $faker) {
 $factory->state(CircleNewJoy::class, 'pastFixed', function (Faker $faker) {
     return [
         CircleNewJoyProperty::title             => '交流会',
-        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::DISCORD,
+        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::NEWJOY_DISCORD,
         CircleNewJoyProperty::description       => 'ぜひ参加してください',
         CircleNewJoyProperty::release           => true,
         CircleNewJoyProperty::start_date        => (new Carbon("2021-01-25 18:00:00"))->subHour(1)->copy(),
@@ -45,7 +45,7 @@ $factory->state(CircleNewJoy::class, 'pastFixed', function (Faker $faker) {
 $factory->state(CircleNewJoy::class, 'futureFixed', function (Faker $faker) {
     return [
         CircleNewJoyProperty::title             => '交流会',
-        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::DISCORD,
+        CircleNewJoyProperty::place_of_activity => PlaceOfActivity::NEWJOY_DISCORD,
         CircleNewJoyProperty::description       => 'ぜひ参加してください',
         CircleNewJoyProperty::release           => true,
         CircleNewJoyProperty::start_date        => (new Carbon("2021-05-25 18:00:00"))->subHour(1)->copy(),
