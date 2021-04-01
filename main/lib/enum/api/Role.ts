@@ -8,7 +8,8 @@ export const Role = {
   SYSTEM: 'SYSTEM',
 
   /**
-   * 管理者
+   * AdminUser: 管理者
+   * CircleUser: サークル部長
    */
   MANAGER: 'MANAGER',
 
@@ -39,7 +40,8 @@ export const isRole = (s: any): s is Role => Object.values(Role).includes(s)
  */
 export const isSystem = (v: any): v is 'SYSTEM' => v === Role.SYSTEM
 /**
- * 管理者
+ * AdminUser: 管理者
+ * CircleUser: サークル部長
  */
 export const isManager = (v: any): v is 'MANAGER' => v === Role.MANAGER
 /**

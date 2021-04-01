@@ -35,8 +35,9 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::url                      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyProperty::private_newjoy_link      => ['string', 'nullable', 'url', 'max:255'],
             CircleNewJoyProperty::place_of_activity        => [
+                'required',
                 'string',
-                Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
+                Rule::in(PlaceOfActivity::toArrayForCircleNewJoy()),
             ],
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
@@ -71,7 +72,8 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::url                      => $request['url'],
             CircleNewJoyProperty::private_newjoy_link      => Arr::get($request, CircleNewJoyProperty::private_newjoy_link),
             CircleNewJoyProperty::place_of_activity        => $request['place_of_activity'],
-            CircleNewJoyProperty::place_of_activity_detail => Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '',
+            CircleNewJoyProperty::place_of_activity_detail => Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
+                ? Arr::get($request, 'place_of_activity_detail') : '',
             CircleNewJoyProperty::publish_from             => $request['publish_from'],
             CircleNewJoyProperty::start_date               => $request['start_date'],
             CircleNewJoyProperty::end_date                 => $request['end_date'],

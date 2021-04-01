@@ -7,7 +7,7 @@ import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
 } from '@/infra/api/circleNewJoy'
-import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 
 type Props = {

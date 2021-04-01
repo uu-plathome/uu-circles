@@ -18,7 +18,17 @@ export const PlaceOfActivity = {
   MINE_AND_YOTO: 'MINE_AND_YOTO',
 
   /**
-   * ディスコード
+   * 新歓Discord
+   */
+  NEWJOY_DISCORD: 'NEWJOY_DISCORD',
+
+  /**
+   * Zoom
+   */
+  ZOOM: 'ZOOM',
+
+  /**
+   * Discord
    */
   DISCORD: 'DISCORD',
 
@@ -61,7 +71,16 @@ export const isYoto = (v: any): v is 'YOTO' => v === PlaceOfActivity.YOTO
 export const isMineAndYoto = (v: any): v is 'MINE_AND_YOTO' =>
   v === PlaceOfActivity.MINE_AND_YOTO
 /**
- * ディスコード
+ * 新歓Discord
+ */
+export const isNewjoyDiscord = (v: any): v is 'NEWJOY_DISCORD' =>
+  v === PlaceOfActivity.NEWJOY_DISCORD
+/**
+ * Zoom
+ */
+export const isZoom = (v: any): v is 'ZOOM' => v === PlaceOfActivity.ZOOM
+/**
+ * Discord
  */
 export const isDiscord = (v: any): v is 'DISCORD' =>
   v === PlaceOfActivity.DISCORD

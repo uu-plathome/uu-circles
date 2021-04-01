@@ -23,7 +23,17 @@ class PlaceOfActivity
     const MINE_AND_YOTO = 'MINE_AND_YOTO';
 
     /**
-     * ディスコード
+     * 新歓Discord
+     */
+    const NEWJOY_DISCORD = 'NEWJOY_DISCORD';
+
+    /**
+     * Zoom
+     */
+    const ZOOM = 'ZOOM';
+
+    /**
+     * Discord
      */
     const DISCORD = 'DISCORD';
 
@@ -31,4 +41,15 @@ class PlaceOfActivity
      * その他
      */
     const OTHER = 'OTHER';
+
+    public static function toArrayForCircleNewJoy(): array
+    {
+        return [
+            PlaceOfActivity::MINE,
+            PlaceOfActivity::YOTO,
+            PlaceOfActivity::NEWJOY_DISCORD,
+            PlaceOfActivity::DISCORD,
+            PlaceOfActivity::OTHER
+        ];
+    }
 }

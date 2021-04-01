@@ -81,6 +81,7 @@ const Page: NextPage = () => {
                   className="underline"
                   href="https://docs.google.com/forms/d/e/1FAIpQLSciZMsDgqmcMXIxWszTfLF9jbMB8MrTw_HspSAzvF_XjIv9fA/viewform"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Google Formへ
                 </a>

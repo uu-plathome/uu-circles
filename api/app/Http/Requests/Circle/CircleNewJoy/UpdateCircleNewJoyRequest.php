@@ -38,7 +38,7 @@ class UpdateCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::place_of_activity        => [
                 'required',
                 'string',
-                Rule::in([PlaceOfActivity::DISCORD, PlaceOfActivity::OTHER]),
+                Rule::in(PlaceOfActivity::toArrayForCircleNewJoy()),
             ],
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:255'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
@@ -75,8 +75,10 @@ class UpdateCircleNewJoyRequest extends FormRequest
         $param->description = Arr::get($request, 'description');
         $param->url = Arr::get($request, 'url');
         $param->private_newjoy_link = Arr::get($request, CircleNewJoyProperty::private_newjoy_link);
-        $param->place_of_activity = Arr::get($request, 'place_of_activity');
-        $param->place_of_activity_detail = Arr::get($request, 'place_of_activity') === PlaceOfActivity::OTHER ? Arr::get($request, 'place_of_activity_detail') : '';
+        $param->place_of_activity = Arr::get($request, CircleNewJoyProperty::place_of_activity);
+        $param->place_of_activity_detail = Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
+            ? Arr::get($request, 'place_of_activity_detail')
+            : '';
         $param->publish_from = Arr::get($request, 'publish_from') ? new Carbon(Arr::get($request, 'publish_from')) : null;
         $param->start_date = Arr::get($request, 'start_date') ? new Carbon(Arr::get($request, 'start_date')) : null;
         $param->end_date = Arr::get($request, 'end_date') ? new Carbon(Arr::get($request, 'end_date')) : null;
