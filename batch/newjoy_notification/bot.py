@@ -93,6 +93,10 @@ async def on_ready():
             if (newjoy['circleNewJoy']['url'] is not None):
                 text += '💻新歓URL: '+str(newjoy['circleNewJoy']['url'])+'\n'
 
+            if (newjoy['circleNewJoy']['privateNewjoyLink'] is not None):
+                text += '💻新歓Discord専用URL: ' + \
+                    str(newjoy['circleNewJoy']['privateNewjoyLink'])+'\n'
+
             if (newjoy['slug'] is not None):
                 text += '👀サークルを見る: ** https://uu-circles.com/circle/' + \
                     newjoy['slug']+'**\n\n'
