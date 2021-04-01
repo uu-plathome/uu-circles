@@ -7,10 +7,7 @@ import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { getCircleByTag } from '@/infra/api/circle'
 import { __ } from '@/lang/ja'
-import {
-  getAllTagSlugProperty,
-  TagSlugProperty,
-} from '@/lib/enum/api/TagSlugProperty'
+import { getAllTagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'

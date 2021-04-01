@@ -14,7 +14,7 @@ const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
       </h2>
 
       <div className="md:flex justify-center flex-wrap">
-        {circleNewJoys.map((circleNewJoy, idx) => {
+        {circleNewJoys.map((circleNewJoy) => {
           //コメントアウトしたロジックでなくても動いたため、臨時で置き換えました。3/6
           const className = 'md:mr-auto'
           // let className = idx === 0 ? 'place-self-end md:mr-auto' : ''
