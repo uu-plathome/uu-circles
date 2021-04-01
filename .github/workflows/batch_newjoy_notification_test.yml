@@ -1,0 +1,37 @@
+name: Batch/NewjoyNotification
+
+on:
+  pull_request:
+    paths:
+      - "batch/newjoy_notification/**"
+
+jobs:
+  run_batch_newjoy_notification:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        working-directory: ./batch/newjoy_notification
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run bot.py
+        working-directory: ./batch/newjoy_notification
+        env:
+          TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          CHANNEL_ID: ${{ secrets.DISCORD_TEST_CHANNEL_ID }}
+          API_URL: https://api.uu-circles.com/api/circle/newjoy
+        run: |
+          python bot.py
