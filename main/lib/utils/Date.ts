@@ -4,7 +4,9 @@ import dayjs from 'dayjs'
 /**
  * 曜日を返す
  */
-export const getDOW = (originStartDate: dayjs.Dayjs | Date | string): string => {
+export const getDOW = (
+  originStartDate: dayjs.Dayjs | Date | string
+): string => {
   if (!originStartDate) {
     return '未定'
   }
