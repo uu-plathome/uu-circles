@@ -20,22 +20,22 @@ class PlaceOfActivityTrans(Enum):
 
 
 def placeOfActivityTrans(key: str) -> str:
-    if key is PlaceOfActivityTrans.NEWJOY_DISCORD.name:
+    if key == PlaceOfActivityTrans.NEWJOY_DISCORD.name:
         return PlaceOfActivityTrans.NEWJOY_DISCORD.value
 
-    if key is PlaceOfActivityTrans.DISCORD.name:
+    if key == PlaceOfActivityTrans.DISCORD.name:
         return PlaceOfActivityTrans.DISCORD.value
 
-    if key is PlaceOfActivityTrans.MINE.name:
+    if key == PlaceOfActivityTrans.MINE.name:
         return PlaceOfActivityTrans.MINE.value
 
-    if key is PlaceOfActivityTrans.YOTO.name:
+    if key == PlaceOfActivityTrans.YOTO.name:
         return PlaceOfActivityTrans.YOTO.value
 
-    if key is PlaceOfActivityTrans.ZOOM.name:
+    if key == PlaceOfActivityTrans.ZOOM.name:
         return PlaceOfActivityTrans.ZOOM.value
 
-    if key is PlaceOfActivityTrans.OTHER.name:
+    if key == PlaceOfActivityTrans.OTHER.name:
         return PlaceOfActivityTrans.OTHER.value
 
     return key
