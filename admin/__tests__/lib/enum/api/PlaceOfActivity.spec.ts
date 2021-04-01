@@ -19,6 +19,18 @@ describe('Enum PlaceOfActivity', () => {
     expect(TestFunc.isMineAndYoto('MINE_AND_YOTO')).toBeTruthy()
     expect(TestFunc.isMineAndYoto('aaaaabbbbcccc')).toBeFalsy()
   })
+  it('isNewjoyDiscord', () => {
+    expect(TestFunc.PlaceOfActivity.NEWJOY_DISCORD).toBe('NEWJOY_DISCORD')
+    expect(TestFunc.isPlaceOfActivity('NEWJOY_DISCORD')).toBeTruthy()
+    expect(TestFunc.isNewjoyDiscord('NEWJOY_DISCORD')).toBeTruthy()
+    expect(TestFunc.isNewjoyDiscord('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isZoom', () => {
+    expect(TestFunc.PlaceOfActivity.ZOOM).toBe('ZOOM')
+    expect(TestFunc.isPlaceOfActivity('ZOOM')).toBeTruthy()
+    expect(TestFunc.isZoom('ZOOM')).toBeTruthy()
+    expect(TestFunc.isZoom('aaaaabbbbcccc')).toBeFalsy()
+  })
   it('isDiscord', () => {
     expect(TestFunc.PlaceOfActivity.DISCORD).toBe('DISCORD')
     expect(TestFunc.isPlaceOfActivity('DISCORD')).toBeTruthy()

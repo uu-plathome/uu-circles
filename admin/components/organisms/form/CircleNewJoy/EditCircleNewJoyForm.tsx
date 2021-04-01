@@ -54,10 +54,27 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
         />
 
         <BaseSelect
+          required
           label="活動場所"
           id="placeOfActivity"
           name="placeOfActivity"
           items={[
+            {
+              value: PlaceOfActivity.NEWJOY_DISCORD,
+              label: __(PlaceOfActivity.NEWJOY_DISCORD),
+            },
+            {
+              value: PlaceOfActivity.MINE,
+              label: __(PlaceOfActivity.MINE),
+            },
+            {
+              value: PlaceOfActivity.YOTO,
+              label: __(PlaceOfActivity.YOTO),
+            },
+            {
+              value: PlaceOfActivity.ZOOM,
+              label: __(PlaceOfActivity.ZOOM),
+            },
             {
               value: PlaceOfActivity.DISCORD,
               label: __(PlaceOfActivity.DISCORD),
@@ -70,7 +87,7 @@ const EditCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           {...form.placeOfActivity}
         />
 
-        {form.placeOfActivity.value === PlaceOfActivity.OTHER ? (
+        {form.placeOfActivity.value !== PlaceOfActivity.NEWJOY_DISCORD ? (
           <BaseTextarea
             label="新歓活動場所詳細"
             name="placeOfActivityDetail"
