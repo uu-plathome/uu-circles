@@ -35,7 +35,7 @@ export const Week = {
   /**
    * 日曜日
    */
-  SUNDAY: 'SUNDAY',
+  SUNDAY: 'SUNDAY'
 } as const
 
 export type WeekKey = keyof typeof Week
