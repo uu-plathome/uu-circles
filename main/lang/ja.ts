@@ -44,6 +44,8 @@ export const ja = {
   [CircleTagModel.ONLY_THURSDAY]: '木曜日のみ活動',
   [CircleTagModel.ONLY_FRIDAY]: '金曜日のみ活動',
   [CircleTagModel.HOLIDAY]: '休日活動',
+  [CircleTagModel.MINE]: '峰キャンパス',
+  [CircleTagModel.YOTO]: '陽東キャンパス',
   [TagSlugProperty.online.toUpperCase()]: 'オンライン活動',
   CLUB: '部活',
   Week: {
@@ -101,6 +103,8 @@ export const ja = {
     [CircleTagModel.MAMMOTH]: '紛れもない大御所',
     [CircleTagModel.URGENT_RECRUITMENT]: '見学だけでもお願いします',
     [CircleTagModel.MYSTERY]: '得体のしれない怪団体',
+    [CircleTagModel.MINE]: '峰キャンパスで活動',
+    [CircleTagModel.YOTO]: '陽東キャンパスで活動',
     [TagSlugProperty.online.toUpperCase()]: '',
   },
   CircleTagText: {
@@ -143,7 +147,9 @@ export const ja = {
     [CircleTagModel.URGENT_RECRUITMENT]:
       '切実に新入生を望んでいる団体です。賑やかさ、または活動面で人手不足ということではありますが、その分だけ好待遇です。ちょっとだけでも、覗いてみませんか？',
     [CircleTagModel.MYSTERY]:
-      '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
+    '謎に包まれたミステリアスな団体です。どんな人がいて、何をしているのか…。さあ、覗いてみましょう。',
+    [CircleTagModel.MINE]: '',
+    [CircleTagModel.YOTO]: '',
     [TagSlugProperty.online.toUpperCase()]: '',
   },
 }
