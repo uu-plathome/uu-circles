@@ -107,4 +107,12 @@ class CircleTagModel
      * 休日活動
      */
     const HOLIDAY = 'HOLIDAY';
+    /**
+     * 峰キャンパス
+     */
+    const MINE = 'MINE';
+    /**
+     * 陽東キャンパス
+     */
+    const YOTO = 'YOTO';
 }
