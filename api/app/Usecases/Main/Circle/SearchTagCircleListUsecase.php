@@ -2,6 +2,7 @@
 
 namespace App\Usecases\Main\Circle;
 
+use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\ValueObjects\CircleValueObject;
@@ -29,7 +30,23 @@ class SearchTagCircleListUsecase
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param) {
                 /** @var \App\Models\CircleInformation $query */
-                $query->when($param->mammoth, function ($query) {
+                $query->when($param->mine, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereCommonPlaceOfActivity([
+                            PlaceOfActivity::MINE,
+                            PlaceOfActivity::MINE_AND_YOTO,
+                        ]);
+                    });
+                })->when($param->yoto, function ($query) {
+                    $query->orWhere(function ($query) {
+                        /** @var \App\Models\CircleInformation $query */
+                        $query->whereCommonPlaceOfActivity([
+                            PlaceOfActivity::YOTO,
+                            PlaceOfActivity::MINE_AND_YOTO,
+                        ]);
+                    });
+                })->when($param->mammoth, function ($query) {
                     $query->orWhere(function ($query) {
                         /** @var \App\Models\CircleInformation $query */
                         $query->whereMammoth();

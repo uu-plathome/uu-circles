@@ -159,4 +159,16 @@ describe('Enum TagSlugProperty', () => {
     expect(TestFunc.isOnline('online')).toBeTruthy()
     expect(TestFunc.isOnline('aaaaabbbbcccc')).toBeFalsy()
   })
+  it('isMine', () => {
+    expect(TestFunc.TagSlugProperty.mine).toBe('mine')
+    expect(TestFunc.isTagSlugProperty('mine')).toBeTruthy()
+    expect(TestFunc.isMine('mine')).toBeTruthy()
+    expect(TestFunc.isMine('aaaaabbbbcccc')).toBeFalsy()
+  })
+  it('isYoto', () => {
+    expect(TestFunc.TagSlugProperty.yoto).toBe('yoto')
+    expect(TestFunc.isTagSlugProperty('yoto')).toBeTruthy()
+    expect(TestFunc.isYoto('yoto')).toBeTruthy()
+    expect(TestFunc.isYoto('aaaaabbbbcccc')).toBeFalsy()
+  })
 })
