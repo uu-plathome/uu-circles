@@ -74,13 +74,6 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               </h4>
             </section>
 
-            <section className="my-6 border-b border-gray-600">
-              <TableTitle>新歓説明</TableTitle>
-              <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-                {circleNewJoy.description}
-              </h4>
-            </section>
-
             {circleNewJoy.url ? (
               <section className="my-6" border-b border-gray-600>
                 <TableTitle>URL</TableTitle>
@@ -91,6 +84,13 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             ) : (
               ''
             )}
+
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>新歓説明</TableTitle>
+              <h4 className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+                {circleNewJoy.description}
+              </h4>
+            </section>
           </div>
         </div>
       ) : (
@@ -123,14 +123,6 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             </h4>
           </section>
 
-          <section className="my-6 border-b border-gray-600">
-            <TableTitle>新歓説明</TableTitle>
-
-            <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {circleNewJoy.description}
-            </h4>
-          </section>
-
           {circleNewJoy.url ? (
             <section className="my-6 border-b border-gray-600">
               <TableTitle>URL</TableTitle>
@@ -146,6 +138,14 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
           ) : (
             ''
           )}
+
+          <section className="my-6 border-b border-gray-600">
+            <TableTitle>新歓説明</TableTitle>
+
+            <h4 className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+              {circleNewJoy.description}
+            </h4>
+          </section>
         </div>
       )}
     </div>

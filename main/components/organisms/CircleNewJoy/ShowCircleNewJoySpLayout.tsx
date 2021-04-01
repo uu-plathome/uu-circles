@@ -6,7 +6,7 @@ import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
 import { InformationCircleBesideNewJoySP } from '../ShowCircle/InformationCircleBesideNewJoySP'
 
 const CircleNewJoyTitle: FC = ({ children }) => {
-  return <h2 className="font-bold text-center pl-1 mb-3">{children}</h2>
+  return <h2 className="font-bold text-center mb-3">{children}</h2>
 }
 
 type ShowCircleNewJoySpLayoutProps = {
