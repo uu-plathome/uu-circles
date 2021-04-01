@@ -42,6 +42,7 @@ const ShowCircleNewJoyPcLayout: FC<Props> = ({
           <h2 className="text-xl">主催サークル</h2>
 
           <InformationCircleBesideNewJoyPCWithButton circle={circle} />
+
           <Link href="/circle/newjoy">
             <a>
               <div className="my-6 w-full">

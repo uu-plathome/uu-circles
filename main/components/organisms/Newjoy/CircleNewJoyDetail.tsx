@@ -5,6 +5,10 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getFullJPDate } from '@/lib/utils/Date'
 import { FC } from 'react'
 
+const TableTitle: FC = ({ children }) => {
+  return <h4 className="text-gray-500 text-base text-gray-400">{children}</h4>
+}
+
 type Props = {
   circle: Circle
   circleNewJoy: CircleNewJoy
@@ -50,40 +54,43 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             }}
           >
             <section className="my-3 border-b border-gray-600">
-              <h4 className="text-gray-500 text-base text-gray-400">
-                新歓イベント名
-              </h4>
+              <TableTitle>新歓イベント名</TableTitle>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
                 {circle.shortName || circle.name} {circleNewJoy.title}
               </h4>
             </section>
 
             <section className="my-6 border-b border-gray-600">
-              <h4 className="text-gray-500 text-base text-gray-400">
-                新歓日時
-              </h4>
+              <TableTitle>新歓日時</TableTitle>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
                 {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
               </h4>
             </section>
 
             <section className="my-6 border-b border-gray-600">
-              <h4 className="text-gray-500 text-base text-gray-400">
-                集合場所
-              </h4>
+              <TableTitle>活動場所</TableTitle>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
                 {__(circleNewJoy.placeOfActivity)}
               </h4>
             </section>
 
-            <section className="my-6 ">
-              <h4 className="text-gray-500 text-base text-gray-400">
-                新歓説明
-              </h4>
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>新歓説明</TableTitle>
               <h4 className="text-black text-sm  my-2 pb-2 font-bold">
                 {circleNewJoy.description}
               </h4>
             </section>
+
+            {circleNewJoy.url ? (
+              <section className="my-6" border-b border-gray-600>
+                <TableTitle>URL</TableTitle>
+                <h4 className="text-black text-sm  my-2 pb-2 font-bold">
+                  {__(circleNewJoy.url)}
+                </h4>
+              </section>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       ) : (
@@ -93,34 +100,52 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
           style={{ width: 308 }}
         >
           <section className="my-6 border-b border-gray-600">
-            <h4 className="text-gray-500 text-base text-gray-400">
-              新歓イベント名
-            </h4>
+            <TableTitle>新歓イベント名</TableTitle>
+
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {circle.shortName || circle.name} {circleNewJoy.title}
             </h4>
           </section>
 
           <section className="my-6 border-b border-gray-600">
-            <h4 className="text-gray-500 text-base text-gray-400">新歓日時</h4>
+            <TableTitle>新歓日時</TableTitle>
+
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
             </h4>
           </section>
 
           <section className="my-6 border-b border-gray-600">
-            <h4 className="text-gray-500 text-base text-gray-400">集合場所</h4>
+            <TableTitle>活動場所</TableTitle>
+
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {__(circleNewJoy.placeOfActivity)}
             </h4>
           </section>
 
-          <section className="my-6">
-            <h4 className="text-gray-500 text-base text-gray-400">新歓説明</h4>
+          <section className="my-6 border-b border-gray-600">
+            <TableTitle>新歓説明</TableTitle>
+
             <h4 className="text-black text-sm  my-2 pb-2 font-bold">
               {circleNewJoy.description}
             </h4>
           </section>
+
+          {circleNewJoy.url ? (
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>URL</TableTitle>
+              <a
+                className="text-black text-sm  my-2 pb-2 font-bold"
+                href={circleNewJoy.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {__(circleNewJoy.url)}
+              </a>
+            </section>
+          ) : (
+            ''
+          )}
         </div>
       )}
     </div>
