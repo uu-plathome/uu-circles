@@ -23,5 +23,9 @@ export interface UpdateAdminUserRequestValidationError {
   message: string
 }
 
-export const isUpdateAdminUserRequest = (v: any): v is UpdateAdminUserRequest => v && v.type === 'UpdateAdminUserRequest'
-export const isUpdateAdminUserRequestValidationError = (v: any): v is UpdateAdminUserRequestValidationError => v && v.type === 'UpdateAdminUserRequestValidationError'
+export const isUpdateAdminUserRequest = (v: any): v is UpdateAdminUserRequest =>
+  v && v.type === 'UpdateAdminUserRequest'
+export const isUpdateAdminUserRequestValidationError = (
+  v: any
+): v is UpdateAdminUserRequestValidationError =>
+  v && v.type === 'UpdateAdminUserRequestValidationError'
