@@ -33,6 +33,8 @@ class TagSlugProperty
     const urgent_recruitment = 'urgent_recruitment';
     const mystery = 'mystery';
     const online = 'online';
+    const mine = 'mine';
+    const yoto = 'yoto';
 
     public static function getAll(): array
     {
@@ -63,6 +65,8 @@ class TagSlugProperty
             self::urgent_recruitment,
             self::mystery,
             self::online,
+            self::mine,
+            self::yoto,
         ];
     }
 }
