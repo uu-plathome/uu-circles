@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Admin\Auth;
+namespace Tests\Feature\App\Http\Controllers\Circle\Auth;
 
+use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -9,18 +10,25 @@ use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class LogoutAdminControllerTest extends TestCase
+class LogoutCircleControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
-    const TOKEN = 'test1234';
+    /**
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     *
+     * @var bool
+     */
+    protected $seed = true;
 
     protected ?int $userId;
+
+    const TOKEN = 'test1234';
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("LogoutAdminControllerTest");
+        Log::info("LogoutCircleControllerTest");
         Cache::clear();
         $this->userId = User::whereApiToken(self::TOKEN)->first()->id;
     }
@@ -41,27 +49,36 @@ class LogoutAdminControllerTest extends TestCase
         }
     }
 
-    /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
-     *
-     * @var bool
-     */
-    protected $seed = true;
-
     public function testログアウトできる()
     {
         Log::info("testログアウトできる");
 
         // GIVEN
-        $token = self::TOKEN;
-        $user = User::whereApiToken($token)->first();
+        /** @var \App\Models\User $user */
+        $user = User::with([
+            'circleUsers',
+        ])
+            ->whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
+            ->hasByNonDependentSubquery('circleUsers')
+            ->hasByNonDependentSubquery('circleUsers', function ($query) {
+                /** @var \App\Models\CircleUser $query */
+                $query->hasByNonDependentSubquery('circle', function ($query) {
+                    /** @var \App\Models\Circle $query */
+                    $query->whereRelease(true);
+                });
+            })
+            ->inRandomOrder()
+            ->first();
+        $this->assertNotNull($user);
+        $token = $user->api_token;
         Log::debug("testログアウトできる [GIVEN]", [
             'token' => $token,
             'user'  => $user,
         ]);
 
         // WHEN
-        $response = $this->post('/admin/api/logout', [], [
+        $response = $this->post('/circle/api/logout', [], [
             'Authorization' => "Bearer $token",
         ]);
 
