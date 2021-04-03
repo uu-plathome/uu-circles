@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Circle\Auth;
 
 use App\Http\Controllers\Controller;
 use Exception;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class LogoutAdminController extends Controller
+class LogoutCircleController extends Controller
 {
     /**
      * ログアウト処理をする
@@ -20,7 +20,7 @@ class LogoutAdminController extends Controller
      */
     public function __invoke(Request $request)
     {
-        Log::debug("LogoutAdminController args none");
+        Log::debug("LogoutCircleController args none");
 
         $user = Auth::user();
 
@@ -33,7 +33,7 @@ class LogoutAdminController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("LogoutAdminController [ERROR]", [
+            Log::error("LogoutCircleController [ERROR]", [
                 'user' => $user
             ]);
 
