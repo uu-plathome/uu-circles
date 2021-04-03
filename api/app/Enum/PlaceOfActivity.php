@@ -42,6 +42,11 @@ class PlaceOfActivity
      */
     const OTHER = 'OTHER';
 
+    /**
+     * 新歓の活動場所
+     *
+     * @return PlaceOfActivity[]
+     */
     public static function toArrayForCircleNewJoy(): array
     {
         return [
@@ -49,6 +54,7 @@ class PlaceOfActivity
             PlaceOfActivity::YOTO,
             PlaceOfActivity::NEWJOY_DISCORD,
             PlaceOfActivity::DISCORD,
+            PlaceOfActivity::ZOOM,
             PlaceOfActivity::OTHER
         ];
     }
