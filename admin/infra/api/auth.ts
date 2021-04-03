@@ -58,6 +58,24 @@ export const login = async (request: LoginAdminFormRequest) => {
   }
 }
 
+/**
+ * ログアウト
+ *
+ * @returns
+ */
+export const logout = async () => {
+  console.log('logout')
+  try {
+    await axiosInstance.post<User>('/admin/api/logout')
+
+    return {
+      data: 'Success',
+    }
+  } catch (_e) {
+    console.error(_e)
+  }
+}
+
 export const checkVerify = async (
   id: number,
   expires: string,

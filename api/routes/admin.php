@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Advertise\ShowAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\UpdateAdvertiseController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordAdminController;
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
+use App\Http\Controllers\Admin\Auth\LogoutAdminController;
 use App\Http\Controllers\Admin\Auth\RegisterAdminController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordAdminController;
 use App\Http\Controllers\Admin\Auth\ShowOwnAdminUserController;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'guest:adminUser'], function () {
 
 Route::middleware('auth:adminUser')->group(function () {
     Route::get('/user', ShowOwnAdminUserController::class);
+    Route::post('/logout', LogoutAdminController::class);
 
     // AdminUser 管理者アカウント
     Route::get('/admin-user', IndexAdminUserController::class);
