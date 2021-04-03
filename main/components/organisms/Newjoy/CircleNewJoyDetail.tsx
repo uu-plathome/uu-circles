@@ -14,12 +14,9 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
-  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-
   return (
     <div>
-      {isMd ? (
-        // PCレイアウト
+      <div className="hidden md:block">
         <div
           className="bg-white rounded-lg px-6 py-2 mx-auto mb-2 flex justify-center"
           style={{ width: 500 }}
@@ -111,8 +108,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             </section>
           </div>
         </div>
-      ) : (
-        // スマホレイアウト
+      </div>
+
+      <div className="md:hidden">
         <div className="px-6">
           <div className=" bg-white rounded-lg px-6 py-2 mx-auto mb-2">
             <section className="my-6 border-b border-gray-600">
@@ -177,7 +175,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             </section>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
