@@ -50,7 +50,10 @@ const Page: NextPage<Props> = ({
   const height = (300 * 297) / 210
   return (
     <div>
-      <BaseHead title={`${circle.name} サークル詳細`} />
+      <BaseHead
+        title={`${circle.name} サークル詳細`}
+        description={circle.description}
+      />
 
       <BaseLayout>
         <div>
@@ -83,7 +86,9 @@ const Page: NextPage<Props> = ({
                       color={Color.gray[600]}
                       icon={faUserFriends}
                     />
-                    <span className="pl-2">{circle.numberOfMembers}人</span>
+                    <span className="pl-2">
+                      {circle.numberOfMembers || 0}人
+                    </span>
                   </p>
                 </div>
                 {/* 週の活動日数 */}
@@ -93,7 +98,9 @@ const Page: NextPage<Props> = ({
                       color={Color.red[500]}
                       icon={faWaveSquare}
                     />
-                    <span className="pl-2">週{circle.weeklyActivityDays}</span>
+                    <span className="pl-2">
+                      週{circle.weeklyActivityDays || 0}
+                    </span>
                   </p>
                 </div>
                 {/* 年間費用 */}
