@@ -14,14 +14,11 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
-  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため。
-
   return (
     <div>
-      {isMd ? (
-        // PCレイアウト
+      <div className="hidden md:block">
         <div
-          className="bg-white rounded-lg  px-6 py-2 mx-auto mb-2 flex justify-center"
+          className="bg-white rounded-lg px-6 py-2 mx-auto mb-2 flex justify-center"
           style={{ width: 500 }}
         >
           <div className="my-3 mr-6">
@@ -55,31 +52,49 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
           >
             <section className="my-3 border-b border-gray-600">
               <TableTitle>新歓イベント名</TableTitle>
-              <h4 className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
                 {circle.shortName || circle.name} {circleNewJoy.title}
-              </h4>
+              </p>
             </section>
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓日時</TableTitle>
-              <h4 className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
                 {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
-              </h4>
+              </p>
             </section>
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>活動場所</TableTitle>
-              <h4 className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
                 {__(circleNewJoy.placeOfActivity)}
-              </h4>
+              </p>
             </section>
 
+            {circleNewJoy.placeOfActivityDetail ? (
+              <section className="my-6 border-b border-gray-600">
+                <TableTitle>活動場所詳細</TableTitle>
+                <p className="text-black text-sm my-2 pb-2 font-bold whitespace-pre-wrap">
+                  {circleNewJoy.placeOfActivityDetail}
+                </p>
+              </section>
+            ) : (
+              ''
+            )}
+
             {circleNewJoy.url ? (
-              <section className="my-6" border-b border-gray-600>
+              <section className="my-6 border-b border-gray-600">
                 <TableTitle>URL</TableTitle>
-                <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-                  {__(circleNewJoy.url)}
-                </h4>
+                <p className="text-sm my-2 pb-2">
+                  <a
+                    className="text-blue-600 font-bold hover:underline"
+                    href={circleNewJoy.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    リンクを見る
+                  </a>
+                </p>
               </section>
             ) : (
               ''
@@ -87,67 +102,80 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓説明</TableTitle>
-              <h4 className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+              <p className="text-black text-sm my-2 pb-2 font-bold whitespace-pre-wrap">
                 {circleNewJoy.description}
-              </h4>
+              </p>
             </section>
           </div>
         </div>
-      ) : (
-        // スマホレイアウト
-        <div
-          className=" bg-white rounded-lg  px-6 py-2 mx-auto mb-2"
-          style={{ width: 308 }}
-        >
-          <section className="my-6 border-b border-gray-600">
-            <TableTitle>新歓イベント名</TableTitle>
+      </div>
 
-            <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {circle.shortName || circle.name} {circleNewJoy.title}
-            </h4>
-          </section>
-
-          <section className="my-6 border-b border-gray-600">
-            <TableTitle>新歓日時</TableTitle>
-
-            <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
-            </h4>
-          </section>
-
-          <section className="my-6 border-b border-gray-600">
-            <TableTitle>活動場所</TableTitle>
-
-            <h4 className="text-black text-sm  my-2 pb-2 font-bold">
-              {__(circleNewJoy.placeOfActivity)}
-            </h4>
-          </section>
-
-          {circleNewJoy.url ? (
+      <div className="md:hidden">
+        <div className="px-6">
+          <div className=" bg-white rounded-lg px-6 py-2 mx-auto mb-2">
             <section className="my-6 border-b border-gray-600">
-              <TableTitle>URL</TableTitle>
-              <a
-                className="text-black text-sm  my-2 pb-2 font-bold"
-                href={circleNewJoy.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {__(circleNewJoy.url)}
-              </a>
+              <TableTitle>新歓イベント名</TableTitle>
+
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
+                {circle.shortName || circle.name} {circleNewJoy.title}
+              </p>
             </section>
-          ) : (
-            ''
-          )}
 
-          <section className="my-6 border-b border-gray-600">
-            <TableTitle>新歓説明</TableTitle>
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>新歓日時</TableTitle>
 
-            <h4 className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
-              {circleNewJoy.description}
-            </h4>
-          </section>
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
+                {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
+              </p>
+            </section>
+
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>活動場所</TableTitle>
+
+              <p className="text-black text-sm  my-2 pb-2 font-bold">
+                {__(circleNewJoy.placeOfActivity)}
+              </p>
+            </section>
+
+            {circleNewJoy.placeOfActivityDetail ? (
+              <section className="my-6 border-b border-gray-600">
+                <TableTitle>活動場所詳細</TableTitle>
+                <p className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+                  {circleNewJoy.placeOfActivityDetail}
+                </p>
+              </section>
+            ) : (
+              ''
+            )}
+
+            {circleNewJoy.url ? (
+              <section className="my-6 border-b border-gray-600">
+                <TableTitle>URL</TableTitle>
+                <p className="text-sm my-2 pb-2">
+                  <a
+                    className="text-blue-600 font-bold hover:underline"
+                    href={circleNewJoy.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    リンクを見る
+                  </a>
+                </p>
+              </section>
+            ) : (
+              ''
+            )}
+
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>新歓説明</TableTitle>
+
+              <p className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+                {circleNewJoy.description}
+              </p>
+            </section>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

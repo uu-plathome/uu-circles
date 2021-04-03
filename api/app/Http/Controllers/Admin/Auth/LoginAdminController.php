@@ -20,7 +20,7 @@ class LoginAdminController extends Controller
 {
     use AuthenticatesUsers;
 
-    public const username_or_email = 'username_or_email';
+    const USERNAME_OR_EMAIL = 'username_or_email';
 
     private string $inputType = UserProperty::username;
 
@@ -35,7 +35,7 @@ class LoginAdminController extends Controller
     {
         Log::debug("LoginAdminController args none");
 
-        $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
+        $usernameOrEmail = $request->get(Str::camel(self::USERNAME_OR_EMAIL));
 
         $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
             ? UserProperty::email
@@ -108,7 +108,7 @@ class LoginAdminController extends Controller
      * @param Request $request
      * @return JsonResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     protected function sendFailedLoginResponse(Request $request)
     {
