@@ -7,13 +7,13 @@ import { CircleUserRelationListItem } from '@/components/molecules/list_items/Ci
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
 import { getCircleListByUserId } from '@/infra/api/circle'
+import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
 import { Circle } from '@/lib/types/model/Circle'
+import { User } from '@/lib/types/model/User'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { User } from '@/lib/types/model/User'
-import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
 
 const IndexPage: NextPage = () => {
   const [circles, setCircles] = useState<Circle[]>([])
