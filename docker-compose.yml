@@ -15,6 +15,7 @@ services:
       - ./api/vendor:/work/api/vendor
     depends_on:
       - db
+      - dbtest
 
   web:
     build: ./infra/docker/nginx

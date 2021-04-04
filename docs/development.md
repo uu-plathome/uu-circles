@@ -79,6 +79,11 @@ $ cd admin
 
 $ npm run dev
 
+# Circleの起動
+$ cd circle
+
+$ npm run dev
+
 # Mainの起動
 $ cd main
 
@@ -97,6 +102,13 @@ $ docker-compose up -d
 
 # Adminの起動
 $ cd admin
+
+$ npm install
+
+$ npm run dev
+
+# Circleの起動
+$ cd circle
 
 $ npm install
 
@@ -131,14 +143,40 @@ $ docker-compose app composer sniffer
 
 `git push origin main:develop/production`
 
-### Main
+### Main (メイン画面)
 
 `develop/production` に push すると反映されます
 
-### Admin
+### Admin (管理者画面)
+
+`develop/production` に push すると反映されます
+
+### Circle (サークル管理画面)
 
 `develop/production` に push すると反映されます
 
 ### Api
 
 `develop/production` に push すると反映されます
+
+## Vscode 拡張機能 推奨
+
+### Common
+
+- Code Spell Check
+- EditorConfig for VS Code
+- Prettier
+
+### Main , Admin, Circle
+
+- Code Spell Check
+- EditorConfig for VS Code
+- ESLint
+- IntelliSense for CSS class names in HTML
+- Tailwind CSS Intellisense
+- Version Lens
+
+### Api
+
+- PHP DocBlocker
+- PHP Intelephense
