@@ -62,7 +62,7 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
 
     public function makeCreateOrUpdateCircleTagUsecaseParam(): CreateOrUpdateCircleTagUsecaseParam
     {
-        $request = Arr::snake_keys($this->validated());
+        $request = Arr::snake_keys($this->validated())['circle_tag'];
 
         $param = new CreateOrUpdateCircleTagUsecaseParam();
         $param->circle_id = $this->circleId;
