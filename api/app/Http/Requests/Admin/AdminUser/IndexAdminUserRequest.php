@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\AdminUser;
 
+use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,11 @@ class IndexAdminUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return Arr::camel_keys([]);
+    }
+
+    public function attributes()
+    {
+        return Arr::camel_keys([]);
     }
 }
