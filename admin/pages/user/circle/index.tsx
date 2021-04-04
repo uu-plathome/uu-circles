@@ -6,21 +6,21 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import Color from 'colors'
-import { NextPage } from 'next'
-import { FormEvent, useEffect, useState } from 'react'
-import Head from 'next/head'
-import { scroller } from 'react-scroll'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons'
 import {
   paginateAllUserList,
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
 import { User } from '@/lib/types/model/User'
+import {
+  faChevronCircleLeft,
+  faChevronCircleRight,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from 'colors'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { FormEvent, useEffect, useState } from 'react'
+import { scroller } from 'react-scroll'
 
 type PaginateUserCursor = {
   id?: number
