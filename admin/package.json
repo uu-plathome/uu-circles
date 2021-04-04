@@ -1,5 +1,5 @@
 {
-  "name": "with-tailwindcss",
+  "name": "uu-circles-admin-view",
   "version": "1.0.0",
   "scripts": {
     "dev": "next -p 3002",
