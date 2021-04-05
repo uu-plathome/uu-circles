@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\AdminUser;
 
+use App\Enum\Property\AdminUserProperty;
+use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
@@ -30,7 +32,8 @@ class UpdateAdminUserController extends Controller
         Log::debug("UpdateAdminUserController args userId=$userId");
 
         $request->validate([
-            'role' => [Rule::in($this->canSelectedRoles($request->user()))]
+            UserProperty::username  => 'unique:users,username,' . $userId,
+            AdminUserProperty::role => [Rule::in($this->canSelectedRoles($request->user()))]
         ]);
 
         $this->updateAdminUserUsecase->invoke(
@@ -41,6 +44,8 @@ class UpdateAdminUserController extends Controller
 
     private function canSelectedRoles($user): array
     {
-        return $user->adminUser->isSystem() ? [Role::SYSTEM, Role::MANAGER, Role::COMMON] : [Role::MANAGER, Role::COMMON];
+        return $user->adminUser->isSystem()
+            ? [Role::SYSTEM, Role::MANAGER, Role::COMMON]
+            : [Role::MANAGER, Role::COMMON];
     }
 }

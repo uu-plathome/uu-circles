@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use App\Enum\Property\CircleUserProperty;
+use App\Enum\Property\CircleUserProperty as P;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CircleUser extends Model
 {
     protected $fillable = [
-        CircleUserProperty::circle_id,
-        CircleUserProperty::user_id,
-        CircleUserProperty::role
+        P::circle_id,
+        P::user_id,
+        P::role
     ];
 
     public function user(): BelongsTo

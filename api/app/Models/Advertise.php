@@ -2,26 +2,26 @@
 
 namespace App\Models;
 
-use App\Enum\Property\AdvertiseProperty;
+use App\Enum\Property\AdvertiseProperty as P;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 class Advertise extends Model
 {
     protected $fillable = [
-        AdvertiseProperty::title,
-        AdvertiseProperty::link,
-        AdvertiseProperty::main_image_url,
-        AdvertiseProperty::active,
-        AdvertiseProperty::advertise_type,
-        AdvertiseProperty::publish_to,
-        AdvertiseProperty::publish_from,
+        P::title,
+        P::link,
+        P::main_image_url,
+        P::active,
+        P::advertise_type,
+        P::publish_to,
+        P::publish_from,
     ];
 
     protected $casts = [
-        AdvertiseProperty::active       => 'boolean',
-        AdvertiseProperty::publish_to   => 'datetime:Y-m-d',
-        AdvertiseProperty::publish_from => 'datetime:Y-m-d',
+        P::active       => 'boolean',
+        P::publish_to   => 'datetime:Y-m-d',
+        P::publish_from => 'datetime:Y-m-d',
     ];
 
     /**
@@ -90,20 +90,20 @@ class Advertise extends Model
         return $query->whereActive(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where(AdvertiseProperty::publish_from, '<', $now)
-                        ->where(AdvertiseProperty::publish_to, '>', $now);
+                    $query->where(P::publish_from, '<', $now)
+                        ->where(P::publish_to, '>', $now);
                 })
                     ->orWhere(function ($query) use ($now) {
-                        $query->where(AdvertiseProperty::publish_from, '<', $now)
-                            ->whereNull(AdvertiseProperty::publish_to);
+                        $query->where(P::publish_from, '<', $now)
+                            ->whereNull(P::publish_to);
                     })
                     ->orWhere(function ($query) use ($now) {
-                        $query->where(AdvertiseProperty::publish_to, '>', $now)
-                            ->whereNull(AdvertiseProperty::publish_from);
+                        $query->where(P::publish_to, '>', $now)
+                            ->whereNull(P::publish_from);
                     })
                     ->orWhere(function ($query) {
-                        $query->whereNull(AdvertiseProperty::publish_from)
-                            ->whereNull(AdvertiseProperty::publish_to);
+                        $query->whereNull(P::publish_from)
+                            ->whereNull(P::publish_to);
                     });
             });
     }

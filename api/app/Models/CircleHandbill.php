@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Enum\Property\CircleHandbillProperty as P;
 use Illuminate\Database\Eloquent\Model;
 
 class CircleHandbill extends Model
 {
     protected $fillable = [
-        'circle_id',
-        'image_url',
-        'year',
+        P::circle_id,
+        P::image_url,
+        P::year,
     ];
 }
