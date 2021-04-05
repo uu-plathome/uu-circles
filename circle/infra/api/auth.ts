@@ -20,6 +20,12 @@ import { User } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 
+/**
+ * ログイン
+ *
+ * @param { LoginCircleFormRequest } request
+ * @returns
+ */
 export const login = async (request: LoginCircleFormRequest) => {
   try {
     const { data } = await axiosInstance.post<User>(
@@ -66,6 +72,24 @@ export const login = async (request: LoginCircleFormRequest) => {
     }
 
     console.error(e)
+  }
+}
+
+/**
+ * ログアウト
+ *
+ * @returns
+ */
+export const logout = async () => {
+  console.log('logout')
+  try {
+    await axiosInstance.post<User>('/circle/api/logout')
+
+    return {
+      data: 'Success',
+    }
+  } catch (_e) {
+    console.error(_e)
   }
 }
 

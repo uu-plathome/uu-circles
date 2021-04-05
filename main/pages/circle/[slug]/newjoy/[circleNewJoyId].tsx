@@ -43,10 +43,13 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead title={`${circleNewJoy.title}の新歓イベント日程詳細`} />
+      <BaseHead
+        title={`${circleNewJoy.title}の新歓イベント日程詳細`}
+        description={circleNewJoy.description}
+      />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2">
+        <div className="bg-gray-100">
           <BaseContainer>
             <h1 className="text-2xl pl-4 py-8 md:py-20 md:text-center text-left">
               新歓イベント日程詳細

@@ -41,7 +41,10 @@ const BaseDatetime: FC<Props> = ({
           locale="ja"
           autoComplete="off"
           isClearable
-          onChange={(date) => onChangeDate(date)}
+          onChange={(date) => {
+            console.info('BaseDatetime [UPDATE]', date)
+            onChangeDate(date)
+          }}
           onFocus={(e: any) => (e.target.readOnly = true)}
         />
 

@@ -9,13 +9,13 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getAdminUserList } from '@/infra/api/admin_user'
 import { getAuthUser, resendEmail } from '@/infra/api/auth'
-import { NextPage } from 'next'
-import { useContext, useEffect, useState } from 'react'
+import { Role } from '@/lib/enum/api/Role'
 import { User } from '@/lib/types/model/User'
-import useSWR from 'swr'
+import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Role } from '@/lib/enum/api/Role'
+import { useContext, useEffect, useState } from 'react'
+import useSWR from 'swr'
 
 const useSuccess = <T,>(initialState: T) => {
   const [success, setSuccess] = useState<T>(initialState)

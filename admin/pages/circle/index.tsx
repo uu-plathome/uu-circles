@@ -6,17 +6,17 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { paginateCircleList } from '@/infra/api/circle'
-import Color from 'colors'
-import { NextPage } from 'next'
-import { FormEvent, useEffect, useState } from 'react'
-import Head from 'next/head'
-import { scroller } from 'react-scroll'
 import { Circle } from '@/lib/types/model/Circle'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from 'colors'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { FormEvent, useEffect, useState } from 'react'
+import { scroller } from 'react-scroll'
 
 type PaginateCircleCursor = {
   'circles.id'?: number

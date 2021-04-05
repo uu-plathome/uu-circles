@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\Property\CircleProperty;
+use App\Enum\Property\CircleProperty as P;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -11,15 +11,15 @@ use Illuminate\Support\Str;
 class Circle extends Model
 {
     protected $fillable = [
-        CircleProperty::name,
-        CircleProperty::slug,
-        CircleProperty::release,
-        CircleProperty::is_main_fixed,
+        P::name,
+        P::slug,
+        P::release,
+        P::is_main_fixed,
     ];
 
     protected $casts = [
-        CircleProperty::release       => 'boolean',
-        CircleProperty::is_main_fixed => 'boolean',
+        P::release       => 'boolean',
+        P::is_main_fixed => 'boolean',
     ];
 
     public function circleInformation(): HasOne
