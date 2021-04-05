@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
+use App\Enum\Property\CircleInvitationProperty as P;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class CircleInvitation extends Model
 {
     protected $fillable = [
-        'circle_id',
-        'token',
-        'active',
-        'created_user_id',
+        P::circle_id,
+        P::token,
+        P::active,
+        P::created_user_id,
     ];
 
     protected $casts = [
-        'active' => 'boolean',
+        P::active => 'boolean',
     ];
 
     public static function generateToken(): string

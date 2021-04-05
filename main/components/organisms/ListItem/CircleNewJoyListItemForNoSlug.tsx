@@ -12,6 +12,7 @@ const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
   `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
     todayCircleNewJoy.circleNewJoy.title
   }`
+
 export const getCircleNameSize = (circleShowName: string) => {
   if (circleShowName.length <= 9) {
     return 'text-xl'
@@ -29,13 +30,14 @@ const PcLayout: FC<{
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   const title = computedCircleNewJoyTitle(todayCircleNewJoy)
-  //shortNameあればそれ使い、なければnmaeを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
+  //shortNameあればそれ使い、なければnameを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
   const circleShowNameRaw =
     todayCircleNewJoy.shortName || todayCircleNewJoy.name
   const circleShowName =
     circleShowNameRaw.length <= 15
       ? circleShowNameRaw
       : circleShowNameRaw.substr(0, 14) + '…'
+
   return (
     <div
       className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
@@ -51,6 +53,7 @@ const PcLayout: FC<{
         <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
           <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
         </div>
+
         <div
           className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
           style={{ borderRadius: '0 0 10 10 ' }}
@@ -61,9 +64,13 @@ const PcLayout: FC<{
           <p className="text-2xl">{getDay(circleNewJoy.startDate)}</p>
         </div>
       </section>
+
       <section className="bg-white px-2 pl-3 w-80">
         <div className="col-span-4">
-          <h2 className="font-bold text-xl text-center">{title}</h2>
+          <h2 className="font-bold text-center mb-1">
+            {todayCircleNewJoy.circleNewJoy.title}
+          </h2>
+
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">場所</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
@@ -79,6 +86,7 @@ const PcLayout: FC<{
           </div>
         </div>
       </section>
+
       <section
         className="h-full w-28 text-center mx-auto"
         style={{ paddingTop: '50px' }}
@@ -98,10 +106,11 @@ const PcLayout: FC<{
         style={{ width: '250px' }}
       >
         <h3 className="text-xs">主催サークル</h3>
+
         <Link href="/circle/[slug]" as={`/circle/${slug}`}>
           <a>
             <div className="pl-2 flex justify-around items-center">
-              <div className="  w-12 h-12 flex items-center justify-center rounded-full">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full">
                 <Image
                   src={
                     todayCircleNewJoy.mainImageUrl
@@ -151,6 +160,7 @@ const SpLayout: FC<{
       >
         <div className=" pr-2" style={{ minWidth: 230 }}>
           <h3 className="text-black font-bold mb-1">{title}</h3>
+
           <p className="text-sm border-b border-gray-400 flex mb-1">
             <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
               場所
@@ -159,6 +169,7 @@ const SpLayout: FC<{
               {__(circleNewJoy.placeOfActivity)}
             </span>
           </p>
+
           <div className="text-sm flex">
             <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
               <span className="text-gray-400 text-xs pl-1">日時</span>

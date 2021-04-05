@@ -14,8 +14,9 @@ class GetCircleTagController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $circleId
+     * @return array[]
      */
     public function __invoke(Request $request, int $circleId)
     {

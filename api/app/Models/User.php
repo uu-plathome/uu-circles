@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\Property\UserProperty;
+use App\Enum\Property\UserProperty as P;
 use App\Notifications\ResetPasswordAdminUser;
 use App\Notifications\ResetPasswordCircleUser;
 use App\Notifications\VerifyEmailAdminUser;
@@ -26,13 +26,13 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        UserProperty::display_name,
-        UserProperty::username,
-        UserProperty::email,
-        UserProperty::password,
-        UserProperty::active,
-        UserProperty::api_token,
-        UserProperty::remember_token,
+        P::display_name,
+        P::username,
+        P::email,
+        P::password,
+        P::active,
+        P::api_token,
+        P::remember_token,
     ];
 
     /**
@@ -41,8 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        UserProperty::password,
-        UserProperty::remember_token,
+        P::password,
+        P::remember_token,
     ];
 
     /**
@@ -51,8 +51,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
-        UserProperty::active            => 'boolean',
-        UserProperty::email_verified_at => 'datetime',
+        P::active            => 'boolean',
+        P::email_verified_at => 'datetime',
     ];
 
     public function scopeWhereAdminUser($query)
@@ -70,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         /** @var User $query */
         return $query->whereActive(true)
-            ->whereNotNull(UserProperty::email_verified_at)
+            ->whereNotNull(P::email_verified_at)
             ->whereAdminUser();
     }
 
@@ -93,8 +93,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function markEmailAndPasswordAsVerified(string $password): bool
     {
         return $this->forceFill([
-            'password'          => Hash::make($password),
-            'email_verified_at' => $this->freshTimestamp(),
+            P::password          => Hash::make($password),
+            P::email_verified_at => $this->freshTimestamp(),
         ])->save();
     }
 

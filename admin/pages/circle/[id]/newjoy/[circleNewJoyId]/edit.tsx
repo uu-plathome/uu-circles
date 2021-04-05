@@ -1,3 +1,4 @@
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -23,6 +24,7 @@ const CreatePage: NextPage = () => {
   const { id, circleNewJoyId } = router.query
   const [circle, setCircle] = useState<Circle | null>(null)
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(true)
 
   const title = useStringInput('')
   const description = useStringInput('')
@@ -53,6 +55,7 @@ const CreatePage: NextPage = () => {
       startDate.set(circleNewJoy.startDate)
       endDate.set(circleNewJoy.endDate)
       release.set(circleNewJoy.release)
+      setIsOpen(false)
     }
 
     f()
@@ -60,6 +63,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await updateCircleNewJoy(Number(id), Number(circleNewJoyId), {
       type: 'UpdateCircleNewJoyRequest',
@@ -87,10 +91,12 @@ const CreatePage: NextPage = () => {
       startDate.setErrors(data.errors.startDate)
       endDate.setErrors(data.errors.endDate)
       release.setErrors(data.errors.release)
+      setIsOpen(false)
 
       return
     }
 
+    setIsOpen(false)
     await router.push(`/circle/${id}/newjoy`)
   }
 
@@ -101,6 +107,8 @@ const CreatePage: NextPage = () => {
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
+
+      {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
 
       <BaseContainer>
         <BaseWrapper title="新歓編集">

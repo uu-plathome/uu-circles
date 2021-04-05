@@ -43,6 +43,7 @@ Route::middleware('guest:circleUser')->group(function () {
 Route::middleware('auth:circleUser')->group(function () {
     Route::get('/user', ShowOwnCircleUserController::class);
     Route::put('/user', UpdateOwnUserController::class);
+    Route::post('/logout', \App\Http\Controllers\Circle\Auth\LogoutCircleController::class);
 
     // サークル一覧
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');

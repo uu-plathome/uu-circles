@@ -4,7 +4,6 @@ namespace App\Auth;
 
 use App\Enum\Property\UserProperty;
 use App\Models\AdminUser;
-use App\Models\CircleUser;
 use App\Models\User;
 use Illuminate\Auth\TokenGuard;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +26,7 @@ class AdminUserTokenGuard extends TokenGuard
      */
     public function user()
     {
-        Log::debug("CircleUserTokenGuard#user");
+        Log::debug("AdminUserTokenGuard#user");
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -47,7 +46,7 @@ class AdminUserTokenGuard extends TokenGuard
             ]);
         }
 
-        Log::debug("CircleUserTokenGuard#user val", [
+        Log::debug("AdminUserTokenGuard#user val", [
             'user' => $user,
         ]);
 
@@ -68,7 +67,7 @@ class AdminUserTokenGuard extends TokenGuard
      */
     public function adminUser(): ?AdminUser
     {
-        Log::debug("CircleUserTokenGuard#adminUser");
+        Log::debug("AdminUserTokenGuard#adminUser");
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -83,7 +82,7 @@ class AdminUserTokenGuard extends TokenGuard
 
         $adminUser = $this->user->adminUser;
 
-        Log::debug("CircleUserTokenGuard#adminUser val", [
+        Log::debug("AdminUserTokenGuard#adminUser val", [
             'user'      => $this->user,
             'adminUser' => $adminUser,
         ]);

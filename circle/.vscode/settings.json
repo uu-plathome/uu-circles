@@ -5,5 +5,17 @@
   "editor.formatOnSave": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode" // フォーマッタをprettierに指定
-  }
+  },
+  "cSpell.words": [
+    "bugsnag",
+    "chmod",
+    "datepicker",
+    "dropzone",
+    "fontawesome",
+    "fortawesome",
+    "gtag",
+    "intelephense",
+    "laravel",
+    "tailwindcss"
+  ]
 }

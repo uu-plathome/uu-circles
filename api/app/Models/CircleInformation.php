@@ -2,82 +2,82 @@
 
 namespace App\Models;
 
-use App\Enum\Property\CircleInformationProperty;
+use App\Enum\Property\CircleInformationProperty as P;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CircleInformation extends Model
 {
     protected $fillable = [
-        CircleInformationProperty::circle_id,
-        CircleInformationProperty::circle_type,
-        CircleInformationProperty::name_kana,
-        CircleInformationProperty::short_name,
-        CircleInformationProperty::prefix_name,
-        CircleInformationProperty::description,
-        CircleInformationProperty::common_place_of_activity,
-        CircleInformationProperty::common_place_of_activity_detail,
-        CircleInformationProperty::common_date_of_activity_monday,
-        CircleInformationProperty::common_date_of_activity_tuesday,
-        CircleInformationProperty::common_date_of_activity_wednesday,
-        CircleInformationProperty::common_date_of_activity_thursday,
-        CircleInformationProperty::common_date_of_activity_friday,
-        CircleInformationProperty::common_date_of_activity_saturday,
-        CircleInformationProperty::common_date_of_activity_sunday,
-        CircleInformationProperty::common_date_of_activity_detail,
-        CircleInformationProperty::is_online_activity,
-        CircleInformationProperty::online_place_of_activity_detail,
-        CircleInformationProperty::online_date_of_activity_monday,
-        CircleInformationProperty::online_date_of_activity_tuesday,
-        CircleInformationProperty::online_date_of_activity_wednesday,
-        CircleInformationProperty::online_date_of_activity_thursday,
-        CircleInformationProperty::online_date_of_activity_friday,
-        CircleInformationProperty::online_date_of_activity_saturday,
-        CircleInformationProperty::online_date_of_activity_sunday,
-        CircleInformationProperty::online_date_of_activity_detail,
-        CircleInformationProperty::admission_fee_per_year,
-        CircleInformationProperty::is_club_activities,
-        CircleInformationProperty::appealing_point1,
-        CircleInformationProperty::appealing_point2,
-        CircleInformationProperty::appealing_point3,
-        CircleInformationProperty::number_of_members,
-        CircleInformationProperty::public_email,
-        CircleInformationProperty::twitter_url,
-        CircleInformationProperty::facebook_url,
-        CircleInformationProperty::instagram_url,
-        CircleInformationProperty::line_url,
-        CircleInformationProperty::youtube_url,
-        CircleInformationProperty::homepage_url,
-        CircleInformationProperty::peing_url,
-        CircleInformationProperty::github_url,
-        CircleInformationProperty::tiktok_url,
-        CircleInformationProperty::participation_url,
-        CircleInformationProperty::main_image_url,
-        CircleInformationProperty::activity_image_url1,
-        CircleInformationProperty::activity_image_url2,
-        CircleInformationProperty::activity_image_url3,
-        CircleInformationProperty::activity_image_url4,
-        CircleInformationProperty::activity_image_url5,
-        CircleInformationProperty::activity_image_url6,
+        P::circle_id,
+        P::circle_type,
+        P::name_kana,
+        P::short_name,
+        P::prefix_name,
+        P::description,
+        P::common_place_of_activity,
+        P::common_place_of_activity_detail,
+        P::common_date_of_activity_monday,
+        P::common_date_of_activity_tuesday,
+        P::common_date_of_activity_wednesday,
+        P::common_date_of_activity_thursday,
+        P::common_date_of_activity_friday,
+        P::common_date_of_activity_saturday,
+        P::common_date_of_activity_sunday,
+        P::common_date_of_activity_detail,
+        P::is_online_activity,
+        P::online_place_of_activity_detail,
+        P::online_date_of_activity_monday,
+        P::online_date_of_activity_tuesday,
+        P::online_date_of_activity_wednesday,
+        P::online_date_of_activity_thursday,
+        P::online_date_of_activity_friday,
+        P::online_date_of_activity_saturday,
+        P::online_date_of_activity_sunday,
+        P::online_date_of_activity_detail,
+        P::admission_fee_per_year,
+        P::is_club_activities,
+        P::appealing_point1,
+        P::appealing_point2,
+        P::appealing_point3,
+        P::number_of_members,
+        P::public_email,
+        P::twitter_url,
+        P::facebook_url,
+        P::instagram_url,
+        P::line_url,
+        P::youtube_url,
+        P::homepage_url,
+        P::peing_url,
+        P::github_url,
+        P::tiktok_url,
+        P::participation_url,
+        P::main_image_url,
+        P::activity_image_url1,
+        P::activity_image_url2,
+        P::activity_image_url3,
+        P::activity_image_url4,
+        P::activity_image_url5,
+        P::activity_image_url6,
     ];
 
     protected $casts = [
-        CircleInformationProperty::common_date_of_activity_monday     => 'boolean',
-        CircleInformationProperty::common_date_of_activity_tuesday    => 'boolean',
-        CircleInformationProperty::common_date_of_activity_wednesday  => 'boolean',
-        CircleInformationProperty::common_date_of_activity_thursday   => 'boolean',
-        CircleInformationProperty::common_date_of_activity_friday     => 'boolean',
-        CircleInformationProperty::common_date_of_activity_saturday   => 'boolean',
-        CircleInformationProperty::common_date_of_activity_sunday     => 'boolean',
-        CircleInformationProperty::is_online_activity                 => 'boolean',
-        CircleInformationProperty::online_date_of_activity_monday     => 'boolean',
-        CircleInformationProperty::online_date_of_activity_tuesday    => 'boolean',
-        CircleInformationProperty::online_date_of_activity_wednesday  => 'boolean',
-        CircleInformationProperty::online_date_of_activity_thursday   => 'boolean',
-        CircleInformationProperty::online_date_of_activity_friday     => 'boolean',
-        CircleInformationProperty::online_date_of_activity_saturday   => 'boolean',
-        CircleInformationProperty::online_date_of_activity_sunday     => 'boolean',
-        CircleInformationProperty::is_club_activities                 => 'boolean',
+        P::common_date_of_activity_monday     => 'boolean',
+        P::common_date_of_activity_tuesday    => 'boolean',
+        P::common_date_of_activity_wednesday  => 'boolean',
+        P::common_date_of_activity_thursday   => 'boolean',
+        P::common_date_of_activity_friday     => 'boolean',
+        P::common_date_of_activity_saturday   => 'boolean',
+        P::common_date_of_activity_sunday     => 'boolean',
+        P::is_online_activity                 => 'boolean',
+        P::online_date_of_activity_monday     => 'boolean',
+        P::online_date_of_activity_tuesday    => 'boolean',
+        P::online_date_of_activity_wednesday  => 'boolean',
+        P::online_date_of_activity_thursday   => 'boolean',
+        P::online_date_of_activity_friday     => 'boolean',
+        P::online_date_of_activity_saturday   => 'boolean',
+        P::online_date_of_activity_sunday     => 'boolean',
+        P::is_club_activities                 => 'boolean',
     ];
 
     protected $appends = [
@@ -205,8 +205,8 @@ class CircleInformation extends Model
             /** @var CircleInformation $query */
             $query->where(function ($query) {
                 /** @var CircleInformation $query */
-                $query->where(CircleInformationProperty::common_date_of_activity_monday, true)
-                    ->orWhere(CircleInformationProperty::online_date_of_activity_monday, true);
+                $query->where(P::common_date_of_activity_monday, true)
+                    ->orWhere(P::online_date_of_activity_monday, true);
             })->whereCommonDateOfActivityTuesday(false)
                 ->whereCommonDateOfActivityWednesday(false)
                 ->whereCommonDateOfActivityThursday(false)
@@ -228,8 +228,8 @@ class CircleInformation extends Model
             /** @var CircleInformation $query */
             $query->where(function ($query) {
                 /** @var CircleInformation $query */
-                $query->where(CircleInformationProperty::common_date_of_activity_tuesday, true)
-                    ->orWhere(CircleInformationProperty::online_date_of_activity_tuesday, true);
+                $query->where(P::common_date_of_activity_tuesday, true)
+                    ->orWhere(P::online_date_of_activity_tuesday, true);
             })->whereCommonDateOfActivityMonday(false)
                 ->whereCommonDateOfActivityWednesday(false)
                 ->whereCommonDateOfActivityThursday(false)
@@ -251,8 +251,8 @@ class CircleInformation extends Model
             /** @var CircleInformation $query */
             $query->where(function ($query) {
                 /** @var CircleInformation $query */
-                $query->where(CircleInformationProperty::common_date_of_activity_wednesday, true)
-                    ->orWhere(CircleInformationProperty::online_date_of_activity_wednesday, true);
+                $query->where(P::common_date_of_activity_wednesday, true)
+                    ->orWhere(P::online_date_of_activity_wednesday, true);
             })->whereCommonDateOfActivityMonday(false)
                 ->whereCommonDateOfActivityTuesday(false)
                 ->whereCommonDateOfActivityThursday(false)
@@ -274,8 +274,8 @@ class CircleInformation extends Model
             /** @var CircleInformation $query */
             $query->where(function ($query) {
                 /** @var CircleInformation $query */
-                $query->where(CircleInformationProperty::common_date_of_activity_thursday, true)
-                    ->orWhere(CircleInformationProperty::online_date_of_activity_thursday, true);
+                $query->where(P::common_date_of_activity_thursday, true)
+                    ->orWhere(P::online_date_of_activity_thursday, true);
             })->whereCommonDateOfActivityMonday(false)
                 ->whereCommonDateOfActivityTuesday(false)
                 ->whereCommonDateOfActivityWednesday(false)
@@ -297,8 +297,8 @@ class CircleInformation extends Model
             /** @var CircleInformation $query */
             $query->where(function ($query) {
                 /** @var CircleInformation $query */
-                $query->where(CircleInformationProperty::common_date_of_activity_friday, true)
-                    ->orWhere(CircleInformationProperty::online_date_of_activity_friday, true);
+                $query->where(P::common_date_of_activity_friday, true)
+                    ->orWhere(P::online_date_of_activity_friday, true);
             })->whereCommonDateOfActivityMonday(false)
                 ->whereCommonDateOfActivityTuesday(false)
                 ->whereCommonDateOfActivityWednesday(false)
