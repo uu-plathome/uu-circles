@@ -1,3 +1,4 @@
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -13,12 +14,13 @@ import {
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(false)
 
   const username = useStringInput('')
   const displayName = useStringInput('')
@@ -27,6 +29,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await createCircleUser(Number(id), {
       type: 'RegisterCircleUserRequest',
@@ -41,10 +44,12 @@ const CreatePage: NextPage = () => {
       displayName.setErrors(data.errors.displayName)
       email.setErrors(data.errors.email)
       role.setErrors(data.errors.role)
+      setIsOpen(false)
 
       return
     }
 
+    setIsOpen(false)
     await router.push(`/circle/${id}/user`)
   }
 
@@ -55,6 +60,8 @@ const CreatePage: NextPage = () => {
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
+
+      {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
 
       <BaseContainer>
         <BaseWrapper title="部員アカウント新規作成">
