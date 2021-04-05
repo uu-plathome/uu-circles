@@ -2,37 +2,38 @@
 
 namespace App\Models;
 
+use App\Enum\Property\CircleTagProperty as P;
 use Illuminate\Database\Eloquent\Model;
 
 class CircleTag extends Model
 {
     protected $fillable = [
-        'sport',
-        'music',
-        'culture',
-        'nature',
-        'volunteer',
-        'international',
-        'incare',
-        'loose',
-        'community',
-        'programming',
-        'urgent_recruitment',
-        'mystery',
+        P::sport,
+        P::music,
+        P::culture,
+        P::nature,
+        P::volunteer,
+        P::international,
+        P::incare,
+        P::loose,
+        P::community,
+        P::programming,
+        P::urgent_recruitment,
+        P::mystery,
     ];
 
     protected $casts = [
-        'sport'              => 'boolean',
-        'music'              => 'boolean',
-        'culture'            => 'boolean',
-        'nature'             => 'boolean',
-        'volunteer'          => 'boolean',
-        'international'      => 'boolean',
-        'incare'             => 'boolean',
-        'loose'              => 'boolean',
-        'community'          => 'boolean',
-        'programming'        => 'boolean',
-        'urgent_recruitment' => 'boolean',
-        'mystery'            => 'boolean',
+        P::sport              => 'boolean',
+        P::music              => 'boolean',
+        P::culture            => 'boolean',
+        P::nature             => 'boolean',
+        P::volunteer          => 'boolean',
+        P::international      => 'boolean',
+        P::incare             => 'boolean',
+        P::loose              => 'boolean',
+        P::community          => 'boolean',
+        P::programming        => 'boolean',
+        P::urgent_recruitment => 'boolean',
+        P::mystery            => 'boolean',
     ];
 }
