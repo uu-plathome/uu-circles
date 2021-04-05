@@ -31,14 +31,14 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./db:/var/lib/mysql
+      - ./infra/docker/mysql/db:/var/lib/mysql
 
   dbtest:
     build: ./infra/docker/mysql
     ports:
       - 3307:3306
     volumes:
-      - ./db-test:/var/lib/mysql
+      - ./infra/docker/mysql/db-test:/var/lib/mysql
 
   cs:
     image: herloct/php-cs-fixer

@@ -32,11 +32,25 @@ class UpdateAdminUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
+            UserProperty::username     => [
+                'required',
+                'string',
+                'max:30',
+                'alpha_dash',
+            ],
             UserProperty::display_name => ['required', 'string', 'max:50'],
             UserProperty::active       => ['required', 'boolean'],
             AdminUserProperty::role    => ['required', 'string'],
         ]);
+    }
+    public function attributes()
+    {
+        return [
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            UserProperty::email        => __('user.' . UserProperty::email),
+            AdminUserProperty::role    => __('adminUser.' . AdminUserProperty::role),
+        ];
     }
 
     public function makeAdminUserValueObject(): AdminUserValueObject
