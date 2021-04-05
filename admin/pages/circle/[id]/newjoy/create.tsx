@@ -1,3 +1,4 @@
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -14,13 +15,14 @@ import {
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import useSWR from 'swr'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(false)
 
   const title = useStringInput('')
   const description = useStringInput('')
@@ -39,6 +41,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await createCircleNewJoy(Number(id), {
       type: 'RegisterCircleNewJoyRequest',
@@ -65,10 +68,12 @@ const CreatePage: NextPage = () => {
       startDate.setErrors(data.errors.startDate)
       endDate.setErrors(data.errors.endDate)
       release.setErrors(data.errors.release)
+      setIsOpen(false)
 
       return
     }
 
+    setIsOpen(false)
     await router.push(`/circle/${id}/newjoy`)
   }
 
@@ -79,6 +84,8 @@ const CreatePage: NextPage = () => {
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
+
+      {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
 
       <BaseContainer>
         <BaseWrapper title="新歓作成">
