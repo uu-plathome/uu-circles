@@ -1,3 +1,4 @@
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -13,12 +14,13 @@ import {
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
   const { id, userId } = router.query
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(true)
 
   const email = useStringInput('')
   const username = useStringInput('')
@@ -34,6 +36,8 @@ const CreatePage: NextPage = () => {
       displayName.set(foundUser.displayName)
       active.set(foundUser.active)
       role.set(foundUser.role)
+
+      setIsOpen(false)
     }
 
     f()
@@ -41,6 +45,7 @@ const CreatePage: NextPage = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await updateCircleUser(Number(id), Number(userId), {
       type: 'UpdateCircleUserRequest',
@@ -55,10 +60,12 @@ const CreatePage: NextPage = () => {
       displayName.setErrors(data.errors.displayName)
       active.setErrors(data.errors.active)
       role.setErrors(data.errors.role)
+      setIsOpen(false)
 
       return
     }
 
+    setIsOpen(false)
     await router.push(`/circle/${id}/user`)
   }
 
@@ -69,6 +76,8 @@ const CreatePage: NextPage = () => {
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
+
+      {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
 
       <BaseContainer>
         <BaseWrapper title="部員アカウント編集">
