@@ -100,6 +100,10 @@ async def on_ready():
             if (newjoy['slug'] is not None):
                 text += '👀サークルを見る: ** https://uu-circles.com/circle/' + \
                     newjoy['slug']+'**\n\n'
+
+            if (int(len(r['todayCircleNewJoys']) <= 10)):
+                text += '📌 新歓ルーム:**'+str(idx + 1)+'**\n\n'
+
             await channel.send(text)
             if idx + 1 == len(r['todayCircleNewJoys']):
                 sys.exit()

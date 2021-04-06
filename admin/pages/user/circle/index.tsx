@@ -87,14 +87,14 @@ const IndexPage: NextPage = () => {
   return (
     <div id="top">
       <Head>
-        <title>サークル一覧へようこそ</title>
+        <title>部員アカウント一覧</title>
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
 
       <BaseContainer>
         <BaseWrapper
-          title="サークル一覧へようこそ"
+          title="部員アカウント一覧"
           actionText="サークル新規作成"
           actionHref="/circle/create"
         >
