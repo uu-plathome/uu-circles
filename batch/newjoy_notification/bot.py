@@ -98,8 +98,8 @@ async def on_ready():
                     str(newjoy['circleNewJoy']['privateNewjoyLink'])+'\n'
 
             if (newjoy['slug'] is not None):
-                text += '👀サークルを見る: ** https://uu-circles.com/circle/' + \
-                    newjoy['slug']+'**\n\n'
+                text += '👀サークルを見る: https://uu-circles.com/circle/' + \
+                    newjoy['slug']+'\n\n'
 
             if (int(len(r['todayCircleNewJoys']) <= 10)):
                 text += '📌 新歓ルーム:**'+str(idx + 1)+'**\n\n'

@@ -13,7 +13,10 @@ const BaseHead: FC<Props> = ({ title, description }) => {
       <title>{title} | UU-Circles</title>
 
       {description ? (
-        <meta name="description" content={`${title} ${description}`} />
+        <>
+          <meta name="description" content={`${title} ${description}`} />
+          <meta name="og:description" content={`${title} ${description}`} />
+        </>
       ) : (
         ''
       )}
