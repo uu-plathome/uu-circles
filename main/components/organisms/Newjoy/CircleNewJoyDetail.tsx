@@ -1,9 +1,16 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getFullJPDate } from '@/lib/utils/Date'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 const TableTitle: FC = ({ children }) => {
   return <h4 className="text-gray-500 text-base text-gray-400">{children}</h4>
@@ -14,6 +21,11 @@ type Props = {
   circleNewJoy: CircleNewJoy
 }
 const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/${circle.slug}/newjoy/${circleNewJoy.id}`,
+    [circle.slug, circleNewJoy.id]
+  )
+
   return (
     <div>
       <div className="hidden md:block">
@@ -106,6 +118,35 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
                 {circleNewJoy.description}
               </p>
             </section>
+
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>SNSで共有しよう</TableTitle>
+
+              <div className="my-2 pb-2">
+                <TwitterShareButton
+                  url={pageUrl}
+                  title={`UU-Circlesで${circle.shortName || circle.name}の新歓${
+                    circleNewJoy.title
+                  }を見る！`}
+                  hashtags={['春から宇大']}
+                  className="mr-2"
+                >
+                  <TwitterIcon size={40} round />
+                </TwitterShareButton>
+
+                <LineShareButton url={pageUrl} className="mr-2">
+                  <LineIcon size={40} round />
+                </LineShareButton>
+
+                <FacebookShareButton
+                  url={pageUrl}
+                  hashtag={'春から宇大'}
+                  className="mr-2"
+                >
+                  <FacebookIcon size={40} round />
+                </FacebookShareButton>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -172,6 +213,35 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <p className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
                 {circleNewJoy.description}
               </p>
+            </section>
+
+            <section className="my-6 border-b border-gray-600">
+              <TableTitle>SNSで共有しよう</TableTitle>
+
+              <div className="my-2 pb-2">
+                <TwitterShareButton
+                  url={pageUrl}
+                  title={`UU-Circlesで${
+                    circle.shortName || circle.name
+                  }の新歓「${circleNewJoy.title}」を見る！`}
+                  hashtags={['春から宇大']}
+                  className="mr-2"
+                >
+                  <TwitterIcon size={40} round />
+                </TwitterShareButton>
+
+                <LineShareButton url={pageUrl} className="mr-2">
+                  <LineIcon size={40} round />
+                </LineShareButton>
+
+                <FacebookShareButton
+                  url={pageUrl}
+                  hashtag={'春から宇大'}
+                  className="mr-2"
+                >
+                  <FacebookIcon size={40} round />
+                </FacebookShareButton>
+              </div>
             </section>
           </div>
         </div>
