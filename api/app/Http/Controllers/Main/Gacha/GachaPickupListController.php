@@ -11,6 +11,7 @@ use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
+
 class GachaPickupListController  extends Controller
 {
     private GetGachaPickupListUsecase $getGachaPickupListUsecase;
@@ -20,6 +21,12 @@ class GachaPickupListController  extends Controller
         $this->getGachaPickupListUsecase = $getGachaPickupListUsecase;
     }
 
+    /*
+     * ピックアップ一覧API
+     * - ランダムに3つのサークルを取得する。
+     * - ピックアップ一覧は1日に1度更新する。
+     * - ピックアップ一覧はキャッシュの中に入れておく。
+     */
     public function __invoke()
     {
         Log::debug('GachaPickupListController args none');
