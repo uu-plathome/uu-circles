@@ -24,6 +24,15 @@ import Color from 'colors'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
+import { useMemo } from 'react'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type Props = {
   circle?: Circle
@@ -48,6 +57,10 @@ const Page: NextPage<Props> = ({
   // w : h = 210 : 297
   const width = 300
   const height = (300 * 297) / 210
+  const pageUrl = useMemo(() => `https://uu-circles.com/${circle.slug}`, [
+    circle.slug,
+  ])
+
   return (
     <div>
       <BaseHead
@@ -78,42 +91,69 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="flex justify-between md:justify-start bg-white px-4 md:px-10 py-2">
-                {/* 活動人数 */}
-                <div className="md:mr-4">
-                  <p>
-                    <FontAwesomeIcon
-                      color={Color.gray[600]}
-                      icon={faUserFriends}
-                    />
-                    <span className="pl-2">
-                      {circle.numberOfMembers || 0}人
-                    </span>
-                  </p>
+              <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
+                <div className="flex justify-between md:justify-start py-2">
+                  {/* 活動人数 */}
+                  <div className="md:mr-4">
+                    <p>
+                      <FontAwesomeIcon
+                        color={Color.gray[600]}
+                        icon={faUserFriends}
+                      />
+                      <span className="pl-2">
+                        {circle.numberOfMembers || 0}人
+                      </span>
+                    </p>
+                  </div>
+                  {/* 週の活動日数 */}
+                  <div className="md:mr-4">
+                    <p>
+                      <FontAwesomeIcon
+                        color={Color.red[500]}
+                        icon={faWaveSquare}
+                      />
+                      <span className="pl-2">
+                        週{circle.weeklyActivityDays || 0}
+                      </span>
+                    </p>
+                  </div>
+                  {/* 年間費用 */}
+                  <div className="md:mr-4">
+                    <p>
+                      <FontAwesomeIcon
+                        color={Color.gray[600]}
+                        icon={faWallet}
+                      />
+                      <span className="pl-2">
+                        {circle.admissionFeePerYear
+                          ? Number(circle.admissionFeePerYear).toLocaleString()
+                          : 0}
+                        円/年
+                      </span>
+                    </p>
+                  </div>
                 </div>
-                {/* 週の活動日数 */}
-                <div className="md:mr-4">
-                  <p>
-                    <FontAwesomeIcon
-                      color={Color.red[500]}
-                      icon={faWaveSquare}
-                    />
-                    <span className="pl-2">
-                      週{circle.weeklyActivityDays || 0}
-                    </span>
-                  </p>
-                </div>
-                {/* 年間費用 */}
-                <div className="md:mr-4">
-                  <p>
-                    <FontAwesomeIcon color={Color.gray[600]} icon={faWallet} />
-                    <span className="pl-2">
-                      {circle.admissionFeePerYear
-                        ? Number(circle.admissionFeePerYear).toLocaleString()
-                        : 0}
-                      円/年
-                    </span>
-                  </p>
+
+                <div className="flex items-center justify-end py-2">
+                  <span className="mr-2 text-sm">Share</span>
+                  <TwitterShareButton
+                    url={pageUrl}
+                    title={`UU-Circlesで${
+                      circle.shortName || circle.name
+                    }を見る！`}
+                    hashtags={['春から宇大']}
+                    className="mr-2"
+                  >
+                    <TwitterIcon size={40} round />
+                  </TwitterShareButton>
+
+                  <LineShareButton url={pageUrl} className="mr-2">
+                    <LineIcon size={40} round />
+                  </LineShareButton>
+
+                  <FacebookShareButton url={pageUrl} hashtag={'春から宇大'}>
+                    <FacebookIcon size={40} round />
+                  </FacebookShareButton>
                 </div>
               </div>
             </div>
