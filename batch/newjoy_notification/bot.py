@@ -7,7 +7,7 @@ import json
 import io
 import itertools
 import create_text
-
+from domain import todayCircleNewJoy as domain
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
@@ -29,25 +29,33 @@ r = requests.get(API_URL, params=payload).json()
 # # 接続に必要なオブジェクトを生成
 # client = discord.Client()
 
-# # ###SET_LOOP###
-# # #ループ処理
-# # @client.event
-# # async def on_ready():
-# #     channel = client.get_channel(CHANNEL_ID)
-# #     #アナウンス
-# #     if (len(r['todayCircleNewJoys']) == 0):
-# #         await channel.send('***:crescent_moon:今日の新歓はありません***')
-# #         exit()
-# #     else:
-# #         now = create_text.get_now()
-# #         await channel.send('***☀️今日の新歓 '+now+'***')
-# #         message = create_text.make_text(r)
-# #         for text in message:
-# #             await channel.send(text)
-# #         exit()
+# ###SET_LOOP###
+# #ループ処理
+# @client.event
+# async def on_ready():
+#     channel = client.get_channel(CHANNEL_ID)
+#     #アナウンス
+#     if (len(r['todayCircleNewJoys']) == 0):
+#         await channel.send('***:crescent_moon:今日の新歓はありません***')
+#         exit()
+#     else:
+#         now = create_text.get_now()
+#         await channel.send('***☀️今日の新歓 '+now+'***')
+#         message = create_text.make_text(r)
+#         for text in message:
+#             await channel.send(text)
+#         exit()
 
-# # client.run(TOKEN)
+# client.run(TOKEN)
 
-# ###TEST_CODES###
-# times = create_text.attach_room(r)
-# print(times)
+###TEST_CODES###
+print(type(r['todayCircleNewJoys'][0]))
+print(r['todayCircleNewJoys'][0])
+# A = CircleNewJoy.CircleNewJoy(r['todayCircleNewJoys'][0]['CircleNewJoy'])
+
+A = domain.TodayCircleNewJoy(r['todayCircleNewJoys'][0])
+print(A.slug)
+print(A.circleNewJoy.format_startDay())
+
+print(type(A))
+
