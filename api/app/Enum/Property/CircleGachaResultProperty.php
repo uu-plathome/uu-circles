@@ -6,8 +6,6 @@ namespace App\Enum\Property;
 
 class CircleGachaResultProperty
 {
-
-
     const id = 'id';
     const gacha_hash = 'gacha_hash';
     const identifier_hash = 'identifier_hash';
@@ -15,7 +13,4 @@ class CircleGachaResultProperty
     const pickup_circle_ids = 'pickup_circle_ids';
     const created_at = 'created_at';
     const updated_at = 'updated_at';
-
-
-
 }
