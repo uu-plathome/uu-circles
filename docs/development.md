@@ -4,23 +4,33 @@
 
 ### API
 
-- Laravel 8
-- PHP 7.4
-- MySQL
+-   Laravel 8
+-   PHP 7.4
+-   MySQL
+-   Docker
+
+Windows なら、WSL2 + Docker, Mac なら Docker for Mac 推奨
 
 ### Main
 
-- Next.js v9.5
-- Node.js v14 or v15
+-   Next.js v10.0.5
+-   Node.js v14 or v15.6.0
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
+
+### Circle
+
+-   Next.js v9.5
+-   Node.js v14 or v15.6.0
+
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
 
 ### Admin
 
-- Next.js v9.5
-- Node.js v14 or v15
+-   Next.js v9.5
+-   Node.js v14 or v15.6.0
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15 じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
 
 ## 初期セットアップ手順
 
@@ -48,7 +58,7 @@ $ docker-compose exec app php artisan config:cache
 $ docker-compose exec app php artisan migrate:fresh --seed
 ```
 
-### 2.Admin のセットアップ
+### 2.Admin (管理者画面) のセットアップ
 
 ```shell
 $ cd admin
@@ -58,7 +68,17 @@ $ npm install
 $ npm run dev
 ```
 
-### 3.Main のセットアップ
+### 3.Circle (サークル管理画面) のセットアップ
+
+```shell
+$ cd circle
+
+$ npm install
+
+$ npm run dev
+```
+
+### 4.Main (メイン画面) のセットアップ
 
 ```shell
 $ cd main
@@ -74,17 +94,17 @@ $ npm run dev
 # APIの起動
 $ docker-compose up -d
 
-# Adminの起動
+# Admin (管理者画面) の起動
 $ cd admin
 
 $ npm run dev
 
-# Circleの起動
+# Circle (サークル管理画面) の起動
 $ cd circle
 
 $ npm run dev
 
-# Mainの起動
+# Main (メイン画面) の起動
 $ cd main
 
 $ npm run dev
@@ -100,21 +120,21 @@ $ docker-compose exec app php artisan migrate:fresh --seed
 
 $ docker-compose up -d
 
-# Adminの起動
+# Admin (管理者画面) の起動
 $ cd admin
 
 $ npm install
 
 $ npm run dev
 
-# Circleの起動
+# Circle (サークル管理画面) の起動
 $ cd circle
 
 $ npm install
 
 $ npm run dev
 
-# Mainの起動
+# Main (メイン画面) の起動
 $ cd main
 
 $ npm install
@@ -126,8 +146,8 @@ $ npm run dev
 
 ### 管理者ログイン
 
-- ユーザー名: tester
-- パスワード： Test1234@@
+-   ユーザー名: tester
+-   パスワード： Test1234@@
 
 ### API のテスト
 
@@ -139,7 +159,7 @@ $ docker-compose app composer test
 $ docker-compose app composer sniffer
 ```
 
-## Deploy
+## 本番環境への Deploy
 
 `git push origin main:develop/production`
 
@@ -155,28 +175,48 @@ $ docker-compose app composer sniffer
 
 `develop/production` に push すると反映されます
 
-### Api
+### API
 
 `develop/production` に push すると反映されます
+
+## STG への Deploy
+
+`git push origin main:develop/stg`
+
+### Main (メイン画面)
+
+`develop/stg` に push すると反映されます
+
+### Admin (管理者画面)
+
+`develop/stg` に push すると反映されます
+
+### Circle (サークル管理画面)
+
+`develop/stg` に push すると反映されます
+
+### Api
+
+`develop/stg` に push すると反映されます
 
 ## Vscode 拡張機能 推奨
 
 ### Common
 
-- Code Spell Check
-- EditorConfig for VS Code
-- Prettier
+-   Code Spell Check
+-   EditorConfig for VS Code
+-   Prettier
 
 ### Main , Admin, Circle
 
-- Code Spell Check
-- EditorConfig for VS Code
-- ESLint
-- IntelliSense for CSS class names in HTML
-- Tailwind CSS Intellisense
-- Version Lens
+-   Code Spell Check
+-   EditorConfig for VS Code
+-   ESLint
+-   IntelliSense for CSS class names in HTML
+-   Tailwind CSS Intellisense
+-   Version Lens
 
 ### Api
 
-- PHP DocBlocker
-- PHP Intelephense
+-   PHP DocBlocker
+-   PHP Intelephense
