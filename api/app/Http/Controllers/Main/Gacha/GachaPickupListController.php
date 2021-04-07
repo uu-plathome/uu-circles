@@ -6,7 +6,9 @@ namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Gacha\GachaPickupListKey;
 use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class GachaPickupListController  extends Controller
@@ -22,7 +24,11 @@ class GachaPickupListController  extends Controller
     {
         Log::debug('GachaPickupListController args none');
 
-        $pickupList = $this->getGachaPickupListUsecase->invoke();
+        $pickupList = Cache::remember(
+            GachaPickupListKey::getCacheKey(),
+            60*60*24,
+            fn()=>$this->getGachaPickupListUsecase->invoke()
+        );
 
         return Arr::camel_keys([
             "pickupCircle"=> $pickupList->toArrayPickupCircles(),
