@@ -2,37 +2,21 @@ import { GreenButton } from '@/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { CircleTypeBadge } from '@/components/molecules/Badge/CircleTypeBadge'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { AppealingPoint } from '@/components/organisms/ShowCircle/AppealingPoint'
+import { CircleTopInformation } from '@/components/organisms/ShowCircle/CircleTopInformation'
 import { InformationField } from '@/components/organisms/ShowCircle/InformationField'
 import { NewJoyList } from '@/components/organisms/ShowCircle/NewJoyList'
+import { ShowCircleTitle } from '@/components/organisms/ShowCircle/ShowCircleTitle'
 import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { CircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import {
-  faUserFriends,
-  faWallet,
-  faWaveSquare,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
-import { useMemo } from 'react'
-import {
-  FacebookIcon,
-  FacebookShareButton,
-  LineIcon,
-  LineShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-} from 'react-share'
 
 type Props = {
   circle?: Circle
@@ -57,9 +41,6 @@ const Page: NextPage<Props> = ({
   // w : h = 210 : 297
   const width = 300
   const height = (300 * 297) / 210
-  const pageUrl = useMemo(() => `https://uu-circles.com/${circle.slug}`, [
-    circle.slug,
-  ])
 
   return (
     <div>
@@ -76,86 +57,7 @@ const Page: NextPage<Props> = ({
                 <TopImage circle={circle} />
               </div>
 
-              <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
-                <div>
-                  <p className="text-sm">{circle.prefixName}</p>
-                  <h1 className="text-lg md:text-2xl font-bold">
-                    {circle.name}
-                  </h1>
-                </div>
-
-                <div>
-                  <CircleTypeBadge
-                    circleType={circle.circleType as CircleType}
-                  />
-                </div>
-              </div>
-
-              <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
-                <div className="flex justify-between md:justify-start py-2">
-                  {/* 活動人数 */}
-                  <div className="md:mr-4">
-                    <p>
-                      <FontAwesomeIcon
-                        color={Color.gray[600]}
-                        icon={faUserFriends}
-                      />
-                      <span className="pl-2">
-                        {circle.numberOfMembers || 0}人
-                      </span>
-                    </p>
-                  </div>
-                  {/* 週の活動日数 */}
-                  <div className="md:mr-4">
-                    <p>
-                      <FontAwesomeIcon
-                        color={Color.red[500]}
-                        icon={faWaveSquare}
-                      />
-                      <span className="pl-2">
-                        週{circle.weeklyActivityDays || 0}
-                      </span>
-                    </p>
-                  </div>
-                  {/* 年間費用 */}
-                  <div className="md:mr-4">
-                    <p>
-                      <FontAwesomeIcon
-                        color={Color.gray[600]}
-                        icon={faWallet}
-                      />
-                      <span className="pl-2">
-                        {circle.admissionFeePerYear
-                          ? Number(circle.admissionFeePerYear).toLocaleString()
-                          : 0}
-                        円/年
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-end py-2">
-                  <span className="mr-2 text-sm">Share</span>
-                  <TwitterShareButton
-                    url={pageUrl}
-                    title={`UU-Circlesで${
-                      circle.shortName || circle.name
-                    }を見る！`}
-                    hashtags={['春から宇大']}
-                    className="mr-2"
-                  >
-                    <TwitterIcon size={40} round />
-                  </TwitterShareButton>
-
-                  <LineShareButton url={pageUrl} className="mr-2">
-                    <LineIcon size={40} round />
-                  </LineShareButton>
-
-                  <FacebookShareButton url={pageUrl} hashtag={'春から宇大'}>
-                    <FacebookIcon size={40} round />
-                  </FacebookShareButton>
-                </div>
-              </div>
+              <CircleTopInformation circle={circle} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
@@ -165,9 +67,7 @@ const Page: NextPage<Props> = ({
 
               {circle.handbillImageUrl ? (
                 <div className="order-2 pt-10">
-                  <h2 className="text-lg text-center mb-6 md:text-left">
-                    新歓ビラ
-                  </h2>
+                  <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
 
                   <div className="flex justify-center md:justify-start">
                     <a
@@ -201,9 +101,8 @@ const Page: NextPage<Props> = ({
                     </div>
                   ) : (
                     <div>
-                      <h2 className="text-center md:text-left mb-8 text-lg">
-                        新歓イベント日程
-                      </h2>
+                      <ShowCircleTitle>新歓イベント日程</ShowCircleTitle>
+
                       <p className="text-center">
                         現在開催予定の新歓はありません
                       </p>

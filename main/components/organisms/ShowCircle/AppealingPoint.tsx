@@ -3,6 +3,7 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
 import { FC, Fragment } from 'react'
+import { ShowCircleTitle } from './ShowCircleTitle'
 
 type Props = {
   circle: Circle
@@ -14,9 +15,7 @@ const AppealingPoint: FC<Props> = ({ circle }) => {
       circle.appealingPoint2 ||
       circle.appealingPoint3 ? (
         <div className="pt-10">
-          <h2 className="text-lg text-center mb-6 md:text-left">
-            {circle.name}について
-          </h2>
+          <ShowCircleTitle>{circle.name}について</ShowCircleTitle>
 
           <div className="flex justify-center md:justify-start px-6 md:px-0">
             <div className="bg-white rounded-2xl md:rounded md:w-full px-4 md:pr-6 md:pl-6 py-4 w-full">
