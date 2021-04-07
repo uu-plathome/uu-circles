@@ -54,8 +54,9 @@ print(r['todayCircleNewJoys'][0])
 # A = CircleNewJoy.CircleNewJoy(r['todayCircleNewJoys'][0]['CircleNewJoy'])
 
 A = domain.TodayCircleNewJoy(r['todayCircleNewJoys'][0])
-print(A.slug)
-print(A.circleNewJoy.format_startDay())
+# print(A.slug)
+# print(A.circleNewJoy.format_startDay())
+print(A.make_text(1))
 
-print(type(A))
+# print(type(A))
 

@@ -26,7 +26,7 @@ class CircleNewJoy:
     createdAt: str
     updatedAt: str
 
-###constructor###
+###CONSTRUCTOR###
     def __init__(self, arr : dict):
         self.circleNewJoyId = arr['id']
         self.circleId = arr['circleId']
@@ -59,7 +59,7 @@ class CircleNewJoy:
             tmp_format_endDay = to_jst(tmp_day.now() + timedelta(days=1))
             format_endDay = tmp_format_endDay.replace(hour=6, minute=59, second=0)
             return format_endDay
-        tmp_format_endDay = datetime.strptime(end_day, '%Y-%m-%dT%H:%M:%S.%fZ')
+        tmp_format_endDay = datetime.strptime(self.endDate, '%Y-%m-%dT%H:%M:%S.%fZ')
         format_endDay = to_jst(tmp_format_endDay)
         return format_endDay
 
