@@ -17,7 +17,6 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
-import { useMemo } from 'react'
 
 type Props = {
   circle?: Circle
