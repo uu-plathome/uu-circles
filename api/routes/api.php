@@ -9,6 +9,7 @@ use App\Http\Controllers\Main\Circle\SearchTagCircleController;
 use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
+use App\Http\Controllers\Main\Gacha\GachaPickupListController;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Http\Request;
 
@@ -39,3 +40,6 @@ Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('m
 Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)
     ->name('main.circleNewJoy.show')
     ->where(['circleNewJoyId' => '[0-9]+']);
+
+// ガチャ用
+Route::get('/gacha/circle/pickup', GachaPickupListController::class)->name('main.gacha.pickup');
