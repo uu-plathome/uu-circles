@@ -33,7 +33,7 @@ const BaseDate: FC<Props> = ({
         {prefix ? <p className="ml-1 text-white">{prefix}</p> : ''}
 
         <DatePicker
-          dateFormat="YYYY/MM/DD"
+          dateFormat="yyyy/MM/dd"
           selected={toDateOrNull}
           name={name}
           locale="ja"

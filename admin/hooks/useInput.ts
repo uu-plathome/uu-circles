@@ -89,8 +89,12 @@ export const useDateInput = (
 
       console.error(
         'useDateInputで予期せぬ値が入っています。 newValはstring型です。',
-        newVal,
-        formatNewVal
+        {
+          newVal,
+          formatNewVal,
+          isDate: isDate(formatNewVal),
+          isDatetime: isDatetime(formatNewVal),
+        }
       )
       return
     }

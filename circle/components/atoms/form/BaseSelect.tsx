@@ -30,7 +30,7 @@ const BaseSelect: React.FC<Props> = ({
   onChange,
 }) => {
   return (
-    <div className="flex flex-col space-y-1 mb-4">
+    <div className={`flex flex-col space-y-1 mb-4 ${error ? '' : 'pb-5'}`}>
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <select
