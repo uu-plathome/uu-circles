@@ -1,6 +1,6 @@
 import { isDate, isDatetime } from '@/lib/utils/Date'
 import { dayjs } from '@/plugins/Dayjs'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export const useInput = <T extends string>(initialValue: T) => {
   const [state, set] = useState<T>(initialValue)
@@ -67,7 +67,8 @@ export const useBooleanInput = (initialValue: boolean) => {
 }
 export const useDateInput = (
   initialValue?: Date,
-  format = 'YYYY/MM/DD HH:mm'
+  format = 'YYYY/MM/DD HH:mm',
+  apiFormat = 'YYYY-MM-DD HH:mm'
 ) => {
   const initialValueStr = initialValue ? initialValue.toISOString() : ''
   const _useInput = useInput(initialValueStr)
@@ -108,9 +109,15 @@ export const useDateInput = (
     set,
     onChangeDate: (date?: Date) => set(date),
     toDateOrNull: () => {
-      console.info('toDateOrNull', _useInput.value)
       return _useInput.value ? new Date(_useInput.value) : null
     },
+    toFormatApi: useMemo(() => {
+      if (!_useInput.value) {
+        return null
+      }
+
+      return dayjs(_useInput.value).format(apiFormat)
+    }, [_useInput, apiFormat]),
   }
 }
 

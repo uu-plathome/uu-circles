@@ -32,9 +32,9 @@ const CreatePage: NextPage = () => {
   const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput('')
   const placeOfActivityDetail = useStringInput('')
-  const publishFrom = useDateInput(null, 'YYYY/MM/DD')
-  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm')
-  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
   useEffect(() => {
