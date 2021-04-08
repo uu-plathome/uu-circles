@@ -1,14 +1,5 @@
 from datetime import datetime, timedelta, timezone
 
-###TO_GET_JST_TIME_FUNC###
-#SEE THIS(https://qiita.com/b2bmakers/items/34ba70510e35d2c12e94)
-JST = timezone(timedelta(hours=+9), 'JST')
-def to_jst(time):
-    time = time.replace(tzinfo=timezone.utc)
-    time = time.astimezone(JST)
-    time = time.replace(tzinfo=None)
-    return time
-
 ###STRUCT_OF_CircleNewJoy###
 class CircleNewJoy:
     circleNewJoyId: int
