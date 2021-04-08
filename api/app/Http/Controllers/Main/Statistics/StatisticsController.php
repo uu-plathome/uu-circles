@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Controllers\Main\Statistics;
+
+use App\Usecases\Main\Statistics\StatisticsUsecase;
+use Illuminate\Support\Facades\Log;
+
+class StatisticsController
+{
+    private StatisticsUsecase $statisticsUsecase;
+
+    public function __construct(StatisticsUsecase $statisticsUsecase)
+    {
+        $this->statisticsUsecase = $statisticsUsecase;
+    }
+
+    /**
+     * 統計情報
+     *
+     * @return array
+     */
+    public function __invoke()
+    {
+        Log::debug("StatisticsController args none");
+
+        // 統計情報
+        $statistics = $this->statisticsUsecase->invoke();
+
+        return [
+            'statistics' => $statistics->toArray(),
+        ];
+    }
+}

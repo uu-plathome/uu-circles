@@ -9,6 +9,7 @@ use App\Http\Controllers\Main\Circle\SearchTagCircleController;
 use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
+use App\Http\Controllers\Main\Statistics\StatisticsController;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ use Illuminate\Http\Request;
 // トップページ用
 Route::get('/main', IndexController::class)->name('main.index');
 Route::get('/sitemap', SitemapController::class)->name('api.sitemap');
+Route::get('/statistics', StatisticsController::class)->name('main.api.statistics');
 
 // サークル
 Route::get('/circle', IndexCircleController::class)->name('main.circle');
