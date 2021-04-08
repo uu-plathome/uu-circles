@@ -12,11 +12,12 @@ export const isDate = (strDate: string) => {
   // 日付変換された日付が入力値と同じ事を確認
   // new Date()の引数に不正な日付が入力された場合、相当する日付に変換されてしまうため
   const date = new Date(strDate)
+  const splitDate = strDate.split('/')
   if (
-    date.getFullYear().toString() !== strDate.split('/')[0] ||
-    date.getMonth().toString() !==
-      (Number(strDate.split('/')[1]) - 1).toString() ||
-    date.getDate().toString() !== strDate.split('/')[2]
+    Number(date.getFullYear().toString()) !== Number(splitDate[0]) ||
+    Number(date.getMonth().toString()) !==
+      Number((Number(splitDate[1]) - 1).toString()) ||
+    Number(date.getDate().toString()) !== Number(splitDate[2])
   ) {
     return false
   }
