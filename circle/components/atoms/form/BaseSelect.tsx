@@ -36,7 +36,7 @@ const BaseSelect: React.FC<Props> = ({
       <select
         id={id}
         name={name}
-        className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+        className="px-4 py-2 transition duration-300 border border-gray-300 rounded appearance-none focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
         value={value}
         onChange={onChange}
         disabled={disabled}
