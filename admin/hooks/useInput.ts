@@ -108,9 +108,9 @@ export const useDateInput = (
     ..._useInput,
     set,
     onChangeDate: (date?: Date) => set(date),
-    toDateOrNull: () => {
+    toDateOrNull: useMemo(() => {
       return _useInput.value ? new Date(_useInput.value) : null
-    },
+    }, [_useInput]),
     toFormatApi: useMemo(() => {
       if (!_useInput.value) {
         return null
