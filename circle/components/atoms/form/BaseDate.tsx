@@ -26,14 +26,14 @@ const BaseDate: FC<Props> = ({
   onChangeDate,
 }) => {
   return (
-    <div className="flex flex-col space-y-1 mb-4">
+    <div className={`flex flex-col space-y-1 mb-4 ${error ? '' : 'pb-5'}`}>
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="flex items-end">
         {prefix ? <p className="ml-1 text-white">{prefix}</p> : ''}
 
         <DatePicker
-          dateFormat="yyyy-MM-dd"
+          dateFormat="yyyy/MM/dd"
           selected={toDateOrNull}
           name={name}
           locale="ja"
