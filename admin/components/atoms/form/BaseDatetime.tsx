@@ -35,12 +35,13 @@ const BaseDatetime: FC<Props> = ({
         <DatePicker
           dateFormat="yyyy/MM/dd HH:mm"
           timeInputLabel="時間:"
-          showTimeInput
+          showTimeSelect
           selected={toDateOrNull}
           name={name}
           locale="ja"
           autoComplete="off"
           isClearable
+          timeIntervals={10}
           onChange={(date) => {
             console.info('BaseDatetime [UPDATE]', date)
             onChangeDate(date)
