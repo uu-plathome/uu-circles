@@ -74,9 +74,9 @@ const CreatePage: NextPage = () => {
       placeOfActivity:
         placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
       placeOfActivityDetail: placeOfActivityDetail.value,
-      publishFrom: publishFrom.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
+      publishFrom: publishFrom.toFormatApi,
+      startDate: startDate.toFormatApi,
+      endDate: endDate.toFormatApi,
       release: release.value === 'true',
     } as UpdateCircleNewJoyRequest)
 

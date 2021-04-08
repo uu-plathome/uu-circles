@@ -51,9 +51,9 @@ const CreatePage: NextPage = () => {
       privateNewjoyLink: privateNewjoyLink.value,
       placeOfActivity: placeOfActivity.value,
       placeOfActivityDetail: placeOfActivityDetail.value,
-      publishFrom: publishFrom.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
+      publishFrom: publishFrom.toFormatApi,
+      startDate: startDate.toFormatApi,
+      endDate: endDate.toFormatApi,
       release: release.toBoolean,
     } as RegisterCircleNewJoyRequest)
 
