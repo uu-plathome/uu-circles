@@ -37,8 +37,8 @@ const CreatePage: NextPage = () => {
       mainImageUrl: mainImageUrl.value,
       advertiseType: advertiseType.value,
       active: active.toBoolean,
-      publishTo: publishTo.value,
-      publishFrom: publishFrom.value,
+      publishTo: publishTo.toFormatApi,
+      publishFrom: publishFrom.toFormatApi,
     })
 
     if (isCreateAdvertiseRequestValidationError(data)) {
