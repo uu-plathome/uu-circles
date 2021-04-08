@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main\Statistics;
 
+use App\Support\Arr;
 use App\Usecases\Main\Statistics\StatisticsUsecase;
 use Illuminate\Support\Facades\Log;
 
@@ -26,8 +27,8 @@ class StatisticsController
         // 統計情報
         $statistics = $this->statisticsUsecase->invoke();
 
-        return [
+        return Arr::camel_keys([
             'statistics' => $statistics->toArray(),
-        ];
+        ]);
     }
 }
