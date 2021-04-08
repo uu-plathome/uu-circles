@@ -24,18 +24,17 @@ const BaseSelect: React.FC<Props> = ({
   value,
   items,
   required,
-  placeholder,
   error,
   onChange,
 }) => {
   return (
-    <div className="flex flex-col space-y-1 mb-4">
+    <div className={`flex flex-col space-y-1 mb-4 ${error ? '' : 'pb-5'}`}>
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <select
         id={id}
         name={name}
-        className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+        className="px-4 py-2 transition duration-300 border border-gray-300 rounded appearance-none focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
         value={value}
         onChange={onChange}
       >
