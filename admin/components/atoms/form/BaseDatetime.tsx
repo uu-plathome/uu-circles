@@ -33,10 +33,10 @@ const BaseDatetime: FC<Props> = ({
         {prefix ? <p className="ml-1 text-white">{prefix}</p> : ''}
 
         <DatePicker
-          dateFormat="yyyy-MM-dd HH:mm"
+          dateFormat="yyyy/MM/dd HH:mm"
           timeInputLabel="時間:"
           showTimeInput
-          selected={toDateOrNull}
+          selected={toDateOrNull()}
           name={name}
           locale="ja"
           autoComplete="off"
