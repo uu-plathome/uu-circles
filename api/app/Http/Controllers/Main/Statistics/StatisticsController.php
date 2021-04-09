@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main\Statistics;
 
 use App\Support\Arr;
 use App\Usecases\Main\Statistics\StatisticsUsecase;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class StatisticsController
@@ -25,7 +26,11 @@ class StatisticsController
         Log::debug("StatisticsController args none");
 
         // 統計情報
-        $statistics = $this->statisticsUsecase->invoke();
+        $statistics = Cache::remember(
+            'StatisticsController.statistics',
+            60 * 60,
+            fn () => $this->statisticsUsecase->invoke()
+        );
 
         return Arr::camel_keys([
             'statistics' => $statistics->toArray(),
