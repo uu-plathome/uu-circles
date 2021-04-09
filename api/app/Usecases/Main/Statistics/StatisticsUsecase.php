@@ -9,7 +9,10 @@ use App\Dto\StatisticsOnlineActivityDto;
 use App\Dto\StatisticsPlaceOfActivityFrequencyDto;
 use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\Circle;
+use App\Models\CircleNewJoy;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
@@ -18,12 +21,16 @@ class StatisticsUsecase
     public function invoke(): StatisticsDto
     {
         Log::debug("StatisticsUsecase args none");
+        $now = Carbon::now();
+        $today = Carbon::today();
 
         /** @var Collection $circles */
         $circles = Circle::with(['circleInformation'])
             ->whereRelease(true)
             ->hasByNonDependentSubquery('circleInformation')
             ->get();
+
+        $circleNewJoys = CircleNewJoy::nowPublic($now)->get();
 
         $statisticsDto = new StatisticsDto();
         // サークル数
@@ -101,6 +108,16 @@ class StatisticsUsecase
             fn (Circle $circle) => $circle->circleInformation->circle_type === CircleType::STUDENT_GROUP
         )->values()->count();
         $statisticsDto->statisticsCircleTypeDto = $statisticsCircleTypeDto;
+
+        $newCircleNewJoysByStartDate = $circleNewJoys->map(
+            fn (CircleNewJoy $circleNewJoy) => [
+                CircleNewJoyProperty::start_date => $circleNewJoy->start_date->format('Y年m月d日')
+            ]
+        )->groupBy(CircleNewJoyProperty::start_date)
+            ->map(fn (Collection $c) => $c->count())
+            ->sortKeys()
+            ->all();
+        $statisticsDto->circleNewJoyCount = $newCircleNewJoysByStartDate;
 
         return $statisticsDto;
     }

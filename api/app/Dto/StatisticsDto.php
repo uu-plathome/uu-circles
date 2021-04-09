@@ -22,6 +22,19 @@ class StatisticsDto
     public int $averageActivityCost;
 
     /**
+     * 日々の新歓数
+     *
+     * @var array
+     *
+     * [
+     *   '2021年4月1日' => int,
+     *   '2021年4月3日' => int,
+     *   '2021年4月5日' => int,
+     * ]
+     */
+    public array $circleNewJoyCount;
+
+    /**
      * 週の活動頻度
      *
      * @var StatisticsActivityFrequencyDto
@@ -56,6 +69,8 @@ class StatisticsDto
             'circle_count'                => $this->circleCount,
             // 活動費用の平均値
             'average_activity_cost'       => $this->averageActivityCost,
+            // 日々の新歓数
+            'circle_new_joy_count'        => $this->circleNewJoyCount,
             // 週の活動頻度
             'activity_frequency'          => $this->statisticsActivityFrequencyDto->toArray(),
             // オンライン活動状況
