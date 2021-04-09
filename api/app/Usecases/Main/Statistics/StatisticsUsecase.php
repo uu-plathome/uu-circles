@@ -3,9 +3,11 @@
 namespace App\Usecases\Main\Statistics;
 
 use App\Dto\StatisticsActivityFrequencyDto;
+use App\Dto\StatisticsCircleTypeDto;
 use App\Dto\StatisticsDto;
 use App\Dto\StatisticsOnlineActivityDto;
 use App\Dto\StatisticsPlaceOfActivityFrequencyDto;
+use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
 use App\Models\Circle;
 use Illuminate\Support\Collection;
@@ -83,6 +85,22 @@ class StatisticsUsecase
                 && !$circle->circleInformation->common_place_of_activity === PlaceOfActivity::MINE_AND_YOTO
         )->values()->count();
         $statisticsDto->statisticsPlaceOfActivityFrequencyDto = $statisticsPlaceOfActivityFrequencyDto;
+
+        // サークル種別
+        $statisticsCircleTypeDto = new StatisticsCircleTypeDto();
+        $statisticsCircleTypeDto->officialOrganization = $circles->filter(
+            fn (Circle $circle) => $circle->circleInformation->circle_type === CircleType::OFFICIAL_ORGANIZATION
+        )->values()->count();
+        $statisticsCircleTypeDto->unofficialOrganization = $circles->filter(
+            fn (Circle $circle) => $circle->circleInformation->circle_type === CircleType::UNOFFICIAL_ORGANIZATION
+        )->values()->count();
+        $statisticsCircleTypeDto->sendingOrganization = $circles->filter(
+            fn (Circle $circle) => $circle->circleInformation->circle_type === CircleType::SENDING_ORGANIZATION
+        )->values()->count();
+        $statisticsCircleTypeDto->studentGroup = $circles->filter(
+            fn (Circle $circle) => $circle->circleInformation->circle_type === CircleType::STUDENT_GROUP
+        )->values()->count();
+        $statisticsDto->statisticsCircleTypeDto = $statisticsCircleTypeDto;
 
         return $statisticsDto;
     }
