@@ -5,6 +5,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { getStatistics } from '@/infra/api/statistics'
 import { Statistics } from '@/lib/types/model/Statistics'
+import { rgba } from '@/lib/utils/Color'
 import { GetStaticProps, NextPage } from 'next'
 import { FC } from 'react'
 import { Doughnut } from 'react-chartjs-2'
@@ -65,7 +66,7 @@ const Page: NextPage<Props> = ({ statistics }) => {
                   ],
                   datasets: [
                     {
-                      label: 'My First Dataset',
+                      label: '週の活動頻度',
                       data: [
                         statistics.activityFrequency.zero,
                         statistics.activityFrequency.one,
@@ -78,13 +79,65 @@ const Page: NextPage<Props> = ({ statistics }) => {
                       ],
                       backgroundColor: [
                         colors.white,
-                        colors.gray[300],
-                        colors.gray[600],
-                        colors.blue[800],
-                        colors.green[700],
-                        colors.orange[400],
-                        colors.red[400],
-                        colors.red[600],
+                        rgba(colors.gray[300], 0.5),
+                        rgba(colors.gray[600], 0.5),
+                        rgba(colors.blue[800], 0.5),
+                        rgba(colors.green[700], 0.5),
+                        rgba(colors.orange[400], 0.5),
+                        rgba(colors.red[400], 0.5),
+                        rgba(colors.red[600], 0.5),
+                      ],
+                      hoverOffset: 4,
+                    },
+                  ],
+                }}
+                options={{ maintainAspectRatio: false }}
+              />
+            </div>
+
+            <div className="pb-16 px-4">
+              <SubHeader>活動場所</SubHeader>
+              <Doughnut
+                width={300}
+                data={{
+                  labels: ['峰', '陽東', 'その他'],
+                  datasets: [
+                    {
+                      label: '活動場所',
+                      data: [
+                        statistics.placeOfActivityFrequency.mine,
+                        statistics.placeOfActivityFrequency.yoto,
+                        statistics.placeOfActivityFrequency.other,
+                      ],
+                      backgroundColor: [
+                        rgba(colors.orange[400], 0.5),
+                        rgba(colors.green[700], 0.5),
+                        rgba(colors.gray[300], 0.5),
+                      ],
+                      hoverOffset: 4,
+                    },
+                  ],
+                }}
+                options={{ maintainAspectRatio: false }}
+              />
+            </div>
+
+            <div className="pb-16 px-4">
+              <SubHeader>オンライン活動状況</SubHeader>
+              <Doughnut
+                width={300}
+                data={{
+                  labels: ['オンライン活動あり', 'オフライン活動のみ'],
+                  datasets: [
+                    {
+                      label: '活動場所',
+                      data: [
+                        statistics.onlineActivityActivity.doOnlineCount,
+                        statistics.onlineActivityActivity.onlyOnlineCount,
+                      ],
+                      backgroundColor: [
+                        rgba(colors.blue[600], 0.5),
+                        colors.white,
                       ],
                       hoverOffset: 4,
                     },
