@@ -5,6 +5,10 @@ export const linkConst = {
     INDEX: `${GROUP}/main`,
   },
 
+  STATISTICS: {
+    INDEX: `${GROUP}/statistics`,
+  },
+
   CIRCLE: {
     GROUP: `${GROUP}/circle`,
 
