@@ -25,4 +25,11 @@ export type Statistics = {
     yoto: number
     other: number
   }
+  /** サークル種別 */
+  circleType: {
+    officialOrganization: number
+    unofficialOrganization: number
+    sendingOrganization: number
+    studentGroup: number
+  }
 }

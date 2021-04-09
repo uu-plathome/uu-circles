@@ -4,6 +4,8 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { getStatistics } from '@/infra/api/statistics'
+import { __ } from '@/lang/ja'
+import { CircleType } from '@/lib/enum/api/CircleType'
 import { Statistics } from '@/lib/types/model/Statistics'
 import { rgba } from '@/lib/utils/Color'
 import { GetStaticProps, NextPage } from 'next'
@@ -138,6 +140,40 @@ const Page: NextPage<Props> = ({ statistics }) => {
                       backgroundColor: [
                         rgba(colors.blue[600], 0.5),
                         colors.white,
+                      ],
+                      hoverOffset: 4,
+                    },
+                  ],
+                }}
+                options={{ maintainAspectRatio: false }}
+              />
+            </div>
+
+            <div className="pb-16 px-4">
+              <SubHeader>サークル種別</SubHeader>
+              <Doughnut
+                width={300}
+                data={{
+                  labels: [
+                    __(CircleType.OFFICIAL_ORGANIZATION),
+                    __(CircleType.UNOFFICIAL_ORGANIZATION),
+                    __(CircleType.STUDENT_GROUP),
+                    __(CircleType.SENDING_ORGANIZATION),
+                  ],
+                  datasets: [
+                    {
+                      label: 'サークル種別',
+                      data: [
+                        statistics.circleType.officialOrganization,
+                        statistics.circleType.unofficialOrganization,
+                        statistics.circleType.studentGroup,
+                        statistics.circleType.sendingOrganization,
+                      ],
+                      backgroundColor: [
+                        rgba(colors.green[500], 0.6),
+                        rgba(colors.red[500], 0.6),
+                        rgba(colors.blue[400], 0.6),
+                        rgba(colors.yellow[500], 0.6),
                       ],
                       hoverOffset: 4,
                     },

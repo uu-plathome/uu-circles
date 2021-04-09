@@ -42,6 +42,13 @@ class StatisticsDto
      */
     public StatisticsPlaceOfActivityFrequencyDto $statisticsPlaceOfActivityFrequencyDto;
 
+    /**
+     * サークル種別
+     *
+     * @var StatisticsCircleTypeDto
+     */
+    public StatisticsCircleTypeDto $statisticsCircleTypeDto;
+
     public function toArray(): array
     {
         return [
@@ -55,6 +62,8 @@ class StatisticsDto
             'online_activity_activity'    => $this->statisticsOnlineActivityDto->toArray(),
             // 活動場所
             'place_of_activity_frequency' => $this->statisticsPlaceOfActivityFrequencyDto->toArray(),
+            // サークル種別
+            'circle_type'                 => $this->statisticsCircleTypeDto->toArray(),
         ];
     }
 }
