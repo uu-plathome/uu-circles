@@ -1,5 +1,6 @@
 from domain import circleNewJoy
 
+
 class TodayCircleNewJoy:
     slug: str
     circleType: str
@@ -11,6 +12,7 @@ class TodayCircleNewJoy:
     ###Constructor###
     #No need to say static. See this(https://docs.python.org/ja/3/reference/datamodel.html#object.__init__)
     def __init__(self, arr:dict):
+        self.idx:int
         self.slug = arr['slug']
         self.circleType = arr['circleType']
         self.mainImageUrl = arr['mainImageUrl']
