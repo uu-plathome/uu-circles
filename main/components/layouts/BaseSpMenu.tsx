@@ -28,7 +28,7 @@ const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
 const MenuExternalItem: FC<MenuItemProps> = ({ href, children }) => {
   return (
     <li className="border border-b border-gray-200">
-      <a href={href} className="text-sm text-black" target="_blank">
+      <a href={href} className="text-sm text-black">
         <div className="pl-8 py-4">{children}</div>
       </a>
     </li>
@@ -72,6 +72,8 @@ const BaseSpMenu: FC = () => {
           <MenuItem href="/guide/discord">
             オンライン新歓に参加しよう！
           </MenuItem>
+
+          <MenuItem href="/statistics">統計情報</MenuItem>
 
           <MenuExternalItem href="https://media.uu-circles.com">
             uu-yell
