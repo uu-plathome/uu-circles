@@ -35,6 +35,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <>
         <Head>
           <meta name="viewport" content="width=device-width,initial-scale=1" />
+          {/** M PLUS 1p */}
+          <link
+            href="https://fonts.googleapis.com/css?family=M+PLUS+1p:300,400,700&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <Component {...pageProps} />
       </>
