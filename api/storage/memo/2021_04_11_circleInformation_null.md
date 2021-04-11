@@ -30,14 +30,14 @@ FROM
         INNER JOIN
     circle_information ci ON ci.circle_id = circles.id
 WHERE
-    ci.number_of_members = null
+    ci.number_of_members = NULL
 ;
 
 -- UPDATE --
 UPDATE
     circle_information
 SET
-    number_of_members = null
+    number_of_members = NULL
 WHERE
     number_of_members = 0
 
@@ -51,7 +51,8 @@ FROM
 INNER JOIN
     circle_information ci ON ci.circle_id = circles.id
 WHERE
-    ci.number_of_members = null
+    ci.number_of_members = NULL
+   OR ci.number_of_members = 0
 ;
 
 commit;
@@ -92,16 +93,18 @@ FROM
         INNER JOIN
     circle_information ci ON ci.circle_id = circles.id
 WHERE
-    ci.admission_fee_per_year = null
+    ci.admission_fee_per_year = NULL
+OR ci.admission_fee_per_year = 0
 ;
 
 -- UPDATE --
 UPDATE
     circle_information
 SET
-    admission_fee_per_year = null
+    admission_fee_per_year = NULL
 WHERE
     admission_fee_per_year = 0
+;
 
 -- check --
 SELECT
