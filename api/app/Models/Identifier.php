@@ -13,6 +13,6 @@ class Identifier extends Model
     ];
     public function CircleGachaResult ()
     {
-        return $this->hasOne("app\Models\CircleGachaResult");
+        return $this->hasOne(CircleGachaResult::class);
     }
 }
