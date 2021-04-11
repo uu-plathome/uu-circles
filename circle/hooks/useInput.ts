@@ -45,14 +45,15 @@ export const useStringInput = (initialValue: string) => {
     },
   }
 }
-export const useNumberInput = (initialValue: number) => {
+export const useNumberInput = (initialValue: number | null) => {
   const initialValueStr = String(initialValue)
-  const _useInput = useInput(initialValueStr)
+  const _useInput = useInput(initialValue === null ? '' : initialValueStr)
 
   return {
     ..._useInput,
-    set: (newVal?: number) => _useInput.set(String(newVal || 0)),
-    toNumber: Number(_useInput.value),
+    set: (newVal?: number) =>
+      _useInput.set(newVal === null ? '' : String(newVal || 0)),
+    toNumber: _useInput.value === '' ? null : Number(_useInput.value),
   }
 }
 export const useBooleanInput = (initialValue: boolean) => {
