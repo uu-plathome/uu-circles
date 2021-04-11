@@ -46,7 +46,11 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
           <div className="md:mr-4">
             <p>
               <FontAwesomeIcon color={colors.gray[600]} icon={faUserFriends} />
-              <span className="pl-2">{circle.numberOfMembers || 0}人</span>
+              {circle.numberOfMembers === null ? (
+                <span className="pl-2">未発表</span>
+              ) : (
+                <span className="pl-2">{circle.numberOfMembers}人</span>
+              )}
             </p>
           </div>
           {/* 週の活動日数 */}
@@ -60,12 +64,13 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
           <div className="md:mr-4">
             <p>
               <FontAwesomeIcon color={colors.gray[600]} icon={faWallet} />
-              <span className="pl-2">
-                {circle.admissionFeePerYear
-                  ? Number(circle.admissionFeePerYear).toLocaleString()
-                  : 0}
-                円/年
-              </span>
+              {circle.admissionFeePerYear === null ? (
+                <span className="pl-2">未発表</span>
+              ) : (
+                <span className="pl-2">
+                  {Number(circle.admissionFeePerYear).toLocaleString()}円/年
+                </span>
+              )}
             </p>
           </div>
         </div>
