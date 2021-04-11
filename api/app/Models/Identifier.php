@@ -11,4 +11,8 @@ class Identifier extends Model
     protected $fillable = [
         P::identifier_hash,
     ];
+    public function CircleGachaResult ()
+    {
+        return $this->hasOne("app\Models\CircleGachaResult");
+    }
 }
