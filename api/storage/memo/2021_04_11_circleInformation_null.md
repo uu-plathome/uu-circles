@@ -52,6 +52,7 @@ INNER JOIN
     circle_information ci ON ci.circle_id = circles.id
 WHERE
     ci.number_of_members = null
+   OR ci.number_of_members = 0
 ;
 
 commit;
@@ -114,6 +115,7 @@ INNER JOIN
     circle_information ci ON ci.circle_id = circles.id
 WHERE
     ci.admission_fee_per_year = null
+OR ci.admission_fee_per_year = 0
 ;
 
 commit;
