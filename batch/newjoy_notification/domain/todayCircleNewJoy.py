@@ -2,6 +2,7 @@ from domain import circleNewJoy
 
 
 class TodayCircleNewJoy:
+    idx : int
     slug: str
     circleType: str
     mainImageUrl: str
@@ -12,7 +13,6 @@ class TodayCircleNewJoy:
     ###Constructor###
     #No need to say static. See this(https://docs.python.org/ja/3/reference/datamodel.html#object.__init__)
     def __init__(self, arr:dict):
-        self.idx:int
         self.slug = arr['slug']
         self.circleType = arr['circleType']
         self.mainImageUrl = arr['mainImageUrl']
@@ -33,6 +33,8 @@ class TodayCircleNewJoy:
 
         if (self.circleNewJoy.startDate is not None and self.circleNewJoy.endDate is not None):
             text +='🗓 日にち:**'+str(self.circleNewJoy.format_startDay())+' ~ '+str(self.circleNewJoy.format_endDay())+'**\n\n'
+        elif (self.circleNewJoy.endDate is None):
+            text +='🗓 日にち:**'+str(self.circleNewJoy.format_startDay())+' ~ **\n\n'
 
         if (self.circleNewJoy.placeOfActivity is not None):
             text += '🧭 場所:**'+ self.circleNewJoy.placeOfActivity  +'**\n\n'
@@ -45,8 +47,7 @@ class TodayCircleNewJoy:
 
         if (self.slug is not None):
             text += '👀 サークルを見る: https://uu-circles.com/circle/'+self.slug+'\n\n'
-        # if (int(len(r['todayCircleNewJoys']) <= 10)):
-        #     text += '📌 新歓ルーム:**'+str(idx + 1)+'**\n\n'
+        text += '📌 新歓ルーム:**'+str(idx + 1)+'**\n\n'
         text += '\n---------------------------\n'
         return text
 

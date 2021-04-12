@@ -29,35 +29,51 @@ r = requests.get(API_URL, params=payload).json()
 client = discord.Client()
 
 ###MAKE_todayCircleNewJoys_Objects###
-# todayCircleNewJoys = map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys'])
+todayCircleNewJoys = list(map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys']))
 
-# ###SET_LOOP###
-# #ループ処理
-# @client.event
-# async def on_ready():
-#     channel = client.get_channel(CHANNEL_ID)
-#     #アナウンス
-#     if (len(r['todayCircleNewJoys']) == 0):
-#         await channel.send('***:crescent_moon:今日の新歓はありません***')
-#         exit()
-#     else:
-#         now = get_now()
-#         await channel.send('***☀️今日の新歓 '+now+'***')
-#         for idx, newjoy in enumerate(todayCircleNewJoys):
-#             message = newjoy.make_text(idx)
-#         #     message = domain.TodayCircleNewJoy(newjoy).make_text(idx)
-#             await channel.send(message)
-#         exit()
+###SORT_LIST###
+time_arr = []
+time_arr = sorted(todayCircleNewJoys, key=lambda x:x.circleNewJoy.startDate)
+# ###could check it's sorted###
+# print(list(map(lambda x: x.circleNewJoy.startDate, time_arr)))
 
-# client.run(TOKEN)
+###SET_IDX###
+for n, i in enumerate(time_arr):
+    i.idx =n
+    print(i.idx,i.name, i.circleNewJoy.format_startDay())
+
+
+###SET_LOOP###
+#ループ処理
+@client.event
+async def on_ready():
+    channel = client.get_channel(CHANNEL_ID)
+    #アナウンス
+    if (len(r['todayCircleNewJoys']) == 0):
+        await channel.send('***:crescent_moon:今日の新歓はありません***')
+        exit()
+    else:
+        now = get_now()
+        await channel.send('***☀️今日の新歓 '+now+'***')
+        for idx, newjoy in enumerate(time_arr):
+            message = newjoy.make_text(idx)
+            await channel.send(message)
+        exit()
+
+client.run(TOKEN)
 
 ###TEST_CODES###
 
-time_arr = []
-room_arr = []
-room_resist_arr = []
+# room_arr = []
+# room_resist_arr = []
 
-todayCircleNewJoys = list(map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys']))
-time_arr = sorted(todayCircleNewJoys, key=lambda x:x.circleNewJoy.startDate)
-###could check it's sorted###
-print(list(map(lambda x: x.circleNewJoy.startDate, time_arr)))
+# time_arr = []
+# todayCircleNewJoys = list(map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys']))
+# time_arr = sorted(todayCircleNewJoys, key=lambda x:x.circleNewJoy.startDate)
+
+# ###could check it's sorted###
+# print(list(map(lambda x: x.circleNewJoy.startDate, time_arr)))
+
+# for n, i in enumerate(time_arr):
+#     i.idx =n
+#     print(i.idx,i.name, i.circleNewJoy.format_startDay())
