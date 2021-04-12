@@ -14,8 +14,8 @@ class CreateIdentifiersTable extends Migration
     public function up()
     {
         Schema::create('identifiers', function (Blueprint $table) {
-            $table->UnsignedBigInteger('id');
-            $table->string('identifier_hash')->comment('UUIDをハッシュ化したもの');
+            $table->bigIncrements('id');
+            $table->string('identifier_hash')->unique()->comment('UUIDをハッシュ化したもの');
             $table->timestamps();
         });
         DB::statement("ALTER TABLE identifiers COMMENT '識別子管理'");
