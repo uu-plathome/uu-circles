@@ -32,9 +32,9 @@ const CreatePage: NextPage = () => {
   const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput('')
   const placeOfActivityDetail = useStringInput('')
-  const publishFrom = useDateInput(null, 'YYYY-MM-DD')
-  const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
-  const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
   useEffect(() => {
@@ -74,9 +74,9 @@ const CreatePage: NextPage = () => {
       placeOfActivity:
         placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
       placeOfActivityDetail: placeOfActivityDetail.value,
-      publishFrom: publishFrom.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
+      publishFrom: publishFrom.toFormatApi,
+      startDate: startDate.toFormatApi,
+      endDate: endDate.toFormatApi,
       release: release.value === 'true',
     } as UpdateCircleNewJoyRequest)
 
