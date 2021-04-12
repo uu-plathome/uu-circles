@@ -59,6 +59,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .idea/codestream.xml
+.idea/php-test-framework.xml
 
 # Docker Compose
 .env
