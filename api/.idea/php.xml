@@ -214,7 +214,9 @@
       </interpreter>
     </phpInfoCache>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpUnit">
     <phpunit_settings>
       <phpunit_by_interpreter interpreter_id="65f7e4dd-e588-41bb-abe3-97d84aea2073" custom_loader_path="/work/api/vendor/autoload.php" phpunit_phar_path="" />
