@@ -191,7 +191,7 @@ const BaseFooter: FC<Props> = () => {
     <div className="bg-gray-100">
       {width ? (
         <div className="md:px-6 md:mb-10 text-center">
-          <a href="https://media.uu-circles.com/" target="_blank">
+          <a href="https://media.uu-circles.com/">
             <Image
               src="/images/uuyell-poster.png"
               width={width > 700 ? 700 : width}
@@ -327,6 +327,11 @@ const BaseFooter: FC<Props> = () => {
               <li className="mb-3">
                 <Link href="/circle/newjoy">
                   <a className="text-gray-400 font-bold text-sm">今日の新歓</a>
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link href="/statistics">
+                  <a className="text-gray-400 font-bold text-sm">統計情報</a>
                 </Link>
               </li>
               <li className="mb-3">

@@ -20,8 +20,10 @@ import {
   UpdateCircleNewJoyRequest,
 } from '@/lib/types/api/UpdateCircleNewJoyRequest'
 import { Circle } from '@/lib/types/model/Circle'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
   FormEvent,
@@ -31,8 +33,6 @@ import {
   useMemo,
   useState,
 } from 'react'
-import Link from 'next/link'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -47,9 +47,9 @@ const CreatePage: NextPage = () => {
   const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
   const placeOfActivityDetail = useStringInput('')
-  const publishFrom = useDateInput(null, 'YYYY-MM-DD')
-  const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
-  const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
   useEffect(() => {
@@ -91,9 +91,9 @@ const CreatePage: NextPage = () => {
         privateNewjoyLink: privateNewjoyLink.value,
         placeOfActivity: placeOfActivity.value,
         placeOfActivityDetail: placeOfActivityDetail.value,
-        publishFrom: publishFrom.value,
-        startDate: startDate.value,
-        endDate: endDate.value,
+        publishFrom: publishFrom.toFormatApi,
+        startDate: startDate.toFormatApi,
+        endDate: endDate.toFormatApi,
         release: release.value === 'true',
       } as UpdateCircleNewJoyRequest
     )

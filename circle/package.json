@@ -1,6 +1,11 @@
 {
   "name": "uu-circles-circle-view",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/H37kouya/uu-circle",
+    "directory": "circle"
+  },
   "scripts": {
     "dev": "next -p 3001",
     "build": "next build",
