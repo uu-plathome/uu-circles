@@ -53,19 +53,19 @@ const CircleTypeBadge: FC<Props> = ({ circleType }) => {
       <p
         className={`
                 ${circleTypeColor}
-                text-white 
-                text-sm 
-                font-bold 
+                text-white
+                text-sm
+                font-bold
                 p-1
-                rounded-full 
-                md:rounded-none 
+                rounded-full
+                md:rounded-none
                 w-12
                 h-12
-                md:w-auto 
-                md:h-auto 
+                md:w-auto
+                md:h-auto
                 md:p-2
-                flex 
-                justify-center 
+                flex
+                justify-center
                 items-center
             `}
       >
