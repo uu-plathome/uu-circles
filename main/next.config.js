@@ -21,8 +21,4 @@ module.exports = withPWA({
   pwa: {
     dest: 'public', // swの出力ディレクトリ
   },
-
-  experimental: {
-    optimizeFonts: true,
-  },
 })
