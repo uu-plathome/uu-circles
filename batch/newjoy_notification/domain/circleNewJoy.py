@@ -93,7 +93,7 @@ class CircleNewJoy:
         )
         return occupancyStartTime
 
-    def occupancyEndTime() -> datetime:
+    def occupancyEndTime(self) -> datetime:
         """
             新歓ルーム占有終了時間
 
@@ -108,12 +108,12 @@ class CircleNewJoy:
         endTime = self.endDatetime()
 
         # (変数) = (条件がTrueのときの値) if (条件) else (条件がFalseのときの値)
-        minute = 0 if (startTime.minute < 30) else 30
+        minute = 0 if (endTime.minute < 30) else 30
 
         # 新歓ルーム占有終了時間
         occupancyEndTime = endTime.replace(
             hour=endTime.hour,
             minute=minute,
             second=0
-        ) + datetime.timedelta(hours=1)
+        ) + timedelta(hours=1)
         return occupancyEndTime
