@@ -29,26 +29,27 @@ r = requests.get(API_URL, params=payload).json()
 client = discord.Client()
 
 ###MAKE_todayCircleNewJoys_Objects###
-todayCircleNewJoys = list(map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys']))
+todayCircleNewJoys = list(
+    map(lambda newjoy: domain.TodayCircleNewJoy(newjoy), r['todayCircleNewJoys']))
 
 ###SORT_LIST###
 time_arr = []
-time_arr = sorted(todayCircleNewJoys, key=lambda x:x.circleNewJoy.startDate)
+time_arr = sorted(todayCircleNewJoys, key=lambda x: x.circleNewJoy.startDate)
 # ###could check it's sorted###
 # print(list(map(lambda x: x.circleNewJoy.startDate, time_arr)))
 
 ###SET_IDX###
 for n, i in enumerate(time_arr):
-    i.idx =n
-    print(i.idx,i.name, i.circleNewJoy.format_startDay())
+    i.idx = n
+    print(i.idx, i.name, i.circleNewJoy.format_startDay())
 
 
 ###SET_LOOP###
-#ループ処理
+# ループ処理
 @client.event
 async def on_ready():
     channel = client.get_channel(CHANNEL_ID)
-    #アナウンス
+    # アナウンス
     if (len(r['todayCircleNewJoys']) == 0):
         await channel.send('***:crescent_moon:今日の新歓はありません***')
         exit()

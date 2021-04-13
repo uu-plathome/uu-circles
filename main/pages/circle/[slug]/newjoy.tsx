@@ -15,6 +15,15 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Link from 'next/link'
+import { useMemo } from 'react'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type Props = {
   /** サークル */ circle?: Circle
@@ -45,6 +54,10 @@ const Page: NextPage<Props> = ({
   }
 
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/${circle.slug}/newjoy`,
+    [circle.slug]
+  )
   return (
     <div>
       <BaseHead title={`${circle.name}の新歓`} />
@@ -58,6 +71,7 @@ const Page: NextPage<Props> = ({
                 <h1 className="text-2xl text-center py-20">
                   {circle.name}の新歓
                 </h1>
+
                 <div className="grid grid-cols-7">
                   <div className="col-span-5">
                     {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
@@ -136,6 +150,35 @@ const Page: NextPage<Props> = ({
                         </div>
                       </a>
                     </Link>
+
+                    <h2 className="text-base font-bold">
+                      SNSで{circle.shortName || circle.name}の新歓をShare
+                    </h2>
+
+                    <div className="my-2 pb-2">
+                      <TwitterShareButton
+                        url={pageUrl}
+                        title={`UU-Circlesで${
+                          circle.shortName || circle.name
+                        }の新歓を見る！`}
+                        hashtags={['春から宇大']}
+                        className="mr-2"
+                      >
+                        <TwitterIcon size={40} round />
+                      </TwitterShareButton>
+
+                      <LineShareButton url={pageUrl} className="mr-2">
+                        <LineIcon size={40} round />
+                      </LineShareButton>
+
+                      <FacebookShareButton
+                        url={pageUrl}
+                        hashtag={'春から宇大'}
+                        className="mr-2"
+                      >
+                        <FacebookIcon size={40} round />
+                      </FacebookShareButton>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -194,6 +237,37 @@ const Page: NextPage<Props> = ({
                 </div>
 
                 <InformationCircleBesideNewJoySP circle={circle} />
+
+                <div className="pb-16">
+                  <h2 className="text-center font-bold">
+                    SNSで{circle.shortName || circle.name}の新歓をShare
+                  </h2>
+
+                  <div className="my-2 pb-2 flex justify-center">
+                    <TwitterShareButton
+                      url={pageUrl}
+                      title={`UU-Circlesで${
+                        circle.shortName || circle.name
+                      }の新歓を見る！`}
+                      hashtags={['春から宇大']}
+                      className="mr-2"
+                    >
+                      <TwitterIcon size={40} round />
+                    </TwitterShareButton>
+
+                    <LineShareButton url={pageUrl} className="mr-2">
+                      <LineIcon size={40} round />
+                    </LineShareButton>
+
+                    <FacebookShareButton
+                      url={pageUrl}
+                      hashtag={'春から宇大'}
+                      className="mr-2"
+                    >
+                      <FacebookIcon size={40} round />
+                    </FacebookShareButton>
+                  </div>
+                </div>
               </div>
             )}
           </BaseContainer>

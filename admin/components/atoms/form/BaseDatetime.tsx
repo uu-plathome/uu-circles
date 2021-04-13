@@ -26,21 +26,22 @@ const BaseDatetime: FC<Props> = ({
   onChangeDate,
 }) => {
   return (
-    <div className="flex flex-col space-y-1 mb-4">
+    <div className={`flex flex-col space-y-1 mb-4 ${error ? '' : 'pb-5'}`}>
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="flex items-end">
         {prefix ? <p className="ml-1 text-white">{prefix}</p> : ''}
 
         <DatePicker
-          dateFormat="yyyy-MM-dd HH:mm"
+          dateFormat="yyyy/MM/dd HH:mm"
           timeInputLabel="時間:"
-          showTimeInput
+          showTimeSelect
           selected={toDateOrNull}
           name={name}
           locale="ja"
           autoComplete="off"
           isClearable
+          timeIntervals={10}
           onChange={(date) => {
             console.info('BaseDatetime [UPDATE]', date)
             onChangeDate(date)

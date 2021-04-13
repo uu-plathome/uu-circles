@@ -16,13 +16,13 @@ import {
   isRegisterCircleNewJoyRequestValidationError,
   RegisterCircleNewJoyRequest,
 } from '@/lib/types/api/RegisterCircleNewJoyRequest'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FormEvent, useContext, useMemo, useState } from 'react'
 import useSWR from 'swr'
-import Link from 'next/link'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -36,9 +36,9 @@ const CreatePage: NextPage = () => {
   const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
   const placeOfActivityDetail = useStringInput('')
-  const publishFrom = useDateInput(null, 'YYYY-MM-DD')
-  const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
-  const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
   const { data: circle } = useSWR(
@@ -58,9 +58,9 @@ const CreatePage: NextPage = () => {
       privateNewjoyLink: privateNewjoyLink.value,
       placeOfActivity: placeOfActivity.value,
       placeOfActivityDetail: placeOfActivityDetail.value,
-      publishFrom: publishFrom.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
+      publishFrom: publishFrom.toFormatApi,
+      startDate: startDate.toFormatApi,
+      endDate: endDate.toFormatApi,
       release: release.toBoolean,
     } as RegisterCircleNewJoyRequest)
 
