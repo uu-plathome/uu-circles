@@ -101,6 +101,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\CircleGachaResult
+ *
+ * @property int $id
+ * @property string $gacha_hash ガチャID
+ * @property string $identifier_hash 識別子
+ * @property mixed $result_circle_ids ガチャ結果
+ * @property mixed $pickup_circle_ids ピックアップ一覧の保存
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereGachaHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereIdentifierHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult wherePickupCircleIds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereResultCircleIds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaResult whereUpdatedAt($value)
+ */
+	class CircleGachaResult extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CircleHandbill
  *
  * @property int $id
@@ -382,6 +407,27 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereUserId($value)
  */
 	class CircleUser extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Identifier
+ *
+ * @property int $id
+ * @property string $identifier_hash UUIDをハッシュ化したもの
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleGachaResult[] $circleGachaResults
+ * @property-read int|null $circle_gacha_results_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier whereIdentifierHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Identifier whereUpdatedAt($value)
+ */
+	class Identifier extends \Eloquent {}
 }
 
 namespace App\Models{
