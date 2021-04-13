@@ -73,19 +73,47 @@ class CircleNewJoy:
     def occupancyStartTime(self) -> datetime:
         """
             新歓ルーム占有開始時間
+
+            時について
+                新歓の開始日時の時と同じ。
+            分について
+                0 ≤ min < 30 のとき、分を00とする。
+                30 ≤ min ≤ 0 のとき、分を30とする。
         """
         # 新歓開始時間
         startTime = self.startDatetime()
+
+        # (変数) = (条件がTrueのときの値) if (条件) else (条件がFalseのときの値)
+        minute = 0 if (startTime.minute < 30) else 30
+
         # 新歓ルーム占有開始時間
-        occupancyStartTime = startTime
+        occupancyStartTime = startTime.replace(
+            minute=minute,
+            second=0
+        )
         return occupancyStartTime
 
     def occupancyEndTime() -> datetime:
         """
             新歓ルーム占有終了時間
+
+            時について
+                新歓の終了日時の時 (hour) + 1 (hour)
+
+            分について
+                0 ≤ min < 30 のとき、分 (min) を00とする。
+                30 ≤ min < 0 のとき、分 (min) を30とする。
         """
         # 新歓終了時間
         endTime = self.endDatetime()
+
+        # (変数) = (条件がTrueのときの値) if (条件) else (条件がFalseのときの値)
+        minute = 0 if (startTime.minute < 30) else 30
+
         # 新歓ルーム占有終了時間
-        occupancyEndTime = endTime + datetime.timedelta(hours=1)
+        occupancyEndTime = endTime.replace(
+            hour=endTime.hour,
+            minute=minute,
+            second=0
+        ) + datetime.timedelta(hours=1)
         return occupancyEndTime
