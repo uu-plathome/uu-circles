@@ -10,12 +10,12 @@ from domain import todayCircleNewJoy as domain
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
-# CHANNEL_ID = int(settings.CHANNEL_ID)
+CHANNEL_ID = int(settings.CHANNEL_ID)
 API_URL = settings.API_URL
 # TEST_API_URL = settings.TEST_API_URL
 
 ###TEST_CHANNEL_ID###
-CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
+# CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
 
 ###GET_API_INFORMATION###
 payload = {'key': 'value'}
@@ -41,7 +41,7 @@ time_arr = sorted(todayCircleNewJoys, key=lambda x: x.circleNewJoy.startDate)
 ###SET_IDX###
 for n, i in enumerate(time_arr):
     i.idx = n
-    print(i.idx, i.name, i.circleNewJoy.format_startDay())
+    print(i.idx, i.name, i.circleNewJoy.startDatetime())
 
 
 ###SET_LOOP###
