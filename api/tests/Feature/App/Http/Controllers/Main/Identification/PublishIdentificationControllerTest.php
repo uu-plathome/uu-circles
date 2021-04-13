@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Main\Main;
+namespace Tests\Feature\App\Http\Controllers\Main\Identification;
 
 use App\Enum\Property\IdentifierProperty;
+use App\Models\Identifier;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Tests\Traits\RefreshDatabaseLite;
@@ -38,10 +39,14 @@ class PublishIdentificationControllerTest extends TestCase
         $response->assertOk();
 
         //キーの存在確認
-        //idenfierHashに変換←Str::camel スネーク→キャメル型
+        // identifierHashに変換 ← Str::camel スネーク → キャメル型
         $this->assertArrayHasKey(Str::camel(IdentifierProperty::identifier_hash), $response);
-        
+
         //文字列であることの確認
-        $this->assertIsString($response[Str::camel(IdentifierProperty::identifier_hash)]);
+        $identifierHash = $response[Str::camel(IdentifierProperty::identifier_hash)];
+        $this->assertIsString($identifierHash);
+
+        // DBに値が存在するか確認
+        $this->assertTrue(Identifier::whereIdentifierHash($identifierHash)->exists());
     }
 }
