@@ -2,7 +2,7 @@
 	"name":				"サークルビラ一覧",
 	"short_name":		"サークルビラ一覧",
 	"description":		"",
-	"start_url":		"/favicions",
+	"start_url":		"/favicons",
 	"display":			"standalone",
 	"orientation":		"any",
 	"background_color":	"#fff",
