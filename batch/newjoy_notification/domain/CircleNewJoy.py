@@ -75,7 +75,7 @@ class CircleNewJoy:
             新歓ルーム占有開始時間
         """
         # 新歓開始時間
-        startTime = self.format_startDay()
+        startTime = self.startDatetime()
         # 新歓ルーム占有開始時間
         occupancyStartTime = startTime
         return occupancyStartTime
@@ -85,7 +85,7 @@ class CircleNewJoy:
             新歓ルーム占有終了時間
         """
         # 新歓終了時間
-        endTime = self.format_endDay()
+        endTime = self.endDatetime()
         # 新歓ルーム占有終了時間
         occupancyEndTime = endTime + datetime.timedelta(hours=1)
         return occupancyEndTime

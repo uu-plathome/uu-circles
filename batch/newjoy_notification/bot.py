@@ -41,7 +41,7 @@ time_arr = sorted(todayCircleNewJoys, key=lambda x: x.circleNewJoy.startDate)
 ###SET_IDX###
 for n, i in enumerate(time_arr):
     i.idx = n
-    print(i.idx, i.name, i.circleNewJoy.format_startDay())
+    print(i.idx, i.name, i.circleNewJoy.startDatetime())
 
 
 ###SET_LOOP###
