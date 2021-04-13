@@ -26,11 +26,12 @@ class StatisticsController
         Log::debug("StatisticsController args none");
 
         // 統計情報
-        $statistics = Cache::remember(
-            'StatisticsController.statistics',
-            60 * 60,
-            fn () => $this->statisticsUsecase->invoke()
-        );
+        $statistics = $this->statisticsUsecase->invoke();
+//        Cache::remember(
+//            'StatisticsController.statistics',
+//            60 * 60,
+//            fn () =>
+//        );
 
         return Arr::camel_keys([
             'statistics' => $statistics->toArray(),
