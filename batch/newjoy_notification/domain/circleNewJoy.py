@@ -7,7 +7,9 @@ def formatDatetime(original: datetime) -> datetime:
         日付のフォーマット (JST)
     """
     formatDatetime = datetime.strptime(original, '%Y-%m-%dT%H:%M:%S.%fZ')
+    formatDatetime = formatDatetime.replace(microsecond=0)
     formatDatetimeToJst = to_jst(formatDatetime)
+    print(formatDatetimeToJst)
     return formatDatetimeToJst
 
 
@@ -50,9 +52,6 @@ class CircleNewJoy:
             新歓開始時間
             7:00 <= startDatetime < endDatetime <= 6:59
         """
-        if (self.startDate is None):
-            return ''
-
         return formatDatetime(self.startDate)
 
     def endDatetime(self) -> datetime:
@@ -65,7 +64,7 @@ class CircleNewJoy:
             tmp_day = datetime.now()
             tmp_format_endDay = to_jst(tmp_day.now() + timedelta(days=1))
             format_endDay = tmp_format_endDay.replace(
-                hour=6, minute=59, second=0)
+                hour=6, minute=59, second=0, microsecond=0)
             return format_endDay
 
         return formatDatetime(self.endDate)

@@ -78,3 +78,4 @@ client.run(TOKEN)
 # for n, i in enumerate(time_arr):
 #     i.idx =n
 #     print(i.idx,i.name, i.circleNewJoy.format_startDay())
+
