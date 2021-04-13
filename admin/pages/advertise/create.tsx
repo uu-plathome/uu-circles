@@ -24,8 +24,8 @@ const CreatePage: NextPage = () => {
   const mainImageUrl = useStringInput('')
   const active = useBooleanInput(true)
   const advertiseType = useStringInput(AdvertiseType.COMMON)
-  const publishTo = useDateInput(null, 'YYYY-MM-DD')
-  const publishFrom = useDateInput(null, 'YYYY-MM-DD')
+  const publishTo = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -37,8 +37,8 @@ const CreatePage: NextPage = () => {
       mainImageUrl: mainImageUrl.value,
       advertiseType: advertiseType.value,
       active: active.toBoolean,
-      publishTo: publishTo.value,
-      publishFrom: publishFrom.value,
+      publishTo: publishTo.toFormatApi,
+      publishFrom: publishFrom.toFormatApi,
     })
 
     if (isCreateAdvertiseRequestValidationError(data)) {

@@ -1,6 +1,6 @@
 import { isDate, isDatetime } from '@/lib/utils/Date'
 import { dayjs } from '@/plugins/Dayjs'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export const useInput = <T extends string>(initialValue: T) => {
   const [state, set] = useState<T>(initialValue)
@@ -45,14 +45,15 @@ export const useStringInput = (initialValue: string) => {
     },
   }
 }
-export const useNumberInput = (initialValue: number) => {
+export const useNumberInput = (initialValue: number | null) => {
   const initialValueStr = String(initialValue)
-  const _useInput = useInput(initialValueStr)
+  const _useInput = useInput(initialValue === null ? '' : initialValueStr)
 
   return {
     ..._useInput,
-    set: (newVal?: number) => _useInput.set(String(newVal || 0)),
-    toNumber: Number(_useInput.value),
+    set: (newVal?: number) =>
+      _useInput.set(newVal === null ? '' : String(newVal || 0)),
+    toNumber: _useInput.value === '' ? null : Number(_useInput.value),
   }
 }
 export const useBooleanInput = (initialValue: boolean) => {
@@ -67,14 +68,35 @@ export const useBooleanInput = (initialValue: boolean) => {
 }
 export const useDateInput = (
   initialValue?: Date,
-  format = 'YYYY-MM-DD HH:mm'
+  format = 'YYYY/MM/DD HH:mm',
+  apiFormat = 'YYYY-MM-DD HH:mm'
 ) => {
   const initialValueStr = initialValue ? initialValue.toISOString() : ''
   const _useInput = useInput(initialValueStr)
   const set = (newVal?: Date | string) => {
-    if (typeof newVal === 'string' && (isDate(newVal) || isDatetime(newVal))) {
-      const val = dayjs(newVal)
-      _useInput.set(val.format(format))
+    if (!newVal) {
+      _useInput.set('')
+      return
+    }
+
+    if (typeof newVal === 'string') {
+      const formatNewVal = newVal.replace(/-/g, '/')
+
+      if (isDate(formatNewVal) || isDatetime(formatNewVal)) {
+        const val = dayjs(formatNewVal)
+        _useInput.set(val.format(format))
+        return
+      }
+
+      console.error(
+        'useDateInputで予期せぬ値が入っています。 newValはstring型です。',
+        {
+          newVal,
+          formatNewVal,
+          isDate: isDate(formatNewVal),
+          isDatetime: isDatetime(formatNewVal),
+        }
+      )
       return
     }
 
@@ -84,14 +106,23 @@ export const useDateInput = (
       return
     }
 
-    _useInput.set('')
+    console.error('useDateInputで予期せぬ値が入っています。', newVal)
   }
 
   return {
     ..._useInput,
     set,
     onChangeDate: (date?: Date) => set(date),
-    toDateOrNull: _useInput.value ? new Date(_useInput.value) : null,
+    toDateOrNull: useMemo(() => {
+      return _useInput.value ? new Date(_useInput.value) : null
+    }, [_useInput]),
+    toFormatApi: useMemo(() => {
+      if (!_useInput.value) {
+        return null
+      }
+
+      return dayjs(_useInput.value).format(apiFormat)
+    }, [_useInput, apiFormat]),
   }
 }
 

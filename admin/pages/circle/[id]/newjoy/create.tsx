@@ -30,9 +30,9 @@ const CreatePage: NextPage = () => {
   const privateNewjoyLink = useStringInput('')
   const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
   const placeOfActivityDetail = useStringInput('')
-  const publishFrom = useDateInput(null, 'YYYY-MM-DD')
-  const startDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
-  const endDate = useDateInput(null, 'YYYY-MM-DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD', 'YYYY-MM-DD')
+  const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const release = useBooleanInput(true)
 
   const { data: circle } = useSWR([`/admin/api/circle/${id}`, Number(id)], () =>
@@ -51,9 +51,9 @@ const CreatePage: NextPage = () => {
       privateNewjoyLink: privateNewjoyLink.value,
       placeOfActivity: placeOfActivity.value,
       placeOfActivityDetail: placeOfActivityDetail.value,
-      publishFrom: publishFrom.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
+      publishFrom: publishFrom.toFormatApi,
+      startDate: startDate.toFormatApi,
+      endDate: endDate.toFormatApi,
       release: release.toBoolean,
     } as RegisterCircleNewJoyRequest)
 

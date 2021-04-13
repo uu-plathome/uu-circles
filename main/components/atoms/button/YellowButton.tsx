@@ -30,7 +30,7 @@ const buttonClassName = `
     shadow
     ripple
     hover:shadow-lg
-    hover:bg-yellow-500
+    hover:opacity-80
     focus:outline-none
 `
 const YellowButton: React.FC<Props> = ({
