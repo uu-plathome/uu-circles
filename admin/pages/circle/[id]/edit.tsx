@@ -22,8 +22,8 @@ import {
 } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
 import Compressor from 'compressorjs'
 import { NextPage } from 'next'
@@ -69,8 +69,8 @@ const EditPage: NextPage = () => {
   const onlineDateOfActivitySaturday = useBooleanInput(false)
   const onlineDateOfActivitySunday = useBooleanInput(false)
   const onlineDateOfActivityDetail = useStringInput('')
-  const admissionFeePerYear = useNumberInput(0)
-  const numberOfMembers = useNumberInput(0)
+  const admissionFeePerYear = useNumberInput(null)
+  const numberOfMembers = useNumberInput(null)
   const publicEmail = useStringInput('')
   const twitterUrl = useStringInput('')
   const facebookUrl = useStringInput('')

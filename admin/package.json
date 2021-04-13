@@ -1,6 +1,11 @@
 {
   "name": "uu-circles-admin-view",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/H37kouya/uu-circle",
+    "directory": "admin"
+  },
   "scripts": {
     "dev": "next -p 3002",
     "build": "next build",

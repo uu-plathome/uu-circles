@@ -71,7 +71,7 @@ jobs:
             cd ~/uu-circles.com/work/api-stg && \
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
-            git clone git@github.com:H37kouya/uu-circle.git && \
+            git clone https://github.com/H37kouya/uu-circle.git && \
             cd uu-circle/api && \
             git reset --hard origin/develop/stg && \
             cp ../../../.env .env && \
@@ -103,7 +103,7 @@ jobs:
             cd ~/uu-circles.com/work/api && \
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
-            git clone git@github.com:H37kouya/uu-circle.git && \
+            git clone https://github.com/H37kouya/uu-circle.git && \
             cd uu-circle/api && \
             git reset --hard origin/develop/production && \
             cp ../../../.env .env && \
