@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Main\Circle;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\GetCircleListUsecase;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,10 +16,14 @@ use Illuminate\Support\Facades\Log;
 
 class IndexCircleController extends Controller
 {
+    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetCircleListUsecase $getCircleListUsecase;
 
-    public function __construct(GetCircleListUsecase $getCircleListUsecase)
-    {
+    public function __construct(
+        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        GetCircleListUsecase $getCircleListUsecase
+    ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getCircleListUsecase = $getCircleListUsecase;
     }
 
@@ -25,7 +31,7 @@ class IndexCircleController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function __invoke(Request $request)
     {
@@ -34,6 +40,12 @@ class IndexCircleController extends Controller
         $circles = Cache::remember($this->getCacheKey(), 60, function () {
             return $this->getCircleListUsecase->invoke();
         });
+
+        $articles = Cache::remember(
+            FetchUuYellArticlesKey::uuYellCacheKey(),
+            60 * 60,
+            fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
 
         return [
             'data' => Arr::camel_keys(
@@ -44,6 +56,7 @@ class IndexCircleController extends Controller
                     ])
                 )->toArray()
             ),
+            'uuYellArticles' => $articles,
         ];
     }
 
