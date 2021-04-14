@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\TagSlugProperty;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -31,6 +32,7 @@ class SearchTagCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        Http::fake();
         $tagList = TagSlugProperty::getAll();
         $tag = $tagList[array_rand($tagList)];
         Log::info($tag);

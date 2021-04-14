@@ -8,6 +8,8 @@ use App\Support\Arr;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\Usecases\Main\Circle\SearchCategoryCircleListUsecase;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,14 +19,18 @@ use Illuminate\Support\Facades\Log;
 
 class SearchCategoryCircleController extends Controller
 {
+    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
+
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
     private SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase;
 
     public function __construct(
+        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
         SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase
     ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->searchCategoryCircleListUsecase = $searchCategoryCircleListUsecase;
     }
@@ -32,8 +38,9 @@ class SearchCategoryCircleController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param string $category
+     * @return array|void
      */
     public function __invoke(Request $request, string $category)
     {
@@ -62,6 +69,12 @@ class SearchCategoryCircleController extends Controller
             fn () => $this->getRandomCircleUsecase->invoke(6)
         );
 
+        $articles = Cache::remember(
+            FetchUuYellArticlesKey::uuYellCacheKey(),
+            60 * 60,
+            fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -79,6 +92,7 @@ class SearchCategoryCircleController extends Controller
                     ])
                 )->toArray()
             ),
+            'uuYellArticles' => $articles,
         ];
     }
 
