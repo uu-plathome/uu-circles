@@ -7,6 +7,8 @@ use App\Support\Arr;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\Usecases\Main\Circle\SearchNameCircleListUsecase;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -16,14 +18,18 @@ use Illuminate\Support\Facades\Log;
 
 class SearchNameCircleController extends Controller
 {
+    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
+
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
     private SearchNameCircleListUsecase $searchNameCircleListUsecase;
 
     public function __construct(
+        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
         SearchNameCircleListUsecase $searchNameCircleListUsecase
     ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->searchNameCircleListUsecase = $searchNameCircleListUsecase;
     }
@@ -49,6 +55,12 @@ class SearchNameCircleController extends Controller
             fn () => $this->getRandomCircleUsecase->invoke(6)
         );
 
+        $articles = Cache::remember(
+            FetchUuYellArticlesKey::uuYellCacheKey(),
+            60 * 60,
+            fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -66,6 +78,7 @@ class SearchNameCircleController extends Controller
                     ])
                 )->toArray()
             ),
+            'uuYellArticles' => $articles,
         ];
     }
 
