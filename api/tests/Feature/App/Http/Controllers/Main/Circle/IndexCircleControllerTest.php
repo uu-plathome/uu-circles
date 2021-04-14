@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -30,6 +31,7 @@ class IndexCircleControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        Http::fake();
 
         // WHEN
         $response = $this->get("/api/circle");
