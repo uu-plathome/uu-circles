@@ -17,7 +17,36 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
+import { FC } from 'react'
 import { WP_REST_API_Post } from 'wp-types'
+
+const WpPostBlock: FC<{
+  post: WP_REST_API_Post
+}> = ({ post }) => {
+  return (
+    <a href={post.link}>
+      <div
+        className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto md:mx-0 mb-2"
+        style={{ width: 320 }}
+      >
+        <div className="w-full pr-3">
+          <h3 className="text-black font-bold text-sm mb-1 max-line-4 ">
+            {post.title.rendered}
+          </h3>
+        </div>
+
+        <div>
+          <div
+            className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center cursor-pointer"
+            style={{ width: 52, height: 52 }}
+          >
+            見る
+          </div>
+        </div>
+      </div>
+    </a>
+  )
+}
 
 type Props = {
   circle?: Circle
@@ -35,6 +64,7 @@ const Page: NextPage<Props> = ({
   circleTags,
   circleNewJoys,
   uuYellArticles,
+  wpPosts,
   errorCode,
 }) => {
   if (errorCode) {
@@ -130,6 +160,45 @@ const Page: NextPage<Props> = ({
               <div className="order-4 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
+
+              {wpPosts &&
+              wpPosts.postsExistTags &&
+              wpPosts.postsExistTags.length > 0 ? (
+                <div className="order-5 pt-10">
+                  <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
+
+                  {wpPosts.postsExistTags.map((post, key) => {
+                    return (
+                      <div
+                        key={`wpPosts.postsExistTags-${key}`}
+                        className="mb-4"
+                      >
+                        <WpPostBlock post={post} />
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                ''
+              )}
+
+              {wpPosts &&
+              wpPosts.postsNotTags &&
+              wpPosts.postsNotTags.length > 0 ? (
+                <div className="order-6 pt-10">
+                  <ShowCircleTitle>最新の投稿</ShowCircleTitle>
+
+                  {wpPosts.postsNotTags.map((post, key) => {
+                    return (
+                      <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
+                        <WpPostBlock post={post} />
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                ''
+              )}
             </div>
           </BaseContainer>
         </div>
