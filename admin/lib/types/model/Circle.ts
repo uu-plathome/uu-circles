@@ -57,6 +57,8 @@ export interface Circle {
   activityImageUrl6: string
   /** WordPressのURL */
   wpUrl: string
+  /** WordPressのTag */
+  wpTagTaxonomy: string
   /** WordPressの投稿を表示するかどうか */
   isViewWpPost: boolean
   createdAt: string

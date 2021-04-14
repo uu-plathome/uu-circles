@@ -91,6 +91,7 @@ const EditPage: NextPage = () => {
   const activityImageUrl5 = useStringInput('')
   const activityImageUrl6 = useStringInput('')
   const wpUrl = useStringInput('')
+  const wpTagTaxonomy = useStringInput('')
   const isViewWpPost = useBooleanInput(false)
   const [isOpen, setIsOpen] = useState(false)
   const { id } = router.query
@@ -167,6 +168,7 @@ const EditPage: NextPage = () => {
         activityImageUrl5.set(foundCircle.activityImageUrl5)
         activityImageUrl6.set(foundCircle.activityImageUrl6)
         wpUrl.set(foundCircle.wpUrl)
+        wpTagTaxonomy.set(foundCircle.wpTagTaxonomy)
         isViewWpPost.set(foundCircle.isViewWpPost)
       }
     }
@@ -418,6 +420,7 @@ const EditPage: NextPage = () => {
         activityImageUrl5: activityImageUrl5.value,
         activityImageUrl6: activityImageUrl6.value,
         wpUrl: wpUrl.value,
+        wpTagTaxonomy: wpTagTaxonomy.value,
         isViewWpPost: isViewWpPost.toBoolean,
       } as UpdateCircleFormRequest)
 
@@ -513,6 +516,7 @@ const EditPage: NextPage = () => {
         activityImageUrl5.setErrors(data.errors.activityImageUrl5)
         activityImageUrl6.setErrors(data.errors.activityImageUrl6)
         wpUrl.setErrors(data.errors.wpUrl)
+        wpTagTaxonomy.setErrors(data.errors.wpTagTaxonomy)
         isViewWpPost.setErrors(data.errors.isViewWpPost)
         setIsOpen(false)
         return
@@ -635,6 +639,7 @@ const EditPage: NextPage = () => {
                     activityImageUrl5,
                     activityImageUrl6,
                     wpUrl,
+                    wpTagTaxonomy,
                     isViewWpPost,
                   }}
                 />
