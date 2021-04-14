@@ -105,6 +105,17 @@ class CircleInformation extends Model
     }
 
     /**
+     * WordPressのURLの末尾のスラッシュを必ず削除
+     *
+     * @param $value
+     */
+    public function setWpUrlAttribute($value)
+    {
+        $this->attributes['wp_url'] = rtrim($value, '/');
+    }
+
+
+    /**
      * 週の活動日数
      *
      * @return integer
