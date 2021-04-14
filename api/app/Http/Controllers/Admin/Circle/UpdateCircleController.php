@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Circle;
 
+use App\Enum\Property\CircleInformationProperty;
+use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
