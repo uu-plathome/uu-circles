@@ -57,6 +57,7 @@ export interface UpdateCircleFormRequest {
   activityImageUrl5?: string
   activityImageUrl6?: string
   wpUrl?: string
+  wpTagTaxonomy?: string
   isViewWpPost?: boolean
   handbillImageUrl?: string
 }
@@ -121,6 +122,7 @@ export interface UpdateCircleFormRequestValidationError {
     activityImageUrl5?: string[]
     activityImageUrl6?: string[]
     wpUrl?: string[]
+    wpTagTaxonomy?: string[]
     isViewWpPost?: string[]
     handbillImageUrl?: string[]
   }
