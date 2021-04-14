@@ -32,6 +32,10 @@ export const getCircleBySlug = async (
   circleTags: CircleTagModel[]
   circleNewJoys: CircleNewJoy[]
   /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** WordPress記事 */ wpPosts: {
+    postsNotTags: WP_REST_API_Post[]
+    postsExistTags: WP_REST_API_Post[]
+  }
 }> => {
   try {
     type Response = {
@@ -39,6 +43,10 @@ export const getCircleBySlug = async (
       circleTags: CircleTagModel[]
       circleNewJoys: CircleNewJoy[]
       /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** WordPress記事 */ wpPosts: {
+        postsNotTags: WP_REST_API_Post[]
+        postsExistTags: WP_REST_API_Post[]
+      }
     }
     const { data } = await axiosInstance.get<Response>(
       linkConst.CIRCLE.SLUG(slug)
@@ -49,6 +57,7 @@ export const getCircleBySlug = async (
       circleTags: data.circleTags,
       circleNewJoys: data.circleNewJoys,
       /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** WordPress記事 */ wpPosts: data.wpPosts,
     }
   } catch (_e) {
     const e = _e as AxiosError
