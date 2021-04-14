@@ -3,6 +3,7 @@
 namespace App\Usecases\Main\UuYell;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class FetchUuYellArticlesUsecase
 {
@@ -15,6 +16,8 @@ class FetchUuYellArticlesUsecase
      */
     public function invoke()
     {
+        Log::debug("FetchUuYellArticlesUsecase args none");
+
         $baseUrl = self::BASE_UU_YELL_URL;
         $fetchNumber = self::MAX_FETCH_NUMBER;
 
