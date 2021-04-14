@@ -7,17 +7,22 @@ import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { getCircleByTag } from '@/infra/api/circle'
 import { __ } from '@/lang/ja'
-import { getAllTagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
-const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
+const Page: NextPage<Props> = ({
+  circles,
+  recommendCircles,
+  uuYellArticles,
+}) => {
   const router = useRouter()
   const { tag } = router.query
   const circleTagTitle = __(String(tag).toUpperCase(), 'CircleTagTitle')
@@ -61,7 +66,7 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -74,12 +79,15 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles } = await getCircleByTag(params.tag)
+  const { circles, recommendCircles, uuYellArticles } = await getCircleByTag(
+    params.tag
+  )
 
   return {
     props: {
       circles,
       recommendCircles,
+      uuYellArticles,
     },
     revalidate: 120,
   }

@@ -9,13 +9,19 @@ import { searchCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
-const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
+const Page: NextPage<Props> = ({
+  circles,
+  recommendCircles,
+  uuYellArticles,
+}) => {
   const router = useRouter()
   const { name } = router.query
 
@@ -42,7 +48,7 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -57,12 +63,15 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const { circles, recommendCircles } = await searchCircle(params.name)
+  const { circles, recommendCircles, uuYellArticles } = await searchCircle(
+    params.name
+  )
 
   return {
     props: {
       circles,
       recommendCircles,
+      uuYellArticles,
     },
   }
 }
