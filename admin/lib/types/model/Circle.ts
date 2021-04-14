@@ -55,6 +55,10 @@ export interface Circle {
   activityImageUrl4: string
   activityImageUrl5: string
   activityImageUrl6: string
+  /** WordPressのURL */
+  wpUrl: string
+  /** WordPressの投稿を表示するかどうか */
+  isViewWpPost: boolean
   createdAt: string
   updatedAt: string
 }

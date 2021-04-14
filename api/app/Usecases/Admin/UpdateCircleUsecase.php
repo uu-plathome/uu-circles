@@ -19,6 +19,7 @@ class UpdateCircleUsecase
      * invoke
      *
      * @param CircleValueObject $circleValueObject
+     * @param string $role
      * @return CircleValueObject
      * @throws Exception
      */
@@ -34,7 +35,11 @@ class UpdateCircleUsecase
         // システム管理者のときはis_main_fixedを変更でき、それ以外は変更できない。
         $circle = $role === Role::SYSTEM ?
             $circleValueObject->toArray() :
-            Arr::except($circleValueObject->toArray(), ['is_main_fixed']);
+            Arr::except($circleValueObject->toArray(), [
+                'is_main_fixed',
+                CircleInformationProperty::wp_url,
+                CircleInformationProperty::is_view_wp_post,
+            ]);
 
         try {
             /** @var Circle $newCircle */

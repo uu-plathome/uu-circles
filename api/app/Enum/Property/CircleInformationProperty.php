@@ -58,4 +58,6 @@ class CircleInformationProperty
     const activity_image_url4 = 'activity_image_url4';
     const activity_image_url5 = 'activity_image_url5';
     const activity_image_url6 = 'activity_image_url6';
+    const wp_url = 'wp_url';
+    const is_view_wp_post = 'is_view_wp_post';
 }

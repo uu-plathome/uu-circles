@@ -56,6 +56,8 @@ export interface UpdateCircleFormRequest {
   activityImageUrl4?: string
   activityImageUrl5?: string
   activityImageUrl6?: string
+  wpUrl?: string
+  isViewWpPost?: boolean
   handbillImageUrl?: string
 }
 
@@ -118,6 +120,8 @@ export interface UpdateCircleFormRequestValidationError {
     activityImageUrl4?: string[]
     activityImageUrl5?: string[]
     activityImageUrl6?: string[]
+    wpUrl?: string[]
+    isViewWpPost?: string[]
     handbillImageUrl?: string[]
   }
   message: string
