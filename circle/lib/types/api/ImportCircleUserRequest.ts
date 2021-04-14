@@ -17,5 +17,10 @@ export interface ImportCircleUserRequestValidationError {
   message: string
 }
 
-export const isImportCircleUserRequest = (v: any): v is ImportCircleUserRequest => v && v.type === 'ImportCircleUserRequest'
-export const isImportCircleUserRequestValidationError = (v: any): v is ImportCircleUserRequestValidationError => v && v.type === 'ImportCircleUserRequestValidationError'
+export const isImportCircleUserRequest = (
+  v: any
+): v is ImportCircleUserRequest => v && v.type === 'ImportCircleUserRequest'
+export const isImportCircleUserRequestValidationError = (
+  v: any
+): v is ImportCircleUserRequestValidationError =>
+  v && v.type === 'ImportCircleUserRequestValidationError'
