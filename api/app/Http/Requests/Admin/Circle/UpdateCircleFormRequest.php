@@ -150,6 +150,8 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationProperty::activity_image_url4 => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationProperty::activity_image_url5 => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationProperty::activity_image_url6 => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::wp_url              => ['nullable', 'string', 'url', 'max:255'],
+            CircleInformationProperty::is_view_wp_post     => ['nullable', 'boolean'],
             'handbill_image_url'                           => ['nullable', 'string', 'url', 'max:255'],
         ]);
     }
