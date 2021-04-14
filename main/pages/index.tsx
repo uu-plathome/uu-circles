@@ -14,13 +14,20 @@ import { Advertise } from '@/lib/types/model/Advertise'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   advertises: Advertise[]
   mainAdvertises: Advertise[]
   circles: Circle[]
+  uuYellArticles: WP_REST_API_Post[]
 }
-const Index: NextPage<Props> = ({ advertises, mainAdvertises, circles }) => {
+const Index: NextPage<Props> = ({
+  advertises,
+  mainAdvertises,
+  circles,
+  uuYellArticles,
+}) => {
   return (
     <div>
       <Head>
@@ -72,7 +79,7 @@ const Index: NextPage<Props> = ({ advertises, mainAdvertises, circles }) => {
 
           <MainSponsorshipFooter advertises={advertises} />
 
-          <BaseFooter />
+          <BaseFooter uuYellArticles={uuYellArticles} />
         </div>
       </BaseLayout>
     </div>
@@ -80,13 +87,19 @@ const Index: NextPage<Props> = ({ advertises, mainAdvertises, circles }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, advertises, mainAdvertises } = await getMain()
+  const {
+    circles,
+    advertises,
+    mainAdvertises,
+    uuYellArticles,
+  } = await getMain()
 
   return {
     props: {
       advertises,
       circles,
       mainAdvertises,
+      uuYellArticles,
     },
     revalidate: 120,
   }

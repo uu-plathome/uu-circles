@@ -12,12 +12,14 @@ import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { FormEvent } from 'react'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   errorCode?: number
-  circles: Circle[]
+  circles?: Circle[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
-const Page: NextPage<Props> = ({ circles }) => {
+const Page: NextPage<Props> = ({ circles, uuYellArticles }) => {
   const router = useRouter()
   const name = useStringInput('')
   const onSubmit = (event: FormEvent) => {
@@ -54,18 +56,19 @@ const Page: NextPage<Props> = ({ circles }) => {
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles } = await getAllCircleList()
+  const { circles, uuYellArticles } = await getAllCircleList()
 
   return {
     props: {
       circles,
+      uuYellArticles,
     },
     revalidate: 120,
   }
