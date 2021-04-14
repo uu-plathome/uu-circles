@@ -81,6 +81,7 @@ class CircleInformation extends Model
         P::online_date_of_activity_saturday   => 'boolean',
         P::online_date_of_activity_sunday     => 'boolean',
         P::is_club_activities                 => 'boolean',
+        P::is_view_wp_post                    => 'boolean',
     ];
 
     protected $appends = [
@@ -102,6 +103,16 @@ class CircleInformation extends Model
     public function setNameKanaAttribute($value)
     {
         $this->attributes['name_kana'] = mb_convert_kana($value, "KVC");
+    }
+
+    /**
+     * WordPressのURLの末尾のスラッシュを必ず削除
+     *
+     * @param $value
+     */
+    public function setWpUrlAttribute($value)
+    {
+        $this->attributes['wp_url'] = rtrim($value, '/');
     }
 
     /**
