@@ -22,7 +22,7 @@ class FetchUuYellArticlesUsecase
         $fetchNumber = self::MAX_FETCH_NUMBER;
 
         // HTTP リクエスト
-        $response = Http::get("$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber");
+        $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber");
 
         if ($response->status() === 200) {
             return $response->json();
