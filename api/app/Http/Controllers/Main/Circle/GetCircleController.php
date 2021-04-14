@@ -76,12 +76,12 @@ class GetCircleController extends Controller
         $wpPosts = $circle->circleValueObject->is_view_wp_post ? Cache::remember(
             FetchWordPressPostsUsecase::getCacheKey(
                 $circle->circleValueObject->wp_url,
-                null
+                $circle->circleValueObject->wp_tag_taxonomy
             ),
             60 * 60,
             fn () => $this->fetchWordPressPostsUsecase->invoke(
                 $circle->circleValueObject->wp_url,
-                null
+                $circle->circleValueObject->wp_tag_taxonomy
             )
         ) : [
             'postsNotTags'   => [],
