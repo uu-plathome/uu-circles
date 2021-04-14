@@ -60,6 +60,7 @@ class CircleInformation extends Model
         P::activity_image_url5,
         P::activity_image_url6,
         P::wp_url,
+        P::wp_tag_taxonomy,
         P::is_view_wp_post,
     ];
 
