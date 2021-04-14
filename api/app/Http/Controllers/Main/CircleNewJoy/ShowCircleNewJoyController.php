@@ -31,6 +31,7 @@ class ShowCircleNewJoyController extends Controller
         GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase,
         IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase
     ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getTodayCircleNewJoyWithLimitUsecase = $getTodayCircleNewJoyWithLimitUsecase;
         $this->indexCircleNewJoyUsecase = $indexCircleNewJoyUsecase;
