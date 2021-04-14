@@ -177,6 +177,8 @@ namespace App\Models{
  * @property string|null $activity_image_url4 活動画像4
  * @property string|null $activity_image_url5 活動画像5
  * @property string|null $activity_image_url6 活動画像6
+ * @property string|null $wp_url WordPress URL
+ * @property bool $is_view_wp_post WordPressの記事を表示するかどうか
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Circle $circle
@@ -217,6 +219,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereInstagramUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsClubActivities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsOnlineActivity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsViewWpPost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereLineUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMammoth()
@@ -244,6 +247,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereTiktokUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereTwitterUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereWpUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereYoutubeUrl($value)
  */
 	class CircleInformation extends \Eloquent {}

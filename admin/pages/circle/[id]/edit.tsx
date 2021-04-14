@@ -90,6 +90,8 @@ const EditPage: NextPage = () => {
   const activityImageUrl4 = useStringInput('')
   const activityImageUrl5 = useStringInput('')
   const activityImageUrl6 = useStringInput('')
+  const wpUrl = useStringInput('')
+  const isViewWpPost = useBooleanInput(false)
   const [isOpen, setIsOpen] = useState(false)
   const { id } = router.query
 
@@ -164,6 +166,8 @@ const EditPage: NextPage = () => {
         activityImageUrl4.set(foundCircle.activityImageUrl4)
         activityImageUrl5.set(foundCircle.activityImageUrl5)
         activityImageUrl6.set(foundCircle.activityImageUrl6)
+        wpUrl.set(foundCircle.wpUrl)
+        isViewWpPost.set(foundCircle.isViewWpPost)
       }
     }
 
@@ -413,6 +417,8 @@ const EditPage: NextPage = () => {
         activityImageUrl4: activityImageUrl4.value,
         activityImageUrl5: activityImageUrl5.value,
         activityImageUrl6: activityImageUrl6.value,
+        wpUrl: wpUrl.value,
+        isViewWpPost: isViewWpPost.toBoolean,
       } as UpdateCircleFormRequest)
 
       if (isUpdateCircleFormRequestValidationError(data)) {
@@ -506,6 +512,8 @@ const EditPage: NextPage = () => {
         activityImageUrl4.setErrors(data.errors.activityImageUrl4)
         activityImageUrl5.setErrors(data.errors.activityImageUrl5)
         activityImageUrl6.setErrors(data.errors.activityImageUrl6)
+        wpUrl.setErrors(data.errors.wpUrl)
+        isViewWpPost.setErrors(data.errors.isViewWpPost)
         setIsOpen(false)
         return
       }
@@ -626,6 +634,8 @@ const EditPage: NextPage = () => {
                     activityImageUrl4,
                     activityImageUrl5,
                     activityImageUrl6,
+                    wpUrl,
+                    isViewWpPost,
                   }}
                 />
               </>
