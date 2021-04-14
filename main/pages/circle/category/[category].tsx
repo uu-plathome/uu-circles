@@ -13,13 +13,19 @@ import { Circle } from '@/lib/types/model/Circle'
 import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
-const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
+const Page: NextPage<Props> = ({
+  circles,
+  recommendCircles,
+  uuYellArticles,
+}) => {
   const router = useRouter()
   const { category } = router.query
 
@@ -69,7 +75,7 @@ const Page: NextPage<Props> = ({ circles, recommendCircles }) => {
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -82,14 +88,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles } = await getCircleByCategory(
-    params.category
-  )
+  const {
+    circles,
+    recommendCircles,
+    uuYellArticles,
+  } = await getCircleByCategory(params.category)
 
   return {
     props: {
       circles,
       recommendCircles,
+      uuYellArticles,
     },
     revalidate: 120,
   }

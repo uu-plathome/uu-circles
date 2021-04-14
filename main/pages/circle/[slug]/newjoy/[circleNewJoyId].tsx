@@ -10,6 +10,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   errorCode?: number
@@ -23,6 +24,7 @@ type Props = {
     slug: string
     circleNewJoy: CircleNewJoy
   }[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
 const Page: NextPage<Props> = ({
   errorCode,
@@ -32,6 +34,7 @@ const Page: NextPage<Props> = ({
   futureCircleNewJoys,
   nowCircleNewJoys,
   todayCircleNewJoys,
+  uuYellArticles,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -82,7 +85,7 @@ const Page: NextPage<Props> = ({
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -104,6 +107,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       nowCircleNewJoys,
       todayCircleNewJoys,
       allTodayCircleNewJoys,
+      uuYellArticles,
     } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
 
     return {
@@ -115,6 +119,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         nowCircleNewJoys,
         todayCircleNewJoys,
         allTodayCircleNewJoys,
+        uuYellArticles,
       },
       revalidate: 120,
     }

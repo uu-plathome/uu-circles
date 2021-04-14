@@ -8,6 +8,7 @@ import { Category } from '@/lib/enum/app/Category'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
+import { WP_REST_API_Post } from 'wp-types'
 import { BaseContainer } from '../molecules/Container/BaseContainer'
 
 type TagItem = {
@@ -175,8 +176,10 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
   )
 }
 
-type Props = {}
-const BaseFooter: FC<Props> = () => {
+type Props = {
+  uuYellArticles?: WP_REST_API_Post[]
+}
+const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
   const [isTagOpen, setIsTagOpen] = useState(false)
   const { width } = useWindowResize()
   const { isMd } = useMediaQuery()
@@ -314,56 +317,89 @@ const BaseFooter: FC<Props> = () => {
 
         <BaseContainer>
           <div className="pt-16">
-            <h2 className="text-lg mb-6">メニュー</h2>
+            <div className="flex">
+              <div className="pt-6 w-1/2">
+                <h2 className="text-lg mb-6">メニュー</h2>
 
-            <ul>
-              <li className="mb-3">
-                <Link href="/circle">
-                  <a className="text-gray-400 font-bold text-sm">
-                    サークルを見つける
-                  </a>
-                </Link>
-              </li>
-              <li className="mb-3">
-                <Link href="/circle/newjoy">
-                  <a className="text-gray-400 font-bold text-sm">今日の新歓</a>
-                </Link>
-              </li>
-              <li className="mb-3">
-                <Link href="/statistics">
-                  <a className="text-gray-400 font-bold text-sm">統計情報</a>
-                </Link>
-              </li>
-              <li className="mb-3">
-                <Link href="/guide/discord">
-                  <a className="text-gray-400 font-bold text-sm">
-                    オンライン新歓に参加しよう！
-                  </a>
-                </Link>
-              </li>
-              <li className="mb-3">
-                <Link href="/guide/management-team">
-                  <a className="text-gray-400 font-bold text-sm">
-                    運営団体について
-                  </a>
-                </Link>
-              </li>
-              <li className="mb-3">
-                <a
-                  href="https://forms.gle/1oULcDjiPaknvfvc8"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-gray-400 font-bold text-sm"
-                >
-                  お問い合わせ
-                </a>
-              </li>
-              <li className="mb-3">
-                <Link href="/guide/qanda">
-                  <a className="text-gray-400 font-bold text-sm">Q and A</a>
-                </Link>
-              </li>
-            </ul>
+                <ul>
+                  <li className="mb-3">
+                    <Link href="/circle">
+                      <a className="text-gray-400 font-bold text-sm">
+                        サークルを見つける
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/circle/newjoy">
+                      <a className="text-gray-400 font-bold text-sm">
+                        今日の新歓
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/statistics">
+                      <a className="text-gray-400 font-bold text-sm">
+                        統計情報
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/guide/discord">
+                      <a className="text-gray-400 font-bold text-sm">
+                        オンライン新歓に参加しよう！
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/guide/management-team">
+                      <a className="text-gray-400 font-bold text-sm">
+                        運営団体について
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <a
+                      href="https://forms.gle/1oULcDjiPaknvfvc8"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 font-bold text-sm"
+                    >
+                      お問い合わせ
+                    </a>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/guide/qanda">
+                      <a className="text-gray-400 font-bold text-sm">Q and A</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {uuYellArticles && uuYellArticles.length > 0 ? (
+                <div className="pt-6 w-1/2">
+                  <h2 className="text-lg mb-6">UU-yellの最新記事</h2>
+
+                  <ul className="list-inside list-decimal text-gray-400">
+                    {uuYellArticles.map(
+                      (uuYellArticle: WP_REST_API_Post, idx) => {
+                        return (
+                          <li key={`uuYellArticle-${idx}`} className="mb-3">
+                            <a
+                              href={uuYellArticle.link}
+                              className="text-gray-400 font-bold text-sm"
+                            >
+                              {uuYellArticle.title.rendered}
+                            </a>
+                          </li>
+                        )
+                      }
+                    )}
+                  </ul>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
         </BaseContainer>
 
