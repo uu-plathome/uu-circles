@@ -66,6 +66,7 @@ type Props = {
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
     wpUrl: UseStringInput
+    wpTagTaxonomy: UseStringInput
     isViewWpPost: UseBooleanInput
   } & NameEditCircleFormProps['form'] &
     CommonInfoEditCircleFormProps['form']
@@ -353,6 +354,16 @@ const EditCircleForm: FC<Props> = ({
 
           {form.wpUrl.value ? (
             <div>
+              <BaseTextField
+                label="WordPress Tag Taxonomy"
+                name="wpTagTaxonomy"
+                id="wpTagTaxonomy"
+                expand
+                maxLength={100}
+                note="WordPressのタグ"
+                {...form.wpTagTaxonomy}
+              />
+
               <BaseSelect
                 label="WordPressの記事を表示するか"
                 id="isViewWpPost"
