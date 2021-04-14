@@ -10,6 +10,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/Http/Controllers/Admin/Circle/CreateCircleController.php">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/Http/Controllers/Admin/Circle/UpdateCircleController.php">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/storage/memo/2021_04_11_circleInformation_null.sql">
           <value>
             <Attribute>

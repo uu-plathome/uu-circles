@@ -58,7 +58,12 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationProperty::common_place_of_activity          => [
                 'nullable',
                 'string',
-                Rule::in([PlaceOfActivity::MINE, PlaceOfActivity::YOTO, PlaceOfActivity::MINE_AND_YOTO, PlaceOfActivity::OTHER]),
+                Rule::in([
+                    PlaceOfActivity::MINE,
+                    PlaceOfActivity::YOTO,
+                    PlaceOfActivity::MINE_AND_YOTO,
+                    PlaceOfActivity::OTHER,
+                ]),
             ],
             CircleInformationProperty::common_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
             CircleInformationProperty::common_date_of_activity_monday    => [
@@ -145,7 +150,7 @@ class UpdateCircleFormRequest extends FormRequest
             CircleInformationProperty::activity_image_url4 => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationProperty::activity_image_url5 => ['nullable', 'string', 'url', 'max:255'],
             CircleInformationProperty::activity_image_url6 => ['nullable', 'string', 'url', 'max:255'],
-            'handbill_image_url'                        => ['nullable', 'string', 'url', 'max:255'],
+            'handbill_image_url'                           => ['nullable', 'string', 'url', 'max:255'],
         ]);
     }
 
