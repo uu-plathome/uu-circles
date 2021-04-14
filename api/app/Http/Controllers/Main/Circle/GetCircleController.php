@@ -8,6 +8,7 @@ use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetCircleNewJoyAllPeriodWithLimitByCircleId;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\Usecases\Main\WordPress\FetchWordPressPostsUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Log;
 class GetCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
+
+    private FetchWordPressPostsUsecase $fetchWordPressPostsUsecase;
 
     private GetCircleBySlugUsecase $getCircleBySlugUsecase;
 
@@ -30,10 +33,12 @@ class GetCircleController extends Controller
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
         GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
+        $this->fetchWordPressPostsUsecase = $fetchWordPressPostsUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getCircleNewJoyAllPeriodWithLimitByCircleId = $getCircleNewJoyAllPeriodWithLimitByCircleId;
     }
@@ -68,6 +73,21 @@ class GetCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        $wpPosts = $circle->circleValueObject->is_view_wp_post ? Cache::remember(
+            FetchWordPressPostsUsecase::getCacheKey(
+                $circle->circleValueObject->wp_url,
+                null
+            ),
+            60 * 60,
+            fn () => $this->fetchWordPressPostsUsecase->invoke(
+                $circle->circleValueObject->wp_url,
+                null
+            )
+        ) : [
+            'postsNotTags'   => [],
+            'postsExistTags' => [],
+        ];
+
         return [
             'data'          => Arr::camel_keys($circle->circleValueObject->toArray()),
             'circleTags'    => Arr::camel_keys($circle->circleTagEntity->toArray()),
@@ -77,6 +97,7 @@ class GetCircleController extends Controller
                 )->toArray()
             ),
             'uuYellArticles' => $articles,
+            'wpPosts'        => $wpPosts,
         ];
     }
 

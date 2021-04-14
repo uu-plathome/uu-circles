@@ -24,6 +24,10 @@ type Props = {
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
   /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** WordPress記事 */ wpPosts?: {
+    postsNotTags: WP_REST_API_Post[]
+    postsExistTags: WP_REST_API_Post[]
+  }
   errorCode?: number
 }
 const Page: NextPage<Props> = ({
@@ -150,6 +154,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circleTags,
       circleNewJoys,
       uuYellArticles,
+      wpPosts,
     } = await getCircleBySlug(params.slug)
 
     return {
@@ -158,6 +163,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         circleTags,
         circleNewJoys,
         uuYellArticles,
+        wpPosts,
       },
       revalidate: 120,
     }
