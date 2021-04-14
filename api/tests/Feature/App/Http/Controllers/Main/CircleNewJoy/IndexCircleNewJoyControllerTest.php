@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Models\Circle;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -31,6 +32,7 @@ class IndexCircleNewJoyControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        Http::fake();
         $circle = Circle::whereRelease(true)->inRandomOrder()->first();
         $this->assertNotNull($circle);
         Log::info($circle);
