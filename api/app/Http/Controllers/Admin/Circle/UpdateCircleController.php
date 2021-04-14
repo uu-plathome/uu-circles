@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Circle;
 
+use App\Enum\Property\CircleInformationProperty;
+use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
@@ -33,6 +35,13 @@ class UpdateCircleController extends Controller
 
         $adminUser = Auth::adminUser();
         $role = $adminUser->role;
+
+        if ($role === Role::SYSTEM) {
+            $request->validate([
+                CircleInformationProperty::wp_url => ['nullable', 'string', 'url', 'max:255'],
+                CircleInformationProperty::is_view_wp_post => ['nullable', 'boolean'],
+            ]);
+        }
 
         $circle = $this->updateCircleUsecase->invoke(
             $request->makeCircleValueObject(),

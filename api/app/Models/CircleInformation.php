@@ -59,6 +59,8 @@ class CircleInformation extends Model
         P::activity_image_url4,
         P::activity_image_url5,
         P::activity_image_url6,
+        P::wp_url,
+        P::is_view_wp_post,
     ];
 
     protected $casts = [
@@ -78,6 +80,7 @@ class CircleInformation extends Model
         P::online_date_of_activity_saturday   => 'boolean',
         P::online_date_of_activity_sunday     => 'boolean',
         P::is_club_activities                 => 'boolean',
+        P::is_view_wp_post                    => 'boolean',
     ];
 
     protected $appends = [
