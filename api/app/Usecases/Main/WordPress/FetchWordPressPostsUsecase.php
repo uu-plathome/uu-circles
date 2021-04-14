@@ -24,7 +24,7 @@ class FetchWordPressPostsUsecase
 
         if (!$tagsTaxonomy) {
             // HTTP リクエスト
-            $response = Http::get("$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber");
+            $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber");
 
             return [
                 'postsNotTags'   => $response->status() === 200 ? $response->json() : [],
@@ -33,8 +33,12 @@ class FetchWordPressPostsUsecase
         }
 
         // HTTP リクエスト
-        $responseNotTags = Http::get("$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber&tags_exclude=$tagsTaxonomy");
-        $responseExistTags = Http::get("$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber&tags=$tagsTaxonomy");
+        $responseNotTags = Http::get(
+            "$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber&tags_exclude=$tagsTaxonomy"
+        );
+        $responseExistTags = Http::get(
+            "$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber&tags=$tagsTaxonomy"
+        );
 
         $postsNotTags = $responseNotTags->status() === 200 ? $responseNotTags->json() : [];
         $postsExistTags = $responseExistTags->status() === 200 ? $responseExistTags->json() : [];
