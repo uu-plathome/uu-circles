@@ -179,6 +179,11 @@ $ docker-compose app composer sniffer
 
 `develop/production` に push すると反映されます
 
+```shell
+# APIへの変更のみ取り出し
+$ git checkout ブランチ名 -- api
+```
+
 ## STG への Deploy
 
 `git push origin main:develop/stg`
