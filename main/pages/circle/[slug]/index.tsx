@@ -17,17 +17,20 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   circle?: Circle
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   errorCode?: number
 }
 const Page: NextPage<Props> = ({
   circle,
   circleTags,
   circleNewJoys,
+  uuYellArticles,
   errorCode,
 }) => {
   if (errorCode) {
@@ -128,7 +131,7 @@ const Page: NextPage<Props> = ({
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -142,15 +145,19 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   try {
-    const { circle, circleTags, circleNewJoys } = await getCircleBySlug(
-      params.slug
-    )
+    const {
+      circle,
+      circleTags,
+      circleNewJoys,
+      uuYellArticles,
+    } = await getCircleBySlug(params.slug)
 
     return {
       props: {
         circle,
         circleTags,
         circleNewJoys,
+        uuYellArticles,
       },
       revalidate: 120,
     }

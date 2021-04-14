@@ -24,6 +24,7 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   /** サークル */ circle?: Circle
@@ -36,6 +37,7 @@ type Props = {
     slug: string
     circleNewJoy: CircleNewJoy
   }[]
+  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
 }
 const Page: NextPage<Props> = ({
   errorCode,
@@ -44,6 +46,7 @@ const Page: NextPage<Props> = ({
   futureCircleNewJoys,
   nowCircleNewJoys,
   todayCircleNewJoys,
+  uuYellArticles,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -274,7 +277,7 @@ const Page: NextPage<Props> = ({
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
@@ -295,6 +298,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       nowCircleNewJoys,
       todayCircleNewJoys,
       allTodayCircleNewJoys,
+      uuYellArticles,
     } = await getCircleNewJoyBySlug(params.slug)
 
     return {
@@ -305,6 +309,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         nowCircleNewJoys,
         todayCircleNewJoys,
         allTodayCircleNewJoys,
+        uuYellArticles,
       },
       revalidate: 120,
     }
