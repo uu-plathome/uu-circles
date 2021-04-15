@@ -1,3 +1,5 @@
+import { Circle } from './Circle'
+
 export type Statistics = {
   /** サークル数 */
   circleCount: 20
@@ -31,5 +33,29 @@ export type Statistics = {
     unofficialOrganization: number
     sendingOrganization: number
     studentGroup: number
+  }
+  /** 活動人数ランキング (高い順) */
+  numberOfActivitiesRanking: {
+    fifth: Circle
+    first: Circle
+    fourth: Circle
+    second: Circle
+    third: Circle
+  }
+  /** 活動費用ランキング (高い順) */
+  admissionFeePerYearHighRankings: {
+    fifth: Circle
+    first: Circle
+    fourth: Circle
+    second: Circle
+    third: Circle
+  }
+  /** 活動費用ランキング (低い順) */
+  admissionFeePerYearSmallRankings: {
+    fifth: Circle
+    first: Circle
+    fourth: Circle
+    second: Circle
+    third: Circle
   }
 }
