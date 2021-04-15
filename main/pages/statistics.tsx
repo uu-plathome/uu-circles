@@ -3,13 +3,15 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { StatisticsButtonGroup } from '@/components/organisms/Statistics/StatisticsButtonGroup'
+import { StatisticsButtonState } from '@/components/organisms/Statistics/StatisticsButtonState'
 import { getStatistics } from '@/infra/api/statistics'
 import { __ } from '@/lang/ja'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { Statistics } from '@/lib/types/model/Statistics'
 import { rgba } from '@/lib/utils/Color'
 import { GetStaticProps, NextPage } from 'next'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Doughnut } from 'react-chartjs-2'
 
 const SubHeader: FC = ({ children }) => {
@@ -20,6 +22,10 @@ type Props = {
   statistics: Statistics
 }
 const Page: NextPage<Props> = ({ statistics }) => {
+  const [buttonState, setButtonState] = useState<StatisticsButtonState>(
+    StatisticsButtonState.COMMON
+  )
+
   return (
     <div>
       <BaseHead title="統計情報" />
@@ -31,6 +37,11 @@ const Page: NextPage<Props> = ({ statistics }) => {
               <h1 className="text-2xl py-8 md:py-20 md:text-center text-left">
                 統計情報
               </h1>
+
+              <StatisticsButtonGroup
+                buttonState={buttonState}
+                setButtonState={setButtonState}
+              />
 
               <div className="pb-16">
                 <SubHeader>サークル数</SubHeader>
