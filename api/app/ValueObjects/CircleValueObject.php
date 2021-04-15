@@ -42,7 +42,7 @@ class CircleValueObject
     public bool $online_date_of_activity_saturday = false;
     public bool $online_date_of_activity_sunday = false;
     public ?string $online_date_of_activity_detail;
-    public ?string $admission_fee_per_year;
+    public ?int $admission_fee_per_year;
     public ?int $weekly_activity_days;
     public ?bool $mammoth;
     public ?bool $active_activity;
