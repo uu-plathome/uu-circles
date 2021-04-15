@@ -47,6 +47,16 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles }) => {
                 </form>
               </div>
 
+              <div className="text-right mb-8">
+                <p className="text-sm">
+                  現在の掲載団体数
+                  <span className="ml-4 mr-2 text-2xl font-bold">
+                    {circles.length}
+                  </span>
+                  団体
+                </p>
+              </div>
+
               <RecommendTagList />
 
               {/*  サークル一覧 */}
