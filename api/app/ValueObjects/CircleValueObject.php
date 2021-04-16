@@ -219,8 +219,8 @@ class CircleValueObject
             CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
             CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
             CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
-            CircleInformationProperty::wp_url              => $this->wp_url,
-            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy,
+            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
             CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
         ]);
     }
@@ -295,8 +295,8 @@ class CircleValueObject
             CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
             CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
             CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
-            CircleInformationProperty::wp_url              => $this->wp_url,
-            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy,
+            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
             CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
             'handbill_image_url' => $this->handbill_image_url,
         ];
