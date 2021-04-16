@@ -181,6 +181,17 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             </div>
           </div>
 
+          {circle.commonDateOfActivityDetail ? (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">通常活動日時詳細</p>
+              <p className="text-sm text-black whitespace-pre-wrap">
+                {circle.commonDateOfActivityDetail}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
+
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">オンライン活動</p>
             <p className="text-sm text-black">
