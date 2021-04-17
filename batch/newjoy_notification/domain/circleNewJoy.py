@@ -61,8 +61,8 @@ class CircleNewJoy:
         """
 
         if (self.endDate is None):
-            tmp_day = datetime.now()
-            tmp_format_endDay = to_jst(tmp_day.now() + timedelta(days=1))
+            tmp_day = self.startDatetime()
+            tmp_format_endDay = tmp_day.now() + timedelta(days=1)
             format_endDay = tmp_format_endDay.replace(
                 hour=6, minute=59, second=0, microsecond=0)
             return format_endDay

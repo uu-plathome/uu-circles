@@ -2,7 +2,6 @@ from domain import circleNewJoy
 
 
 class TodayCircleNewJoy:
-    idx: int
     slug: str
     circleType: str
     mainImageUrl: str
