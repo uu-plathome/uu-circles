@@ -1,8 +1,71 @@
+import { Circle } from '@/lib/types/model/Circle'
 import { Statistics } from '@/lib/types/model/Statistics'
 import { faCrown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 import { FC } from 'react'
 import { StatisticsHeader } from './StatisticsHeader'
+
+type StatisticsListItem = {
+  rank: 1 | 2 | 3 | 4 | 5
+  circle: Circle
+  circleKey: keyof Circle
+  /** 単位 */
+  unit: string
+}
+const StatisticsListItem: FC<StatisticsListItem> = ({
+  circle,
+  circleKey,
+  rank,
+  unit,
+}) => {
+  const RANK_COLOR = ((rank: 1 | 2 | 3 | 4 | 5) => {
+    if (rank === 1) {
+      return '#EFC743'
+    }
+
+    if (rank === 2) {
+      return '#B4B4B4'
+    }
+
+    if (rank === 3) {
+      return '#5F2B2B'
+    }
+
+    return null
+  })(rank)
+
+  return (
+    <div className="mb-4 flex justify-between md:mr-6">
+      <div>
+        {[1, 2, 3].includes(rank) ? (
+          <span className="mr-4">
+            <FontAwesomeIcon
+              icon={faCrown}
+              className="mr-2"
+              color={RANK_COLOR}
+            />
+            {rank}位
+          </span>
+        ) : (
+          <span className="ml-7 mr-4">{rank}位</span>
+        )}
+
+        <span className="font-bold">
+          <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+            <a className="hover:underline">{circle.name}</a>
+          </Link>
+        </span>
+      </div>
+      <span className="font-bold">
+        {typeof circle[circleKey] === 'number'
+          ? circle[circleKey].toLocaleString()
+          : circle[circleKey]}
+        {unit}
+      </span>
+    </div>
+  )
+}
 
 type Props = {
   statistics: Statistics
@@ -19,116 +82,56 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
             <div className="pb-4">
               <p className="text-center py-4">活動人数ランキング</p>
               {statistics.numberOfActivitiesRanking.first ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#EFC743"
-                      />
-                      1位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.numberOfActivitiesRanking.first.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {statistics.numberOfActivitiesRanking.first.numberOfMembers}
-                    人
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={1}
+                  circle={statistics.numberOfActivitiesRanking.first}
+                  circleKey="numberOfMembers"
+                  unit="人"
+                />
               ) : (
                 ''
               )}
 
               {statistics.numberOfActivitiesRanking.second ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#B4B4B4"
-                      />
-                      2位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.numberOfActivitiesRanking.second.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.numberOfActivitiesRanking.second
-                        .numberOfMembers
-                    }
-                    人
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={2}
+                  circle={statistics.numberOfActivitiesRanking.second}
+                  circleKey="numberOfMembers"
+                  unit="人"
+                />
               ) : (
                 ''
               )}
 
               {statistics.numberOfActivitiesRanking.third ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#5F2B2B"
-                      />
-                      3位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.numberOfActivitiesRanking.third.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {statistics.numberOfActivitiesRanking.third.numberOfMembers}
-                    人
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={3}
+                  circle={statistics.numberOfActivitiesRanking.third}
+                  circleKey="numberOfMembers"
+                  unit="人"
+                />
               ) : (
                 ''
               )}
 
               {statistics.numberOfActivitiesRanking.fourth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">4位</span>
-                    <span className="font-bold">
-                      {statistics.numberOfActivitiesRanking.fourth.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {
-                      statistics.numberOfActivitiesRanking.fourth
-                        .numberOfMembers
-                    }
-                    人
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={4}
+                  circle={statistics.numberOfActivitiesRanking.fourth}
+                  circleKey="numberOfMembers"
+                  unit="人"
+                />
               ) : (
                 ''
               )}
 
               {statistics.numberOfActivitiesRanking.fifth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">5位</span>
-                    <span className="font-bold">
-                      {statistics.numberOfActivitiesRanking.fifth.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {statistics.numberOfActivitiesRanking.fifth.numberOfMembers}
-                    人
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={5}
+                  circle={statistics.numberOfActivitiesRanking.fifth}
+                  circleKey="numberOfMembers"
+                  unit="人"
+                />
               ) : (
                 ''
               )}
@@ -147,125 +150,56 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
             <div className="pb-4">
               <p className="text-center py-4">活動費用ランキング高い順</p>
               {statistics.admissionFeePerYearHighRankings.first ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#EFC743"
-                      />
-                      1位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearHighRankings.first.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearHighRankings.first
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={1}
+                  circle={statistics.admissionFeePerYearHighRankings.first}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearHighRankings.second ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#B4B4B4"
-                      />
-                      2位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearHighRankings.second.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearHighRankings.second
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={2}
+                  circle={statistics.admissionFeePerYearHighRankings.second}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearHighRankings.third ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#5F2B2B"
-                      />
-                      3位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearHighRankings.third.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearHighRankings.third
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={3}
+                  circle={statistics.admissionFeePerYearHighRankings.third}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearHighRankings.fourth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">4位</span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearHighRankings.fourth.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearHighRankings.fourth
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={4}
+                  circle={statistics.admissionFeePerYearHighRankings.fourth}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearHighRankings.fifth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">5位</span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearHighRankings.fifth.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearHighRankings.fifth
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={5}
+                  circle={statistics.admissionFeePerYearHighRankings.fifth}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
@@ -280,125 +214,56 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
             <div className="pb-4">
               <p className="text-center py-4">活動費用ランキング低い順</p>
               {statistics.admissionFeePerYearSmallRankings.first ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#EFC743"
-                      />
-                      1位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearSmallRankings.first.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearSmallRankings.first
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={1}
+                  circle={statistics.admissionFeePerYearSmallRankings.first}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearSmallRankings.second ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#B4B4B4"
-                      />
-                      2位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearSmallRankings.second.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearSmallRankings.second
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={2}
+                  circle={statistics.admissionFeePerYearSmallRankings.second}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearSmallRankings.third ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="mr-4">
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="mr-2"
-                        color="#5F2B2B"
-                      />
-                      3位
-                    </span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearSmallRankings.third.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearSmallRankings.third
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={3}
+                  circle={statistics.admissionFeePerYearSmallRankings.third}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearSmallRankings.fourth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">4位</span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearSmallRankings.fourth.name}
-                    </span>
-                  </div>
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearSmallRankings.fourth
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={4}
+                  circle={statistics.admissionFeePerYearSmallRankings.fourth}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
 
               {statistics.admissionFeePerYearSmallRankings.fifth ? (
-                <div className="mb-4 flex justify-between mr-6">
-                  <div>
-                    <span className="ml-7 mr-4">5位</span>
-                    <span className="font-bold">
-                      {statistics.admissionFeePerYearSmallRankings.fifth.name}
-                    </span>
-                  </div>
-
-                  <span className="font-bold">
-                    {
-                      statistics.admissionFeePerYearSmallRankings.fifth
-                        .admissionFeePerYear
-                    }
-                    円/年
-                  </span>
-                </div>
+                <StatisticsListItem
+                  rank={5}
+                  circle={statistics.admissionFeePerYearSmallRankings.fifth}
+                  circleKey="admissionFeePerYear"
+                  unit="円/年"
+                />
               ) : (
                 ''
               )}
