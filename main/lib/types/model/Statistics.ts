@@ -58,4 +58,12 @@ export type Statistics = {
     second: Circle
     third: Circle
   }
+  /** 週の活動頻度ランキング (高い順) */
+  activityFrequencyRankingDto: {
+    fifth: Circle
+    first: Circle
+    fourth: Circle
+    second: Circle
+    third: Circle
+  }
 }

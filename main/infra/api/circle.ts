@@ -2,7 +2,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { AxiosError } from 'axios'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 import { PageNotFoundError, InternalServerError } from './error'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
@@ -35,6 +35,7 @@ export const getCircleBySlug = async (
   /** WordPress記事 */ wpPosts: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
   }
 }> => {
   try {
@@ -46,6 +47,7 @@ export const getCircleBySlug = async (
       /** WordPress記事 */ wpPosts: {
         postsNotTags: WP_REST_API_Post[]
         postsExistTags: WP_REST_API_Post[]
+        medias: WP_REST_API_Media[]
       }
     }
     const { data } = await axiosInstance.get<Response>(
