@@ -3,6 +3,7 @@
 namespace App\Usecases\Main\Statistics;
 
 use App\Dto\StatisticsActivityFrequencyDto;
+use App\Dto\StatisticsActivityFrequencyRankingDto;
 use App\Dto\StatisticsAdmissionFeePerYearHighRankingDto;
 use App\Dto\StatisticsAdmissionFeePerYearSmallRankingDto;
 use App\Dto\StatisticsCircleTypeDto;
@@ -178,6 +179,21 @@ class StatisticsUsecase
             fn (Circle $circle) => $circle->circleInformation->weeklyActivityDays() === 7
         )->values()->count();
         $statisticsDto->statisticsActivityFrequencyDto = $statisticsActivityFrequencyDto;
+
+        // 週の活動頻度ランキング (高い順)
+        $statisticsActivityFrequencyRankingDto = new StatisticsActivityFrequencyRankingDto();
+        $circleSortByActivityFrequency = $circleValueObjects->filter(
+            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days && $cvo->weekly_activity_days > 0
+        )->sortByDesc(
+            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days
+        )->values()
+            ->all();
+        $statisticsActivityFrequencyRankingDto->first = Arr::get($circleSortByActivityFrequency, 0);
+        $statisticsActivityFrequencyRankingDto->second = Arr::get($circleSortByActivityFrequency, 1);
+        $statisticsActivityFrequencyRankingDto->third = Arr::get($circleSortByActivityFrequency, 2);
+        $statisticsActivityFrequencyRankingDto->fourth = Arr::get($circleSortByActivityFrequency, 3);
+        $statisticsActivityFrequencyRankingDto->fifth = Arr::get($circleSortByActivityFrequency, 4);
+        $statisticsDto->statisticsActivityFrequencyRankingDto = $statisticsActivityFrequencyRankingDto;
 
         // 活動場所
         $statisticsPlaceOfActivityFrequencyDto = new StatisticsPlaceOfActivityFrequencyDto();
