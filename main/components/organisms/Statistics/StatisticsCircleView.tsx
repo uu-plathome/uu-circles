@@ -273,6 +273,74 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
           )}
         </div>
       </div>
+
+      <div>
+        <StatisticsHeader>週の活動頻度ランキング</StatisticsHeader>
+
+        <div className="rounded bg-white px-6 py-2 mx-auto mb-16">
+          {statistics && statistics.activityFrequencyRankingDto ? (
+            <div className="pb-4">
+              <p className="text-center py-4">週の活動頻度ランキング</p>
+              {statistics.activityFrequencyRankingDto.first ? (
+                <StatisticsListItem
+                  rank={1}
+                  circle={statistics.activityFrequencyRankingDto.first}
+                  circleKey="weeklyActivityDays"
+                  unit="日"
+                />
+              ) : (
+                ''
+              )}
+
+              {statistics.activityFrequencyRankingDto.second ? (
+                <StatisticsListItem
+                  rank={2}
+                  circle={statistics.activityFrequencyRankingDto.second}
+                  circleKey="weeklyActivityDays"
+                  unit="日"
+                />
+              ) : (
+                ''
+              )}
+
+              {statistics.activityFrequencyRankingDto.third ? (
+                <StatisticsListItem
+                  rank={3}
+                  circle={statistics.activityFrequencyRankingDto.third}
+                  circleKey="weeklyActivityDays"
+                  unit="日"
+                />
+              ) : (
+                ''
+              )}
+
+              {statistics.activityFrequencyRankingDto.fourth ? (
+                <StatisticsListItem
+                  rank={4}
+                  circle={statistics.activityFrequencyRankingDto.fourth}
+                  circleKey="weeklyActivityDays"
+                  unit="日"
+                />
+              ) : (
+                ''
+              )}
+
+              {statistics.activityFrequencyRankingDto.fifth ? (
+                <StatisticsListItem
+                  rank={5}
+                  circle={statistics.activityFrequencyRankingDto.fifth}
+                  circleKey="weeklyActivityDays"
+                  unit="日"
+                />
+              ) : (
+                ''
+              )}
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+      </div>
     </div>
   )
 }
