@@ -31,11 +31,10 @@ class CheckIdentificationControllerTest extends TestCase
         Log::info("CheckIdentificationControllerTest");
 
         // GIVEN
-        $identifier = Identifier::whereRelease(true)->inRandomOrder()->first();
-        $this->assertNotNull($identifier);
+        $identifier = Identifier::where('id',1)->first();
         Log::info($identifier);
         // WHEN
-        $response = $this->post("/api/identification/valid/{$identifier->slug}");
+        $response = $this->post("/api/identification/valid/{$identifier->gacha_hash}");
 
         // THEN
         $response->assertOk();
