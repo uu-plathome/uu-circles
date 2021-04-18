@@ -1,3 +1,4 @@
+import colors from '@/colors'
 import { GreenButton } from '@/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
@@ -14,37 +15,51 @@ import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { dayjs } from '@/plugins/Dayjs'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
 import { FC } from 'react'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
-}> = ({ post }) => {
+  media?: WP_REST_API_Media
+}> = ({ post, media }) => {
   return (
-    <a href={post.link}>
-      <div
-        className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto md:mx-0 mb-2"
-        style={{ width: 320 }}
-      >
-        <div className="w-full pr-3">
-          <h3 className="text-black font-bold text-sm mb-1 max-line-4 ">
-            {post.title.rendered}
-          </h3>
-        </div>
+    <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
+      <a href={post.link} className="transition-all">
+        <img
+          src={(media && media.source_url) || '/no-image.png'}
+          alt={(media && media.alt_text) || ''}
+        />
 
-        <div>
-          <div
-            className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center cursor-pointer"
-            style={{ width: 52, height: 52 }}
-          >
-            見る
+        <div className="px-6 py-2 mb-2">
+          {post.date ? (
+            <p className="pt-2 flex items-center mb-2">
+              <FontAwesomeIcon
+                icon={faClock}
+                color={colors.gray[400]}
+                className="mr-1"
+              />
+              <span className="text-sm text-gray-400">
+                {dayjs(post.date).format('YYYY年MM月DD日')}
+              </span>
+            </p>
+          ) : (
+            ''
+          )}
+
+          <div className="w-full pr-3">
+            <h3 className="text-black font-bold mb-1 max-line-4 ">
+              {post.title.rendered}
+            </h3>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </article>
   )
 }
 
@@ -56,6 +71,7 @@ type Props = {
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
   }
   errorCode?: number
 }
@@ -157,7 +173,7 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="order-4 md:order-3 pt-10">
+              <div className="order-7 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 
@@ -173,7 +189,12 @@ const Page: NextPage<Props> = ({
                         key={`wpPosts.postsExistTags-${key}`}
                         className="mb-4"
                       >
-                        <WpPostBlock post={post} />
+                        <WpPostBlock
+                          post={post}
+                          media={wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )}
+                        />
                       </div>
                     )
                   })}
@@ -191,7 +212,12 @@ const Page: NextPage<Props> = ({
                   {wpPosts.postsNotTags.map((post, key) => {
                     return (
                       <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
-                        <WpPostBlock post={post} />
+                        <WpPostBlock
+                          post={post}
+                          media={wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )}
+                        />
                       </div>
                     )
                   })}
