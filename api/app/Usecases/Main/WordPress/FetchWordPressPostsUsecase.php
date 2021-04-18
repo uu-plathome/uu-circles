@@ -5,6 +5,7 @@ namespace App\Usecases\Main\WordPress;
 
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -32,7 +33,7 @@ class FetchWordPressPostsUsecase
             ];
         }
 
-        // HTTP リクエスト
+        // POST取得 HTTP リクエスト
         $responseNotTags = Http::get(
             "$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber&tags_exclude=$tagsTaxonomy"
         );
@@ -43,9 +44,27 @@ class FetchWordPressPostsUsecase
         $postsNotTags = $responseNotTags->status() === 200 ? $responseNotTags->json() : [];
         $postsExistTags = $responseExistTags->status() === 200 ? $responseExistTags->json() : [];
 
+        $postItems = new Collection(array_merge(
+            $postsExistTags,
+            $postsNotTags
+        ));
+        $mediaIds = $postItems->map(
+            fn (array $arr) => $arr["featured_media"]
+        )
+            ->unique()
+            ->toArray();
+        $mediaIdsStr = implode(",", $mediaIds);
+        // MEDIA取得 HTTP リクエスト
+        $responseMedias = Http::get(
+            "$baseUrl/wp-json/wp/v2/media?context=embed&include=$mediaIdsStr"
+        );
+
+        $medias = $responseMedias->status() === 200 ? $responseMedias->json() : [];
+
         return [
             'postsNotTags'   => $postsNotTags,
             'postsExistTags' => $postsExistTags,
+            'medias'         => $medias,
         ];
     }
 
