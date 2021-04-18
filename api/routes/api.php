@@ -47,3 +47,4 @@ Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController:
 // ガチャ用
 Route::get('/gacha/circle/pickup', GachaPickupListController::class)->name('main.gacha.pickup');
 Route::post('/identification/publish', PublishIdentificationController::class)->name('main.identification.publish');
+Route::post('/gacha/circle?number={number}', GachaDrawController::class)->name('main.gacha.draw');
