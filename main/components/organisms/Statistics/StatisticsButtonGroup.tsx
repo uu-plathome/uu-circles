@@ -22,9 +22,9 @@ const StatisticsButtonGroup: FC<Props> = ({ buttonState, setButtonState }) => {
               px-2
               text-center
               text-sm
-              hover:shadow
               ${buttonState === State.COMMON ? 'bg-blue-700' : 'bg-white'}
               ${buttonState === State.COMMON ? 'text-white' : 'bg-black'}
+              ${buttonState === State.COMMON ? 'shadow' : 'hover:shadow'}
             `}
           style={{ width: 100 }}
           onClick={() => setButtonState(State.COMMON)}
@@ -41,9 +41,9 @@ const StatisticsButtonGroup: FC<Props> = ({ buttonState, setButtonState }) => {
               px-2
               text-center
               text-sm
-              hover:shadow
               ${buttonState === State.CIRCLE ? 'bg-blue-700' : 'bg-white'}
               ${buttonState === State.CIRCLE ? 'text-white' : 'bg-black'}
+              ${buttonState === State.CIRCLE ? 'shadow' : 'hover:shadow'}
             `}
           style={{ width: 100 }}
           onClick={() => setButtonState(State.CIRCLE)}
@@ -64,6 +64,7 @@ const StatisticsButtonGroup: FC<Props> = ({ buttonState, setButtonState }) => {
               hover:shadow
               ${buttonState === State.OTHER ? 'bg-blue-700' : 'bg-white'}
               ${buttonState === State.OTHER ? 'text-white' : 'bg-black'}
+              ${buttonState === State.OTHER ? 'shadow' : 'hover:shadow'}
             `}
           style={{ width: 100 }}
           onClick={() => setButtonState(State.OTHER)}
