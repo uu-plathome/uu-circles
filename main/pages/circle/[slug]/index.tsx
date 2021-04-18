@@ -18,10 +18,11 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
 import { FC } from 'react'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
+  media?: WP_REST_API_Media
 }> = ({ post }) => {
   return (
     <a href={post.link}>
@@ -56,6 +57,7 @@ type Props = {
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
   }
   errorCode?: number
 }
@@ -157,7 +159,7 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="order-4 md:order-3 pt-10">
+              <div className="order-7 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 
@@ -173,7 +175,12 @@ const Page: NextPage<Props> = ({
                         key={`wpPosts.postsExistTags-${key}`}
                         className="mb-4"
                       >
-                        <WpPostBlock post={post} />
+                        <WpPostBlock
+                          post={post}
+                          media={wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )}
+                        />
                       </div>
                     )
                   })}
@@ -191,7 +198,12 @@ const Page: NextPage<Props> = ({
                   {wpPosts.postsNotTags.map((post, key) => {
                     return (
                       <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
-                        <WpPostBlock post={post} />
+                        <WpPostBlock
+                          post={post}
+                          media={wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )}
+                        />
                       </div>
                     )
                   })}
