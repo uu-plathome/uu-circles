@@ -34,7 +34,7 @@ class CheckIdentificationControllerTest extends TestCase
         $identifier = Identifier::where('id',1)->first();
         Log::info($identifier);
         // WHEN
-        $response = $this->post("/api/identification/valid/{$identifier->gacha_hash}");
+        $response = $this->post("/api/identification/valid/{$identifier->identifier_hash}");
 
         // THEN
         $response->assertOk();
