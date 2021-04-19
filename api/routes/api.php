@@ -12,6 +12,7 @@ use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
 use App\Http\Controllers\Main\Statistics\StatisticsController;
 use App\Http\Controllers\Main\Gacha\GachaPickupListController;
 use App\Http\Controllers\Main\Identification\PublishIdentificationController;
+use App\Http\Controllers\Main\Identification\CheckIdentificationController;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Http\Request;
 
@@ -48,3 +49,4 @@ Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController:
 Route::get('/gacha/circle/pickup', GachaPickupListController::class)->name('main.gacha.pickup');
 Route::post('/identification/publish', PublishIdentificationController::class)->name('main.identification.publish');
 Route::post('/gacha/circle?number={number}', GachaDrawController::class)->name('main.gacha.draw');
+Route::post('/identification/valid/{identifer_hash}', CheckIdentificationController::class)->name('main.identification.check');
