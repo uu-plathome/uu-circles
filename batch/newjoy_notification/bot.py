@@ -145,15 +145,15 @@ for td in time_dict:
         doing = False
         for room in newjoy_rooms:
             # 前の時間帯に新歓を行なったかどうか
-            if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
+            if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room]['todayCircleNewJoys'].circleNewJoyId:
                 doing = True
                 break
 
         # 空いている新歓ルームへの割り当て
         if doing == False:
             for room in newjoy_rooms:
-                if newjoy_rooms[room].todayCircleNewJoy == None:
-                    newjoy_rooms[room].todayCircleNewJoy = time_dict[td]
+                if newjoy_rooms[room]['todayCircleNewJoys'] == None:
+                    newjoy_rooms[room]['todayCircleNewJoys'] = time_dict[td]
                     break
 
     print(newjoy_rooms)
