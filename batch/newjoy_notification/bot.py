@@ -112,18 +112,18 @@ for td in time_dict:
     if len(time_dict[td]) == 0:
         for room in newjoy_rooms:
             # 新歓ルーム記録用配列に入れる
-            if newjoy_rooms[room].todayCircleNewJoys != None:
+            if newjoy_rooms[room]['todayCircleNewJoys'] != None:
                 newjoy_results.append(newjoy_rooms[room])
 
             # 新歓ルームを空にする
-            newjoy_rooms[room].todayCircleNewJoys = None
+            newjoy_rooms[room]['todayCircleNewJoys'] = None
             continue
 
     # 今新歓ルーム配列に割り当てられている新歓がValue内にあるかを確認する。
     # [ある場合] そのまま新歓ルーム配列に値を入れたまま。
     # [ない場合] 新歓ルーム配列から値を削除し、新歓ルーム記録用配列に値を挿入する
     for room in newjoy_rooms:
-        if newjoy_rooms[room].todayCircleNewJoys != None:
+        if newjoy_rooms[room]['todayCircleNewJoys'] != None:
 
             done = True
             for td_arr in time_dict[td]:
@@ -135,7 +135,7 @@ for td in time_dict:
                 # 新歓ルーム記録用配列に入れる
                 newjoy_results.append(newjoy_rooms[room])
                 # 新歓ルームを空にする
-                newjoy_rooms[room].todayCircleNewJoys = None
+                newjoy_rooms[room]['todayCircleNewJoys'] = None
 
     # 新歓があるとき
     for td_arr in time_dict[td]:
