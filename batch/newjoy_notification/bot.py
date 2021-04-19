@@ -123,7 +123,7 @@ for td in time_dict:
     for room in newjoy_rooms:
         if newjoy_rooms[room].todayCircleNewJoys != None:
 
-            done = True:
+            done = True
             for td_arr in time_dict[td]:
                 if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
                     done = False
