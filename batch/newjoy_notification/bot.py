@@ -62,44 +62,44 @@ print(time_dict)
 
 newjoy_rooms = {
     1: {
-        name: '新歓ルーム1',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム1',
+        'todayCircleNewJoys': None,
     },
     2: {
-        name: '新歓ルーム2',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム2',
+        'todayCircleNewJoys': None,
     },
     3: {
-        name: '新歓ルーム3',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム3',
+        'todayCircleNewJoys': None,
     },
     4: {
-        name: '新歓ルーム4',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム4',
+        'todayCircleNewJoys': None,
     },
     5: {
-        name: '新歓ルーム5',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム5',
+        'todayCircleNewJoys': None,
     },
     6: {
-        name: '新歓ルーム6',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム6',
+        'todayCircleNewJoys': None,
     },
     7: {
-        name: '新歓ルーム7',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム7',
+        'todayCircleNewJoys': None,
     },
     8: {
-        name: '新歓ルーム8',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム8',
+        'todayCircleNewJoys': None,
     },
     9: {
-        name: '新歓ルーム9',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム9',
+        'todayCircleNewJoys': None,
     },
     10: {
-        name: '新歓ルーム10',
-        todayCircleNewJoys: None,
+        'name': '新歓ルーム10',
+        'todayCircleNewJoys': None,
     },
 }
 newjoy_results = []
