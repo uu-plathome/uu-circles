@@ -102,9 +102,11 @@ newjoy_rooms = {
         'todayCircleNewJoys': None,
     },
 }
+print(newjoy_rooms)
 newjoy_results = []
 
 for td in time_dict:
+    print(time_dict[td])
 
     # 新歓がないとき
     if len(time_dict[td]) == 0:
@@ -115,7 +117,7 @@ for td in time_dict:
 
             # 新歓ルームを空にする
             newjoy_rooms[room].todayCircleNewJoys = None
-        continue
+            continue
 
     # 今新歓ルーム配列に割り当てられている新歓がValue内にあるかを確認する。
     # [ある場合] そのまま新歓ルーム配列に値を入れたまま。
@@ -127,6 +129,7 @@ for td in time_dict:
             for td_arr in time_dict[td]:
                 if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
                     done = False
+                    break
 
             if done:
                 # 新歓ルーム記録用配列に入れる
@@ -142,6 +145,7 @@ for td in time_dict:
             # 前の時間帯に新歓を行なったかどうか
             if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
                 doing = True
+                break
 
         # 空いている新歓ルームへの割り当て
         if doing == False:
@@ -149,6 +153,8 @@ for td in time_dict:
                 if newjoy_rooms[room].todayCircleNewJoy == None:
                     newjoy_rooms[room].todayCircleNewJoy = time_dict[td]
                     break
+
+    print(newjoy_rooms)
 
 print(newjoy_results)
 
