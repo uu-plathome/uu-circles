@@ -22,14 +22,14 @@ class CheckIdentificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request,$identifer_hash)
     {
         Log::debug("#CheckIdentificationController args: none");
         
         
-        Route::get('api/identification/valid/{identifer_hash}',function($identifer_hash){
+  
             $identifer_hash_db=Identifier::where("identifier_hash",$identifer_hash)->first();
-           if( $identifer_hash_db->isEmpty() ){
+            if( $identifer_hash_db->isEmpty() ){
                //ステータスコード400を返す
                return abort(400);
                
@@ -38,7 +38,7 @@ class CheckIdentificationController extends Controller
                  return [];
                  
             }
-        });
+    
 
    
     }
