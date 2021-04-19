@@ -119,6 +119,8 @@ for td in time_dict:
             newjoy_rooms[room]['todayCircleNewJoys'] = None
             continue
 
+        continue
+
     # 今新歓ルーム配列に割り当てられている新歓がValue内にあるかを確認する。
     # [ある場合] そのまま新歓ルーム配列に値を入れたまま。
     # [ない場合] 新歓ルーム配列から値を削除し、新歓ルーム記録用配列に値を挿入する
@@ -127,7 +129,7 @@ for td in time_dict:
 
             done = True
             for td_arr in time_dict[td]:
-                if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
+                if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room]['todayCircleNewJoys'].circleNewJoyId:
                     done = False
                     break
 
