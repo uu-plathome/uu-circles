@@ -40,21 +40,117 @@ print(list(map(lambda x: x.circleNewJoy.startDate, time_arr)))
 
 ###MAKE_TIME_DICT###
 time_dict = {}
-#key = hour * 60 + min
-#start_hour * 60(min), end_hour * 60(min), interval = 30(min)
-for dict_key in range(7 * 60, 32 * 60,30):
+# key = hour * 60 + min
+# start_hour * 60(min), end_hour * 60(min), interval = 30(min)
+for dict_key in range(7 * 60, 32 * 60, 30):
     time_dict[dict_key] = []
 
 for newjoy in todayCircleNewJoys:
-    print(newjoy.circleNewJoy.occupancyStartTime(), newjoy.circleNewJoy.occupancyEndTime())
-    duration = abs(newjoy.circleNewJoy.occupancyStartTime() - newjoy.circleNewJoy.occupancyEndTime())
+    occupancyStartTime = newjoy.circleNewJoy.occupancyStartTime()
+    occupancyEndTime = newjoy.circleNewJoy.occupancyEndTime()
+    print(occupancyStartTime, occupancyEndTime)
+    duration = abs(occupancyStartTime - occupancyEndTime)
     print(duration.seconds)
     room_count = duration.seconds / (30 * 60)
     print(room_count)
     for dict_key in range(0, int(room_count)):
-        time_dict[dict_key * 30 + newjoy.circleNewJoy.occupancyStartTime().hour * 60 + newjoy.circleNewJoy.occupancyStartTime().minute].append(newjoy.circleNewJoy.circleNewJoyId)
+        time_dict_key = dict_key * 30 + \
+            occupancyStartTime.hour * 60 + occupancyStartTime.minute
+        time_dict[time_dict_key].append(newjoy.circleNewJoy)
 
 print(time_dict)
+
+newjoy_rooms = {
+    1: {
+        name: '新歓ルーム1',
+        todayCircleNewJoys: None,
+    },
+    2: {
+        name: '新歓ルーム2',
+        todayCircleNewJoys: None,
+    },
+    3: {
+        name: '新歓ルーム3',
+        todayCircleNewJoys: None,
+    },
+    4: {
+        name: '新歓ルーム4',
+        todayCircleNewJoys: None,
+    },
+    5: {
+        name: '新歓ルーム5',
+        todayCircleNewJoys: None,
+    },
+    6: {
+        name: '新歓ルーム6',
+        todayCircleNewJoys: None,
+    },
+    7: {
+        name: '新歓ルーム7',
+        todayCircleNewJoys: None,
+    },
+    8: {
+        name: '新歓ルーム8',
+        todayCircleNewJoys: None,
+    },
+    9: {
+        name: '新歓ルーム9',
+        todayCircleNewJoys: None,
+    },
+    10: {
+        name: '新歓ルーム10',
+        todayCircleNewJoys: None,
+    },
+}
+newjoy_results = []
+
+for td in time_dict:
+
+    # 新歓がないとき
+    if len(time_dict[td]) == 0:
+        for room in newjoy_rooms:
+            # 新歓ルーム記録用配列に入れる
+            if newjoy_rooms[room].todayCircleNewJoys != None:
+                newjoy_results.append(newjoy_rooms[room])
+
+            # 新歓ルームを空にする
+            newjoy_rooms[room].todayCircleNewJoys = None
+        continue
+
+    # 今新歓ルーム配列に割り当てられている新歓がValue内にあるかを確認する。
+    # [ある場合] そのまま新歓ルーム配列に値を入れたまま。
+    # [ない場合] 新歓ルーム配列から値を削除し、新歓ルーム記録用配列に値を挿入する
+    for room in newjoy_rooms:
+        if newjoy_rooms[room].todayCircleNewJoys != None:
+
+            done = True:
+            for td_arr in time_dict[td]:
+                if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
+                    done = False
+
+            if done:
+                # 新歓ルーム記録用配列に入れる
+                newjoy_results.append(newjoy_rooms[room])
+                # 新歓ルームを空にする
+                newjoy_rooms[room].todayCircleNewJoys = None
+
+    # 新歓があるとき
+    for td_arr in time_dict[td]:
+
+        doing = False
+        for room in newjoy_rooms:
+            # 前の時間帯に新歓を行なったかどうか
+            if time_dict[td][td_arr].circleNewJoyId == newjoy_rooms[room].todayCircleNewJoy.circleNewJoyId:
+                doing = True
+
+        # 空いている新歓ルームへの割り当て
+        if doing == False:
+            for room in newjoy_rooms:
+                if newjoy_rooms[room].todayCircleNewJoy == None:
+                    newjoy_rooms[room].todayCircleNewJoy = time_dict[td]
+                    break
+
+print(newjoy_results)
 
 # ###SET_LOOP###
 # # ループ処理
@@ -90,4 +186,3 @@ print(time_dict)
 # for n, i in enumerate(time_arr):
 #     i.idx =n
 #     print(i.idx,i.name, i.circleNewJoy.format_startDay())
-
