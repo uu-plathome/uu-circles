@@ -25,17 +25,39 @@ class GachaPickupListControllerTest extends TestCase
      */
     protected $seed = true;
 
-    public function testRequest()
+    public function testRequest_単発ガチャ()
     {
-        Log::info("testRequest");
+        Log::info("testRequest_単発ガチャ");
 
         // GIVEN
-
+        $NUMBER=1;
         // WHEN
-        $response = $this->post("api/gacha/circle?number={number}");
+        $response = $this->post("api/gacha/circle?number={$NUMBER}");
 
         // THEN
         $response->assertOk();
+        
+        $this->assertArrayHasKey("drewCircles", $response);
 
+        //数の確認
+        $this->assertCount($NUMBER,$response["drewCircles"]);
+    }
+
+    public function testRequest_10連ガチャ()
+    {
+        Log::info("testRequest_10連ガチャ");
+
+        // GIVEN
+        $NUMBER=10;
+        // WHEN
+        $response = $this->post("api/gacha/circle?number={$NUMBER}");
+
+        // THEN
+        $response->assertOk();
+        
+        $this->assertArrayHasKey("drewCircles", $response);
+
+        //数の確認
+        $this->assertCount($NUMBER,$response["drewCircles"]);
     }
 }
