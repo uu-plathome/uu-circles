@@ -31,13 +31,15 @@ class CheckIdentificationControllerTest extends TestCase
         Log::info("CheckIdentificationControllerTest");
 
         // GIVEN
-        $identifier = Identifier::where('id',1)->first();
+        $identifier = factory(Identifier::class, 1)->create()->first();
         Log::info($identifier);
+        $this->assertNotNull($identifier);
+        $this->assertIsString($identifier->identifier_hash);
+
         // WHEN
         $response = $this->post("/api/identification/valid/{$identifier->identifier_hash}");
 
         // THEN
         $response->assertOk();
-
     }
 }
