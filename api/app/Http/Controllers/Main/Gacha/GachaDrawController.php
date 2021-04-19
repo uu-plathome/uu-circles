@@ -6,40 +6,44 @@ namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Gacha\DrawGachaUsecase;
 use App\Usecases\Main\Gacha\GachaPickupListKey;
-use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-
 class GachaDrawController  extends Controller
 {
-    private GetGachaPickupListUsecase $getGachaPickupListUsecase;
+    private DrawGachaUsecase $drawGachaUsecase;
 
-    public function  __construct(GetGachaPickupListUsecase $getGachaPickupListUsecase)
+    public function  __construct(DrawGachaUsecase $drawGachaUsecase)
     {
-        $this->getGachaPickupListUsecase = $getGachaPickupListUsecase;
+        $this->drawGachaUsecase = $drawGachaUsecase;
     }
 
     /*
-     * ピックアップ一覧API
-     * - ランダムに3つのサークルを取得する。
-     * - ピックアップ一覧は1日に1度更新する。
-     * - ピックアップ一覧はキャッシュの中に入れておく。
+    単発ガチャ：
+    - 2つのサークルをランダムに拾い、ピックアップと一致するものがあったら、それを取得する。
+    - ピックアップと一致しない場合は、一つ目のサークルを取得する。
+
+    10連ガチャ：
+    - 12つのサークルをランダムに拾い、ピックアップと一致するものを優先的にひろう。
+    
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         Log::debug('GachaDrawController args none');
+        $drawCount=$request->query('number',1);
 
-        $pickupList = Cache::remember(
-            GachaPickupListKey::getCacheKey(),
-            60*60*24,
-            fn()=>$this->getGachaPickupListUsecase->invoke()
-        );
+        //数字出なかったり、数値変だったりした場合を除外するバリデーション
+        if (!is_numeric($drawCount) || $drawCount <= 0 || $drawCount >10 ) {
+            return abort(404);
+        }
+
+        $drewCircles=$this->drawGachaUsecase->invoke(intval($drawCount));
 
         return Arr::camel_keys([
-            "pickupCircle"=> $pickupList->toArrayPickupCircles(),
-            "pickupDate"=> $pickupList->pickupDate,
+            "drewCircles"=> $drewCircles
         ]);
     }
 }
