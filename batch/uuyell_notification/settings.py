@@ -10,5 +10,6 @@ load_dotenv(verbose=True, dotenv_path=dotenv_path)
 
 TOKEN = os.environ.get("TOKEN")
 CHANNEL_ID = os.environ.get("CHANNEL_ID")
-TEST_CHANNEL_ID = os.environ.get("BOT_TEST_CHANNEL_ID")
-API_URL = os.environ.get("BOT_API_URL")
+TEST_CHANNEL_ID = os.environ.get("TEST_CHANNEL_ID")
+API_URL = os.environ.get("API_URL")
+TEST_API_URL = os.environ.get("TEST_API_URL")

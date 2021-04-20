@@ -11,18 +11,18 @@ from domain import todayCircleNewJoy as domain
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
 CHANNEL_ID = int(settings.CHANNEL_ID)
-API_URL = settings.API_URL
-# TEST_API_URL = settings.TEST_API_URL
+BOT_API_URL = settings.BOT_API_URL
+# TEST_BOT_API_URL = settings.TEST_BOT_API_URL
 
 ###TEST_CHANNEL_ID###
 # CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
 
 ###GET_API_INFORMATION###
 payload = {'key': 'value'}
-r = requests.get(API_URL, params=payload).json()
+r = requests.get(BOT_API_URL, params=payload).json()
 
 ##TEST_API_INFORMATION###
-# r = requests.get(TEST_API_URL, params=payload).json()
+# r = requests.get(TEST_BOT_API_URL, params=payload).json()
 
 ###MAKE_BOT###
 # 接続に必要なオブジェクトを生成
