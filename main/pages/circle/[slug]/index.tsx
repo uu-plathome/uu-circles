@@ -33,7 +33,7 @@ const WpPostBlock: FC<{
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
           <img
-            src={(media && media.source_url) || '/no-image.png'}
+            src={(media && media.source_url) || '/images/uuyell-post.png'}
             alt={(media && media.alt_text) || ''}
           />
         </p>
@@ -74,7 +74,11 @@ type Props = {
   circle?: Circle
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
+    posts: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
+  }
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
@@ -86,6 +90,7 @@ const Page: NextPage<Props> = ({
   circle,
   circleTags,
   circleNewJoys,
+  uuYellForCircles,
   uuYellArticles,
   wpPosts,
   errorCode,
@@ -120,7 +125,7 @@ const Page: NextPage<Props> = ({
               <CircleTopInformation circle={circle} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
               <div className="order-1">
                 <AppealingPoint circle={circle} />
               </div>
@@ -233,6 +238,33 @@ const Page: NextPage<Props> = ({
                 ''
               )}
             </div>
+
+            {uuYellForCircles &&
+            uuYellForCircles.posts &&
+            uuYellForCircles.posts.length > 0 ? (
+              <div className="pt-10 px-6 md:px-0">
+                <ShowCircleTitle>
+                  uu-yellでサークルを詳しく知ろう！
+                </ShowCircleTitle>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 pb-8">
+                  {uuYellForCircles.posts.map((post, key) => {
+                    return (
+                      <div key={`uuYellForCircles-${key}`} className="mb-4">
+                        <WpPostBlock
+                          post={post}
+                          media={uuYellForCircles.medias.find(
+                            (media) => media.id === post.featured_media
+                          )}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </BaseContainer>
         </div>
 
@@ -256,6 +288,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circleTags,
       circleNewJoys,
       uuYellArticles,
+      uuYellForCircles,
       wpPosts,
     } = await getCircleBySlug(params.slug)
 
@@ -265,6 +298,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         circleTags,
         circleNewJoys,
         uuYellArticles,
+        uuYellForCircles,
         wpPosts,
       },
       revalidate: 120,
