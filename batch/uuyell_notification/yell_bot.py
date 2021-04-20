@@ -4,6 +4,7 @@ import settings
 from datetime import datetime, timedelta, timezone
 import requests
 from datetime import datetime, timedelta
+from urllib.parse import unquote
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
@@ -48,8 +49,7 @@ async def on_ready():
         for idx, post in enumerate(r):
             text = '\n---------------------------\n'
             text += '**:name_badge: タイトル**\n**' + post['title']['rendered'] + '**\n'
-            text += '\n**:notepad_spiral: あらすじ**\n**' + post['excerpt']['rendered'] + '**\n'
-            text += '**:earth_asia: 詳しく見る**\n' + post['link'] + ''
+            text += '\n**:earth_asia: 詳しく見る**\n' + unquote(post['link']) + ''
             await channel.send(text)
         exit()
 client.run(TOKEN)
