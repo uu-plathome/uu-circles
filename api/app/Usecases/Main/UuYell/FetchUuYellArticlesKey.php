@@ -6,9 +6,13 @@ use Illuminate\Support\Carbon;
 
 class FetchUuYellArticlesKey
 {
+    const TTL = 60 * 60 * 2;
+
     public static function uuYellCacheKey(): string
     {
-        $minutes = Carbon::now()->format('YmdH');
-        return 'FetchUuYellArticlesKey' . $minutes;
+        $now = Carbon::now();
+        $day = $now->format('Ymd');
+        $hour = $now->hour - $now->hour % 2;
+        return 'FetchUuYellArticlesKey' . $day . $hour;
     }
 }
