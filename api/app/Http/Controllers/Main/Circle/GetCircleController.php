@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetCircleNewJoyAllPeriodWithLimitByCircleId;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesForCirclesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesForCirclesUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\Usecases\Main\UuYell\Params\FetchUuYellArticlesForCirclesUsecaseParam;
 use App\Usecases\Main\WordPress\FetchWordPressPostsUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
@@ -19,6 +22,8 @@ use Illuminate\Support\Facades\Log;
 class GetCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
+
+    private FetchUuYellArticlesForCirclesUsecase $fetchUuYellArticlesForCirclesUsecase;
 
     private FetchWordPressPostsUsecase $fetchWordPressPostsUsecase;
 
@@ -33,11 +38,13 @@ class GetCircleController extends Controller
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        FetchUuYellArticlesForCirclesUsecase $fetchUuYellArticlesForCirclesUsecase,
         FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
         GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
+        $this->fetchUuYellArticlesForCirclesUsecase = $fetchUuYellArticlesForCirclesUsecase;
         $this->fetchWordPressPostsUsecase = $fetchWordPressPostsUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getCircleNewJoyAllPeriodWithLimitByCircleId = $getCircleNewJoyAllPeriodWithLimitByCircleId;
@@ -50,7 +57,7 @@ class GetCircleController extends Controller
      * @param string $slug
      * @return array
      */
-    public function __invoke(Request $request, string $slug)
+    public function __invoke(Request $request, string $slug): array
     {
         Log::debug("#GetCircleController args", [
             'slug' => $slug
@@ -67,12 +74,29 @@ class GetCircleController extends Controller
             )
         );
 
+        // uu-yellの最新の記事を取得する
         $articles = Cache::remember(
             FetchUuYellArticlesKey::uuYellCacheKey(),
             60 * 60,
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        // サークルに関するuu-yellの記事を取得する
+        $fetchUuYellArticlesForCirclesUsecaseParam = new FetchUuYellArticlesForCirclesUsecaseParam();
+        $fetchUuYellArticlesForCirclesUsecaseParam->name = $circle->circleValueObject->name;
+        $fetchUuYellArticlesForCirclesUsecaseParam->circle_url =
+            "https://uu-circles.com/circle/{$circle->circleValueObject->slug}";
+        $uuYellForCircles = Cache::remember(
+            FetchUuYellArticlesForCirclesKey::uuYellCacheKey(
+                $fetchUuYellArticlesForCirclesUsecaseParam
+            ),
+            60 * 60,
+            fn () => $this->fetchUuYellArticlesForCirclesUsecase->invoke(
+                $fetchUuYellArticlesForCirclesUsecaseParam
+            )
+        );
+
+        // サークルが持っているWordPressの記事を取得
         $wpPosts = $circle->circleValueObject->is_view_wp_post ? Cache::remember(
             FetchWordPressPostsUsecase::getCacheKey(
                 $circle->circleValueObject->wp_url,
@@ -96,8 +120,9 @@ class GetCircleController extends Controller
                     fn (CircleNewJoyValueObject $circleNewJoy) => $circleNewJoy->toArray()
                 )->toArray()
             ),
-            'uuYellArticles' => $articles,
-            'wpPosts'        => $wpPosts,
+            'uuYellArticles'   => $articles,
+            'uuYellForCircles' => $uuYellForCircles,
+            'wpPosts'          => $wpPosts,
         ];
     }
 
