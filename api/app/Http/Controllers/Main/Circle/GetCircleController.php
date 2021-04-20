@@ -23,8 +23,6 @@ class GetCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 
-    private FetchUuYellArticlesForCirclesUsecase $fetchUuYellArticlesForCirclesUsecase;
-
     private FetchWordPressPostsUsecase $fetchWordPressPostsUsecase;
 
     private GetCircleBySlugUsecase $getCircleBySlugUsecase;
@@ -38,13 +36,11 @@ class GetCircleController extends Controller
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        FetchUuYellArticlesForCirclesUsecase $fetchUuYellArticlesForCirclesUsecase,
         FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
         GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->fetchUuYellArticlesForCirclesUsecase = $fetchUuYellArticlesForCirclesUsecase;
         $this->fetchWordPressPostsUsecase = $fetchWordPressPostsUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getCircleNewJoyAllPeriodWithLimitByCircleId = $getCircleNewJoyAllPeriodWithLimitByCircleId;
@@ -81,21 +77,6 @@ class GetCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
-        // サークルに関するuu-yellの記事を取得する
-        $fetchUuYellArticlesForCirclesUsecaseParam = new FetchUuYellArticlesForCirclesUsecaseParam();
-        $fetchUuYellArticlesForCirclesUsecaseParam->name = $circle->circleValueObject->name;
-        $fetchUuYellArticlesForCirclesUsecaseParam->circle_url =
-            "https://uu-circles.com/circle/{$circle->circleValueObject->slug}";
-        $uuYellForCircles = Cache::remember(
-            FetchUuYellArticlesForCirclesKey::uuYellCacheKey(
-                $fetchUuYellArticlesForCirclesUsecaseParam
-            ),
-            FetchUuYellArticlesForCirclesKey::TTL,
-            fn () => $this->fetchUuYellArticlesForCirclesUsecase->invoke(
-                $fetchUuYellArticlesForCirclesUsecaseParam
-            )
-        );
-
         // サークルが持っているWordPressの記事を取得
         $wpPosts = $circle->circleValueObject->is_view_wp_post ? Cache::remember(
             FetchWordPressPostsUsecase::getCacheKey(
@@ -121,7 +102,6 @@ class GetCircleController extends Controller
                 )->toArray()
             ),
             'uuYellArticles'   => $articles,
-            'uuYellForCircles' => $uuYellForCircles,
             'wpPosts'          => $wpPosts,
         ];
     }
