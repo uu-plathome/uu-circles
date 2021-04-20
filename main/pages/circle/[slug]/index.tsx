@@ -301,7 +301,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         uuYellForCircles,
         wpPosts,
       },
-      revalidate: 120,
+      revalidate: 180,
     }
   } catch (e) {
     if (e instanceof PageNotFoundError) {
