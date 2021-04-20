@@ -9,11 +9,11 @@ import { axiosInstance } from '.'
 
 export const getAllCircleList = async (): Promise<{
   circles: Circle[]
-  /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
 }> => {
   type Response = {
     data: Circle[]
-    /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}`
@@ -21,7 +21,7 @@ export const getAllCircleList = async (): Promise<{
 
   return {
     circles: data.data,
-    /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
   }
 }
 
@@ -31,7 +31,11 @@ export const getCircleBySlug = async (
   circle: Circle
   circleTags: CircleTagModel[]
   circleNewJoys: CircleNewJoy[]
-  /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
+    posts: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
+  }
   /** WordPress記事 */ wpPosts: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
@@ -43,7 +47,11 @@ export const getCircleBySlug = async (
       data: Circle
       circleTags: CircleTagModel[]
       circleNewJoys: CircleNewJoy[]
-      /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
+        posts: WP_REST_API_Post[]
+        medias: WP_REST_API_Media[]
+      }
       /** WordPress記事 */ wpPosts: {
         postsNotTags: WP_REST_API_Post[]
         postsExistTags: WP_REST_API_Post[]
@@ -58,7 +66,9 @@ export const getCircleBySlug = async (
       circle: data.data,
       circleTags: data.circleTags,
       circleNewJoys: data.circleNewJoys,
-      /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** uu-yellのサークルに関する記事 */
+      uuYellForCircles: data.uuYellForCircles,
       /** WordPress記事 */ wpPosts: data.wpPosts,
     }
   } catch (_e) {
@@ -77,12 +87,12 @@ export const getCircleByCategory = async (
 ): Promise<{
   circles: Circle[]
   recommendCircles: Circle[]
-  /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
-    /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   }
   const { data } = await axiosInstance.get<Response>(
     linkConst.CIRCLE.CATEGORY(category)
@@ -91,7 +101,7 @@ export const getCircleByCategory = async (
   return {
     circles: data.data,
     recommendCircles: data.recommendCircles,
-    /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
   }
 }
 
@@ -100,12 +110,12 @@ export const getCircleByTag = async (
 ): Promise<{
   circles: Circle[]
   recommendCircles: Circle[]
-  /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
-    /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}/tag/${tag}`
@@ -114,7 +124,7 @@ export const getCircleByTag = async (
   return {
     circles: data.data,
     recommendCircles: data.recommendCircles,
-    /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
   }
 }
 
@@ -123,12 +133,12 @@ export const searchCircle = async (
 ): Promise<{
   circles: Circle[]
   recommendCircles: Circle[]
-  /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
-    /** UU-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   }
   const { data } = await axiosInstance.get<Response>(
     encodeURI(`${linkConst.CIRCLE.GROUP}/search/${search}`)
@@ -137,6 +147,6 @@ export const searchCircle = async (
   return {
     circles: data.data,
     recommendCircles: data.recommendCircles,
-    /** UU-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
   }
 }
