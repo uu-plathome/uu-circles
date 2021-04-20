@@ -44,7 +44,7 @@ class TodayCircleNewJoyController extends Controller
 
         $articles = Cache::remember(
             FetchUuYellArticlesKey::uuYellCacheKey(),
-            60 * 60,
+            FetchUuYellArticlesKey::TTL,
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
