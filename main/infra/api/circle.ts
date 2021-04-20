@@ -32,10 +32,6 @@ export const getCircleBySlug = async (
   circleTags: CircleTagModel[]
   circleNewJoys: CircleNewJoy[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
-  /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
-    posts: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
-  }
   /** WordPress記事 */ wpPosts: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
@@ -48,10 +44,6 @@ export const getCircleBySlug = async (
       circleTags: CircleTagModel[]
       circleNewJoys: CircleNewJoy[]
       /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
-      /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
-        posts: WP_REST_API_Post[]
-        medias: WP_REST_API_Media[]
-      }
       /** WordPress記事 */ wpPosts: {
         postsNotTags: WP_REST_API_Post[]
         postsExistTags: WP_REST_API_Post[]
@@ -67,8 +59,6 @@ export const getCircleBySlug = async (
       circleTags: data.circleTags,
       circleNewJoys: data.circleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** uu-yellのサークルに関する記事 */
-      uuYellForCircles: data.uuYellForCircles,
       /** WordPress記事 */ wpPosts: data.wpPosts,
     }
   } catch (_e) {
