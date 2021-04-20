@@ -10,6 +10,7 @@ import { InformationField } from '@/components/organisms/ShowCircle/InformationF
 import { NewJoyList } from '@/components/organisms/ShowCircle/NewJoyList'
 import { ShowCircleTitle } from '@/components/organisms/ShowCircle/ShowCircleTitle'
 import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
+import { axiosInstance } from '@/infra/api'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
@@ -22,6 +23,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
 import { FC } from 'react'
+import useSWR from 'swr'
 import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
@@ -70,15 +72,13 @@ const WpPostBlock: FC<{
   )
 }
 
+const UU_YELL_URL = 'https://media.uu-circles.com'
+
 type Props = {
   circle?: Circle
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
-  /** uu-yellのサークルに関する記事 */ uuYellForCircles?: {
-    posts: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
-  }
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
@@ -90,7 +90,6 @@ const Page: NextPage<Props> = ({
   circle,
   circleTags,
   circleNewJoys,
-  uuYellForCircles,
   uuYellArticles,
   wpPosts,
   errorCode,
@@ -102,6 +101,42 @@ const Page: NextPage<Props> = ({
   if (!circle) {
     return <div></div>
   }
+
+  const { data: uuYellForCircles } = useSWR<{
+    posts: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
+  }>(['/circle/[slug]', circle.slug], async () => {
+    const fetchedPosts = await Promise.all([
+      axiosInstance.get<WP_REST_API_Post[]>(
+        `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=${circle.name}`
+      ),
+      axiosInstance.get<WP_REST_API_Post[]>(
+        `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=https://uu-circles.com/circle/${circle.name}`
+      ),
+    ])
+    const posts = [
+      ...new Set([...fetchedPosts[0].data, ...fetchedPosts[1].data]),
+    ]
+
+    if (posts.length === 0) {
+      return {
+        posts: [],
+        medias: [],
+      }
+    }
+
+    const mediaIds = posts.map((post) => post.featured_media)
+    const queryMediaIds = mediaIds.join(',')
+
+    const fetchedMedias = await axiosInstance.get<WP_REST_API_Media[]>(
+      `${UU_YELL_URL}/wp-json/wp/v2/media?context=embed&include=${queryMediaIds}`
+    )
+
+    return {
+      posts,
+      medias: fetchedMedias.data,
+    }
+  })
 
   // w : h = 210 : 297
   const width = 300
@@ -288,7 +323,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circleTags,
       circleNewJoys,
       uuYellArticles,
-      uuYellForCircles,
       wpPosts,
     } = await getCircleBySlug(params.slug)
 
@@ -298,7 +332,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         circleTags,
         circleNewJoys,
         uuYellArticles,
-        uuYellForCircles,
         wpPosts,
       },
       revalidate: 180,
