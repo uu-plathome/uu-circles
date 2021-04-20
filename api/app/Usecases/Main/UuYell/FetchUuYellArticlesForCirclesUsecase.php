@@ -30,12 +30,26 @@ class FetchUuYellArticlesForCirclesUsecase
 
         // サークル名による検索
         $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->name}");
-        
+        Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
+        if ($response->status() >= 500) {
+            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+                'request_url' => "$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->name}",
+                'param'       => $param,
+                'response'    => $response,
+            ]);
+        }
         $fetched = $fetched->merge($response->status() === 200 ? $response->json() : []);
 
         // URLによる検索
         $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->circle_url}");
-        
+        Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
+        if ($response->status() >= 500) {
+            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+                'request_url' => "$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->circle_url}",
+                'param'       => $param,
+                'response'    => $response,
+            ]);
+        }
         $fetched = $fetched->merge($response->status() === 200 ? $response->json() : []);
 
         // 重複している記事の削除

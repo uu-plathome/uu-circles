@@ -31,10 +31,12 @@ const WpPostBlock: FC<{
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
-        <img
-          src={(media && media.source_url) || '/no-image.png'}
-          alt={(media && media.alt_text) || ''}
-        />
+        <p className="wp-cardtype__img">
+          <img
+            src={(media && media.source_url) || '/no-image.png'}
+            alt={(media && media.alt_text) || ''}
+          />
+        </p>
 
         <div className="px-6 py-2 mb-2">
           {post.date ? (
@@ -53,7 +55,12 @@ const WpPostBlock: FC<{
           )}
 
           <div className="w-full pr-3">
-            <h3 className="text-black font-bold mb-1 max-line-4 ">
+            <h3
+              className="text-black font-bold mb-1 max-line-4"
+              style={{
+                minHeight: '48px',
+              }}
+            >
               {post.title.rendered}
             </h3>
           </div>
@@ -173,14 +180,14 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="order-7 md:order-3 pt-10">
+              <div className="order-4 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 
               {wpPosts &&
               wpPosts.postsExistTags &&
               wpPosts.postsExistTags.length > 0 ? (
-                <div className="order-5 pt-10">
+                <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
                   {wpPosts.postsExistTags.map((post, key) => {
@@ -206,7 +213,7 @@ const Page: NextPage<Props> = ({
               {wpPosts &&
               wpPosts.postsNotTags &&
               wpPosts.postsNotTags.length > 0 ? (
-                <div className="order-6 pt-10">
+                <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
                   {wpPosts.postsNotTags.map((post, key) => {
