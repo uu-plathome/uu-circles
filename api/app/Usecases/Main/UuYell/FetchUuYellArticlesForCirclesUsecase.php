@@ -55,6 +55,23 @@ class FetchUuYellArticlesForCirclesUsecase
         // 重複している記事の削除
         $fetched = $fetched->unique();
 
-        return $fetched->toArray();
+        // 画像の取得
+        $mediaIds = $fetched->map(
+            fn (array $arr) => $arr["featured_media"]
+        )
+            ->unique()
+            ->toArray();
+        $mediaIdsStr = implode(",", $mediaIds);
+        // MEDIA取得 HTTP リクエスト
+        $responseMedias = Http::get(
+            "$baseUrl/wp-json/wp/v2/media?context=embed&include=$mediaIdsStr"
+        );
+
+        $medias = $responseMedias->status() === 200 ? $responseMedias->json() : [];
+
+        return [
+            'posts'  => $fetched->toArray(),
+            'medias' => $medias,
+        ];
     }
 }
