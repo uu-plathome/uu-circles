@@ -10,7 +10,6 @@ import { InformationField } from '@/components/organisms/ShowCircle/InformationF
 import { NewJoyList } from '@/components/organisms/ShowCircle/NewJoyList'
 import { ShowCircleTitle } from '@/components/organisms/ShowCircle/ShowCircleTitle'
 import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
-import { axiosInstance } from '@/infra/api'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
@@ -19,6 +18,7 @@ import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/plugins/Dayjs'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
@@ -107,10 +107,10 @@ const Page: NextPage<Props> = ({
     medias: WP_REST_API_Media[]
   }>(['/circle/[slug]', circle.slug], async () => {
     const fetchedPosts = await Promise.all([
-      axiosInstance.get<WP_REST_API_Post[]>(
+      axios.get<WP_REST_API_Post[]>(
         `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=${circle.name}`
       ),
-      axiosInstance.get<WP_REST_API_Post[]>(
+      axios.get<WP_REST_API_Post[]>(
         `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=https://uu-circles.com/circle/${circle.name}`
       ),
     ])
@@ -128,7 +128,7 @@ const Page: NextPage<Props> = ({
     const mediaIds = posts.map((post) => post.featured_media)
     const queryMediaIds = mediaIds.join(',')
 
-    const fetchedMedias = await axiosInstance.get<WP_REST_API_Media[]>(
+    const fetchedMedias = await axios.get<WP_REST_API_Media[]>(
       `${UU_YELL_URL}/wp-json/wp/v2/media?context=embed&include=${queryMediaIds}`
     )
 
