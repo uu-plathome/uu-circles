@@ -77,7 +77,7 @@ class GetCircleController extends Controller
         // uu-yellの最新の記事を取得する
         $articles = Cache::remember(
             FetchUuYellArticlesKey::uuYellCacheKey(),
-            60 * 60,
+            FetchUuYellArticlesKey::TTL,
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
@@ -90,7 +90,7 @@ class GetCircleController extends Controller
             FetchUuYellArticlesForCirclesKey::uuYellCacheKey(
                 $fetchUuYellArticlesForCirclesUsecaseParam
             ),
-            60 * 60,
+            FetchUuYellArticlesForCirclesKey::TTL,
             fn () => $this->fetchUuYellArticlesForCirclesUsecase->invoke(
                 $fetchUuYellArticlesForCirclesUsecaseParam
             )
@@ -102,7 +102,7 @@ class GetCircleController extends Controller
                 $circle->circleValueObject->wp_url,
                 $circle->circleValueObject->wp_tag_taxonomy
             ),
-            60 * 60,
+            FetchWordPressPostsUsecase::TTL,
             fn () => $this->fetchWordPressPostsUsecase->invoke(
                 $circle->circleValueObject->wp_url,
                 $circle->circleValueObject->wp_tag_taxonomy

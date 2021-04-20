@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Usecases\Main\WordPress;
-
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -11,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 
 class FetchWordPressPostsUsecase
 {
+    const TTL = 60 * 60 * 4;
+
     const MAX_FETCH_NUMBER = 4;
 
     /**
@@ -70,7 +70,9 @@ class FetchWordPressPostsUsecase
 
     public static function getCacheKey(string $wpUrl, ?string $tagsTaxonomy): string
     {
-        $minutes = Carbon::now()->format('YmdH');
-        return "FetchWordPressPostsUsecase.$wpUrl.$tagsTaxonomy.$minutes";
+        $now = Carbon::now();
+        $day = $now->format('Ymd');
+        $hour = $now->hour - $now->hour % 4;
+        return "FetchWordPressPostsUsecase.$wpUrl.$tagsTaxonomy.$day.$hour";
     }
 }
