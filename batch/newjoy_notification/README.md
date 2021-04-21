@@ -10,7 +10,6 @@
 **モジュール**
 
 - [モジュール一覧](./newjoy_notification/requirements.txt)
-
 - discord 1.0.1 (bot 用モジュール)
 - discord.py 1.6.0 (bot 用モジュール)
 - python-dotenv 0.15.0 (.env 用モジュール)
@@ -29,10 +28,11 @@
 ```md
 batch
 └──newjoy_notification
-├──bot.py
-├──settings.py
-├──requirements.txt
-└──.env.example
+|   ├──bot.py
+|   ├──settings.py
+|   ├──requirements.txt
+|   └──.env.example
+└──uuyell_notification
 ```
 
 ### bot 起動手順
