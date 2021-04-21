@@ -49,7 +49,7 @@ async def on_ready():
         for idx, post in enumerate(r):
             text = '\n---------------------------\n'
             text += '**:name_badge: タイトル**\n**' + post['title']['rendered'] + '**\n'
-            text += '\n**:earth_asia: 詳しく見る**\n' + unquote(post['link']) + ''
+            text += '\n**:earth_asia: 詳しく見る**\n' + unquote(post['link']) + '\n'
             await channel.send(text)
         exit()
 client.run(TOKEN)
