@@ -23,7 +23,7 @@ client = discord.Client()
 now = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
 before_isoformat = (now - timedelta(days=1)).isoformat()
 now_isoformat = now.isoformat()
-YELL_API_URL = API_URL + before_isoformat + '&before=' + now_isoformat
+YELL_API_URL = API_URL + '&after=' + before_isoformat + '&before=' + now_isoformat
 
 # ###TEST_API_URL###
 # YELL_API_URL = TEST_API_URL
