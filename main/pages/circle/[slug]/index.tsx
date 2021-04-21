@@ -238,9 +238,12 @@ const Page: NextPage<Props> = ({
                       >
                         <WpPostBlock
                           post={post}
-                          media={wpPosts.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            wpPosts.medias &&
+                            wpPosts.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )
@@ -261,9 +264,12 @@ const Page: NextPage<Props> = ({
                       <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
                         <WpPostBlock
                           post={post}
-                          media={wpPosts.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            wpPosts.medias &&
+                            wpPosts.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )
@@ -288,9 +294,12 @@ const Page: NextPage<Props> = ({
                       <div key={`uuYellForCircles-${key}`} className="mb-4">
                         <WpPostBlock
                           post={post}
-                          media={uuYellForCircles.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            uuYellForCircles.medias &&
+                            uuYellForCircles.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )

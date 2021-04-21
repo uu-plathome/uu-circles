@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/app/Http/Requests/Circle/Circle/UpdateCircleFormRequest.php">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/app/Usecases/CircleManagement/Circle/UpdateCircleUsecase.php">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/storage/memo/2021_04_11_circleInformation_null.sql">
           <value>
             <Attribute>
