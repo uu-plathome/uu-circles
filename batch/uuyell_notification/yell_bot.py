@@ -8,12 +8,12 @@ from urllib.parse import unquote
 
 ###SET_ENVIRONMENT_VALUES###
 TOKEN = settings.TOKEN
-CHANNEL_ID = int(settings.CHANNEL_ID)
-API_URL = settings.API_URL
-TEST_API_URL = settings.TEST_API_URL
+CHANNEL_ID = int(settings.UU_YELL_CHANNEL_ID)
+API_URL = settings.UU_YELL_API_URL
+TEST_API_URL = settings.UU_YELL_TEST_API_URL
 
 ##TEST_CHANNEL_ID###
-CHANNEL_ID = int(settings.TEST_CHANNEL_ID)
+CHANNEL_ID = int(settings.UU_YELL_TEST_CHANNEL_ID)
 
 ###MAKE_BOT###
 # 接続に必要なオブジェクトを生成
@@ -37,6 +37,8 @@ for i in r:
 
 ###SET_LOOP###
 # ループ処理
+
+
 @client.event
 async def on_ready():
     channel = client.get_channel(CHANNEL_ID)
@@ -48,7 +50,8 @@ async def on_ready():
         await channel.send('**:pen_fountain: 今日の投稿 **')
         for idx, post in enumerate(r):
             text = '\n---------------------------\n'
-            text += '**:name_badge: タイトル**\n**' + post['title']['rendered'] + '**\n'
+            text += '**:name_badge: タイトル**\n**' + \
+                post['title']['rendered'] + '**\n'
             text += '\n**:earth_asia: 詳しく見る**\n' + unquote(post['link']) + '\n'
             await channel.send(text)
         exit()

@@ -1,4 +1,5 @@
 from domain import circleNewJoy
+import PlaceOfActivity
 
 
 class TodayCircleNewJoy:
@@ -39,7 +40,9 @@ class TodayCircleNewJoy:
                 str(self.circleNewJoy.startDatetime())+' ~ **\n\n'
 
         if (self.circleNewJoy.placeOfActivity is not None):
-            text += '🧭 場所:**' + self.circleNewJoy.placeOfActivity + '**\n\n'
+            text += '🧭 場所:**' + \
+                PlaceOfActivity.placeOfActivityTrans(
+                    self.circleNewJoy.placeOfActivity) + '**\n\n'
 
         if (self.circleNewJoy.description is not None):
             text += '📣 ひとこと:**' + self.circleNewJoy.description + '**\n\n'
