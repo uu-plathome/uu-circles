@@ -16,7 +16,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "lampager/lampager-laravel": "^0.4.6",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^8.27",
         "laravel/legacy-factories": "^1.1",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.5",
