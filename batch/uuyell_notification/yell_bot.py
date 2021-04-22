@@ -44,7 +44,7 @@ async def on_ready():
     channel = client.get_channel(CHANNEL_ID)
     # アナウンス
     if (len(r) == 0):
-        await channel.send('**:sleeping: 今日の投稿はありません**')
+        print('**:sleeping: 今日の投稿はありません**')
         exit()
     else:
         await channel.send('**:pen_fountain: 今日の投稿 **')
