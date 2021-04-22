@@ -32,6 +32,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.DISCORD_TOKEN }}
           UU_YELL_CHANNEL_ID: ${{ secrets.DISCORD_UU_YELL_CHANNEL_ID }}
+          UU_YELL_TEST_CHANNEL_ID: ${{ secrets.DISCORD_UU_YELL_CHANNEL_ID }}
           UU_YELL_API_URL: https://media.uu-circles.com/wp-json/wp/v2/posts?context=embed
           UU_YELL_TEST_API_URL: https://media.uu-circles.com/wp-json/wp/v2/posts?context=embed
         run: |
