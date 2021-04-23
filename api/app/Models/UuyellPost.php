@@ -20,6 +20,7 @@ class UuyellPost extends Model
         P::media_source_url,
         P::media_alt_text,
         P::published,
+        P::tweet_id,
         P::notified_at,
     ];
 }

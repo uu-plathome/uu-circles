@@ -29,17 +29,21 @@ class InitTwitterRepository
         );
     }
 
-    public function tweet(TwitterOAuth $twitterOAuth)
+    public function tweet(TwitterOAuth $twitterOAuth, string $sendMessage)
     {
-        Log::debug("InitTwitterRepository tweet args none");
+        Log::debug("InitTwitterRepository tweet args", [
+            'sendMessage' => $sendMessage,
+        ]);
 
         $post = $twitterOAuth->post(
             'statuses/update',
-            ['status' => 'テスト']
+            ['status' => $sendMessage]
         );
 
         Log::debug("InitTwitterRepository", [
             'post' => $post
         ]);
+
+        return $post;
     }
 }
