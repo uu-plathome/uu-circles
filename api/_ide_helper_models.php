@@ -444,7 +444,7 @@ namespace App\Models{
  * @property string|null $media_source_url 記事のアイキャッチのURL
  * @property string|null $media_alt_text 記事のアイキャッチのタイトル
  * @property bool $published 公開されているかどうか
- * @property bool|null $can_repost もう一度投稿してもいいか
+ * @property bool $can_repost もう一度投稿してもいいか
  * @property int|null $tweet_id Tweet Id
  * @property string|null $notified_at 通知日時
  * @property \Illuminate\Support\Carbon|null $created_at
