@@ -20,7 +20,13 @@ class UuyellPost extends Model
         P::media_source_url,
         P::media_alt_text,
         P::published,
+        P::can_repost,
         P::tweet_id,
         P::notified_at,
+    ];
+
+    protected $casts = [
+        P::published  => 'boolean',
+        P::can_repost => 'boolean',
     ];
 }

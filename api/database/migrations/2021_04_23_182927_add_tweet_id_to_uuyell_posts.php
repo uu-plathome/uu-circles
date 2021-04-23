@@ -14,7 +14,8 @@ class AddTweetIdToUuyellPosts extends Migration
     public function up()
     {
         Schema::table('uuyell_posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('tweet_id')->after('published')->nullable()->comment('Tweet Id');
+            $table->boolean('can_repost')->after('published')->default(false)->nullable()->comment('もう一度投稿してもいいか');
+            $table->unsignedBigInteger('tweet_id')->after('can_repost')->nullable()->comment('Tweet Id');
         });
     }
 
