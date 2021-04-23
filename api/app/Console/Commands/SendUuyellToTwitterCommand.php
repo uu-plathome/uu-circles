@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Repositories\Twitter\InitTwitterRepository;
+use App\Usecases\Batch\UuYell\SendUuyellPostToTwitterUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -22,31 +22,31 @@ class SendUuyellToTwitterCommand extends Command
      */
     protected $description = 'Command description';
 
-    private InitTwitterRepository $repository;
+    private SendUuyellPostToTwitterUsecase $sendUuyellPostToTwitterUsecase;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(InitTwitterRepository $repository)
+    public function __construct(SendUuyellPostToTwitterUsecase $sendUuyellPostToTwitterUsecase)
     {
         parent::__construct();
 
-        $this->repository = $repository;
+        $this->sendUuyellPostToTwitterUsecase = $sendUuyellPostToTwitterUsecase;
     }
 
     /**
      * Execute the console command.
      *
      * @return int
+     * @throws \Exception
      */
     public function handle()
     {
         Log::debug("SendUuyellToTwitterCommand handle args none");
 
-        $auth = $this->repository->init();
-        $this->repository->tweet($auth);
+        $this->sendUuyellPostToTwitterUsecase->invoke();
 
         return 0;
     }

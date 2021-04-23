@@ -51,7 +51,6 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::published        => true,
                     UuyellPostProperty::media_source_url => Arr::get($media, 'source_url'),
                     UuyellPostProperty::media_alt_text   => Arr::get($media, 'alt_text'),
-                    UuyellPostProperty::notified_at      => null,
                 ];
             }
         );
@@ -75,7 +74,6 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::published,
                     UuyellPostProperty::media_source_url,
                     UuyellPostProperty::media_alt_text,
-                    UuyellPostProperty::notified_at,
                 ]
             );
 
