@@ -5,7 +5,6 @@ namespace App\Usecases\Batch\UuYell;
 use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;
 use App\Support\Arr;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -22,7 +21,7 @@ class CopyUuYellPostsUsecase
      */
     public function invoke()
     {
-        Log::debug("CopyUuYellPostsUsecase args");
+        Log::debug("CopyUuYellPostsUsecase args none");
 
         // 投稿の取得
         $fetchedPosts = $this->fetchUuYellPosts();
@@ -51,7 +50,6 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::published        => true,
                     UuyellPostProperty::media_source_url => Arr::get($media, 'source_url'),
                     UuyellPostProperty::media_alt_text   => Arr::get($media, 'alt_text'),
-                    UuyellPostProperty::notified_at      => null,
                 ];
             }
         );
@@ -75,7 +73,6 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::published,
                     UuyellPostProperty::media_source_url,
                     UuyellPostProperty::media_alt_text,
-                    UuyellPostProperty::notified_at,
                 ]
             );
 
