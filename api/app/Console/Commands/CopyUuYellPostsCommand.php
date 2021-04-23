@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Usecases\Batch\UuYell\CopyUuYellPostsUsecase;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class CopyUuYellPostsCommand extends Command
 {
@@ -43,6 +44,10 @@ class CopyUuYellPostsCommand extends Command
      */
     public function handle()
     {
+        Log::debug('CopyUuYellPostsCommand handle start');
+
         $this->copyUuYellPostsUsecase->invoke();
+
+        Log::debug('CopyUuYellPostsCommand handle end');
     }
 }
