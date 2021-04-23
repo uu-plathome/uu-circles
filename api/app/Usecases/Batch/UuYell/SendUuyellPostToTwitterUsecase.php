@@ -35,7 +35,7 @@ class SendUuyellPostToTwitterUsecase
         }
 
         $twitterClient = $this->initTwitterRepository->init();
-        $sendMessage = "{$post->title}\n{$post->link}";
+        $sendMessage = "[今日のuu-yell {$now->format('Y.m.d')}]\n\n{$post->title}\n{$post->link}";
 
         $tweetContent = $this->initTwitterRepository->tweet(
             $twitterClient,
@@ -85,9 +85,19 @@ class SendUuyellPostToTwitterUsecase
     {
         Log::debug("SendUuyellPostToTwitterUsecase getNotificationTargetPost");
 
-        return UuyellPost::wherePublished(true)
+        $post = UuyellPost::wherePublished(true)
             ->whereNotifiedAt(null)
+            ->whereCanRepost(true)
             ->orderByDesc(UuyellPostProperty::wordpress_id)
+            ->first();
+
+        if (!is_null($post)) {
+            return $post;
+        }
+
+        return UuyellPost::wherePublished(true)
+            ->whereCanRepost(true)
+            ->inRandomOrder()
             ->first();
     }
 }
