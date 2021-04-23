@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class CopyUuYellPostsUsecase
 {
-    const UU_YELL_URL = 'https://media.uu-circles.com/';
+    const UU_YELL_URL = 'https://media.uu-circles.com';
 
     const FETCH_NUMBER = 100;
 
