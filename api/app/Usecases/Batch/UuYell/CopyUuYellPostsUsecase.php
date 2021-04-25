@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class CopyUuYellPostsUsecase
 {
-    const UU_YELL_URL = 'https://media.uu-circles.com/';
+    const UU_YELL_URL = 'https://media.uu-circles.com';
 
     const FETCH_NUMBER = 100;
 
@@ -23,7 +23,7 @@ class CopyUuYellPostsUsecase
      */
     public function invoke()
     {
-        Log::debug("CopyUuYellPostsUsecase args");
+        Log::debug("CopyUuYellPostsUsecase args none");
 
         // 投稿の取得
         $fetchedPosts = $this->fetchUuYellPosts();
