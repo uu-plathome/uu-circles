@@ -443,13 +443,16 @@ namespace App\Models{
  * @property int $featured_media アイキャッチのID
  * @property string|null $media_source_url 記事のアイキャッチのURL
  * @property string|null $media_alt_text 記事のアイキャッチのタイトル
- * @property int $published 公開されているかどうか
+ * @property bool $published 公開されているかどうか
+ * @property bool $can_repost もう一度投稿してもいいか
+ * @property int|null $tweet_id Tweet Id
  * @property string|null $notified_at 通知日時
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCanRepost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereFeaturedMedia($value)
@@ -461,6 +464,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereTweetId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereWordpressId($value)
  */
