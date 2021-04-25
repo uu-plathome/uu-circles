@@ -24,14 +24,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/app/Http/Requests/Circle/Circle/UpdateCircleFormRequest.php">
+        <entry key="/app/Models/UuyellPost.php">
           <value>
             <Attribute>
               <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/app/Usecases/CircleManagement/Circle/UpdateCircleUsecase.php">
+        <entry key="/storage/logs/laravel-2021-04-22.log">
           <value>
             <Attribute>
               <option name="separator" value=":" />

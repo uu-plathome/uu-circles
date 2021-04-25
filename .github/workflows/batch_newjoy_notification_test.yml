@@ -32,6 +32,6 @@ jobs:
         env:
           TOKEN: ${{ secrets.DISCORD_TOKEN }}
           CHANNEL_ID: ${{ secrets.DISCORD_TEST_CHANNEL_ID }}
-          API_URL: https://api.uu-circles.com/api/circle/newjoy
+          BOT_API_URL: https://api.uu-circles.com/api/circle/newjoy
         run: |
           python bot.py
