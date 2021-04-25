@@ -8,6 +8,7 @@ use App\Support\Arr;
 use App\Models\Advertise;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class CreateAdvertiseRequest extends FormRequest
@@ -64,6 +65,7 @@ class CreateAdvertiseRequest extends FormRequest
         return (new Advertise())->fill([
             AdvertiseProperty::title          => $request[AdvertiseProperty::title],
             AdvertiseProperty::link           => $request[AdvertiseProperty::link],
+            AdvertiseProperty::slug           => Str::uuid(),
             AdvertiseProperty::main_image_url => $request[AdvertiseProperty::main_image_url],
             AdvertiseProperty::active         => $request[AdvertiseProperty::active],
             AdvertiseProperty::advertise_type => $request[AdvertiseProperty::advertise_type],
