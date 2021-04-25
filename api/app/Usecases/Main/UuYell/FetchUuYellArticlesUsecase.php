@@ -2,13 +2,15 @@
 
 namespace App\Usecases\Main\UuYell;
 
-use Illuminate\Support\Facades\Http;
+use App\Enum\Property\UuyellPostProperty;
+use App\Models\UuyellPost;
 use Illuminate\Support\Facades\Log;
 
 class FetchUuYellArticlesUsecase
 {
-    const BASE_UU_YELL_URL = 'https://media.uu-circles.com';
-
+    /**
+     * 取得する投稿数
+     */
     const MAX_FETCH_NUMBER = 6;
 
     /**
@@ -18,16 +20,32 @@ class FetchUuYellArticlesUsecase
     {
         Log::debug("FetchUuYellArticlesUsecase args none");
 
-        $baseUrl = self::BASE_UU_YELL_URL;
         $fetchNumber = self::MAX_FETCH_NUMBER;
 
-        // HTTP リクエスト
-        $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber");
+        $uuYellPosts = UuyellPost::wherePublished(true)
+            ->select([
+                UuyellPostProperty::wordpress_id,
+                UuyellPostProperty::link,
+                UuyellPostProperty::date,
+                UuyellPostProperty::title,
+                UuyellPostProperty::featured_media,
+                UuyellPostProperty::slug
+            ])
+            ->take($fetchNumber)
+            ->get();
 
-        if ($response->status() === 200) {
-            return $response->json();
-        }
-
-        return [];
+        return $uuYellPosts->map(
+            fn (UuyellPost $post) => [
+                'id'             => $post->wordpress_id,
+                'date'           => $post->date,
+                'slug'           => $post->slug,
+                'link'           => $post->link,
+                'featured_media' => $post->featured_media,
+                'title' => [
+                    'rendered' => $post->title,
+                ],
+                'type'  => 'post',
+            ]
+        );
     }
 }
