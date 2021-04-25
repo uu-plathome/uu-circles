@@ -23,7 +23,15 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
       >
         {advertises && advertises[0] ? (
           <div className="mx-auto md:ml-0 md:mr-2 rounded">
-            <a href={advertises[0].link} target="_blank" rel="noopener">
+            <a
+              href={
+                advertises[0].link
+                  ? `${process.env.API_URL}/share/advertise/${advertises[0].slug}`
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src={
                   advertises[0].mainImageUrl
@@ -49,7 +57,15 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
 
         {advertises && advertises[1] ? (
           <div className="hidden md:block md:ml-2 rounded">
-            <a href={advertises[1].link} target="_blank" rel="noopener">
+            <a
+              href={
+                advertises[1].link
+                  ? `${process.env.API_URL}/share/advertise/${advertises[1].slug}`
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src={
                   advertises[1].mainImageUrl
