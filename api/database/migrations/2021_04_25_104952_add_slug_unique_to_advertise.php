@@ -19,7 +19,7 @@ class AddSlugUniqueToAdvertise extends Migration
             $table->uuid('slug')->nullable()->comment('広告のslug')->change();
         });
 
-        DB::table('advertises')->whereNull('slug')->chunk(100, function ($advertises) {
+        DB::table('advertises')->whereNull('slug')->orderBy('id')->chunk(100, function ($advertises) {
             foreach ($advertises as $advertise) {
                 $advertise->update([
                     'slug' => Str::uuid(),
