@@ -12,6 +12,7 @@ class Advertise extends Model
         P::title,
         P::link,
         P::main_image_url,
+        P::slug,
         P::active,
         P::advertise_type,
         P::publish_to,

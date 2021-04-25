@@ -21,5 +21,6 @@ $factory->define(Advertise::class, function (Faker $faker) {
     return [
         AdvertiseProperty::title => 'みやメシ応援隊',
         AdvertiseProperty::link => 'https://ulab-uu.com',
+        AdvertiseProperty::slug => \Illuminate\Support\Str::uuid(),
     ];
 });

@@ -8,6 +8,7 @@ use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class UpdateAdvertiseRequest extends FormRequest
