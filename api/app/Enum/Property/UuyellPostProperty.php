@@ -24,6 +24,10 @@ class UuyellPostProperty
 
     const published = 'published';
 
+    const can_repost = 'can_repost';
+
+    const tweet_id = 'tweet_id';
+
     const notified_at = 'notified_at';
 
     const created_at = 'created_at';

@@ -5,7 +5,6 @@ namespace App\Usecases\Batch\UuYell;
 use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;
 use App\Support\Arr;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -16,6 +15,8 @@ class CopyUuYellPostsUsecase
     const UU_YELL_URL = 'https://media.uu-circles.com/';
 
     const FETCH_NUMBER = 100;
+
+    const DONE_TAG = 59;
 
     /**
      * @throws \Exception
@@ -49,9 +50,10 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::date             => Arr::get($arr, 'date'),
                     UuyellPostProperty::featured_media   => Arr::get($arr, 'featured_media'),
                     UuyellPostProperty::published        => true,
+                    UuyellPostProperty::can_repost       =>
+                        in_array(self::DONE_TAG, Arr::get($arr, 'tags', [])) === false,
                     UuyellPostProperty::media_source_url => Arr::get($media, 'source_url'),
                     UuyellPostProperty::media_alt_text   => Arr::get($media, 'alt_text'),
-                    UuyellPostProperty::notified_at      => null,
                 ];
             }
         );
@@ -75,7 +77,6 @@ class CopyUuYellPostsUsecase
                     UuyellPostProperty::published,
                     UuyellPostProperty::media_source_url,
                     UuyellPostProperty::media_alt_text,
-                    UuyellPostProperty::notified_at,
                 ]
             );
 
@@ -101,7 +102,7 @@ class CopyUuYellPostsUsecase
     {
         $baseUrl = self::UU_YELL_URL;
         $fetchNumber = self::FETCH_NUMBER;
-        $requestUrl = "$baseUrl/wp-json/wp/v2/posts?context=embed&per_page=$fetchNumber";
+        $requestUrl = "$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber";
 
         // 記事の取得
         $response = Http::get($requestUrl);
