@@ -17,7 +17,6 @@ class AddSlugUniqueToAdvertise extends Migration
     {
         Schema::table('advertises', function (Blueprint $table) {
             $table->uuid('slug')->nullable()->comment('広告のslug')->change();
-            $table->unique('slug');
         });
 
         $advertises = DB::table('advertises')->whereNull('slug')->get();
@@ -26,7 +25,7 @@ class AddSlugUniqueToAdvertise extends Migration
         ]));
 
         Schema::table('advertises', function (Blueprint $table) {
-            $table->uuid('slug')->comment('広告のslug')->change();
+            $table->uuid('slug')->unique()->comment('広告のslug')->change();
         });
     }
 
