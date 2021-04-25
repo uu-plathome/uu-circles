@@ -114,9 +114,18 @@ const Page: NextPage<Props> = ({
         `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=https://uu-circles.com/circle/${circle.name}`
       ),
     ])
-    const posts = [
-      ...new Set([...fetchedPosts[0].data, ...fetchedPosts[1].data]),
+
+    const allPosts = [...fetchedPosts[0].data, ...fetchedPosts[1].data]
+
+    const postIds = [
+      ...new Set([
+        ...fetchedPosts[0].data.map((post) => post.id),
+        ...fetchedPosts[1].data.map((post) => post.id),
+      ]),
     ]
+    const posts = postIds.map((postId) =>
+      allPosts.find((post) => post.id === postId)
+    )
 
     if (posts.length === 0) {
       return {
@@ -238,9 +247,12 @@ const Page: NextPage<Props> = ({
                       >
                         <WpPostBlock
                           post={post}
-                          media={wpPosts.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            wpPosts.medias &&
+                            wpPosts.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )
@@ -261,9 +273,12 @@ const Page: NextPage<Props> = ({
                       <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
                         <WpPostBlock
                           post={post}
-                          media={wpPosts.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            wpPosts.medias &&
+                            wpPosts.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )
@@ -288,9 +303,12 @@ const Page: NextPage<Props> = ({
                       <div key={`uuYellForCircles-${key}`} className="mb-4">
                         <WpPostBlock
                           post={post}
-                          media={uuYellForCircles.medias.find(
-                            (media) => media.id === post.featured_media
-                          )}
+                          media={
+                            uuYellForCircles.medias &&
+                            uuYellForCircles.medias.find(
+                              (media) => media.id === post.featured_media
+                            )
+                          }
                         />
                       </div>
                     )
