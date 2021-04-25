@@ -55,7 +55,7 @@ class CreateAdvertiseController extends Controller
             DB::rollBack();
 
             Log::error("[ERROR] CreateAdvertiseController", [
-                "advertise" => $request->makeAdvertise(),
+                "advertise" => $advertise,
             ]);
 
             throw $e;
