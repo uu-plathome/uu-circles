@@ -37,7 +37,6 @@ class AddSlugUniqueToAdvertise extends Migration
     public function down()
     {
         Schema::table('advertises', function (Blueprint $table) {
-            $table->dropUnique('slug');
             $table->uuid('slug')->comment('広告のslug')->change();
         });
     }
