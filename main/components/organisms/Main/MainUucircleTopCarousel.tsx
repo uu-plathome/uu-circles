@@ -58,7 +58,11 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
               return (
                 <SwiperSlide key={advertise.id}>
                   {advertise.link ? (
-                    <a href={advertise.link} target="_blank" rel="noopener">
+                    <a
+                      href={`${process.env.API_URL}/share/advertise/${advertise.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Image
                         width={width || 1000}
                         height={height}
