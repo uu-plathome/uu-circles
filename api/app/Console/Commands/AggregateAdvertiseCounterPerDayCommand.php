@@ -47,7 +47,7 @@ class AggregateAdvertiseCounterPerDayCommand extends Command
         Log::debug('AggregateAdvertiseCounterPerDayCommand handle start');
 
         $this->aggregateAdvertiseCounterPerDayUsecase->invoke(
-            Carbon::today()
+            Carbon::yesterday()
         );
 
         Log::debug('AggregateAdvertiseCounterPerDayCommand handle end');
