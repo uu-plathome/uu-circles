@@ -19,10 +19,13 @@ class AddSlugUniqueToAdvertise extends Migration
             $table->uuid('slug')->nullable()->comment('広告のslug')->change();
         });
 
-        $advertises = DB::table('advertises')->whereNull('slug')->get();
-        $advertises->each(fn ($advertise) => $advertise->update([
-            'slug' => Str::uuid(),
-        ]));
+        DB::table('advertises')->whereNull('slug')->chunk(100, function ($advertises) {
+            foreach ($advertises as $advertise) {
+                $advertise->update([
+                    'slug' => Str::uuid(),
+                ]);
+            }
+        });
 
         Schema::table('advertises', function (Blueprint $table) {
             $table->uuid('slug')->unique()->comment('広告のslug')->change();
