@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
-class AddSlugToAdvertise extends Migration
+class AddSlugUniqueToAdvertise extends Migration
 {
     /**
      * Run the migrations.
@@ -16,13 +16,17 @@ class AddSlugToAdvertise extends Migration
     public function up()
     {
         Schema::table('advertises', function (Blueprint $table) {
-            $table->uuid('slug')->after('title')->comment('広告のslug');
+            $table->uuid('slug')->nullable()->comment('広告のslug')->change();
         });
 
-        // $advertises = DB::table('advertises')->whereNull('slug')->get();
-        // $advertises->each(fn ($advertise) => $advertise->update([
-        //     'slug' => Str::uuid(),
-        // ]));
+        $advertises = DB::table('advertises')->whereNull('slug')->get();
+        $advertises->each(fn ($advertise) => $advertise->update([
+            'slug' => Str::uuid(),
+        ]));
+
+        Schema::table('advertises', function (Blueprint $table) {
+            $table->uuid('slug')->unique()->comment('広告のslug')->change();
+        });
     }
 
     /**
@@ -33,9 +37,7 @@ class AddSlugToAdvertise extends Migration
     public function down()
     {
         Schema::table('advertises', function (Blueprint $table) {
-            $table->dropColumn([
-                'slug'
-            ]);
+            $table->uuid('slug')->comment('広告のslug')->change();
         });
     }
 }
