@@ -16,13 +16,13 @@ class AddSlugToAdvertise extends Migration
     public function up()
     {
         Schema::table('advertises', function (Blueprint $table) {
-            $table->uuid('slug')->after('title')->unique()->comment('広告のslug');
+            $table->uuid('slug')->after('title')->comment('広告のslug');
         });
 
-        $advertises = DB::table('advertises')->whereNull('slug')->get();
-        $advertises->each(fn ($advertise) => $advertise->update([
-            'slug' => Str::uuid(),
-        ]));
+        // $advertises = DB::table('advertises')->whereNull('slug')->get();
+        // $advertises->each(fn ($advertise) => $advertise->update([
+        //     'slug' => Str::uuid(),
+        // ]));
     }
 
     /**
