@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\CopyUuYellPostsCommand::class,
+        Commands\AggregateAdvertiseCounterPerDayCommand::class,
     ];
 
     /**
@@ -26,6 +27,9 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('copy:uu-yell')
              ->everyFourHours();
+
+        $schedule->command('aggregate:advertise-counter')
+            ->daily();
     }
 
     /**
