@@ -6,6 +6,7 @@ use App\Models\Advertise;
 use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AdvertisesTableSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class AdvertisesTableSeeder extends Seeder
                 ->each(function (Advertise $advertise) use ($idx) {
                     $advertise->fill([
                         'title' => $advertise->title . $idx,
+                        'slug'  => Str::uuid(),
                     ])->save();
                     $idx++;
                 });

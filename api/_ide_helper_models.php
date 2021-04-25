@@ -67,6 +67,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\AdvertiseCounter
+ *
+ * @property int $id
+ * @property int $advertise_id 広告のid
+ * @property int $count 広告のクリック数
+ * @property string $link 広告URL
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereAdvertiseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereUpdatedAt($value)
+ */
+	class AdvertiseCounter extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Circle
  *
  * @property int $id
