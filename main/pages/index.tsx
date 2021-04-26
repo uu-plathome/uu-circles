@@ -12,9 +12,13 @@ import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircl
 import { getMain } from '@/infra/api/main'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Circle } from '@/lib/types/model/Circle'
+import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import { WP_REST_API_Post } from 'wp-types'
+import useSWR from 'swr'
+import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+
+const UU_YELL_URL = 'https://media.uu-circles.com'
 
 type Props = {
   advertises: Advertise[]
@@ -28,6 +32,34 @@ const Index: NextPage<Props> = ({
   circles,
   uuYellArticles,
 }) => {
+  const { data: uuYellForMain } = useSWR<{
+    posts: WP_REST_API_Post[]
+    medias: WP_REST_API_Media[]
+  }>(['main'], async () => {
+    const fetchedPosts = await axios.get<WP_REST_API_Post[]>(
+      `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed`
+    )
+
+    if (fetchedPosts.data.length === 0) {
+      return {
+        posts: [],
+        medias: [],
+      }
+    }
+
+    const mediaIds = fetchedPosts.data.map((post) => post.featured_media)
+    const queryMediaIds = mediaIds.join(',')
+
+    const fetchedMedias = await axios.get<WP_REST_API_Media[]>(
+      `${UU_YELL_URL}/wp-json/wp/v2/media?perPage=100&context=embed&include=${queryMediaIds}`
+    )
+
+    return {
+      posts: fetchedPosts.data,
+      medias: fetchedMedias.data,
+    }
+  })
+
   return (
     <div>
       <Head>
@@ -75,7 +107,10 @@ const Index: NextPage<Props> = ({
 
           <MainUucircleAd />
 
-          <MainUucircleBottomButtons />
+          <MainUucircleBottomButtons
+            medias={uuYellForMain ? uuYellForMain.medias : []}
+            posts={uuYellForMain ? uuYellForMain.posts : []}
+          />
 
           <MainSponsorshipFooter advertises={advertises} />
 
