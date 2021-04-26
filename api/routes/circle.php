@@ -25,7 +25,7 @@ use App\Http\Controllers\Circle\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\WithdrawalOtherCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\WithdrawalOwnCircleUserController;
-use App\Http\Controllers\Circle\PutStorageController;
+use App\Http\Controllers\Circle\Storage\PutStorageController;
 use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 

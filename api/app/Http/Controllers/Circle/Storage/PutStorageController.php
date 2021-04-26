@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Circle;
+namespace App\Http\Controllers\Circle\Storage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CirclePutStorageRequest;
