@@ -6,10 +6,13 @@ namespace App\Usecases\Main\Gacha;
 
 use App\Dto\GachaPickupListDto;
 use App\Models\Circle;
+use App\Models\CircleGachaResult;
+use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class DrawGachaUsecase
 {
@@ -23,9 +26,13 @@ class DrawGachaUsecase
     }
 
 
-    public  function invoke(int $drawCount)
+    public  function invoke(DrawGachaUsecaseParam $param)
     {
-        Log::debug('DrawGachaUsecase args none');
+        Log::debug('DrawGachaUsecase args none',[
+            "DrawGachaUsecaseParam"=>$param,
+        ]);
+
+        $drawCount=$param->drawCount;
 
         /** 
          * ピックアップ一覧取得
@@ -97,7 +104,19 @@ class DrawGachaUsecase
         $drewCircles=$drewCircles->merge($drewCircles->count()===$drawCount ? []:  $notPickupCircles->slice(0,$drawCount - $drewCircles->count()));
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
-
+        //idのみ抽出
+        $pickupCircle_ids=$pickupCircles->map(fn(CircleValueObject $cvo)=>$cvo->id);
+        $drewCircle_ids=$drewCircles->map(fn(CircleValueObject $cvo)=>$cvo->id);
+        
+        //DBに挿入
+        $data=[
+            'result_circle_ids'=>$drewCircle_ids,
+            'pickup_circle_ids'=>$pickupCircle_ids,
+            'gacha_hash'=>Str::uuid(),
+            'identifier_hash'=>$param->identifierHash,
+        ];
+        CircleGachaResult::create($data);
+        
         return $drewCircles->toArray();
 
     }

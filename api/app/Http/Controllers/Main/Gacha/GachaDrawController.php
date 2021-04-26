@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Main\Gacha;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\CircleGachaResult;
 use App\Support\Arr;
 use App\Usecases\Main\Gacha\DrawGachaUsecase;
 use App\Usecases\Main\Gacha\GachaPickupListKey;
+use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class GachaDrawController  extends Controller
 {
@@ -35,13 +38,23 @@ class GachaDrawController  extends Controller
         Log::debug('GachaDrawController args none');
         $drawCount=$request->query('number',1);
 
+        //ヘッダーから識別子取得
+        $identifierHash=$request->header("X-IDENTIFIER_HASH");
+       
+
         //数字出なかったり、数値変だったりした場合を除外するバリデーション
         if (!is_numeric($drawCount) || $drawCount <= 0 || $drawCount >10 ) {
             return abort(404);
         }
 
-        $drewCircles=$this->drawGachaUsecase->invoke(intval($drawCount));
+        //
+        $param=new DrawGachaUsecaseParam();
+        $param->drawCount=intval($drawCount);
+        $param->identifierHash=$identifierHash;
 
+        $drewCircles=$this->drawGachaUsecase->invoke($param);//drawGachaUsecaseにparamが渡る
+
+       
         return Arr::camel_keys([
             "drewCircles"=> $drewCircles
         ]);
