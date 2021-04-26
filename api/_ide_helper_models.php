@@ -38,6 +38,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title 広告タイトル
+ * @property string|null $slug 広告のslug
  * @property string|null $link 広告リンク
  * @property string|null $main_image_url 画像URL
  * @property bool $active 公開するかどうか
@@ -46,21 +47,27 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $advertise_type 広告種類
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise nowPublic(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Query\Builder|Advertise onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise query()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereAdvertiseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Advertise withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Advertise withoutTrashed()
  */
 	class Advertise extends \Eloquent {}
 }
@@ -86,6 +93,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereUpdatedAt($value)
  */
 	class AdvertiseCounter extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AdvertiseCounterHistory
+ *
+ * @property int $id
+ * @property int $advertise_id 広告のid
+ * @property int $count 広告のクリック数
+ * @property string $link 広告URL
+ * @property string $date 日付
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereAdvertiseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereUpdatedAt($value)
+ */
+	class AdvertiseCounterHistory extends \Eloquent {}
 }
 
 namespace App\Models{
