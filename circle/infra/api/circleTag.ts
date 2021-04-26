@@ -6,13 +6,15 @@ import { axiosInstance } from '.'
 
 export const getCircleTag = async (circleId: number) => {
   type AxiosResponse = {
+    circle: Circle
     circleTag: CircleTagModel[]
   }
   const { data } = await axiosInstance.get<AxiosResponse>(
-    `/admin/api/circle/${circleId}/tag`
+    `/circle/api/circle/${circleId}/tag`
   )
 
   return {
+    circle: data.circle,
     circleTag: data.circleTag,
   }
 }
@@ -22,7 +24,7 @@ export const createOrUpdateCircleTag = async (
   circleTag: CircleTagModel[]
 ) => {
   try {
-    await axiosInstance.post(`/admin/api/circle/${circleId}/tag`, {
+    await axiosInstance.post(`/circle/api/circle/${circleId}/tag`, {
       circleTag,
     })
 
