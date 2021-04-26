@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Advertise;
 
 use App\Enum\Property\AdvertiseCounterProperty;
+use App\Enum\RouteProperty\WebRouteProperty;
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
 use Illuminate\Support\Carbon;
@@ -45,7 +46,9 @@ class RedirectToAdvertiseLinkControllerTest extends TestCase
         ]);
 
         // WHEN
-        $response = $this->get("/share/advertise/{$advertise->slug}");
+        $response = $this->get(route(WebRouteProperty::WebShareAdvertiseShow, [
+            'slug' => $advertise->slug,
+        ]));
 
         // THEN
         $response->assertRedirect($advertise->link);
