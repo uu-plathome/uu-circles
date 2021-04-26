@@ -16,4 +16,5 @@ class AdvertiseProperty
     const advertise_type = 'advertise_type';
     const publish_to = 'publish_to';
     const publish_from = 'publish_from';
+    const deleted_at = 'deleted_at';
 }
