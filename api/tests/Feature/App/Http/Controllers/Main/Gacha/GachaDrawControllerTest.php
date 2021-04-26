@@ -46,11 +46,17 @@ class GachaPickupListControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
-        
-        $this->assertArrayHasKey("drewCircles", $response);
+          
+        $this->assertArrayHasKey("resultCircles", $response);
+        $this->assertArrayHasKey("pickupCircles", $response);
+        $this->assertArrayHasKey("count", $response);
+        $this->assertArrayHasKey("createdAt", $response);
+        $this->assertArrayHasKey("gachaHash", $response);
 
         //数の確認
-        $this->assertCount($NUMBER,$response["drewCircles"]);
+        $this->assertCount($NUMBER,$response["resultCircles"]);
+        $this->assertSame($NUMBER,$response["count"]);
+        $this->assertIsString($response["gachaHash"]);
     }
 
     public function testRequest_10連ガチャ()
@@ -72,9 +78,15 @@ class GachaPickupListControllerTest extends TestCase
         // THEN
         $response->assertOk();
         
-        $this->assertArrayHasKey("drewCircles", $response);
+        $this->assertArrayHasKey("resultCircles", $response);
+        $this->assertArrayHasKey("pickupCircles", $response);
+        $this->assertArrayHasKey("count", $response);
+        $this->assertArrayHasKey("createdAt", $response);
+        $this->assertArrayHasKey("gachaHash", $response);
 
         //数の確認
-        $this->assertCount($NUMBER,$response["drewCircles"]);
+        $this->assertCount($NUMBER,$response["resultCircles"]);
+        $this->assertSame($NUMBER,$response["count"]);
+        $this->assertIsString($response["gachaHash"]);
     }
 }

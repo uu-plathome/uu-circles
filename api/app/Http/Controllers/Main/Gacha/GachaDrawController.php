@@ -52,11 +52,9 @@ class GachaDrawController  extends Controller
         $param->drawCount=intval($drawCount);
         $param->identifierHash=$identifierHash;
 
-        $drewCircles=$this->drawGachaUsecase->invoke($param);//drawGachaUsecaseにparamが渡る
+        $dto=$this->drawGachaUsecase->invoke($param);//drawGachaUsecaseにparamが渡る
 
        
-        return Arr::camel_keys([
-            "drewCircles"=> $drewCircles
-        ]);
+        return Arr::camel_keys($dto->toArray());
     }
 }

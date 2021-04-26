@@ -3,7 +3,7 @@
 
 namespace App\Usecases\Main\Gacha;
 
-
+use App\Dto\CircleGachaDto;
 use App\Dto\GachaPickupListDto;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
@@ -26,7 +26,7 @@ class DrawGachaUsecase
     }
 
 
-    public  function invoke(DrawGachaUsecaseParam $param)
+    public  function invoke(DrawGachaUsecaseParam $param):CircleGachaDto
     {
         Log::debug('DrawGachaUsecase args none',[
             "DrawGachaUsecaseParam"=>$param,
@@ -115,9 +115,16 @@ class DrawGachaUsecase
             'gacha_hash'=>Str::uuid(),
             'identifier_hash'=>$param->identifierHash,
         ];
-        CircleGachaResult::create($data);
-        
-        return $drewCircles->toArray();
+        $CircleGachaResult=CircleGachaResult::create($data);
+
+        $dto= new CircleGachaDto;
+        $dto->gacha_hash=$CircleGachaResult->gacha_hash;
+        $dto->result_circles=$drewCircles->toArray();
+        $dto->pickup_circles=$pickupCircles->toArray();
+        $dto->created_at=$CircleGachaResult->created_at;
+        $dto->count=$drawCount;
+
+        return $dto;
 
     }
 }
