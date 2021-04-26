@@ -107,6 +107,7 @@ class GenerateRequestTypeForTs extends Command
             CircleUserUpdateCircleUserRequest::class,
             CircleUserRegisterCircleUserRequest::class,
             ImportCircleUserRequest::class,
+            \App\Http\Requests\Circle\CircleTag\CreateOrUpdateCircleTagRequest::class,
         ];
     }
 

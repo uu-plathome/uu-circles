@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main\Advertise;
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class RedirectToAdvertiseLinkController
@@ -18,7 +19,7 @@ class RedirectToAdvertiseLinkController
             'slug' => $slug,
         ]);
 
-        $advertise = Advertise::whereSlug($slug)->first();
+        $advertise = Advertise::nowPublic(Carbon::now())->whereSlug($slug)->first();
 
         if (is_null($advertise)) {
             Log::warning("存在しない広告のslugが選択されています", [
