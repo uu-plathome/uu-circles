@@ -37,8 +37,8 @@ class AdvertisesTableSeeder extends Seeder
                     $advertise->fill([
                         AdvertiseProperty::title  => $advertise->title . $idx,
                         AdvertiseProperty::slug   => Str::uuid(),
-                        AdvertiseProperty::active => $idx === 0,
-                        AdvertiseProperty::main_image_url => $idx === 0 ?
+                        AdvertiseProperty::active => $idx === 1,
+                        AdvertiseProperty::main_image_url => $idx === 1 ?
                             'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fcycle-club.jpg?alt=media&token=d934d034-58f9-4082-bf72-2f2524713ddc' :
                             null,
                     ])->save();
