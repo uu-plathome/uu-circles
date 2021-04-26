@@ -41,7 +41,7 @@ use App\Http\Controllers\Admin\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\RegisterCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
-use App\Http\Controllers\Admin\PutStorageController;
+use App\Http\Controllers\Admin\Storage\PutStorageController;
 
 Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
 
