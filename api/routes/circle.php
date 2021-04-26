@@ -15,6 +15,8 @@ use App\Http\Controllers\Circle\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\RegisterCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Circle\CircleNewJoy\UpdateCircleNewJoyController;
+use App\Http\Controllers\Circle\CircleTag\CreateOrUpdateCircleTagController;
+use App\Http\Controllers\Circle\CircleTag\GetCircleTagController;
 use App\Http\Controllers\Circle\CircleUser\ImportCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Circle\CircleUser\RegisterCircleUserController;
@@ -58,6 +60,10 @@ Route::middleware('auth:circleUser')->group(function () {
     Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('circle.circleNewJoy.show');
     Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', UpdateCircleNewJoyController::class)->name('circle.circleNewJoy.update');
     Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', DeleteCircleNewJoyController::class)->name('circle.circleNewJoy.delete');
+
+    // サークルタグ
+    Route::get('/circle/{circleId}/tag', GetCircleTagController::class);
+    Route::post('/circle/{circleId}/tag', CreateOrUpdateCircleTagController::class);
 
     // 部員アカウント
     Route::get('/circle/{circleId}/user', IndexCircleUserController::class)->name('circle.circleUser.index');
