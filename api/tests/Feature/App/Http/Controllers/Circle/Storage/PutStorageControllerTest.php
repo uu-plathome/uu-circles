@@ -1,7 +1,9 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Admin\Storage;
+namespace Tests\Feature\App\Http\Controllers\Circle\Storage;
 
+use App\Enum\Property\UserProperty;
+use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -30,14 +32,25 @@ class PutStorageControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        /** @var \App\Models\User $user */
+        $user = User::whereActive(true)
+            ->whereNotNull(UserProperty::email_verified_at)
+            ->hasByNonDependentSubquery('circleUsers', function ($query) {
+                $query->hasByNonDependentSubquery('circle', function ($query) {
+                    $query->whereRelease(true);
+                });
+            })
+            ->inRandomOrder()
+            ->first();
+
         Storage::fake('local');
         $file = UploadedFile::fake()->image('photo1.jpg');
 
         // WHEN
-        $response = $this->post('/admin/api/storage', [
+        $response = $this->post('/circle/api/storage', [
             'file' => $file,
         ], [
-            'Authorization' => 'Bearer test1234',
+            'Authorization' => "Bearer $user->api_token",
         ]);
 
         // THEN
@@ -55,7 +68,7 @@ class PutStorageControllerTest extends TestCase
         $file = UploadedFile::fake()->image('photo1.jpg');
 
         // WHEN
-        $response = $this->post('/admin/api/storage', [
+        $response = $this->post('/circle/api/storage', [
             'file' => $file,
         ], [
             'Authorization' => 'Bearer abcdefg-fake',
