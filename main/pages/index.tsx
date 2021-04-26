@@ -36,8 +36,9 @@ const Index: NextPage<Props> = ({
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Media[]
   }>(['main'], async () => {
+    const TAG_NUMBER = 60
     const fetchedPosts = await axios.get<WP_REST_API_Post[]>(
-      `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed`
+      `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&tags=${TAG_NUMBER}`
     )
 
     if (fetchedPosts.data.length === 0) {

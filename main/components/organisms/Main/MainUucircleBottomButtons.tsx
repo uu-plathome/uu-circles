@@ -68,10 +68,20 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         className="text-center my-8 mx-auto"
         style={{ width: isMd ? 'auto' : 280 }}
       >
-        <h2 className="text-lg font-bold mb-2">新宇大生必見の情報サイト！</h2>
-        <p className="text-sm">
+        <h2 className="text-lg font-bold mb-2">
+          新宇大生必見の情報サイト「uu-yell」！
+        </h2>
+
+        <p className="text-sm mb-2">
           アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
         </p>
+
+        <a
+          href="https://media.uu-circles.com/"
+          className="text-blue-600 hover:underline"
+        >
+          uu-yellを見る
+        </a>
       </div>
 
       <div>
