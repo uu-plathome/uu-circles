@@ -377,7 +377,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
 
               {uuYellArticles && uuYellArticles.length > 0 ? (
                 <div className="pt-6 w-1/2">
-                  <h2 className="text-lg mb-6">UU-yellの最新記事</h2>
+                  <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
                   <ul className="list-inside list-decimal text-gray-400">
                     {uuYellArticles.map(
