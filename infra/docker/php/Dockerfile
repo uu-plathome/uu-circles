@@ -31,7 +31,17 @@ ENV TZ=UTC \
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
-    apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \
+    apt-get -y install \
+    git \
+    libicu-dev \
+    libonig-dev \
+    libzip-dev \
+    unzip \
+    locales \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
+    libxpm-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     locale-gen en_US.UTF-8 && \
@@ -43,6 +53,13 @@ RUN apt-get update && \
     composer config -g process-timeout 3600 && \
     composer config -g repos.packagist composer https://packagist.org && \
     composer global require hirak/prestissimo
+
+RUN docker-php-ext-configure gd \
+    --with-freetype \
+    --with-jpeg \
+    --with-webp \
+    --with-xpm \
+    && docker-php-ext-install -j$(nproc) gd
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini

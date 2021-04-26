@@ -10,7 +10,11 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Role } from '@/lib/enum/api/Role'
 import { Circle } from '@/lib/types/model/Circle'
-import { faCalendarAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCalendarAlt,
+  faFileAlt,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -120,6 +124,33 @@ const IndexPage: NextPage = () => {
                             <div className="text-center">
                               <p className="font-lg font-bold">
                                 新歓イベントの追加・編集
+                              </p>
+                            </div>
+                            <div></div>
+                          </div>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+
+                  <div className="mb-8">
+                    <Link
+                      href="/circle/[circleId]/tag"
+                      as={`/circle/${circle.id}/tag`}
+                    >
+                      <a>
+                        <div
+                          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto"
+                          style={{ width: 280 }}
+                        >
+                          <div
+                            className="flex justify-between items-center px-4"
+                            style={{ width: 280 }}
+                          >
+                            <FontAwesomeIcon icon={faTag} size="lg" />
+                            <div className="text-center">
+                              <p className="font-lg font-bold">
+                                サークルタグ管理
                               </p>
                             </div>
                             <div></div>
