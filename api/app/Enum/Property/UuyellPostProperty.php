@@ -10,6 +10,8 @@ class UuyellPostProperty
 
     const title = 'title';
 
+    const description = 'description';
+
     const slug = 'slug';
 
     const link = 'link';
