@@ -13,6 +13,7 @@ class UuyellPost extends Model
     protected $fillable = [
         P::wordpress_id,
         P::title,
+        P::description,
         P::slug,
         P::link,
         P::date,
