@@ -32,6 +32,7 @@ class FetchUuYellArticlesUsecase
                 UuyellPostProperty::slug
             ])
             ->take($fetchNumber)
+            ->orderByDesc(UuyellPostProperty::date)
             ->get();
 
         return $uuYellPosts->map(
