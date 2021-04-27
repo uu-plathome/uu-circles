@@ -39,7 +39,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                     : '/images/company_ad_tmp.png'
                 }
                 alt="協賛企業広告"
-                width={width || 0}
+                width={width || 375}
                 height={height}
                 objectFit="cover"
               />
@@ -73,7 +73,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                     : '/images/company_ad_tmp.png'
                 }
                 alt="協賛企業広告"
-                width={width}
+                width={width || 375}
                 height={height}
                 objectFit="cover"
               />
