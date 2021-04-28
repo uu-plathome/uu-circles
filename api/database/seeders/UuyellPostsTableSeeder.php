@@ -42,6 +42,29 @@ class UuyellPostsTableSeeder extends Seeder
                     $arr
                 );
 
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1384311064074981376, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 816;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1384037104234106887, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 806;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1383971012824338433, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 769;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1382623763460624387, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 755;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1382890829799329792, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 741;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1386133528652378113, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 691;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1378852433439256577, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 619;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1379334150340026368, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 614;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1377951614263205890, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 593;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1377508593151340545, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 560;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1383723591594700810, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 537;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1383283626431848448, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 466;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1382131905265426432, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 474;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1382131781474742274, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 467;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1377056579468464134, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 170;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1377056182519488522, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 73;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1371990711411691520, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 415;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1373062706970861568, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 398;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1371992487011643393, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 344;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1371992084912119811, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 269;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1380440536381804544, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 123;');
+                DB::statement('UPDATE uuyell_posts SET tweet_id=1370546791750410240, notified_at=NOW(), updated_at=NOW() WHERE wordpress_id = 49;');
+
                 DB::commit();
             }
         } catch (Exception $e) {
