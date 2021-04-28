@@ -25,11 +25,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('copy:uu-yell')
-             ->everyFourHours();
+        $schedule->command('copy:uu-yell')
+            ->everyFourHours();
 
         $schedule->command('aggregate:advertise-counter')
             ->daily();
+
+        $schedule->command('twitter:send-uuyell')
+            ->dailyAt('19:30');
     }
 
     /**
