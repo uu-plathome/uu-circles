@@ -493,6 +493,7 @@ namespace App\Models{
  * @property int $wordpress_id
  * @property string $slug 記事のSlug
  * @property string $title 記事タイトル
+ * @property string|null $description 抜粋
  * @property string $link 記事のリンク
  * @property string $date 記事作成日時
  * @property int $featured_media アイキャッチのID
@@ -510,6 +511,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCanRepost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereFeaturedMedia($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereLink($value)

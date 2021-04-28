@@ -5,6 +5,7 @@ namespace App\Usecases\Batch\UuYell;
 use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;
 use App\Support\Arr;
+use App\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -45,6 +46,13 @@ class CopyUuYellPostsUsecase
                 return [
                     UuyellPostProperty::wordpress_id     => Arr::get($arr, 'id'),
                     UuyellPostProperty::title            => Arr::get($arr, 'title.rendered'),
+                    UuyellPostProperty::description      => Str::limitCharacters(
+                        implode(
+                            '\n',
+                            Arr::get($arr, 'custom_fields.sng_meta_description', [])
+                        ),
+                        255
+                    ),
                     UuyellPostProperty::slug             => Arr::get($arr, 'slug'),
                     UuyellPostProperty::link             => Arr::get($arr, 'link'),
                     UuyellPostProperty::date             => Arr::get($arr, 'date'),
@@ -70,6 +78,7 @@ class CopyUuYellPostsUsecase
                 [
                     UuyellPostProperty::wordpress_id,
                     UuyellPostProperty::title,
+                    UuyellPostProperty::description,
                     UuyellPostProperty::slug,
                     UuyellPostProperty::link,
                     UuyellPostProperty::date,
