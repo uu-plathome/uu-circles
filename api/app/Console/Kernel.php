@@ -30,9 +30,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('aggregate:advertise-counter')
             ->daily();
-
-        $schedule->command('twitter:send-uuyell')
-            ->dailyAt('19:30');
+//
+//        $schedule->command('twitter:send-uuyell')
+//            ->dailyAt('19:30');
     }
 
     /**

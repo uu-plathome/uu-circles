@@ -316,9 +316,9 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         </BaseContainer>
 
         <BaseContainer>
-          <div className="pt-16">
-            <div className="flex">
-              <div className="pt-6 w-1/2">
+          <div>
+            <div className="flex flex-col-reverse md:flex-row">
+              <div className="pt-20 md:w-1/2">
                 <h2 className="text-lg mb-6">メニュー</h2>
 
                 <ul>
@@ -376,10 +376,10 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               </div>
 
               {uuYellArticles && uuYellArticles.length > 0 ? (
-                <div className="pt-6 w-1/2">
+                <div className="pt-20 md:w-1/2">
                   <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
-                  <ul className="list-inside list-decimal text-gray-400">
+                  <ul className="list-outside list-decimal text-gray-400 pl-4">
                     {uuYellArticles.map(
                       (uuYellArticle: WP_REST_API_Post, idx) => {
                         return (
