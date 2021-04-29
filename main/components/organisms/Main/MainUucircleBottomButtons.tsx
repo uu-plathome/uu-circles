@@ -84,10 +84,10 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         </a>
       </div>
 
-      <div>
+      <div className="flex justify-center">
         <nav
-          className="horizontal_scroll md:grid grid-cols-1 md:grid-cols-2 md:gap-4 md:justify-center hidden"
-          style={{ margin: '0 auto!important', width: 700 }}
+          className="md:grid grid-cols-1 md:grid-cols-2 md:gap-4 md:justify-center hidden"
+          style={{ width: 700 }}
           id="top-button-scroll"
         >
           {posts &&
