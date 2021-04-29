@@ -64,89 +64,90 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
 
   return (
     <div className="bg-gray-100  pt-10 pb-10 ">
-      <div
-        className="text-center my-8 mx-auto"
-        style={{ width: isMd ? 'auto' : 280 }}
-      >
+      <div className="text-center my-8 mx-auto">
         <h2 className="text-lg font-bold mb-2">
           新宇大生必見の情報サイト「uu-yell」！
         </h2>
 
-        <p className="text-sm mb-2">
-          アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
-        </p>
+        <div className="px-16">
+          <p className="text-sm mb-2">
+            アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
+          </p>
 
-        <a
-          href="https://media.uu-circles.com/"
-          className="text-blue-600 hover:underline"
-        >
-          uu-yellを見る
-        </a>
+          <a
+            href="https://media.uu-circles.com/"
+            className="text-blue-600 hover:underline"
+          >
+            uu-yellを見る
+          </a>
+        </div>
       </div>
 
-      <div className="flex justify-center">
-        <nav
-          className="md:grid grid-cols-1 md:grid-cols-2 md:gap-4 md:justify-center hidden"
-          style={{ width: 700 }}
-          id="top-button-scroll"
-        >
-          {posts &&
-            posts.map((post, key) => {
-              return (
-                <div
-                  key={`MainUucircleBottomButtons.md-${key}`}
-                  className="mb-4"
-                >
-                  <WpPostBlock
-                    post={post}
-                    media={
-                      medias &&
-                      medias.find((media) => media.id === post.featured_media)
-                    }
-                  />
-                </div>
-              )
-            })}
-        </nav>
-
-        <div className="md:hidden">
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={1}
-            centeredSlides={true}
-            loop
-            navigation
-            pagination={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
+      <div>
+        <div className="md:flex md:justify-center">
+          <nav
+            className="md:grid grid-cols-1 md:grid-cols-2 md:gap-4 md:justify-center hidden"
+            style={{ width: isMd ? 700 : 280 }}
+            id="top-button-scroll"
           >
             {posts &&
               posts.map((post, key) => {
                 return (
-                  <SwiperSlide
-                    key={`MainUucircleBottomButtons.sp-${key}`}
-                    className="flex justify-center"
-                    style={{ width: 300 }}
+                  <div
+                    key={`MainUucircleBottomButtons.md-${key}`}
+                    className="mb-4"
                   >
-                    <div>
-                      <div className="mb-4" style={{ width: 300 }}>
-                        <WpPostBlock
-                          post={post}
-                          media={
-                            medias &&
-                            medias.find(
-                              (media) => media.id === post.featured_media
-                            )
-                          }
-                        />
-                      </div>
-                    </div>
-                  </SwiperSlide>
+                    <WpPostBlock
+                      post={post}
+                      media={
+                        medias &&
+                        medias.find((media) => media.id === post.featured_media)
+                      }
+                    />
+                  </div>
                 )
               })}
-          </Swiper>
+          </nav>
+
+          <div className="md:hidden">
+            <Swiper
+              spaceBetween={50}
+              slidesPerView={1}
+              centeredSlides={true}
+              loop
+              navigation
+              pagination={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+            >
+              {posts &&
+                posts.map((post, key) => {
+                  return (
+                    <SwiperSlide
+                      key={`MainUucircleBottomButtons.sp-${key}`}
+                      className="flex justify-center"
+                      style={{ width: 300 }}
+                    >
+                      <div>
+                        <div className="mb-4" style={{ width: 300 }}>
+                          <WpPostBlock
+                            post={post}
+                            media={
+                              medias &&
+                              medias.find(
+                                (media) => media.id === post.featured_media
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  )
+                })}
+            </Swiper>
+          </div>
         </div>
       </div>
     </div>
