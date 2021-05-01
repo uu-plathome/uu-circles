@@ -1,0 +1,5 @@
+# メンテナンス用のhtaccess
+
+# 全てのアクセスを禁止させる
+
+Deny from all
