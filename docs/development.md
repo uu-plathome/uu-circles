@@ -153,7 +153,7 @@ $ npm run dev
 
 ```shell
 # テスト
-$ docker-compose app composer test
+$ docker-compose exec app composer test
 
 # コード整形
 $ docker-compose app composer sniffer
