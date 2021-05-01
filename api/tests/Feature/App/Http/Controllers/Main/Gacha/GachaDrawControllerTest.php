@@ -5,11 +5,10 @@ namespace Tests\Feature\App\Http\Controllers\Main\Gacha;
 use App\Models\Identifier;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
 
-class GachaPickupListControllerTest extends TestCase
+class GachaDrawControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
@@ -32,21 +31,21 @@ class GachaPickupListControllerTest extends TestCase
         Log::info("testRequest_単発ガチャ");
 
         // GIVEN
-        $NUMBER=1;
-        
+        $NUMBER = 1;
+
         $identifier = factory(Identifier::class, 1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
 
         // WHEN
-        $response = $this->post("api/gacha/circle?number={$NUMBER}",[],[
-            "X-IDENTIFIER_HASH"=>$identifier->identifier_hash
+        $response = $this->post("api/gacha/circle?number={$NUMBER}", [], [
+            "X-IDENTIFIER_HASH" => $identifier->identifier_hash
         ]);
 
         // THEN
         $response->assertOk();
-          
+
         $this->assertArrayHasKey("resultCircles", $response);
         $this->assertArrayHasKey("pickupCircles", $response);
         $this->assertArrayHasKey("count", $response);
@@ -54,8 +53,8 @@ class GachaPickupListControllerTest extends TestCase
         $this->assertArrayHasKey("gachaHash", $response);
 
         //数の確認
-        $this->assertCount($NUMBER,$response["resultCircles"]);
-        $this->assertSame($NUMBER,$response["count"]);
+        $this->assertCount($NUMBER, $response["resultCircles"]);
+        $this->assertSame($NUMBER, $response["count"]);
         $this->assertIsString($response["gachaHash"]);
     }
 
@@ -64,20 +63,20 @@ class GachaPickupListControllerTest extends TestCase
         Log::info("testRequest_10連ガチャ");
 
         // GIVEN
-        $NUMBER=10;
+        $NUMBER = 10;
 
         $identifier = factory(Identifier::class, 1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
         // WHEN
-        $response = $this->post("api/gacha/circle?number={$NUMBER}",[],[
-            "X-IDENTIFIER_HASH"=>$identifier->identifier_hash
+        $response = $this->post("api/gacha/circle?number={$NUMBER}", [], [
+            "X-IDENTIFIER_HASH" => $identifier->identifier_hash
         ]);
 
         // THEN
         $response->assertOk();
-        
+
         $this->assertArrayHasKey("resultCircles", $response);
         $this->assertArrayHasKey("pickupCircles", $response);
         $this->assertArrayHasKey("count", $response);
@@ -85,8 +84,8 @@ class GachaPickupListControllerTest extends TestCase
         $this->assertArrayHasKey("gachaHash", $response);
 
         //数の確認
-        $this->assertCount($NUMBER,$response["resultCircles"]);
-        $this->assertSame($NUMBER,$response["count"]);
+        $this->assertCount($NUMBER, $response["resultCircles"]);
+        $this->assertSame($NUMBER, $response["count"]);
         $this->assertIsString($response["gachaHash"]);
     }
 }

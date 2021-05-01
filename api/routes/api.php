@@ -50,7 +50,7 @@ Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController:
 // ガチャ用
 Route::get('/gacha/circle/pickup', GachaPickupListController::class)->name('main.gacha.pickup');
 Route::post('/gacha/circle', GachaDrawController::class)->name('main.gacha.draw');
-Route::post('/gacha/circle/result/{gachaHash}', GachaResultController::class)->name('main.gacha.result');
+Route::get('/gacha/circle/result/{gachaHash}', GachaResultController::class)->name('main.gacha.result');
 
 //識別子
 Route::post('/identification/publish', PublishIdentificationController::class)->name('main.identification.publish');
