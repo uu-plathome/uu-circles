@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Usecases\Main\Gacha;
 
 use App\Dto\CircleGachaDto;
-use App\Dto\GachaPickupListDto;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
@@ -20,33 +18,33 @@ class DrawGachaUsecase
     //ピックアップ一覧取得のためのやつ
     private GetGachaPickupListUsecase $getGachaPickupListUsecase;
 
-    public function  __construct(GetGachaPickupListUsecase $getGachaPickupListUsecase)
+    public function __construct(GetGachaPickupListUsecase $getGachaPickupListUsecase)
     {
         $this->getGachaPickupListUsecase = $getGachaPickupListUsecase;
     }
 
 
-    public  function invoke(DrawGachaUsecaseParam $param):CircleGachaDto
+    public function invoke(DrawGachaUsecaseParam $param): CircleGachaDto
     {
-        Log::debug('DrawGachaUsecase args none',[
-            "DrawGachaUsecaseParam"=>$param,
+        Log::debug('DrawGachaUsecase args none', [
+            "DrawGachaUsecaseParam" => $param,
         ]);
 
-        $drawCount=$param->drawCount;
+        $drawCount = $param->drawCount;
 
-        /** 
+        /**
          * ピックアップ一覧取得
-         * @var \App\Dto\GachaPickupListDto $pickupList  
-         */ 
+         * @var \App\Dto\GachaPickupListDto $pickupList
+         */
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
-            60*60*24,
+            60 * 60 * 24,
             fn()=>$this->getGachaPickupListUsecase->invoke()
         );
 
-        $limit=$drawCount>=10?$drawCount+2:$drawCount+1;//10連のときは+2だが、それ以下では+1分多くサークル取る
-        
-        /** @var \App\Models\Circle $circles */ 
+        $limit = $drawCount >= 10 ? $drawCount + 2 : $drawCount + 1;//10連のときは+2だが、それ以下では+1分多くサークル取る
+
+        /** @var \App\Models\Circle $circles */
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
@@ -59,7 +57,7 @@ class DrawGachaUsecase
             ->take($limit)
             ->get();
 
-        /** @var \Illuminate\Support\Collection $circles */ 
+        /** @var \Illuminate\Support\Collection $circles */
         $foundCircles = $circles->map(
             fn (Circle $circle) =>
             //型変換
@@ -71,22 +69,22 @@ class DrawGachaUsecase
         );
 
         //ピックアップ処理を行う
-        $pickupCircles=$foundCircles->filter(function(CircleValueObject $cvo) use($pickupList) {
-            $pickupListCircles= new Collection($pickupList->pickupCircles);
-            $found=$pickupListCircles->first(
+        $pickupCircles = $foundCircles->filter(function (CircleValueObject $cvo) use ($pickupList) {
+            $pickupListCircles = new Collection($pickupList->pickupCircles);
+            $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id===$cvo->id
+                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id === $cvo->id
             );
             return !is_null($found);
         });
         Log::debug('DrawGachaUsecase pickupCircles', [$pickupCircles]);
-        
+
         //ピックアップじゃないリストの処理
-        $notPickupCircles=$foundCircles->filter(function(CircleValueObject $cvo) use($pickupList) {
-            $pickupListCircles= new Collection($pickupList->pickupCircles);
-            $found=$pickupListCircles->first(
+        $notPickupCircles = $foundCircles->filter(function (CircleValueObject $cvo) use ($pickupList) {
+            $pickupListCircles = new Collection($pickupList->pickupCircles);
+            $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id===$cvo->id
+                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id === $cvo->id
             );
             return is_null($found);
         });
@@ -94,37 +92,36 @@ class DrawGachaUsecase
 
 
         //値の確定 コレクション
-        $drewCircles=new Collection([]);
-        
+        $drewCircles = new Collection([]);
+
         //ピックアップ引く
-        $drewCircles=$drewCircles->merge($pickupCircles->count() < $drawCount ? $pickupCircles : $pickupCircles->slice(0,$drawCount) );
+        $drewCircles = $drewCircles->merge($pickupCircles->count() < $drawCount ? $pickupCircles : $pickupCircles->slice(0, $drawCount));
         Log::debug('DrawGachaUsecase drewCircles ピックアップ引く', [$drewCircles]);
-        
+
         //ピックアップで足りないものを取ってくる
-        $drewCircles=$drewCircles->merge($drewCircles->count()===$drawCount ? []:  $notPickupCircles->slice(0,$drawCount - $drewCircles->count()));
+        $drewCircles = $drewCircles->merge($drewCircles->count() === $drawCount ? [] :  $notPickupCircles->slice(0, $drawCount - $drewCircles->count()));
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $pickupCircle_ids=$pickupCircles->map(fn(CircleValueObject $cvo)=>$cvo->id);
-        $drewCircle_ids=$drewCircles->map(fn(CircleValueObject $cvo)=>$cvo->id);
-        
-        //DBに挿入
-        $data=[
-            'result_circle_ids'=>$drewCircle_ids,
-            'pickup_circle_ids'=>$pickupCircle_ids,
-            'gacha_hash'=>Str::uuid(),
-            'identifier_hash'=>$param->identifierHash,
-        ];
-        $CircleGachaResult=CircleGachaResult::create($data);
+        $pickupCircle_ids = $pickupCircles->map(fn(CircleValueObject $cvo)=>$cvo->id)->values();
+        $drewCircle_ids = $drewCircles->map(fn(CircleValueObject $cvo)=>$cvo->id)->values();
 
-        $dto= new CircleGachaDto;
-        $dto->gacha_hash=$CircleGachaResult->gacha_hash;
-        $dto->result_circles=$drewCircles->toArray();
-        $dto->pickup_circles=$pickupCircles->toArray();
-        $dto->created_at=$CircleGachaResult->created_at;
-        $dto->count=$drawCount;
+        //DBに挿入
+        $data = [
+            'result_circle_ids' => $drewCircle_ids,
+            'pickup_circle_ids' => $pickupCircle_ids,
+            'gacha_hash' => Str::uuid(),
+            'identifier_hash' => $param->identifierHash,
+        ];
+        $CircleGachaResult = CircleGachaResult::create($data);
+
+        $dto = new CircleGachaDto();
+        $dto->gacha_hash = $CircleGachaResult->gacha_hash;
+        $dto->result_circles = $drewCircles->toArray();
+        $dto->pickup_circles = $pickupCircles->toArray();
+        $dto->created_at = $CircleGachaResult->created_at;
+        $dto->count = $drawCount;
 
         return $dto;
-
     }
 }
