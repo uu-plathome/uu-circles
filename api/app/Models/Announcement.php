@@ -23,8 +23,8 @@ class Announcement extends Model
         P::for_admin_view,
         P::for_admin_mail,
         P::for_newjoy_discord,
-        P::notification_time,
         P::active,
+        P::notification_time,
         P::publish_from,
         P::publish_to,
     ];
