@@ -32,6 +32,7 @@ const Index: NextPage<Props> = ({
   circles,
   uuYellArticles,
 }) => {
+  // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Media[]
