@@ -35,11 +35,46 @@ class StatisticsDto
     public array $circleNewJoyCount;
 
     /**
+     * 活動人数の幅
+     *
+     * @var StatisticsNumberOfActivitiesCountDto
+     */
+    public StatisticsNumberOfActivitiesCountDto $statisticsNumberOfActivitiesCountDto;
+
+    /**
+     * 活動人数ランキング
+     *
+     * @var StatisticsNumberOfActivitiesRankingDto
+     */
+    public StatisticsNumberOfActivitiesRankingDto $statisticsNumberOfActivitiesRankingDto;
+
+    /**
+     * 活動費用ランキング (高い順)
+     *
+     * @var StatisticsAdmissionFeePerYearHighRankingDto
+     */
+    public StatisticsAdmissionFeePerYearHighRankingDto $statisticsAdmissionFeePerYearHighRankingDto;
+
+    /**
+     * 活動費用ランキング (低い順)
+     *
+     * @var StatisticsAdmissionFeePerYearSmallRankingDto
+     */
+    public StatisticsAdmissionFeePerYearSmallRankingDto $statisticsAdmissionFeePerYearSmallRankingDto;
+
+    /**
      * 週の活動頻度
      *
      * @var StatisticsActivityFrequencyDto
      */
     public StatisticsActivityFrequencyDto $statisticsActivityFrequencyDto;
+
+    /**
+     * 週の活動頻度ランキング (高い順)
+     *
+     * @var StatisticsActivityFrequencyRankingDto
+     */
+    public StatisticsActivityFrequencyRankingDto $statisticsActivityFrequencyRankingDto;
 
     /**
      * オンライン活動状況
@@ -66,19 +101,29 @@ class StatisticsDto
     {
         return [
             // サークル数
-            'circle_count'                => $this->circleCount,
+            'circle_count'                 => $this->circleCount,
             // 活動費用の平均値
-            'average_activity_cost'       => $this->averageActivityCost,
+            'average_activity_cost'        => $this->averageActivityCost,
             // 日々の新歓数
-            'circle_new_joy_count'        => $this->circleNewJoyCount,
+            'circle_new_joy_count'         => $this->circleNewJoyCount,
+            // 活動人数の幅
+            'number_of_activities_count'            => $this->statisticsNumberOfActivitiesCountDto->toArray(),
+            // 活動人数ランキング
+            'number_of_activities_ranking'          => $this->statisticsNumberOfActivitiesRankingDto->toArray(),
+            // 活動費用ランキング (高い順)
+            'admission_fee_per_year_high_rankings'  => $this->statisticsAdmissionFeePerYearHighRankingDto->toArray(),
+            // 活動費用ランキング (低い順)
+            'admission_fee_per_year_small_rankings' => $this->statisticsAdmissionFeePerYearSmallRankingDto->toArray(),
             // 週の活動頻度
-            'activity_frequency'          => $this->statisticsActivityFrequencyDto->toArray(),
+            'activity_frequency'                    => $this->statisticsActivityFrequencyDto->toArray(),
+            // 週の活動頻度 (高い順)
+            'activity_frequency_ranking_dto'        => $this->statisticsActivityFrequencyRankingDto->toArray(),
             // オンライン活動状況
-            'online_activity_activity'    => $this->statisticsOnlineActivityDto->toArray(),
+            'online_activity_activity'              => $this->statisticsOnlineActivityDto->toArray(),
             // 活動場所
-            'place_of_activity_frequency' => $this->statisticsPlaceOfActivityFrequencyDto->toArray(),
+            'place_of_activity_frequency'           => $this->statisticsPlaceOfActivityFrequencyDto->toArray(),
             // サークル種別
-            'circle_type'                 => $this->statisticsCircleTypeDto->toArray(),
+            'circle_type'                           => $this->statisticsCircleTypeDto->toArray(),
         ];
     }
 }

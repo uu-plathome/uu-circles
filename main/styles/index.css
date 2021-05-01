@@ -58,3 +58,12 @@ body {
 .swiper-button-prev::after {
   color: #c4c4c4 !important;
 }
+
+/** WordPress */
+.wp-cardtype__img {
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  height: 0;
+  padding-bottom: 57.7%;
+}

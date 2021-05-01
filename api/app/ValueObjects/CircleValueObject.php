@@ -42,7 +42,7 @@ class CircleValueObject
     public bool $online_date_of_activity_saturday = false;
     public bool $online_date_of_activity_sunday = false;
     public ?string $online_date_of_activity_detail;
-    public ?string $admission_fee_per_year;
+    public ?int $admission_fee_per_year;
     public ?int $weekly_activity_days;
     public ?bool $mammoth;
     public ?bool $active_activity;
@@ -69,6 +69,9 @@ class CircleValueObject
     public ?string $activity_image_url4;
     public ?string $activity_image_url5;
     public ?string $activity_image_url6;
+    public ?string $wp_url;
+    public ?bool $is_view_wp_post;
+    public ?string $wp_tag_taxonomy;
     public ?string $handbill_image_url;
     public ?Carbon $created_at;
     public ?Carbon $updated_at;
@@ -139,6 +142,9 @@ class CircleValueObject
         $circleValueObject->activity_image_url4 = $circleInformation ? $circleInformation->activity_image_url4 : null;
         $circleValueObject->activity_image_url5 = $circleInformation ? $circleInformation->activity_image_url5 : null;
         $circleValueObject->activity_image_url6 = $circleInformation ? $circleInformation->activity_image_url6 : null;
+        $circleValueObject->wp_url = $circleInformation ? $circleInformation->wp_url : null;
+        $circleValueObject->is_view_wp_post = $circleInformation ? $circleInformation->is_view_wp_post : false;
+        $circleValueObject->wp_tag_taxonomy = $circleInformation ? $circleInformation->wp_tag_taxonomy : null;
         $circleValueObject->handbill_image_url = $circleHandbill ?  $circleHandbill->image_url : null;
 
         return $circleValueObject;
@@ -177,7 +183,9 @@ class CircleValueObject
             CircleInformationProperty::common_date_of_activity_saturday => $this->common_date_of_activity_saturday,
             CircleInformationProperty::common_date_of_activity_sunday => $this->common_date_of_activity_sunday,
             CircleInformationProperty::common_date_of_activity_detail => $this->common_date_of_activity_detail,
-            CircleInformationProperty::is_online_activity => $this->is_online_activity !== null ? $this->is_online_activity : true,
+            CircleInformationProperty::is_online_activity => $this->is_online_activity !== null ?
+                $this->is_online_activity :
+                true,
             CircleInformationProperty::online_place_of_activity_detail => $this->online_place_of_activity_detail,
             CircleInformationProperty::online_date_of_activity_monday => $this->online_date_of_activity_monday,
             CircleInformationProperty::online_date_of_activity_tuesday => $this->online_date_of_activity_tuesday,
@@ -211,6 +219,9 @@ class CircleValueObject
             CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
             CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
             CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
+            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
+            CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
         ]);
     }
 
@@ -284,6 +295,9 @@ class CircleValueObject
             CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
             CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
             CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
+            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
+            CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
             'handbill_image_url' => $this->handbill_image_url,
         ];
     }

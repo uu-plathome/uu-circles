@@ -38,6 +38,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title 広告タイトル
+ * @property string|null $slug 広告のslug
  * @property string|null $link 広告リンク
  * @property string|null $main_image_url 画像URL
  * @property bool $active 公開するかどうか
@@ -46,23 +47,77 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $advertise_type 広告種類
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read bool $now_public
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise nowPublic(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Query\Builder|Advertise onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise query()
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereAdvertiseType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Advertise whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Advertise withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Advertise withoutTrashed()
  */
 	class Advertise extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AdvertiseCounter
+ *
+ * @property int $id
+ * @property int $advertise_id 広告のid
+ * @property int $count 広告のクリック数
+ * @property string $link 広告URL
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereAdvertiseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounter whereUpdatedAt($value)
+ */
+	class AdvertiseCounter extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AdvertiseCounterHistory
+ *
+ * @property int $id
+ * @property int $advertise_id 広告のid
+ * @property int $count 広告のクリック数
+ * @property string $link 広告URL
+ * @property string $date 日付
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereAdvertiseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdvertiseCounterHistory whereUpdatedAt($value)
+ */
+	class AdvertiseCounterHistory extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -202,6 +257,9 @@ namespace App\Models{
  * @property string|null $activity_image_url4 活動画像4
  * @property string|null $activity_image_url5 活動画像5
  * @property string|null $activity_image_url6 活動画像6
+ * @property string|null $wp_url WordPress URL
+ * @property string|null $wp_tag_taxonomy WordPress の Tags Taxonomy
+ * @property bool $is_view_wp_post WordPressの記事を表示するかどうか
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Circle $circle
@@ -242,6 +300,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereInstagramUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsClubActivities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsOnlineActivity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereIsViewWpPost($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereLineUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMainImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereMammoth()
@@ -269,6 +328,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereTiktokUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereTwitterUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereWpTagTaxonomy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereWpUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CircleInformation whereYoutubeUrl($value)
  */
 	class CircleInformation extends \Eloquent {}
@@ -468,5 +529,48 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  */
 	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UuyellPost
+ *
+ * @property int $id
+ * @property int $wordpress_id
+ * @property string $slug 記事のSlug
+ * @property string $title 記事タイトル
+ * @property string|null $description 抜粋
+ * @property string $link 記事のリンク
+ * @property string $date 記事作成日時
+ * @property int $featured_media アイキャッチのID
+ * @property string|null $media_source_url 記事のアイキャッチのURL
+ * @property string|null $media_alt_text 記事のアイキャッチのタイトル
+ * @property bool $published 公開されているかどうか
+ * @property bool $can_repost もう一度投稿してもいいか
+ * @property int|null $tweet_id Tweet Id
+ * @property string|null $notified_at 通知日時
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCanRepost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereFeaturedMedia($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereMediaAltText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereMediaSourceUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereNotifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost wherePublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereTweetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UuyellPost whereWordpressId($value)
+ */
+	class UuyellPost extends \Eloquent {}
 }
 

@@ -3,8 +3,13 @@
 namespace App\Usecases\Main\Statistics;
 
 use App\Dto\StatisticsActivityFrequencyDto;
+use App\Dto\StatisticsActivityFrequencyRankingDto;
+use App\Dto\StatisticsAdmissionFeePerYearHighRankingDto;
+use App\Dto\StatisticsAdmissionFeePerYearSmallRankingDto;
 use App\Dto\StatisticsCircleTypeDto;
 use App\Dto\StatisticsDto;
+use App\Dto\StatisticsNumberOfActivitiesCountDto;
+use App\Dto\StatisticsNumberOfActivitiesRankingDto;
 use App\Dto\StatisticsOnlineActivityDto;
 use App\Dto\StatisticsPlaceOfActivityFrequencyDto;
 use App\Enum\CircleType;
@@ -12,6 +17,8 @@ use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\Circle;
 use App\Models\CircleNewJoy;
+use App\Support\Arr;
+use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -22,21 +29,118 @@ class StatisticsUsecase
     {
         Log::debug("StatisticsUsecase args none");
         $now = Carbon::now();
-        $today = Carbon::today();
 
+        // サークル一覧
         /** @var Collection $circles */
         $circles = Circle::with(['circleInformation'])
             ->whereRelease(true)
             ->hasByNonDependentSubquery('circleInformation')
             ->get();
+        $circleValueObjects = $circles->map(
+            fn (Circle $circle) => CircleValueObject::byEloquent(
+                $circle,
+                $circle->circleInformation,
+                $circle->circleHandbill
+            )
+        );
 
-        $circleNewJoys = CircleNewJoy::nowPublic($now)->get();
+        // 新歓一覧
+        $circleNewJoys = CircleNewJoy::nowPublic($now)
+            ->hasByNonDependentSubquery('circle', function ($query) {
+                $query->whereRelease(true);
+            })
+            ->get();
 
         $statisticsDto = new StatisticsDto();
         // サークル数
         $statisticsDto->circleCount = $circles->count();
         // 活動費用の平均値
         $statisticsDto->averageActivityCost = round($circles->avg('circleInformation.admission_fee_per_year'));
+
+        // 活動人数の幅
+        $statisticsNumberOfActivitiesCountDto = new StatisticsNumberOfActivitiesCountDto();
+        $statisticsNumberOfActivitiesCountDto->zeroToTen = $circles->filter(
+            fn (Circle $circle) => $circle->circleInformation->number_of_members <= 10
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->tenToTwenty = $circles->filter(
+            fn (Circle $circle) =>
+                11 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 20
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->twentyToThirty = $circles->filter(
+            fn (Circle $circle) =>
+                21 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 30
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->thirtyToForty = $circles->filter(
+            fn (Circle $circle) =>
+                31 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 40
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->fortyToFifty = $circles->filter(
+            fn (Circle $circle) =>
+                41 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 50
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->fiftyToSixty = $circles->filter(
+            fn (Circle $circle) =>
+                51 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 60
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->sixtyToSeventy = $circles->filter(
+            fn (Circle $circle) =>
+                61 <= $circle->circleInformation->number_of_members
+                && $circle->circleInformation->number_of_members <= 70
+        )->count();
+        $statisticsNumberOfActivitiesCountDto->seventyOrMore = $circles->filter(
+            fn (Circle $circle) =>
+                71 <= $circle->circleInformation->number_of_members
+        )->count();
+        $statisticsDto->statisticsNumberOfActivitiesCountDto = $statisticsNumberOfActivitiesCountDto;
+
+        // 活動人数ランキング
+        $statisticsNumberOfActivitiesRankingDto = new StatisticsNumberOfActivitiesRankingDto();
+        $circleSortByNumberOfMembers = $circleValueObjects->filter(
+            fn (CircleValueObject $cvo) => $cvo->number_of_members !== null
+        )->sortByDesc(
+            fn (CircleValueObject $cvo) => $cvo->number_of_members
+        )->values();
+        $statisticsNumberOfActivitiesRankingDto->first = Arr::get($circleSortByNumberOfMembers->all(), 0);
+        $statisticsNumberOfActivitiesRankingDto->second = Arr::get($circleSortByNumberOfMembers->all(), 1);
+        $statisticsNumberOfActivitiesRankingDto->third = Arr::get($circleSortByNumberOfMembers->all(), 2);
+        $statisticsNumberOfActivitiesRankingDto->fourth = Arr::get($circleSortByNumberOfMembers->all(), 3);
+        $statisticsNumberOfActivitiesRankingDto->fifth = Arr::get($circleSortByNumberOfMembers->all(), 4);
+        $statisticsDto->statisticsNumberOfActivitiesRankingDto = $statisticsNumberOfActivitiesRankingDto;
+
+        // 活動費用ランキング (高い順)
+        $statisticsAdmissionFeePerYearHighRankingDto = new StatisticsAdmissionFeePerYearHighRankingDto();
+        $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
+            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year !== null
+        )->sortByDesc(
+            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year
+        )->values()
+            ->all();
+        $statisticsAdmissionFeePerYearHighRankingDto->first = Arr::get($circleSortByAdmissionFeePerYear, 0);
+        $statisticsAdmissionFeePerYearHighRankingDto->second = Arr::get($circleSortByAdmissionFeePerYear, 1);
+        $statisticsAdmissionFeePerYearHighRankingDto->third = Arr::get($circleSortByAdmissionFeePerYear, 2);
+        $statisticsAdmissionFeePerYearHighRankingDto->fourth = Arr::get($circleSortByAdmissionFeePerYear, 3);
+        $statisticsAdmissionFeePerYearHighRankingDto->fifth = Arr::get($circleSortByAdmissionFeePerYear, 4);
+        $statisticsDto->statisticsAdmissionFeePerYearHighRankingDto = $statisticsAdmissionFeePerYearHighRankingDto;
+
+        // 活動費用ランキング (低い順)
+        $statisticsAdmissionFeePerYearSmallRankingDto = new StatisticsAdmissionFeePerYearSmallRankingDto();
+        $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
+            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year !== null
+        )->sortBy(
+            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year
+        )->values()
+            ->all();
+        $statisticsAdmissionFeePerYearSmallRankingDto->first = Arr::get($circleSortByAdmissionFeePerYear, 0);
+        $statisticsAdmissionFeePerYearSmallRankingDto->second = Arr::get($circleSortByAdmissionFeePerYear, 1);
+        $statisticsAdmissionFeePerYearSmallRankingDto->third = Arr::get($circleSortByAdmissionFeePerYear, 2);
+        $statisticsAdmissionFeePerYearSmallRankingDto->fourth = Arr::get($circleSortByAdmissionFeePerYear, 3);
+        $statisticsAdmissionFeePerYearSmallRankingDto->fifth = Arr::get($circleSortByAdmissionFeePerYear, 4);
+        $statisticsDto->statisticsAdmissionFeePerYearSmallRankingDto = $statisticsAdmissionFeePerYearSmallRankingDto;
 
         // オンライン活動状況
         $statisticsOnlineActivityDto = new StatisticsOnlineActivityDto();
@@ -76,6 +180,21 @@ class StatisticsUsecase
         )->values()->count();
         $statisticsDto->statisticsActivityFrequencyDto = $statisticsActivityFrequencyDto;
 
+        // 週の活動頻度ランキング (高い順)
+        $statisticsActivityFrequencyRankingDto = new StatisticsActivityFrequencyRankingDto();
+        $circleSortByActivityFrequency = $circleValueObjects->filter(
+            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days && $cvo->weekly_activity_days > 0
+        )->sortByDesc(
+            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days
+        )->values()
+            ->all();
+        $statisticsActivityFrequencyRankingDto->first = Arr::get($circleSortByActivityFrequency, 0);
+        $statisticsActivityFrequencyRankingDto->second = Arr::get($circleSortByActivityFrequency, 1);
+        $statisticsActivityFrequencyRankingDto->third = Arr::get($circleSortByActivityFrequency, 2);
+        $statisticsActivityFrequencyRankingDto->fourth = Arr::get($circleSortByActivityFrequency, 3);
+        $statisticsActivityFrequencyRankingDto->fifth = Arr::get($circleSortByActivityFrequency, 4);
+        $statisticsDto->statisticsActivityFrequencyRankingDto = $statisticsActivityFrequencyRankingDto;
+
         // 活動場所
         $statisticsPlaceOfActivityFrequencyDto = new StatisticsPlaceOfActivityFrequencyDto();
         $statisticsPlaceOfActivityFrequencyDto->mine = $circles->filter(
@@ -109,6 +228,7 @@ class StatisticsUsecase
         )->values()->count();
         $statisticsDto->statisticsCircleTypeDto = $statisticsCircleTypeDto;
 
+        // 新歓
         $newCircleNewJoysByStartDate = $circleNewJoys->map(
             fn (CircleNewJoy $circleNewJoy) => [
                 CircleNewJoyProperty::start_date => $circleNewJoy->start_date->format('Y年m月d日')

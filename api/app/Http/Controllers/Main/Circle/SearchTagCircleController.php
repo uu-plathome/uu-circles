@@ -8,6 +8,8 @@ use App\Support\Arr;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\Usecases\Main\Circle\SearchTagCircleListUsecase;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,14 +19,18 @@ use Illuminate\Support\Facades\Log;
 
 class SearchTagCircleController extends Controller
 {
+    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
+
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
     private SearchTagCircleListUsecase $searchTagCircleListUsecase;
 
     public function __construct(
+        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
         SearchTagCircleListUsecase $searchTagCircleListUsecase
     ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->searchTagCircleListUsecase = $searchTagCircleListUsecase;
     }
@@ -32,8 +38,9 @@ class SearchTagCircleController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param string $tag
+     * @return array|void
      */
     public function __invoke(Request $request, string $tag)
     {
@@ -86,6 +93,12 @@ class SearchTagCircleController extends Controller
             fn () => $this->getRandomCircleUsecase->invoke(6)
         );
 
+        $articles = Cache::remember(
+            FetchUuYellArticlesKey::uuYellCacheKey(),
+            FetchUuYellArticlesKey::TTL,
+            fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -103,6 +116,7 @@ class SearchTagCircleController extends Controller
                     ])
                 )->toArray()
             ),
+            'uuYellArticles' => $articles,
         ];
     }
 

@@ -30,6 +30,19 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             <p className="text-sm text-black">{circle.name}</p>
           </div>
 
+          {circle.nameKana ? (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">
+                団体・サークル名(カナ)
+              </p>
+              <p className="text-sm text-black whitespace-pre-wrap">
+                {circle.nameKana}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
+
           {circle.description ? (
             <div className="border-b border-gray-400 py-4">
               <p className="text-sm text-gray-400 mb-2">サークル紹介文</p>
@@ -98,88 +111,112 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             ''
           )}
 
-          <div className="border-b border-gray-400 py-4">
-            <p className="text-sm text-gray-400 mb-2">通常活動日</p>
-            <div className="flex flex-wrap">
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivityMonday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  月曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivityTuesday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  火曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivityWednesday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  水曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivityThursday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  木曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivityFriday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  金曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivitySaturday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  土曜日
-                </p>
-              </div>
-              <div className="w-1/2 mb-2">
-                <p
-                  className={`w-1/2 p-2 text-sm rounded text-center text-white ${
-                    circle.commonDateOfActivitySunday
-                      ? 'bg-yellow-300'
-                      : 'bg-gray-300'
-                  }`}
-                >
-                  日曜日
-                </p>
+          {circle.commonDateOfActivityMonday ||
+          circle.commonDateOfActivityTuesday ||
+          circle.commonDateOfActivityWednesday ||
+          circle.commonDateOfActivityThursday ||
+          circle.commonDateOfActivityFriday ||
+          circle.commonDateOfActivitySunday ||
+          circle.commonDateOfActivitySunday ? (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">通常活動日</p>
+              <div className="flex flex-wrap">
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivityMonday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    月曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivityTuesday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    火曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivityWednesday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    水曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivityThursday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    木曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivityFriday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    金曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivitySaturday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    土曜日
+                  </p>
+                </div>
+                <div className="w-1/2 mb-2">
+                  <p
+                    className={`w-1/2 p-2 text-sm rounded text-center text-white ${
+                      circle.commonDateOfActivitySunday
+                        ? 'bg-yellow-300'
+                        : 'bg-gray-300'
+                    }`}
+                  >
+                    日曜日
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">通常活動日</p>
+              <p className="text-sm text-black whitespace-pre-wrap">不定期</p>
+            </div>
+          )}
+
+          {circle.commonDateOfActivityDetail ? (
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">通常活動日時詳細</p>
+              <p className="text-sm text-black whitespace-pre-wrap">
+                {circle.commonDateOfActivityDetail}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
 
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">オンライン活動</p>
@@ -199,7 +236,14 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             ''
           )}
 
-          {circle.isOnlineActivity ? (
+          {circle.isOnlineActivity &&
+          (circle.onlineDateOfActivityMonday ||
+            circle.onlineDateOfActivityTuesday ||
+            circle.onlineDateOfActivityWednesday ||
+            circle.onlineDateOfActivityThursday ||
+            circle.onlineDateOfActivityFriday ||
+            circle.onlineDateOfActivitySunday ||
+            circle.onlineDateOfActivitySunday) ? (
             <div className="border-b border-gray-400 py-4">
               <p className="text-sm text-gray-400 mb-2">オンライン活動日</p>
               <div className="flex flex-wrap">
@@ -283,7 +327,10 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
               </div>
             </div>
           ) : (
-            ''
+            <div className="border-b border-gray-400 py-4">
+              <p className="text-sm text-gray-400 mb-2">オンライン活動日</p>
+              <p className="text-sm text-black whitespace-pre-wrap">不定期</p>
+            </div>
           )}
 
           {circle.participationUrl ? (

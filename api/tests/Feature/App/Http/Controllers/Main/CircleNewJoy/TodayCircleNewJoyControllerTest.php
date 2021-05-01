@@ -8,6 +8,7 @@ use App\Support\Arr;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -38,6 +39,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        Http::fake();
 
         // WHEN
         $response = $this->get('/api/circle/newjoy');

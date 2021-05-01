@@ -4,14 +4,18 @@ namespace App\Models;
 
 use App\Enum\Property\AdvertiseProperty as P;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 class Advertise extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         P::title,
         P::link,
         P::main_image_url,
+        P::slug,
         P::active,
         P::advertise_type,
         P::publish_to,
@@ -22,6 +26,10 @@ class Advertise extends Model
         P::active       => 'boolean',
         P::publish_to   => 'datetime:Y-m-d',
         P::publish_from => 'datetime:Y-m-d',
+    ];
+
+    protected $dates = [
+        P::deleted_at
     ];
 
     /**
