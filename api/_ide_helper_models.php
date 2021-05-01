@@ -493,6 +493,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\IdentifierHistory
+ *
+ * @property int $id
+ * @property int $identifier_id
+ * @property string|null $user_agent User Agent
+ * @property string|null $ip_address Ip Address
+ * @property int $count アクセス数
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereIdentifierId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereIpAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory whereUserAgent($value)
+ */
+	class IdentifierHistory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
