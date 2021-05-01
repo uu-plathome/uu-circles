@@ -14,7 +14,7 @@ export const validIdentification = async ({
   identifierHash: string
 }): Promise<boolean> => {
   try {
-    await axiosInstance.get<Response>(
+    await axiosInstance.post<Response>(
       linkConst.IDENTIFICATION.VALID(identifierHash)
     )
 
@@ -41,7 +41,7 @@ export const publishIdentification = async (): Promise<{
   type Response = {
     identifierHash: string
   }
-  const { data } = await axiosInstance.get<Response>(
+  const { data } = await axiosInstance.post<Response>(
     linkConst.IDENTIFICATION.PUBLISH
   )
 
