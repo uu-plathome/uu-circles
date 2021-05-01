@@ -1,3 +1,8 @@
+import {
+  publishIdentification,
+  validIdentification,
+} from '@/infra/api/identification'
+import { LocalStorageKey } from '@/lib/enum/app/LocalStorageKey'
 import { Bugsnag } from '@/lib/utils/Bugsnag'
 import * as gtag from '@/lib/utils/Gtag'
 import { AppProps } from 'next/app'
@@ -29,6 +34,50 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
+  useEffect(() => {
+    const f = async () => {
+      // CSRであるかどうか
+      if (typeof window !== 'undefined') {
+        const localStorageIdentifierHash = localStorage.getItem(
+          LocalStorageKey.identifierHash
+        )
+
+        if (localStorageIdentifierHash) {
+          try {
+            // 識別子が有効かどうかを確認する
+            const status = validIdentification({
+              identifierHash: localStorageIdentifierHash,
+            })
+
+            // 識別子が有効なときは、処理終了
+            if (status) {
+              return
+            }
+
+            // 識別子が有効でないときは、識別子をlocalstorageから削除し、エラーログを出す。
+            if (!status) {
+              localStorage.setItem(LocalStorageKey.identifierHash, '')
+              console.error('識別子が有効でありませんでした。', {
+                localStorageIdentifierHash,
+              })
+
+              // 処理は継続し、識別子の再発行を行う
+            }
+          } catch (e) {
+            console.error(e)
+            return
+          }
+        }
+
+        // 識別子が存在しない or 識別子が有効でないとき
+        const { identifierHash } = await publishIdentification()
+
+        localStorage.setItem(LocalStorageKey.identifierHash, identifierHash)
+      }
+    }
+    f()
+  }, [])
 
   return (
     <ErrorBoundary>
