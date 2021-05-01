@@ -30,19 +30,17 @@ class GachaPickupListControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
-
+        // $GachaDrew=$this->get("/gacha/circle");
         // WHEN
-        $response = $this->get("/api/gacha/circle/pickup");
+        $response = $this->get("/gacha/circle/result/{$GachaDrew->gachaHash}");
 
         // THEN
         $response->assertOk();
 
         //キーの存在確認
-        $this->assertArrayHasKey("pickupCircle", $response);
-        $this->assertArrayHasKey("pickupDate", $response);
+
 
         //文字列や配列であることの確認
-        $this->assertIsArray($response["pickupCircle"]);
-        $this->assertIsString($response["pickupDate"]);
+
     }
 }
