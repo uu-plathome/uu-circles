@@ -122,6 +122,58 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Announcement
+ *
+ * @property int $id
+ * @property string $title お知らせのタイトル
+ * @property string|null $description お知らせ文
+ * @property string|null $link お知らせURL
+ * @property string $announcement_type お知らせ種類
+ * @property bool $for_main_view メイン画面に表示するかどうか
+ * @property bool $for_circle_view サークル管理画面に表示するかどうか
+ * @property bool $for_circle_mail サークル管理者にメール通知するかどうか
+ * @property bool $for_admin_view 管理者画面に表示するかどうか
+ * @property bool $for_admin_mail 管理者にメール通知するかどうか
+ * @property bool $for_newjoy_discord 新歓ディスコードに通知するかどうか
+ * @property bool $active 公開設定
+ * @property \datetime|null $notification_time 通知日時
+ * @property \datetime|null $publish_from 公開開始日時
+ * @property \datetime|null $publish_to 公開終了日時
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read bool $now_public
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement nowPublic(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Query\Builder|Announcement onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereAnnouncementType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForAdminMail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForAdminView($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForCircleMail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForCircleView($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForMainView($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForNewjoyDiscord($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereNotificationTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Announcement withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Announcement withoutTrashed()
+ */
+	class Announcement extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Circle
  *
  * @property int $id
