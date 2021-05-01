@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Enum\AdvertiseType;
+use App\Enum\AnnouncementType;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\PlaceOfActivity;
@@ -60,6 +61,7 @@ class MakeEnumForTs extends Command
         parent::__construct();
         $this->enumClasses = [
             AdvertiseType::class,
+            AnnouncementType::class,
             CategorySlugProperty::class,
             CircleType::class,
             CircleTagModel::class,
