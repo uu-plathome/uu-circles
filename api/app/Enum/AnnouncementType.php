@@ -39,4 +39,18 @@ class AnnouncementType
      * uu-yell
      */
     const UU_YELL = 'UU_YELL';
+
+    public static function getAll(): array
+    {
+        return [
+            self::MAINTENANCE,
+            self::UPDATE_FEATURE,
+            self::BUG,
+            self::NEW_CIRCLE,
+            self::EVENT,
+            self::QUESTIONNAIRE,
+            self::ADVERTISE,
+            self::UU_YELL,
+        ];
+    }
 }
