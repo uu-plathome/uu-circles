@@ -64,6 +64,7 @@ fabric.properties
 # Docker Compose
 .env
 .DS_store
+.DS_Store
 .venv
 venv
 .pyc
