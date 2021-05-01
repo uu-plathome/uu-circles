@@ -145,11 +145,26 @@
       <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
       <path value="$PROJECT_DIR$/vendor/abraham/twitteroauth" />
       <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient-services" />
+      <path value="$PROJECT_DIR$/vendor/grpc/grpc" />
+      <path value="$PROJECT_DIR$/vendor/google/protobuf" />
+      <path value="$PROJECT_DIR$/vendor/google/grpc-gcp" />
+      <path value="$PROJECT_DIR$/vendor/google/analytics-data" />
+      <path value="$PROJECT_DIR$/vendor/google/common-protos" />
+      <path value="$PROJECT_DIR$/vendor/google/gax" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="65f7e4dd-e588-41bb-abe3-97d84aea2073" name="app" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
+      <interpreter id="35c6f07f-c039-4b27-a019-f2040f78864f" name="NaofumiApp" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
         <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_COMPOSE_SERVICE_NAME="app" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
           <type_data command="EXEC" />
           <dockerComposeConfigurationPaths>
@@ -162,8 +177,8 @@
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="app">
-        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.14">
+      <interpreter name="NaofumiApp">
+        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.11">
           <additional_php_ini>/usr/local/etc/php/conf.d/docker-php-ext-bcmath.ini, /usr/local/etc/php/conf.d/docker-php-ext-intl.ini, /usr/local/etc/php/conf.d/docker-php-ext-pdo_mysql.ini, /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini, /usr/local/etc/php/conf.d/docker-php-ext-zip.ini</additional_php_ini>
           <configuration_file>/usr/local/etc/php/php.ini</configuration_file>
           <configuration_options>
@@ -214,11 +229,13 @@
       </interpreter>
     </phpInfoCache>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpUnit">
     <phpunit_settings>
       <phpunit_by_interpreter interpreter_id="65f7e4dd-e588-41bb-abe3-97d84aea2073" custom_loader_path="/work/api/vendor/autoload.php" phpunit_phar_path="" />
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="" use_configuration_file="true" />
     </phpunit_settings>
   </component>
 </project>
