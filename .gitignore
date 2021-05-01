@@ -60,6 +60,7 @@ fabric.properties
 
 .idea/codestream.xml
 .idea/php-test-framework.xml
+.idea/csv-plugin.xml
 
 # Docker Compose
 .env
@@ -68,6 +69,7 @@ fabric.properties
 .venv
 venv
 .pyc
+__pycache__
 
 # Container
 db/

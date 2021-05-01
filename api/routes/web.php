@@ -11,6 +11,12 @@
 |
 */
 
+use App\Enum\RouteProperty\WebRouteProperty as RP;
+use App\Http\Controllers\Main\Advertise\RedirectToAdvertiseLinkController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/share/advertise/{slug}', RedirectToAdvertiseLinkController::class)
+    ->name(RP::WebShareAdvertiseShow);

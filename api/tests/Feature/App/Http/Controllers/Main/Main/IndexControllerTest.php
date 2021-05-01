@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Main;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -28,6 +29,7 @@ class IndexControllerTest extends TestCase
         Log::info("testRequest");
 
         // GIVEN
+        Http::fake();
 
         // WHEN
         $response = $this->get('/api/main');

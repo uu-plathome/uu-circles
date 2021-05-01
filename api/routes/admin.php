@@ -41,7 +41,7 @@ use App\Http\Controllers\Admin\CircleUser\IndexCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\RegisterCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
-use App\Http\Controllers\Admin\PutStorageController;
+use App\Http\Controllers\Admin\Storage\PutStorageController;
 
 Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
 
@@ -78,11 +78,11 @@ Route::middleware('auth:adminUser')->group(function () {
 
     // CircleUser サークルユーザー
     Route::get('/user/circle', IndexAllUserController::class);
-    Route::get('/circle/{circleId}/user', IndexCircleUserController::class);
-    Route::post('/circle/{circleId}/user', RegisterCircleUserController::class);
-    Route::get('/circle/{circleId}/user/{userId}', ShowCircleUserController::class);
-    Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class);
-    Route::delete('/circle/{circleId}/user/{userId}', DeleteCircleUserController::class);
+    Route::get('/circle/{circleId}/user', IndexCircleUserController::class)->where('circleId', '[0-9]+');
+    Route::post('/circle/{circleId}/user', RegisterCircleUserController::class)->where('circleId', '[0-9]+');
+    Route::get('/circle/{circleId}/user/{userId}', ShowCircleUserController::class)->where('circleId', '[0-9]+');
+    Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class)->where('circleId', '[0-9]+');
+    Route::delete('/circle/{circleId}/user/{userId}', DeleteCircleUserController::class)->where('circleId', '[0-9]+');
     Route::get('/circle-user/{userId}', IndexCircleUserByUserIdController::class);
     Route::post('/circle-user/{userId}/{circleId}', CreateCircleUserRelationController::class);
     Route::delete('/circle-user/{userId}/{circleId}', DeleteCircleUserRelationController::class);

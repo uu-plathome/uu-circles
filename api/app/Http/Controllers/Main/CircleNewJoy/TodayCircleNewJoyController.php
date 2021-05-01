@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
+use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -13,11 +15,14 @@ use Illuminate\Support\Facades\Log;
 
 class TodayCircleNewJoyController extends Controller
 {
+    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase;
 
     public function __construct(
+        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase
     ) {
+        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getTodayCircleNewJoyUsecase = $getTodayCircleNewJoyUsecase;
     }
 
@@ -37,28 +42,39 @@ class TodayCircleNewJoyController extends Controller
             fn () => $this->getTodayCircleNewJoyUsecase->invoke()
         );
 
-        return Arr::camel_keys([
-            'todayCircleNewJoys'  => (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
-                fn (array $arr) => [
-                    'slug'           => $arr['slug'],
-                    'name'           => $arr['name'],
-                    'short_name'     => $arr['short_name'],
-                    'circle_type'    => $arr['circle_type'],
-                    'main_image_url' => $arr['main_image_url'],
-                    'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
-                ]
-            )->values()->toArray(),
-            'futureCircleNewJoys' => (new Collection($circleNewJoys['futureCircleNewJoys']))->map(
-                fn (array $arr) => [
-                    'slug'           => $arr['slug'],
-                    'name'           => $arr['name'],
-                    'short_name'     => $arr['short_name'],
-                    'circle_type'    => $arr['circle_type'],
-                    'main_image_url' => $arr['main_image_url'],
-                    'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
-                ]
-            )->values()->toArray(),
-        ]);
+        $articles = Cache::remember(
+            FetchUuYellArticlesKey::uuYellCacheKey(),
+            FetchUuYellArticlesKey::TTL,
+            fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
+        return [
+            'todayCircleNewJoys'  => Arr::camel_keys(
+                (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
+                    fn (array $arr) => [
+                        'slug'           => $arr['slug'],
+                        'name'           => $arr['name'],
+                        'short_name'     => $arr['short_name'],
+                        'circle_type'    => $arr['circle_type'],
+                        'main_image_url' => $arr['main_image_url'],
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                    ]
+                )->values()->toArray()
+            ),
+            'futureCircleNewJoys' => Arr::camel_keys(
+                (new Collection($circleNewJoys['futureCircleNewJoys']))->map(
+                    fn (array $arr) => [
+                        'slug'           => $arr['slug'],
+                        'name'           => $arr['name'],
+                        'short_name'     => $arr['short_name'],
+                        'circle_type'    => $arr['circle_type'],
+                        'main_image_url' => $arr['main_image_url'],
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                    ]
+                )->values()->toArray()
+            ),
+            'uuYellArticles' => $articles,
+        ];
     }
 
     private function getCircleNewJoysCacheKey(): string

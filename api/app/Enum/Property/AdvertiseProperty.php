@@ -10,9 +10,11 @@ class AdvertiseProperty
 
     const title = 'title';
     const link = 'link';
+    const slug = 'slug';
     const main_image_url = 'main_image_url';
     const active = 'active';
     const advertise_type = 'advertise_type';
     const publish_to = 'publish_to';
     const publish_from = 'publish_from';
+    const deleted_at = 'deleted_at';
 }

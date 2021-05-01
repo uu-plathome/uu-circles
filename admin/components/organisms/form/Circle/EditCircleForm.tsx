@@ -65,6 +65,9 @@ type Props = {
     githubUrl: UseStringInput
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
+    wpUrl: UseStringInput
+    wpTagTaxonomy: UseStringInput
+    isViewWpPost: UseBooleanInput
   } & NameEditCircleFormProps['form'] &
     CommonInfoEditCircleFormProps['form']
 }
@@ -331,6 +334,54 @@ const EditCircleForm: FC<Props> = ({
           {...form.participationUrl}
         />
       </div>
+
+      {role && isSystem(role) ? (
+        <div>
+          <FormHeader>システム管理者専用</FormHeader>
+
+          <div>
+            <BaseTextField
+              label="WordPress URL"
+              name="wpUrl"
+              id="wpUrl"
+              expand
+              maxLength={255}
+              note="記事を拾ってくるWordPressのURL"
+              placeholder="https://media.uu-circles.com/"
+              {...form.wpUrl}
+            />
+          </div>
+
+          {form.wpUrl.value ? (
+            <div>
+              <BaseTextField
+                label="WordPress Tag Taxonomy"
+                name="wpTagTaxonomy"
+                id="wpTagTaxonomy"
+                expand
+                maxLength={100}
+                note="WordPressのタグ"
+                {...form.wpTagTaxonomy}
+              />
+
+              <BaseSelect
+                label="WordPressの記事を表示するか"
+                id="isViewWpPost"
+                name="isViewWpPost"
+                items={[
+                  { value: 'true', label: '表示' },
+                  { value: 'false', label: '非表示' },
+                ]}
+                {...form.isViewWpPost}
+              />
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+      ) : (
+        ''
+      )}
 
       <div className="flex justify-center mt-8">
         <GreenButton type="submit">更新</GreenButton>

@@ -57,8 +57,24 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
             advertises.map((advertise) => {
               return (
                 <SwiperSlide key={advertise.id}>
-                  {advertise.link ? (
-                    <a href={advertise.link} target="_blank" rel="noopener">
+                  <div className="relative">
+                    {advertise.link ? (
+                      <a
+                        href={`${process.env.API_URL}/share/advertise/${advertise.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={width || 1000}
+                          height={height}
+                          objectFit="cover"
+                          alt={`${advertise.title} - トップ広告`}
+                          src={
+                            advertise.mainImageUrl || '/images/top-image.png'
+                          }
+                        />
+                      </a>
+                    ) : (
                       <Image
                         width={width || 1000}
                         height={height}
@@ -66,16 +82,14 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                         alt={`${advertise.title} - トップ広告`}
                         src={advertise.mainImageUrl || '/images/top-image.png'}
                       />
-                    </a>
-                  ) : (
-                    <Image
-                      width={width || 1000}
-                      height={height}
-                      objectFit="cover"
-                      alt={`${advertise.title} - トップ広告`}
-                      src={advertise.mainImageUrl || '/images/top-image.png'}
-                    />
-                  )}
+                    )}
+                  </div>
+
+                  <div className="absolute left-2 top-2">
+                    <div className="bg-gray-300 px-4 p-2 text-xs rounded">
+                      広告
+                    </div>
+                  </div>
                 </SwiperSlide>
               )
             })}

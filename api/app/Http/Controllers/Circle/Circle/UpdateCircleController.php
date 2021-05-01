@@ -25,7 +25,9 @@ class UpdateCircleController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleFormRequest $request
+     * @param int $circleId
      * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */
     public function __invoke(UpdateCircleFormRequest $request, int $circleId): array
@@ -37,7 +39,7 @@ class UpdateCircleController extends Controller
         $this->permissionCircle($user, $circleId);
 
         $circle = $this->updateCircleUsecase->invoke(
-            $request->makeCircleValueObject()
+            $request->makeUpdateCircleUsecaseParam()
         );
 
         return [
