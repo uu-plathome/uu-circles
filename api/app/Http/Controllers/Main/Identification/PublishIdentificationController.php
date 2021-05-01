@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Main\Identification;
 
+use App\Enum\Property\IdentifierHistoryProperty;
 use App\Enum\Property\IdentifierProperty;
 use App\Http\Controllers\Controller;
 use App\Models\Identifier;
+use App\Models\IdentifierHistory;
 use App\Support\Arr;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,6 +40,15 @@ class PublishIdentificationController extends Controller
                     $identifier = Identifier::create([
                         IdentifierProperty::identifier_hash => $hash
                     ]);
+
+                    // 識別子に情報を追加
+                    (new IdentifierHistory())->fill([
+                        IdentifierHistoryProperty::identifier_id => $identifier->id,
+                        IdentifierHistoryProperty::ip_address    => $request->ip(),
+                        IdentifierHistoryProperty::user_agent    => $request->userAgent(),
+                        IdentifierHistoryProperty::count         => 1,
+                    ])->save();
+
                     break;
                 }
             }
