@@ -9,6 +9,16 @@ export const linkConst = {
     INDEX: `${GROUP}/statistics`,
   },
 
+  /** 識別子発行 */
+  IDENTIFICATION: {
+    PUBLISH: `${GROUP}/identification/publish`,
+
+    VALID: (
+      identifierHash: string
+    ): `${typeof GROUP}/identification/valid/${string}` =>
+      `${GROUP}/identification/valid/${identifierHash}` as `${typeof GROUP}/identification/valid/${string}`,
+  },
+
   CIRCLE: {
     GROUP: `${GROUP}/circle`,
 
