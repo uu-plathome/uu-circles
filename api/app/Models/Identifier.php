@@ -12,7 +12,7 @@ class Identifier extends Model
     protected $fillable = [
         P::identifier_hash,
     ];
-    
+
     /**
      * UUIDをハッシュ
      *
@@ -20,7 +20,7 @@ class Identifier extends Model
      */
     public static function generateIdentifierHash(): string
     {
-        $uuid=Str::uuid();
+        $uuid = Str::uuid();
         return base64_encode((string)$uuid);
     }
 
