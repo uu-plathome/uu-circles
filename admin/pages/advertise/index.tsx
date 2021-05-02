@@ -1,5 +1,6 @@
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
@@ -7,7 +8,11 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AdvertiseListItem } from '@/components/molecules/list_items/AdvertiseListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
-import { deleteAdvertise, getAdvertiseList } from '@/infra/api/advertise'
+import {
+  deleteAdvertise,
+  downloadAdvertiseXlsx,
+  getAdvertiseList,
+} from '@/infra/api/advertise'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -42,6 +47,13 @@ const IndexPage: NextPage = () => {
     setIsOpen(false)
   }
 
+  /**
+   * 広告データのXlsxのダウンロード
+   */
+  const onDownloadAdvertiseXlsx = async () => {
+    await downloadAdvertiseXlsx()
+  }
+
   return (
     <div>
       <Head>
@@ -61,6 +73,16 @@ const IndexPage: NextPage = () => {
           {error ? <DangerBunner text={error} /> : ''}
 
           <SubmitLoading isOpen={isOpen} />
+
+          {advertises.length > 0 ? (
+            <div className="mb-4">
+              <BlueButton type="button" onClick={onDownloadAdvertiseXlsx}>
+                広告のxlsxダウンロード
+              </BlueButton>
+            </div>
+          ) : (
+            ''
+          )}
 
           <div className="border-2 border-gray-800 p-2">
             {advertises.length > 0
