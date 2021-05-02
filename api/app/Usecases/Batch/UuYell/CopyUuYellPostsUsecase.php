@@ -114,16 +114,16 @@ class CopyUuYellPostsUsecase
         $requestUrl = "$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber";
 
         // 記事の取得
-        $response = Http::get($requestUrl);
+        $response = Http::retry(3, 100)->get($requestUrl);
         Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
-        if ($response->status() >= 500) {
+        if ($response->serverError()) {
             Log::info("uu-yellの記事が取得できてない可能性があります。", [
                 'request_url' => $requestUrl,
                 'response'    => $response,
             ]);
         }
 
-        return $response->status() === 200 ? new Collection($response->json()) : new Collection([]);
+        return $response->successful() ? new Collection($response->json()) : new Collection([]);
     }
 
     protected function fetchUuYellMedias(array $featuredMedias): Collection
@@ -133,10 +133,14 @@ class CopyUuYellPostsUsecase
         $mediaIdsStr = implode(",", $featuredMedias);
 
         // MEDIA取得 HTTP リクエスト
-        $response = Http::get(
+        $response = Http::retry(3, 100)->get(
             "$baseUrl/wp-json/wp/v2/media?context=embed&include=$mediaIdsStr&per_page=$fetchNumber"
         );
 
-        return $response->status() === 200 ? new Collection($response->json()) : new Collection([]);
+        if (!$response->successful()) {
+            throw new Exception("uu-yellのメディアデータの取得ができませんでした。");
+        }
+
+        return new Collection($response->json());
     }
 }
