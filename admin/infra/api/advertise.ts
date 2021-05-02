@@ -54,6 +54,30 @@ export const downloadAdvertiseXlsx = async (): Promise<void> => {
 }
 
 /**
+ * 広告クリック数データのXlsxのダウンロード
+ */
+export const downloadAdvertiseCounterHistoryXlsx = async (
+  advertiseId: number
+): Promise<void> => {
+  const { data } = await axiosInstance.get(
+    `/admin/api/advertise/${advertiseId}/download`,
+    {
+      responseType: 'blob',
+    }
+  )
+
+  const url = window.URL.createObjectURL(new Blob([data]))
+  const link = document.createElement('a')
+  link.href = url
+  link.setAttribute(
+    'download',
+    `advertise_counter_history_${new Date().toISOString().slice(0, 10)}.xlsx`
+  )
+  document.body.appendChild(link)
+  link.click()
+}
+
+/**
  * 広告の作成
  *
  * @param advertise
