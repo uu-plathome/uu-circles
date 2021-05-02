@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminUser\ShowAdminUserController;
 use App\Http\Controllers\Admin\AdminUser\UpdateAdminUserController;
 use App\Http\Controllers\Admin\Advertise\CreateAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\DeleteAdvertiseController;
+use App\Http\Controllers\Admin\Advertise\DownloadAdvertiseCounterHistoryExcelController;
 use App\Http\Controllers\Admin\Advertise\DownloadAdvertiseExcelController;
 use App\Http\Controllers\Admin\Advertise\IndexAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\ShowAdvertiseController;
@@ -105,6 +106,7 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::post('/advertise', CreateAdvertiseController::class);
     Route::get('/advertise/download', DownloadAdvertiseExcelController::class);
     Route::get('/advertise/{id}', ShowAdvertiseController::class);
+    Route::get('/advertise/{advertiseId}/download', DownloadAdvertiseCounterHistoryExcelController::class);
     Route::put('/advertise/{id}', UpdateAdvertiseController::class);
     Route::delete('/advertise/{id}', DeleteAdvertiseController::class);
 
