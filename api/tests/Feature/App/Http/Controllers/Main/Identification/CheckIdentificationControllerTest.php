@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Main\Main;
+namespace Tests\Feature\App\Http\Controllers\Main\Identification;
 
 use App\Enum\Property\IdentifierProperty;
 use App\Models\Identifier;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Circle;
 
-use App\Admin\Usecases\CreateCircleUsecase;
+use App\Usecases\Admin\CreateCircleUsecase;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Support\Arr;

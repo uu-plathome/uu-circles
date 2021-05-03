@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Requests;
+namespace Tests\Feature\App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\AdminPutStorageRequest;
 use Illuminate\Support\Arr;

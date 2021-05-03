@@ -88,7 +88,7 @@ class GetTodayCircleNewJoyUsecase
                         'short_name'              => $circleNewJoy->circle->circleInformation['short_name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                        'circleNewJoyValueObject' => circleNewJoyValueObject::byEloquent($circleNewJoy)
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
                     ]
                 )->toArray(),
         ];

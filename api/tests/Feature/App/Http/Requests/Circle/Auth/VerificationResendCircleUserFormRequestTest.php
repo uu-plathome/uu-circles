@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Requests\Circle\CircleUser;
+namespace Tests\Feature\App\Http\Requests\Circle\Auth;
 
 use App\Http\Requests\Circle\Auth\VerificationResendCircleUserFormRequest;
 use Illuminate\Support\Arr;

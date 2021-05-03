@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Usecases;
+namespace App\Usecases\Admin;
 
 use App\ValueObjects\CircleValueObject;
 use Exception;

@@ -16,8 +16,8 @@ class CircleTagEntity
     public static function byEloquent(
         ?CircleInformation $circleInformation,
         ?CircleTag $circleTag
-    ): CircleTagEntity {
-        $circleTagEntity = new CircleTagEntity();
+    ): self {
+        $circleTagEntity = new self();
 
         if ($circleTag && $circleTag->sport) {
             $circleTagEntity->circleTag[] = CircleTagModel::SPORT;
@@ -65,9 +65,9 @@ class CircleTagEntity
         return $circleTagEntity;
     }
 
-    public static function of(array $arr): CircleTagEntity
+    public static function of(array $arr): self
     {
-        $circleTagEntity = new CircleTagEntity();
+        $circleTagEntity = new self();
         $circleTagEntity->circleTag = $arr;
         return $circleTagEntity;
     }
