@@ -167,6 +167,7 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/laravel-microscope" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Circle\Auth;
+namespace Tests\Feature\App\Http\Controllers\Circle\Circle;
 
 use App\Enum\Property\UserProperty;
 use App\Models\User;
