@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Admin\Auth;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -25,19 +26,24 @@ class LogoutAdminControllerTest extends TestCase
         $this->userId = User::whereApiToken(self::TOKEN)->first()->id;
     }
 
+    /**
+     * @throws Exception
+     */
     protected function tearDown(): void
     {
-        if ($this->userId) {
-            DB::beginTransaction();
-            try {
-                $user = User::find($this->userId);
-                $user->api_token = self::TOKEN;
-                $user->save();
-                DB::commit();
-            } catch (Exception $e) {
-                DB::rollBack();
-                throw $e;
-            }
+        if (!$this->userId) {
+            return;
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = User::find($this->userId);
+            $user->api_token = self::TOKEN;
+            $user->save();
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
     }
 

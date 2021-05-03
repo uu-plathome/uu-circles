@@ -98,18 +98,20 @@ class AggregateAdvertiseCounterPerDayUsecase
                             }
                         }
 
-                        if (!is_null($nowAggregateAdvertise)) {
-                            $this->aggregateAdvertises = $this->aggregateAdvertises->replace([
-                                $nowAggregateAdvertiseKey =>                                 [
-                                    'link'         => $nowAggregateAdvertise['link'],
-                                    'advertise_id' => $nowAggregateAdvertise['advertise_id'],
-                                    'date'         => $nowAggregateAdvertise['date'],
-                                    'count'        => $nowAggregateAdvertise['count'] - $advertiseCounterHistory->count,
-                                    'created_at'   => $nowAggregateAdvertise['created_at'],
-                                    'updated_at'   => $nowAggregateAdvertise['updated_at'],
-                                ]
-                            ]);
+                        if (is_null($nowAggregateAdvertise)) {
+                            continue;
                         }
+
+                        $this->aggregateAdvertises = $this->aggregateAdvertises->replace([
+                            $nowAggregateAdvertiseKey =>                                 [
+                                'link'         => $nowAggregateAdvertise['link'],
+                                'advertise_id' => $nowAggregateAdvertise['advertise_id'],
+                                'date'         => $nowAggregateAdvertise['date'],
+                                'count'        => $nowAggregateAdvertise['count'] - $advertiseCounterHistory->count,
+                                'created_at'   => $nowAggregateAdvertise['created_at'],
+                                'updated_at'   => $nowAggregateAdvertise['updated_at'],
+                            ]
+                        ]);
                     }
 
                     Log::debug('AdvertiseCounterHistory', [

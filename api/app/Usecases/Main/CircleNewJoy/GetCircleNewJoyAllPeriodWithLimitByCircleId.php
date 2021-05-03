@@ -37,18 +37,22 @@ class GetCircleNewJoyAllPeriodWithLimitByCircleId
             ->get();
 
         // 新歓が$limit件に満たない時、過去の新歓も取得
-        if ($circleNewJoys->count() < $limit) {
-            $count = count($circleNewJoys);
-
-            $appendCircleNewJoys = CircleNewJoy::whereCircleId($circleId)
-                ->nowPublic($now)
-                ->where(CircleNewJoyProperty::start_date, '<', $now)
-                ->orderByDesc(CircleNewJoyProperty::start_date)
-                ->take($limit - $count)
-                ->get();
-
-            $circleNewJoys = $circleNewJoys->concat($appendCircleNewJoys);
+        if ($circleNewJoys->count() >= $limit) {
+            return $circleNewJoys->map(
+                fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+            )->toArray();
         }
+
+        $count = count($circleNewJoys);
+
+        $appendCircleNewJoys = CircleNewJoy::whereCircleId($circleId)
+            ->nowPublic($now)
+            ->where(CircleNewJoyProperty::start_date, '<', $now)
+            ->orderByDesc(CircleNewJoyProperty::start_date)
+            ->take($limit - $count)
+            ->get();
+
+        $circleNewJoys = $circleNewJoys->concat($appendCircleNewJoys);
 
         return $circleNewJoys->map(
             fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)

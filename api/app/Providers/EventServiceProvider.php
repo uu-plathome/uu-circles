@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\PasswordResetCircleUser;
 use App\Events\RegisteredAdminUser;
 use App\Events\RegisteredCircleUser;
 use App\Listeners\SendEmailVerificationAdminUserNotification;

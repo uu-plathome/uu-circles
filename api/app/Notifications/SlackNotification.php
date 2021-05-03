@@ -63,26 +63,29 @@ class SlackNotification extends Notification
      */
     public function toSlack($notifiable)
     {
-        $message = (new SlackMessage)
+        $message = (new SlackMessage())
             ->from($this->channel['username'], $this->channel['icon'])
             ->to($this->channel['channel'])
             ->content($this->message);
 
-        if (!is_null($this->attachment) && is_array($this->attachment)) {
-            $message->attachment(function ($attachment) {
-                if (isset($this->attachment['title'])) {
-                    $attachment->title($this->attachment['title']);
-                }
-                if (isset($this->attachment['content'])) {
-                    $attachment->content($this->attachment['content']);
-                }
-                if (isset($this->attachment['field']) && is_array($this->attachment['field'])) {
-                    foreach ($this->attachment['field'] as $k => $v) {
-                        $attachment->field($k, $v);
-                    }
-                }
-            });
+        if (!(!is_null($this->attachment) && is_array($this->attachment))) {
+            return $message;
         }
+
+        $message->attachment(function ($attachment) {
+            if (isset($this->attachment['title'])) {
+                $attachment->title($this->attachment['title']);
+            }
+            if (isset($this->attachment['content'])) {
+                $attachment->content($this->attachment['content']);
+            }
+            if (isset($this->attachment['field']) && is_array($this->attachment['field'])) {
+                foreach ($this->attachment['field'] as $k => $v) {
+                    $attachment->field($k, $v);
+                }
+            }
+        });
+
         return $message;
     }
 }

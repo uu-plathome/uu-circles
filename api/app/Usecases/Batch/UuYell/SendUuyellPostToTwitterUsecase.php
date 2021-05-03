@@ -7,6 +7,7 @@ use App\Models\UuyellPost;
 use App\Repositories\Twitter\InitTwitterRepository;
 use App\Support\Arr;
 use App\Support\Str;
+use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
