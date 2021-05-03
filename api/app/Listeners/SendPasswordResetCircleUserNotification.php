@@ -2,15 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\RegisteredAdminUser;
-use PasswordResetCircleUser;
+use App\Events\PasswordResetCircleUser;
 
 class SendPasswordResetCircleUserNotification
 {
     /**
      * Handle the event.
      *
-     * @param RegisteredAdminUser $event
+     * @param PasswordResetCircleUser $event
      * @return void
      */
     public function handle(PasswordResetCircleUser $event)
