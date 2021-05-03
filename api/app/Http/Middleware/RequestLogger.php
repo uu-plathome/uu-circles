@@ -23,10 +23,8 @@ class RequestLogger
      */
     public function handle(Request $request, Closure $next)
     {
-        if (config('logging.request.enable') !== false) {
-            if ($this->isWrite($request)) {
-                $this->write($request);
-            }
+        if (config('logging.request.enable') !== false && $this->isWrite($request)) {
+            $this->write($request);
         }
 
         return $next($request);

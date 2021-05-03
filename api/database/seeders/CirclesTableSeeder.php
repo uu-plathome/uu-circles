@@ -72,13 +72,15 @@ class CirclesTableSeeder extends Seeder
                     ]);
                 });
 
-                if ($this->getCircleHandbillImageUrl($circle->id)) {
-                    CircleHandbill::create([
-                        'circle_id' => $circle->id,
-                        'image_url' => $this->getCircleHandbillImageUrl($circle->id),
-                        'year'      => 2021,
-                    ]);
-                }
+                if (!$this->getCircleHandbillImageUrl($circle->id)){
+            return;}
+
+                CircleHandbill::create([
+                    'circle_id' => $circle->id,
+                    'image_url' => $this->getCircleHandbillImageUrl($circle->id),
+                    'year'      => 2021,
+                ]);
+
             });
 
             factory(Circle::class, 4)->state('非公開')->create()->each(function (Circle $circle) {

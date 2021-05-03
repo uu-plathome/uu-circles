@@ -36,21 +36,23 @@ class PublishIdentificationController extends Controller
             for ($i = self::MAX_UUID_CHECK; $i > 0; $i--) {
                 $hash = Identifier::generateIdentifierHash();
                 // UUIDが存在していないことチェック
-                if (Identifier::whereIdentifierHash($hash)->doesntExist()) {
-                    $identifier = Identifier::create([
-                        IdentifierProperty::identifier_hash => $hash
-                    ]);
-
-                    // 識別子に情報を追加
-                    (new IdentifierHistory())->fill([
-                        IdentifierHistoryProperty::identifier_id => $identifier->id,
-                        IdentifierHistoryProperty::ip_address    => $request->ip(),
-                        IdentifierHistoryProperty::user_agent    => $request->userAgent(),
-                        IdentifierHistoryProperty::count         => 1,
-                    ])->save();
-
-                    break;
+                if (!Identifier::whereIdentifierHash($hash)->doesntExist()) {
+                    continue;
                 }
+
+                $identifier = Identifier::create([
+                    IdentifierProperty::identifier_hash => $hash
+                ]);
+
+                // 識別子に情報を追加
+                (new IdentifierHistory())->fill([
+                    IdentifierHistoryProperty::identifier_id => $identifier->id,
+                    IdentifierHistoryProperty::ip_address    => $request->ip(),
+                    IdentifierHistoryProperty::user_agent    => $request->userAgent(),
+                    IdentifierHistoryProperty::count         => 1,
+                ])->save();
+
+                break;
             }
 
             if ($i === 0) {
