@@ -35,6 +35,8 @@ jobs:
           docker-compose exec -T app chmod -R 777 storage
           docker-compose exec -T app chmod -R 777 bootstrap/cache
           docker-compose exec -T app php artisan config:cache
+      - name: Check Format
+        run: docker-compose exec -T app php artisan check:all
       - name: check
         run: |
           sh -c 'docker-compose logs -f db | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
