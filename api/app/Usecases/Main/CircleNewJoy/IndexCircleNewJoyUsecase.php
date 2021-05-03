@@ -108,14 +108,14 @@ class IndexCircleNewJoyUsecase
 
         $now = $circleNewJoys->filter(
             function (CircleNewJoy $circleNewJoy) {
-                if ($circleNewJoy->start_date && $circleNewJoy->end_date) {
-                    $startDate = new Carbon($circleNewJoy->start_date);
-                    $endDate = new Carbon($circleNewJoy->end_date);
-
-                    return Carbon::now()->between($startDate, $endDate);
+                if (!($circleNewJoy->start_date && $circleNewJoy->end_date)) {
+                    return false;
                 }
 
-                return false;
+                $startDate = new Carbon($circleNewJoy->start_date);
+                $endDate = new Carbon($circleNewJoy->end_date);
+
+                return Carbon::now()->between($startDate, $endDate);
             }
         );
 
