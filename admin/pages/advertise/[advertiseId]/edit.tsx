@@ -1,10 +1,15 @@
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditAdvertiseForm } from '@/components/organisms/form/Advertise/EditAdvertiseForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { showAdvertise, updateAdvertise } from '@/infra/api/advertise'
+import {
+  downloadAdvertiseCounterHistoryXlsx,
+  showAdvertise,
+  updateAdvertise,
+} from '@/infra/api/advertise'
 import { putStorage } from '@/infra/api/storage'
 import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
@@ -103,6 +108,13 @@ const CreatePage: NextPage = () => {
     })
   }
 
+  /**
+   * 広告クリック数データのXlsxのダウンロード
+   */
+  const onDownloadAdvertiseCounterHistoryXlsx = async () => {
+    await downloadAdvertiseCounterHistoryXlsx(Number(advertiseId))
+  }
+
   return (
     <div>
       <Head>
@@ -113,6 +125,15 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="広告発行">
+          <div className="mb-4">
+            <BlueButton
+              type="button"
+              onClick={onDownloadAdvertiseCounterHistoryXlsx}
+            >
+              広告のxlsxダウンロード
+            </BlueButton>
+          </div>
+
           <div className="border-2 border-gray-800 px-2 py-4">
             <EditAdvertiseForm
               onDropMainImage={onDropMainImage}
