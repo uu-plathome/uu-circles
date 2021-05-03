@@ -6,6 +6,7 @@ use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;
 use App\Support\Arr;
 use App\Support\Str;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
