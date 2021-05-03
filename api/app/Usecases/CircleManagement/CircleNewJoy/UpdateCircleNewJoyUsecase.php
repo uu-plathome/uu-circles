@@ -4,7 +4,7 @@ namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty as Property;
 use App\Models\CircleNewJoy;
-use App\Usecases\CircleManagement\CircleNewJoy\params\UpdateCircleNewJoyUsecaseParam;
+use App\Usecases\CircleManagement\CircleNewJoy\Params\UpdateCircleNewJoyUsecaseParam;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
