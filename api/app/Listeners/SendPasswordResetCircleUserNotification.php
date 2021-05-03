@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\RegisteredAdminUser;
-use Illuminate\Auth\Events\PasswordResetCircleUser;
+use PasswordResetCircleUser;
 
 class SendPasswordResetCircleUserNotification
 {

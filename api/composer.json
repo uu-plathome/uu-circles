@@ -31,6 +31,7 @@
         "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.8",
         "fakerphp/faker": "^1.14",
+        "imanghafoori/laravel-microscope": "^1.0",
         "mockery/mockery": "^1.4.3",
         "nunomaduro/collision": "^5.4",
         "phpunit/phpunit": "^9.5.4",

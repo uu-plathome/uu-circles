@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Requests\Circle\CircleUser;
+namespace Tests\Feature\App\Http\Requests\Circle\CircleNewJoy;
 
 use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest;
 use Illuminate\Support\Arr;

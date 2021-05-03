@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers\Admin\Advertise;
+namespace Tests\Feature\App\Http\Controllers\Admin\Circle;
 
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
