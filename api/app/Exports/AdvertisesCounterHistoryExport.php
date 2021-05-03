@@ -2,11 +2,13 @@
 
 namespace App\Exports;
 
-use App\Models\AdvertiseCounterHistory;
+use App\Exports\Sheets\AdvertiseCounterTotalSheet;
+use App\Exports\Sheets\AdvertiseInfoSheet;
+use App\Exports\Sheets\AdvertisesCounterHistorySheet;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class AdvertisesCounterHistoryExport implements FromCollection
+class AdvertisesCounterHistoryExport implements WithMultipleSheets
 {
     use Exportable;
 
@@ -17,9 +19,15 @@ class AdvertisesCounterHistoryExport implements FromCollection
         $this->advertiseId = $advertiseId;
     }
 
-    public function collection()
+    /**
+     * @return array
+     */
+    public function sheets(): array
     {
-        return AdvertiseCounterHistory::whereAdvertiseId($this->advertiseId)
-            ->get();
+        return [
+            new AdvertiseInfoSheet($this->advertiseId),
+            new AdvertiseCounterTotalSheet($this->advertiseId),
+            new AdvertisesCounterHistorySheet($this->advertiseId),
+        ];
     }
 }
