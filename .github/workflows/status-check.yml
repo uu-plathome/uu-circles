@@ -69,3 +69,14 @@ jobs:
             echo 'Failed https://uu-circles.com/circle/newjoy'
             exit 1
           fi
+          
+      - name: uu-yell-top
+        run: |
+          if (curl "https://media.uu-circles.com" -o /dev/null -w '%{http_code}\n' -s | grep -q 200)
+          then
+            echo 'Success https://media.uu-circles.com'
+          else
+            echo 'Failed https://media.uu-circles.com'
+            exit 1
+          fi
+          
