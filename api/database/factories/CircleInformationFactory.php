@@ -53,7 +53,7 @@ $factory->define(CircleInformation::class, function (Faker $faker) {
         CircleInformationProperty::admission_fee_per_year              => 3000,
         CircleInformationProperty::number_of_members          => 10,
         CircleInformationProperty::public_email               => 'example@example.com',
-        CircleInformationProperty::twitter_url                => 'https://twitter.com',
+        CircleInformationProperty::twitter_url                => 'https://twitter.com/Ulab_uu',
         CircleInformationProperty::instagram_url              => 'https://instagram.com',
         CircleInformationProperty::github_url                 => 'https://github.com/u-lab',
     ];
