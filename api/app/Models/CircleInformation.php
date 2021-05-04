@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\Property\CircleInformationProperty as P;
+use App\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -113,6 +114,16 @@ class CircleInformation extends Model
     public function setWpUrlAttribute($value)
     {
         $this->attributes['wp_url'] = rtrim($value, '/');
+    }
+
+    /**
+     * TwitterのURLの整形
+     *
+     * @param $value
+     */
+    public function setTwitterUrlAttribute($value)
+    {
+        $this->attributes[P::twitter_url] = self::formatTwitterUrl($value);
     }
 
     /**
@@ -326,5 +337,26 @@ class CircleInformation extends Model
                 ->whereOnlineDateOfActivitySaturday(false)
                 ->whereOnlineDateOfActivitySunday(false);
         });
+    }
+
+    public static function formatTwitterUrl(?string $url): ?string
+    {
+        if (!$url) {
+            return null;
+        }
+
+        // クエリパラメータの削除
+        $collection = Str::of($url)->explode('?');
+        $newUrl = $collection->first();
+
+        if (Str::startsWith($newUrl, 'http://')) {
+            $newUrl = Str::of($newUrl)->replace('http://', 'https://');
+        }
+
+        if (Str::startsWith($newUrl, 'https://mobile.twitter.com')) {
+            return Str::of($newUrl)->replace('https://mobile.twitter.com', 'https://twitter.com');
+        }
+
+        return $newUrl;
     }
 }
