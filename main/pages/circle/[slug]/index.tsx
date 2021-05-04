@@ -10,6 +10,7 @@ import { InformationField } from '@/components/organisms/ShowCircle/InformationF
 import { NewJoyList } from '@/components/organisms/ShowCircle/NewJoyList'
 import { ShowCircleTitle } from '@/components/organisms/ShowCircle/ShowCircleTitle'
 import { TopImage } from '@/components/organisms/ShowCircle/TopImage'
+import { TwitterEmbed } from '@/components/organisms/Twitter/TwitterEmbed'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
@@ -318,6 +319,23 @@ const Page: NextPage<Props> = ({
             ) : (
               ''
             )}
+
+            <div>
+              {circle && circle.twitterUrl ? (
+                <div className="pb-16 px-6 md:pl-0 md:pr-2">
+                  <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
+
+                  <div className="md:w-1/2">
+                    <TwitterEmbed
+                      name={circle.name}
+                      twitterLink={circle.twitterUrl}
+                    />
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
           </BaseContainer>
         </div>
 
