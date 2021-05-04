@@ -1,19 +1,14 @@
 import { FC, useEffect } from 'react'
 
-let isLoadwidgets = false
-
 type Props = {
   name: string
   twitterLink: string
 }
 const TwitterEmbed: FC<Props> = ({ name, twitterLink }) => {
   useEffect(() => {
-    if (!isLoadwidgets) {
-      const s = document.createElement('script')
-      s.setAttribute('src', 'https://platform.twitter.com/widgets.js')
-      document.body.appendChild(s)
-      isLoadwidgets = true
-    }
+    const script = document.createElement('script')
+    script.src = 'https://platform.twitter.com/widgets.js'
+    document.body.appendChild(script)
   }, [])
 
   return (
