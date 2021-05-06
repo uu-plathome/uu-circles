@@ -1,6 +1,6 @@
-# BOT について
+# 新歓通知 bot について
 
-### 動作環境
+## 動作環境
 
 **Python**
 
@@ -35,7 +35,7 @@ batch
 └──uuyell_notification
 ```
 
-### bot 起動手順
+## bot 起動手順
 
 0. もしモジュールを仮想環境(パッケージの導入状態をプロジェクトごとに独立させる環境)下で管理したい場合は以下のコマンドを`uu-circle\batch\newjoy_notification`ディレクトリで実行。(今回は venv を使用)
 
