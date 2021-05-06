@@ -15,6 +15,7 @@ UU-Circles: https://uu-circles.com/
 ## Description
 
 開発者へ: [development.md](./docs/development.md)
+インフラ: [infra.md](./docs/infra.md)
 
 ## 機能
 
