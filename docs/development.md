@@ -16,21 +16,21 @@ Windows なら、WSL2 + Docker, Mac なら Docker for Mac 推奨
 -   Next.js v10.0.5
 -   Node.js v14 or v15.6.0
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v16 にすること。
 
 ### Circle
 
 -   Next.js v9.5
--   Node.js v14 or v15.6.0
+-   Node.js v14 or v16
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v16 にすること。
 
 ### Admin
 
 -   Next.js v9.5
--   Node.js v14 or v15.6.0
+-   Node.js v14 or v16
 
-※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v15.6.0 じゃないとうごかない。
+※ 基本的には、Node v14 で良い。ただし、M1 Mac だと Node v16 にすること。
 
 ## 初期セットアップ手順
 
@@ -184,6 +184,12 @@ $ docker-compose app composer sniffer
 $ git checkout ブランチ名 -- api
 ```
 
+### GitHub Action製 Batch
+
+`main` に push すると反映されます
+
+Batchの未使用が異なるので、不整合が起きやすいかもしれません。気をつけてください。
+
 ## STG への Deploy
 
 `git push origin main:develop/stg`
@@ -203,6 +209,10 @@ $ git checkout ブランチ名 -- api
 ### Api
 
 `develop/stg` に push すると反映されます
+
+### GitHub Action製 Batch
+
+STGはありません。GitHub Actionsでプルリクエストをトリガーにして実行できるようにすること。
 
 ## Vscode 拡張機能 推奨
 
