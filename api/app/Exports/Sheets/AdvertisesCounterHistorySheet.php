@@ -1,11 +1,10 @@
 <?php
 
-
 namespace App\Exports\Sheets;
-
 
 use App\Enum\Property\AdvertiseCounterHistoryProperty;
 use App\Models\AdvertiseCounterHistory;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -32,7 +31,11 @@ class AdvertisesCounterHistorySheet implements FromCollection, WithHeadings, Wit
             ->orderBy(AdvertiseCounterHistoryProperty::date)
             ->get()
             ->map(function ($advertiseCounterHistory, $index) {
+                // 必ず、数値を出力するようにするため
                 $advertiseCounterHistory->count = $advertiseCounterHistory->count ?: '0';
+                // 日付のフォーマット
+                $advertiseCounterHistory->date = (new Carbon($advertiseCounterHistory->date))->format('Y/m/d');
+
                 return (new Collection([$index + 1]))->merge($advertiseCounterHistory);
             });
     }

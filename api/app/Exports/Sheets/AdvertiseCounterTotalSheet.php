@@ -27,6 +27,7 @@ class AdvertiseCounterTotalSheet implements FromCollection, WithHeadings, WithTi
             ->groupBy(AdvertiseCounterProperty::link)
             ->get()
             ->map(function ($advertiseCounterHistory, $index) {
+                // 必ず、数値を出力するようにするため
                 $advertiseCounterHistory->count = $advertiseCounterHistory->count ?: '0';
                 return (new Collection([$index + 1]))->merge($advertiseCounterHistory);
             });
