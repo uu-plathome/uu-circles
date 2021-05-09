@@ -11,6 +11,11 @@ use App\Http\Controllers\Admin\Advertise\DownloadAdvertiseExcelController;
 use App\Http\Controllers\Admin\Advertise\IndexAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\ShowAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\UpdateAdvertiseController;
+use App\Http\Controllers\Admin\Announcement\CreateAnnouncementController;
+use App\Http\Controllers\Admin\Announcement\DeleteAnnouncementController;
+use App\Http\Controllers\Admin\Announcement\IndexAnnouncementController;
+use App\Http\Controllers\Admin\Announcement\ShowAnnouncementController;
+use App\Http\Controllers\Admin\Announcement\UpdateAnnouncementController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordAdminController;
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
 use App\Http\Controllers\Admin\Auth\LogoutAdminController;
@@ -109,6 +114,13 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::get('/advertise/{advertiseId}/download', DownloadAdvertiseCounterHistoryExcelController::class);
     Route::put('/advertise/{id}', UpdateAdvertiseController::class);
     Route::delete('/advertise/{id}', DeleteAdvertiseController::class);
+
+    // Announcement お知らせ
+    Route::get('/announcement', IndexAnnouncementController::class);
+    Route::post('/announcement', CreateAnnouncementController::class);
+    Route::get('/announcement/{announcementId}', ShowAnnouncementController::class);
+    Route::put('/announcement/{announcementId}', UpdateAnnouncementController::class);
+    Route::delete('/announcement/{announcementId}', DeleteAnnouncementController::class);
 
     // Storage
     Route::post('/storage', PutStorageController::class);
