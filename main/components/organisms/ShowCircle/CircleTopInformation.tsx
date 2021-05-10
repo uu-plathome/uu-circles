@@ -82,14 +82,12 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
           <div className="md:mr-4">
             <p>
               <FontAwesomeIcon
-                color={weeklyActivityDaysColorClass(circle.weeklyActivityDays || 0)}
+                color={weeklyActivityDaysColorClass(
+                  circle.weeklyActivityDays || 0
+                )}
                 icon={faWaveSquare}
               />
-              <span
-                className={`pl-2`}
-              >
-                週{circle.weeklyActivityDays || 0}
-              </span>
+              <span className={`pl-2`}>週{circle.weeklyActivityDays || 0}</span>
             </p>
           </div>
           {/* 年間費用 */}
