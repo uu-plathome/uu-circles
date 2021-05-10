@@ -66,7 +66,10 @@ const Index: NextPage<Props> = ({
     <div>
       <Head>
         <title>UU-Circles</title>
-        <meta property="og:title" content={`UU-Circles`} />
+        <meta
+          property="og:title"
+          content={`UU-Circles | 宇都宮大学の“知りたいサークル“を知る場所`}
+        />
         <meta
           property="og:description"
           content={`宇都宮大学のサークル一覧。なりたいジブンをさがす春。`}
