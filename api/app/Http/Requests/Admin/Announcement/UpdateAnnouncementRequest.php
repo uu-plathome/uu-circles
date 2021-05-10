@@ -6,12 +6,13 @@ use App\Enum\AnnouncementType;
 use App\Enum\Property\AnnouncementProperty;
 use App\Support\Arr;
 use App\Usecases\Admin\Announcement\Params\CreateAnnouncementUsecaseParam;
+use App\Usecases\Admin\Announcement\Params\UpdateAnnouncementUsecaseParam;
+use Carbon\Traits\Creator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class CreateAnnouncementRequest extends FormRequest
+class UpdateAnnouncementRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -119,11 +120,12 @@ class CreateAnnouncementRequest extends FormRequest
         ]);
     }
 
-    public function makeCreateAnnouncementUsecaseParam(): CreateAnnouncementUsecaseParam
+    public function makeUpdateAnnouncementUsecaseParam(): UpdateAnnouncementUsecaseParam
     {
         $request = Arr::snake_keys($this->validated());
 
-        $param = new CreateAnnouncementUsecaseParam();
+        $param = new UpdateAnnouncementUsecaseParam();
+        $param->announcement_id = $this->announcementId;
         $param->title = Arr::get($request, 'title');
         $param->description = Arr::get($request, 'description');
         $param->link = Arr::get($request, 'link');
