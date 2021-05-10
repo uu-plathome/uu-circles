@@ -19,13 +19,13 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
           {/* 掲載団体数 */}
           <div className="py-4 border-t border-gray-400">
             <p className="text-gray-400 mb-2">総アクセス人数</p>
-            <p>3,920</p>
+            <p>5,063</p>
           </div>
 
           {/* 総PV数 */}
           <div className="py-4 border-t border-gray-400">
             <p className="text-gray-400 mb-2">総PV数</p>
-            <p>110,000</p>
+            <p>180,000</p>
           </div>
         </div>
 

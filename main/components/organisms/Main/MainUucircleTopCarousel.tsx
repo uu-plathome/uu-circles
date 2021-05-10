@@ -49,7 +49,7 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
               width={width || 1000}
               height={height}
               objectFit="cover"
-              alt="UU-Circlesへようこそ！"
+              alt="宇都宮大学の“知りたいサークル“を知る場所"
             />
           </SwiperSlide>
 

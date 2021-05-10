@@ -18,6 +18,31 @@ import {
   TwitterShareButton,
 } from 'react-share'
 
+/**
+ * 週の活動日数の色
+ *
+ * @param days 週の活動日数
+ * @returns
+ */
+const weeklyActivityDaysColorClass = (days: number) => {
+  switch (days) {
+    case 0:
+    case 1:
+      return colors.green[500]
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return colors.blue[400]
+    case 6:
+      return colors.yellow[500]
+    case 7:
+      return colors.red[500]
+    default:
+      return ''
+  }
+}
+
 type Props = {
   circle: Circle
 }
@@ -56,8 +81,13 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
           {/* 週の活動日数 */}
           <div className="md:mr-4">
             <p>
-              <FontAwesomeIcon color={colors.red[500]} icon={faWaveSquare} />
-              <span className="pl-2">週{circle.weeklyActivityDays || 0}</span>
+              <FontAwesomeIcon
+                color={weeklyActivityDaysColorClass(
+                  circle.weeklyActivityDays || 0
+                )}
+                icon={faWaveSquare}
+              />
+              <span className={`pl-2`}>週{circle.weeklyActivityDays || 0}</span>
             </p>
           </div>
           {/* 年間費用 */}
