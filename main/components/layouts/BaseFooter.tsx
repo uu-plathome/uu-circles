@@ -406,7 +406,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <div className="pt-8 text-center">
           <BaseContainer>
             <hr className="border border-gray-200" />
-            <div className="pt-8 pb-16">
+            <div className="py-8">
               <Link href="/guide/management-team">
                 <a className="text-gray-400 px-2 text-xs">運営団体</a>
               </Link>
@@ -422,6 +422,12 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               </Link>
             </div>
           </BaseContainer>
+        </div>
+
+        <div className="text-center pb-8">
+          <a href="https://ulab-uu.com/">
+            <Image src="/images/ulab-copylight.png" width={160} height={40} alt="U-lab CopyLight" />
+          </a>
         </div>
       </div>
     </div>
