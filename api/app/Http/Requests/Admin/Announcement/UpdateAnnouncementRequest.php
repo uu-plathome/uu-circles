@@ -5,6 +5,9 @@ namespace App\Http\Requests\Admin\Announcement;
 use App\Enum\AnnouncementType;
 use App\Enum\Property\AnnouncementProperty;
 use App\Support\Arr;
+use App\Usecases\Admin\Announcement\Params\CreateAnnouncementUsecaseParam;
+use App\Usecases\Admin\Announcement\Params\UpdateAnnouncementUsecaseParam;
+use Carbon\Traits\Creator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -115,5 +118,35 @@ class UpdateAnnouncementRequest extends FormRequest
             AnnouncementProperty::publish_from => __('announcement.' . AnnouncementProperty::publish_from),
             AnnouncementProperty::publish_to => __('announcement.' . AnnouncementProperty::publish_to),
         ]);
+    }
+
+    public function makeUpdateAnnouncementUsecaseParam(): UpdateAnnouncementUsecaseParam
+    {
+        $request = Arr::snake_keys($this->validated());
+
+        $param = new UpdateAnnouncementUsecaseParam();
+        $param->announcement_id = $this->announcementId;
+        $param->title = Arr::get($request, 'title');
+        $param->description = Arr::get($request, 'description');
+        $param->link = Arr::get($request, 'link');
+        $param->announcement_type = Arr::get($request, 'announcement_type');
+        $param->for_main_view = Arr::get($request, 'for_main_view'., false);
+        $param->for_circle_view = Arr::get($request, 'for_circle_view'., false);
+        $param->for_circle_mail = Arr::get($request, 'for_circle_mail'., false);
+        $param->for_admin_view = Arr::get($request, 'for_admin_view'., false);
+        $param->for_admin_mail = Arr::get($request, 'for_admin_mail'., false);
+        $param->for_newjoy_discord = Arr::get($request, 'for_newjoy_discord'., false);
+        $param->active = Arr::get($request, 'active', true);
+
+        $notificationTime = Arr::get($request, 'notification_time');
+        $param->notification_time = !$notificationTime ? new Carbon($notificationTime) : null;
+
+        $publishFrom = Arr::get($request, 'publish_from');
+        $param->publish_from = !$publishFrom ? new Carbon($publishFrom) : null;
+
+        $publishTo = Arr::get($request, 'publish_to');
+        $param->publish_to = !$publishTo ? new Carbon($publishTo) : null;
+
+        return $param;
     }
 }
