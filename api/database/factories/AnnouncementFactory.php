@@ -25,11 +25,19 @@ class AnnouncementFactory extends Factory
     public function definition(): array
     {
         return [
-            AnnouncementProperty::title              => 'アンケートにご回答お願いします。',
-            AnnouncementProperty::announcement_type  => AnnouncementType::QUESTIONNAIRE,
-            AnnouncementProperty::link               => 'https://uu-circles.com',
-            AnnouncementProperty::importance         => Importance::HIGH,
-            AnnouncementProperty::is_main_view_fixed => true,
+            AnnouncementProperty::title                => 'アンケートにご回答お願いします。',
+            AnnouncementProperty::announcement_type    => AnnouncementType::QUESTIONNAIRE,
+            AnnouncementProperty::link                 => 'https://uu-circles.com',
+            AnnouncementProperty::importance           => Importance::HIGH,
+            AnnouncementProperty::for_admin_mail       => false,
+            AnnouncementProperty::for_admin_view       => false,
+            AnnouncementProperty::for_circle_mail      => false,
+            AnnouncementProperty::for_main_view        => false,
+            AnnouncementProperty::for_newjoy_discord   => false,
+            AnnouncementProperty::is_main_view_fixed   => true,
+            AnnouncementProperty::is_circle_view_fixed => false,
+            AnnouncementProperty::is_admin_view_fixed  => false,
+            AnnouncementProperty::active               => true,
         ];
     }
 
