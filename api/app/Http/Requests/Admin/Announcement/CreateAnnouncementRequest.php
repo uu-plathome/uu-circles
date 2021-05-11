@@ -128,13 +128,16 @@ class CreateAnnouncementRequest extends FormRequest
         $param->description = Arr::get($request, 'description');
         $param->link = Arr::get($request, 'link');
         $param->announcement_type = Arr::get($request, 'announcement_type');
-        $param->for_main_view = Arr::get($request, 'for_main_view'., false);
-        $param->for_circle_view = Arr::get($request, 'for_circle_view'., false);
-        $param->for_circle_mail = Arr::get($request, 'for_circle_mail'., false);
-        $param->for_admin_view = Arr::get($request, 'for_admin_view'., false);
-        $param->for_admin_mail = Arr::get($request, 'for_admin_mail'., false);
-        $param->for_newjoy_discord = Arr::get($request, 'for_newjoy_discord'., false);
+        $param->importance = Arr::get($request, 'importance');
+        $param->for_main_view = Arr::get($request, 'for_main_view', false);
+        $param->for_circle_mail = Arr::get($request, 'for_circle_mail', false);
+        $param->for_admin_view = Arr::get($request, 'for_admin_view', false);
+        $param->for_admin_mail = Arr::get($request, 'for_admin_mail', false);
+        $param->for_newjoy_discord = Arr::get($request, 'for_newjoy_discord', false);
         $param->active = Arr::get($request, 'active', true);
+        $param->is_main_view_fixed = Arr::get($request, 'is_main_view_fixed', true);
+        $param->is_circle_view_fixed = Arr::get($request, 'is_circle_view_fixed', true);
+        $param->is_admin_view_fixed = Arr::get($request, 'is_admin_view_fixed', true);
 
         $notificationTime = Arr::get($request, 'notification_time');
         $param->notification_time = !$notificationTime ? new Carbon($notificationTime) : null;

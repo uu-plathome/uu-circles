@@ -19,7 +19,7 @@ class CreateAnnouncementsTable extends Migration
             $table->longText('description')->nullable()->comment('お知らせ文');
             $table->string('link')->nullable()->comment('お知らせURL');
             $table->string('announcement_type')->comment('お知らせ種類');
-            $table->string('importance')->comment('重要度');
+            $table->string('importance')->default('MIDDLE')->comment('重要度');
             $table->boolean('for_main_view')->default(false)->comment('メイン画面に表示するかどうか');
             $table->boolean('for_circle_mail')->default(false)->comment('サークル管理者にメール通知するかどうか');
             $table->boolean('for_admin_view')->default(false)->comment('管理者画面に表示するかどうか');
@@ -30,7 +30,7 @@ class CreateAnnouncementsTable extends Migration
             $table->boolean('is_circle_view_fixed')->default(false)->comment('サークル管理画面に固定表示するかどうか');
             $table->boolean('is_admin_view_fixed')->default(false)->comment('管理者画面に固定表示するかどうか');
             $table->dateTime('notification_time')->nullable()->comment('通知日時');
-            $table->dateTime('notification_at')->nullable()->comment('実際に通知した日');
+            $table->dateTime('notified_at')->nullable()->comment('実際に通知した日時');
             $table->dateTime('publish_from')->nullable()->comment('公開開始日時');
             $table->dateTime('publish_to')->nullable()->comment('公開終了日時');
             $table->softDeletes();
