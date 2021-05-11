@@ -5,6 +5,7 @@ namespace App\Usecases\Admin\Announcement;
 use App\Enum\Property\AnnouncementProperty;
 use App\Models\Announcement;
 use App\Usecases\Admin\Announcement\Params\UpdateAnnouncementUsecaseParam;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
