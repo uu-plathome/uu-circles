@@ -1,30 +1,29 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Enum\Property\IdentifierProperty;
-use App\Enum\Property\UserProperty;
-use App\Enum\UserTokenModel;
 use App\Models\Identifier;
-use App\Models\User;
-use App\Models\UserToken;
-use Faker\Generator as Faker;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+class IdentifierFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Identifier::class;
 
-$factory->define(Identifier::class, function (Faker $faker) {
-    return [
-        IdentifierProperty::identifier_hash => Identifier::generateIdentifierHash(),
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
+    {
+        return [
+            IdentifierProperty::identifier_hash => Identifier::generateIdentifierHash(),
+        ];
+    }
+}
