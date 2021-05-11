@@ -30,7 +30,5 @@ class CreateAnnouncementController extends Controller
         $this->createAnnouncementUsecase->invoke(
             $request->makeCreateAnnouncementUsecaseParam()
         );
-
-        return;
     }
 }

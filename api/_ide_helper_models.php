@@ -129,20 +129,25 @@ namespace App\Models{
  * @property string|null $description お知らせ文
  * @property string|null $link お知らせURL
  * @property string $announcement_type お知らせ種類
+ * @property string $importance 重要度
  * @property bool $for_main_view メイン画面に表示するかどうか
- * @property bool $for_circle_view サークル管理画面に表示するかどうか
  * @property bool $for_circle_mail サークル管理者にメール通知するかどうか
  * @property bool $for_admin_view 管理者画面に表示するかどうか
  * @property bool $for_admin_mail 管理者にメール通知するかどうか
  * @property bool $for_newjoy_discord 新歓ディスコードに通知するかどうか
  * @property bool $active 公開設定
+ * @property bool $is_main_view_fixed メイン画面に固定表示するかどうか
+ * @property bool $is_circle_view_fixed サークル管理画面に固定表示するかどうか
+ * @property bool $is_admin_view_fixed 管理者画面に固定表示するかどうか
  * @property \datetime|null $notification_time 通知日時
+ * @property string|null $notified_at 実際に通知した日時
  * @property \datetime|null $publish_from 公開開始日時
  * @property \datetime|null $publish_to 公開終了日時
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read bool $now_public
+ * @method static \Database\Factories\AnnouncementFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement nowPublic(\Illuminate\Support\Carbon $now)
@@ -156,12 +161,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForAdminMail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForAdminView($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForCircleMail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForCircleView($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForMainView($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereForNewjoyDiscord($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereImportance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereIsAdminViewFixed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereIsCircleViewFixed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereIsMainViewFixed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereNotificationTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereNotifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishTo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereTitle($value)
@@ -532,6 +541,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleGachaResult[] $circleGachaResults
  * @property-read int|null $circle_gacha_results_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IdentifierHistory[] $identifierHistory
+ * @property-read int|null $identifier_history_count
+ * @method static \Database\Factories\IdentifierFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Identifier newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Identifier newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Identifier query()
@@ -554,6 +566,7 @@ namespace App\Models{
  * @property int $count アクセス数
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\IdentifierHistoryFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IdentifierHistory query()
