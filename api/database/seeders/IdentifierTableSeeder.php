@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Identifier;
+use App\Models\IdentifierHistory;
 use Illuminate\Database\Seeder;
 
 class IdentifierTableSeeder extends Seeder
@@ -14,6 +15,8 @@ class IdentifierTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Identifier::class,1)->create();
+        Identifier::factory()->count(100)
+            ->has(IdentifierHistory::factory()->count(3))
+            ->create();
     }
 }
