@@ -21,4 +21,13 @@ class Importance
      * 低
      */
     const LOW = 'LOW';
+
+    public static function getAll(): array
+    {
+        return [
+            self::HIGH,
+            self::MIDDLE,
+            self::LOW,
+        ];
+    }
 }

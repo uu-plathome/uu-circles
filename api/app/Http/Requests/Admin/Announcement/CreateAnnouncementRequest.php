@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Announcement;
 
 use App\Enum\AnnouncementType;
+use App\Enum\Importance;
 use App\Enum\Property\AnnouncementProperty;
 use App\Support\Arr;
 use App\Usecases\Admin\Announcement\Params\CreateAnnouncementUsecaseParam;
@@ -52,11 +53,12 @@ class CreateAnnouncementRequest extends FormRequest
                 'string',
                 Rule::in(AnnouncementType::getAll()),
             ],
-            AnnouncementProperty::for_main_view => [
-                'required',
-                'boolean',
+            AnnouncementProperty::importance => [
+                'nullable',
+                'string',
+                Rule::in(Importance::getAll()),
             ],
-            AnnouncementProperty::for_circle_view => [
+            AnnouncementProperty::for_main_view => [
                 'required',
                 'boolean',
             ],
@@ -77,6 +79,18 @@ class CreateAnnouncementRequest extends FormRequest
                 'boolean',
             ],
             AnnouncementProperty::active => [
+                'required',
+                'boolean',
+            ],
+            AnnouncementProperty::is_main_view_fixed => [
+                'required',
+                'boolean',
+            ],
+            AnnouncementProperty::is_circle_view_fixed => [
+                'required',
+                'boolean',
+            ],
+            AnnouncementProperty::is_admin_view_fixed => [
                 'required',
                 'boolean',
             ],
@@ -106,13 +120,16 @@ class CreateAnnouncementRequest extends FormRequest
             AnnouncementProperty::description => __('announcement.' . AnnouncementProperty::description),
             AnnouncementProperty::link => __('announcement.' . AnnouncementProperty::link),
             AnnouncementProperty::announcement_type => __('announcement.' . AnnouncementProperty::announcement_type),
+            AnnouncementProperty::importance => __('announcement.' . AnnouncementProperty::importance),
             AnnouncementProperty::for_main_view => __('announcement.' . AnnouncementProperty::for_main_view),
-            AnnouncementProperty::for_circle_view => __('announcement.' . AnnouncementProperty::for_circle_view),
             AnnouncementProperty::for_circle_mail => __('announcement.' . AnnouncementProperty::for_circle_mail),
             AnnouncementProperty::for_admin_view => __('announcement.' . AnnouncementProperty::for_admin_view),
             AnnouncementProperty::for_admin_mail => __('announcement.' . AnnouncementProperty::for_admin_mail),
             AnnouncementProperty::for_newjoy_discord => __('announcement.' . AnnouncementProperty::for_newjoy_discord),
             AnnouncementProperty::active => __('announcement.' . AnnouncementProperty::active),
+            AnnouncementProperty::is_admin_view_fixed => __('announcement.' . AnnouncementProperty::is_admin_view_fixed),
+            AnnouncementProperty::is_circle_view_fixed => __('announcement.' . AnnouncementProperty::is_circle_view_fixed),
+            AnnouncementProperty::is_main_view_fixed => __('announcement.' . AnnouncementProperty::is_main_view_fixed),
             AnnouncementProperty::notification_time => __('announcement.' . AnnouncementProperty::notification_time),
             AnnouncementProperty::publish_from => __('announcement.' . AnnouncementProperty::publish_from),
             AnnouncementProperty::publish_to => __('announcement.' . AnnouncementProperty::publish_to),
