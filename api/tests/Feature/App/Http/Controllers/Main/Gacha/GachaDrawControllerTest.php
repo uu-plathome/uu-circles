@@ -33,7 +33,7 @@ class GachaDrawControllerTest extends TestCase
         // GIVEN
         $NUMBER = 1;
 
-        $identifier = factory(Identifier::class, 1)->create()->first();
+        $identifier = Identifier::factory()->count(1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
@@ -65,7 +65,7 @@ class GachaDrawControllerTest extends TestCase
         // GIVEN
         $NUMBER = 10;
 
-        $identifier = factory(Identifier::class, 1)->create()->first();
+        $identifier = Identifier::factory()->count(1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
