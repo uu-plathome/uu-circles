@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main\Circle;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetCircleNewJoyAllPeriodWithLimitByCircleId;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesForCirclesKey;
@@ -29,6 +31,8 @@ class GetCircleController extends Controller
 
     private GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId;
 
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
+
     /**
      * 新歓取得数
      */
@@ -38,12 +42,14 @@ class GetCircleController extends Controller
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
-        GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId
+        GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->fetchWordPressPostsUsecase = $fetchWordPressPostsUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getCircleNewJoyAllPeriodWithLimitByCircleId = $getCircleNewJoyAllPeriodWithLimitByCircleId;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
     }
 
     /**
@@ -77,6 +83,14 @@ class GetCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
+        );
+
         // サークルが持っているWordPressの記事を取得
         $wpPosts = $circle->circleValueObject->is_view_wp_post ? Cache::remember(
             FetchWordPressPostsUsecase::getCacheKey(
@@ -103,6 +117,7 @@ class GetCircleController extends Controller
             ),
             'uuYellArticles'   => $articles,
             'wpPosts'          => $wpPosts,
+            'announcements'    => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

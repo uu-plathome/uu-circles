@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main\Circle;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\Usecases\Main\Circle\SearchNameCircleListUsecase;
@@ -22,15 +24,19 @@ class SearchNameCircleController extends Controller
 
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
+
     private SearchNameCircleListUsecase $searchNameCircleListUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         SearchNameCircleListUsecase $searchNameCircleListUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchNameCircleListUsecase = $searchNameCircleListUsecase;
     }
 
@@ -61,6 +67,14 @@ class SearchNameCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -79,6 +93,7 @@ class SearchNameCircleController extends Controller
                 )->toArray()
             ),
             'uuYellArticles' => $articles,
+            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

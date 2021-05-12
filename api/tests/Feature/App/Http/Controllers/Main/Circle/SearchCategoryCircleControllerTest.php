@@ -45,6 +45,12 @@ class SearchCategoryCircleControllerTest extends TestCase
         $response->assertOk();
         $this->assertArrayHasKey('recommendCircles', $response);
         $this->assertNotCount(0, $response['recommendCircles']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 
     public function testRequest_存在しないカテゴリーは404である()
