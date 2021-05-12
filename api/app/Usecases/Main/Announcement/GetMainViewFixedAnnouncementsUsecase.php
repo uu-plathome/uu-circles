@@ -11,6 +11,11 @@ use Illuminate\Support\Carbon;
 class GetMainViewFixedAnnouncementsUsecase
 {
     /**
+     * キャッシュする時間
+     */
+    const TTL = 60 * 60;
+
+    /**
      * メイン画面に固定して、表示するお知らせを取得
      */
     public function invoke(): GetMainViewFixedAnnouncementsUsecaseDto
@@ -19,6 +24,7 @@ class GetMainViewFixedAnnouncementsUsecase
 
         // DBからお知らせを取得
         $announcements = Announcement::nowPublic($now)
+            ->whereForMainView(true)
             ->whereIsMainViewFixed(true)
             ->select([
                 AnnouncementProperty::id,
@@ -38,5 +44,15 @@ class GetMainViewFixedAnnouncementsUsecase
             fn (Announcement $announcement) => MainAnnouncementDto::byEloquent($announcement)
         )->toArray();
         return $dto;
+    }
+
+    /**
+     * キャッシュのためのキー
+     *
+     * @return string
+     */
+    public static function getCacheKey(): string
+    {
+        return 'GetMainViewFixedAnnouncementsUsecase' . Carbon::today()->format("Y-m-d h");
     }
 }
