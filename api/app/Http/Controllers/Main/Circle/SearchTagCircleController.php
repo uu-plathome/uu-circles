@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Main\Circle;
 use App\Enum\SlugProperty\TagSlugProperty;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\Usecases\Main\Circle\SearchTagCircleListUsecase;
@@ -23,15 +25,19 @@ class SearchTagCircleController extends Controller
 
     private GetRandomCircleUsecase $getRandomCircleUsecase;
 
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
+
     private SearchTagCircleListUsecase $searchTagCircleListUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         SearchTagCircleListUsecase $searchTagCircleListUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchTagCircleListUsecase = $searchTagCircleListUsecase;
     }
 
@@ -99,6 +105,14 @@ class SearchTagCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -117,6 +131,7 @@ class SearchTagCircleController extends Controller
                 )->toArray()
             ),
             'uuYellArticles' => $articles,
+            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

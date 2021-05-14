@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
@@ -17,12 +19,15 @@ class TodayCircleNewJoyController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase;
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->getTodayCircleNewJoyUsecase = $getTodayCircleNewJoyUsecase;
     }
 
@@ -46,6 +51,14 @@ class TodayCircleNewJoyController extends Controller
             FetchUuYellArticlesKey::uuYellCacheKey(),
             FetchUuYellArticlesKey::TTL,
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
         );
 
         return [
@@ -74,6 +87,7 @@ class TodayCircleNewJoyController extends Controller
                 )->values()->toArray()
             ),
             'uuYellArticles' => $articles,
+            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

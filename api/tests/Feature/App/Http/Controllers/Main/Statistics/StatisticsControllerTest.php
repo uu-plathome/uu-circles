@@ -34,5 +34,14 @@ class StatisticsControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+
+        $this->assertArrayHasKey('statistics', $response);
+        $this->assertIsArray($response['statistics']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 }
