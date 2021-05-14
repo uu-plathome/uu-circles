@@ -9,7 +9,8 @@ export const CategorySlugProperty = {
 } as const
 
 export type CategorySlugPropertyKey = keyof typeof CategorySlugProperty
-export type CategorySlugProperty = typeof CategorySlugProperty[keyof typeof CategorySlugProperty]
+export type CategorySlugProperty =
+  typeof CategorySlugProperty[keyof typeof CategorySlugProperty]
 
 export const getAllCategorySlugProperty = (): CategorySlugProperty[] =>
   Object.values(CategorySlugProperty)

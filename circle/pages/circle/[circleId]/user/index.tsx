@@ -31,13 +31,10 @@ const useCircleId = () => {
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [circleUsersDoneEmailVerify, setCircleUsersDoneEmailVerify] = useState<
-    User[]
-  >()
-  const [
-    circleUsersNotDoneEmailVerify,
-    setCircleUsersNotDoneEmailVerify,
-  ] = useState<User[]>()
+  const [circleUsersDoneEmailVerify, setCircleUsersDoneEmailVerify] =
+    useState<User[]>()
+  const [circleUsersNotDoneEmailVerify, setCircleUsersNotDoneEmailVerify] =
+    useState<User[]>()
   const [circle, setCircle] = useState<Circle>()
   const { circleId } = useCircleId()
 
