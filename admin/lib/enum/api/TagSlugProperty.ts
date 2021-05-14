@@ -60,7 +60,8 @@ export const TagSlugProperty = {
 } as const
 
 export type TagSlugPropertyKey = keyof typeof TagSlugProperty
-export type TagSlugProperty = typeof TagSlugProperty[keyof typeof TagSlugProperty]
+export type TagSlugProperty =
+  typeof TagSlugProperty[keyof typeof TagSlugProperty]
 
 /**
  * /api/circle/tag/{tag}のtagのパス一覧

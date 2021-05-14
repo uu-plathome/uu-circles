@@ -32,14 +32,10 @@ type Props = {
   }
 }
 const ActivityEditCircleForm: FC<Props> = ({ form }) => {
-  const [
-    checkedCommonDateOfActivity,
-    setCheckedCommonDateOfActivity,
-  ] = useState<string[]>([])
-  const [
-    checkedOnlineDateOfActivity,
-    setCheckedOnlineDateOfActivity,
-  ] = useState<string[]>([])
+  const [checkedCommonDateOfActivity, setCheckedCommonDateOfActivity] =
+    useState<string[]>([])
+  const [checkedOnlineDateOfActivity, setCheckedOnlineDateOfActivity] =
+    useState<string[]>([])
 
   // 通常活動日
   useEffect(() => {
