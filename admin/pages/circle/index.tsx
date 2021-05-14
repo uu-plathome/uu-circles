@@ -26,13 +26,14 @@ type PaginateCircleCursor = {
   name?: string
 } | null
 const IndexPage: NextPage = () => {
-  const [circles, setCircles] = useState<{
-    hasNext: boolean | null
-    hasPrevious: boolean | null
-    nextCursor: PaginateCircleCursor
-    previousCursor: PaginateCircleCursor
-    records: Circle[]
-  }>(undefined)
+  const [circles, setCircles] =
+    useState<{
+      hasNext: boolean | null
+      hasPrevious: boolean | null
+      nextCursor: PaginateCircleCursor
+      previousCursor: PaginateCircleCursor
+      records: Circle[]
+    }>(undefined)
   const { isMd } = useMediaQuery()
   const name = useStringInput('')
 

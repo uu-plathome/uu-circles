@@ -44,7 +44,8 @@ export const AnnouncementType = {
 } as const
 
 export type AnnouncementTypeKey = keyof typeof AnnouncementType
-export type AnnouncementType = typeof AnnouncementType[keyof typeof AnnouncementType]
+export type AnnouncementType =
+  typeof AnnouncementType[keyof typeof AnnouncementType]
 
 /**
  * お知らせ種類

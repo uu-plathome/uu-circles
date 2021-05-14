@@ -180,7 +180,8 @@ export const resendEmail = async (email: string) => {
       type: 'success'
     }
   } catch (_e) {
-    const e = _e as AxiosError<VerificationResendAdminUserFormRequestValidationError>
+    const e =
+      _e as AxiosError<VerificationResendAdminUserFormRequestValidationError>
 
     if (e.response && e.response.status === 422) {
       return {
