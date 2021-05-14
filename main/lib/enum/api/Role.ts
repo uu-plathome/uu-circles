@@ -16,7 +16,7 @@ export const Role = {
   /**
    * 一般
    */
-  COMMON: 'COMMON'
+  COMMON: 'COMMON',
 } as const
 
 export type RoleKey = keyof typeof Role
