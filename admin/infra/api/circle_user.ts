@@ -208,7 +208,8 @@ export const resendEmailCircleUser = async (email: string) => {
       type: 'success'
     }
   } catch (_e) {
-    const e = _e as AxiosError<VerificationResendCircleUserFormRequestValidationError>
+    const e =
+      _e as AxiosError<VerificationResendCircleUserFormRequestValidationError>
 
     if (e.response && e.response.status === 422) {
       return {

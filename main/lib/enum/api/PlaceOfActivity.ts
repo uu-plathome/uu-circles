@@ -39,7 +39,8 @@ export const PlaceOfActivity = {
 } as const
 
 export type PlaceOfActivityKey = keyof typeof PlaceOfActivity
-export type PlaceOfActivity = typeof PlaceOfActivity[keyof typeof PlaceOfActivity]
+export type PlaceOfActivity =
+  typeof PlaceOfActivity[keyof typeof PlaceOfActivity]
 
 /**
  * 活動場所

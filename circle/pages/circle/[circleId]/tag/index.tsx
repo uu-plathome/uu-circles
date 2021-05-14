@@ -100,10 +100,8 @@ const CreatePage: NextPage = () => {
     ]
 
     const f = async () => {
-      const {
-        circle: fetchedCircle,
-        circleTag: pastCircleTag,
-      } = await getCircleTag(circleId)
+      const { circle: fetchedCircle, circleTag: pastCircleTag } =
+        await getCircleTag(circleId)
       const filterPastCircleTag = pastCircleTag.filter((_tag) => {
         return [
           CircleTagModel.SPORT,

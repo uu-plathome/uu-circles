@@ -354,13 +354,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   try {
-    const {
-      circle,
-      circleTags,
-      circleNewJoys,
-      uuYellArticles,
-      wpPosts,
-    } = await getCircleBySlug(params.slug)
+    const { circle, circleTags, circleNewJoys, uuYellArticles, wpPosts } =
+      await getCircleBySlug(params.slug)
 
     return {
       props: {

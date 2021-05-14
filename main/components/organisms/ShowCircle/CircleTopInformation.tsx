@@ -47,9 +47,10 @@ type Props = {
   circle: Circle
 }
 const CircleTopInformation: FC<Props> = ({ circle }) => {
-  const pageUrl = useMemo(() => `https://uu-circles.com/${circle.slug}`, [
-    circle.slug,
-  ])
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/${circle.slug}`,
+    [circle.slug]
+  )
 
   return (
     <div>
