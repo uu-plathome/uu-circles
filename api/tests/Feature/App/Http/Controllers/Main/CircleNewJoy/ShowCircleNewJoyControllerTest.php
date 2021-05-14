@@ -49,5 +49,11 @@ class ShowCircleNewJoyControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 }
