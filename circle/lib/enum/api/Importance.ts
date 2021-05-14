@@ -15,7 +15,7 @@ export const Importance = {
   /**
    * 低
    */
-  LOW: 'LOW'
+  LOW: 'LOW',
 } as const
 
 export type ImportanceKey = keyof typeof Importance
@@ -28,11 +28,13 @@ export const getAllImportance = (): Importance[] => Object.values(Importance)
 /**
  * 重要度
  */
-export const getAllImportanceKey = (): ImportanceKey[] => Object.keys(Importance) as ImportanceKey[]
+export const getAllImportanceKey = (): ImportanceKey[] =>
+  Object.keys(Importance) as ImportanceKey[]
 /**
  * 重要度
  */
-export const isImportance = (s: any): s is Importance => Object.values(Importance).includes(s)
+export const isImportance = (s: any): s is Importance =>
+  Object.values(Importance).includes(s)
 
 /**
  * 高
