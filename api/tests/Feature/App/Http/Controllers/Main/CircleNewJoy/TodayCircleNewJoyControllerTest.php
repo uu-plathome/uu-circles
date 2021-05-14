@@ -50,6 +50,12 @@ class TodayCircleNewJoyControllerTest extends TestCase
         $this->assertArrayHasKey('futureCircleNewJoys', $response);
         $this->assertIsArray($response['todayCircleNewJoys']);
         $this->assertIsArray($response['futureCircleNewJoys']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 
     public function testRequest_新歓が存在しないとき()
@@ -74,6 +80,12 @@ class TodayCircleNewJoyControllerTest extends TestCase
         $this->assertIsArray($response['futureCircleNewJoys']);
         $this->assertCount(0, $response['todayCircleNewJoys']);
         $this->assertCount(0, $response['futureCircleNewJoys']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 
     public function testRequest_今日の新歓が存在するとき()
@@ -109,5 +121,11 @@ class TodayCircleNewJoyControllerTest extends TestCase
         $this->assertIsArray($response['futureCircleNewJoys']);
         $this->assertCount(1, $response['todayCircleNewJoys']);
         $this->assertCount(0, $response['futureCircleNewJoys']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 }

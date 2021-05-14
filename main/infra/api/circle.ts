@@ -6,14 +6,17 @@ import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 import { PageNotFoundError, InternalServerError } from './error'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
+import { Announcement } from '@/lib/types/model/Announcement'
 
 export const getAllCircleList = async (): Promise<{
   circles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     data: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}`
@@ -22,6 +25,7 @@ export const getAllCircleList = async (): Promise<{
   return {
     circles: data.data,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** お知らせ */ announcements: [],
   }
 }
 
@@ -37,6 +41,7 @@ export const getCircleBySlug = async (
     postsExistTags: WP_REST_API_Post[]
     medias: WP_REST_API_Media[]
   }
+  /** お知らせ */ announcements: Announcement[]
 }> => {
   try {
     type Response = {
@@ -49,6 +54,7 @@ export const getCircleBySlug = async (
         postsExistTags: WP_REST_API_Post[]
         medias: WP_REST_API_Media[]
       }
+      /** お知らせ */ announcements: Announcement[]
     }
     const { data } = await axiosInstance.get<Response>(
       linkConst.CIRCLE.SLUG(slug)
@@ -60,6 +66,7 @@ export const getCircleBySlug = async (
       circleNewJoys: data.circleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
       /** WordPress記事 */ wpPosts: data.wpPosts,
+      /** お知らせ */ announcements: [],
     }
   } catch (_e) {
     const e = _e as AxiosError
@@ -78,11 +85,13 @@ export const getCircleByCategory = async (
   circles: Circle[]
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(
     linkConst.CIRCLE.CATEGORY(category)
@@ -92,6 +101,7 @@ export const getCircleByCategory = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** お知らせ */ announcements: [],
   }
 }
 
@@ -101,11 +111,13 @@ export const getCircleByTag = async (
   circles: Circle[]
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}/tag/${tag}`
@@ -115,6 +127,7 @@ export const getCircleByTag = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** お知らせ */ announcements: [],
   }
 }
 
@@ -124,11 +137,13 @@ export const searchCircle = async (
   circles: Circle[]
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(
     encodeURI(`${linkConst.CIRCLE.GROUP}/search/${search}`)
@@ -138,5 +153,6 @@ export const searchCircle = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** お知らせ */ announcements: [],
   }
 }
