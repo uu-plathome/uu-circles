@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main\Circle;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetCircleListUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
@@ -18,13 +20,16 @@ class IndexCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetCircleListUsecase $getCircleListUsecase;
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetCircleListUsecase $getCircleListUsecase
+        GetCircleListUsecase $getCircleListUsecase,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getCircleListUsecase = $getCircleListUsecase;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
     }
 
     /**
@@ -47,6 +52,14 @@ class IndexCircleController extends Controller
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
         );
 
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
+        );
+
         return [
             'data' => Arr::camel_keys(
                 (new Collection($circles))->map(
@@ -57,6 +70,7 @@ class IndexCircleController extends Controller
                 )->toArray()
             ),
             'uuYellArticles' => $articles,
+            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

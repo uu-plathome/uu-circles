@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Models\CircleNewJoy;
 use App\Support\Arr;
+use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
@@ -23,17 +25,20 @@ class ShowCircleNewJoyController extends Controller
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetCircleBySlugUsecase $getCircleBySlugUsecase;
     private GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase;
+    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
     private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetCircleBySlugUsecase $getCircleBySlugUsecase,
         GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase,
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
         $this->getTodayCircleNewJoyWithLimitUsecase = $getTodayCircleNewJoyWithLimitUsecase;
+        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->indexCircleNewJoyUsecase = $indexCircleNewJoyUsecase;
     }
 
@@ -73,6 +78,14 @@ class ShowCircleNewJoyController extends Controller
             FetchUuYellArticlesKey::uuYellCacheKey(),
             FetchUuYellArticlesKey::TTL,
             fn () => $this->fetchUuYellArticlesUsecase->invoke()
+        );
+
+        // メイン画面に固定するお知らせの取得
+        /** @var GetMainViewFixedAnnouncementsUsecaseDto $announcements */
+        $announcements = Cache::remember(
+            GetMainViewFixedAnnouncementsUsecase::getCacheKey(),
+            GetMainViewFixedAnnouncementsUsecase::TTL,
+            fn () => $this->getMainViewFixedAnnouncementsUsecase->invoke()
         );
 
         return [
@@ -115,6 +128,7 @@ class ShowCircleNewJoyController extends Controller
                 )->values()->toArray()
             ),
             'uuYellArticles' => $articles,
+            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

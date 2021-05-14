@@ -42,6 +42,28 @@ class GetCircleControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
+
+        $this->assertArrayHasKey('data', $response);
+        $this->assertIsArray($response['data']);
+
+        $this->assertArrayHasKey('circleTags', $response);
+        $this->assertIsArray($response['circleTags']);
+
+        $this->assertArrayHasKey('circleNewJoys', $response);
+        $this->assertIsArray($response['circleNewJoys']);
+
+        $this->assertArrayHasKey('wpPosts', $response);
+        $this->assertIsArray($response['wpPosts']);
+        $this->assertArrayHasKey('postsNotTags', $response['wpPosts']);
+        $this->assertIsArray($response['wpPosts']['postsNotTags']);
+        $this->assertArrayHasKey('postsExistTags', $response['wpPosts']);
+        $this->assertIsArray($response['wpPosts']['postsExistTags']);
+
+        $this->assertArrayHasKey('uuYellArticles', $response);
+        $this->assertIsArray($response['uuYellArticles']);
+
+        $this->assertArrayHasKey('announcements', $response);
+        $this->assertIsArray($response['announcements']);
     }
 
     public function testRequest_存在しないサークルは404である()
