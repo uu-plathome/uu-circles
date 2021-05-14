@@ -40,15 +40,17 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
               />
 
               <div
-                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
@@ -70,10 +72,7 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const {
-    statistics,
-    uuYellArticles,
-  } = await getStatistics()
+  const { statistics, uuYellArticles } = await getStatistics()
 
   return {
     props: {
