@@ -107,11 +107,12 @@ class AggregateAnnouncementCounterPerDayUsecase
 
                         $this->aggregateAnnouncements = $this->aggregateAnnouncements->replace([
                             $nowAggregateAnnouncementKey =>                                 [
-                                ACHP::announcement_id => $nowAggregateAnnouncement[ACHP::announcement_id],
-                                ACHP::date            => $nowAggregateAnnouncement[ACHP::date],
-                                ACHP::count           => $nowAggregateAnnouncement[ACHP::count] - $announcementCounterHistory->count,
-                                ACHP::created_at      => $nowAggregateAnnouncement[ACHP::created_at],
-                                ACHP::updated_at      => $nowAggregateAnnouncement[ACHP::updated_at],
+                                ACHP::announcement_id    => $nowAggregateAnnouncement[ACHP::announcement_id],
+                                ACHP::announcement_place => $nowAggregateAnnouncement[ACHP::announcement_place],
+                                ACHP::date               => $nowAggregateAnnouncement[ACHP::date],
+                                ACHP::count              => $nowAggregateAnnouncement[ACHP::count] - $announcementCounterHistory->count,
+                                ACHP::created_at         => $nowAggregateAnnouncement[ACHP::created_at],
+                                ACHP::updated_at         => $nowAggregateAnnouncement[ACHP::updated_at],
                             ]
                         ]);
                     }
