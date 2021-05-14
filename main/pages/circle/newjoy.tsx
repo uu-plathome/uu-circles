@@ -114,11 +114,8 @@ const Page: NextPage<Props> = ({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const {
-      futureCircleNewJoys,
-      todayCircleNewJoys,
-      uuYellArticles,
-    } = await getTodayCircleNewJoy()
+    const { futureCircleNewJoys, todayCircleNewJoys, uuYellArticles } =
+      await getTodayCircleNewJoy()
 
     return {
       props: {
