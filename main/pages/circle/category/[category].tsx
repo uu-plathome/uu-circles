@@ -88,11 +88,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const {
-    circles,
-    recommendCircles,
-    uuYellArticles,
-  } = await getCircleByCategory(params.category)
+  const { circles, recommendCircles, uuYellArticles } =
+    await getCircleByCategory(params.category)
 
   return {
     props: {

@@ -16,4 +16,5 @@ export const StatisticsButtonState = {
 }
 
 export type StatisticsButtonStateKey = keyof typeof StatisticsButtonState
-export type StatisticsButtonState = typeof StatisticsButtonState[keyof typeof StatisticsButtonState]
+export type StatisticsButtonState =
+  typeof StatisticsButtonState[keyof typeof StatisticsButtonState]

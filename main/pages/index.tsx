@@ -127,12 +127,8 @@ const Index: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const {
-    circles,
-    advertises,
-    mainAdvertises,
-    uuYellArticles,
-  } = await getMain()
+  const { circles, advertises, mainAdvertises, uuYellArticles } =
+    await getMain()
 
   return {
     props: {
