@@ -11,11 +11,13 @@ import { getStatistics } from '@/infra/api/statistics'
 import { Statistics } from '@/lib/types/model/Statistics'
 import { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
+import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
   statistics: Statistics
+  uuYellArticles: WP_REST_API_Post[]
 }
-const Page: NextPage<Props> = ({ statistics }) => {
+const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
   const [buttonState, setButtonState] = useState<StatisticsButtonState>(
     StatisticsButtonState.COMMON
   )
@@ -38,17 +40,15 @@ const Page: NextPage<Props> = ({ statistics }) => {
               />
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
@@ -63,18 +63,22 @@ const Page: NextPage<Props> = ({ statistics }) => {
         </div>
 
         {/*  フッター */}
-        <BaseFooter />
+        <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const statistics = await getStatistics()
+  const {
+    statistics,
+    uuYellArticles,
+  } = await getStatistics()
 
   return {
     props: {
       statistics,
+      uuYellArticles,
     },
     revalidate: 60 * 60,
   }
