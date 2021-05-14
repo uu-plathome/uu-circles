@@ -38,7 +38,7 @@ class GachaResultControllerTest extends TestCase
         $NUMBER = 1;
 
         // 識別子発行
-        $identifier = factory(Identifier::class, 1)->create()->first();
+        $identifier = Identifier::factory()->count(1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
@@ -89,7 +89,7 @@ class GachaResultControllerTest extends TestCase
         $NUMBER = 10;
 
         // 識別子発行
-        $identifier = factory(Identifier::class, 1)->create()->first();
+        $identifier = Identifier::factory()->count(1)->create()->first();
         Log::info($identifier);
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
