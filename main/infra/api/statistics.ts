@@ -21,7 +21,7 @@ export const getStatistics = async (): Promise<{
 
   return {
     /** 統計情報 */ statistics: data.statistics,
-    /** uu-yell記事 */ uuYellArticles: [],
-    /** お知らせ */ announcements: [],
+    /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+    /** お知らせ */ announcements: data.announcements,
   }
 }
