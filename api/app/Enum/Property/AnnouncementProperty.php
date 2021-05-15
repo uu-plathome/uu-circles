@@ -10,6 +10,7 @@ class AnnouncementProperty
     const link = 'link';
     const announcement_type = 'announcement_type';
     const importance = 'importance';
+    const slug = 'slug';
     const for_main_view = 'for_main_view';
     const for_circle_mail = 'for_circle_mail';
     const for_admin_view = 'for_admin_view';
