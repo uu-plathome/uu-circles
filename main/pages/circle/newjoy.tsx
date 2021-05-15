@@ -45,7 +45,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title="今日の新歓" />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             <h1 className="text-2xl py-8 md:py-20 md:text-center">
@@ -117,8 +123,12 @@ const Page: NextPage<Props> = ({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const { futureCircleNewJoys, todayCircleNewJoys, uuYellArticles, announcements } =
-      await getTodayCircleNewJoy()
+    const {
+      futureCircleNewJoys,
+      todayCircleNewJoys,
+      uuYellArticles,
+      announcements,
+    } = await getTodayCircleNewJoy()
 
     return {
       props: {

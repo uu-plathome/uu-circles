@@ -39,7 +39,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title={`${__(String(tag).toUpperCase())}タグ検索`} />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-5">
@@ -82,9 +88,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles, announcements } = await getCircleByTag(
-    params.tag
-  )
+  const { circles, recommendCircles, uuYellArticles, announcements } =
+    await getCircleByTag(params.tag)
 
   return {
     props: {
