@@ -19,6 +19,7 @@ class Announcement extends Model
         P::link,
         P::announcement_type,
         P::importance,
+        P::slug,
         P::for_main_view,
         P::for_circle_mail,
         P::for_admin_view,

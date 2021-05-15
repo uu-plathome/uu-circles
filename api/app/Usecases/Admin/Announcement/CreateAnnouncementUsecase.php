@@ -6,6 +6,7 @@ use App\Enum\Property\AnnouncementCounterProperty;
 use App\Enum\Property\AnnouncementProperty;
 use App\Models\Announcement;
 use App\Models\AnnouncementCounter;
+use App\Support\Str;
 use App\Usecases\Admin\Announcement\Params\CreateAnnouncementUsecaseParam;
 use Exception;
 use Illuminate\Support\Carbon;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Log;
 
 class CreateAnnouncementUsecase
 {
+    const MAX_SLUG_CHECK = 3;
+
     /**
      * お知らせの追加
      *
@@ -28,8 +31,11 @@ class CreateAnnouncementUsecase
 
         $now = Carbon::now();
 
+        // slugの生成
+        $slug = $this->generateSlug();
+
         // インサート用のデータ
-        $insertData = $this->getInsertData($param);
+        $insertData = $this->getInsertData($param, $slug);
 
         DB::beginTransaction();
         try {
@@ -64,17 +70,37 @@ class CreateAnnouncementUsecase
     }
 
     /**
+     * @throws Exception
+     */
+    private function generateSlug(): string
+    {
+        $loop = self::MAX_SLUG_CHECK;
+        for ($i = $loop; $i > 0; $i--) {
+            $newSlug = (string)Str::uuid();
+
+            if (Announcement::whereSlug($newSlug)->doesntExist()) {
+                return $newSlug;
+            }
+        }
+
+        throw new Exception("UUIDが {$loop} 回重複しました");
+    }
+
+
+    /**
      * DBに挿入するデータ
      *
      * @param CreateAnnouncementUsecaseParam $param
+     * @param string $slug
      * @return array
      */
-    private function getInsertData(CreateAnnouncementUsecaseParam $param): array
+    private function getInsertData(CreateAnnouncementUsecaseParam $param, string $slug): array
     {
         return [
             AnnouncementProperty::title                => $param->title,
             AnnouncementProperty::description          => $param->description,
             AnnouncementProperty::link                 => $param->link,
+            AnnouncementProperty::slug                 => $slug,
             AnnouncementProperty::announcement_type    => $param->announcement_type,
             AnnouncementProperty::importance           => $param->importance,
             AnnouncementProperty::for_main_view        => $param->for_main_view,
