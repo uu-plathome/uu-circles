@@ -68,7 +68,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title={`${circle.name}の新歓`} />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             {isMd ? (
@@ -164,8 +170,9 @@ const Page: NextPage<Props> = ({
                     <div className="my-2 pb-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${circle.shortName || circle.name
-                          }の新歓を見る！`}
+                        title={`UU-Circlesで${
+                          circle.shortName || circle.name
+                        }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -251,8 +258,9 @@ const Page: NextPage<Props> = ({
                   <div className="my-2 pb-2 flex justify-center">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${circle.shortName || circle.name
-                        }の新歓を見る！`}
+                      title={`UU-Circlesで${
+                        circle.shortName || circle.name
+                      }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >

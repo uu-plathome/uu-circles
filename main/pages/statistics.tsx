@@ -19,7 +19,11 @@ type Props = {
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
 }
-const Page: NextPage<Props> = ({ statistics, uuYellArticles, announcements }) => {
+const Page: NextPage<Props> = ({
+  statistics,
+  uuYellArticles,
+  announcements,
+}) => {
   const [buttonState, setButtonState] = useState<StatisticsButtonState>(
     StatisticsButtonState.COMMON
   )
@@ -28,7 +32,13 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles, announcements }) =>
     <div>
       <BaseHead title="統計情報" />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 pb-16">
           <BaseContainer>
             <div className="px-4">
@@ -42,15 +52,17 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles, announcements }) =>
               />
 
               <div
-                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
