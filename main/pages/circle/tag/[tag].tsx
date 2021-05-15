@@ -7,6 +7,7 @@ import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { getCircleByTag } from '@/infra/api/circle'
 import { __ } from '@/lang/ja'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -17,11 +18,13 @@ type Props = {
   circles?: Circle[]
   recommendCircles?: Circle[]
   /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   circles,
   recommendCircles,
   uuYellArticles,
+  announcements,
 }) => {
   const router = useRouter()
   const { tag } = router.query
@@ -36,7 +39,7 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title={`${__(String(tag).toUpperCase())}タグ検索`} />
 
-      <BaseLayout>
+      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-5">
@@ -79,7 +82,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles } = await getCircleByTag(
+  const { circles, recommendCircles, uuYellArticles, announcements } = await getCircleByTag(
     params.tag
   )
 
@@ -88,6 +91,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circles,
       recommendCircles,
       uuYellArticles,
+      announcements,
     },
     revalidate: 120,
   }
