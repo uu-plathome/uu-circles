@@ -123,9 +123,13 @@ class AggregateAnnouncementCounterPerDayUsecase
                 }
             );
 
+        $filterOnlyNaturalNumber = $this->aggregateAnnouncements->filter(
+            fn (array $arr) => $arr[ACHP::count] > 0
+        );
+
         Log::debug('AnnouncementCounterHistory insert', [
-            $this->aggregateAnnouncements->toArray()
+            $filterOnlyNaturalNumber->toArray()
         ]);
-        AnnouncementCounterHistory::insert($this->aggregateAnnouncements->toArray());
+        AnnouncementCounterHistory::insert($filterOnlyNaturalNumber->toArray());
     }
 }

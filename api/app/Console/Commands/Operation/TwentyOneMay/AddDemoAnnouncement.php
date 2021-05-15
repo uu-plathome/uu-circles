@@ -22,7 +22,7 @@ class AddDemoAnnouncement extends Command
      *
      * @var string
      */
-    protected $description = '１日ごとの広告のクリック数の集計';
+    protected $description = 'デモのお知らせ追加';
 
     private CreateAnnouncementUsecase $createAnnouncementUsecase;
 
