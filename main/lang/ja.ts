@@ -161,7 +161,7 @@ export const ja = {
     [AnnouncementType.QUESTIONNAIRE]: 'アンケートのお知らせ',
     [AnnouncementType.ADVERTISE]: '広告のお知らせ',
     [AnnouncementType.UU_YELL]: 'uu-yellより',
-  }
+  },
 }
 
 export const __ = (key: string, namespace?: string) => {

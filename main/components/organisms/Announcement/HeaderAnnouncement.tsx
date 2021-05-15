@@ -1,14 +1,12 @@
-import { __ } from "@/lang/ja"
-import { isHigh } from "@/lib/enum/api/Importance"
-import { Announcement } from "@/lib/types/model/Announcement"
-import { FC } from "react"
+import { __ } from '@/lang/ja'
+import { isHigh } from '@/lib/enum/api/Importance'
+import { Announcement } from '@/lib/types/model/Announcement'
+import { FC } from 'react'
 
 type Props = {
   announcement: Announcement
 }
-const HeaderAnnouncement: FC<Props> = ({
-  announcement
-}) => {
+const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
   return (
     <div className="border-blue-300 border-4 py-2 px-4 bg-white">
       <div className="max-w-3xl mx-auto">
@@ -16,20 +14,31 @@ const HeaderAnnouncement: FC<Props> = ({
           -{__(announcement.announcementType, 'AnnouncementType')}-
         </p>
 
-        <p className={`
+        <p
+          className={`
           text-center
-          ${isHigh(announcement.importance) ? 'text-base md:text-lg' : 'text-sm md:text-base'}
-        `}>
+          ${
+            isHigh(announcement.importance)
+              ? 'text-base md:text-lg'
+              : 'text-sm md:text-base'
+          }
+        `}
+        >
           {announcement.title}
         </p>
 
         {announcement.link ? (
           <p className="text-right">
-            <a href={announcement.link} className="text-blue-600 underline text-xs">
+            <a
+              href={announcement.link}
+              className="text-blue-600 underline text-xs"
+            >
               詳しく見る
             </a>
           </p>
-        ) : ''}
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )

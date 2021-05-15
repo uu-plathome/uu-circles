@@ -88,7 +88,13 @@ const Index: NextPage<Props> = ({
         <meta name="twitter:card" content="summary" />
       </Head>
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <MainUucircleTopCarousel advertises={mainAdvertises} />
 
         <div style={{ marginTop: '-6px' }} className="bg-white">
