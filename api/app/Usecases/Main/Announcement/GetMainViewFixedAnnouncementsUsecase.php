@@ -32,6 +32,8 @@ class GetMainViewFixedAnnouncementsUsecase
                 AnnouncementProperty::description,
                 AnnouncementProperty::announcement_type,
                 AnnouncementProperty::importance,
+                AnnouncementProperty::link,
+                AnnouncementProperty::slug,
                 AnnouncementProperty::active,
                 AnnouncementProperty::publish_from,
                 AnnouncementProperty::publish_to,
@@ -53,6 +55,6 @@ class GetMainViewFixedAnnouncementsUsecase
      */
     public static function getCacheKey(): string
     {
-        return 'GetMainViewFixedAnnouncementsUsecase' . Carbon::today()->format("Y-m-d h");
+        return 'GetMainViewFixedAnnouncementsUsecase1' . Carbon::today()->format("Y-m-d h");
     }
 }
