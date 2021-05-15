@@ -15,7 +15,7 @@ class RedirectToAdvertiseLinkController
      */
     public function __invoke(Request $request, string $slug)
     {
-        Log::debug("RedirectToAdvertiseLinkController", [
+        Log::debug("RedirectToAnnouncementLinkController", [
             'slug' => $slug,
         ]);
 
@@ -38,7 +38,7 @@ class RedirectToAdvertiseLinkController
             return;
         }
 
-        Log::debug("RedirectToAdvertiseLinkController count up start");
+        Log::debug("RedirectToAnnouncementLinkController count up start");
 
         // 広告のクリック数
         AdvertiseCounter::whereAdvertiseId($advertise->id)
@@ -47,7 +47,7 @@ class RedirectToAdvertiseLinkController
             ->first()
             ->increment('count', 1);
 
-        Log::debug("RedirectToAdvertiseLinkController redirect to", [
+        Log::debug("RedirectToAnnouncementLinkController redirect to", [
             'link' => $advertise->link,
         ]);
 
