@@ -14,6 +14,7 @@ import { TwitterEmbed } from '@/components/organisms/Twitter/TwitterEmbed'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/plugins/Dayjs'
@@ -86,6 +87,7 @@ type Props = {
     medias: WP_REST_API_Media[]
   }
   errorCode?: number
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   circle,
@@ -94,6 +96,7 @@ const Page: NextPage<Props> = ({
   uuYellArticles,
   wpPosts,
   errorCode,
+  announcements,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -159,7 +162,7 @@ const Page: NextPage<Props> = ({
         description={circle.description}
       />
 
-      <BaseLayout>
+      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
         <div>
           <BaseContainer>
             <div>
@@ -235,8 +238,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+                wpPosts.postsExistTags &&
+                wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -264,8 +267,8 @@ const Page: NextPage<Props> = ({
               )}
 
               {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+                wpPosts.postsNotTags &&
+                wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -291,8 +294,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+              uuYellForCircles.posts &&
+              uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
@@ -354,7 +357,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   try {
-    const { circle, circleTags, circleNewJoys, uuYellArticles, wpPosts } =
+    const { circle, circleTags, circleNewJoys, uuYellArticles, wpPosts, announcements } =
       await getCircleBySlug(params.slug)
 
     return {
@@ -364,6 +367,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         circleNewJoys,
         uuYellArticles,
         wpPosts,
+        announcements,
       },
       revalidate: 180,
     }

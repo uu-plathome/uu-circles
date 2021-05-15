@@ -8,16 +8,18 @@ import { StatisticsCircleView } from '@/components/organisms/Statistics/Statisti
 import { StatisticsCommonView } from '@/components/organisms/Statistics/StatisticsCommonView'
 import { StatisticsOtherView } from '@/components/organisms/Statistics/StatisticsOtherView'
 import { getStatistics } from '@/infra/api/statistics'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Statistics } from '@/lib/types/model/Statistics'
 import { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import { WP_REST_API_Post } from 'wp-types'
 
 type Props = {
-  statistics: Statistics
-  uuYellArticles: WP_REST_API_Post[]
+  statistics?: Statistics
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
-const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
+const Page: NextPage<Props> = ({ statistics, uuYellArticles, announcements }) => {
   const [buttonState, setButtonState] = useState<StatisticsButtonState>(
     StatisticsButtonState.COMMON
   )
@@ -26,7 +28,7 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
     <div>
       <BaseHead title="統計情報" />
 
-      <BaseLayout>
+      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
         <div className="bg-gray-100 pb-16">
           <BaseContainer>
             <div className="px-4">
@@ -40,17 +42,15 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
               />
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
@@ -72,12 +72,13 @@ const Page: NextPage<Props> = ({ statistics, uuYellArticles }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { statistics, uuYellArticles } = await getStatistics()
+  const { statistics, uuYellArticles, announcements } = await getStatistics()
 
   return {
     props: {
       statistics,
       uuYellArticles,
+      announcements,
     },
     revalidate: 60 * 60,
   }
