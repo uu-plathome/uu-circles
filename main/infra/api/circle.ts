@@ -25,7 +25,7 @@ export const getAllCircleList = async (): Promise<{
   return {
     circles: data.data,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-    /** お知らせ */ announcements: [],
+    /** お知らせ */ announcements: data.announcements,
   }
 }
 
@@ -66,7 +66,7 @@ export const getCircleBySlug = async (
       circleNewJoys: data.circleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
       /** WordPress記事 */ wpPosts: data.wpPosts,
-      /** お知らせ */ announcements: [],
+      /** お知らせ */ announcements: data.announcements,
     }
   } catch (_e) {
     const e = _e as AxiosError
@@ -101,7 +101,7 @@ export const getCircleByCategory = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-    /** お知らせ */ announcements: [],
+    /** お知らせ */ announcements: data.announcements,
   }
 }
 
@@ -127,7 +127,7 @@ export const getCircleByTag = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-    /** お知らせ */ announcements: [],
+    /** お知らせ */ announcements: data.announcements,
   }
 }
 
@@ -153,6 +153,6 @@ export const searchCircle = async (
     circles: data.data,
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-    /** お知らせ */ announcements: [],
+    /** お知らせ */ announcements: data.announcements,
   }
 }
