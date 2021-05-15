@@ -183,6 +183,54 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\AnnouncementCounter
+ *
+ * @property int $id
+ * @property int $announcement_id
+ * @property int $count クリック数
+ * @property string $announcement_place お知らせの設置場所
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereAnnouncementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereAnnouncementPlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounter whereUpdatedAt($value)
+ */
+	class AnnouncementCounter extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AnnouncementCounterHistory
+ *
+ * @property int $id
+ * @property int $announcement_id
+ * @property int $count クリック数
+ * @property string $announcement_place お知らせの設置場所
+ * @property string $date 日付
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereAnnouncementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereAnnouncementPlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnnouncementCounterHistory whereUpdatedAt($value)
+ */
+	class AnnouncementCounterHistory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Circle
  *
  * @property int $id
