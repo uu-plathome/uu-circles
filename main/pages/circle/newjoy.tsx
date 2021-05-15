@@ -7,6 +7,7 @@ import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
 } from '@/infra/api/circleNewJoy'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import { useMemo } from 'react'
@@ -24,13 +25,15 @@ type Props = {
   errorCode?: number
   futureCircleNewJoys?: TodayCircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys?: TodayCircleNewJoy[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   errorCode,
   futureCircleNewJoys,
   todayCircleNewJoys,
   uuYellArticles,
+  announcements,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -42,7 +45,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title="今日の新歓" />
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             <h1 className="text-2xl py-8 md:py-20 md:text-center">
@@ -114,14 +123,19 @@ const Page: NextPage<Props> = ({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const { futureCircleNewJoys, todayCircleNewJoys, uuYellArticles } =
-      await getTodayCircleNewJoy()
+    const {
+      futureCircleNewJoys,
+      todayCircleNewJoys,
+      uuYellArticles,
+      announcements,
+    } = await getTodayCircleNewJoy()
 
     return {
       props: {
         futureCircleNewJoys,
         todayCircleNewJoys,
         uuYellArticles,
+        announcements,
       },
       revalidate: 180,
     }

@@ -9,6 +9,7 @@ import { getCircleByCategory } from '@/infra/api/circle'
 import { __ } from '@/lang/ja'
 import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 import { Category } from '@/lib/enum/app/Category'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -19,12 +20,14 @@ type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   circles,
   recommendCircles,
   uuYellArticles,
+  announcements,
 }) => {
   const router = useRouter()
   const { category } = router.query
@@ -41,7 +44,13 @@ const Page: NextPage<Props> = ({
         )} カテゴリー検索`}
       />
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-5">
@@ -88,7 +97,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles } =
+  const { circles, recommendCircles, uuYellArticles, announcements } =
     await getCircleByCategory(params.category)
 
   return {
@@ -96,6 +105,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       circles,
       recommendCircles,
       uuYellArticles,
+      announcements,
     },
     revalidate: 120,
   }

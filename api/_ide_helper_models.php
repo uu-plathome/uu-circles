@@ -130,6 +130,7 @@ namespace App\Models{
  * @property string|null $link お知らせURL
  * @property string $announcement_type お知らせ種類
  * @property string $importance 重要度
+ * @property string $slug slug
  * @property bool $for_main_view メイン画面に表示するかどうか
  * @property bool $for_circle_mail サークル管理者にメール通知するかどうか
  * @property bool $for_admin_view 管理者画面に表示するかどうか
@@ -173,6 +174,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereNotifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Announcement withTrashed()
