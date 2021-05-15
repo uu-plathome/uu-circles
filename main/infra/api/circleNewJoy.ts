@@ -43,7 +43,7 @@ export const getTodayCircleNewJoy = async (): Promise<{
       /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
       /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** お知らせ */ announcements: [],
+      /** お知らせ */ announcements: data.announcements,
     }
   } catch (_e) {
     const e = _e as AxiosError
@@ -87,7 +87,7 @@ export const getCircleNewJoyBySlug = async (
       /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
       /** 今日の新歓(全て) */ allTodayCircleNewJoys: data.allTodayCircleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** お知らせ */ announcements: [],
+      /** お知らせ */ announcements: data.announcements,
     }
   } catch (_e) {
     const e = _e as AxiosError
@@ -139,7 +139,7 @@ export const showCircleNewJoyBySlug = async (
       /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
       /** 今日の新歓(全て) */ allTodayCircleNewJoys: data.allTodayCircleNewJoys,
       /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** お知らせ */ announcements: [],
+      /** お知らせ */ announcements: data.announcements,
     }
   } catch (_e) {
     const e = _e as AxiosError

@@ -8,6 +8,7 @@ import { RecommendTagList } from '@/components/organisms/Circles/RecommendTagLis
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { useStringInput } from '@/hooks/useInput'
 import { getAllCircleList } from '@/infra/api/circle'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -17,9 +18,10 @@ import { WP_REST_API_Post } from 'wp-types'
 type Props = {
   errorCode?: number
   circles?: Circle[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
-const Page: NextPage<Props> = ({ circles, uuYellArticles }) => {
+const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements }) => {
   const router = useRouter()
   const name = useStringInput('')
   const onSubmit = (event: FormEvent) => {
@@ -35,7 +37,13 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles }) => {
     <div>
       <BaseHead title="サークル一覧" />
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-7">
@@ -73,12 +81,13 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, uuYellArticles } = await getAllCircleList()
+  const { circles, uuYellArticles, announcements } = await getAllCircleList()
 
   return {
     props: {
       circles,
       uuYellArticles,
+      announcements,
     },
     revalidate: 120,
   }

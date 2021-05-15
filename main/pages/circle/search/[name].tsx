@@ -6,6 +6,7 @@ import { CircleSidebar } from '@/components/organisms/Circles/CircleSidebar'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { searchCircle } from '@/infra/api/circle'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -15,12 +16,14 @@ type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   circles,
   recommendCircles,
   uuYellArticles,
+  announcements,
 }) => {
   const router = useRouter()
   const { name } = router.query
@@ -29,7 +32,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title={`${String(name)}の検索結果`} />
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-5">

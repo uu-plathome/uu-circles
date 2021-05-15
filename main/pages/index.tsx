@@ -11,6 +11,7 @@ import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircle
 import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircleTopCarousel'
 import { getMain } from '@/infra/api/main'
 import { Advertise } from '@/lib/types/model/Advertise'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
@@ -24,13 +25,15 @@ type Props = {
   advertises: Advertise[]
   mainAdvertises: Advertise[]
   circles: Circle[]
-  uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** お知らせ */ announcements: Announcement[]
 }
 const Index: NextPage<Props> = ({
   advertises,
   mainAdvertises,
   circles,
   uuYellArticles,
+  announcements,
 }) => {
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
@@ -85,7 +88,13 @@ const Index: NextPage<Props> = ({
         <meta name="twitter:card" content="summary" />
       </Head>
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <MainUucircleTopCarousel advertises={mainAdvertises} />
 
         <div style={{ marginTop: '-6px' }} className="bg-white">
@@ -127,7 +136,7 @@ const Index: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, advertises, mainAdvertises, uuYellArticles } =
+  const { circles, advertises, mainAdvertises, uuYellArticles, announcements } =
     await getMain()
 
   return {
@@ -136,6 +145,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       circles,
       mainAdvertises,
       uuYellArticles,
+      announcements,
     },
     revalidate: 120,
   }

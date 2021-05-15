@@ -6,6 +6,7 @@ use App\Enum\AnnouncementType;
 use App\Enum\Importance;
 use App\Enum\Property\AnnouncementProperty;
 use App\Models\Announcement;
+use App\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AnnouncementFactory extends Factory
@@ -29,6 +30,7 @@ class AnnouncementFactory extends Factory
             AnnouncementProperty::announcement_type    => AnnouncementType::QUESTIONNAIRE,
             AnnouncementProperty::link                 => 'https://uu-circles.com',
             AnnouncementProperty::importance           => Importance::HIGH,
+            AnnouncementProperty::slug                 => (string) Str::uuid(),
             AnnouncementProperty::for_admin_mail       => false,
             AnnouncementProperty::for_admin_view       => false,
             AnnouncementProperty::for_circle_mail      => false,

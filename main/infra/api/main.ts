@@ -26,6 +26,6 @@ export const getMain = async (): Promise<{
     /** 広告 */ advertises: data.advertises,
     /** トップのカルーセル用の広告 */ mainAdvertises: data.mainAdvertises,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-    /** お知らせ */ announcements: [],
+    /** お知らせ */ announcements: data.announcements,
   }
 }

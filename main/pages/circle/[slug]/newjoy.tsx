@@ -10,6 +10,7 @@ import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCirc
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { PageNotFoundError } from '@/infra/api/error'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -37,7 +38,8 @@ type Props = {
     slug: string
     circleNewJoy: CircleNewJoy
   }[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
   errorCode,
@@ -47,6 +49,7 @@ const Page: NextPage<Props> = ({
   nowCircleNewJoys,
   todayCircleNewJoys,
   uuYellArticles,
+  announcements,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -65,7 +68,13 @@ const Page: NextPage<Props> = ({
     <div>
       <BaseHead title={`${circle.name}の新歓`} />
 
-      <BaseLayout>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <BaseContainer>
             {isMd ? (
@@ -299,6 +308,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       todayCircleNewJoys,
       allTodayCircleNewJoys,
       uuYellArticles,
+      announcements,
     } = await getCircleNewJoyBySlug(params.slug)
 
     return {
@@ -310,6 +320,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         todayCircleNewJoys,
         allTodayCircleNewJoys,
         uuYellArticles,
+        announcements,
       },
       revalidate: 120,
     }

@@ -2,6 +2,7 @@
 
 namespace App\Usecases\Main\Announcement\Dto;
 
+use App\Enum\RouteProperty\WebRouteProperty;
 use App\Models\Announcement;
 
 /**
@@ -25,7 +26,9 @@ class MainAnnouncementDto
         $dto->announcement_id = $announcement->id;
         $dto->title = $announcement->title;
         $dto->description = $announcement->description;
-        $dto->link = $announcement->link;
+        $dto->link = $announcement->link
+            ? route(WebRouteProperty::WebShareAnnouncementShow, $announcement->slug)
+            : null;
         $dto->announcement_type = $announcement->announcement_type;
         $dto->importance = $announcement->importance;
         return $dto;
