@@ -37,7 +37,13 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements }) => {
     <div>
       <BaseHead title="サークル一覧" />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100 px-2">
           <TwoColumnContainer sidebar={<CircleSidebar />}>
             <div className="px-7">

@@ -54,7 +54,13 @@ const Page: NextPage<Props> = ({
         description={circleNewJoy.description}
       />
 
-      <BaseLayout announcement={announcements && announcements.length > 0 ? announcements[0] : undefined}>
+      <BaseLayout
+        announcement={
+          announcements && announcements.length > 0
+            ? announcements[0]
+            : undefined
+        }
+      >
         <div className="bg-gray-100">
           <BaseContainer>
             <h1 className="text-2xl pl-4 py-8 md:py-20 md:text-center text-left">
