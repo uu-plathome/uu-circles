@@ -38,7 +38,7 @@ type Props = {
     slug: string
     circleNewJoy: CircleNewJoy
   }[]
-  /** UU-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({
