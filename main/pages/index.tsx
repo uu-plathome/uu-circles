@@ -35,8 +35,6 @@ const Index: NextPage<Props> = ({
   uuYellArticles,
   announcements,
 }) => {
-  console.log(process.env.NODE_ENV)
-
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
     posts: WP_REST_API_Post[]
