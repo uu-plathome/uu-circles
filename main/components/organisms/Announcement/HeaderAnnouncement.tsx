@@ -17,10 +17,11 @@ const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
         <p
           className={`
           text-center
-          ${isHigh(announcement.importance)
+          ${
+            isHigh(announcement.importance)
               ? 'text-base md:text-lg'
               : 'text-sm md:text-base'
-            }
+          }
         `}
         >
           {announcement.title}
