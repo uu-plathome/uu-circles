@@ -13,4 +13,14 @@ class AnnouncementPlaceQuerySlugProperty
      * メイン画面 (固定表示)
      */
     const main_fixed_view = 'main_fixed_view';
+
+    /**
+     * 新歓Discord
+     */
+    const newjoy_discord = 'newjoy_discord';
+
+    /**
+     * Twitter
+     */
+    const twitter = 'twitter';
 }

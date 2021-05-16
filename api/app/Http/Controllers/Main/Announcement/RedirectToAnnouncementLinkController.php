@@ -78,6 +78,14 @@ class RedirectToAnnouncementLinkController
             return AnnouncementPlace::MAIN_ANNOUNCEMENT_PAGE;
         }
 
+        if ($query === AnnouncementPlaceQuerySlugProperty::newjoy_discord) {
+            return AnnouncementPlace::NEWJOY_DISCORD;
+        }
+
+        if ($query === AnnouncementPlaceQuerySlugProperty::twitter) {
+            return AnnouncementPlace::TWITTER;
+        }
+
         return AnnouncementPlaceQuerySlugProperty::main_fixed_view;
     }
 }
