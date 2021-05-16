@@ -28,7 +28,7 @@ const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
         </p>
 
         {announcement.link ? (
-          <p className="text-right">
+          <p className="text-right md:text-center">
             <a
               href={announcement.link}
               className="text-blue-600 underline text-xs"
