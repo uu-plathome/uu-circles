@@ -2,10 +2,10 @@
 
 namespace App\Usecases\Main\Circle;
 
-use App\Dto\MainDetailCircleDto;
 use App\Entity\CircleTagEntity;
 use App\Models\Circle;
 use App\Models\CircleTag;
+use App\Usecases\Main\Circle\Dto\MainDetailCircleDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
