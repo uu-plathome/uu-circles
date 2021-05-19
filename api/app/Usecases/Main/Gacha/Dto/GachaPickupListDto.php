@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Dto;
+namespace App\Usecases\Main\Gacha\Dto;
 
 /*
  * pickupリストの戻り値
@@ -18,10 +17,10 @@ class GachaPickupListDto
      * CircleValueObjectの配列（クラスの配列）
      */
     public array $pickupCircles;
-    public string  $pickupDate;
+    public string $pickupDate;
 
     //ただの配列にする関数
-    public  function toArrayPickupCircles():array
+    public function toArrayPickupCircles(): array
     {
         return (new Collection($this->pickupCircles))->map(
             fn (CircleValueObject $circleValueObject) =>
@@ -31,4 +30,3 @@ class GachaPickupListDto
         )->toArray();
     }
 }
-
