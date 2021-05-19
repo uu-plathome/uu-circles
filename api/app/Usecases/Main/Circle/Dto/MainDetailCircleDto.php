@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Usecases\Main\Circle\Dto;
 
 use App\Entity\CircleTagEntity;
 use App\ValueObjects\CircleValueObject;

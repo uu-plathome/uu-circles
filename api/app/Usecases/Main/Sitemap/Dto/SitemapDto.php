@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Usecases\Main\Sitemap\Dto;
 
 class SitemapDto
 {
@@ -18,8 +18,8 @@ class SitemapDto
     public static function of(
         string $site_url,
         string $publish_at
-    ): SitemapDto {
-        return new SitemapDto($site_url, $publish_at);
+    ): self {
+        return new self($site_url, $publish_at);
     }
 
     public function toArray(): array

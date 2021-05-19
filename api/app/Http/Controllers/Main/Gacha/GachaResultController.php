@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Main\Gacha;
 
-use App\Dto\CircleGachaDto;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Support\Arr;
+use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class GachaResultController extends Controller
@@ -72,7 +73,7 @@ class GachaResultController extends Controller
         $dto->gacha_hash = $circleGachaResult->gacha_hash;
         $dto->result_circles = $foundDrewCircles->toArray();
         $dto->pickup_circles = $foundPickupCircles->toArray();
-        $dto->created_at = $circleGachaResult->created_at;
+        $dto->created_at = $circleGachaResult->created_at instanceof Carbon ? $circleGachaResult->created_at : null;
         $dto->count = $foundDrewCircles->count();
 
         return Arr::camel_keys($dto->toArray());

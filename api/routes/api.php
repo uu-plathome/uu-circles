@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Main\SitemapController;
 use App\Http\Controllers\Main\Circle\GetCircleController;
 use App\Http\Controllers\Main\Circle\IndexCircleController;
 use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
 use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
 use App\Http\Controllers\Main\Gacha\GachaDrawController;
+use App\Http\Controllers\Main\Sitemap\SitemapController;
 use App\Http\Controllers\Main\Statistics\StatisticsController;
 use App\Http\Controllers\Main\Gacha\GachaPickupListController;
 use App\Http\Controllers\Main\Gacha\GachaResultController;
