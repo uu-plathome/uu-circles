@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * 週の活動頻度
