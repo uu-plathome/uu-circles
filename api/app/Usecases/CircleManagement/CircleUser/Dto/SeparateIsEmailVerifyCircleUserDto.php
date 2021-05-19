@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Usecases\CircleManagement\CircleUser\Dto;
 
 use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;

@@ -2,11 +2,11 @@
 
 namespace App\Usecases\Main\Sitemap;
 
-use App\Dto\SitemapDto;
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Enum\SlugProperty\TagSlugProperty;
 use App\Models\Circle;
 use App\Models\CircleNewJoy;
+use App\Usecases\Main\Sitemap\Dto\SitemapDto;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;

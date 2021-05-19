@@ -1,8 +1,6 @@
 <?php
 
-
-namespace App\Dto;
-
+namespace App\Usecases\Main\Statistics\Dto;
 
 class StatisticsNumberOfActivitiesCountDto
 {

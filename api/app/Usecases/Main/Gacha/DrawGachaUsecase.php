@@ -2,9 +2,9 @@
 
 namespace App\Usecases\Main\Gacha;
 
-use App\Dto\CircleGachaDto;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
+use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
 use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 
 class DrawGachaUsecase
 {
-
     //ピックアップ一覧取得のためのやつ
     private GetGachaPickupListUsecase $getGachaPickupListUsecase;
 
@@ -34,7 +33,7 @@ class DrawGachaUsecase
 
         /**
          * ピックアップ一覧取得
-         * @var \App\Dto\GachaPickupListDto $pickupList
+         * @var \App\Usecases\Main\Gacha\Dto\GachaPickupListDto $pickupList
          */
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
@@ -95,11 +94,15 @@ class DrawGachaUsecase
         $drewCircles = new Collection([]);
 
         //ピックアップ引く
-        $drewCircles = $drewCircles->merge($pickupCircles->count() < $drawCount ? $pickupCircles : $pickupCircles->slice(0, $drawCount));
+        $drewCircles = $drewCircles->merge($pickupCircles->count() < $drawCount
+            ? $pickupCircles
+            : $pickupCircles->slice(0, $drawCount));
         Log::debug('DrawGachaUsecase drewCircles ピックアップ引く', [$drewCircles]);
 
         //ピックアップで足りないものを取ってくる
-        $drewCircles = $drewCircles->merge($drewCircles->count() === $drawCount ? [] :  $notPickupCircles->slice(0, $drawCount - $drewCircles->count()));
+        $drewCircles = $drewCircles->merge($drewCircles->count() === $drawCount
+            ? []
+            : $notPickupCircles->slice(0, $drawCount - $drewCircles->count()));
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
@@ -110,16 +113,16 @@ class DrawGachaUsecase
         $data = [
             'result_circle_ids' => $drewCircle_ids,
             'pickup_circle_ids' => $pickupCircle_ids,
-            'gacha_hash' => Str::uuid(),
-            'identifier_hash' => $param->identifierHash,
+            'gacha_hash'        => Str::uuid(),
+            'identifier_hash'   => $param->identifierHash,
         ];
-        $CircleGachaResult = CircleGachaResult::create($data);
+        $circleGachaResult = CircleGachaResult::create($data);
 
         $dto = new CircleGachaDto();
-        $dto->gacha_hash = $CircleGachaResult->gacha_hash;
+        $dto->gacha_hash = $circleGachaResult->gacha_hash;
         $dto->result_circles = $drewCircles->toArray();
         $dto->pickup_circles = $pickupCircles->toArray();
-        $dto->created_at = $CircleGachaResult->created_at;
+        $dto->created_at = $circleGachaResult->created_at;
         $dto->count = $drawCount;
 
         return $dto;
