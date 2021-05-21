@@ -23,10 +23,5 @@ export interface RegisterAdminFormRequestValidationError {
   message: string
 }
 
-export const isRegisterAdminFormRequest = (
-  v: any
-): v is RegisterAdminFormRequest => v && v.type === 'RegisterAdminFormRequest'
-export const isRegisterAdminFormRequestValidationError = (
-  v: any
-): v is RegisterAdminFormRequestValidationError =>
-  v && v.type === 'RegisterAdminFormRequestValidationError'
+export const isRegisterAdminFormRequest = (v: any): v is RegisterAdminFormRequest => v && v.type === 'RegisterAdminFormRequest'
+export const isRegisterAdminFormRequestValidationError = (v: any): v is RegisterAdminFormRequestValidationError => v && v.type === 'RegisterAdminFormRequestValidationError'
