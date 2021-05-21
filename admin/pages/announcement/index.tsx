@@ -1,45 +1,40 @@
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
-import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { AdvertiseListItem } from '@/components/molecules/list_items/AdvertiseListItem'
+import { AnnouncementListItem } from '@/components/molecules/list_items/AnnouncementListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
-import {
-  deleteAdvertise,
-  downloadAdvertiseXlsx,
-  getAdvertiseList,
-} from '@/infra/api/advertise'
-import { Advertise } from '@/lib/types/model/Advertise'
+import { deleteAnnouncement, getAnnouncementList } from '@/infra/api/announcement'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
 import useSWR from 'swr'
 
 const IndexPage: NextPage = () => {
-  const [advertises, setAdvertise] = useState<Advertise[]>([])
+  const [announcements, setAnnouncements] = useState<Announcement[]>([])
   const [error, setError] = useState<string>('')
   const { success, setSuccess } = useSuccess<string>('')
   const { isMd } = useMediaQuery()
   const [isOpen, setIsOpen] = useState(false)
 
-  const fetchAdvertise = async () => {
-    setAdvertise(await getAdvertiseList())
+  const fetchAnnouncements = async () => {
+    setAnnouncements(await getAnnouncementList())
   }
-  useSWR('/admin/api/advertise', fetchAdvertise)
+  useSWR('/admin/api/announcement', fetchAnnouncements)
 
-  const onDelete = async (advertiseId: number) => {
+  const onDelete = async (announcementId: number) => {
     setError('')
     setSuccess('')
     setIsOpen(true)
-    const data = await deleteAdvertise(advertiseId)
+    const data = await deleteAnnouncement(announcementId)
 
     if (data && data.type === 'Success') {
-      setSuccess('広告を削除しました', 3000)
-      fetchAdvertise()
+      setSuccess('お知らせを削除しました', 3000)
+      fetchAnnouncements()
       setIsOpen(false)
       return
     }
@@ -48,25 +43,25 @@ const IndexPage: NextPage = () => {
   }
 
   /**
-   * 広告データのXlsxのダウンロード
+   * お知らせデータのXlsxのダウンロード
    */
-  const onDownloadAdvertiseXlsx = async () => {
-    await downloadAdvertiseXlsx()
-  }
+  // const onDownloadAdvertiseXlsx = async () => {
+  //   await downloadAdvertiseXlsx()
+  // }
 
   return (
     <div>
       <Head>
-        <title>広告管理</title>
+        <title>お知らせ管理</title>
       </Head>
 
       {isMd ? <BaseHeader /> : ''}
 
       <BaseContainer>
         <BaseWrapper
-          title="広告管理"
-          actionText="広告発行"
-          actionHref="/advertise/create"
+          title="お知らせ管理"
+          actionText="お知らせ発行"
+          actionHref="/announcement/create"
         >
           {success ? <SuccessBunner text={success} /> : ''}
 
@@ -74,32 +69,32 @@ const IndexPage: NextPage = () => {
 
           <SubmitLoading isOpen={isOpen} />
 
-          {advertises.length > 0 ? (
+          {/* {announcements.length > 0 ? (
             <div className="mb-4">
               <BlueButton type="button" onClick={onDownloadAdvertiseXlsx}>
-                広告のxlsxダウンロード
+                お知らせのxlsxダウンロード
               </BlueButton>
             </div>
           ) : (
             ''
-          )}
+          )} */}
 
           <div className="border-2 border-gray-800 p-2">
-            {advertises.length > 0
-              ? advertises.map((advertise: Advertise) => {
-                  return (
-                    <AdvertiseListItem
-                      key={`circle-${advertise.id}`}
-                      advertise={advertise}
-                      onDelete={onDelete}
-                    />
-                  )
-                })
+            {announcements.length > 0
+              ? announcements.map((announcement: Announcement) => {
+                return (
+                  <AnnouncementListItem
+                    key={`circle-${announcement.id}`}
+                    announcement={announcement}
+                    onDelete={onDelete}
+                  />
+                )
+              })
               : ''}
 
-            {advertises.length === 0 ? (
+            {announcements.length === 0 ? (
               <div className="py-4">
-                <p className="text-white">まだ広告が登録されていません</p>
+                <p className="text-white">まだお知らせが登録されていません</p>
               </div>
             ) : (
               ''
