@@ -84,7 +84,7 @@ const IndexPage: NextPage = () => {
               ? announcements.map((announcement: Announcement) => {
                 return (
                   <AnnouncementListItem
-                    key={`circle-${announcement.id}`}
+                    key={`announcement-${announcement.id}`}
                     announcement={announcement}
                     onDelete={onDelete}
                   />
