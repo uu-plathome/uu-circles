@@ -10,12 +10,15 @@
     "bugsnag",
     "chmod",
     "datepicker",
+    "discord",
     "dropzone",
     "fontawesome",
+    "for",
     "fortawesome",
     "gtag",
     "intelephense",
     "laravel",
+    "newjoy",
     "tailwindcss"
   ]
 }
