@@ -11,7 +11,6 @@ export type Props = {
   type?: InputHTMLAttributes<any>['type']
   placeholder?: InputHTMLAttributes<any>['placeholder']
   error?: string
-  maxLength?: number
   pattern?: string
   disabled?: boolean
   onChange(e: any): void
@@ -22,7 +21,6 @@ const SearchTextField: FC<Props> = ({
   value,
   type = 'text',
   placeholder,
-  maxLength,
   pattern,
   expand,
   disabled,
@@ -38,7 +36,7 @@ const SearchTextField: FC<Props> = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          maxLength={maxLength}
+          maxLength={255}
           className="border-2 border-gray-300 bg-white h-10 pl-3 pr-12 rounded-lg text-sm focus:outline-none"
           pattern={pattern}
           disabled={disabled}

@@ -46,6 +46,7 @@ class SearchNameCircleController extends Controller
             'search' => $search,
         ]);
 
+        // サークルの検索
         $param = new SearchNameCircleListParam();
         $param->name = $search;
 
@@ -55,6 +56,7 @@ class SearchNameCircleController extends Controller
             fn () => $this->searchNameCircleListUsecase->invoke($param)
         );
 
+        // おすすめのサークル
         $recommendCircles = Cache::remember(
             $this->getRecommendCirclesCacheKey(),
             120,
