@@ -1,5 +1,11 @@
-import { CreateAnnouncementRequest, CreateAnnouncementRequestValidationError } from '@/lib/types/api/CreateAnnouncementRequest'
-import { UpdateAnnouncementRequest, UpdateAnnouncementRequestValidationError } from '@/lib/types/api/UpdateAnnouncementRequest'
+import {
+  CreateAnnouncementRequest,
+  CreateAnnouncementRequestValidationError,
+} from '@/lib/types/api/CreateAnnouncementRequest'
+import {
+  UpdateAnnouncementRequest,
+  UpdateAnnouncementRequestValidationError,
+} from '@/lib/types/api/UpdateAnnouncementRequest'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
@@ -28,15 +34,19 @@ export const showAnnouncement = async (announcementId: number) => {
   return data.data
 }
 
-
 /**
  * 広告の作成
  *
  * @param advertise
  */
-export const createAnnouncement = async (announcement: CreateAnnouncementRequest) => {
+export const createAnnouncement = async (
+  announcement: CreateAnnouncementRequest
+) => {
   try {
-    const { data } = await axiosInstance.post('/admin/api/announcement', announcement)
+    const { data } = await axiosInstance.post(
+      '/admin/api/announcement',
+      announcement
+    )
 
     return data.data
   } catch (_e) {

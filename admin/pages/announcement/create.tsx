@@ -31,7 +31,11 @@ const CreatePage: NextPage = () => {
   const isCircleViewFixed = useBooleanInput(false)
   const isAdminViewFixed = useBooleanInput(false)
   const active = useBooleanInput(true)
-  const notificationTime = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const notificationTime = useDateInput(
+    null,
+    'YYYY/MM/DD HH:mm',
+    'YYYY-MM-DD HH:mm'
+  )
   const publishTo = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const publishFrom = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
 

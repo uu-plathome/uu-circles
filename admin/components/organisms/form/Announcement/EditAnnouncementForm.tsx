@@ -31,10 +31,7 @@ type Props = {
     publishTo: UseDateInput
   }
 }
-const EditAnnouncementForm: FC<Props> = ({
-  onSubmit,
-  form,
-}) => {
+const EditAnnouncementForm: FC<Props> = ({ onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
       <BaseTextField
