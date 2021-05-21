@@ -1,3 +1,5 @@
+import { CreateAnnouncementRequest, CreateAnnouncementRequestValidationError } from '@/lib/types/api/CreateAnnouncementRequest'
+import { UpdateAnnouncementRequest, UpdateAnnouncementRequestValidationError } from '@/lib/types/api/UpdateAnnouncementRequest'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
@@ -32,19 +34,19 @@ export const showAnnouncement = async (announcementId: number) => {
  *
  * @param advertise
  */
-export const createAnnouncement = async (announcement: CreateAdvertiseRequest) => {
+export const createAnnouncement = async (announcement: CreateAnnouncementRequest) => {
   try {
     const { data } = await axiosInstance.post('/admin/api/announcement', announcement)
 
     return data.data
   } catch (_e) {
-    const e = _e as AxiosError<CreateAdvertiseRequestValidationError>
+    const e = _e as AxiosError<CreateAnnouncementRequestValidationError>
 
     if (e.response && e.response.status === 422 && e.response.data) {
       return {
         ...e.response.data,
-        type: 'CreateAdvertiseRequestValidationError',
-      } as CreateAdvertiseRequestValidationError
+        type: 'CreateAnnouncementRequestValidationError',
+      } as CreateAnnouncementRequestValidationError
     }
 
     console.error(e)
@@ -59,7 +61,7 @@ export const createAnnouncement = async (announcement: CreateAdvertiseRequest) =
  */
 export const updateAnnouncement = async (
   announcementId: number,
-  announcement: UpdateAdvertiseRequest
+  announcement: UpdateAnnouncementRequest
 ) => {
   try {
     const { data } = await axiosInstance.put(
@@ -69,13 +71,13 @@ export const updateAnnouncement = async (
 
     return data.data
   } catch (_e) {
-    const e = _e as AxiosError<UpdateAdvertiseRequestValidationError>
+    const e = _e as AxiosError<UpdateAnnouncementRequestValidationError>
 
     if (e.response && e.response.status === 422 && e.response.data) {
       return {
         ...e.response.data,
-        type: 'UpdateAdvertiseRequestValidationError',
-      } as UpdateAdvertiseRequestValidationError
+        type: 'UpdateAnnouncementRequestValidationError',
+      } as UpdateAnnouncementRequestValidationError
     }
 
     console.error(e)
