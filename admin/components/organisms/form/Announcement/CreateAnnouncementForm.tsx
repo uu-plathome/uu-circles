@@ -1,0 +1,260 @@
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseDatetime } from '@/components/atoms/form/BaseDatetime'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
+import { __ } from '@/lang/ja'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
+import { Importance } from '@/lib/enum/api/Importance'
+import { FC, FormEvent } from 'react'
+
+type Props = {
+  onSubmit(e: FormEvent<HTMLFormElement>): void
+  form: {
+    title: UseStringInput
+    description: UseStringInput
+    link: UseStringInput
+    announcementType: UseStringInput
+    importance: UseStringInput
+    // slug は api が生成する値で、ユーザーは入力できない
+    forMainView: UseBooleanInput
+    forCircleMail: UseBooleanInput
+    forAdminView: UseBooleanInput
+    forAdminMail: UseBooleanInput
+    forNewjoyDiscord: UseBooleanInput
+    active: UseBooleanInput
+    isMainViewFixed: UseBooleanInput
+    isCircleViewFixed: UseBooleanInput
+    isAdminViewFixed: UseBooleanInput
+    notificationTime: UseDateInput
+    publishFrom: UseDateInput
+    publishTo: UseDateInput
+  }
+}
+const CreateAnnouncementForm: FC<Props> = ({
+  onSubmit,
+  form,
+}) => {
+  return (
+    <form onSubmit={onSubmit}>
+      <BaseTextField
+        label="お知らせタイトル"
+        name="title"
+        id="title"
+        required
+        expand
+        maxLength={50}
+        {...form.title}
+      />
+
+      <BaseTextField
+        label="お知らせリンク"
+        name="link"
+        id="link"
+        expand
+        maxLength={255}
+        placeholder="https://example.com"
+        {...form.link}
+      />
+
+      <BaseSelect
+        label="公開設定"
+        id="active"
+        name="active"
+        items={[
+          { value: 'true', label: '公開' },
+          { value: 'false', label: '非公開' },
+        ]}
+        {...form.active}
+      />
+
+      <BaseSelect
+        label="お知らせ種類"
+        id="announcement_type"
+        name="announcement_type"
+        items={[
+          {
+            value: AnnouncementType.MAINTENANCE,
+            label: __(AnnouncementType.MAINTENANCE, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.UPDATE_FEATURE,
+            label: __(AnnouncementType.UPDATE_FEATURE, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.BUG,
+            label: __(AnnouncementType.BUG, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.NEW_CIRCLE,
+            label: __(AnnouncementType.NEW_CIRCLE, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.EVENT,
+            label: __(AnnouncementType.EVENT, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.QUESTIONNAIRE,
+            label: __(AnnouncementType.QUESTIONNAIRE, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.ADVERTISE,
+            label: __(AnnouncementType.ADVERTISE, 'AnnouncementType'),
+          },
+          {
+            value: AnnouncementType.UU_YELL,
+            label: __(AnnouncementType.UU_YELL, 'AnnouncementType'),
+          },
+        ]}
+        {...form.announcementType}
+      />
+
+      <BaseSelect
+        label="重要度"
+        id="importance"
+        name="importance"
+        items={[
+          {
+            value: Importance.HIGH,
+            label: __(Importance.HIGH, 'Importance'),
+          },
+          {
+            value: Importance.MIDDLE,
+            label: __(Importance.MIDDLE, 'Importance'),
+          },
+          {
+            value: Importance.LOW,
+            label: __(Importance.LOW, 'Importance'),
+          },
+        ]}
+        {...form.importance}
+      />
+
+      <BaseSelect
+        label="メイン画面に表示するかどうか"
+        id="forMainView"
+        name="forMainView"
+        items={[
+          { value: 'true', label: '表示する' },
+          { value: 'false', label: '表示しない' },
+        ]}
+        {...form.forMainView}
+      />
+
+      <BaseSelect
+        label="メイン画面に固定表示するかどうか"
+        id="isMainViewFixed"
+        name="isMainViewFixed"
+        items={[
+          { value: 'true', label: '固定表示する' },
+          { value: 'false', label: '表示しない' },
+        ]}
+        {...form.isMainViewFixed}
+      />
+
+      <BaseSelect
+        label="サークル管理者に固定表示するかどうか"
+        id="isCircleViewFixed"
+        name="isCircleViewFixed"
+        items={[
+          { value: 'true', label: '固定表示する' },
+          { value: 'false', label: '表示しない' },
+        ]}
+        {...form.isCircleViewFixed}
+      />
+
+      <BaseSelect
+        label="サークル管理者にメール送信かどうか"
+        id="forCircleMail"
+        name="forCircleMail"
+        items={[
+          { value: 'true', label: 'メール送信する' },
+          { value: 'false', label: 'メール送信しない' },
+        ]}
+        {...form.forCircleMail}
+      />
+
+      <BaseSelect
+        label="管理者画面に表示する"
+        id="forAdminView"
+        name="forAdminView"
+        items={[
+          { value: 'true', label: '管理者画面に表示する' },
+          { value: 'false', label: '表示しない' },
+        ]}
+        {...form.forAdminView}
+      />
+
+      <BaseSelect
+        label="管理者画面に固定表示するかどうか"
+        id="isAdminViewFixed"
+        name="isAdminViewFixed"
+        items={[
+          { value: 'true', label: '固定表示する' },
+          { value: 'false', label: '表示しない' },
+        ]}
+        {...form.isAdminViewFixed}
+      />
+
+      <BaseSelect
+        label="管理者にメール送信かどうか"
+        id="forAdminMail"
+        name="forAdminMail"
+        items={[
+          { value: 'true', label: 'メール送信する' },
+          { value: 'false', label: 'メール送信しない' },
+        ]}
+        {...form.forAdminMail}
+      />
+
+      <BaseSelect
+        label="新歓Discordに通知するかどうか"
+        id="forNewjoyDiscord"
+        name="forNewjoyDiscord"
+        items={[
+          { value: 'true', label: '通知する' },
+          { value: 'false', label: '通知しない' },
+        ]}
+        {...form.forNewjoyDiscord}
+      />
+
+      <BaseDatetime
+        label="メールや新歓Discordでの通知時間"
+        name="notificationTime"
+        id="notificationTime"
+        {...form.notificationTime}
+      />
+
+      <BaseSelect
+        label="公開設定"
+        id="active"
+        name="active"
+        items={[
+          { value: 'true', label: '公開' },
+          { value: 'false', label: '非公開' },
+        ]}
+        {...form.active}
+      />
+
+      <BaseDatetime
+        label="公開開始日時"
+        name="publishFrom"
+        id="publishFrom"
+        {...form.publishFrom}
+      />
+
+      <BaseDatetime
+        label="公開終了日時"
+        name="publishTo"
+        id="publishTo"
+        {...form.publishTo}
+      />
+
+      <div className="flex justify-center mt-8">
+        <GreenButton type="submit">進む</GreenButton>
+      </div>
+    </form>
+  )
+}
+
+export { CreateAnnouncementForm }

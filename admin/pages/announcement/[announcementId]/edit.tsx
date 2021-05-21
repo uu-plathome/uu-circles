@@ -1,0 +1,154 @@
+import { BaseContainer } from '@/components/layouts/BaseContainer'
+import { BaseHeader } from '@/components/layouts/BaseHeader'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { EditAnnouncementForm } from '@/components/organisms/form/Announcement/EditAnnouncementForm'
+import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { showAnnouncement, updateAnnouncement } from '@/infra/api/announcement'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
+import { Importance } from '@/lib/enum/api/Importance'
+import { isUpdateAnnouncementRequestValidationError } from '@/lib/types/api/UpdateAnnouncementRequest'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { FormEvent, useEffect } from 'react'
+
+const CreatePage: NextPage = () => {
+  const router = useRouter()
+  const { isMd } = useMediaQuery()
+  const { announcementId } = router.query
+
+  const title = useStringInput('')
+  const description = useStringInput('')
+  const link = useStringInput('')
+  const announcementType = useStringInput(AnnouncementType.EVENT)
+  const importance = useStringInput(Importance.MIDDLE)
+  const forMainView = useBooleanInput(true)
+  const forCircleMail = useBooleanInput(false)
+  const forAdminView = useBooleanInput(false)
+  const forAdminMail = useBooleanInput(false)
+  const forNewjoyDiscord = useBooleanInput(false)
+  const isMainViewFixed = useBooleanInput(false)
+  const isCircleViewFixed = useBooleanInput(false)
+  const isAdminViewFixed = useBooleanInput(false)
+  const active = useBooleanInput(true)
+  const notificationTime = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const publishTo = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const publishFrom = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+
+  // 画面ロード時に一回実行
+  useEffect(() => {
+    const f = async () => {
+      const foundsAnnouncement = await showAnnouncement(Number(announcementId))
+      link.set(foundsAnnouncement.link)
+      title.set(foundsAnnouncement.title)
+      description.set(foundsAnnouncement.description)
+      announcementType.set(foundsAnnouncement.announcementType)
+      importance.set(foundsAnnouncement.importance)
+      forMainView.set(foundsAnnouncement.forMainView)
+      forCircleMail.set(foundsAnnouncement.forCircleMail)
+      forAdminView.set(foundsAnnouncement.forAdminView)
+      forAdminMail.set(foundsAnnouncement.forAdminMail)
+      forNewjoyDiscord.set(foundsAnnouncement.forNewjoyDiscord)
+      isMainViewFixed.set(foundsAnnouncement.isMainViewFixed)
+      isCircleViewFixed.set(foundsAnnouncement.isCircleViewFixed)
+      isAdminViewFixed.set(foundsAnnouncement.isAdminViewFixed)
+      notificationTime.set(foundsAnnouncement.notificationTime)
+      active.set(foundsAnnouncement.active)
+      publishTo.set(foundsAnnouncement.publishTo)
+      publishFrom.set(foundsAnnouncement.publishFrom)
+    }
+    f()
+  }, [])
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const data = await updateAnnouncement(
+      Number(announcementId),
+      {
+        type: 'UpdateAnnouncementRequest',
+        link: link.value,
+        title: title.value,
+        description: description.value,
+        announcementType: announcementType.value,
+        importance: importance.value,
+        forMainView: forMainView.toBoolean,
+        forCircleMail: forCircleMail.toBoolean,
+        forAdminView: forAdminView.toBoolean,
+        forAdminMail: forAdminMail.toBoolean,
+        forNewjoyDiscord: forNewjoyDiscord.toBoolean,
+        isMainViewFixed: isMainViewFixed.toBoolean,
+        isCircleViewFixed: isCircleViewFixed.toBoolean,
+        isAdminViewFixed: isAdminViewFixed.toBoolean,
+        notificationTime: notificationTime.toFormatApi,
+        active: active.toBoolean,
+        publishTo: publishTo.toFormatApi,
+        publishFrom: publishFrom.toFormatApi,
+      })
+
+    if (isUpdateAnnouncementRequestValidationError(data)) {
+      title.setErrors(data.errors.title)
+      link.setErrors(data.errors.link)
+      active.setErrors(data.errors.active)
+      description.setErrors(data.errors.description)
+      announcementType.setErrors(data.errors.announcementType)
+      importance.setErrors(data.errors.importance)
+      forMainView.setErrors(data.errors.forMainView)
+      forCircleMail.setErrors(data.errors.forCircleMail)
+      forAdminView.setErrors(data.errors.forAdminView)
+      forAdminMail.setErrors(data.errors.forAdminMail)
+      forNewjoyDiscord.setErrors(data.errors.forNewjoyDiscord)
+      isMainViewFixed.setErrors(data.errors.isMainViewFixed)
+      isCircleViewFixed.setErrors(data.errors.isCircleViewFixed)
+      isAdminViewFixed.setErrors(data.errors.isAdminViewFixed)
+      notificationTime.setErrors(data.errors.notificationTime)
+      publishTo.setErrors(data.errors.publishTo)
+      publishFrom.setErrors(data.errors.publishFrom)
+      return
+    }
+
+    await router.push('/announcement')
+  }
+
+  return (
+    <div>
+      <Head>
+        <title>お知らせ編集</title>
+      </Head>
+
+      {isMd ? <BaseHeader /> : ''}
+
+      <BaseContainer>
+        <BaseWrapper title="お知らせ編集">
+          <div className="border-2 border-gray-800 px-2 py-4">
+            <EditAnnouncementForm
+              onSubmit={onSubmit}
+              form={{
+                title,
+                description,
+                link,
+                announcementType,
+                importance,
+                forMainView,
+                forCircleMail,
+                forAdminView,
+                forAdminMail,
+                forNewjoyDiscord,
+                active,
+                isMainViewFixed,
+                isCircleViewFixed,
+                isAdminViewFixed,
+                notificationTime,
+                publishFrom,
+                publishTo,
+              }}
+            />
+          </div>
+        </BaseWrapper>
+      </BaseContainer>
+    </div>
+  )
+}
+
+export default CreatePage
