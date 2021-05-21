@@ -52,7 +52,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ announcement, onDelete }) => {
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
         style={customStyles}
-        contentLabel="新歓の削除"
+        contentLabel="お知らせの削除"
       >
         <h2 className="text-center text-lg mb-4 font-bold">
           本当に削除しますか？
@@ -79,7 +79,7 @@ const ListItemTableColumn: FC<{
 }> = ({ children, title, lg }) => {
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
-    <div className={`${widthClass} pr-2`}>
+    <div className={`${widthClass} pr-2 mb-2`}>
       <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
         {title}
       </p>
@@ -106,7 +106,7 @@ const AnnouncementListItem: FC<Props> = ({ announcement, onDelete }) => {
             />
           </ListItemTableColumn>
           <ListItemTableColumn title="公開中" lg>
-            <p>{__(announcement.announcementType, 'announcementType')}</p>
+            <p>{__(announcement.announcementType, 'AnnouncementType')}</p>
           </ListItemTableColumn>
           <ListItemTableColumn title="編集する">
             <Link
