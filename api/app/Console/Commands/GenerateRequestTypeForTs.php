@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
 use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
+use App\Http\Requests\Admin\Announcement\CreateAnnouncementRequest;
+use App\Http\Requests\Admin\Announcement\UpdateAnnouncementRequest;
 use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
@@ -91,6 +93,8 @@ class GenerateRequestTypeForTs extends Command
             CreateAdvertiseRequest::class,
             UpdateAdvertiseRequest::class,
             CreateOrUpdateCircleTagRequest::class,
+            CreateAnnouncementRequest::class,
+            UpdateAnnouncementRequest::class,
         ];
         $this->requestCircleClasses = [
             ForgotPasswordCircleRequest::class,
