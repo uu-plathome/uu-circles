@@ -108,6 +108,9 @@ const AnnouncementListItem: FC<Props> = ({ announcement, onDelete }) => {
           <ListItemTableColumn title="お知らせ種類" lg>
             <p>{__(announcement.announcementType, 'AnnouncementType')}</p>
           </ListItemTableColumn>
+          <ListItemTableColumn title="重要度">
+            <p>{__(announcement.importance, 'Importance')}</p>
+          </ListItemTableColumn>
           <ListItemTableColumn title="編集する">
             <Link
               href="/announcement/[announcementId]/edit"

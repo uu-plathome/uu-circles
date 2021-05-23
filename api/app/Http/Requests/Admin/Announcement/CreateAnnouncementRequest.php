@@ -33,7 +33,7 @@ class CreateAnnouncementRequest extends FormRequest
     {
         return Arr::camel_keys([
             AnnouncementProperty::title => [
-                'nullable',
+                'required',
                 'string',
                 'max:100',
             ],
@@ -49,12 +49,12 @@ class CreateAnnouncementRequest extends FormRequest
                 'max:255',
             ],
             AnnouncementProperty::announcement_type => [
-                'nullable',
+                'required',
                 'string',
                 Rule::in(AnnouncementType::getAll()),
             ],
             AnnouncementProperty::importance => [
-                'nullable',
+                'required',
                 'string',
                 Rule::in(Importance::getAll()),
             ],
