@@ -34,7 +34,11 @@ const CreatePage: NextPage = () => {
   const isCircleViewFixed = useBooleanInput(false)
   const isAdminViewFixed = useBooleanInput(false)
   const active = useBooleanInput(true)
-  const notificationTime = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
+  const notificationTime = useDateInput(
+    null,
+    'YYYY/MM/DD HH:mm',
+    'YYYY-MM-DD HH:mm'
+  )
   const publishTo = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const publishFrom = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
 
@@ -68,28 +72,26 @@ const CreatePage: NextPage = () => {
     event.preventDefault()
     setIsOpen(true)
 
-    const data = await updateAnnouncement(
-      Number(announcementId),
-      {
-        type: 'UpdateAnnouncementRequest',
-        link: link.value,
-        title: title.value,
-        description: description.value,
-        announcementType: announcementType.value,
-        importance: importance.value,
-        forMainView: forMainView.toBoolean,
-        forCircleMail: forCircleMail.toBoolean,
-        forAdminView: forAdminView.toBoolean,
-        forAdminMail: forAdminMail.toBoolean,
-        forNewjoyDiscord: forNewjoyDiscord.toBoolean,
-        isMainViewFixed: isMainViewFixed.toBoolean,
-        isCircleViewFixed: isCircleViewFixed.toBoolean,
-        isAdminViewFixed: isAdminViewFixed.toBoolean,
-        notificationTime: notificationTime.toFormatApi,
-        active: active.toBoolean,
-        publishTo: publishTo.toFormatApi,
-        publishFrom: publishFrom.toFormatApi,
-      })
+    const data = await updateAnnouncement(Number(announcementId), {
+      type: 'UpdateAnnouncementRequest',
+      link: link.value,
+      title: title.value,
+      description: description.value,
+      announcementType: announcementType.value,
+      importance: importance.value,
+      forMainView: forMainView.toBoolean,
+      forCircleMail: forCircleMail.toBoolean,
+      forAdminView: forAdminView.toBoolean,
+      forAdminMail: forAdminMail.toBoolean,
+      forNewjoyDiscord: forNewjoyDiscord.toBoolean,
+      isMainViewFixed: isMainViewFixed.toBoolean,
+      isCircleViewFixed: isCircleViewFixed.toBoolean,
+      isAdminViewFixed: isAdminViewFixed.toBoolean,
+      notificationTime: notificationTime.toFormatApi,
+      active: active.toBoolean,
+      publishTo: publishTo.toFormatApi,
+      publishFrom: publishFrom.toFormatApi,
+    })
 
     if (isUpdateAnnouncementRequestValidationError(data)) {
       title.setErrors(data.errors.title)
