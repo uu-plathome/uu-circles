@@ -105,7 +105,7 @@ const AnnouncementListItem: FC<Props> = ({ announcement, onDelete }) => {
               icon={announcement.active ? faCheckCircle : faTimesCircle}
             />
           </ListItemTableColumn>
-          <ListItemTableColumn title="公開中" lg>
+          <ListItemTableColumn title="お知らせ種類" lg>
             <p>{__(announcement.announcementType, 'AnnouncementType')}</p>
           </ListItemTableColumn>
           <ListItemTableColumn title="編集する">
