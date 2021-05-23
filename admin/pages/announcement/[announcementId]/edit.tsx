@@ -1,3 +1,4 @@
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -11,11 +12,12 @@ import { isUpdateAnnouncementRequestValidationError } from '@/lib/types/api/Upda
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(true)
   const { announcementId } = router.query
 
   const title = useStringInput('')
@@ -57,12 +59,14 @@ const CreatePage: NextPage = () => {
       active.set(foundsAnnouncement.active)
       publishTo.set(foundsAnnouncement.publishTo)
       publishFrom.set(foundsAnnouncement.publishFrom)
+      setIsOpen(false)
     }
     f()
   }, [])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await updateAnnouncement(
       Number(announcementId),
@@ -105,9 +109,11 @@ const CreatePage: NextPage = () => {
       notificationTime.setErrors(data.errors.notificationTime)
       publishTo.setErrors(data.errors.publishTo)
       publishFrom.setErrors(data.errors.publishFrom)
+      setIsOpen(false)
       return
     }
 
+    setIsOpen(false)
     await router.push('/announcement')
   }
 
@@ -121,6 +127,8 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="お知らせ編集">
+          <SubmitLoading isOpen={isOpen} />
+
           <div className="border-2 border-gray-800 px-2 py-4">
             <EditAnnouncementForm
               onSubmit={onSubmit}
