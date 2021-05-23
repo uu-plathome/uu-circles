@@ -2,6 +2,8 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseDatetime } from '@/components/atoms/form/BaseDatetime'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
+import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
@@ -37,6 +39,8 @@ const CreateAnnouncementForm: FC<Props> = ({
 }) => {
   return (
     <form onSubmit={onSubmit}>
+      <FormHeader>基本設定</FormHeader>
+
       <BaseTextField
         label="お知らせタイトル"
         name="title"
@@ -55,17 +59,6 @@ const CreateAnnouncementForm: FC<Props> = ({
         maxLength={255}
         placeholder="https://example.com"
         {...form.link}
-      />
-
-      <BaseSelect
-        label="公開設定"
-        id="active"
-        name="active"
-        items={[
-          { value: 'true', label: '公開' },
-          { value: 'false', label: '非公開' },
-        ]}
-        {...form.active}
       />
 
       <BaseSelect
@@ -130,100 +123,129 @@ const CreateAnnouncementForm: FC<Props> = ({
         {...form.importance}
       />
 
-      <BaseSelect
-        label="メイン画面に表示するかどうか"
-        id="forMainView"
-        name="forMainView"
-        items={[
-          { value: 'true', label: '表示する' },
-          { value: 'false', label: '表示しない' },
-        ]}
-        {...form.forMainView}
+      <BaseTextarea
+        label="お知らせ内容"
+        name="description"
+        id="description"
+        expand
+        maxLength={500}
+        {...form.description}
       />
 
-      <BaseSelect
-        label="メイン画面に固定表示するかどうか"
-        id="isMainViewFixed"
-        name="isMainViewFixed"
-        items={[
-          { value: 'true', label: '固定表示する' },
-          { value: 'false', label: '表示しない' },
-        ]}
-        {...form.isMainViewFixed}
-      />
+      <div className="grid md:grid-cols-2 md:gap-4">
+        <div>
+          <FormHeader>メイン画面</FormHeader>
 
-      <BaseSelect
-        label="サークル管理者に固定表示するかどうか"
-        id="isCircleViewFixed"
-        name="isCircleViewFixed"
-        items={[
-          { value: 'true', label: '固定表示する' },
-          { value: 'false', label: '表示しない' },
-        ]}
-        {...form.isCircleViewFixed}
-      />
+          <BaseSelect
+            label="メイン画面に表示するかどうか"
+            id="forMainView"
+            name="forMainView"
+            items={[
+              { value: 'true', label: '表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.forMainView}
+          />
 
-      <BaseSelect
-        label="サークル管理者にメール送信かどうか"
-        id="forCircleMail"
-        name="forCircleMail"
-        items={[
-          { value: 'true', label: 'メール送信する' },
-          { value: 'false', label: 'メール送信しない' },
-        ]}
-        {...form.forCircleMail}
-      />
+          <BaseSelect
+            label="メイン画面に固定表示するかどうか"
+            id="isMainViewFixed"
+            name="isMainViewFixed"
+            items={[
+              { value: 'true', label: '固定表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.isMainViewFixed}
+          />
+        </div>
 
-      <BaseSelect
-        label="管理者画面に表示する"
-        id="forAdminView"
-        name="forAdminView"
-        items={[
-          { value: 'true', label: '管理者画面に表示する' },
-          { value: 'false', label: '表示しない' },
-        ]}
-        {...form.forAdminView}
-      />
+        <div>
+          <FormHeader>サークル管理者</FormHeader>
 
-      <BaseSelect
-        label="管理者画面に固定表示するかどうか"
-        id="isAdminViewFixed"
-        name="isAdminViewFixed"
-        items={[
-          { value: 'true', label: '固定表示する' },
-          { value: 'false', label: '表示しない' },
-        ]}
-        {...form.isAdminViewFixed}
-      />
+          <BaseSelect
+            label="サークル管理者に固定表示するかどうか"
+            id="isCircleViewFixed"
+            name="isCircleViewFixed"
+            items={[
+              { value: 'true', label: '固定表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.isCircleViewFixed}
+          />
+        </div>
 
-      <BaseSelect
-        label="管理者にメール送信かどうか"
-        id="forAdminMail"
-        name="forAdminMail"
-        items={[
-          { value: 'true', label: 'メール送信する' },
-          { value: 'false', label: 'メール送信しない' },
-        ]}
-        {...form.forAdminMail}
-      />
+        <div>
+          <FormHeader>管理者画面</FormHeader>
 
-      <BaseSelect
-        label="新歓Discordに通知するかどうか"
-        id="forNewjoyDiscord"
-        name="forNewjoyDiscord"
-        items={[
-          { value: 'true', label: '通知する' },
-          { value: 'false', label: '通知しない' },
-        ]}
-        {...form.forNewjoyDiscord}
-      />
+          <BaseSelect
+            label="管理者画面に表示する"
+            id="forAdminView"
+            name="forAdminView"
+            items={[
+              { value: 'true', label: '管理者画面に表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.forAdminView}
+          />
 
-      <BaseDatetime
-        label="メールや新歓Discordでの通知時間"
-        name="notificationTime"
-        id="notificationTime"
-        {...form.notificationTime}
-      />
+          <BaseSelect
+            label="管理者画面に固定表示するかどうか"
+            id="isAdminViewFixed"
+            name="isAdminViewFixed"
+            items={[
+              { value: 'true', label: '固定表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.isAdminViewFixed}
+          />
+        </div>
+
+        <div>
+          <FormHeader>通知設定</FormHeader>
+
+          <BaseDatetime
+            label="メールや新歓Discordでの通知時間"
+            name="notificationTime"
+            id="notificationTime"
+            {...form.notificationTime}
+          />
+
+          <BaseSelect
+            label="新歓Discordに通知するかどうか"
+            id="forNewjoyDiscord"
+            name="forNewjoyDiscord"
+            items={[
+              { value: 'true', label: '通知する' },
+              { value: 'false', label: '通知しない' },
+            ]}
+            {...form.forNewjoyDiscord}
+          />
+
+          <BaseSelect
+            label="サークル管理者にメール送信かどうか"
+            id="forCircleMail"
+            name="forCircleMail"
+            items={[
+              { value: 'true', label: 'メール送信する' },
+              { value: 'false', label: 'メール送信しない' },
+            ]}
+            {...form.forCircleMail}
+          />
+
+          <BaseSelect
+            label="管理者にメール送信かどうか"
+            id="forAdminMail"
+            name="forAdminMail"
+            items={[
+              { value: 'true', label: 'メール送信する' },
+              { value: 'false', label: 'メール送信しない' },
+            ]}
+            {...form.forAdminMail}
+          />
+        </div>
+      </div>
+
+      <FormHeader>公開設定</FormHeader>
 
       <BaseSelect
         label="公開設定"
