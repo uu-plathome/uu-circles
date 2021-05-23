@@ -33,7 +33,7 @@ class UpdateAnnouncementRequest extends FormRequest
     {
         return Arr::camel_keys([
             AnnouncementProperty::title => [
-                'nullable',
+                'required',
                 'string',
                 'max:100',
             ],
@@ -49,12 +49,12 @@ class UpdateAnnouncementRequest extends FormRequest
                 'max:255',
             ],
             AnnouncementProperty::announcement_type => [
-                'nullable',
+                'required',
                 'string',
                 Rule::in(AnnouncementType::getAll()),
             ],
             AnnouncementProperty::importance => [
-                'nullable',
+                'required',
                 'string',
                 Rule::in(Importance::getAll()),
             ],
@@ -158,13 +158,13 @@ class UpdateAnnouncementRequest extends FormRequest
         $param->is_admin_view_fixed = Arr::get($request, 'is_admin_view_fixed', true);
 
         $notificationTime = Arr::get($request, 'notification_time');
-        $param->notification_time = !$notificationTime ? new Carbon($notificationTime) : null;
+        $param->notification_time = !is_null($notificationTime) ? new Carbon($notificationTime) : null;
 
         $publishFrom = Arr::get($request, 'publish_from');
-        $param->publish_from = !$publishFrom ? new Carbon($publishFrom) : null;
+        $param->publish_from = !is_null($publishFrom) ? new Carbon($publishFrom) : null;
 
         $publishTo = Arr::get($request, 'publish_to');
-        $param->publish_to = !$publishTo ? new Carbon($publishTo) : null;
+        $param->publish_to = !is_null($publishTo) ? new Carbon($publishTo) : null;
 
         return $param;
     }

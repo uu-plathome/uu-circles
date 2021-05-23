@@ -8,6 +8,7 @@ import {
   faBuilding,
   faUser,
   faAd,
+  faBullhorn,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -23,7 +24,7 @@ interface SidebarItem {
   role: Role[]
 }
 
-const generalSiderbarList = [
+const generalSidebarList = [
   {
     name: 'ダッシュボード',
     link: '/',
@@ -56,6 +57,13 @@ const generalSiderbarList = [
     name: '広告管理',
     link: '/advertise',
     icon: faAd,
+    exact: false,
+    role: [Role.SYSTEM],
+  },
+  {
+    name: 'お知らせ管理',
+    link: '/announcement',
+    icon: faBullhorn,
     exact: false,
     role: [Role.SYSTEM],
   },
@@ -138,7 +146,7 @@ const BaseSidebar: FC = () => {
             </div>
 
             <ul>
-              {generalSiderbarList.map((sidebarItem: SidebarItem, idx) =>
+              {generalSidebarList.map((sidebarItem: SidebarItem, idx) =>
                 sidebarItem.role.includes(role) ? (
                   <SidebarItem
                     sidebarItem={sidebarItem}
