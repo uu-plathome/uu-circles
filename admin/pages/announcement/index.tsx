@@ -7,7 +7,10 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AnnouncementListItem } from '@/components/molecules/list_items/AnnouncementListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
-import { deleteAnnouncement, getAnnouncementList } from '@/infra/api/announcement'
+import {
+  deleteAnnouncement,
+  getAnnouncementList,
+} from '@/infra/api/announcement'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -82,14 +85,14 @@ const IndexPage: NextPage = () => {
           <div className="border-2 border-gray-800 p-2">
             {announcements.length > 0
               ? announcements.map((announcement: Announcement) => {
-                return (
-                  <AnnouncementListItem
-                    key={`announcement-${announcement.id}`}
-                    announcement={announcement}
-                    onDelete={onDelete}
-                  />
-                )
-              })
+                  return (
+                    <AnnouncementListItem
+                      key={`announcement-${announcement.id}`}
+                      announcement={announcement}
+                      onDelete={onDelete}
+                    />
+                  )
+                })
               : ''}
 
             {announcements.length === 0 ? (

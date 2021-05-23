@@ -33,10 +33,7 @@ type Props = {
     publishTo: UseDateInput
   }
 }
-const CreateAnnouncementForm: FC<Props> = ({
-  onSubmit,
-  form,
-}) => {
+const CreateAnnouncementForm: FC<Props> = ({ onSubmit, form }) => {
   return (
     <form onSubmit={onSubmit}>
       <FormHeader>基本設定</FormHeader>
