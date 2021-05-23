@@ -3,11 +3,11 @@
  */
 export interface UpdateAnnouncementRequest {
   type: 'UpdateAnnouncementRequest'
-  title?: string
+  title: string
   description?: string
   link?: string
-  announcementType?: string
-  importance?: string
+  announcementType: string
+  importance: string
   forMainView: boolean
   forCircleMail: boolean
   forAdminView: boolean
@@ -49,10 +49,5 @@ export interface UpdateAnnouncementRequestValidationError {
   message: string
 }
 
-export const isUpdateAnnouncementRequest = (
-  v: any
-): v is UpdateAnnouncementRequest => v && v.type === 'UpdateAnnouncementRequest'
-export const isUpdateAnnouncementRequestValidationError = (
-  v: any
-): v is UpdateAnnouncementRequestValidationError =>
-  v && v.type === 'UpdateAnnouncementRequestValidationError'
+export const isUpdateAnnouncementRequest = (v: any): v is UpdateAnnouncementRequest => v && v.type === 'UpdateAnnouncementRequest'
+export const isUpdateAnnouncementRequestValidationError = (v: any): v is UpdateAnnouncementRequestValidationError => v && v.type === 'UpdateAnnouncementRequestValidationError'

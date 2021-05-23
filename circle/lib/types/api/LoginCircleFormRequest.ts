@@ -19,9 +19,5 @@ export interface LoginCircleFormRequestValidationError {
   message: string
 }
 
-export const isLoginCircleFormRequest = (v: any): v is LoginCircleFormRequest =>
-  v && v.type === 'LoginCircleFormRequest'
-export const isLoginCircleFormRequestValidationError = (
-  v: any
-): v is LoginCircleFormRequestValidationError =>
-  v && v.type === 'LoginCircleFormRequestValidationError'
+export const isLoginCircleFormRequest = (v: any): v is LoginCircleFormRequest => v && v.type === 'LoginCircleFormRequest'
+export const isLoginCircleFormRequestValidationError = (v: any): v is LoginCircleFormRequestValidationError => v && v.type === 'LoginCircleFormRequestValidationError'
