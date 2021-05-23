@@ -65,6 +65,7 @@ const CreateAnnouncementForm: FC<Props> = ({
         label="お知らせ種類"
         id="announcement_type"
         name="announcement_type"
+        required
         items={[
           {
             value: AnnouncementType.MAINTENANCE,
@@ -106,6 +107,7 @@ const CreateAnnouncementForm: FC<Props> = ({
         label="重要度"
         id="importance"
         name="importance"
+        required
         items={[
           {
             value: Importance.HIGH,
@@ -140,6 +142,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="メイン画面に表示するかどうか"
             id="forMainView"
             name="forMainView"
+            required
             items={[
               { value: 'true', label: '表示する' },
               { value: 'false', label: '表示しない' },
@@ -151,6 +154,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="メイン画面に固定表示するかどうか"
             id="isMainViewFixed"
             name="isMainViewFixed"
+            required
             items={[
               { value: 'true', label: '固定表示する' },
               { value: 'false', label: '表示しない' },
@@ -166,6 +170,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="サークル管理者に固定表示するかどうか"
             id="isCircleViewFixed"
             name="isCircleViewFixed"
+            required
             items={[
               { value: 'true', label: '固定表示する' },
               { value: 'false', label: '表示しない' },
@@ -181,6 +186,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="管理者画面に表示する"
             id="forAdminView"
             name="forAdminView"
+            required
             items={[
               { value: 'true', label: '管理者画面に表示する' },
               { value: 'false', label: '表示しない' },
@@ -192,6 +198,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="管理者画面に固定表示するかどうか"
             id="isAdminViewFixed"
             name="isAdminViewFixed"
+            required
             items={[
               { value: 'true', label: '固定表示する' },
               { value: 'false', label: '表示しない' },
@@ -214,6 +221,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="新歓Discordに通知するかどうか"
             id="forNewjoyDiscord"
             name="forNewjoyDiscord"
+            required
             items={[
               { value: 'true', label: '通知する' },
               { value: 'false', label: '通知しない' },
@@ -225,6 +233,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="サークル管理者にメール送信かどうか"
             id="forCircleMail"
             name="forCircleMail"
+            required
             items={[
               { value: 'true', label: 'メール送信する' },
               { value: 'false', label: 'メール送信しない' },
@@ -236,6 +245,7 @@ const CreateAnnouncementForm: FC<Props> = ({
             label="管理者にメール送信かどうか"
             id="forAdminMail"
             name="forAdminMail"
+            required
             items={[
               { value: 'true', label: 'メール送信する' },
               { value: 'false', label: 'メール送信しない' },
@@ -251,6 +261,7 @@ const CreateAnnouncementForm: FC<Props> = ({
         label="公開設定"
         id="active"
         name="active"
+        required
         items={[
           { value: 'true', label: '公開' },
           { value: 'false', label: '非公開' },
