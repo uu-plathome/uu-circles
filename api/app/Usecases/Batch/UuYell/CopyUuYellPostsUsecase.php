@@ -21,17 +21,78 @@ class CopyUuYellPostsUsecase
     const DONE_TAG = 59;
 
     /**
-     * @throws \Exception
+     * 現在取得するページ数
+     *
+     * @var int
+     */
+    protected int $nowPage = 1;
+
+    /**
+     * 次のページを取得するかどうか
+     *
+     * @var bool
+     */
+    protected bool $isNextFetch = false;
+
+    /**
+     * 今回取得した WordPress Id 一覧
+     *
+     * @var int[]
+     */
+    protected array $wordpressIds = [];
+
+    /**
+     * @throws Exception
      */
     public function invoke()
     {
         Log::debug("CopyUuYellPostsUsecase args none");
 
+        // 無限ループだと処理失敗時に大変なことになりそうなので、50回(50000記事分)までしかループしないようにしている
+        for ($i = 0; $i < 50; $i++) {
+            $this->isNextFetch = false;
+            $this->handler($this->nowPage);
+
+            // 次のページを取得する必要があるか確認しなければ、処理終了
+            if (!$this->isNextFetch) {
+                // 非公開となっているWordPressの記事を、非公開にする
+                UuyellPost::whereNotIn(UuyellPostProperty::wordpress_id, $this->wordpressIds)
+                    ->update([
+                        UuyellPostProperty::published => false,
+                    ]);
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * @param int $page 現在取得したいページ数
+     * @throws Exception
+     */
+    protected function handler(int $page)
+    {
+        Log::debug("CopyUuYellPostsUsecase handler args", [
+            'page' => $page,
+        ]);
+
         // 投稿の取得
-        $fetchedPosts = $this->fetchUuYellPosts();
+        $fetchedPosts = $this->fetchUuYellPosts($page);
+
+        // 投稿が取得できないときは処理終了
+        if ($fetchedPosts->isEmpty()) {
+            return;
+        }
+
+        // ページに100件にデータがあったら、次のページも見る
+        if ($fetchedPosts->count() === self::FETCH_NUMBER) {
+            $this->nowPage = $this->nowPage + 1;
+            $this->isNextFetch = true;
+        }
+
         // 画像の取得
         $featuredMedias = $fetchedPosts->map(
-            fn (array $arr) => $arr["featured_media"]
+            fn (array $arr) => Arr::get($arr, "featured_media")
         )->unique()
             ->toArray();
         // 画像の取得
@@ -67,9 +128,11 @@ class CopyUuYellPostsUsecase
             }
         );
 
+        // WordPressのid一覧作成
         $wordpressIds = $fetchedPosts->map(
             fn (array $arr) => Arr::get($arr, 'id')
         )->toArray();
+        $this->wordpressIds = array_merge($this->wordpressIds, $wordpressIds);
 
         DB::beginTransaction();
         try {
@@ -90,11 +153,6 @@ class CopyUuYellPostsUsecase
                 ]
             );
 
-            UuyellPost::whereNotIn(UuyellPostProperty::wordpress_id, $wordpressIds)
-                ->update([
-                    UuyellPostProperty::published => false,
-                ]);
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -106,13 +164,18 @@ class CopyUuYellPostsUsecase
     /**
      * uu-yellの記事を取得する
      *
+     * @param int $page
      * @return Collection
      */
-    protected function fetchUuYellPosts(): Collection
+    protected function fetchUuYellPosts(int $page = 1): Collection
     {
+        Log::debug("CopyUuYellPostsUsecase fetchUuYellPosts args", [
+            'page' => $page,
+        ]);
+
         $baseUrl = self::UU_YELL_URL;
         $fetchNumber = self::FETCH_NUMBER;
-        $requestUrl = "$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber";
+        $requestUrl = "$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber&page=$page";
 
         // 記事の取得
         $response = Http::retry(3, 100)->get($requestUrl);
@@ -127,6 +190,13 @@ class CopyUuYellPostsUsecase
         return $response->successful() ? new Collection($response->json()) : new Collection([]);
     }
 
+    /**
+     * 画像の取得
+     *
+     * @param array $featuredMedias
+     * @return Collection
+     * @throws Exception
+     */
     protected function fetchUuYellMedias(array $featuredMedias): Collection
     {
         $baseUrl = self::UU_YELL_URL;
