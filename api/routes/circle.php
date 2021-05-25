@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Circle\Announcement\FixedCircleViewAnnouncementController;
 use App\Http\Controllers\Circle\Auth\ForgotPasswordCircleController;
 use App\Http\Controllers\Circle\Auth\LoginCircleController;
 use App\Http\Controllers\Circle\Auth\LogoutCircleController;
@@ -83,6 +84,9 @@ Route::middleware('auth:circleUser')->group(function () {
     Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class)->name('circle.circleUser.update');
     Route::get('/circle/{circleId}/user/search/{searchText}', SearchCircleUserController::class)->name('circle.circleUser.search');
 
+    // お知らせ
+    Route::get('/announcement/fixed', FixedCircleViewAnnouncementController::class);
+    
     // Storage
     Route::post('/storage', PutStorageController::class);
 });
