@@ -12,8 +12,9 @@ const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
   //日時、時間でwidth指定しているのは、時間が開始のみのときに画面崩れるのを防止するためです！！！！
   return (
     <Link
-      href="/circle/[slug]/newjoy/[circleNewJoy]"
+      href="/circle/[slug]/newjoy/[circleNewJoyId]"
       as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+      prefetch={false}
     >
       <a>
         <div
