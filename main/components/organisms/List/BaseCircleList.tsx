@@ -17,7 +17,7 @@ const BaseCircleList: FC<Props> = ({ circles }) => {
         {circles.map((circle) => {
           return (
             <div key={circle.id} className="mb-6 md:mb-16">
-              <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+              <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
                 <a>
                   <Image
                     src={circle.handbillImageUrl}
