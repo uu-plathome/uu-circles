@@ -58,6 +58,7 @@ const CircleNewJoyListItemPC: FC<Props> = ({ slug, circleNewJoy }) => {
         <Link
           href="/circle/[slug]/newjoy/[circleNewJoy.id]"
           as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+          prefetch={false}
         >
           <a className="text-blue-600 border-b border-blue-600 text-xs w-20">
             もっと詳しく
