@@ -12,7 +12,11 @@ const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
   return (
     <div className="pb-16">
       <h2 className="font-bold text-center mb-3">主催サークル</h2>
-      <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
+      <Link
+        href="/circle/[slug]"
+        as={`/circle/${circle.slug}`}
+        prefetch={false}
+      >
         <a>
           <div
             className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
