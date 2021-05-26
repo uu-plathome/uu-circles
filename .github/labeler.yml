@@ -8,6 +8,11 @@ circle:
 circle-package-json:
   - circle/package.json
   - circle/package-lock.json
+main:
+  - main/**/*
+main-package-json:
+  - main/package.json
+  - main/package-lock.json
 api:
   - api/**/*
 api-db:

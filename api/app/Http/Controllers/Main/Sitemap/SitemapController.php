@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Main;
+namespace App\Http\Controllers\Main\Sitemap;
 
-use App\Dto\SitemapDto;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
+use App\Usecases\Main\Sitemap\Dto\SitemapDto;
 use App\Usecases\Main\Sitemap\SitemapUsecase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;

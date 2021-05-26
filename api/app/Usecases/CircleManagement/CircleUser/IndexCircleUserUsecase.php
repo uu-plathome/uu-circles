@@ -2,9 +2,9 @@
 
 namespace App\Usecases\CircleManagement\CircleUser;
 
-use App\Dto\SeparateIsEmailVerifyCircleUserDto;
 use App\Enum\Property\UserProperty;
 use App\Models\User;
+use App\Usecases\CircleManagement\CircleUser\Dto\SeparateIsEmailVerifyCircleUserDto;
 use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;

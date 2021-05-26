@@ -94,6 +94,7 @@ const PcLayout: FC<{
         <Link
           href="/circle/[slug]/newjoy/[circleNewJoy.id]"
           as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+          prefetch={false}
         >
           <a className="text-blue-600 border-b border-blue-600 text-xs w-20 ">
             もっと詳しく
@@ -107,7 +108,7 @@ const PcLayout: FC<{
       >
         <h3 className="text-xs">主催サークル</h3>
 
-        <Link href="/circle/[slug]" as={`/circle/${slug}`}>
+        <Link href="/circle/[slug]" as={`/circle/${slug}`} prefetch={false}>
           <a>
             <div className="pl-2 flex justify-around items-center">
               <div className="w-12 h-12 flex items-center justify-center rounded-full">
@@ -151,8 +152,9 @@ const SpLayout: FC<{
   return (
     // スマホレイアウト
     <Link
-      href="/circle/[slug]/newjoy/[circleNewJoy]"
+      href="/circle/[slug]/newjoy/[circleNewJoyId]"
       as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+      prefetch={false}
     >
       <div
         className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"

@@ -46,7 +46,7 @@
     "no-console": [
       2,
       {
-        "allow": ["warn", "error"]
+        "allow": ["log", "warn", "error"]
       }
     ],
     "sort-imports": 0,

@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Usecases\Main\Gacha;
 
-
-use App\Dto\GachaPickupListDto;
 use App\Models\Circle;
+use App\Usecases\Main\Gacha\Dto\GachaPickupListDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +14,7 @@ class GetGachaPickupListUsecase
      */
     const LIMIT = 3;
 
-    public  function invoke(): GachaPickupListDto
+    public function invoke(): GachaPickupListDto
     {
         Log::debug('GetGachaPickupListUsecase args none');
 
@@ -45,10 +43,9 @@ class GetGachaPickupListUsecase
         )->toArray();
 
         $dto = new GachaPickupListDto();
-        $dto->pickupCircles=$pickupCircles;
-        $dto->pickupDate=$pickupDate;
+        $dto->pickupCircles = $pickupCircles;
+        $dto->pickupDate = $pickupDate;
 
         return $dto;
-
     }
 }

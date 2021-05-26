@@ -515,6 +515,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\CircleSearchWord
+ *
+ * @property int $id
+ * @property string $word 検索ワード
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CircleSearchWord whereWord($value)
+ */
+	class CircleSearchWord extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CircleTag
  *
  * @property int $id

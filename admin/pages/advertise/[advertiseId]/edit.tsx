@@ -1,4 +1,5 @@
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
@@ -18,12 +19,13 @@ import Compressor from 'compressorjs'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
   const { advertiseId } = router.query
   const { isMd } = useMediaQuery()
+  const [isOpen, setIsOpen] = useState(true)
 
   const title = useStringInput('')
   const link = useStringInput('')
@@ -43,12 +45,14 @@ const CreatePage: NextPage = () => {
       advertiseType.set(foundsAdvertise.advertiseType)
       publishTo.set(foundsAdvertise.publishTo)
       publishFrom.set(foundsAdvertise.publishFrom)
+      setIsOpen(false)
     }
     f()
   }, [])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsOpen(true)
 
     const data = await updateAdvertise(Number(advertiseId), {
       type: 'UpdateAdvertiseRequest',
@@ -69,9 +73,11 @@ const CreatePage: NextPage = () => {
       advertiseType.setErrors(data.errors.advertiseType)
       publishTo.setErrors(data.errors.publishTo)
       publishFrom.setErrors(data.errors.publishFrom)
+      setIsOpen(false)
       return
     }
 
+    setIsOpen(false)
     await router.push('/advertise')
   }
 
@@ -125,6 +131,8 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="広告発行">
+          <SubmitLoading isOpen={isOpen} />
+
           <div className="mb-4">
             <BlueButton
               type="button"

@@ -1,15 +1,13 @@
 <?php
 
-
-namespace App\Dto;
-
+namespace App\Usecases\Main\Statistics\Dto;
 
 use App\ValueObjects\CircleValueObject;
 
 /**
- * 活動人数ランキング
+ * 活動費用ランキング (高い順)
  */
-class StatisticsNumberOfActivitiesRankingDto
+class StatisticsActivityFrequencyRankingDto
 {
     /**
      * 1位
