@@ -2,14 +2,30 @@
 
 namespace App\Usecases\Main\Circle;
 
+use App\Enum\Property\CircleSearchWordProperty;
 use App\Models\Circle;
+use App\Models\CircleSearchWord;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\ValueObjects\CircleValueObject;
+use Illuminate\Support\Facades\Log;
 
 class SearchNameCircleListUsecase
 {
+    /**
+     * サークルをテキストで検索する
+     *
+     * @param SearchNameCircleListParam $param
+     * @return mixed
+     */
     public function invoke(SearchNameCircleListParam $param)
     {
+        Log::debug('SearchNameCircleListUsecase', [
+            'SearchNameCircleListParam' => $param,
+        ]);
+
+        // 検索ワードの保存
+        $this->saveCircleSearchWord($param->name);
+
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
@@ -45,5 +61,17 @@ class SearchNameCircleListUsecase
                 $circle->circleHandbill
             )
         )->toArray();
+    }
+
+    /**
+     * 検索ワードの保存
+     *
+     * @param string $word
+     */
+    protected function saveCircleSearchWord(string $word)
+    {
+        (new CircleSearchWord())->fill([
+            CircleSearchWordProperty::word => $word,
+        ])->save();
     }
 }

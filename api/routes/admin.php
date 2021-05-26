@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Advertise\ShowAdvertiseController;
 use App\Http\Controllers\Admin\Advertise\UpdateAdvertiseController;
 use App\Http\Controllers\Admin\Announcement\CreateAnnouncementController;
 use App\Http\Controllers\Admin\Announcement\DeleteAnnouncementController;
+use App\Http\Controllers\Admin\Announcement\FixedAdminViewAnnouncementController;
 use App\Http\Controllers\Admin\Announcement\IndexAnnouncementController;
 use App\Http\Controllers\Admin\Announcement\ShowAnnouncementController;
 use App\Http\Controllers\Admin\Announcement\UpdateAnnouncementController;
@@ -50,11 +51,15 @@ use App\Http\Controllers\Admin\CircleUser\ShowCircleUserController;
 use App\Http\Controllers\Admin\CircleUser\UpdateCircleUserController;
 use App\Http\Controllers\Admin\Storage\PutStorageController;
 
-Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
+Route::middleware('throttle:60,1')->group(function () {
+    Route::post('email/resend', VerificationResendController::class)->name('admin.verification.resend');
+});
 
 Route::group(['middleware' => 'guest:adminUser'], function () {
-    Route::post('/login', LoginAdminController::class)->name('admin.auth.login');
-
+    Route::middleware('throttle:60,1')->group(function () {
+        Route::post('/login', LoginAdminController::class)->name('admin.auth.login');
+    });
+    
     Route::middleware('throttle:30,1')->group(function () {
         Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('admin.verification.verify');
         Route::post('email/verify/{userId}', VerificationConfirmController::class);
@@ -106,7 +111,7 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::get('/circle/{circleId}/tag', GetCircleTagController::class);
     Route::post('/circle/{circleId}/tag', CreateOrUpdateCircleTagController::class);
 
-    // Advertise
+    // Advertise 広告管理
     Route::get('/advertise', IndexAdvertiseController::class);
     Route::post('/advertise', CreateAdvertiseController::class);
     Route::get('/advertise/download', DownloadAdvertiseExcelController::class);
@@ -118,9 +123,13 @@ Route::middleware('auth:adminUser')->group(function () {
     // Announcement お知らせ
     Route::get('/announcement', IndexAnnouncementController::class);
     Route::post('/announcement', CreateAnnouncementController::class);
-    Route::get('/announcement/{announcementId}', ShowAnnouncementController::class);
-    Route::put('/announcement/{announcementId}', UpdateAnnouncementController::class);
-    Route::delete('/announcement/{announcementId}', DeleteAnnouncementController::class);
+    Route::get('/announcement/{announcementId}', ShowAnnouncementController::class)
+        ->where('announcementId', '[0-9]+');
+    Route::put('/announcement/{announcementId}', UpdateAnnouncementController::class)
+        ->where('announcementId', '[0-9]+');
+    Route::delete('/announcement/{announcementId}', DeleteAnnouncementController::class)
+        ->where('announcementId', '[0-9]+');
+    Route::get('/announcement/fixed', FixedAdminViewAnnouncementController::class);
 
     // Storage
     Route::post('/storage', PutStorageController::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Usecases\CircleManagement\CircleNewJoy\Dto;
 
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Collection;

@@ -2,8 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
-use App\Enum\SlugProperty\CategorySlugProperty;
-use App\Models\Circle;
+use App\Models\CircleSearchWord;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +35,7 @@ class SearchNameCircleControllerTest extends TestCase
         // GIVEN
         Http::fake();
         $search = Str::random(2);
+        CircleSearchWord::query()->delete();
         Log::info($search);
 
         // WHEN
@@ -45,6 +45,9 @@ class SearchNameCircleControllerTest extends TestCase
         $response->assertOk();
         $this->assertArrayHasKey('recommendCircles', $response);
         $this->assertNotCount(0, $response['recommendCircles']);
+
+        // DBに検索ワードが保存されているか
+        $this->assertTrue(CircleSearchWord::whereWord($search)->exists());
     }
 
     public function testRequest_Ulabがみつかる()
@@ -53,6 +56,7 @@ class SearchNameCircleControllerTest extends TestCase
 
         // GIVEN
         $search = 'U-lab';
+        CircleSearchWord::query()->delete();
 
         // WHEN
         $response = $this->get("/api/circle/search/$search");
@@ -69,5 +73,8 @@ class SearchNameCircleControllerTest extends TestCase
 
         $this->assertArrayHasKey('announcements', $response);
         $this->assertIsArray($response['announcements']);
+
+        // DBに検索ワードが保存されているか
+        $this->assertTrue(CircleSearchWord::whereWord($search)->exists());
     }
 }

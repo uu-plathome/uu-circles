@@ -1,14 +1,15 @@
 {
     "cSpell.words": [
-    "bugsnag",
-    "chmod",
-    "datepicker",
-    "dropzone",
-    "fontawesome",
-    "fortawesome",
-    "gtag",
-    "intelephense",
-    "laravel",
-    "tailwindcss"
+        "Usecases",
+        "bugsnag",
+        "chmod",
+        "datepicker",
+        "dropzone",
+        "fontawesome",
+        "fortawesome",
+        "gtag",
+        "intelephense",
+        "laravel",
+        "tailwindcss"
     ]
 }

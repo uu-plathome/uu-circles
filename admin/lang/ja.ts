@@ -1,7 +1,9 @@
 import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
+import { Importance } from '@/lib/enum/api/Importance'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { Role } from '@/lib/enum/api/Role'
 import { Week } from '@/lib/enum/api/Week'
@@ -66,6 +68,21 @@ export const ja = {
   advertiseType: {
     [AdvertiseType.COMMON]: '通常広告',
     [AdvertiseType.MAIN_TOP]: 'トップ画面広告',
+  },
+  Importance: {
+    [Importance.HIGH]: '高',
+    [Importance.MIDDLE]: '中',
+    [Importance.LOW]: '小',
+  },
+  AnnouncementType: {
+    [AnnouncementType.MAINTENANCE]: 'メンテナンスのお知らせ',
+    [AnnouncementType.UPDATE_FEATURE]: 'アップデートのお知らせ',
+    [AnnouncementType.BUG]: '不具合に関して',
+    [AnnouncementType.NEW_CIRCLE]: '新着サークル追加！',
+    [AnnouncementType.EVENT]: 'イベントのお知らせ',
+    [AnnouncementType.QUESTIONNAIRE]: 'アンケートのお知らせ',
+    [AnnouncementType.ADVERTISE]: '広告のお知らせ',
+    [AnnouncementType.UU_YELL]: 'uu-yellより',
   },
 }
 

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Circle\Announcement\FixedCircleViewAnnouncementController;
 use App\Http\Controllers\Circle\Auth\ForgotPasswordCircleController;
 use App\Http\Controllers\Circle\Auth\LoginCircleController;
+use App\Http\Controllers\Circle\Auth\LogoutCircleController;
 use App\Http\Controllers\Circle\Auth\ResetPasswordCircleController;
 use App\Http\Controllers\Circle\Auth\ShowOwnCircleUserController;
 use App\Http\Controllers\Circle\Auth\VerificationConfirmController;
@@ -30,7 +32,9 @@ use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:circleUser')->group(function () {
-    Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
+    Route::middleware('throttle:60,1')->group(function () {
+        Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
+    });
 
     Route::middleware('throttle:30,1')->group(function () {
         Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('circle.verification.verify');
@@ -45,21 +49,28 @@ Route::middleware('guest:circleUser')->group(function () {
 Route::middleware('auth:circleUser')->group(function () {
     Route::get('/user', ShowOwnCircleUserController::class);
     Route::put('/user', UpdateOwnUserController::class);
-    Route::post('/logout', \App\Http\Controllers\Circle\Auth\LogoutCircleController::class);
+    Route::post('/logout', LogoutCircleController::class);
 
     // サークル一覧
     Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
     Route::put('/circle/{circleId}', UpdateCircleController::class)->name('circle.circle.update');
-    Route::post('/circle/{circleId}/withdrawal', WithdrawalOwnCircleUserController::class)->name('circle.circle.withdrawal');
-    Route::post('/circle/{circleId}/withdrawal/{userId}', WithdrawalOtherCircleUserController::class)->name('circle.circle.withdrawal');
+    Route::post('/circle/{circleId}/withdrawal', WithdrawalOwnCircleUserController::class)
+        ->name('circle.circle.withdrawal');
+    Route::post('/circle/{circleId}/withdrawal/{userId}', WithdrawalOtherCircleUserController::class)
+        ->name('circle.circle.withdrawal');
 
     // 新歓
-    Route::get('/circle/{circleId}/newjoy', IndexCircleNewJoyController::class)->name('circle.circleNewJoy.index');
-    Route::post('/circle/{circleId}/newjoy', RegisterCircleNewJoyController::class)->name('circle.circleNewJoy.register');
-    Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)->name('circle.circleNewJoy.show');
-    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', UpdateCircleNewJoyController::class)->name('circle.circleNewJoy.update');
-    Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', DeleteCircleNewJoyController::class)->name('circle.circleNewJoy.delete');
+    Route::get('/circle/{circleId}/newjoy', IndexCircleNewJoyController::class)
+        ->name('circle.circleNewJoy.index');
+    Route::post('/circle/{circleId}/newjoy', RegisterCircleNewJoyController::class)
+        ->name('circle.circleNewJoy.register');
+    Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)
+        ->name('circle.circleNewJoy.show');
+    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', UpdateCircleNewJoyController::class)
+        ->name('circle.circleNewJoy.update');
+    Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', DeleteCircleNewJoyController::class)
+        ->name('circle.circleNewJoy.delete');
 
     // サークルタグ
     Route::get('/circle/{circleId}/tag', GetCircleTagController::class);
@@ -73,6 +84,9 @@ Route::middleware('auth:circleUser')->group(function () {
     Route::put('/circle/{circleId}/user/{userId}', UpdateCircleUserController::class)->name('circle.circleUser.update');
     Route::get('/circle/{circleId}/user/search/{searchText}', SearchCircleUserController::class)->name('circle.circleUser.search');
 
+    // お知らせ
+    Route::get('/announcement/fixed', FixedCircleViewAnnouncementController::class);
+    
     // Storage
     Route::post('/storage', PutStorageController::class);
 });
