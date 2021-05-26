@@ -52,7 +52,7 @@ const StatisticsListItem: FC<StatisticsListItem> = ({
         )}
 
         <span className="font-bold">
-          <Link href="/circle/[slug]" as={`/circle/${circle.slug}`}>
+          <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
             <a className="hover:underline">{circle.name}</a>
           </Link>
         </span>
