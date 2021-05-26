@@ -9,8 +9,7 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
-    todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
   }`
 
 export const getCircleNameSize = (circleShowName: string) => {
@@ -107,7 +106,7 @@ const PcLayout: FC<{
       >
         <h3 className="text-xs">主催サークル</h3>
 
-        <Link href="/circle/[slug]" as={`/circle/${slug}`}>
+        <Link href="/circle/[slug]" as={`/circle/${slug}`} prefetch={false}>
           <a>
             <div className="pl-2 flex justify-around items-center">
               <div className="w-12 h-12 flex items-center justify-center rounded-full">
