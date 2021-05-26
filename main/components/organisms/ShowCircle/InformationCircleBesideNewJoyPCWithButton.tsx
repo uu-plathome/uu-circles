@@ -29,7 +29,11 @@ const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
       </p>
 
       <nav className="text-right">
-        <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
+        <Link
+          href="/circle/[slug]"
+          as={`/circle/${circle.slug}`}
+          prefetch={false}
+        >
           <a className="text-xs text-blue-600 underline">もっと詳しく</a>
         </Link>
       </nav>
