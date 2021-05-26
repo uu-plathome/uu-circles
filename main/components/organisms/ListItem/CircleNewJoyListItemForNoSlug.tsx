@@ -9,7 +9,8 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
   }`
 
 export const getCircleNameSize = (circleShowName: string) => {
