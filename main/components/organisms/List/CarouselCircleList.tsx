@@ -37,7 +37,11 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
             return (
               <div key={circle.id}>
                 <div key={circle.id} className="mb-6 md:mb-16">
-                  <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
+                  <Link
+                    href="/circle/[slug]"
+                    as={`/circle/${circle.slug}`}
+                    prefetch={false}
+                  >
                     <a>
                       <Image
                         src={circle.handbillImageUrl}
@@ -66,7 +70,11 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                 <SwiperSlide key={circle.id}>
                   <div key={circle.id} className="pb-10 flex justify-center">
                     <div>
-                      <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} prefetch={false}>
+                      <Link
+                        href="/circle/[slug]"
+                        as={`/circle/${circle.slug}`}
+                        prefetch={false}
+                      >
                         <a>
                           <Image
                             src={circle.handbillImageUrl}
