@@ -92,6 +92,7 @@ export const withdrawalOwnCircle = async (circleId: number) => {
  * 他人をサークルを脱退する
  *
  * @param circleId
+ * @param userId
  * @returns
  */
 export const withdrawalOtherCircle = async (
