@@ -7,6 +7,7 @@ use App\Enum\Property\UserProperty;
 use App\Models\Announcement;
 use App\Models\User;
 use App\Support\Str;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 use Tests\Traits\RefreshDatabaseLite;
@@ -19,6 +20,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
     {
         parent::setUp();
         Log::info("FixedAdminViewAnnouncementControllerTest");
+        Cache::clear();
     }
 
     /**
@@ -116,17 +118,21 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
 
         // お知らせの全削除
         Announcement::query()->delete();
+        $this->assertSame(0, Announcement::count());
 
         // サークル管理画面で固定表示でない
-        Announcement::factory()
+        /** @var Announcement $announcement */
+        $announcement = Announcement::factory()
             ->count(1)
             ->create([
                 AnnouncementProperty::is_circle_view_fixed => false,
             ])
             ->first();
+        $this->assertFalse($announcement->is_circle_view_fixed);
 
         // 管理画面用とメイン画面
-        Announcement::factory()
+        /** @var Announcement $announcement */
+        $announcement = Announcement::factory()
             ->count(1)
             ->create([
                 AnnouncementProperty::for_admin_view        => true,
@@ -136,6 +142,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
                 AnnouncementProperty::is_circle_view_fixed  => false,
             ])
             ->first();
+        $this->assertFalse($announcement->is_circle_view_fixed);
 
         // WHEN
         $response = $this->get("/circle/api/announcement/fixed", [
