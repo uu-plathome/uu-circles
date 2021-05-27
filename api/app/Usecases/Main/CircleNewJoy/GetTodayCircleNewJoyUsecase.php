@@ -64,8 +64,10 @@ class GetTodayCircleNewJoyUsecase
             fn (CircleNewJoy $circleNewJoy) => ($circleNewJoy->start_date && $today->isSameDay($circleNewJoy->start_date->format('Y-m-d'))) ||
                 ($circleNewJoy->end_date && $today->isSameDay($circleNewJoy->end_date->format('Y-m-d')))
         );
+        $todayCircleNewJoysIds = $todayCircleNewJoys->map(fn (CircleNewJoy $circleNewJoy) => $circleNewJoy->id)
+            ->toArray();
         $futureCircleNewJoys = $fetchCircleNewJoys->filter(
-            fn (CircleNewJoy $circleNewJoy) => !$today->isSameDay($circleNewJoy->start_date)
+            fn (CircleNewJoy $circleNewJoy) => !in_array($circleNewJoy->id, $todayCircleNewJoysIds)
         );
 
         return [
