@@ -20,18 +20,28 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
           {/* 総アクセス人数 */}
           <div className="py-4 border-t border-gray-400">
             <p className="text-gray-400 mb-2">総アクセス人数</p>
-            <p>{statistics.allActiveUsers ? statistics.allActiveUsers.toLocaleString() : `5,000`}</p>
+            <p>
+              {statistics.allActiveUsers
+                ? statistics.allActiveUsers.toLocaleString()
+                : `5,000`}
+            </p>
           </div>
 
           {/* 総PV数 */}
           <div className="py-4 border-t border-gray-400">
             <p className="text-gray-400 mb-2">総PV数</p>
-            <p>{statistics.allPageViews ? statistics.allPageViews.toLocaleString() : `180,000`}</p>
+            <p>
+              {statistics.allPageViews
+                ? statistics.allPageViews.toLocaleString()
+                : `180,000`}
+            </p>
           </div>
         </div>
 
         <div>
-          <p className="text-right text-sm py-1">更新日時 {dayjs().format('YYYY/MM/DD')}</p>
+          <p className="text-right text-sm py-1">
+            更新日時 {dayjs().format('YYYY/MM/DD')}
+          </p>
         </div>
       </div>
     </div>
