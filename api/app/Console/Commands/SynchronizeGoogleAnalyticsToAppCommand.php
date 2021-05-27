@@ -8,19 +8,21 @@ use Illuminate\Support\Facades\Log;
 
 class SynchronizeGoogleAnalyticsToAppCommand extends Command
 {
+    const SIGNATURE = 'synchronize:google-analytics';
+    
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'synchronize:google-analytics';
+    protected $signature = self::SIGNATURE;
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Google AnalyticsのデータをDBに入れる';
+    protected $description = 'Google AnalyticsのデータをDBにコピーする';
     
     private SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase;
 
