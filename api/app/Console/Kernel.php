@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SynchronizeGoogleAnalyticsToAppCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -33,6 +34,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('aggregate:announcement-counter')
             ->dailyAt('1:00');
+
+        // Google AnalyticsのデータをDBにコピーする
+        $schedule->command(SynchronizeGoogleAnalyticsToAppCommand::SIGNATURE)
+            ->dailyAt('4:30');
 
         //
         //        $schedule->command('twitter:send-uuyell')

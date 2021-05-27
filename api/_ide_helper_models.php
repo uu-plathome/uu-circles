@@ -652,6 +652,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\PageView
+ *
+ * @property int $id
+ * @property string $url url
+ * @property int $page_views ページ数
+ * @property int $active_users ユーザー数
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView whereActiveUsers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView wherePageViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageView whereUrl($value)
+ */
+	class PageView extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
