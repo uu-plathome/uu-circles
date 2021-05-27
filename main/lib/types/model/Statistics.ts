@@ -2,9 +2,13 @@ import { Circle } from './Circle'
 
 export type Statistics = {
   /** サークル数 */
-  circleCount: 20
+  circleCount: number
   /** 活動費用の平均値 */
-  averageActivityCost: 3000
+  averageActivityCost: number
+  /** ページ閲覧数 */
+  allPageViews: number
+  /** ユーザ数 */
+  allActiveUsers: number
   /** 週の活動頻度 */
   activityFrequency: {
     zero: number
