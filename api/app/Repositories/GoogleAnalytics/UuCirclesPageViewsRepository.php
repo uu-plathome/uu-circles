@@ -52,7 +52,7 @@ class UuCirclesPageViewsRepository
             'metrics' => [
                 new Metric(
                     [
-                        'name' => 'activeUsers',
+                        'name' => 'newUsers',
                     ]
                 ),
                 new Metric(

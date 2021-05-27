@@ -15,6 +15,20 @@ class StatisticsDto
     public int $circleCount;
 
     /**
+     * ページ数
+     *
+     * @var int
+     */
+    public int $allPageViews;
+
+    /**
+     * ユーザー数
+     *
+     * @var int
+     */
+    public int $allActiveUsers;
+
+    /**
      * 活動費用の平均値
      *
      * @var int
@@ -102,6 +116,10 @@ class StatisticsDto
         return [
             // サークル数
             'circle_count'                 => $this->circleCount,
+            // ページ数
+            'all_page_views'               => $this->allPageViews,
+            // ユーザ数
+            'all_active_users'             => $this->allActiveUsers,
             // 活動費用の平均値
             'average_activity_cost'        => $this->averageActivityCost,
             // 日々の新歓数

@@ -5,8 +5,10 @@ namespace App\Usecases\Main\Statistics;
 use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
+use App\Enum\Property\PageViewProperty;
 use App\Models\Circle;
 use App\Models\CircleNewJoy;
+use App\Models\PageView;
 use App\Support\Arr;
 use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyRankingDto;
@@ -21,6 +23,7 @@ use App\Usecases\Main\Statistics\Dto\StatisticsPlaceOfActivityFrequencyDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class StatisticsUsecase
@@ -56,6 +59,17 @@ class StatisticsUsecase
         $statisticsDto->circleCount = $circles->count();
         // 活動費用の平均値
         $statisticsDto->averageActivityCost = round($circles->avg('circleInformation.admission_fee_per_year'));
+
+        // ページ数とユーザ数
+        $pageViewsProperty = PageViewProperty::page_views;
+        $activeUsersProperty = PageViewProperty::active_users;
+        $pageView = PageView::select([
+            DB::raw("SUM($pageViewsProperty) as $pageViewsProperty"),
+            DB::raw("SUM($activeUsersProperty) as $activeUsersProperty"),
+        ])->first()
+            ->toArray();
+        $statisticsDto->allPageViews = Arr::get($pageView, $pageViewsProperty);
+        $statisticsDto->allActiveUsers = Arr::get($pageView, $activeUsersProperty);
 
         // 活動人数の幅
         $statisticsNumberOfActivitiesCountDto = new StatisticsNumberOfActivitiesCountDto();
