@@ -1,4 +1,5 @@
 import { Statistics } from '@/lib/types/model/Statistics'
+import { dayjs } from '@/plugins/Dayjs'
 import { FC } from 'react'
 
 type Props = {
@@ -30,7 +31,7 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
         </div>
 
         <div>
-          <p className="text-right text-sm py-1">更新日時 2021/4/15</p>
+          <p className="text-right text-sm py-1">更新日時 {dayjs().format('YYYY/MM/DD')}</p>
         </div>
       </div>
     </div>
