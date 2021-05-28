@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Usecases\Batch\PageView\ReplicateCirclePageViewUsecase;
 use App\Usecases\Batch\PageView\SynchronizeGoogleAnalyticsToAppUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class SynchronizeGoogleAnalyticsToAppCommand extends Command
 {
     const SIGNATURE = 'synchronize:google-analytics';
-    
+
     /**
      * The name and signature of the console command.
      *
@@ -23,7 +24,9 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
      * @var string
      */
     protected $description = 'Google AnalyticsのデータをDBにコピーする';
-    
+
+    private ReplicateCirclePageViewUsecase $replicateCirclePageViewUsecase;
+
     private SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase;
 
     /**
@@ -31,9 +34,12 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
      *
      * @return void
      */
-    public function __construct(SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase)
-    {
+    public function __construct(
+        ReplicateCirclePageViewUsecase $replicateCirclePageViewUsecase,
+        SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase
+    ) {
         parent::__construct();
+        $this->replicateCirclePageViewUsecase = $replicateCirclePageViewUsecase;
         $this->synchronizeGoogleAnalyticsToAppUsecase = $synchronizeGoogleAnalyticsToAppUsecase;
     }
 
@@ -46,6 +52,7 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
     {
         Log::debug("SynchronizeGoogleAnalyticsToAppCommand start");
         $this->synchronizeGoogleAnalyticsToAppUsecase->invoke();
+        $this->replicateCirclePageViewUsecase->invoke();
         Log::debug("SynchronizeGoogleAnalyticsToAppCommand end");
         return 0;
     }
