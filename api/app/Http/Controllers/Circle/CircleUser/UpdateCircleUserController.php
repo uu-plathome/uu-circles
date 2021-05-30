@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -17,15 +19,16 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class UpdateCircleUserController extends Controller
+final class UpdateCircleUserController extends Controller
 {
     use Permission;
 
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(UpdateCircleUserRequest $request, int $circleId, int $userId)
     {

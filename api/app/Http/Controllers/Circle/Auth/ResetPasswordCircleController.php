@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Events\PasswordResetCircleUser;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
-class ResetPasswordCircleController extends Controller
+final class ResetPasswordCircleController extends Controller
 {
     use ResetsPasswords;
 
