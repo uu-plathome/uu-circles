@@ -57,7 +57,10 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
                 <StatisticsListItem
                   rank={1}
                   circle={statistics.circlePageViewsHighRanking.first}
-                  value={statistics.circlePageViewsHighRanking.firstPageView.pageViews}
+                  value={
+                    statistics.circlePageViewsHighRanking.firstPageView
+                      .pageViews
+                  }
                   unit="View"
                 />
               ) : (
@@ -68,7 +71,10 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
                 <StatisticsListItem
                   rank={2}
                   circle={statistics.circlePageViewsHighRanking.second}
-                  value={statistics.circlePageViewsHighRanking.secondPageView.pageViews}
+                  value={
+                    statistics.circlePageViewsHighRanking.secondPageView
+                      .pageViews
+                  }
                   unit="View"
                 />
               ) : (
@@ -79,7 +85,10 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
                 <StatisticsListItem
                   rank={3}
                   circle={statistics.circlePageViewsHighRanking.third}
-                  value={statistics.circlePageViewsHighRanking.thirdPageView.pageViews}
+                  value={
+                    statistics.circlePageViewsHighRanking.thirdPageView
+                      .pageViews
+                  }
                   unit="View"
                 />
               ) : (
@@ -90,7 +99,10 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
                 <StatisticsListItem
                   rank={4}
                   circle={statistics.circlePageViewsHighRanking.fourth}
-                  value={statistics.circlePageViewsHighRanking.fourthPageView.pageViews}
+                  value={
+                    statistics.circlePageViewsHighRanking.fourthPageView
+                      .pageViews
+                  }
                   unit="View"
                 />
               ) : (
@@ -101,7 +113,10 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
                 <StatisticsListItem
                   rank={5}
                   circle={statistics.circlePageViewsHighRanking.fifth}
-                  value={statistics.circlePageViewsHighRanking.fifthPageView.pageViews}
+                  value={
+                    statistics.circlePageViewsHighRanking.fifthPageView
+                      .pageViews
+                  }
                   unit="View"
                 />
               ) : (

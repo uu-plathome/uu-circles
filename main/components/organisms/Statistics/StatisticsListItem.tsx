@@ -1,8 +1,8 @@
-import { Circle } from "@/lib/types/model/Circle"
-import { faCrown } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Link from "next/link"
-import { FC } from "react"
+import { Circle } from '@/lib/types/model/Circle'
+import { faCrown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import { FC } from 'react'
 
 type StatisticsListItem = {
   rank: 1 | 2 | 3 | 4 | 5
@@ -64,14 +64,16 @@ const StatisticsListItem: FC<StatisticsListItem> = ({
         </span>
       </div>
       <span className="font-bold">
-        {circleKey ? (
-          typeof circle[circleKey] === 'number'
+        {circleKey
+          ? typeof circle[circleKey] === 'number'
             ? circle[circleKey].toLocaleString()
             : circle[circleKey]
-        ) : ''}
-        {value ? typeof value === 'number'
-          ? value.toLocaleString()
-          : value : ''}
+          : ''}
+        {value
+          ? typeof value === 'number'
+            ? value.toLocaleString()
+            : value
+          : ''}
 
         {unit}
       </span>
