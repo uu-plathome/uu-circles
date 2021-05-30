@@ -1,4 +1,5 @@
 import { Circle } from './Circle'
+import { CirclePageView } from './CirclePageView'
 
 export type Statistics = {
   /** サークル数 */
@@ -69,5 +70,18 @@ export type Statistics = {
     fourth: Circle
     second: Circle
     third: Circle
+  }
+  /** サークルページ閲覧数ランキング (高い順) */
+  circlePageViewsHighRanking: {
+    fifth: Circle
+    fifthPageView: CirclePageView
+    first: Circle
+    firstPageView: CirclePageView
+    fourth: Circle
+    fourthPageView: CirclePageView
+    second: Circle
+    secondPageView: CirclePageView
+    third: Circle
+    thirdPageView: CirclePageView
   }
 }
