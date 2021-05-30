@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Statistics;
 
 use App\Support\Arr;
@@ -11,7 +13,7 @@ use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class StatisticsController
+final class StatisticsController
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 

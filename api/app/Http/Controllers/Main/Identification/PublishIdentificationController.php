@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Identification;
 
 use App\Enum\Property\IdentifierHistoryProperty;
@@ -13,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PublishIdentificationController extends Controller
+final class PublishIdentificationController extends Controller
 {
     /**
      * UUIDをチェックする最大回数
