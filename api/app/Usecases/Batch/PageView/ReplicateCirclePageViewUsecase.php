@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\PageView;
 
 use App\Enum\Property\CirclePageViewProperty;
@@ -11,7 +13,7 @@ use App\Models\PageView;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class ReplicateCirclePageViewUsecase
+final class ReplicateCirclePageViewUsecase
 {
     /**
      * PageViewからCirclePageViewの作成

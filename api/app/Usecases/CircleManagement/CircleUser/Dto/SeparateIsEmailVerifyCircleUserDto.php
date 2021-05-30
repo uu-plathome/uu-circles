@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser\Dto;
 
 use App\ValueObjects\CircleUserDetailValueObject;
@@ -8,7 +10,7 @@ use Illuminate\Support\Collection;
 /**
  * メールアドレスの認証が済んでいるかどうかでユーザーを分ける
  */
-class SeparateIsEmailVerifyCircleUserDto
+final class SeparateIsEmailVerifyCircleUserDto
 {
     /**
      * メールアドレスの認証が済んでいる

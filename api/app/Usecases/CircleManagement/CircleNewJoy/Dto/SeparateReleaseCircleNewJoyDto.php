@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy\Dto;
 
 use App\ValueObjects\CircleNewJoyValueObject;
@@ -8,7 +10,7 @@ use Illuminate\Support\Collection;
 /**
  * 公開中、非公開で新歓一覧を作る
  */
-class SeparateReleaseCircleNewJoyDto
+final class SeparateReleaseCircleNewJoyDto
 {
     /**
      * 過去の公開中の新歓一覧

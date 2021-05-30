@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy\Params;
 
 use Illuminate\Support\Carbon;
 
-class CreateCircleNewJoyUsecaseParam
+final class CreateCircleNewJoyUsecaseParam
 {
     public int $circle_id;
 

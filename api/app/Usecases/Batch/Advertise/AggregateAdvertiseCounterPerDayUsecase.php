@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\Advertise;
 
 use App\Models\AdvertiseCounter;
@@ -8,7 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class AggregateAdvertiseCounterPerDayUsecase
+final class AggregateAdvertiseCounterPerDayUsecase
 {
     private Collection $aggregateAdvertises;
 

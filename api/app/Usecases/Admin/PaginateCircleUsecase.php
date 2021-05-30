@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\Circle;
@@ -9,7 +11,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class PaginateCircleUsecase
+final class PaginateCircleUsecase
 {
     /**
      * invoke

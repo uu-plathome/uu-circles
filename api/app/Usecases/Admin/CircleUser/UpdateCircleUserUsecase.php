@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -12,11 +14,10 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleUserUsecase
+final class UpdateCircleUserUsecase
 {
     /**
-     * @param int $userId
-     * @param CircleUserValueObject $circleUserValueObject
+     * @param UpdateCircleUserUsecaseParam $param
      * @throws Exception
      */
     public function invoke(

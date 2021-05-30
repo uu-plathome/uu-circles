@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\AllUser;
 
 use App\Enum\Property\UserProperty;
@@ -11,11 +13,12 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexAllUserUsecase
+final class IndexAllUserUsecase
 {
     /**
      * 管理者ではないアカウント一覧
      *
+     * @param IndexAllUserUsecaseParam $param
      * @return array
      */
     public function invoke(IndexAllUserUsecaseParam $param): array
