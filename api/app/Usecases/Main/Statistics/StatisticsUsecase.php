@@ -80,8 +80,8 @@ final class StatisticsUsecase
             DB::raw("SUM($activeUsersProperty) as $activeUsersProperty"),
         ])->first()
             ->toArray();
-        $statisticsDto->allPageViews = (int) Arr::get($pageView, $pageViewsProperty);
-        $statisticsDto->allActiveUsers = (int) Arr::get($pageView, $activeUsersProperty);
+        $statisticsDto->allPageViews = (int) Arr::get($pageView, $pageViewsProperty, 0);
+        $statisticsDto->allActiveUsers = (int) Arr::get($pageView, $activeUsersProperty, 0);
 
         // 活動人数の幅
         $statisticsNumberOfActivitiesCountDto = new StatisticsNumberOfActivitiesCountDto();
