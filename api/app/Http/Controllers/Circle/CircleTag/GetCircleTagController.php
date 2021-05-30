@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleTag;
 
 use App\Entity\CircleTagEntity;
@@ -13,7 +15,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class GetCircleTagController extends Controller
+final class GetCircleTagController extends Controller
 {
     use Permission;
 

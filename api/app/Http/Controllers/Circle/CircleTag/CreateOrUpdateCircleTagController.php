@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleTag;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -10,7 +12,7 @@ use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class CreateOrUpdateCircleTagController extends Controller
+final class CreateOrUpdateCircleTagController extends Controller
 {
     use Permission;
 

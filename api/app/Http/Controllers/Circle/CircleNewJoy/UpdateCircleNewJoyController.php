@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -9,7 +11,7 @@ use App\Support\Arr;
 use App\Usecases\CircleManagement\CircleNewJoy\UpdateCircleNewJoyUsecase;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleNewJoyController extends Controller
+final class UpdateCircleNewJoyController extends Controller
 {
     use Permission;
 

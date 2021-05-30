@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\UserProperty;
@@ -12,10 +14,17 @@ use App\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ShowCircleUserController extends Controller
+final class ShowCircleUserController extends Controller
 {
     use Permission;
 
+    /**
+     * @param Request $request
+     * @param int $circleId
+     * @param int $userId
+     * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function __invoke(Request $request, int $circleId, int $userId)
     {
         Log::debug("ShowCircleUserController args", [

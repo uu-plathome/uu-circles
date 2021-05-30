@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Enum\Property\UserProperty;
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class LoginCircleController extends Controller
+final class LoginCircleController extends Controller
 {
     use AuthenticatesUsers;
 
