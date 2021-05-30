@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Statistics;
 
+use App\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
@@ -37,6 +38,9 @@ class StatisticsControllerTest extends TestCase
 
         $this->assertArrayHasKey('statistics', $response);
         $this->assertIsArray($response['statistics']);
+
+        $this->assertArrayHasKey(Str::camel('circle_page_views_high_ranking'), $response['statistics']);
+        $this->assertIsArray($response['statistics'][Str::camel('circle_page_views_high_ranking')]);
 
         $this->assertArrayHasKey('uuYellArticles', $response);
         $this->assertIsArray($response['uuYellArticles']);

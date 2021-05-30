@@ -515,6 +515,32 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\CirclePageView
+ *
+ * @property int $id
+ * @property int $circle_id
+ * @property string $slug
+ * @property int $page_views
+ * @property int $active_users
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Circle $circle
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereActiveUsers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereCircleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView wherePageViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CirclePageView whereUpdatedAt($value)
+ */
+	class CirclePageView extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CircleSearchWord
  *
  * @property int $id
