@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\CircleInvitation;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class CreateCircleInvitationUsecase
+final class CreateCircleInvitationUsecase
 {
     /**
      * サークルの招待レコードを作成する

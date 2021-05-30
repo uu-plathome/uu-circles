@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -11,7 +13,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ShowCircleNewJoyController extends Controller
+final class ShowCircleNewJoyController extends Controller
 {
     use Permission;
 
@@ -22,6 +24,7 @@ class ShowCircleNewJoyController extends Controller
      * @param int $circleId
      * @param int $circleNewJoyId
      * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {

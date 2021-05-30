@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Circle;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use App\Usecases\CircleManagement\Circle\UpdateCircleUsecase;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleController extends Controller
+final class UpdateCircleController extends Controller
 {
     use Permission;
 

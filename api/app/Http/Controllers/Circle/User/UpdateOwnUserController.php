@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\User;
 
 use App\Enum\Property\UserProperty;
@@ -12,13 +14,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class UpdateOwnUserController extends Controller
+final class UpdateOwnUserController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
+     * @throws AuthorizationException
      */
     public function __invoke(UpdateOwnUserRequest $request)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Announcement;
 
 use App\Http\Controllers\Controller;
@@ -7,7 +9,7 @@ use App\Http\Requests\Admin\Announcement\UpdateAnnouncementRequest;
 use App\Usecases\Admin\Announcement\UpdateAnnouncementUsecase;
 use Illuminate\Support\Facades\Log;
 
-class UpdateAnnouncementController extends Controller
+final class UpdateAnnouncementController extends Controller
 {
     private UpdateAnnouncementUsecase $updateAnnouncementUsecase;
 

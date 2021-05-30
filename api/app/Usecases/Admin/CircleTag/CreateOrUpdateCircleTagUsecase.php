@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\CircleTag;
 
 use App\Enum\CircleTagModel;
@@ -9,7 +11,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateOrUpdateCircleTagUsecase
+final class CreateOrUpdateCircleTagUsecase
 {
     /**
      * サークルタグを作成するか更新する

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * サークル種別
  */
-class StatisticsCircleTypeDto
+final class StatisticsCircleTypeDto
 {
     /**
      * 公認団体

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Gacha;
 
 use App\Models\Circle;
@@ -7,7 +9,7 @@ use App\Usecases\Main\Gacha\Dto\GachaPickupListDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class GetGachaPickupListUsecase
+final class GetGachaPickupListUsecase
 {
     /*
      * pickupする数

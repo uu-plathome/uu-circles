@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Role;
@@ -12,15 +14,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class WithdrawalOtherCircleUserController extends Controller
+final class WithdrawalOtherCircleUserController extends Controller
 {
     use Permission;
 
     /**
      * 自分以外をサークルを脱退する
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(Request $request, int $circleId, int $userId)
     {

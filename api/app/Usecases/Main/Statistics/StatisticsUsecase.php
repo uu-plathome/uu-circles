@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics;
 
 use App\Enum\CircleType;
@@ -26,7 +28,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class StatisticsUsecase
+final class StatisticsUsecase
 {
     private StatisticsCirclePageViewsRankingUsecase $statisticsCirclePageViewsRankingUsecase;
 
@@ -42,7 +44,10 @@ class StatisticsUsecase
 
         // サークル一覧
         /** @var Collection $circles */
-        $circles = Circle::with(['circleInformation'])
+        $circles = Circle::with([
+            'circleInformation',
+            'circleHandbill',
+        ])
             ->whereRelease(true)
             ->hasByNonDependentSubquery('circleInformation')
             ->get();
@@ -65,7 +70,7 @@ class StatisticsUsecase
         // サークル数
         $statisticsDto->circleCount = $circles->count();
         // 活動費用の平均値
-        $statisticsDto->averageActivityCost = round($circles->avg('circleInformation.admission_fee_per_year'));
+        $statisticsDto->averageActivityCost = (int) round($circles->avg('circleInformation.admission_fee_per_year'));
 
         // ページ数とユーザ数
         $pageViewsProperty = PageViewProperty::page_views;
@@ -75,8 +80,8 @@ class StatisticsUsecase
             DB::raw("SUM($activeUsersProperty) as $activeUsersProperty"),
         ])->first()
             ->toArray();
-        $statisticsDto->allPageViews = Arr::get($pageView, $pageViewsProperty);
-        $statisticsDto->allActiveUsers = Arr::get($pageView, $activeUsersProperty);
+        $statisticsDto->allPageViews = (int) Arr::get($pageView, $pageViewsProperty, 0);
+        $statisticsDto->allActiveUsers = (int) Arr::get($pageView, $activeUsersProperty, 0);
 
         // 活動人数の幅
         $statisticsNumberOfActivitiesCountDto = new StatisticsNumberOfActivitiesCountDto();

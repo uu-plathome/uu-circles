@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle\Params;
 
-class SearchTagCircleListParam
+final class SearchTagCircleListParam
 {
     public bool $nature = false;
     public bool $community = false;

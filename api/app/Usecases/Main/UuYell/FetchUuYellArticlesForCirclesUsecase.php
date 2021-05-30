@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\UuYell;
 
 use App\Usecases\Main\UuYell\Params\FetchUuYellArticlesForCirclesUsecaseParam;
@@ -7,7 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class FetchUuYellArticlesForCirclesUsecase
+final class FetchUuYellArticlesForCirclesUsecase
 {
     const BASE_UU_YELL_URL = 'https://media.uu-circles.com';
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Usecases\Admin\CreateCircleUsecase;
@@ -10,7 +12,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class CreateCircleController extends Controller
+final class CreateCircleController extends Controller
 {
     private CreateCircleUsecase $createCircleUsecase;
 

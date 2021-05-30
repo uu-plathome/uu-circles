@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser;
 
 use App\Enum\Property\UserProperty;
@@ -9,7 +11,7 @@ use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUserUsecase
+final class IndexCircleUserUsecase
 {
     /**
      * サークルに紐づく部員アカウント一覧を取得

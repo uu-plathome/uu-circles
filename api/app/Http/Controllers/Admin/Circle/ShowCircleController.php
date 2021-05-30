@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ShowCircleController extends Controller
+final class ShowCircleController extends Controller
 {
     /**
      * Handle the incoming request.

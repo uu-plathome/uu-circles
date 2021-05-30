@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Identification;
 
 use App\Enum\Property\IdentifierHistoryProperty;
@@ -9,14 +11,13 @@ use App\Models\IdentifierHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class CheckIdentificationController extends Controller
+final class CheckIdentificationController extends Controller
 {
-
-
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param $identifer_hash
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, $identifer_hash)

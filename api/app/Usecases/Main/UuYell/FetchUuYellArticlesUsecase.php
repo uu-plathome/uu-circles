@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\UuYell;
 
 use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;
 use Illuminate\Support\Facades\Log;
 
-class FetchUuYellArticlesUsecase
+final class FetchUuYellArticlesUsecase
 {
     /**
      * 取得する投稿数

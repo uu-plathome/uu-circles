@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class IndexCircleNewJoyController extends Controller
+final class IndexCircleNewJoyController extends Controller
 {
     private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase;
 

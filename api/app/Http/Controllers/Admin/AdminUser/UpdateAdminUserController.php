@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class UpdateAdminUserController extends Controller
+final class UpdateAdminUserController extends Controller
 {
     private UpdateAdminUserUsecase $updateAdminUserUsecase;
 

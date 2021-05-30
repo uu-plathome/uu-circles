@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\CircleInformationProperty;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleUsecase
+final class UpdateCircleUsecase
 {
     /**
      * invoke

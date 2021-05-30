@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Enum\Property\UserProperty;
@@ -9,7 +11,7 @@ use App\Usecases\Admin\CircleUser\CreateCircleUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class RegisterCircleUserController extends Controller
+final class RegisterCircleUserController extends Controller
 {
     private CreateCircleUserUsecase $createCircleUserUsecase;
 

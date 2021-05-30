@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
@@ -11,7 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class FixedCircleViewAnnouncementController extends Controller
+final class FixedCircleViewAnnouncementController extends Controller
 {
     const TTL = 60 * 60;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
@@ -9,7 +11,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateAnnouncementUsecase
+final class UpdateAnnouncementUsecase
 {
     /**
      * お知らせの更新

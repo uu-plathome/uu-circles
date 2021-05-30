@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty as Property;
@@ -10,14 +12,12 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleNewJoyUsecase
+final class UpdateCircleNewJoyUsecase
 {
     /**
      * 新歓情報を更新する
      *
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @param CircleNewJoyValueObject $circleNewJoyValueObject
+     * @param UpdateCircleNewJoyUsecaseParam $param
      * @return void
      * @throws Exception
      */

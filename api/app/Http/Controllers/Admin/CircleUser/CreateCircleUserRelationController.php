@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\Circle;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class CreateCircleUserRelationController
+final class CreateCircleUserRelationController
 {
     /**
      * UserとCircleを紐づける

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\AdminUserProperty;
@@ -9,7 +11,7 @@ use App\ValueObjects\AdminUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class UpdateAdminUserUsecase
+final class UpdateAdminUserUsecase
 {
     /**
      * @param int $userId

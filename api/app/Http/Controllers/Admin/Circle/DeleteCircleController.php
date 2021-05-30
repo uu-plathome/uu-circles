@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Enum\Role;
@@ -13,14 +15,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeleteCircleController extends Controller
+final class DeleteCircleController extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param Request $request
+     * @param int $circleId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function __invoke(Request $request, int $circleId)
     {

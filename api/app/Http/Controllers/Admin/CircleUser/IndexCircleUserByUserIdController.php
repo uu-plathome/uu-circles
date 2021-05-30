@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\User;
@@ -10,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUserByUserIdController
+final class IndexCircleUserByUserIdController
 {
     private IndexCircleByUserIdUsecase $indexCircleByUserIdUserUsecase;
 

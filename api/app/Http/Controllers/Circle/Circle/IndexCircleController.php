@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Circle;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -11,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class IndexCircleController extends Controller
+final class IndexCircleController extends Controller
 {
     use Permission;
 

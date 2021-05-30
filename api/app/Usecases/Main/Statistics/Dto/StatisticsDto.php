@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * 統計情報
  */
-class StatisticsDto
+final class StatisticsDto
 {
     /**
      * サークル数

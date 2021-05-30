@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\Announcement;
 
 use App\Enum\Property\AnnouncementCounterHistoryProperty as ACHP;
@@ -9,7 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class AggregateAnnouncementCounterPerDayUsecase
+final class AggregateAnnouncementCounterPerDayUsecase
 {
     private Collection $aggregateAnnouncements;
 

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class GetRandomCircleUsecase
+final class GetRandomCircleUsecase
 {
     /**
      * ランダムなサークルを主とくる
