@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Enum\Property\CircleInformationProperty;
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleController extends Controller
+final class UpdateCircleController extends Controller
 {
     private UpdateCircleUsecase $updateCircleUsecase;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\Role;
@@ -11,7 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class RegisterAdminController extends Controller
+final class RegisterAdminController extends Controller
 {
     private RegisterAdminUserUsecase $registerAdminUserUsecase;
 

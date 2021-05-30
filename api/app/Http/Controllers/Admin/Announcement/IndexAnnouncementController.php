@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Announcement;
 
 use App\Http\Controllers\Controller;
@@ -8,7 +10,7 @@ use App\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class IndexAnnouncementController extends Controller
+final class IndexAnnouncementController extends Controller
 {
     /**
      * お知らせ一覧

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Models\CircleNewJoy;
 use Illuminate\Http\Request;
 
-class CopyCircleNewJoyController extends Controller
+final class CopyCircleNewJoyController extends Controller
 {
     /**
      * Handle the incoming request.
