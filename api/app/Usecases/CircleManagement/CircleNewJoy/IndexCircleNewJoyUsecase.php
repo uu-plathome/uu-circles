@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
@@ -8,11 +10,12 @@ use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleNewJoyUsecase
+final class IndexCircleNewJoyUsecase
 {
     /**
      * 新歓一覧の取得
      *
+     * @param int $circleId
      * @return SeparateReleaseCircleNewJoyDto
      */
     public function invoke(int $circleId): SeparateReleaseCircleNewJoyDto

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Announcement;
 
 use App\Enum\Property\AnnouncementCounterProperty;
@@ -13,7 +15,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateAnnouncementUsecase
+final class CreateAnnouncementUsecase
 {
     const MAX_SLUG_CHECK = 3;
 

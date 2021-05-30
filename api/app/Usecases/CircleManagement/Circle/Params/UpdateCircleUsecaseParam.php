@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\Circle\Params;
 
-class UpdateCircleUsecaseParam
+final class UpdateCircleUsecaseParam
 {
     public int $circle_id;
     public string $name;

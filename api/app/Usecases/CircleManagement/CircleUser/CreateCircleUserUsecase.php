@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -13,13 +15,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class CreateCircleUserUsecase
+final class CreateCircleUserUsecase
 {
     /**
      * invoke
      *
-     * @param int $circleId
-     * @param CircleUserValueObject $circleValueObject
+     * @param CreateCircleUserUsecaseParam $param
      * @return void
      * @throws Exception
      */

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\User;
 use App\ValueObjects\CircleUserValueObject;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUserUsecase
+final class IndexCircleUserUsecase
 {
     /**
      * invoke
