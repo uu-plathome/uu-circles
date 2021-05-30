@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\UuYell;
 
 use App\Usecases\Main\UuYell\Params\FetchUuYellArticlesForCirclesUsecaseParam;
 use Illuminate\Support\Carbon;
 
-class FetchUuYellArticlesForCirclesKey
+final class FetchUuYellArticlesForCirclesKey
 {
     const TTL = 60 * 60 * 3;
 

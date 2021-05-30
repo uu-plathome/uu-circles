@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\CircleType;
@@ -9,7 +11,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
-class SearchCategoryCircleListUsecase
+final class SearchCategoryCircleListUsecase
 {
     /**
      * カテゴリー検索をする

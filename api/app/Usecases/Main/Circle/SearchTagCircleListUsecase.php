@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\PlaceOfActivity;
@@ -10,7 +12,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
-class SearchTagCircleListUsecase
+final class SearchTagCircleListUsecase
 {
     public function invoke(SearchTagCircleListParam $param)
     {

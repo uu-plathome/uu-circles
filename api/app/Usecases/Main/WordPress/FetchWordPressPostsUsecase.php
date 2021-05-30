@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\WordPress;
 
 use Illuminate\Support\Carbon;
@@ -7,7 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class FetchWordPressPostsUsecase
+final class FetchWordPressPostsUsecase
 {
     const TTL = 60 * 60 * 4;
 

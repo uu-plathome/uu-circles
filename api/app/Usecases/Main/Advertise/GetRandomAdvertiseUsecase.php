@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Advertise;
 
 use App\Enum\AdvertiseType;
 use App\Models\Advertise;
 use Illuminate\Support\Carbon;
 
-class GetRandomAdvertiseUsecase
+final class GetRandomAdvertiseUsecase
 {
     public function invoke(int $limit = 2)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics;
 
 use App\Enum\Property\CirclePageViewProperty;
@@ -8,7 +10,7 @@ use App\Support\Arr;
 use App\Usecases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
 use App\ValueObjects\CircleValueObject;
 
-class StatisticsCirclePageViewsRankingUsecase
+final class StatisticsCirclePageViewsRankingUsecase
 {
     /**
      * サークル閲覧数ランキング
@@ -20,6 +22,7 @@ class StatisticsCirclePageViewsRankingUsecase
         $circlePageViews = CirclePageView::with([
             'circle',
             'circle.circleInformation',
+            'circle.circleHandbill',
         ])
             ->hasByNonDependentSubquery('circle', function ($query) {
                 $query->whereRelease(true);

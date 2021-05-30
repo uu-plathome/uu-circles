@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\Property\CircleProperty;
@@ -7,7 +9,7 @@ use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class GetRandomCircleWithMainFixedUsecase
+final class GetRandomCircleWithMainFixedUsecase
 {
     public function invoke(int $limit = 12)
     {

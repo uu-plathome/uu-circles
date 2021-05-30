@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Gacha;
 
 use App\Models\Circle;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class DrawGachaUsecase
+final class DrawGachaUsecase
 {
     //ピックアップ一覧取得のためのやつ
     private GetGachaPickupListUsecase $getGachaPickupListUsecase;
@@ -113,7 +115,7 @@ class DrawGachaUsecase
         $data = [
             'result_circle_ids' => $drewCircle_ids,
             'pickup_circle_ids' => $pickupCircle_ids,
-            'gacha_hash'        => Str::uuid(),
+            'gacha_hash'        => (string) Str::uuid(),
             'identifier_hash'   => $param->identifierHash,
         ];
         $circleGachaResult = CircleGachaResult::create($data);
