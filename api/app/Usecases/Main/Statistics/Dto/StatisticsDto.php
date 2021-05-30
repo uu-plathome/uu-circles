@@ -111,6 +111,13 @@ class StatisticsDto
      */
     public StatisticsCircleTypeDto $statisticsCircleTypeDto;
 
+    /**
+     * サークルページ閲覧数ランキング
+     *
+     * @var StatisticsCirclePageViewsHighRankingDto
+     */
+    public StatisticsCirclePageViewsHighRankingDto $statisticsCirclePageViewsHighRankingDto;
+
     public function toArray(): array
     {
         return [
@@ -142,6 +149,8 @@ class StatisticsDto
             'place_of_activity_frequency'           => $this->statisticsPlaceOfActivityFrequencyDto->toArray(),
             // サークル種別
             'circle_type'                           => $this->statisticsCircleTypeDto->toArray(),
+            // サークルページ閲覧数ランキング
+            'circle_page_views_high_ranking'        => $this->statisticsCirclePageViewsHighRankingDto->toArray(),
         ];
     }
 }
