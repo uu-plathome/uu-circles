@@ -1,0 +1,528 @@
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `admin_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin_users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `role` enum('SYSTEM','MANAGER','COMMON') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COMMON' COMMENT '権限',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `admin_users_user_id_foreign` (`user_id`),
+  CONSTRAINT `admin_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理者ユーザー';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `advertise_counter_histories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `advertise_counter_histories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `advertise_id` bigint unsigned NOT NULL COMMENT '広告のid',
+  `count` bigint unsigned NOT NULL DEFAULT '0' COMMENT '広告のクリック数',
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '広告URL',
+  `date` date NOT NULL COMMENT '日付',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `advertise_counter_histories_advertise_id_foreign` (`advertise_id`),
+  CONSTRAINT `advertise_counter_histories_advertise_id_foreign` FOREIGN KEY (`advertise_id`) REFERENCES `advertises` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='１日ごとの広告のクリック数の計測';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `advertise_counters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `advertise_counters` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `advertise_id` bigint unsigned NOT NULL COMMENT '広告のid',
+  `count` bigint unsigned NOT NULL DEFAULT '0' COMMENT '広告のクリック数',
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '広告URL',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `advertise_counters_advertise_id_foreign` (`advertise_id`),
+  CONSTRAINT `advertise_counters_advertise_id_foreign` FOREIGN KEY (`advertise_id`) REFERENCES `advertises` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='広告のクリック数の計測';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `advertises`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `advertises` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '広告タイトル',
+  `slug` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '広告のslug(DC2Type:guid)',
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '広告リンク',
+  `main_image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '画像URL',
+  `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '公開するかどうか',
+  `publish_to` datetime DEFAULT NULL COMMENT '公開開始日時',
+  `publish_from` datetime DEFAULT NULL COMMENT '公開終了日時',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `advertise_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COMMON' COMMENT '広告種類',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `advertises_slug_unique` (`slug`),
+  KEY `advertises_active_index` (`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='広告';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `announcement_counter_histories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `announcement_counter_histories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `announcement_id` bigint unsigned NOT NULL,
+  `count` bigint unsigned NOT NULL COMMENT 'クリック数',
+  `announcement_place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'お知らせの設置場所',
+  `date` date NOT NULL COMMENT '日付',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `announcement_counter_histories_announcement_id_foreign` (`announcement_id`),
+  CONSTRAINT `announcement_counter_histories_announcement_id_foreign` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `announcement_counters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `announcement_counters` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `announcement_id` bigint unsigned NOT NULL,
+  `count` bigint unsigned NOT NULL COMMENT 'クリック数',
+  `announcement_place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'お知らせの設置場所',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `announcement_counters_announcement_id_foreign` (`announcement_id`),
+  CONSTRAINT `announcement_counters_announcement_id_foreign` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `announcements`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `announcements` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'お知らせのタイトル',
+  `description` longtext COLLATE utf8mb4_unicode_ci COMMENT 'お知らせ文',
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'お知らせURL',
+  `announcement_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'お知らせ種類',
+  `importance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'MIDDLE' COMMENT '重要度',
+  `slug` char(36) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'slug',
+  `for_main_view` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'メイン画面に表示するかどうか',
+  `for_circle_mail` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'サークル管理者にメール通知するかどうか',
+  `for_admin_view` tinyint(1) NOT NULL DEFAULT '0' COMMENT '管理者画面に表示するかどうか',
+  `for_admin_mail` tinyint(1) NOT NULL DEFAULT '0' COMMENT '管理者にメール通知するかどうか',
+  `for_newjoy_discord` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新歓ディスコードに通知するかどうか',
+  `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '公開設定',
+  `is_main_view_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'メイン画面に固定表示するかどうか',
+  `is_circle_view_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'サークル管理画面に固定表示するかどうか',
+  `is_admin_view_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT '管理者画面に固定表示するかどうか',
+  `notification_time` datetime DEFAULT NULL COMMENT '通知日時',
+  `notified_at` datetime DEFAULT NULL COMMENT '実際に通知した日時',
+  `publish_from` datetime DEFAULT NULL COMMENT '公開開始日時',
+  `publish_to` datetime DEFAULT NULL COMMENT '公開終了日時',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `announcements_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='お知らせ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_gacha_results`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_gacha_results` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `gacha_hash` char(36) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ガチャID',
+  `identifier_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '識別子',
+  `result_circle_ids` json NOT NULL COMMENT 'ガチャ結果',
+  `pickup_circle_ids` json NOT NULL COMMENT 'ピックアップ一覧の保存',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `circle_gacha_results_gacha_hash_unique` (`gacha_hash`),
+  KEY `circle_gacha_results_identifier_hash_foreign` (`identifier_hash`),
+  CONSTRAINT `circle_gacha_results_identifier_hash_foreign` FOREIGN KEY (`identifier_hash`) REFERENCES `identifiers` (`identifier_hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ガチャ結果';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_handbills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_handbills` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '画像URL',
+  `year` smallint unsigned DEFAULT NULL COMMENT '作成年度',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `circle_handbills_circle_id_foreign` (`circle_id`),
+  CONSTRAINT `circle_handbills_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='サークル新歓ビラ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_information`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_information` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `circle_type` enum('OFFICIAL_ORGANIZATION','UNOFFICIAL_ORGANIZATION','SENDING_ORGANIZATION','STUDENT_GROUP') COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '''OFFICIAL_ORGANIZATION'': 公認団体, ''UNOFFICIAL_ORGANIZATION'': 非公認団体, ''SENDING_ORGANIZATION'': 届出団体, ''STUDENT_GROUP'': 学生団体',
+  `name_kana` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'サークル名(カナ)',
+  `short_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'サークル名(通称)',
+  `prefix_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'サークル名(肩書)',
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'サークル紹介文',
+  `common_place_of_activity` enum('MINE','YOTO','MINE_AND_YOTO','DISCORD','OTHER') COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '通常活動場所',
+  `common_place_of_activity_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '通常活動場所詳細',
+  `common_date_of_activity_monday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '月曜日に通常活動しているか',
+  `common_date_of_activity_tuesday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '火曜日に通常活動しているか',
+  `common_date_of_activity_wednesday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '水曜日に通常活動しているか',
+  `common_date_of_activity_thursday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '木曜日に通常活動しているか',
+  `common_date_of_activity_friday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '金曜日に通常活動しているか',
+  `common_date_of_activity_saturday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '土曜日に通常活動しているか',
+  `common_date_of_activity_sunday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '日曜日に通常活動しているか',
+  `common_date_of_activity_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動日時詳細',
+  `is_online_activity` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'オンライン活動するか',
+  `online_place_of_activity_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'オンライン活動場所詳細',
+  `online_date_of_activity_monday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '月曜日にオンライン活動しているか',
+  `online_date_of_activity_tuesday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '火曜日にオンライン活動しているか',
+  `online_date_of_activity_wednesday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '水曜日にオンライン活動しているか',
+  `online_date_of_activity_thursday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '木曜日にオンライン活動しているか',
+  `online_date_of_activity_friday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '金曜日にオンライン活動しているか',
+  `online_date_of_activity_saturday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '土曜日にオンライン活動しているか',
+  `online_date_of_activity_sunday` tinyint(1) NOT NULL DEFAULT '0' COMMENT '日曜日にオンライン活動しているか',
+  `online_date_of_activity_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'オンライン活動日時詳細',
+  `admission_fee_per_year` int unsigned DEFAULT NULL COMMENT '年間費用',
+  `number_of_members` smallint unsigned DEFAULT NULL COMMENT '所属人数',
+  `is_club_activities` tinyint(1) DEFAULT '0' COMMENT '部活かどうか',
+  `appealing_point1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'アピールポイント1',
+  `appealing_point2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'アピールポイント2',
+  `appealing_point3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'アピールポイント3',
+  `public_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '公開用メールアドレス',
+  `twitter_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Twitter URL',
+  `facebook_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Facebook URL',
+  `instagram_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Instagram URL',
+  `line_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Line URL',
+  `youtube_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Youtube URL',
+  `homepage_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Homepage URL',
+  `peing_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Peing URL',
+  `github_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'GitHub URL',
+  `tiktok_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Tiktok URL',
+  `participation_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '参加フォーム用のURL',
+  `main_image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'メイン画像',
+  `activity_image_url1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像1',
+  `activity_image_url2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像2',
+  `activity_image_url3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像3',
+  `activity_image_url4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像4',
+  `activity_image_url5` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像5',
+  `activity_image_url6` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動画像6',
+  `wp_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'WordPress URL',
+  `wp_tag_taxonomy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'WordPress の Tags Taxonomy',
+  `is_view_wp_post` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'WordPressの記事を表示するかどうか',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `circle_information_circle_id_foreign` (`circle_id`),
+  CONSTRAINT `circle_information_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='サークル情報';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_invitations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_invitations` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_user_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `circle_invitations_created_user_id_foreign` (`created_user_id`),
+  KEY `circle_invitations_circle_id_foreign` (`circle_id`),
+  CONSTRAINT `circle_invitations_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`),
+  CONSTRAINT `circle_invitations_created_user_id_foreign` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='部員アカウント招待';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_new_joys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_new_joys` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '新歓名',
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新歓紹介',
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新歓URL',
+  `place_of_activity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動場所',
+  `place_of_activity_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '活動場所詳細',
+  `publish_from` datetime DEFAULT NULL COMMENT '予約投稿日時',
+  `start_date` datetime DEFAULT NULL COMMENT '新歓開始日時',
+  `end_date` datetime DEFAULT NULL COMMENT '新歓終了日時',
+  `release` tinyint(1) NOT NULL DEFAULT '1' COMMENT '公開設定',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `private_newjoy_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '非公開リンク',
+  PRIMARY KEY (`id`),
+  KEY `circle_new_joys_circle_id_foreign` (`circle_id`),
+  KEY `circle_new_joys_release_publish_from_index` (`release`,`publish_from`),
+  CONSTRAINT `circle_new_joys_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='サークル新歓';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_page_views`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_page_views` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_views` bigint unsigned NOT NULL,
+  `active_users` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_search_words`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_search_words` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `word` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '検索ワード',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='検索ワード';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_tags` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `circle_id` bigint unsigned NOT NULL,
+  `sport` tinyint(1) NOT NULL DEFAULT '0' COMMENT '運動系',
+  `music` tinyint(1) NOT NULL DEFAULT '0' COMMENT '音楽系',
+  `culture` tinyint(1) NOT NULL DEFAULT '0' COMMENT '文化系',
+  `nature` tinyint(1) NOT NULL DEFAULT '0' COMMENT '農業・自然',
+  `volunteer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ボランティア',
+  `international` tinyint(1) NOT NULL DEFAULT '0' COMMENT '国際交流',
+  `incare` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'インカレ',
+  `loose` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ゆるい',
+  `community` tinyint(1) NOT NULL DEFAULT '0' COMMENT '地域おこし',
+  `programming` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'プログラミング',
+  `urgent_recruitment` tinyint(1) NOT NULL DEFAULT '0' COMMENT '部員急募',
+  `mystery` tinyint(1) NOT NULL DEFAULT '0' COMMENT '謎',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `circle_tags_circle_id_foreign` (`circle_id`),
+  CONSTRAINT `circle_tags_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='サークルタグ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circle_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circle_users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `circle_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `role` enum('MANAGER','COMMON') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COMMON' COMMENT '権限',
+  PRIMARY KEY (`id`),
+  KEY `circle_users_user_id_foreign` (`user_id`),
+  KEY `circle_users_circle_id_foreign` (`circle_id`),
+  CONSTRAINT `circle_users_circle_id_foreign` FOREIGN KEY (`circle_id`) REFERENCES `circles` (`id`),
+  CONSTRAINT `circle_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='部員アカウント';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `circles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `circles` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'サークル名',
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'circle slug',
+  `release` tinyint(1) NOT NULL DEFAULT '1' COMMENT '公開設定',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_main_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'メイン画面に固定するかどうか',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `circles_slug_unique` (`slug`),
+  KEY `circles_release_index` (`release`),
+  KEY `circles_release_slug_index` (`release`,`slug`),
+  KEY `circles_release_is_main_fixed_index` (`release`,`is_main_fixed`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='サークル';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `identifier_histories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `identifier_histories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `identifier_id` bigint unsigned NOT NULL,
+  `user_agent` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'User Agent',
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Ip Address',
+  `count` bigint unsigned NOT NULL COMMENT 'アクセス数',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `identifier_histories_identifier_id_foreign` (`identifier_id`),
+  CONSTRAINT `identifier_histories_identifier_id_foreign` FOREIGN KEY (`identifier_id`) REFERENCES `identifiers` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='識別子のアクセス履歴';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `identifiers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `identifiers` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `identifier_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'UUIDをハッシュ化したもの',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `identifiers_identifier_hash_unique` (`identifier_hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='識別子管理';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `page_views`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `page_views` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'url',
+  `page_views` bigint unsigned NOT NULL COMMENT 'ページ数',
+  `active_users` bigint unsigned NOT NULL COMMENT 'ユーザー数',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Page View';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='パスワードリセット';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_token` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_username_unique` (`username`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_api_token_unique` (`api_token`),
+  KEY `users_api_token_index` (`api_token`),
+  KEY `users_active_index` (`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ユーザー';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `uuyell_posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `uuyell_posts` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `wordpress_id` bigint unsigned NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '記事のSlug',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '記事タイトル',
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '抜粋',
+  `link` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '記事のリンク',
+  `date` datetime NOT NULL COMMENT '記事作成日時',
+  `featured_media` bigint unsigned NOT NULL COMMENT 'アイキャッチのID',
+  `media_source_url` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '記事のアイキャッチのURL',
+  `media_alt_text` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '記事のアイキャッチのタイトル',
+  `published` tinyint(1) NOT NULL DEFAULT '1' COMMENT '公開されているかどうか',
+  `can_repost` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'もう一度投稿してもいいか',
+  `tweet_id` bigint unsigned DEFAULT NULL COMMENT 'Tweet Id',
+  `notified_at` datetime DEFAULT NULL COMMENT '通知日時',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uuyell_posts_wordpress_id_unique` (`wordpress_id`),
+  UNIQUE KEY `uuyell_posts_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1);
+INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_resets_table',1);
+INSERT INTO `migrations` VALUES (3,'2019_08_19_000000_create_failed_jobs_table',1);
+INSERT INTO `migrations` VALUES (4,'2020_12_22_132936_create_admin_users_table',1);
+INSERT INTO `migrations` VALUES (5,'2020_12_26_125729_create_circles_table',1);
+INSERT INTO `migrations` VALUES (6,'2020_12_26_125747_create_circle_users_table',1);
+INSERT INTO `migrations` VALUES (7,'2020_12_27_121048_create_circle_information_table',1);
+INSERT INTO `migrations` VALUES (8,'2021_01_13_143220_create_circle_new_joys_table',1);
+INSERT INTO `migrations` VALUES (9,'2021_02_06_054921_create_advertises_table',1);
+INSERT INTO `migrations` VALUES (10,'2021_02_06_095804_create_circle_invitations_table',1);
+INSERT INTO `migrations` VALUES (11,'2021_02_08_110013_create_circle_handbills_table',1);
+INSERT INTO `migrations` VALUES (12,'2021_02_11_132647_create_circle_tags_table',1);
+INSERT INTO `migrations` VALUES (13,'2021_03_04_195251_change_description_to_circle_information',1);
+INSERT INTO `migrations` VALUES (14,'2021_03_05_174306_add_is_main_fixed_to_circles',1);
+INSERT INTO `migrations` VALUES (15,'2021_03_22_151005_add_advertise_type_to_advertises',1);
+INSERT INTO `migrations` VALUES (16,'2021_03_23_183445_add_private_new_joy_link_to_circle_new_joys',1);
+INSERT INTO `migrations` VALUES (17,'2021_03_23_195920_add_role_to_circle_users',1);
+INSERT INTO `migrations` VALUES (18,'2021_04_01_094629_change_place_of_activity_value',1);
+INSERT INTO `migrations` VALUES (19,'2021_04_07_164100__create_identifiers_table',1);
+INSERT INTO `migrations` VALUES (20,'2021_04_07_164252_create_circle_gacha_results_table',1);
+INSERT INTO `migrations` VALUES (21,'2021_04_14_155656_add_wp_url_and_is_view_wp_post_to_circle_information',1);
+INSERT INTO `migrations` VALUES (22,'2021_04_14_172041_add_wp_tag_taxonomy_to_circle_information',1);
+INSERT INTO `migrations` VALUES (23,'2021_04_22_172914_create_uuyell_posts_table',1);
+INSERT INTO `migrations` VALUES (24,'2021_04_23_182927_add_tweet_id_to_uuyell_posts',1);
+INSERT INTO `migrations` VALUES (25,'2021_04_25_102401_create_advertise_counters_table',1);
+INSERT INTO `migrations` VALUES (26,'2021_04_25_104951_add_slug_to_advertise',1);
+INSERT INTO `migrations` VALUES (27,'2021_04_25_104952_add_slug_unique_to_advertise',1);
+INSERT INTO `migrations` VALUES (28,'2021_04_25_152801_create_advertise_counter_histories_table',1);
+INSERT INTO `migrations` VALUES (29,'2021_04_26_152434_add_deleted_at_to_advertises',1);
+INSERT INTO `migrations` VALUES (30,'2021_04_27_214255_add_description_to_uuyell_posts',1);
+INSERT INTO `migrations` VALUES (31,'2021_05_01_154326_create_identifier_histories_table',1);
+INSERT INTO `migrations` VALUES (32,'2021_05_01_205248_create_announcements_table',1);
+INSERT INTO `migrations` VALUES (33,'2021_05_05_202649_change_user_agent_to_identifier_histories',1);
+INSERT INTO `migrations` VALUES (34,'2021_05_14_214253_create_announcement_counters_table',1);
+INSERT INTO `migrations` VALUES (35,'2021_05_14_214330_create_announcement_counter_histories_table',1);
+INSERT INTO `migrations` VALUES (36,'2021_05_15_182540_add_slug_to_announcements',1);
+INSERT INTO `migrations` VALUES (37,'2021_05_21_104954_create_circle_search_words_table',1);
+INSERT INTO `migrations` VALUES (38,'2021_05_27_104645_create_page_views_table',1);
+INSERT INTO `migrations` VALUES (39,'2021_05_28_172324_create_circle_page_views_table',1);
