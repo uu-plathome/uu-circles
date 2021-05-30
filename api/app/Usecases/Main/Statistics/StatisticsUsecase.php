@@ -28,6 +28,13 @@ use Illuminate\Support\Facades\Log;
 
 class StatisticsUsecase
 {
+    private StatisticsCirclePageViewsRankingUsecase $statisticsCirclePageViewsRankingUsecase;
+
+    public function __construct(StatisticsCirclePageViewsRankingUsecase $statisticsCirclePageViewsRankingUsecase)
+    {
+        $this->statisticsCirclePageViewsRankingUsecase = $statisticsCirclePageViewsRankingUsecase;
+    }
+
     public function invoke(): StatisticsDto
     {
         Log::debug("StatisticsUsecase args none");
@@ -252,6 +259,10 @@ class StatisticsUsecase
             ->sortKeys()
             ->all();
         $statisticsDto->circleNewJoyCount = $newCircleNewJoysByStartDate;
+
+        // サークルページ閲覧数ランキング
+        $statisticsDto->statisticsCirclePageViewsHighRankingDto =
+            $this->statisticsCirclePageViewsRankingUsecase->invoke();
 
         return $statisticsDto;
     }
