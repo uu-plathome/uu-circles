@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
-class StatisticsNumberOfActivitiesCountDto
+final class StatisticsNumberOfActivitiesCountDto
 {
     /**
      * 0 ~ 10人

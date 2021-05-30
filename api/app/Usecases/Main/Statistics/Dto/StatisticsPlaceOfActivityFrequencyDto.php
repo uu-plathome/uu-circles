@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * 活動場所
  */
-class StatisticsPlaceOfActivityFrequencyDto
+final class StatisticsPlaceOfActivityFrequencyDto
 {
     /**
      * 峰キャンパス

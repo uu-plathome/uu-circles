@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Usecases\Main\Gacha\Dto;
+declare(strict_types=1);
 
-/*
- * pickupリストの戻り値
- */
+namespace App\Usecases\Main\Gacha\Dto;
 
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
-class CircleGachaDto
+/*
+ * pickupリストの戻り値
+ */
+final class CircleGachaDto
 {
     /*
      * @var \App\ValueObjects\CircleValueObject[]

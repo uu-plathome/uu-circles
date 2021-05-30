@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 use App\Enum\Property\CirclePageViewProperty;
@@ -9,7 +11,7 @@ use App\ValueObjects\CircleValueObject;
 /**
  * サークルページ閲覧数ランキング
  */
-class StatisticsCirclePageViewsHighRankingDto
+final class StatisticsCirclePageViewsHighRankingDto
 {
     /**
      * 1位
@@ -38,7 +40,7 @@ class StatisticsCirclePageViewsHighRankingDto
      * @var CirclePageView|null
      */
     public ?CirclePageView $second_page_view;
-    
+
     /**
      * 3位
      *
@@ -52,7 +54,7 @@ class StatisticsCirclePageViewsHighRankingDto
      * @var CirclePageView|null
      */
     public ?CirclePageView $third_page_view;
-    
+
     /**
      * 4位
      *
@@ -66,7 +68,7 @@ class StatisticsCirclePageViewsHighRankingDto
      * @var CirclePageView|null
      */
     public ?CirclePageView $fourth_page_view;
-    
+
     /**
      * 5位
      *
