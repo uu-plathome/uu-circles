@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
@@ -7,7 +9,7 @@ use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
 use App\Usecases\Admin\CircleUser\UpdateCircleUserUsecase;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleUserController extends Controller
+final class UpdateCircleUserController extends Controller
 {
     private UpdateCircleUserUsecase $updateCircleUserUsecase;
 

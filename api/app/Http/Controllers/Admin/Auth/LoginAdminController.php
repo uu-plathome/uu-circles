@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\Property\UserProperty;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class LoginAdminController extends Controller
+final class LoginAdminController extends Controller
 {
     use AuthenticatesUsers;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleNewJoyController extends Controller
+final class UpdateCircleNewJoyController extends Controller
 {
     private UpdateCircleNewJoyUsecase $updateCircleNewJoyUsecase;
 

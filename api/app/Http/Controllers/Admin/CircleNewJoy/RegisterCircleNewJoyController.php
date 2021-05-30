@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class RegisterCircleNewJoyController extends Controller
+final class RegisterCircleNewJoyController extends Controller
 {
     private CreateCircleNewJoyUsecase $createCircleNewJoyUsecase;
 

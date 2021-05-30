@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Enum\Property\AdvertiseCounterProperty;
@@ -12,7 +14,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateAdvertiseController extends Controller
+final class UpdateAdvertiseController extends Controller
 {
     const COUNTER_ROWS = 20;
 
