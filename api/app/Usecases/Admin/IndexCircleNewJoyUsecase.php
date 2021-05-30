@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleNewJoyUsecase
+final class IndexCircleNewJoyUsecase
 {
     /**
      * invoke

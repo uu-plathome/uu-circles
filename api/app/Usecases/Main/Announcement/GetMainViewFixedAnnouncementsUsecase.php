@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
@@ -8,7 +10,7 @@ use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\Dto\MainAnnouncementDto;
 use Illuminate\Support\Carbon;
 
-class GetMainViewFixedAnnouncementsUsecase
+final class GetMainViewFixedAnnouncementsUsecase
 {
     /**
      * キャッシュする時間

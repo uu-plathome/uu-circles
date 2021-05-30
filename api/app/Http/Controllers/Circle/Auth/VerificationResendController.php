@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Enum\Property\UserProperty;
@@ -11,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class VerificationResendController extends Controller
+final class VerificationResendController extends Controller
 {
     /**
      * 認証用のメールを再通知

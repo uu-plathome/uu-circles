@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordAdminController extends Controller
+final class ForgotPasswordAdminController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

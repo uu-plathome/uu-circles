@@ -1,19 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Advertise;
 
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class RedirectToAdvertiseLinkController
+final class RedirectToAdvertiseLinkController
 {
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * 広告をクリックした時にリダイレクトする
+     *
+     * @param Request $request
+     * @param string $slug
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $slug)
+    public function __invoke(Request $request, string $slug): RedirectResponse
     {
         Log::debug("RedirectToAdvertiseLinkController", [
             'slug' => $slug,
@@ -26,7 +33,7 @@ class RedirectToAdvertiseLinkController
                 'slug' => $slug,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
         if (!$advertise->link) {
@@ -35,7 +42,7 @@ class RedirectToAdvertiseLinkController
                 'advertise' => $advertise,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
         Log::debug("RedirectToAdvertiseLinkController count up start");
@@ -52,5 +59,10 @@ class RedirectToAdvertiseLinkController
         ]);
 
         return redirect()->away($advertise->link);
+    }
+
+    private function redirectToHomeUrl(): string
+    {
+        return config('app.client_url');
     }
 }

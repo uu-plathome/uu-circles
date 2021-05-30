@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class GachaDrawController extends Controller
+final class GachaDrawController extends Controller
 {
     private DrawGachaUsecase $drawGachaUsecase;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Circle;
 
 use App\Enum\Property\CircleUserProperty;
@@ -11,7 +13,7 @@ use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 
-class ShowCircleController extends Controller
+final class ShowCircleController extends Controller
 {
     use Permission;
 

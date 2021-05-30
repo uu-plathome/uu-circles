@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeleteAdvertiseController extends Controller
+final class DeleteAdvertiseController extends Controller
 {
     /**
      * Handle the incoming request.

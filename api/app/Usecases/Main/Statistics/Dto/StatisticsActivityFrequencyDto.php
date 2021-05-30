@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * 週の活動頻度
  */
-class StatisticsActivityFrequencyDto
+final class StatisticsActivityFrequencyDto
 {
     /**
      * 週に0回活動

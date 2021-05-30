@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Sitemap;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
@@ -11,7 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class SitemapUsecase
+final class SitemapUsecase
 {
     /**
      * サイトトップの作成

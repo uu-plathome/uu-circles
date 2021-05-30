@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Log;
 
-class PaginateCircleController extends Controller
+final class PaginateCircleController extends Controller
 {
     private PaginateCircleUsecase $paginateCircleUsecase;
 

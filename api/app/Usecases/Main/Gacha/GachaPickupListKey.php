@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Gacha;
 
 use Illuminate\Support\Carbon;
 
-class GachaPickupListKey
+final class GachaPickupListKey
 {
     public static function getPickupDate(): string
     {

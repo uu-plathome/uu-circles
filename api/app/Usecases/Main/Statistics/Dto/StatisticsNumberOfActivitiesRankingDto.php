@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 use App\ValueObjects\CircleValueObject;
@@ -7,7 +9,7 @@ use App\ValueObjects\CircleValueObject;
 /**
  * 活動人数ランキング
  */
-class StatisticsNumberOfActivitiesRankingDto
+final class StatisticsNumberOfActivitiesRankingDto
 {
     /**
      * 1位

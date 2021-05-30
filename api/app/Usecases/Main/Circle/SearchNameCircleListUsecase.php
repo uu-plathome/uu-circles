@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\Property\CircleSearchWordProperty;
@@ -9,7 +11,7 @@ use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class SearchNameCircleListUsecase
+final class SearchNameCircleListUsecase
 {
     /**
      * サークルをテキストで検索する

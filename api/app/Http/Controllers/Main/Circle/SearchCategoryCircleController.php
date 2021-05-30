@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
@@ -19,7 +21,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class SearchCategoryCircleController extends Controller
+final class SearchCategoryCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 

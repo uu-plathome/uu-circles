@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
@@ -7,7 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeleteCircleNewJoyUsecase
+final class DeleteCircleNewJoyUsecase
 {
     /**
      * 新歓情報の削除

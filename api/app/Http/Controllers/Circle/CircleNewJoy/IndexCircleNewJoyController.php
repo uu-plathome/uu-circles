@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -12,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleNewJoyController extends Controller
+final class IndexCircleNewJoyController extends Controller
 {
     use Permission;
 

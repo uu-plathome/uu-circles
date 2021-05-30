@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\UuYell;
 
 use App\Enum\Property\UuyellPostProperty;
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SendUuyellPostToTwitterUsecase
+final class SendUuyellPostToTwitterUsecase
 {
     const UU_YELL_URL = 'https://media.uu-circles.com';
 

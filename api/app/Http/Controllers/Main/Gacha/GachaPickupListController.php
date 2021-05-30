@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class GachaPickupListController extends Controller
+final class GachaPickupListController extends Controller
 {
     private GetGachaPickupListUsecase $getGachaPickupListUsecase;
 

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Announcement\Params;
 
 use Illuminate\Support\Carbon;
 
-class UpdateAnnouncementUsecaseParam
+final class UpdateAnnouncementUsecaseParam
 {
     public int $announcement_id;
     public string $title;

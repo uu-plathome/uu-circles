@@ -1,23 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Announcement;
 
 use App\Enum\AnnouncementPlace;
 use App\Enum\SlugProperty\AnnouncementPlaceQuerySlugProperty;
 use App\Models\Announcement;
 use App\Models\AnnouncementCounter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class RedirectToAnnouncementLinkController
+final class RedirectToAnnouncementLinkController
 {
     const place = 'place';
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param string $slug
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $slug)
+    public function __invoke(Request $request, string $slug): RedirectResponse
     {
         Log::debug("RedirectToAnnouncementLinkController", [
             'slug' => $slug,
@@ -34,7 +39,7 @@ class RedirectToAnnouncementLinkController
                 'slug' => $slug,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
         if (!$announcement->link) {
@@ -43,7 +48,7 @@ class RedirectToAnnouncementLinkController
                 'advertise' => $announcement,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
         Log::debug("RedirectToAnnouncementLinkController count up start");
@@ -87,5 +92,10 @@ class RedirectToAnnouncementLinkController
         }
 
         return AnnouncementPlaceQuerySlugProperty::main_fixed_view;
+    }
+
+    private function redirectToHomeUrl(): string
+    {
+        return config('app.client_url');
     }
 }

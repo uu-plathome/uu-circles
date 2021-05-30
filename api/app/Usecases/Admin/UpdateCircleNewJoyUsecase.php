@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\Circle;
@@ -8,7 +10,7 @@ use App\ValueObjects\CircleNewJoyValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class UpdateCircleNewJoyUsecase
+final class UpdateCircleNewJoyUsecase
 {
     /**
      * 新規新歓を更新する

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
-class VerificationConfirmController extends Controller
+final class VerificationConfirmController extends Controller
 {
     /**
      * Mark the user's email address as verified.

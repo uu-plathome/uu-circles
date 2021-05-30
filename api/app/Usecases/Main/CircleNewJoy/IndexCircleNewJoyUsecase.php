@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty;
@@ -9,7 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleNewJoyUsecase
+final class IndexCircleNewJoyUsecase
 {
     /**
      * 新歓一覧の取得

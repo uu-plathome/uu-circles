@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
@@ -12,14 +14,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class GachaResultController extends Controller
+final class GachaResultController extends Controller
 {
     /**
      * @param Request $request
      * @param string $gachaHash
      * @return array
      */
-    public function __invoke(Request $request, string $gachaHash)
+    public function __invoke(Request $request, string $gachaHash): array
     {
         Log::debug('GachaResultController args', [
             'gachaHash' => $gachaHash,

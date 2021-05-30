@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle\Params;
 
-class SearchCategoryCircleListParam
+final class SearchCategoryCircleListParam
 {
     public bool $officialOrganization = false;
     public bool $unofficialOrganization = false;
