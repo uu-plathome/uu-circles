@@ -47,6 +47,7 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
      * Execute the console command.
      *
      * @throws \Google\ApiCore\ApiException
+     * @throws \Exception
      */
     public function handle()
     {
