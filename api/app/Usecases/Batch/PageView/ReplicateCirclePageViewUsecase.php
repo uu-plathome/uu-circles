@@ -56,7 +56,8 @@ final class ReplicateCirclePageViewUsecase
                     CirclePageViewProperty::page_views   => $pageView->page_views,
                 ];
             }
-        )->filter(fn (?array $arr) => !is_null($arr));
+        )->filter(fn (?array $arr) => !is_null($arr))
+            ->values();
 
         DB::beginTransaction();
 
