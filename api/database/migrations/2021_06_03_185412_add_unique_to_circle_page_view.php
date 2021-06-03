@@ -17,8 +17,7 @@ class AddUniqueToCirclePageView extends Migration
         DB::table('circle_page_views')->truncate();
 
         Schema::table('circle_page_views', function (Blueprint $table) {
-            $table->unique('circle_id');
-            $table->unique('slug');
+            $table->unique(['circle_id', 'slug'], 'circle_id_and_slug');
         });
     }
 
@@ -30,10 +29,7 @@ class AddUniqueToCirclePageView extends Migration
     public function down()
     {
         Schema::table('circle_page_views', function (Blueprint $table) {
-            $table->dropColumn([
-                'circle_id',
-                'slug',
-            ]);
+            $table->dropUnique('circle_id_and_slug');
         });
     }
 }
