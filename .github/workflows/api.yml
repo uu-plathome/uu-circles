@@ -54,11 +54,11 @@ jobs:
           docker-compose exec -T app php artisan cache:clear
           docker-compose exec -T app php artisan config:clear
           docker-compose exec -T app php artisan view:clear
-      # - name: Check Laravel logs
-      #   if: ${{ always() }}
-      #   run: |
-      #     docker-compose exec -T app ls storage/logs
-      #     docker-compose exec -T app [ -f storage/logs/laravel.log ] && cat storage/logs/laravel.log
+      - name: Check Laravel logs
+        if: ${{ always() }}
+        run: |
+          docker-compose exec -T app ls storage/logs
+          docker-compose exec -T app [ -f storage/logs/laravel.log ] && cat storage/logs/laravel.log
 
   deploy-stg:
     if: github.ref == 'refs/heads/develop/stg'
