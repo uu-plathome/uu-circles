@@ -54,8 +54,12 @@ final class TagPageViewRankingUsecase
         return 'TagPageViewRankingUsecase' . $today;
     }
 
-    private function convertToTagPageViewDto(TagPageView $tagPageView): TagPageViewDto
+    private function convertToTagPageViewDto(?TagPageView $tagPageView): ?TagPageViewDto
     {
+        if (is_null($tagPageView)) {
+            return null;
+        }
+
         $dto = new TagPageViewDto();
         $dto->tagName = $tagPageView->tag_name;
         $dto->pageViews = $tagPageView->page_views;
