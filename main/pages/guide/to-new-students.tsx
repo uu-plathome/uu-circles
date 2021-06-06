@@ -132,24 +132,31 @@ const Page: NextPage<Props> = () => {
             <SubHeader>3. uu-yellをみよう</SubHeader>
 
             <div className="px-4 pb-6">
-              <p className="pb-6 px-4"> キャッチコピーは「uu-mailのとなりにuu-yell。」</p>
+              <p className="pb-6 px-4">
+                {' '}
+                キャッチコピーは「uu-mailのとなりにuu-yell。」
+              </p>
               <p className="pb-6 px-4">
                 UU-Circlesの姉妹サイトの「メディアサイトuu-yell」は宇都宮大学の学生活動の発信＆受信における”プラットフォーム”です。
               </p>
-              <p className="pb-6 px-4">以下の2本軸でプラットフォームを体現していきます。</p>
+              <p className="pb-6 px-4">
+                以下の2本軸でプラットフォームを体現していきます。
+              </p>
               <div className="pb-6 px-4">
                 <blockquote cite="https://media.uu-circles.com/about/">
                   <ol className="list-inside list-decimal border border-gray-400 round p-4">
                     <li>
                       uu-yell編集部からの直接的な情報発信（学生活動の取材記事や読者要望に応えた記事、編集部企画の記事など）
-                  </li>
+                    </li>
                     <li>
                       学生活動の発信媒体としてのサイト活用の促進（栃木イチオシ発信局Ufori’aやキャンパる編集室などの団体、個人コラムの連載など）
-                  </li>
+                    </li>
                   </ol>
                 </blockquote>
               </div>
-              <p className="pb-6 px-4">是非チェックしてホーム画面に追加してね！</p>
+              <p className="pb-6 px-4">
+                是非チェックしてホーム画面に追加してね！
+              </p>
             </div>
 
             <div className="pb-6">

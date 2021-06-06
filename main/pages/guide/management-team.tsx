@@ -74,7 +74,11 @@ const Page: NextPage<Props> = () => {
             </p>
 
             <div className="flex justify-center items-center pt-6 pb-6">
-              <a href="https://uu-circle20.firebaseapp.com/" target="_blank" rel="noreferrer">
+              <a
+                href="https://uu-circle20.firebaseapp.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Image
                   src="/images/uucircle2020-main.png"
                   width="900"
