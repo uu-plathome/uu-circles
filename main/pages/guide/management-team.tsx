@@ -54,7 +54,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="flex justify-center items-center pt-6 pb-6">
-              <a href="http://ulab-uu.com/" target="_blank">
+              <a href="http://ulab-uu.com/" target="_blank" rel="noreferrer">
                 <Image src="/images/ulab-bg.png" width="680" height="404" />
               </a>
             </div>
@@ -74,7 +74,7 @@ const Page: NextPage<Props> = () => {
             </p>
 
             <div className="flex justify-center items-center pt-6 pb-6">
-              <a href="https://uu-circle20.firebaseapp.com/" target="_blank">
+              <a href="https://uu-circle20.firebaseapp.com/" target="_blank" rel="noreferrer">
                 <Image
                   src="/images/uucircle2020-main.png"
                   width="900"
@@ -98,7 +98,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="flex justify-center items-center pt-6 pb-6">
-              <a href="http://ulab-uu.com/" target="_blank">
+              <a href="http://ulab-uu.com/" target="_blank" rel="noreferrer">
                 <Image
                   src="/images/future-uucircle.png"
                   width="1020"
@@ -121,19 +121,19 @@ const Page: NextPage<Props> = () => {
 
             <div className="px-4 pb-6">
               <p className="font-bold pb-2">プロジェクト責任者</p>
-              <p>U-lab代表 3年 飯泉一馬</p>
+              <p>U-lab代表 4年 飯泉一馬</p>
             </div>
 
             <div className="px-4 pb-6">
               <p className="font-bold pb-2">プログラム管理責任者</p>
-              <p>U-lab 3年 樋口航也</p>
+              <p>U-lab 4年 樋口航也</p>
             </div>
 
             <div className="px-4 pb-12">
               <p className="font-bold pb-2">開発サポートメンバー</p>
-              <p>U-lab 1年 小畑 尚史</p>
-              <p>U-lab 1年 浅野 亮太</p>
-              <p>U-lab 1年 佐藤 歩夢</p>
+              <p>U-lab 2年 小畑 尚史</p>
+              <p>U-lab 2年 浅野 亮太</p>
+              <p>U-lab 2年 佐藤 歩夢</p>
             </div>
 
             <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
@@ -149,7 +149,7 @@ const Page: NextPage<Props> = () => {
                 <a
                   href="https://github.com/H37kouya/uu-circle"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   className="flex items-center"
                 >
                   <FontAwesomeIcon icon={faGithub} size="2x" />
