@@ -46,6 +46,9 @@ class SearchCategoryCircleControllerTest extends TestCase
         $this->assertArrayHasKey('recommendCircles', $response);
         $this->assertNotCount(0, $response['recommendCircles']);
 
+        $this->assertArrayHasKey('tagPageViewRanking', $response);
+        $this->assertIsArray($response['tagPageViewRanking']);
+
         $this->assertArrayHasKey('uuYellArticles', $response);
         $this->assertIsArray($response['uuYellArticles']);
 
