@@ -6,6 +6,7 @@ namespace App\Usecases\Main\PageView;
 
 use App\Enum\Property\TagPageViewProperty;
 use App\Models\TagPageView;
+use App\Support\Arr;
 use App\Usecases\Main\PageView\Dto\TagPageViewDto;
 use App\Usecases\Main\PageView\Dto\TagPageViewRankingDto;
 use Illuminate\Support\Carbon;
@@ -29,16 +30,16 @@ final class TagPageViewRankingUsecase
             ->get();
 
         $dto = new TagPageViewRankingDto();
-        $dto->first = $this->convertToTagPageViewDto($tagPageViews[0]);
-        $dto->second = $this->convertToTagPageViewDto($tagPageViews[1]);
-        $dto->third = $this->convertToTagPageViewDto($tagPageViews[2]);
-        $dto->fourth = $this->convertToTagPageViewDto($tagPageViews[3]);
-        $dto->fifth = $this->convertToTagPageViewDto($tagPageViews[4]);
-        $dto->sixth = $this->convertToTagPageViewDto($tagPageViews[5]);
-        $dto->seventh = $this->convertToTagPageViewDto($tagPageViews[6]);
-        $dto->eighth = $this->convertToTagPageViewDto($tagPageViews[7]);
-        $dto->ninth = $this->convertToTagPageViewDto($tagPageViews[8]);
-        $dto->tenth = $this->convertToTagPageViewDto($tagPageViews[9]);
+        $dto->first = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 0));
+        $dto->second = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 1));
+        $dto->third = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 2));
+        $dto->fourth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 3));
+        $dto->fifth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 4));
+        $dto->sixth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 5));
+        $dto->seventh = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 6));
+        $dto->eighth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 7));
+        $dto->ninth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 8));
+        $dto->tenth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 9));
         return $dto;
     }
 
