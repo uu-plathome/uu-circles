@@ -41,6 +41,9 @@ class IndexCircleControllerTest extends TestCase
 
         $this->assertArrayHasKey('data', $response);
 
+        $this->assertArrayHasKey('tagPageViewRanking', $response);
+        $this->assertIsArray($response['tagPageViewRanking']);
+
         $this->assertArrayHasKey('uuYellArticles', $response);
         $this->assertIsArray($response['uuYellArticles']);
 

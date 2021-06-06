@@ -68,6 +68,9 @@ class SearchNameCircleControllerTest extends TestCase
         $this->assertNotCount(0, $response['data']);
         $this->assertNotCount(0, $response['recommendCircles']);
 
+        $this->assertArrayHasKey('tagPageViewRanking', $response);
+        $this->assertIsArray($response['tagPageViewRanking']);
+
         $this->assertArrayHasKey('uuYellArticles', $response);
         $this->assertIsArray($response['uuYellArticles']);
 
