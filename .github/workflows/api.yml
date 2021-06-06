@@ -58,7 +58,7 @@ jobs:
         if: ${{ always() }}
         run: |
           docker-compose exec -T app ls storage/logs
-          docker-compose exec -T app  find ~/storage/logs -type f | xargs cat
+          docker-compose exec -T app /bin/bash -c "cd storage/logs && find . -type f | xargs cat"
 
   deploy-stg:
     if: github.ref == 'refs/heads/develop/stg'
