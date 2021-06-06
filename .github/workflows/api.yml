@@ -58,7 +58,7 @@ jobs:
         if: ${{ always() }}
         run: |
           docker-compose exec -T app ls storage/logs
-          docker-compose exec -T app [ -f storage/logs/laravel.log ] && cat storage/logs/laravel.log
+          docker-compose exec -T app find . -type f | xargs cat
 
   deploy-stg:
     if: github.ref == 'refs/heads/develop/stg'
