@@ -701,6 +701,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\TagPageView
+ *
+ * @property int $id
+ * @property string $tag_name タグ名
+ * @property int $page_views ページ閲覧数
+ * @property int $active_users ユーザー数
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView whereActiveUsers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView wherePageViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView whereTagName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagPageView whereUpdatedAt($value)
+ */
+	class TagPageView extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id

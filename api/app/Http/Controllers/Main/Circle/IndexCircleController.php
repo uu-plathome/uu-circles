@@ -9,6 +9,7 @@ use App\Support\Arr;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetCircleListUsecase;
+use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -23,15 +24,18 @@ final class IndexCircleController extends Controller
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetCircleListUsecase $getCircleListUsecase;
     private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
+    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetCircleListUsecase $getCircleListUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase
+        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getCircleListUsecase = $getCircleListUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
+        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     /**
@@ -44,10 +48,19 @@ final class IndexCircleController extends Controller
     {
         Log::debug("#IndexCircleController args none");
 
+        // サークル一覧
         $circles = Cache::remember($this->getCacheKey(), 60, function () {
             return $this->getCircleListUsecase->invoke();
         });
 
+        // タグのアクセス数ランキング
+        $tagPageViewRanking = Cache::remember(
+            TagPageViewRankingUsecase::getCacheKey(),
+            TagPageViewRankingUsecase::TTL,
+            fn () => $this->tagPageViewRankingUsecase->invoke()
+        );
+
+        // uu-yellの最新記事一覧
         $articles = Cache::remember(
             FetchUuYellArticlesKey::uuYellCacheKey(),
             FetchUuYellArticlesKey::TTL,
@@ -71,8 +84,9 @@ final class IndexCircleController extends Controller
                     ])
                 )->toArray()
             ),
-            'uuYellArticles' => $articles,
-            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
+            'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
+            'uuYellArticles'     => $articles,
+            'announcements'      => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

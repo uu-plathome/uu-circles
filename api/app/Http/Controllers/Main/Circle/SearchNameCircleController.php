@@ -11,6 +11,7 @@ use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
 use App\Usecases\Main\Circle\SearchNameCircleListUsecase;
+use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -30,16 +31,20 @@ final class SearchNameCircleController extends Controller
 
     private SearchNameCircleListUsecase $searchNameCircleListUsecase;
 
+    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
+
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
         GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        SearchNameCircleListUsecase $searchNameCircleListUsecase
+        SearchNameCircleListUsecase $searchNameCircleListUsecase,
+        TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchNameCircleListUsecase = $searchNameCircleListUsecase;
+        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     public function __invoke(Request $request, string $search)
@@ -63,6 +68,13 @@ final class SearchNameCircleController extends Controller
             $this->getRecommendCirclesCacheKey(),
             120,
             fn () => $this->getRandomCircleUsecase->invoke(6)
+        );
+
+        // タグのアクセス数ランキング
+        $tagPageViewRanking = Cache::remember(
+            TagPageViewRankingUsecase::getCacheKey(),
+            TagPageViewRankingUsecase::TTL,
+            fn () => $this->tagPageViewRankingUsecase->invoke()
         );
 
         $articles = Cache::remember(
@@ -96,8 +108,9 @@ final class SearchNameCircleController extends Controller
                     ])
                 )->toArray()
             ),
-            'uuYellArticles' => $articles,
-            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
+            'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
+            'uuYellArticles'     => $articles,
+            'announcements'      => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 

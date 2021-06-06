@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Usecases\Batch\PageView\ReplicateCirclePageViewUsecase;
+use App\Usecases\Batch\PageView\ReplicateTagPageViewUsecase;
 use App\Usecases\Batch\PageView\SynchronizeGoogleAnalyticsToAppUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -27,6 +28,8 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
 
     private ReplicateCirclePageViewUsecase $replicateCirclePageViewUsecase;
 
+    private ReplicateTagPageViewUsecase $replicateTagPageViewUsecase;
+
     private SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase;
 
     /**
@@ -36,10 +39,12 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
      */
     public function __construct(
         ReplicateCirclePageViewUsecase $replicateCirclePageViewUsecase,
+        ReplicateTagPageViewUsecase $replicateTagPageViewUsecase,
         SynchronizeGoogleAnalyticsToAppUsecase $synchronizeGoogleAnalyticsToAppUsecase
     ) {
         parent::__construct();
         $this->replicateCirclePageViewUsecase = $replicateCirclePageViewUsecase;
+        $this->replicateTagPageViewUsecase = $replicateTagPageViewUsecase;
         $this->synchronizeGoogleAnalyticsToAppUsecase = $synchronizeGoogleAnalyticsToAppUsecase;
     }
 
@@ -54,6 +59,7 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
         Log::debug("SynchronizeGoogleAnalyticsToAppCommand start");
         $this->synchronizeGoogleAnalyticsToAppUsecase->invoke();
         $this->replicateCirclePageViewUsecase->invoke();
+        $this->replicateTagPageViewUsecase->invoke();
         Log::debug("SynchronizeGoogleAnalyticsToAppCommand end");
         return 0;
     }

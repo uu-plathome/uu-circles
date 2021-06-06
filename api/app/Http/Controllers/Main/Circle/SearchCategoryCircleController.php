@@ -12,6 +12,7 @@ use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetRandomCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\Usecases\Main\Circle\SearchCategoryCircleListUsecase;
+use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleValueObject;
@@ -31,16 +32,20 @@ final class SearchCategoryCircleController extends Controller
 
     private SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase;
 
+    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
+
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
         GetRandomCircleUsecase $getRandomCircleUsecase,
         GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase
+        SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase,
+        TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
         $this->getRandomCircleUsecase = $getRandomCircleUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchCategoryCircleListUsecase = $searchCategoryCircleListUsecase;
+        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     /**
@@ -71,10 +76,18 @@ final class SearchCategoryCircleController extends Controller
             return $this->searchCategoryCircleListUsecase->invoke($params);
         });
 
+        // おすすめサークル
         $recommendCircles = Cache::remember(
             $this->getRecommendCirclesCacheKey(),
             120,
             fn () => $this->getRandomCircleUsecase->invoke(6)
+        );
+
+        // タグのアクセス数ランキング
+        $tagPageViewRanking = Cache::remember(
+            TagPageViewRankingUsecase::getCacheKey(),
+            TagPageViewRankingUsecase::TTL,
+            fn () => $this->tagPageViewRankingUsecase->invoke()
         );
 
         $articles = Cache::remember(
@@ -108,6 +121,7 @@ final class SearchCategoryCircleController extends Controller
                     ])
                 )->toArray()
             ),
+            'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
             'uuYellArticles' => $articles,
             'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
