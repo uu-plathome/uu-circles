@@ -12,6 +12,7 @@ use App\Models\Circle;
 use App\Models\CircleNewJoy;
 use App\Models\PageView;
 use App\Support\Arr;
+use App\Usecases\Main\Statistics\Dto\CircleForStatisticsDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyRankingDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsAdmissionFeePerYearHighRankingDto;
@@ -22,7 +23,6 @@ use App\Usecases\Main\Statistics\Dto\StatisticsNumberOfActivitiesCountDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsNumberOfActivitiesRankingDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsOnlineActivityDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsPlaceOfActivityFrequencyDto;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -50,9 +50,10 @@ final class StatisticsUsecase
         ])
             ->whereRelease(true)
             ->hasByNonDependentSubquery('circleInformation')
+            ->hasByNonDependentSubquery('circleHandbill')
             ->get();
         $circleValueObjects = $circles->map(
-            fn (Circle $circle) => CircleValueObject::byEloquent(
+            fn (Circle $circle) => CircleForStatisticsDto::byEloquent(
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill
@@ -127,9 +128,9 @@ final class StatisticsUsecase
         // 活動人数ランキング
         $statisticsNumberOfActivitiesRankingDto = new StatisticsNumberOfActivitiesRankingDto();
         $circleSortByNumberOfMembers = $circleValueObjects->filter(
-            fn (CircleValueObject $cvo) => $cvo->number_of_members !== null
+            fn (CircleForStatisticsDto $cvo) => $cvo->number_of_members !== null
         )->sortByDesc(
-            fn (CircleValueObject $cvo) => $cvo->number_of_members
+            fn (CircleForStatisticsDto $cvo) => $cvo->number_of_members
         )->values();
         $statisticsNumberOfActivitiesRankingDto->first = Arr::get($circleSortByNumberOfMembers->all(), 0);
         $statisticsNumberOfActivitiesRankingDto->second = Arr::get($circleSortByNumberOfMembers->all(), 1);
@@ -141,9 +142,9 @@ final class StatisticsUsecase
         // 活動費用ランキング (高い順)
         $statisticsAdmissionFeePerYearHighRankingDto = new StatisticsAdmissionFeePerYearHighRankingDto();
         $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
-            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year !== null
+            fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year !== null
         )->sortByDesc(
-            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year
+            fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year
         )->values()
             ->all();
         $statisticsAdmissionFeePerYearHighRankingDto->first = Arr::get($circleSortByAdmissionFeePerYear, 0);
@@ -156,9 +157,9 @@ final class StatisticsUsecase
         // 活動費用ランキング (低い順)
         $statisticsAdmissionFeePerYearSmallRankingDto = new StatisticsAdmissionFeePerYearSmallRankingDto();
         $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
-            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year !== null
+            fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year !== null
         )->sortBy(
-            fn (CircleValueObject $cvo) => $cvo->admission_fee_per_year
+            fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year
         )->values()
             ->all();
         $statisticsAdmissionFeePerYearSmallRankingDto->first = Arr::get($circleSortByAdmissionFeePerYear, 0);
@@ -209,9 +210,9 @@ final class StatisticsUsecase
         // 週の活動頻度ランキング (高い順)
         $statisticsActivityFrequencyRankingDto = new StatisticsActivityFrequencyRankingDto();
         $circleSortByActivityFrequency = $circleValueObjects->filter(
-            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days && $cvo->weekly_activity_days > 0
+            fn (CircleForStatisticsDto $cvo) => $cvo->weekly_activity_days && $cvo->weekly_activity_days > 0
         )->sortByDesc(
-            fn (CircleValueObject $cvo) => $cvo->weekly_activity_days
+            fn (CircleForStatisticsDto $cvo) => $cvo->weekly_activity_days
         )->values()
             ->all();
         $statisticsActivityFrequencyRankingDto->first = Arr::get($circleSortByActivityFrequency, 0);
