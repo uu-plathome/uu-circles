@@ -9,7 +9,8 @@ use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Support\Arr;
 use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
-use App\ValueObjects\CircleValueObject;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -35,7 +36,7 @@ final class GachaResultController extends Controller
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'id', 'name', 'release', 'slug'
+                'id', 'name', 'slug'
             ])
             ->find(json_decode($circleGachaResult->result_circle_ids));
 
@@ -43,9 +44,8 @@ final class GachaResultController extends Controller
          $foundDrewCircles = $fetchedDrewCircles->map(
              fn (Circle $circle) =>
              //型変換
-             CircleValueObject::byEloquent(
+             GachaSimpleCircleDto::byEloquent(
                  $circle,
-                 null,
                  $circle->circleHandbill
              )
          );
@@ -56,7 +56,7 @@ final class GachaResultController extends Controller
              // 新歓が登録されているのものを取得
              ->hasByNonDependentSubquery('circleHandbill')
              ->select([
-                 'id', 'name', 'release', 'slug'
+                 'id', 'name', 'slug'
              ])
              ->find(json_decode($circleGachaResult->pickup_circle_ids));
 
@@ -64,17 +64,23 @@ final class GachaResultController extends Controller
           $foundPickupCircles = $fetchedPickupCircles->map(
               fn (Circle $circle) =>
               //型変換
-              CircleValueObject::byEloquent(
+              GachaSimpleCircleDto::byEloquent(
                   $circle,
-                  null,
                   $circle->circleHandbill
               )
           );
 
         $dto = new CircleGachaDto();
         $dto->gacha_hash = $circleGachaResult->gacha_hash;
-        $dto->result_circles = $foundDrewCircles->toArray();
-        $dto->pickup_circles = $foundPickupCircles->toArray();
+
+        $resultCircleDto = new GachaSimpleCircleListDto();
+        $resultCircleDto->list = $foundDrewCircles->toArray();
+        $dto->result_circles = $resultCircleDto;
+
+        $pickupCircleDto = new GachaSimpleCircleListDto();
+        $pickupCircleDto->list = $foundDrewCircles->toArray();
+        $dto->pickup_circles = $pickupCircleDto;
+
         $dto->created_at = $circleGachaResult->created_at instanceof Carbon ? $circleGachaResult->created_at : null;
         $dto->count = $foundDrewCircles->count();
 

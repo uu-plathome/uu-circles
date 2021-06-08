@@ -11,7 +11,6 @@ use App\Support\Arr;
 use App\Usecases\CircleManagement\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 final class IndexCircleNewJoyController extends Controller

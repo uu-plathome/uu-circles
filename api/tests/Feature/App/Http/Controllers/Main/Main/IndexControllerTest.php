@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Main;
 
+use App\Enum\RouteProperty\ApiRouteProperty;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -33,12 +34,15 @@ class IndexControllerTest extends TestCase
         Http::fake();
 
         // WHEN
-        $response = $this->get('/api/main');
+        $response = $this->get(route(ApiRouteProperty::MainIndex));
 
         // THEN
         $response->assertOk();
         $this->assertArrayHasKey('data', $response);
         $this->assertIsArray($response['data']);
+        Log::debug("[THEN] IndexControllerTest", [
+            'circles' => $response['data'],
+        ]);
         $this->assertCount(IndexController::CIRCLE_MAX_VIEW, $response['data']);
 
         $this->assertArrayHasKey('mainAdvertises', $response);
