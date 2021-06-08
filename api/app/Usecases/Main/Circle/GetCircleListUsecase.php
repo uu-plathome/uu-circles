@@ -7,7 +7,6 @@ namespace App\Usecases\Main\Circle;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 

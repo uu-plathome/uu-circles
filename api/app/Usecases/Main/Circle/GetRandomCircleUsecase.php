@@ -8,7 +8,6 @@ use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
 final class GetRandomCircleUsecase
