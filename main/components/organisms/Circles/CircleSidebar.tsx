@@ -1,5 +1,4 @@
 import { __ } from '@/lang/ja'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Category } from '@/lib/enum/app/Category'
@@ -66,7 +65,7 @@ const CategoryItemFc: FC<CategoryItemFcProps> = ({ categoryItem }) => {
 
 type Props = {
   tagPageViewRanking: TagPageViewRanking
-  excludeTags?: TagSlugProperty
+  excludeTags?: TagSlugProperty[]
 }
 const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
   const tagList = useMemo(() => {
