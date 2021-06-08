@@ -27,6 +27,7 @@ const Page: NextPage<Props> = ({
   recommendCircles,
   uuYellArticles,
   announcements,
+  tagPageViewRanking,
 }) => {
   const router = useRouter()
   const { tag } = router.query
@@ -49,7 +50,7 @@ const Page: NextPage<Props> = ({
         }
       >
         <div className="bg-gray-100 px-2">
-          <TwoColumnContainer sidebar={<CircleSidebar />}>
+          <TwoColumnContainer sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}>
             <div className="px-5">
               <h1 className="text-2xl py-8">{__(String(tag).toUpperCase())}</h1>
 
