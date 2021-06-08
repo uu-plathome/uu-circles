@@ -6,8 +6,9 @@ namespace App\Usecases\Main\Circle;
 
 use App\Enum\CircleType;
 use App\Models\Circle;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
@@ -19,7 +20,7 @@ final class SearchCategoryCircleListUsecase
      * @param SearchCategoryCircleListParam $param
      * @return array
      */
-    public function invoke(SearchCategoryCircleListParam $param): array
+    public function invoke(SearchCategoryCircleListParam $param): MainSimpleCircleListDto
     {
         Log::debug("#SearchCategoryCircleListParam args", [
             'param' => $param
@@ -64,13 +65,14 @@ final class SearchCategoryCircleListUsecase
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
             fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
-                $circle,
-                null,
-                $circle->circleHandbill
-            )
+                MainSimpleCircleDto::byEloquent(
+                    $circle,
+                    $circle->circleHandbill
+                )
         )->toArray();
+        return $dto;
     }
 }

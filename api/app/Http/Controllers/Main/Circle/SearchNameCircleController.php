@@ -95,12 +95,7 @@ final class SearchNameCircleController extends Controller
 
         return [
             'data' => Arr::camel_keys(
-                (new Collection($circles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+                Arr::get($circles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'recommendCircles' => Arr::camel_keys(
                 Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)
