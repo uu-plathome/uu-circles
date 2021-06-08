@@ -7,8 +7,8 @@ namespace App\Usecases\Main\Statistics;
 use App\Enum\Property\CirclePageViewProperty;
 use App\Models\CirclePageView;
 use App\Support\Arr;
+use App\Usecases\Main\Statistics\Dto\CircleForStatisticsDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
-use App\ValueObjects\CircleValueObject;
 
 final class StatisticsCirclePageViewsRankingUsecase
 {
@@ -38,24 +38,24 @@ final class StatisticsCirclePageViewsRankingUsecase
             ->take(5)
             ->get();
 
-        $circleValueObjects = $circlePageViews->map(
-            fn (CirclePageView $circlePageView) => CircleValueObject::byEloquent(
+        $circlesDto = $circlePageViews->map(
+            fn (CirclePageView $circlePageView) => CircleForStatisticsDto::byEloquent(
                 $circlePageView->circle,
                 $circlePageView->circle->circleInformation,
-                null
+                $circlePageView->circle->circleHandbill
             )
         )->all();
 
         $dto = new StatisticsCirclePageViewsHighRankingDto();
-        $dto->first = Arr::get($circleValueObjects, 0);
+        $dto->first = Arr::get($circlesDto, 0);
         $dto->first_page_view = Arr::get($circlePageViews, 0);
-        $dto->second = Arr::get($circleValueObjects, 1);
+        $dto->second = Arr::get($circlesDto, 1);
         $dto->second_page_view = Arr::get($circlePageViews, 1);
-        $dto->third = Arr::get($circleValueObjects, 2);
+        $dto->third = Arr::get($circlesDto, 2);
         $dto->third_page_view = Arr::get($circlePageViews, 2);
-        $dto->fourth = Arr::get($circleValueObjects, 3);
+        $dto->fourth = Arr::get($circlesDto, 3);
         $dto->fourth_page_view = Arr::get($circlePageViews, 3);
-        $dto->fifth = Arr::get($circleValueObjects, 4);
+        $dto->fifth = Arr::get($circlesDto, 4);
         $dto->fifth_page_view = Arr::get($circlePageViews, 4);
 
         return $dto;

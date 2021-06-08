@@ -38,7 +38,7 @@ final class GachaPickupListController extends Controller
 
         return Arr::camel_keys([
             "pickupCircle" => $pickupList->toArrayPickupCircles(),
-            "pickupDate" => $pickupList->pickupDate,
+            "pickupDate"   => $pickupList->pickupDate,
         ]);
     }
 }

@@ -6,7 +6,6 @@ namespace App\Usecases\Main\Statistics\Dto;
 
 use App\Enum\Property\CirclePageViewProperty;
 use App\Models\CirclePageView;
-use App\ValueObjects\CircleValueObject;
 
 /**
  * サークルページ閲覧数ランキング
@@ -16,9 +15,9 @@ final class StatisticsCirclePageViewsHighRankingDto
     /**
      * 1位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $first;
+    public ?CircleForStatisticsDto $first;
 
     /**
      * 1位
@@ -30,9 +29,9 @@ final class StatisticsCirclePageViewsHighRankingDto
     /**
      * 2位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $second;
+    public ?CircleForStatisticsDto $second;
 
     /**
      * 2位
@@ -44,9 +43,9 @@ final class StatisticsCirclePageViewsHighRankingDto
     /**
      * 3位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $third;
+    public ?CircleForStatisticsDto $third;
 
     /**
      * 3位
@@ -58,9 +57,9 @@ final class StatisticsCirclePageViewsHighRankingDto
     /**
      * 4位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $fourth;
+    public ?CircleForStatisticsDto $fourth;
 
     /**
      * 4位
@@ -72,9 +71,9 @@ final class StatisticsCirclePageViewsHighRankingDto
     /**
      * 5位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $fifth;
+    public ?CircleForStatisticsDto $fifth;
 
     /**
      * 5位

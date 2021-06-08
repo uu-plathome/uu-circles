@@ -6,12 +6,19 @@ namespace App\Usecases\Main\Circle;
 
 use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
-use App\ValueObjects\CircleValueObject;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use Illuminate\Support\Facades\Log;
 
 final class GetRandomCircleWithMainFixedUsecase
 {
-    public function invoke(int $limit = 12)
+    /**
+     * Undocumented function
+     *
+     * @param integer $limit
+     * @return MainSimpleCircleListDto
+     */
+    public function invoke(int $limit = 12): MainSimpleCircleListDto
     {
         Log::debug("#GetRandomCircleWithMainFixedUsecase args", [
             'limit' => $limit
@@ -27,7 +34,6 @@ final class GetRandomCircleWithMainFixedUsecase
             ->select([
                 CircleProperty::id,
                 CircleProperty::name,
-                CircleProperty::release,
                 CircleProperty::slug,
                 CircleProperty::is_main_fixed,
             ])
@@ -43,7 +49,6 @@ final class GetRandomCircleWithMainFixedUsecase
             ->select([
                 CircleProperty::id,
                 CircleProperty::name,
-                CircleProperty::release,
                 CircleProperty::slug,
                 CircleProperty::is_main_fixed,
             ])
@@ -52,19 +57,20 @@ final class GetRandomCircleWithMainFixedUsecase
             ->union($fixedCircles)
             ->get();
 
-        $circles = $foundCircles->unique('id')
+        $circles = $foundCircles->unique(CircleProperty::id)
             ->sortByDesc(CircleProperty::is_main_fixed)
             ->values()
             ->take($limit)
             ->shuffle();
 
-        return $circles->map(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
             fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
-                $circle,
-                null,
-                $circle->circleHandbill
-            )
-        );
+                MainSimpleCircleDto::byEloquent(
+                    $circle,
+                    $circle->circleHandbill
+                )
+        )->toArray();
+        return $dto;
     }
 }

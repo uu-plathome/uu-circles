@@ -7,8 +7,9 @@ namespace App\Usecases\Main\Gacha;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -61,31 +62,32 @@ final class DrawGachaUsecase
         /** @var \Illuminate\Support\Collection $circles */
         $foundCircles = $circles->map(
             fn (Circle $circle) =>
-            //型変換
-            CircleValueObject::byEloquent(
+            // 型変換
+            GachaSimpleCircleDto::byEloquent(
                 $circle,
-                null,
                 $circle->circleHandbill
             )
         );
 
+        $pickupListCirclesCollection = new Collection($pickupList->pickupCircles->list);
+
         //ピックアップ処理を行う
-        $pickupCircles = $foundCircles->filter(function (CircleValueObject $cvo) use ($pickupList) {
-            $pickupListCircles = new Collection($pickupList->pickupCircles);
+        $pickupCircles = $foundCircles->filter(function (GachaSimpleCircleDto $cvo) use ($pickupListCirclesCollection) {
+            $pickupListCircles = $pickupListCirclesCollection;
             $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id === $cvo->id
+                fn(GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
             );
             return !is_null($found);
         });
         Log::debug('DrawGachaUsecase pickupCircles', [$pickupCircles]);
 
         //ピックアップじゃないリストの処理
-        $notPickupCircles = $foundCircles->filter(function (CircleValueObject $cvo) use ($pickupList) {
-            $pickupListCircles = new Collection($pickupList->pickupCircles);
+        $notPickupCircles = $foundCircles->filter(function (GachaSimpleCircleDto $cvo) use ($pickupListCirclesCollection) {
+            $pickupListCircles = $pickupListCirclesCollection;
             $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(CircleValueObject $pickupCvo)=>$pickupCvo->id === $cvo->id
+                fn(GachaSimpleCircleDto $pickupCvo)=>$pickupCvo->circleId === $cvo->circleId
             );
             return is_null($found);
         });
@@ -108,8 +110,8 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $pickupCircle_ids = $pickupCircles->map(fn(CircleValueObject $cvo)=>$cvo->id)->values();
-        $drewCircle_ids = $drewCircles->map(fn(CircleValueObject $cvo)=>$cvo->id)->values();
+        $pickupCircle_ids = $pickupCircles->map(fn(GachaSimpleCircleDto $cvo)=>$cvo->circleId)->values();
+        $drewCircle_ids = $drewCircles->map(fn(GachaSimpleCircleDto $cvo)=>$cvo->circleId)->values();
 
         //DBに挿入
         $data = [
@@ -122,8 +124,15 @@ final class DrawGachaUsecase
 
         $dto = new CircleGachaDto();
         $dto->gacha_hash = $circleGachaResult->gacha_hash;
-        $dto->result_circles = $drewCircles->toArray();
-        $dto->pickup_circles = $pickupCircles->toArray();
+
+        // ガチャ結果
+        $resultCirclesDto = new GachaSimpleCircleListDto();
+        $resultCirclesDto->list = $drewCircles->toArray();
+        $dto->result_circles = $resultCirclesDto;
+
+        // pickup
+        $dto->pickup_circles = $pickupList->pickupCircles;
+
         $dto->created_at = $circleGachaResult->created_at;
         $dto->count = $drawCount;
 

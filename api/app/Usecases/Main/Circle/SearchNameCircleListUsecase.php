@@ -7,8 +7,9 @@ namespace App\Usecases\Main\Circle;
 use App\Enum\Property\CircleSearchWordProperty;
 use App\Models\Circle;
 use App\Models\CircleSearchWord;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
 final class SearchNameCircleListUsecase
@@ -17,9 +18,9 @@ final class SearchNameCircleListUsecase
      * サークルをテキストで検索する
      *
      * @param SearchNameCircleListParam $param
-     * @return mixed
+     * @return MainSimpleCircleListDto
      */
-    public function invoke(SearchNameCircleListParam $param)
+    public function invoke(SearchNameCircleListParam $param): MainSimpleCircleListDto
     {
         Log::debug('SearchNameCircleListUsecase', [
             'SearchNameCircleListParam' => $param,
@@ -55,14 +56,15 @@ final class SearchNameCircleListUsecase
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
             fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
-                $circle,
-                null,
-                $circle->circleHandbill
-            )
+                MainSimpleCircleDto::byEloquent(
+                    $circle,
+                    $circle->circleHandbill
+                )
         )->toArray();
+        return $dto;
     }
 
     /**
