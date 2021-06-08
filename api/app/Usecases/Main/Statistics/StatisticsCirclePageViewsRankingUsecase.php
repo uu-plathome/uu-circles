@@ -7,8 +7,8 @@ namespace App\Usecases\Main\Statistics;
 use App\Enum\Property\CirclePageViewProperty;
 use App\Models\CirclePageView;
 use App\Support\Arr;
+use App\Usecases\Main\Statistics\Dto\CircleForStatisticsDto;
 use App\Usecases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
-use App\ValueObjects\CircleValueObject;
 
 final class StatisticsCirclePageViewsRankingUsecase
 {
@@ -39,10 +39,10 @@ final class StatisticsCirclePageViewsRankingUsecase
             ->get();
 
         $circleValueObjects = $circlePageViews->map(
-            fn (CirclePageView $circlePageView) => CircleValueObject::byEloquent(
+            fn (CirclePageView $circlePageView) => CircleForStatisticsDto::byEloquent(
                 $circlePageView->circle,
                 $circlePageView->circle->circleInformation,
-                null
+                $circlePageView->circle->circleHandbill
             )
         )->all();
 

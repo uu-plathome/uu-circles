@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Usecases\Main\Statistics\Dto;
 
-use App\ValueObjects\CircleValueObject;
-
 /**
  * 活動費用ランキング (高い順)
  */
@@ -14,37 +12,37 @@ final class StatisticsActivityFrequencyRankingDto
     /**
      * 1位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $first;
+    public ?CircleForStatisticsDto $first;
 
     /**
      * 2位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $second;
+    public ?CircleForStatisticsDto $second;
 
     /**
      * 3位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $third;
+    public ?CircleForStatisticsDto $third;
 
     /**
      * 4位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $fourth;
+    public ?CircleForStatisticsDto $fourth;
 
     /**
      * 5位
      *
-     * @var CircleValueObject|null
+     * @var CircleForStatisticsDto|null
      */
-    public ?CircleValueObject $fifth;
+    public ?CircleForStatisticsDto $fifth;
 
     public function toArray(): array
     {
