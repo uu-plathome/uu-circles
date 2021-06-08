@@ -1,10 +1,11 @@
 import { __ } from '@/lang/ja'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Category } from '@/lib/enum/app/Category'
+import { TagPageView } from '@/lib/types/model/TagPageView'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 
 type BaseItem = {
   text: string
@@ -13,38 +14,6 @@ type BaseItem = {
 }
 type TagItem = BaseItem
 type CategoryItem = BaseItem
-const tagAlwaysItems: TagItem[] = [
-  {
-    text: __(CircleTagModel.VOLUNTEER),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.volunteer}`,
-  },
-  {
-    text: __(CircleTagModel.PROGRAMMING),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.programming}`,
-  },
-  {
-    text: __(CircleTagModel.NATURE),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.nature}`,
-  },
-  {
-    text: __(CircleTagModel.INTERNATIONAL),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.international}`,
-  },
-  {
-    text: __(CircleTagModel.INCARE),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.incare}`,
-  },
-  {
-    text: __(CircleTagModel.LOOSE),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.loose}`,
-  },
-]
 type TagItemFcProps = {
   tagItem: TagItem
 }
@@ -93,7 +62,42 @@ const CategoryItemFc: FC<CategoryItemFcProps> = ({ categoryItem }) => {
     </li>
   )
 }
-const CircleSidebar: FC = () => {
+
+type Props = {
+  tagPageViewRanking: TagPageViewRanking
+  excludeTags?: TagSlugProperty[]
+}
+const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
+  const tagList = useMemo(() => {
+    const _tagList: TagPageView[] = []
+    tagPageViewRanking.first && _tagList.push(tagPageViewRanking.first)
+    tagPageViewRanking.second && _tagList.push(tagPageViewRanking.second)
+    tagPageViewRanking.third && _tagList.push(tagPageViewRanking.third)
+    tagPageViewRanking.fourth && _tagList.push(tagPageViewRanking.fourth)
+    tagPageViewRanking.fifth && _tagList.push(tagPageViewRanking.fifth)
+    tagPageViewRanking.sixth && _tagList.push(tagPageViewRanking.sixth)
+    tagPageViewRanking.seventh && _tagList.push(tagPageViewRanking.seventh)
+    tagPageViewRanking.eighth && _tagList.push(tagPageViewRanking.eighth)
+    tagPageViewRanking.ninth && _tagList.push(tagPageViewRanking.ninth)
+    tagPageViewRanking.tenth && _tagList.push(tagPageViewRanking.tenth)
+
+    return _tagList
+      .filter((tag) => {
+        if (!excludeTags || !Array.isArray(excludeTags)) {
+          return true
+        }
+
+        return !excludeTags.includes(tag.tagName)
+      })
+      .map(
+        (tagPageView): TagItem => ({
+          text: __(String(tagPageView.tagName).toUpperCase()),
+          href: '/circle/tag/[tag]',
+          as: `/circle/tag/${tagPageView.tagName}`,
+        })
+      )
+  }, [tagPageViewRanking, excludeTags])
+
   return (
     <div>
       <h2 className="text-gray-600 text-lg py-8">カテゴリー</h2>
@@ -108,7 +112,7 @@ const CircleSidebar: FC = () => {
 
       <h2 className="text-gray-600 text-lg py-8">人気のタグ</h2>
       <ul>
-        {tagAlwaysItems.map((_tagItem, idx) => (
+        {tagList.map((_tagItem, idx) => (
           <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} />
         ))}
       </ul>
