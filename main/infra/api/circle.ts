@@ -1,22 +1,25 @@
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { AxiosError } from 'axios'
 import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
 import { PageNotFoundError, InternalServerError } from './error'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
-import { Announcement } from '@/lib/types/model/Announcement'
 
 export const getAllCircleList = async (): Promise<{
   circles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   /** お知らせ */ announcements: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }> => {
   type Response = {
     data: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
     /** お知らせ */ announcements: Announcement[]
+    /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}`
@@ -26,6 +29,7 @@ export const getAllCircleList = async (): Promise<{
     circles: data.data,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
     /** お知らせ */ announcements: data.announcements,
+    /** タグページ閲覧数 */ tagPageViewRanking: data.tagPageViewRanking,
   }
 }
 
@@ -86,12 +90,14 @@ export const getCircleByCategory = async (
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   /** お知らせ */ announcements: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
     /** お知らせ */ announcements: Announcement[]
+    /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
   }
   const { data } = await axiosInstance.get<Response>(
     linkConst.CIRCLE.CATEGORY(category)
@@ -102,6 +108,7 @@ export const getCircleByCategory = async (
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
     /** お知らせ */ announcements: data.announcements,
+    /** タグページ閲覧数 */ tagPageViewRanking: data.tagPageViewRanking,
   }
 }
 
@@ -112,12 +119,14 @@ export const getCircleByTag = async (
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   /** お知らせ */ announcements: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
     /** お知らせ */ announcements: Announcement[]
+    /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
   }
   const { data } = await axiosInstance.get<Response>(
     `${linkConst.CIRCLE.GROUP}/tag/${tag}`
@@ -128,6 +137,7 @@ export const getCircleByTag = async (
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
     /** お知らせ */ announcements: data.announcements,
+    /** タグページ閲覧数 */ tagPageViewRanking: data.tagPageViewRanking,
   }
 }
 
@@ -138,12 +148,14 @@ export const searchCircle = async (
   recommendCircles: Circle[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
   /** お知らせ */ announcements: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }> => {
   type Response = {
     data: Circle[]
     recommendCircles: Circle[]
     /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
     /** お知らせ */ announcements: Announcement[]
+    /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
   }
   const { data } = await axiosInstance.get<Response>(
     encodeURI(`${linkConst.CIRCLE.GROUP}/search/${search}`)
@@ -154,5 +166,6 @@ export const searchCircle = async (
     recommendCircles: data.recommendCircles,
     /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
     /** お知らせ */ announcements: data.announcements,
+    /** タグページ閲覧数 */ tagPageViewRanking: data.tagPageViewRanking,
   }
 }

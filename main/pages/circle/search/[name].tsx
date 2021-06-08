@@ -8,6 +8,7 @@ import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleLi
 import { searchCircle } from '@/infra/api/circle'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { WP_REST_API_Post } from 'wp-types'
@@ -18,6 +19,7 @@ type Props = {
   recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking?: TagPageViewRanking
 }
 const Page: NextPage<Props> = ({
   circles,
@@ -72,7 +74,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const { circles, recommendCircles, uuYellArticles } = await searchCircle(
+  const { circles, recommendCircles, uuYellArticles, tagPageViewRanking } = await searchCircle(
     params.name
   )
 
@@ -81,6 +83,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       circles,
       recommendCircles,
       uuYellArticles,
+      tagPageViewRanking,
     },
   }
 }

@@ -9,6 +9,7 @@ import { getCircleByTag } from '@/infra/api/circle'
 import { __ } from '@/lang/ja'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { WP_REST_API_Post } from 'wp-types'
@@ -19,6 +20,7 @@ type Props = {
   recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
 const Page: NextPage<Props> = ({
   circles,
@@ -88,7 +90,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles, announcements } =
+  const { circles, recommendCircles, uuYellArticles, announcements, tagPageViewRanking } =
     await getCircleByTag(params.tag)
 
   return {
@@ -97,6 +99,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       recommendCircles,
       uuYellArticles,
       announcements,
+      tagPageViewRanking,
     },
     revalidate: 120,
   }
