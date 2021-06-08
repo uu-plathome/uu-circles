@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App\Usecases\Main\Circle;
 
+use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
 final class GetRandomCircleUsecase
 {
     /**
-     * ランダムなサークルを主とくる
+     * ランダムなサークルを取得する
      *
      * @return CircleValueObject[]
      */
-    public function invoke(int $limit = 6)
+    public function invoke(int $limit = 6): MainSimpleCircleListDto
     {
         Log::debug("#GetRandomCircleUsecase args", [
             'limit' => $limit
@@ -27,19 +30,22 @@ final class GetRandomCircleUsecase
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'id', 'name', 'release', 'slug'
+                CircleProperty::id,
+                CircleProperty::name,
+                CircleProperty::slug,
             ])
             ->inRandomOrder()
             ->take($limit)
             ->get();
 
-        return $circles->map(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
             fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
-                $circle,
-                null,
-                $circle->circleHandbill
-            )
-        );
+                MainSimpleCircleDto::byEloquent(
+                    $circle,
+                    $circle->circleHandbill
+                )
+        )->toArray();
+        return $dto;
     }
 }

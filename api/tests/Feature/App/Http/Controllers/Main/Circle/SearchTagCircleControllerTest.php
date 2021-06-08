@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\TagSlugProperty;
+use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -43,7 +44,7 @@ class SearchTagCircleControllerTest extends TestCase
         // THEN
         $response->assertOk();
         $this->assertArrayHasKey('recommendCircles', $response);
-        $this->assertNotCount(0, $response['recommendCircles']);
+        $this->assertCount(GetRecommendCircleUsecase::LIMIT, $response['recommendCircles']);
 
         $this->assertArrayHasKey('tagPageViewRanking', $response);
         $this->assertIsArray($response['tagPageViewRanking']);

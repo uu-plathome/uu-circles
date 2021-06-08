@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\GetRandomCircleUsecase;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
 use App\Usecases\Main\Circle\SearchTagCircleListUsecase;
 use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
@@ -26,7 +27,7 @@ final class SearchTagCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 
-    private GetRandomCircleUsecase $getRandomCircleUsecase;
+    private GetRecommendCircleUsecase $getRecommendCircleUsecase;
 
     private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
 
@@ -36,13 +37,13 @@ final class SearchTagCircleController extends Controller
 
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetRandomCircleUsecase $getRandomCircleUsecase,
+        GetRecommendCircleUsecase $getRecommendCircleUsecase,
         GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         SearchTagCircleListUsecase $searchTagCircleListUsecase,
         TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getRandomCircleUsecase = $getRandomCircleUsecase;
+        $this->getRecommendCircleUsecase = $getRecommendCircleUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchTagCircleListUsecase = $searchTagCircleListUsecase;
         $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
@@ -101,10 +102,11 @@ final class SearchTagCircleController extends Controller
         );
 
         // おすすめサークル
+        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $recommendCircles = Cache::remember(
-            $this->getRecommendCirclesCacheKey(),
-            120,
-            fn () => $this->getRandomCircleUsecase->invoke(6)
+            GetRecommendCircleUsecase::getCacheKey(),
+            GetRecommendCircleUsecase::TTL,
+            fn () => $this->getRecommendCircleUsecase->invoke()
         );
 
         // タグのアクセス数ランキング
@@ -138,12 +140,7 @@ final class SearchTagCircleController extends Controller
                 )->toArray()
             ),
             'recommendCircles' => Arr::camel_keys(
-                (new Collection($recommendCircles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+                Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
             'uuYellArticles' => $articles,
@@ -166,11 +163,5 @@ final class SearchTagCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
         return 'SearchTagCircleController.main' . $tag . $minutes;
-    }
-
-    private function getRecommendCirclesCacheKey(): string
-    {
-        $minutes = Carbon::now()->format('YmdHi');
-        return 'RecommendCircles' . $minutes;
     }
 }
