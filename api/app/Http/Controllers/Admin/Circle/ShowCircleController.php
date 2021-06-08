@@ -20,11 +20,11 @@ final class ShowCircleController extends Controller
      * @param int $id
      * @return array
      */
-    public function __invoke(Request $request, int $id): array
+    public function __invoke(Request $request, int $circleId): array
     {
         Log::debug("ShowCircleController args none");
 
-        $circle = Circle::findOrFail($id);
+        $circle = Circle::findOrFail($circleId);
 
         return [
             'data' => Arr::camel_keys(CircleValueObject::byEloquent(

@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\CircleNewJoy;
 
+use App\Enum\RouteProperty\ApiRouteProperty as ARP;
 use App\Models\Circle;
 use App\Models\CircleNewJoy;
-use App\Support\Arr;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -42,7 +41,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         Http::fake();
 
         // WHEN
-        $response = $this->get('/api/circle/newjoy');
+        $response = $this->get(route(ARP::MainCircleNewJoyToday));
 
         // THEN
         $response->assertOk();
@@ -67,7 +66,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         $this->assertCount(0, CircleNewJoy::all());
 
         // WHEN
-        $response = $this->get('/api/circle/newjoy');
+        $response = $this->get(route(ARP::MainCircleNewJoyToday));
         Log::info('response', [
             $response
         ]);
@@ -108,7 +107,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         ]);
 
         // WHEN
-        $response = $this->get('/api/circle/newjoy');
+        $response = $this->get(route(ARP::MainCircleNewJoyToday));
         Log::info('response', [
             $response
         ]);
