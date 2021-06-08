@@ -29,6 +29,9 @@ Route::get('/sitemap', Sitemap\SitemapController::class)
 // 統計
 Route::get('/statistics', Statistics\StatisticsController::class)
     ->name(ARP::MainStatistics);
+// 今日の新歓
+Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyToday);
 
 // サークル一覧
 Route::get('/circle', Circle\IndexCircleController::class)
@@ -45,8 +48,6 @@ Route::get('/circle/{slug}', Circle\GetCircleController::class)
     ->name(ARP::MainCircleShow);
 
 // 新歓
-Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
-    ->name(ARP::MainCircleNewJoyToday);
 Route::get('/circle/{slug}/newjoy', CircleNewJoy\IndexCircleNewJoyController::class)
     ->name(ARP::MainCircleNewJoyIndex);
 Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', CircleNewJoy\ShowCircleNewJoyController::class)
