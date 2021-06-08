@@ -24,7 +24,12 @@ type Props = {
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
-const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements, tagPageViewRanking }) => {
+const Page: NextPage<Props> = ({
+  circles,
+  uuYellArticles,
+  announcements,
+  tagPageViewRanking,
+}) => {
   const router = useRouter()
   const name = useStringInput('')
   const onSubmit = (event: FormEvent) => {
@@ -56,10 +61,11 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements, tagPage
                   TagSlugProperty.sport,
                   TagSlugProperty.music,
                   TagSlugProperty.culture,
-                  TagSlugProperty.community
+                  TagSlugProperty.community,
                 ]}
               />
-            }>
+            }
+          >
             <div className="px-7">
               <h1 className="text-2xl py-8">サークル一覧</h1>
 
@@ -95,7 +101,8 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements, tagPage
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, uuYellArticles, announcements, tagPageViewRanking } = await getAllCircleList()
+  const { circles, uuYellArticles, announcements, tagPageViewRanking } =
+    await getAllCircleList()
 
   return {
     props: {

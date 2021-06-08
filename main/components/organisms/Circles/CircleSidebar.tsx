@@ -81,18 +81,21 @@ const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
     tagPageViewRanking.ninth && _tagList.push(tagPageViewRanking.ninth)
     tagPageViewRanking.tenth && _tagList.push(tagPageViewRanking.tenth)
 
-    return _tagList.filter((tag) => {
-      if (!excludeTags || !Array.isArray(excludeTags)) {
-        return true
-      }
+    return _tagList
+      .filter((tag) => {
+        if (!excludeTags || !Array.isArray(excludeTags)) {
+          return true
+        }
 
-      return !excludeTags.includes(tag.tagName)
-    })
-      .map((tagPageView): TagItem => ({
-        text: __(String(tagPageView.tagName).toUpperCase()),
-        href: '/circle/tag/[tag]',
-        as: `/circle/tag/${tagPageView.tagName}`,
-      }))
+        return !excludeTags.includes(tag.tagName)
+      })
+      .map(
+        (tagPageView): TagItem => ({
+          text: __(String(tagPageView.tagName).toUpperCase()),
+          href: '/circle/tag/[tag]',
+          as: `/circle/tag/${tagPageView.tagName}`,
+        })
+      )
   }, [tagPageViewRanking, excludeTags])
 
   return (

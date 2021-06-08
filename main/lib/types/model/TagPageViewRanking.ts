@@ -1,4 +1,4 @@
-import { TagPageView } from "./TagPageView";
+import { TagPageView } from './TagPageView'
 
 export type TagPageViewRanking = {
   first: TagPageView

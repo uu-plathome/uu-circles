@@ -50,7 +50,9 @@ const Page: NextPage<Props> = ({
         }
       >
         <div className="bg-gray-100 px-2">
-          <TwoColumnContainer sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}>
+          <TwoColumnContainer
+            sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
+          >
             <div className="px-5">
               <h1 className="text-2xl py-8">{__(String(tag).toUpperCase())}</h1>
 
@@ -91,8 +93,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles, announcements, tagPageViewRanking } =
-    await getCircleByTag(params.tag)
+  const {
+    circles,
+    recommendCircles,
+    uuYellArticles,
+    announcements,
+    tagPageViewRanking,
+  } = await getCircleByTag(params.tag)
 
   return {
     props: {
