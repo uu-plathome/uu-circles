@@ -73,6 +73,7 @@ final class SearchCategoryCircleController extends Controller
         $params->sendingOrganization = $category === CategorySlugProperty::official_organization;
         $params->studentGroup = $category === CategorySlugProperty::student_group;
 
+        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $circles = Cache::remember($this->getCacheKey($category), 60, function () use ($params) {
             return $this->searchCategoryCircleListUsecase->invoke($params);
         });
@@ -108,12 +109,7 @@ final class SearchCategoryCircleController extends Controller
 
         return [
             'data' => Arr::camel_keys(
-                (new Collection($circles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+                Arr::get($circles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'recommendCircles' => Arr::camel_keys(
                 Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)

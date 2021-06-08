@@ -7,14 +7,15 @@ namespace App\Usecases\Main\Circle;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleInformationProperty;
 use App\Models\Circle;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
 final class SearchTagCircleListUsecase
 {
-    public function invoke(SearchTagCircleListParam $param)
+    public function invoke(SearchTagCircleListParam $param): MainSimpleCircleListDto
     {
         Log::debug("#SearchTagCircleListUsecase args", [
             'param' => $param
@@ -214,14 +215,15 @@ final class SearchTagCircleListUsecase
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
             fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
-                $circle,
-                $circle->circleInformation,
-                $circle->circleHandbill
-            )
+                MainSimpleCircleDto::byEloquent(
+                    $circle,
+                    $circle->circleHandbill
+                )
         )->toArray();
+        return $dto;
     }
 
     private function shouldCircleTagSearch(SearchTagCircleListParam $param): bool
