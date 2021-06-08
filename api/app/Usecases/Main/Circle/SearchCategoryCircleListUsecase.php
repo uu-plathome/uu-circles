@@ -18,7 +18,7 @@ final class SearchCategoryCircleListUsecase
      * カテゴリー検索をする
      *
      * @param SearchCategoryCircleListParam $param
-     * @return array
+     * @return MainSimpleCircleListDto
      */
     public function invoke(SearchCategoryCircleListParam $param): MainSimpleCircleListDto
     {

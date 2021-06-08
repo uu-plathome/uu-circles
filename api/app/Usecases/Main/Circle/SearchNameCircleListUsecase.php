@@ -18,7 +18,7 @@ final class SearchNameCircleListUsecase
      * サークルをテキストで検索する
      *
      * @param SearchNameCircleListParam $param
-     * @return mixed
+     * @return MainSimpleCircleListDto
      */
     public function invoke(SearchNameCircleListParam $param): MainSimpleCircleListDto
     {

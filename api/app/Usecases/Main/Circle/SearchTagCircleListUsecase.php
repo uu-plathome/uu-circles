@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Log;
 
 final class SearchTagCircleListUsecase
 {
+    /**
+     * タグで検索する
+     * 
+     * @param SearchTagCircleListParam $param
+     * @return MainSimpleCircleListDto
+     */
     public function invoke(SearchTagCircleListParam $param): MainSimpleCircleListDto
     {
         Log::debug("#SearchTagCircleListUsecase args", [

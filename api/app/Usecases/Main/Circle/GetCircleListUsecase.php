@@ -18,7 +18,7 @@ final class GetCircleListUsecase
     /**
      * 全てのサークルを取得する
      *
-     * @return CircleValueObject[]
+     * @return MainSimpleCircleListDto
      */
     public function invoke(): MainSimpleCircleListDto
     {
