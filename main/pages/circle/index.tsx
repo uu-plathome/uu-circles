@@ -48,7 +48,18 @@ const Page: NextPage<Props> = ({ circles, uuYellArticles, announcements, tagPage
         }
       >
         <div className="bg-gray-100 px-2">
-          <TwoColumnContainer sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} excludeTags={[TagSlugProperty.sport, TagSlugProperty.music, TagSlugProperty.culture, TagSlugProperty.community]} />}>
+          <TwoColumnContainer
+            sidebar={
+              <CircleSidebar
+                tagPageViewRanking={tagPageViewRanking}
+                excludeTags={[
+                  TagSlugProperty.sport,
+                  TagSlugProperty.music,
+                  TagSlugProperty.culture,
+                  TagSlugProperty.community
+                ]}
+              />
+            }>
             <div className="px-7">
               <h1 className="text-2xl py-8">サークル一覧</h1>
 
