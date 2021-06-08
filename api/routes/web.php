@@ -12,14 +12,14 @@
 */
 
 use App\Enum\RouteProperty\WebRouteProperty as RP;
-use App\Http\Controllers\Main\Advertise\RedirectToAdvertiseLinkController;
-use App\Http\Controllers\Main\Announcement\RedirectToAnnouncementLinkController;
+use App\Http\Controllers\Main\Main;
+use App\Http\Controllers\Main\Advertise;
+use App\Http\Controllers\Main\Announcement;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Main\WelcomeController::class)
+    ->name(RP::Welcome);
 
-Route::get('/share/advertise/{slug}', RedirectToAdvertiseLinkController::class)
+Route::get('/share/advertise/{slug}', Advertise\RedirectToAdvertiseLinkController::class)
     ->name(RP::WebShareAdvertiseShow);
-Route::get('/share/announcement/{slug}', RedirectToAnnouncementLinkController::class)
+Route::get('/share/announcement/{slug}', Announcement\RedirectToAnnouncementLinkController::class)
     ->name(RP::WebShareAnnouncementShow);
