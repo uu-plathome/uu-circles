@@ -52,7 +52,7 @@ final class StatisticsUsecase
             ->hasByNonDependentSubquery('circleInformation')
             ->hasByNonDependentSubquery('circleHandbill')
             ->get();
-        $circleValueObjects = $circles->map(
+        $circlesDto = $circles->map(
             fn (Circle $circle) => CircleForStatisticsDto::byEloquent(
                 $circle,
                 $circle->circleInformation,
@@ -127,7 +127,7 @@ final class StatisticsUsecase
 
         // 活動人数ランキング
         $statisticsNumberOfActivitiesRankingDto = new StatisticsNumberOfActivitiesRankingDto();
-        $circleSortByNumberOfMembers = $circleValueObjects->filter(
+        $circleSortByNumberOfMembers = $circlesDto->filter(
             fn (CircleForStatisticsDto $cvo) => $cvo->number_of_members !== null
         )->sortByDesc(
             fn (CircleForStatisticsDto $cvo) => $cvo->number_of_members
@@ -141,7 +141,7 @@ final class StatisticsUsecase
 
         // 活動費用ランキング (高い順)
         $statisticsAdmissionFeePerYearHighRankingDto = new StatisticsAdmissionFeePerYearHighRankingDto();
-        $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
+        $circleSortByAdmissionFeePerYear = $circlesDto->filter(
             fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year !== null
         )->sortByDesc(
             fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year
@@ -156,7 +156,7 @@ final class StatisticsUsecase
 
         // 活動費用ランキング (低い順)
         $statisticsAdmissionFeePerYearSmallRankingDto = new StatisticsAdmissionFeePerYearSmallRankingDto();
-        $circleSortByAdmissionFeePerYear = $circleValueObjects->filter(
+        $circleSortByAdmissionFeePerYear = $circlesDto->filter(
             fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year !== null
         )->sortBy(
             fn (CircleForStatisticsDto $cvo) => $cvo->admission_fee_per_year
@@ -209,7 +209,7 @@ final class StatisticsUsecase
 
         // 週の活動頻度ランキング (高い順)
         $statisticsActivityFrequencyRankingDto = new StatisticsActivityFrequencyRankingDto();
-        $circleSortByActivityFrequency = $circleValueObjects->filter(
+        $circleSortByActivityFrequency = $circlesDto->filter(
             fn (CircleForStatisticsDto $cvo) => $cvo->weekly_activity_days && $cvo->weekly_activity_days > 0
         )->sortByDesc(
             fn (CircleForStatisticsDto $cvo) => $cvo->weekly_activity_days
