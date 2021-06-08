@@ -87,8 +87,8 @@ jobs:
             php artisan migrate --force && \
             php artisan cache:clear && \
             php artisan config:cache && \
-            php artisan route:clear && \
-            php artisan view:clear
+            php artisan route:cache && \
+            php artisan view:cache
             cd ~/uu-circles.com && \
             ln -nfs ~/uu-circles.com/work/api-stg/${{ github.run_number }} ~/uu-circles.com/work/api-stg/current
           '
@@ -120,8 +120,8 @@ jobs:
             php artisan migrate --force && \
             php artisan cache:clear && \
             php artisan config:cache && \
-            php artisan route:clear && \
-            php artisan view:clear
+            php artisan route:cache && \
+            php artisan view:cache
             cd ~/uu-circles.com && \
             ln -nfs ~/uu-circles.com/work/api/${{ github.run_number }} ~/uu-circles.com/work/api/current
           '
