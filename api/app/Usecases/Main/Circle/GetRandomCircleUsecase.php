@@ -16,7 +16,8 @@ final class GetRandomCircleUsecase
     /**
      * ランダムなサークルを取得する
      *
-     * @return CircleValueObject[]
+     * @param int $limit
+     * @return MainSimpleCircleListDto
      */
     public function invoke(int $limit = 6): MainSimpleCircleListDto
     {

@@ -23,6 +23,8 @@ final class GetRecommendCircleUsecase
 
     /**
      * おすすめのサークル
+     *
+     * @return MainSimpleCircleListDto
      */
     public function invoke(): MainSimpleCircleListDto
     {
