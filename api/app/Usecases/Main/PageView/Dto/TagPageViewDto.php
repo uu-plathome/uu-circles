@@ -13,7 +13,7 @@ final class TagPageViewDto
     public function toArray(): array
     {
         return [
-            'tage_name'  => $this->tagName,
+            'tag_name'   => $this->tagName,
             'page_views' => $this->pageViews,
         ];
     }

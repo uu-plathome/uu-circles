@@ -11,6 +11,7 @@ import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 import { Category } from '@/lib/enum/app/Category'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -22,6 +23,7 @@ type Props = {
   recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
 const Page: NextPage<Props> = ({
   circles,
@@ -97,7 +99,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles, announcements } =
+  const { circles, recommendCircles, uuYellArticles, announcements, tagPageViewRanking } =
     await getCircleByCategory(params.category)
 
   return {
@@ -106,6 +108,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       recommendCircles,
       uuYellArticles,
       announcements,
+      tagPageViewRanking,
     },
     revalidate: 120,
   }
