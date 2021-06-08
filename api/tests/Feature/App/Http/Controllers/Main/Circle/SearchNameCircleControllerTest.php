@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Models\CircleSearchWord;
+use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -44,7 +45,7 @@ class SearchNameCircleControllerTest extends TestCase
         // THEN
         $response->assertOk();
         $this->assertArrayHasKey('recommendCircles', $response);
-        $this->assertNotCount(0, $response['recommendCircles']);
+        $this->assertCount(GetRecommendCircleUsecase::LIMIT, $response['recommendCircles']);
 
         // DBに検索ワードが保存されているか
         $this->assertTrue(CircleSearchWord::whereWord($search)->exists());
@@ -66,7 +67,7 @@ class SearchNameCircleControllerTest extends TestCase
         $this->assertArrayHasKey('data', $response);
         $this->assertArrayHasKey('recommendCircles', $response);
         $this->assertNotCount(0, $response['data']);
-        $this->assertNotCount(0, $response['recommendCircles']);
+        $this->assertCount(GetRecommendCircleUsecase::LIMIT, $response['recommendCircles']);
 
         $this->assertArrayHasKey('tagPageViewRanking', $response);
         $this->assertIsArray($response['tagPageViewRanking']);
