@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Usecases\Main\Gacha\Dto;
 
 use App\Support\Arr;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 
 /*
  * pickupリストの戻り値
@@ -15,18 +13,14 @@ use Illuminate\Support\Collection;
 final class CircleGachaDto
 {
     /*
-     * @var \App\ValueObjects\CircleValueObject[]
-     * CircleValueObjectの配列（クラスの配列）
-     *
+     * ガチャ結果
      */
-    public array $result_circles;
+    public GachaSimpleCircleListDto $result_circles;
 
-    /*
-     * @var \App\ValueObjects\CircleValueObject[]
-     * CircleValueObjectの配列（クラスの配列）
-     *
+    /**
+     * ピックアップ
      */
-    public array $pickup_circles;//[class]
+    public GachaSimpleCircleListDto $pickup_circles;
 
     public string $gacha_hash;
     public int $count;
@@ -37,31 +31,21 @@ final class CircleGachaDto
         return [
             'result_circles' => $this->toArrayResultCircles(),
             'pickup_circles' => $this->toArrayPickupCircles(),
-            'gacha_hash' => $this->gacha_hash,
-            'count' => $this->count,
-            'created_at' => $this->created_at,
+            'gacha_hash'     => $this->gacha_hash,
+            'count'          => $this->count,
+            'created_at'     => $this->created_at,
         ];
     }
 
-    //ただの配列にする関数 [class]→[[],[]]
+    // ただの配列にする関数
     public function toArrayPickupCircles(): array
     {
-        return (new Collection($this->pickup_circles))->map(
-            fn (CircleValueObject $circleValueObject) =>
-            Arr::only($circleValueObject->toArray(), [
-                'id', 'name', 'handbill_image_url', 'slug'
-            ])
-        )->toArray();
+        return Arr::get($this->pickup_circles->toArray(), GachaSimpleCircleListDto::LIST);
     }
 
-    //ただの配列にする関数 [class]→[[],[]]
+    // ただの配列にする関数
     public function toArrayResultCircles(): array
     {
-        return (new Collection($this->result_circles))->map(
-            fn (CircleValueObject $circleValueObject) =>
-            Arr::only($circleValueObject->toArray(), [
-                'id', 'name', 'handbill_image_url', 'slug'
-            ])
-        )->toArray();
+        return Arr::get($this->result_circles->toArray(), GachaSimpleCircleListDto::LIST);
     }
 }
