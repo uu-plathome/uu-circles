@@ -19,7 +19,8 @@ final class GetRandomCircleWithMainFixedUsecase
 
         $fixedCircles = Circle::with([
             'circleHandbill:circle_id,image_url',
-        ])->whereRelease(true)
+        ])
+            ->whereRelease(true)
             ->whereIsMainFixed(true)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
@@ -30,7 +31,6 @@ final class GetRandomCircleWithMainFixedUsecase
                 CircleProperty::slug,
                 CircleProperty::is_main_fixed,
             ])
-            ->inRandomOrder()
             ->take($limit);
 
         /** @var Circle $foundCircles */

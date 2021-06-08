@@ -8,6 +8,7 @@ import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleLi
 import { searchCircle } from '@/infra/api/circle'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { WP_REST_API_Post } from 'wp-types'
@@ -18,12 +19,14 @@ type Props = {
   recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
   /** お知らせ */ announcements?: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking?: TagPageViewRanking
 }
 const Page: NextPage<Props> = ({
   circles,
   recommendCircles,
   uuYellArticles,
   announcements,
+  tagPageViewRanking,
 }) => {
   const router = useRouter()
   const { name } = router.query
@@ -40,7 +43,9 @@ const Page: NextPage<Props> = ({
         }
       >
         <div className="bg-gray-100 px-2">
-          <TwoColumnContainer sidebar={<CircleSidebar />}>
+          <TwoColumnContainer
+            sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
+          >
             <div className="px-5">
               <h1 className="text-2xl py-8">{`${String(name)}の検索結果`}</h1>
 
@@ -72,15 +77,15 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const { circles, recommendCircles, uuYellArticles } = await searchCircle(
-    params.name
-  )
+  const { circles, recommendCircles, uuYellArticles, tagPageViewRanking } =
+    await searchCircle(params.name)
 
   return {
     props: {
       circles,
       recommendCircles,
       uuYellArticles,
+      tagPageViewRanking,
     },
   }
 }
