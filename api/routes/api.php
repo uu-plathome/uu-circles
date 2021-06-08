@@ -36,12 +36,12 @@ Route::get('/circle', Circle\IndexCircleController::class)
 Route::get('/circle/search/{search}', Circle\SearchNameCircleController::class)
     ->name(ARP::MainSearchWord);
 Route::get('/circle/category/{category}', Circle\SearchCategoryCircleController::class)
-    ->name(ARP::MainSearchCategory);
+    ->name(ARP::MainSearchByCategory);
 Route::get('/circle/tag/{tag}', Circle\SearchTagCircleController::class)
     ->name(ARP::MainSearchByTag);
 
 // サークル詳細
-Route::get('/circle/{slug}', GetCircleController::class)
+Route::get('/circle/{slug}', Circle\GetCircleController::class)
     ->name(ARP::MainCircleShow);
 
 // 新歓

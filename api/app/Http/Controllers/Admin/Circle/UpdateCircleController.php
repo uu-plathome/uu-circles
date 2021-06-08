@@ -31,7 +31,7 @@ final class UpdateCircleController extends Controller
      * @return array
      * @throws \Exception
      */
-    public function __invoke(UpdateCircleFormRequest $request): array
+    public function __invoke(UpdateCircleFormRequest $request, int $circleId): array
     {
         Log::debug('UpdateCircleController args none');
 

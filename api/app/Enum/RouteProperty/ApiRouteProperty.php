@@ -14,7 +14,7 @@ class ApiRouteProperty
     // サークル一覧
     const MainCircleList = 'main.circle.list';
     const MainSearchWord = 'main.circle.search.word';
-    const MainSearchCategory = 'main.circle.search.category';
+    const MainSearchByCategory = 'main.circle.search.category';
     const MainSearchByTag = 'main.circle.search.tag';
 
     // サークル詳細
