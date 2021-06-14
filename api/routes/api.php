@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\RouteProperty\ApiRouteProperty as ARP;
+use App\Http\Controllers\Main\Advertise;
 use App\Http\Controllers\Main\Circle;
 use App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Main\Gacha;
@@ -29,6 +30,9 @@ Route::get('/sitemap', Sitemap\SitemapController::class)
 // 統計
 Route::get('/statistics', Statistics\StatisticsController::class)
     ->name(ARP::MainStatistics);
+// 広告
+Route::get('/advertises', Advertise\GetMainAdvertisesController::class)
+    ->name(ARP::MainAdvertises);
 // 今日の新歓
 Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
     ->name(ARP::MainCircleNewJoyToday);

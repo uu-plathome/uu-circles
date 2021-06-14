@@ -10,6 +10,8 @@ class ApiRouteProperty
     const MainSitemap = 'main.sitemap';
     // 統計
     const MainStatistics = 'main.statistics';
+    // 広告
+    const MainAdvertises = 'main.advertises';
 
     // サークル一覧
     const MainCircleList = 'main.circle.list';
