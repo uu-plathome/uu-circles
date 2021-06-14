@@ -5,6 +5,10 @@ export const linkConst = {
     INDEX: `${GROUP}/main`,
   },
 
+  ADVERTISE: {
+    GET: `${GROUP}/advertise`,
+  },
+
   STATISTICS: {
     INDEX: `${GROUP}/statistics`,
   },
