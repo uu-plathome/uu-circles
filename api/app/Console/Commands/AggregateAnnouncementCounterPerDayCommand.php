@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Usecases\Batch\Announcement\AggregateAnnouncementCounterPerDayUsecase;
-use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class AggregateAnnouncementCounterPerDayCommand extends Command
@@ -39,8 +39,9 @@ class AggregateAnnouncementCounterPerDayCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function handle()
     {

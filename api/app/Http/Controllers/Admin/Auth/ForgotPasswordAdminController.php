@@ -40,12 +40,12 @@ final class ForgotPasswordAdminController extends Controller
             : $this->sendResetLinkFailedResponse($request, $response);
     }
 
-
     /**
      * Get the response for a successful password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return RedirectResponse|int[]
      */
     protected function sendResetLinkResponse(Request $request, $response)
@@ -57,7 +57,8 @@ final class ForgotPasswordAdminController extends Controller
      * Get the response for a failed password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return JsonResponse
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)

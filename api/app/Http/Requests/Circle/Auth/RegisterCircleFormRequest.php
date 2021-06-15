@@ -37,9 +37,9 @@ class RegisterCircleFormRequest extends FormRequest
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.' . UserProperty::username),
-            UserProperty::display_name => __('user.' . UserProperty::display_name),
-            UserProperty::email        => __('user.' . UserProperty::email),
+            UserProperty::username     => __('user.'.UserProperty::username),
+            UserProperty::display_name => __('user.'.UserProperty::display_name),
+            UserProperty::email        => __('user.'.UserProperty::email),
         ];
     }
 
@@ -49,6 +49,7 @@ class RegisterCircleFormRequest extends FormRequest
         $user->display_name = $this->displayName;
         $user->username = $this->username;
         $user->email = $this->email;
+
         return CircleUserValueObject::byEloquent($user);
     }
 }

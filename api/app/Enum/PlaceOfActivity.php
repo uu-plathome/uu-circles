@@ -8,37 +8,37 @@ namespace App\Enum;
 class PlaceOfActivity
 {
     /**
-     * 峰キャンパス
+     * 峰キャンパス.
      */
     const MINE = 'MINE';
 
     /**
-     * 陽東キャンパス
+     * 陽東キャンパス.
      */
     const YOTO = 'YOTO';
 
     /**
-     * 峰キャンパス, 陽東キャンパス
+     * 峰キャンパス, 陽東キャンパス.
      */
     const MINE_AND_YOTO = 'MINE_AND_YOTO';
 
     /**
-     * 新歓Discord
+     * 新歓Discord.
      */
     const NEWJOY_DISCORD = 'NEWJOY_DISCORD';
 
     /**
-     * Zoom
+     * Zoom.
      */
     const ZOOM = 'ZOOM';
 
     /**
-     * Discord
+     * Discord.
      */
     const DISCORD = 'DISCORD';
 
     /**
-     * その他
+     * その他.
      */
     const OTHER = 'OTHER';
 
@@ -55,7 +55,7 @@ class PlaceOfActivity
             PlaceOfActivity::NEWJOY_DISCORD,
             PlaceOfActivity::DISCORD,
             PlaceOfActivity::ZOOM,
-            PlaceOfActivity::OTHER
+            PlaceOfActivity::OTHER,
         ];
     }
 }

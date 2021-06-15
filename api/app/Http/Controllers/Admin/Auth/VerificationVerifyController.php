@@ -17,13 +17,14 @@ final class VerificationVerifyController extends Controller
      * Mark the user's email address as verified.
      *
      * @param Request $request
-     * @param int $userId
+     * @param int     $userId
+     *
      * @return JsonResponse
      */
     public function __invoke(Request $request, int $userId): JsonResponse
     {
         // 有効な署名かどうか
-        if (! URL::hasValidSignature($request)) {
+        if (!URL::hasValidSignature($request)) {
             return response()->json([
                 'status' => __('verification.invalid'),
             ], 400);
@@ -39,7 +40,7 @@ final class VerificationVerifyController extends Controller
         }
 
         return response()->json([
-            'status' => true
+            'status' => true,
         ]);
     }
 }

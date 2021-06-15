@@ -8,7 +8,6 @@ use App\Models\Advertise;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class UpdateAdvertiseRequest extends FormRequest
@@ -48,13 +47,13 @@ class UpdateAdvertiseRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            AdvertiseProperty::title          => __('advertise.' . AdvertiseProperty::title),
-            AdvertiseProperty::link           => __('advertise.' . AdvertiseProperty::link),
-            AdvertiseProperty::main_image_url => __('advertise.' . AdvertiseProperty::main_image_url),
-            AdvertiseProperty::active         => __('advertise.' . AdvertiseProperty::active),
-            AdvertiseProperty::advertise_type => __('advertise.' . AdvertiseProperty::advertise_type),
-            AdvertiseProperty::publish_from   => __('advertise.' . AdvertiseProperty::publish_from),
-            AdvertiseProperty::publish_to     => __('advertise.' . AdvertiseProperty::publish_to),
+            AdvertiseProperty::title          => __('advertise.'.AdvertiseProperty::title),
+            AdvertiseProperty::link           => __('advertise.'.AdvertiseProperty::link),
+            AdvertiseProperty::main_image_url => __('advertise.'.AdvertiseProperty::main_image_url),
+            AdvertiseProperty::active         => __('advertise.'.AdvertiseProperty::active),
+            AdvertiseProperty::advertise_type => __('advertise.'.AdvertiseProperty::advertise_type),
+            AdvertiseProperty::publish_from   => __('advertise.'.AdvertiseProperty::publish_from),
+            AdvertiseProperty::publish_to     => __('advertise.'.AdvertiseProperty::publish_to),
         ]);
     }
 

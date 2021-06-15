@@ -22,17 +22,19 @@ final class DeleteCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return bool[]
+     * @param int     $circleId
+     * @param int     $circleNewJoyId
+     *
      * @throws Exception
+     *
+     * @return bool[]
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {
         $this->deleteCircleNewJoyUsecase->invoke($circleId, $circleNewJoyId);
 
         return [
-            'success' => true
+            'success' => true,
         ];
     }
 }

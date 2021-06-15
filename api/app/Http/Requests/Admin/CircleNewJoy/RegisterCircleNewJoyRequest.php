@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Admin\CircleNewJoy;
 
-use App\Enum\Property\CircleNewJoyProperty;
 use App\Enum\PlaceOfActivity;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
@@ -42,7 +42,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
             CircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
-            CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
+            CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:'.Str::camel('start_date')],
             CircleNewJoyProperty::release                  => ['boolean', 'nullable'],
         ]);
     }
@@ -50,22 +50,23 @@ class RegisterCircleNewJoyRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            CircleNewJoyProperty::title                    => __('circleNewJoy.' . CircleNewJoyProperty::title),
-            CircleNewJoyProperty::description              => __('circleNewJoy.' . CircleNewJoyProperty::description),
-            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity),
-            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity_detail),
-            CircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
-            CircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
-            CircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
-            CircleNewJoyProperty::private_newjoy_link      => __('circleNewJoy.' . CircleNewJoyProperty::private_newjoy_link),
-            CircleNewJoyProperty::release                  => __('circleNewJoy.' . CircleNewJoyProperty::release),
-            CircleNewJoyProperty::publish_from             => __('circleNewJoy.' . CircleNewJoyProperty::publish_from),
+            CircleNewJoyProperty::title                    => __('circleNewJoy.'.CircleNewJoyProperty::title),
+            CircleNewJoyProperty::description              => __('circleNewJoy.'.CircleNewJoyProperty::description),
+            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity),
+            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity_detail),
+            CircleNewJoyProperty::start_date               => __('circleNewJoy.'.CircleNewJoyProperty::start_date),
+            CircleNewJoyProperty::end_date                 => __('circleNewJoy.'.CircleNewJoyProperty::end_date),
+            CircleNewJoyProperty::url                      => __('circleNewJoy.'.CircleNewJoyProperty::url),
+            CircleNewJoyProperty::private_newjoy_link      => __('circleNewJoy.'.CircleNewJoyProperty::private_newjoy_link),
+            CircleNewJoyProperty::release                  => __('circleNewJoy.'.CircleNewJoyProperty::release),
+            CircleNewJoyProperty::publish_from             => __('circleNewJoy.'.CircleNewJoyProperty::publish_from),
         ]);
     }
 
     public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
     {
         $request = Arr::snake_keys($this->validated());
+
         return CircleNewJoyValueObject::of([
             CircleNewJoyProperty::title                    => $request['title'],
             CircleNewJoyProperty::description              => $request['description'],

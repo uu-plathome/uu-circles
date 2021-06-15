@@ -9,7 +9,6 @@ use App\Events\RegisteredCircleUser;
 use App\Models\Circle;
 use App\Models\User;
 use App\Usecases\Admin\CircleUser\Params\CreateCircleUserUsecaseParam;
-use App\ValueObjects\CircleUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -18,16 +17,18 @@ use Illuminate\Support\Str;
 final class CreateCircleUserUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param CreateCircleUserUsecaseParam $param
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         CreateCircleUserUsecaseParam $param
     ) {
-        Log::debug("CreateCircleUserUsecase args", [
+        Log::debug('CreateCircleUserUsecase args', [
             'CreateCircleUserUsecaseParam' => $param,
         ]);
 
@@ -44,6 +45,7 @@ final class CreateCircleUserUsecase
         $user->createApiToken();
 
         DB::beginTransaction();
+
         try {
             $user->save();
             $user->circleUsers()->create([
@@ -56,11 +58,12 @@ final class CreateCircleUserUsecase
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("CreateCircleUserUsecase [ERROR]", [
+            Log::error('CreateCircleUserUsecase [ERROR]', [
                 'CreateCircleUserUsecaseParam' => $param,
             ]);
 
             DB::rollBack();
+
             throw $e;
         }
     }

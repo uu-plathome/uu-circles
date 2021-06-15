@@ -14,19 +14,22 @@ use Illuminate\Support\Facades\Log;
 final class LogoutCircleController extends Controller
 {
     /**
-     * ログアウト処理をする
+     * ログアウト処理をする.
      *
      * @param Request $request
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function __invoke(Request $request)
     {
-        Log::debug("LogoutCircleController args none");
+        Log::debug('LogoutCircleController args none');
 
         $user = Auth::user();
 
         DB::beginTransaction();
+
         try {
             $user->createApiToken();
             $user->save();
@@ -35,8 +38,8 @@ final class LogoutCircleController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("LogoutCircleController [ERROR]", [
-                'user' => $user
+            Log::error('LogoutCircleController [ERROR]', [
+                'user' => $user,
             ]);
 
             throw $e;

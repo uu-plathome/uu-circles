@@ -39,12 +39,13 @@ class SendUuyellToTwitterCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return int
      * @throws \Exception
+     *
+     * @return int
      */
     public function handle()
     {
-        Log::debug("SendUuyellToTwitterCommand handle args none");
+        Log::debug('SendUuyellToTwitterCommand handle args none');
 
         $this->sendUuyellPostToTwitterUsecase->invoke();
 

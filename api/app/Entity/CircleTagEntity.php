@@ -69,6 +69,7 @@ class CircleTagEntity
     {
         $circleTagEntity = new self();
         $circleTagEntity->circleTag = $arr;
+
         return $circleTagEntity;
     }
 

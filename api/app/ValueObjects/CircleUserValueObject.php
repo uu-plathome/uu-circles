@@ -34,7 +34,7 @@ class CircleUserValueObject
         $circleUserValueObject->api_token = Arr::get($inputs, UserProperty::api_token);
         $circleUserValueObject->active = Arr::get($inputs, UserProperty::active);
         $circleUserValueObject->password = Arr::get($inputs, UserProperty::password);
-        $circleUserValueObject->circle_id = Arr::get($inputs, "circle_id");
+        $circleUserValueObject->circle_id = Arr::get($inputs, 'circle_id');
 
         $emailVerifiedAt = Arr::get($inputs, UserProperty::email_verified_at);
         $circleUserValueObject->email_verified_at = is_string($emailVerifiedAt) ? new Carbon($emailVerifiedAt) : $emailVerifiedAt;
@@ -60,35 +60,38 @@ class CircleUserValueObject
         $adminUser->email_verified_at = $user->email_verified_at;
         $adminUser->created_at = $user->created_at;
         $adminUser->updated_at = $user->updated_at;
+
         return $adminUser;
     }
 
     public function toUserProperty(): User
     {
         $user = new User([
-            UserProperty::username => $this->username,
-            UserProperty::display_name => $this->display_name,
-            UserProperty::email => $this->email,
-            UserProperty::api_token => $this->api_token,
-            UserProperty::active => $this->active,
+            UserProperty::username       => $this->username,
+            UserProperty::display_name   => $this->display_name,
+            UserProperty::email          => $this->email,
+            UserProperty::api_token      => $this->api_token,
+            UserProperty::active         => $this->active,
             UserProperty::remember_token => $this->remember_token,
         ]);
         $user->id = $this->id;
+
         return $user;
     }
 
     /**
      * @param bool $isOwn 自分自身のアカウントかどうか
+     *
      * @return array
      */
     public function toArray(bool $isOwn = false): array
     {
         $baseArr = [
-            UserProperty::id => $this->id,
-            UserProperty::username => $this->username,
-            UserProperty::display_name => $this->display_name,
-            UserProperty::active => $this->active,
-            UserProperty::email => $this->email,
+            UserProperty::id                => $this->id,
+            UserProperty::username          => $this->username,
+            UserProperty::display_name      => $this->display_name,
+            UserProperty::active            => $this->active,
+            UserProperty::email             => $this->email,
             UserProperty::email_verified_at => $this->email_verified_at,
         ];
 

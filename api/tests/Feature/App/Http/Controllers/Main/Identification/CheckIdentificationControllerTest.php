@@ -2,12 +2,10 @@
 
 namespace Tests\Feature\App\Http\Controllers\Main\Identification;
 
-use App\Enum\Property\IdentifierProperty;
 use App\Models\Identifier;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class CheckIdentificationControllerTest extends TestCase
 {
@@ -16,11 +14,11 @@ class CheckIdentificationControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("CheckIdentificationControllerTest");
+        Log::info('CheckIdentificationControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +26,7 @@ class CheckIdentificationControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("CheckIdentificationControllerTest");
+        Log::info('CheckIdentificationControllerTest');
 
         // GIVEN
         $identifier = Identifier::factory()->count(1)->create()->first();

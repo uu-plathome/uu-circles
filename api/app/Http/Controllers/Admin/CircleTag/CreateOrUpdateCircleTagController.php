@@ -24,9 +24,11 @@ final class CreateOrUpdateCircleTagController extends Controller
      * Handle the incoming request.
      *
      * @param CreateOrUpdateCircleTagRequest $request
-     * @param int $circleId
-     * @return Response|string[]
+     * @param int                            $circleId
+     *
      * @throws Exception
+     *
+     * @return Response|string[]
      */
     public function __invoke(
         CreateOrUpdateCircleTagRequest $request,

@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
 use App\Support\Arr;
 use App\Usecases\RegisterAdminUserUsecase;
 use Exception;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 final class RegisterAdminController extends Controller
@@ -25,13 +24,15 @@ final class RegisterAdminController extends Controller
 
     /**
      * @param RegisterAdminFormRequest $request
-     * @return array
+     *
      * @throws Exception
+     *
+     * @return array
      */
     public function __invoke(RegisterAdminFormRequest $request): array
     {
         $request->validate([
-            'role' => [Rule::in($this->canSelectedRoles($request->user()))]
+            'role' => [Rule::in($this->canSelectedRoles($request->user()))],
         ]);
 
         $user = $this->registerAdminUserUsecase->invoke(
@@ -40,7 +41,7 @@ final class RegisterAdminController extends Controller
 
         return Arr::camel_keys([
             'data'   => $user->toArray(true),
-            'status' => __('verification.sent')
+            'status' => __('verification.sent'),
         ]);
     }
 

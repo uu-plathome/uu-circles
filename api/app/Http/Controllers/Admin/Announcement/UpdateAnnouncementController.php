@@ -19,20 +19,19 @@ final class UpdateAnnouncementController extends Controller
     }
 
     /**
-     * お知らせの更新
+     * お知らせの更新.
      *
      * @param UpdateAnnouncementRequest $request
-     * @param int $announcementId
+     * @param int                       $announcementId
+     *
      * @throws \Exception
      */
     public function __invoke(UpdateAnnouncementRequest $request, int $announcementId)
     {
-        Log::debug("UpdateAnnouncementController args none");
+        Log::debug('UpdateAnnouncementController args none');
 
         $this->updateAnnouncementUsecase->invoke(
             $request->makeUpdateAnnouncementUsecaseParam()
         );
-
-        return;
     }
 }

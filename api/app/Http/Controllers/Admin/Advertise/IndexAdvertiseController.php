@@ -15,12 +15,13 @@ final class IndexAdvertiseController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("IndexAdvertiseController args none");
+        Log::debug('IndexAdvertiseController args none');
 
         $advertises = Advertise::all()->toArray();
 

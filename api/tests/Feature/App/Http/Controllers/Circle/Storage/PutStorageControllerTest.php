@@ -17,11 +17,11 @@ class PutStorageControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexAllUserControllerTest");
+        Log::info('IndexAllUserControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -29,7 +29,7 @@ class PutStorageControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -61,7 +61,7 @@ class PutStorageControllerTest extends TestCase
 
     public function testRequest_認証エラー()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Storage::fake('local');

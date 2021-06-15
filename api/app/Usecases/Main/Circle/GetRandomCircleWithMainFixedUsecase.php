@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Log;
 final class GetRandomCircleWithMainFixedUsecase
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param integer $limit
+     * @param int $limit
+     *
      * @return MainSimpleCircleListDto
      */
     public function invoke(int $limit = 12): MainSimpleCircleListDto
     {
-        Log::debug("#GetRandomCircleWithMainFixedUsecase args", [
-            'limit' => $limit
+        Log::debug('#GetRandomCircleWithMainFixedUsecase args', [
+            'limit' => $limit,
         ]);
 
         $fixedCircles = Circle::with([
@@ -65,12 +66,12 @@ final class GetRandomCircleWithMainFixedUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
-                    $circle,
-                    $circle->circleHandbill
-                )
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
+                $circle,
+                $circle->circleHandbill
+            )
         )->toArray();
+
         return $dto;
     }
 }

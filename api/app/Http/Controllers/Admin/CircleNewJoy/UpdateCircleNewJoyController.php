@@ -9,8 +9,6 @@ use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
 use App\Usecases\Admin\UpdateCircleNewJoyUsecase;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 final class UpdateCircleNewJoyController extends Controller
 {
@@ -25,10 +23,12 @@ final class UpdateCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleNewJoyRequest $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return array
+     * @param int                       $circleId
+     * @param int                       $circleNewJoyId
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(
         UpdateCircleNewJoyRequest $request,
@@ -44,7 +44,7 @@ final class UpdateCircleNewJoyController extends Controller
         );
 
         return [
-            "data" => Arr::camel_keys([])
+            'data' => Arr::camel_keys([]),
         ];
     }
 }
