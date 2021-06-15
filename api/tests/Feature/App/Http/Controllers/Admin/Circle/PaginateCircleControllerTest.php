@@ -4,8 +4,8 @@ namespace Tests\Feature\App\Http\Controllers\Admin\Circle;
 
 use App\Enum\RouteProperty\AdminRouteProperty;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class PaginateCircleControllerTest extends TestCase
 {
@@ -14,11 +14,11 @@ class PaginateCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("PaginateCircleControllerTest");
+        Log::info('PaginateCircleControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -26,7 +26,7 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 
@@ -43,7 +43,7 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequestAdditionParam()
     {
-        Log::info("testRequestAdditionParam");
+        Log::info('testRequestAdditionParam');
 
         // GIVEN
 
@@ -64,7 +64,7 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequestAdditionParamBoolean()
     {
-        Log::info("testRequestAdditionParamBoolean");
+        Log::info('testRequestAdditionParamBoolean');
 
         // GIVEN
 

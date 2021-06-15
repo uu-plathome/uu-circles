@@ -9,8 +9,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class TodayCircleNewJoyControllerTest extends TestCase
 {
@@ -21,13 +21,13 @@ class TodayCircleNewJoyControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("TodayCircleNewJoyControllerTest");
+        Log::info('TodayCircleNewJoyControllerTest');
         $this->now = Carbon::now()->microsecond(0);
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -35,7 +35,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Http::fake();
@@ -59,7 +59,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
 
     public function testRequest_新歓が存在しないとき()
     {
-        Log::info("testRequest_新歓が存在しないとき");
+        Log::info('testRequest_新歓が存在しないとき');
 
         // GIVEN
         CircleNewJoy::query()->delete();
@@ -68,7 +68,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         // WHEN
         $response = $this->get(route(ARP::MainCircleNewJoyToday));
         Log::info('response', [
-            $response
+            $response,
         ]);
 
         // THEN
@@ -89,7 +89,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
 
     public function testRequest_今日の新歓が存在するとき()
     {
-        Log::info("testRequest_今日の新歓が存在するとき");
+        Log::info('testRequest_今日の新歓が存在するとき');
 
         // GIVEN
         CircleNewJoy::query()->delete();
@@ -109,7 +109,7 @@ class TodayCircleNewJoyControllerTest extends TestCase
         // WHEN
         $response = $this->get(route(ARP::MainCircleNewJoyToday));
         Log::info('response', [
-            $response
+            $response,
         ]);
 
         // THEN

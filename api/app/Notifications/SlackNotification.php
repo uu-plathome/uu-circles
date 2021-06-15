@@ -3,38 +3,36 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\SlackMessage;
-use Illuminate\Notifications\Messages\SlackAttachment;
+use Illuminate\Notifications\Notification;
 
 class SlackNotification extends Notification
 {
     use Queueable;
 
     /**
-     * 通知チャンネル情報
+     * 通知チャンネル情報.
      *
      * @var array
      */
     protected $channel;
 
     /**
-     * 通知メッセージ
+     * 通知メッセージ.
      *
      * @var string
      */
     protected $message;
 
     /**
-     * 添付情報
+     * 添付情報.
      *
      * @var array
      */
     protected $attachment;
 
     /**
-     * 通知インスタンスの作成
+     * 通知インスタンスの作成.
      *
      * @return void
      */
@@ -46,19 +44,22 @@ class SlackNotification extends Notification
     }
 
     /**
-     * 通知の配信チャンネルの取得
+     * 通知の配信チャンネルの取得.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
     {
         return ['slack'];
     }
+
     /**
-     * Slack通知表現を返す
+     * Slack通知表現を返す.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\SlackMessage
      */
     public function toSlack($notifiable)

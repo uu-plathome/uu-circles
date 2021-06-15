@@ -7,8 +7,8 @@ use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ShowCircleUserControllerTest extends TestCase
 {
@@ -17,11 +17,11 @@ class ShowCircleUserControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowCircleUserControllerTest");
+        Log::info('ShowCircleUserControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -29,7 +29,7 @@ class ShowCircleUserControllerTest extends TestCase
 
     public function testRequest_管理者は自分自身の情報を取得できる()
     {
-        Log::info("testRequest_管理者は自分自身の情報を取得できる");
+        Log::info('testRequest_管理者は自分自身の情報を取得できる');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -69,7 +69,7 @@ class ShowCircleUserControllerTest extends TestCase
 
     public function testRequest_一般ユーザーは自分自身の情報を取得できない()
     {
-        Log::info("testRequest_一般ユーザーは自分自身の情報を取得できない");
+        Log::info('testRequest_一般ユーザーは自分自身の情報を取得できない');
 
         // GIVEN
         /** @var \App\Models\User $user */

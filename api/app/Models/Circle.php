@@ -33,7 +33,7 @@ class Circle extends Model
     }
 
     /**
-     * ランダムなSlugを生成する
+     * ランダムなSlugを生成する.
      *
      * @return void
      */
@@ -48,7 +48,7 @@ class Circle extends Model
     }
 
     /**
-     * 新歓を取得する
+     * 新歓を取得する.
      *
      * @return HasMany
      */
@@ -58,7 +58,7 @@ class Circle extends Model
     }
 
     /**
-     * 新歓ビラ
+     * 新歓ビラ.
      *
      * @return HasOne
      */
@@ -68,7 +68,7 @@ class Circle extends Model
     }
 
     /**
-     * サークルタグ
+     * サークルタグ.
      *
      * @return HasOne
      */
@@ -78,7 +78,7 @@ class Circle extends Model
     }
 
     /**
-     * 現在公開中の新歓を取得する
+     * 現在公開中の新歓を取得する.
      *
      * @return void
      */

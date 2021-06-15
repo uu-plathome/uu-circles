@@ -8,7 +8,6 @@ use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Support\Arr;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,15 +18,17 @@ final class WithdrawalOtherCircleUserController extends Controller
     use Permission;
 
     /**
-     * 自分以外をサークルを脱退する
+     * 自分以外をサークルを脱退する.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return array
      */
     public function __invoke(Request $request, int $circleId, int $userId)
     {
-        Log::debug("WithdrawalOtherCircleUserController args", [
+        Log::debug('WithdrawalOtherCircleUserController args', [
             'circleId' => $circleId,
         ]);
 
@@ -37,7 +38,7 @@ final class WithdrawalOtherCircleUserController extends Controller
 
         if ($authUser->id === $userId) {
             Log::error(
-                "[ERROR] WithdrawalOtherCircleUserController 自分自身をサークルから脱退させる場合は、WithdrawalOwnCircleUserControllerを使用してください",
+                '[ERROR] WithdrawalOtherCircleUserController 自分自身をサークルから脱退させる場合は、WithdrawalOwnCircleUserControllerを使用してください',
                 [
                     'circleId' => $circleId,
                     'userId'   => $userId,
@@ -52,6 +53,7 @@ final class WithdrawalOtherCircleUserController extends Controller
         $this->permissionCircle($user, $circleId);
 
         DB::beginTransaction();
+
         try {
             $user->circleUsers()
                 ->whereCircleId($circleId)
@@ -59,10 +61,11 @@ final class WithdrawalOtherCircleUserController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] WithdrawalOtherCircleUserController", [
+            Log::error('[ERROR] WithdrawalOtherCircleUserController', [
                 'circleId' => $circleId,
             ]);
             DB::rollBack();
+
             throw $e;
         }
     }

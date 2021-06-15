@@ -13,23 +13,26 @@ use Illuminate\Support\Facades\Log;
 final class CreateCircleNewJoyUsecase
 {
     /**
-     * 新規新歓を追加する
+     * 新規新歓を追加する.
      *
-     * @param int $circleId
+     * @param int                     $circleId
      * @param CircleNewJoyValueObject $circleNewJoyValueObject
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(int $circleId, CircleNewJoyValueObject $circleNewJoyValueObject)
     {
-        Log::debug("CreateCircleNewJoyUsecase args", [
-            'circleId' => $circleId,
+        Log::debug('CreateCircleNewJoyUsecase args', [
+            'circleId'                => $circleId,
             'CircleNewJoyValueObject' => $circleNewJoyValueObject,
         ]);
 
         $circleNewJoy = $circleNewJoyValueObject->toArray();
 
         DB::beginTransaction();
+
         try {
             $circle = Circle::findOrFail($circleId);
             $circle->circleNewJoys()->create($circleNewJoy);
@@ -37,6 +40,7 @@ final class CreateCircleNewJoyUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

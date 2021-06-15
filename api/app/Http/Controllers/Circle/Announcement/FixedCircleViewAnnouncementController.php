@@ -18,14 +18,15 @@ final class FixedCircleViewAnnouncementController extends Controller
     const TTL = 60 * 60;
 
     /**
-     * サークル管理画面に固定表示するお知らせの取得
+     * サークル管理画面に固定表示するお知らせの取得.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("FixedCircleViewAnnouncementController args none");
+        Log::debug('FixedCircleViewAnnouncementController args none');
 
         $now = Carbon::now();
 
@@ -49,6 +50,6 @@ final class FixedCircleViewAnnouncementController extends Controller
 
     private function getCacheKey(): string
     {
-        return 'FixedCircleViewAnnouncementController' . Carbon::today()->format("Y-m-d H");
+        return 'FixedCircleViewAnnouncementController'.Carbon::today()->format('Y-m-d H');
     }
 }

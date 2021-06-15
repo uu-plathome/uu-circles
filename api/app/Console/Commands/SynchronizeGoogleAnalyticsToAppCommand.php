@@ -56,11 +56,12 @@ class SynchronizeGoogleAnalyticsToAppCommand extends Command
      */
     public function handle()
     {
-        Log::debug("SynchronizeGoogleAnalyticsToAppCommand start");
+        Log::debug('SynchronizeGoogleAnalyticsToAppCommand start');
         $this->synchronizeGoogleAnalyticsToAppUsecase->invoke();
         $this->replicateCirclePageViewUsecase->invoke();
         $this->replicateTagPageViewUsecase->invoke();
-        Log::debug("SynchronizeGoogleAnalyticsToAppCommand end");
+        Log::debug('SynchronizeGoogleAnalyticsToAppCommand end');
+
         return 0;
     }
 }

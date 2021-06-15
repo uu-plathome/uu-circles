@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         PasswordResetCircleUser::class => [
             SendPasswordResetCircleUserNotification::class,
-        ]
+        ],
     ];
 
     /**

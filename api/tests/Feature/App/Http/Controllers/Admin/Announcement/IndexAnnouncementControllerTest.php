@@ -13,11 +13,11 @@ class IndexAnnouncementControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexAnnouncementControllerTest");
+        Log::info('IndexAnnouncementControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -25,7 +25,7 @@ class IndexAnnouncementControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

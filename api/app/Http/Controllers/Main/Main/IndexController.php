@@ -22,12 +22,12 @@ use Illuminate\Support\Facades\Log;
 final class IndexController extends Controller
 {
     /**
-     * サークルの取得数
+     * サークルの取得数.
      */
     const CIRCLE_MAX_VIEW = 12;
 
     /**
-     * 広告の取得数
+     * 広告の取得数.
      */
     const ADVERTISE_MAX_VIEW = 2;
 
@@ -54,12 +54,13 @@ final class IndexController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#IndexController args: none");
+        Log::debug('#IndexController args: none');
 
         /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
@@ -106,18 +107,21 @@ final class IndexController extends Controller
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main' . $minutes . rand(0, 2);
+
+        return 'main'.$minutes.rand(0, 2);
     }
 
     private function getMainTopAdvertiseCacheKey(): string
     {
         $hour = Carbon::now()->format('YmdH');
-        return 'main.advertise.mainTop' . $hour;
+
+        return 'main.advertise.mainTop'.$hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.advertise' . $minutes;
+
+        return 'main.advertise'.$minutes;
     }
 }

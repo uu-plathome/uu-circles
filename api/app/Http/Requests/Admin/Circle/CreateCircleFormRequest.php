@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\Admin\Circle;
 
-use App\Enum\Property\CircleInformationProperty;
 use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
-use App\Models\CircleInformation;
 use App\Rules\SmallAlphaNum;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
@@ -41,16 +39,16 @@ class CreateCircleFormRequest extends FormRequest
                 Rule::notIn(['newjoy']),
             ],
             CircleProperty::release          => ['required', 'boolean'],
-            CircleProperty::name  => ['required', 'string', 'max:50'],
+            CircleProperty::name             => ['required', 'string', 'max:50'],
         ]);
     }
 
     public function attributes()
     {
         return [
-            CircleProperty::slug             => __('circle.' . CircleProperty::slug),
-            CircleProperty::release          => __('circle.' . CircleProperty::release),
-            CircleProperty::name             => __('circle.' . CircleProperty::name),
+            CircleProperty::slug             => __('circle.'.CircleProperty::slug),
+            CircleProperty::release          => __('circle.'.CircleProperty::release),
+            CircleProperty::name             => __('circle.'.CircleProperty::name),
         ];
     }
 

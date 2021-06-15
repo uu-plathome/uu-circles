@@ -10,7 +10,7 @@ final class GachaPickupListKey
 {
     public static function getPickupDate(): string
     {
-        return Carbon::today()->format("Y-m-d");
+        return Carbon::today()->format('Y-m-d');
     }
 
     /*
@@ -18,6 +18,6 @@ final class GachaPickupListKey
      */
     public static function getCacheKey(): string
     {
-        return "GachaPickupListKey" . self::getPickupDate();
+        return 'GachaPickupListKey'.self::getPickupDate();
     }
 }

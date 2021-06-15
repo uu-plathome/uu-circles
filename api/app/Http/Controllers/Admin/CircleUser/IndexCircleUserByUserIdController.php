@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\User;
-use App\Usecases\Admin\IndexCircleByUserIdUsecase;
 use App\Support\Arr;
+use App\Usecases\Admin\IndexCircleByUserIdUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

@@ -16,16 +16,18 @@ final class WithdrawalOwnCircleUserController extends Controller
     use Permission;
 
     /**
-     * 自分をサークルを脱退する
+     * 自分をサークルを脱退する.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $circleId
-     * @return array
+     * @param int                      $circleId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return array
      */
     public function __invoke(Request $request, int $circleId)
     {
-        Log::debug("WithdrawalOwnCircleUserController args", [
+        Log::debug('WithdrawalOwnCircleUserController args', [
             'circleId' => $circleId,
         ]);
 
@@ -34,6 +36,7 @@ final class WithdrawalOwnCircleUserController extends Controller
         $this->permissionCircle($authUser, $circleId);
 
         DB::beginTransaction();
+
         try {
             $authUser->circleUsers()
                 ->whereCircleId($circleId)
@@ -41,10 +44,11 @@ final class WithdrawalOwnCircleUserController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] WithdrawalOwnCircleUserController", [
+            Log::error('[ERROR] WithdrawalOwnCircleUserController', [
                 'circleId' => $circleId,
             ]);
             DB::rollBack();
+
             throw $e;
         }
     }

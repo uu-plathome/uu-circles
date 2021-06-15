@@ -16,7 +16,7 @@ final class TagPageViewRankingUsecase
     const TTL = 60 * 60 * 24;
 
     /**
-     * タグのアクセスランキング
+     * タグのアクセスランキング.
      *
      * @return TagPageViewRankingDto
      */
@@ -40,6 +40,7 @@ final class TagPageViewRankingUsecase
         $dto->eighth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 7));
         $dto->ninth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 8));
         $dto->tenth = $this->convertToTagPageViewDto(Arr::get($tagPageViews, 9));
+
         return $dto;
     }
 
@@ -51,7 +52,8 @@ final class TagPageViewRankingUsecase
     public static function getCacheKey(): string
     {
         $today = Carbon::today();
-        return 'TagPageViewRankingUsecase' . $today;
+
+        return 'TagPageViewRankingUsecase'.$today;
     }
 
     private function convertToTagPageViewDto(?TagPageView $tagPageView): ?TagPageViewDto
@@ -63,6 +65,7 @@ final class TagPageViewRankingUsecase
         $dto = new TagPageViewDto();
         $dto->tagName = $tagPageView->tag_name;
         $dto->pageViews = $tagPageView->page_views;
+
         return $dto;
     }
 }

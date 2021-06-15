@@ -20,14 +20,16 @@ final class ShowCircleUserController extends Controller
 
     /**
      * @param Request $request
-     * @param int $circleId
-     * @param int $userId
-     * @return array
+     * @param int     $circleId
+     * @param int     $userId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return array
      */
     public function __invoke(Request $request, int $circleId, int $userId)
     {
-        Log::debug("ShowCircleUserController args", [
+        Log::debug('ShowCircleUserController args', [
             'circleId' => $circleId,
             'userId'   => $userId,
         ]);

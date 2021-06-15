@@ -6,8 +6,8 @@ use App\Http\Requests\Admin\CircleTag\CreateOrUpdateCircleTagRequest;
 use App\Models\Circle;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class CreateOrUpdateCircleTagControllerTest extends TestCase
 {
@@ -16,11 +16,11 @@ class CreateOrUpdateCircleTagControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("CreateOrUpdateCircleTagControllerTest");
+        Log::info('CreateOrUpdateCircleTagControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +28,7 @@ class CreateOrUpdateCircleTagControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var Circle $circle */

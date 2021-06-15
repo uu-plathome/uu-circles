@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Log;
 final class ShowAnnouncementController extends Controller
 {
     /**
-     * お知らせの取得
+     * お知らせの取得.
      *
      * @param Request $request
-     * @param int $announcementId
+     * @param int     $announcementId
+     *
      * @return array
      */
     public function __invoke(Request $request, int $announcementId): array
     {
-        Log::debug("ShowAnnouncementController args", [
+        Log::debug('ShowAnnouncementController args', [
             'announcementId' => $announcementId,
         ]);
 

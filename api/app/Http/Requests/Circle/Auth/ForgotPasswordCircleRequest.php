@@ -33,7 +33,7 @@ class ForgotPasswordCircleRequest extends FormRequest
     public function attributes()
     {
         return [
-            UserProperty::email => __('user.' . UserProperty::email),
+            UserProperty::email => __('user.'.UserProperty::email),
         ];
     }
 }

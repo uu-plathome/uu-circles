@@ -34,7 +34,7 @@ class AddSlugToAdvertise extends Migration
     {
         Schema::table('advertises', function (Blueprint $table) {
             $table->dropColumn([
-                'slug'
+                'slug',
             ]);
         });
     }

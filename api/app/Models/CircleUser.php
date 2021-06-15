@@ -11,7 +11,7 @@ class CircleUser extends Model
     protected $fillable = [
         P::circle_id,
         P::user_id,
-        P::role
+        P::role,
     ];
 
     public function user(): BelongsTo

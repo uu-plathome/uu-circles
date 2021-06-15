@@ -15,6 +15,7 @@ final class PutStorageController extends Controller
      * Handle the incoming request.
      *
      * @param CirclePutStorageRequest $request
+     *
      * @return array
      */
     public function __invoke(CirclePutStorageRequest $request): array
