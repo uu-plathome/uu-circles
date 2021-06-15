@@ -49,7 +49,7 @@ final class PaginateCircleUsecase
             })
             ->lampager()
             ->forward($params->next)
-            ->backward($params->previos)
+            ->backward($params->previous)
             ->limit(10)
             ->orderByDesc('circle_information.updated_at')
             ->orderByDesc('circles.id')
