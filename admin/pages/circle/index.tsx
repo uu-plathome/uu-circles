@@ -108,13 +108,13 @@ const IndexPage: NextPage = () => {
 
             {circles && circles.records.length > 0
               ? circles.records.map((circle: Circle) => {
-                return (
-                  <CircleListItem
-                    key={`circle-${circle.id}`}
-                    circle={circle}
-                  />
-                )
-              })
+                  return (
+                    <CircleListItem
+                      key={`circle-${circle.id}`}
+                      circle={circle}
+                    />
+                  )
+                })
               : ''}
 
             {circles && circles.records.length === 0 ? (
