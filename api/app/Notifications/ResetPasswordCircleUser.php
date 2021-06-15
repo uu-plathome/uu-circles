@@ -12,7 +12,8 @@ class ResetPasswordCircleUser extends Notification
     /**
      * Build the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -26,14 +27,15 @@ class ResetPasswordCircleUser extends Notification
     /**
      * Get the reset password URL for the given notifiable.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return string
      */
     protected function resetUrl($notifiable)
     {
-        $appUrl = Config::get('app.circle_url') . '/auth';
+        $appUrl = Config::get('app.circle_url').'/auth';
         $url = URL::route('circle.password.confirm');
 
-        return str_replace(url('/circle/api'), $appUrl, $url) . '?token=' . $this->token . '&email=' . urlencode($notifiable->email);
+        return str_replace(url('/circle/api'), $appUrl, $url).'?token='.$this->token.'&email='.urlencode($notifiable->email);
     }
 }

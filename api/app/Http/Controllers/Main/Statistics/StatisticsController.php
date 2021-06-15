@@ -32,13 +32,13 @@ final class StatisticsController
     }
 
     /**
-     * 統計情報
+     * 統計情報.
      *
      * @return array
      */
     public function __invoke()
     {
-        Log::debug("StatisticsController args none");
+        Log::debug('StatisticsController args none');
 
         // 統計情報
         $statistics = Cache::remember(

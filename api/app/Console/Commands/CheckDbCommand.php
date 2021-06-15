@@ -37,11 +37,11 @@ class CheckDbCommand extends Command
      */
     public function handle()
     {
-        $this->info('default=' . config('database.default'));
-        $this->info('host=' . config('database.connections.mysql.host'));
-        $this->info('port=' . config('database.connections.mysql.port'));
-        $this->info('database=' . config('database.connections.mysql.database'));
-        $this->info('username=' . config('database.connections.mysql.username'));
-        $this->info('password=' . config('database.connections.mysql.password'));
+        $this->info('default='.config('database.default'));
+        $this->info('host='.config('database.connections.mysql.host'));
+        $this->info('port='.config('database.connections.mysql.port'));
+        $this->info('database='.config('database.connections.mysql.database'));
+        $this->info('username='.config('database.connections.mysql.username'));
+        $this->info('password='.config('database.connections.mysql.password'));
     }
 }

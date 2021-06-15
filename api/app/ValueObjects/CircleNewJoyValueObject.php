@@ -72,20 +72,20 @@ class CircleNewJoyValueObject
     public function toArray(): array
     {
         return [
-            CircleNewJoyProperty::id => $this->id,
-            CircleNewJoyProperty::circle_id => $this->circle_id,
-            CircleNewJoyProperty::title => $this->title,
-            CircleNewJoyProperty::description => $this->description,
-            CircleNewJoyProperty::url => $this->url,
-            CircleNewJoyProperty::private_newjoy_link => $this->private_newjoy_url,
-            CircleNewJoyProperty::place_of_activity => $this->place_of_activity,
+            CircleNewJoyProperty::id                       => $this->id,
+            CircleNewJoyProperty::circle_id                => $this->circle_id,
+            CircleNewJoyProperty::title                    => $this->title,
+            CircleNewJoyProperty::description              => $this->description,
+            CircleNewJoyProperty::url                      => $this->url,
+            CircleNewJoyProperty::private_newjoy_link      => $this->private_newjoy_url,
+            CircleNewJoyProperty::place_of_activity        => $this->place_of_activity,
             CircleNewJoyProperty::place_of_activity_detail => $this->place_of_activity_detail,
-            CircleNewJoyProperty::publish_from => $this->publish_from,
-            CircleNewJoyProperty::start_date => $this->start_date,
-            CircleNewJoyProperty::end_date => $this->end_date,
-            CircleNewJoyProperty::release => $this->release,
-            CircleNewJoyProperty::created_at => $this->created_at,
-            CircleNewJoyProperty::updated_at => $this->updated_at,
+            CircleNewJoyProperty::publish_from             => $this->publish_from,
+            CircleNewJoyProperty::start_date               => $this->start_date,
+            CircleNewJoyProperty::end_date                 => $this->end_date,
+            CircleNewJoyProperty::release                  => $this->release,
+            CircleNewJoyProperty::created_at               => $this->created_at,
+            CircleNewJoyProperty::updated_at               => $this->updated_at,
         ];
     }
 }

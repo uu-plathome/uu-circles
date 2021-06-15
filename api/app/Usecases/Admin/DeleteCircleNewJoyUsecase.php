@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\DB;
 final class DeleteCircleNewJoyUsecase
 {
     /**
-     * 新歓情報の削除
+     * 新歓情報の削除.
      *
      * @param int $circleId
      * @param int $circleNewJoyId
-     * @return bool
+     *
      * @throws Exception
+     *
+     * @return bool
      */
     public function invoke(int $circleId, int $circleNewJoyId): bool
     {
@@ -29,6 +31,7 @@ final class DeleteCircleNewJoyUsecase
             return true;
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

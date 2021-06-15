@@ -19,14 +19,15 @@ class UuCirclesPageViewsRepository
     }
 
     /**
-     * URLに対するページ数とユーザー数を取得する
+     * URLに対するページ数とユーザー数を取得する.
+     *
+     * @throws \Google\ApiCore\ApiException
      *
      * @return MultiplePageViewEntity
-     * @throws \Google\ApiCore\ApiException
      */
     public function invoke(): MultiplePageViewEntity
     {
-        Log::debug("UuCirclesPageViewsRepository args none");
+        Log::debug('UuCirclesPageViewsRepository args none');
 
         $client = $this->repository->init();
 
@@ -35,11 +36,11 @@ class UuCirclesPageViewsRepository
 
         // Make an API call.
         $response = $client->runReport([
-            'property' => 'properties/' . $property_id,
+            'property'   => 'properties/'.$property_id,
             'dateRanges' => [
                 new DateRange([
                     'start_date' => '2020-03-31',
-                    'end_date' => 'today',
+                    'end_date'   => 'today',
                 ]),
             ],
             'dimensions' => [
@@ -60,7 +61,7 @@ class UuCirclesPageViewsRepository
                         'name' => 'screenPageViews',
                     ]
                 ),
-            ]
+            ],
         ]);
 
         // Entityの生成

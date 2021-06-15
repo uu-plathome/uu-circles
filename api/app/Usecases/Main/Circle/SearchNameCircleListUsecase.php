@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Log;
 final class SearchNameCircleListUsecase
 {
     /**
-     * サークルをテキストで検索する
+     * サークルをテキストで検索する.
      *
      * @param SearchNameCircleListParam $param
+     *
      * @return MainSimpleCircleListDto
      */
     public function invoke(SearchNameCircleListParam $param): MainSimpleCircleListDto
@@ -46,7 +47,7 @@ final class SearchNameCircleListUsecase
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->where(function ($query) use ($param) {
                 // カタカナに変換
-                $katakana = mb_convert_kana($param->name, "K");
+                $katakana = mb_convert_kana($param->name, 'K');
                 $query->where('circles.name', 'like', "%$param->name%")
                     ->orWhere('circles.slug', "%$param->name%")
                     ->orWhere('circle_information.name_kana', 'like', "%$katakana%")
@@ -58,17 +59,17 @@ final class SearchNameCircleListUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                     $circle,
                     $circle->circleHandbill
                 )
         )->toArray();
+
         return $dto;
     }
 
     /**
-     * 検索ワードの保存
+     * 検索ワードの保存.
      *
      * @param string $word
      */

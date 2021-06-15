@@ -12,9 +12,9 @@
 */
 
 use App\Enum\RouteProperty\WebRouteProperty as RP;
-use App\Http\Controllers\Main\Main;
 use App\Http\Controllers\Main\Advertise;
 use App\Http\Controllers\Main\Announcement;
+use App\Http\Controllers\Main\Main;
 
 Route::get('/', Main\WelcomeController::class)
     ->name(RP::Welcome);

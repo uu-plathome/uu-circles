@@ -40,13 +40,14 @@ final class SitemapController extends Controller
                 (new Collection($sitemaps))->map(
                     fn (SitemapDto $sitemap) => $sitemap->toArray()
                 )->toArray()
-            )
+            ),
         ];
     }
 
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SitemapController' . $minutes;
+
+        return 'SitemapController'.$minutes;
     }
 }

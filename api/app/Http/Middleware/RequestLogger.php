@@ -19,6 +19,7 @@ class RequestLogger
      *
      * @param Request $request
      * @param Closure $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -32,6 +33,7 @@ class RequestLogger
 
     /**
      * @param Request $request
+     *
      * @return bool
      */
     private function isWrite(Request $request): bool
@@ -46,7 +48,7 @@ class RequestLogger
     {
         Log::debug($request->method(), [
             'url'     => $request->fullUrl(),
-            'request' => $request->all()
+            'request' => $request->all(),
         ]);
 
         foreach ($request->headers as $key => $value) {

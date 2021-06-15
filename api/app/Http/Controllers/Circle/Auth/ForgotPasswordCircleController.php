@@ -29,7 +29,7 @@ final class ForgotPasswordCircleController extends Controller
 
     public function __invoke(ForgotPasswordCircleRequest $request)
     {
-        Log::debug("ForgotPasswordCircleController args none");
+        Log::debug('ForgotPasswordCircleController args none');
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -46,17 +46,17 @@ final class ForgotPasswordCircleController extends Controller
             : $this->sendResetLinkFailedResponse($request, $response);
     }
 
-
     /**
      * Get the response for a successful password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return RedirectResponse|int[]
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
-        Log::debug("ForgotPasswordCircleController#sendResetLinkResponse");
+        Log::debug('ForgotPasswordCircleController#sendResetLinkResponse');
 
         return ['status' => trans($response)];
     }
@@ -65,12 +65,13 @@ final class ForgotPasswordCircleController extends Controller
      * Get the response for a failed password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return JsonResponse
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        Log::debug("ForgotPasswordCircleController#sendResetLinkFailedResponse");
+        Log::debug('ForgotPasswordCircleController#sendResetLinkFailedResponse');
 
         return response()->json(['email' => trans($response)], 400);
     }

@@ -4,12 +4,11 @@ namespace Tests\Feature\App\Http\Controllers\Admin\Advertise;
 
 use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
-use App\Models\Circle;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ShowAdvertiseControllerTest extends TestCase
 {
@@ -18,11 +17,11 @@ class ShowAdvertiseControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowCircleControllerTest");
+        Log::info('ShowCircleControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -30,7 +29,7 @@ class ShowAdvertiseControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Advertise::query()->delete();
@@ -45,7 +44,6 @@ class ShowAdvertiseControllerTest extends TestCase
             'advertises' => $advertises,
             'id'         => $advertise->id,
         ]);
-
 
         // WHEN
         $response = $this->get("/admin/api/advertise/$advertise->id", [

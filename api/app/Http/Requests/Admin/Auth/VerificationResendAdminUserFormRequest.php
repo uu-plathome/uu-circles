@@ -25,7 +25,7 @@ class VerificationResendAdminUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            UserProperty::email => ['required', 'email', 'string']
+            UserProperty::email => ['required', 'email', 'string'],
         ];
     }
 }

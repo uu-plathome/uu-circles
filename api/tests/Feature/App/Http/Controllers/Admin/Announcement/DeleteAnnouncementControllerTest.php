@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\App\Http\Controllers\Admin\Announcement;
 
-use App\Enum\Property\AnnouncementProperty;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
@@ -15,11 +14,11 @@ class DeleteAnnouncementControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("DeleteAnnouncementControllerTest");
+        Log::info('DeleteAnnouncementControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +26,7 @@ class DeleteAnnouncementControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var Announcement $announcement */

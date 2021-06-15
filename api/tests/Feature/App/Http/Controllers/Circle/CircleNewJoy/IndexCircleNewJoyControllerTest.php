@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Circle\CircleNewJoy;
 use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class IndexCircleNewJoyControllerTest extends TestCase
 {
@@ -15,11 +15,11 @@ class IndexCircleNewJoyControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexCircleNewJoyControllerTest");
+        Log::info('IndexCircleNewJoyControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +27,7 @@ class IndexCircleNewJoyControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var \App\Models\User $user */

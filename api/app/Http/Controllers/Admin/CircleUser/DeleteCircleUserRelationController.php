@@ -15,11 +15,12 @@ use Illuminate\Validation\ValidationException;
 final class DeleteCircleUserRelationController
 {
     /**
-     * CircleとUserの連携を解除する
+     * CircleとUserの連携を解除する.
      *
      * @param Request $request
-     * @param int $userId
-     * @param int $circleId
+     * @param int     $userId
+     * @param int     $circleId
+     *
      * @throws ValidationException
      * @throws \Exception
      */
@@ -45,12 +46,14 @@ final class DeleteCircleUserRelationController
         }
 
         DB::beginTransaction();
+
         try {
             $circleUser->delete();
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

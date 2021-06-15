@@ -30,12 +30,14 @@ final class LoginAdminController extends Controller
      * Handle the incoming request.
      *
      * @param LoginAdminFormRequest $request
-     * @return JsonResponse|void
+     *
      * @throws ValidationException
+     *
+     * @return JsonResponse|void
      */
     public function __invoke(LoginAdminFormRequest $request)
     {
-        Log::debug("LoginAdminController args none");
+        Log::debug('LoginAdminController args none');
 
         $usernameOrEmail = $request->get(Str::camel(self::USERNAME_OR_EMAIL));
 
@@ -43,7 +45,7 @@ final class LoginAdminController extends Controller
             ? UserProperty::email
             : UserProperty::username;
         $request->merge([
-            $this->username() => $usernameOrEmail
+            $this->username() => $usernameOrEmail,
         ]);
 
         return $this->login($request);
@@ -53,11 +55,12 @@ final class LoginAdminController extends Controller
      * Attempt to log the user into the application.
      *
      * @param Request $request
+     *
      * @return bool
      */
     protected function attemptLogin(Request $request)
     {
-        Log::debug("LoginAdminController attemptLogin");
+        Log::debug('LoginAdminController attemptLogin');
 
         $token = $this->guard()->attempt($this->credentials($request));
         Log::debug("LoginAdminController attemptLogin token=$token");
@@ -88,11 +91,12 @@ final class LoginAdminController extends Controller
      * Send the response after the user was authenticated.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
-        Log::debug("LoginAdminController sendLoginResponse");
+        Log::debug('LoginAdminController sendLoginResponse');
 
         $this->clearLoginAttempts($request);
 
@@ -108,13 +112,14 @@ final class LoginAdminController extends Controller
      * Get the failed login response instance.
      *
      * @param Request $request
-     * @return JsonResponse
      *
      * @throws ValidationException
+     *
+     * @return JsonResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        Log::debug("LoginAdminController sendFailedLoginResponse");
+        Log::debug('LoginAdminController sendFailedLoginResponse');
 
         /** @var User $user */
         $user = $this->guard()->user();

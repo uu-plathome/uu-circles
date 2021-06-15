@@ -20,15 +20,16 @@ final class CreateAnnouncementUsecase
     const MAX_SLUG_CHECK = 3;
 
     /**
-     * お知らせの追加
+     * お知らせの追加.
      *
      * @param CreateAnnouncementUsecaseParam $param
+     *
      * @throws Exception
      */
     public function invoke(CreateAnnouncementUsecaseParam $param)
     {
-        Log::debug("CreateAnnouncementUsecase args", [
-            "CreateAnnouncementUsecaseParam" => $param,
+        Log::debug('CreateAnnouncementUsecase args', [
+            'CreateAnnouncementUsecaseParam' => $param,
         ]);
 
         $now = Carbon::now();
@@ -40,6 +41,7 @@ final class CreateAnnouncementUsecase
         $insertData = $this->getInsertData($param, $slug);
 
         DB::beginTransaction();
+
         try {
             $announcement = new Announcement();
             // お知らせをDBに保存する
@@ -67,6 +69,7 @@ final class CreateAnnouncementUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -78,7 +81,7 @@ final class CreateAnnouncementUsecase
     {
         $loop = self::MAX_SLUG_CHECK;
         for ($i = $loop; $i > 0; $i--) {
-            $newSlug = (string)Str::uuid();
+            $newSlug = (string) Str::uuid();
 
             if (Announcement::whereSlug($newSlug)->doesntExist()) {
                 return $newSlug;
@@ -88,12 +91,12 @@ final class CreateAnnouncementUsecase
         throw new Exception("UUIDが {$loop} 回重複しました");
     }
 
-
     /**
      * DBに挿入するデータ
      *
      * @param CreateAnnouncementUsecaseParam $param
-     * @param string $slug
+     * @param string                         $slug
+     *
      * @return array
      */
     private function getInsertData(CreateAnnouncementUsecaseParam $param, string $slug): array

@@ -8,9 +8,10 @@ use Illuminate\Support\Str;
 class Arr extends SupportArr
 {
     /**
-     * key名をキャメルケースに変更
+     * key名をキャメルケースに変更.
      *
      * @param array $array
+     *
      * @return array
      */
     public static function camel_keys(array $array): array
@@ -23,14 +24,16 @@ class Arr extends SupportArr
                 $results[Str::camel($key)] = $value;
             }
         }
+
         return $results;
     }
 
     /**
-     * key名をスネークケースに変更
+     * key名をスネークケースに変更.
      *
-     * @param array $array
+     * @param array  $array
      * @param string $delimiter
+     *
      * @return array
      */
     public static function snake_keys(array $array, string $delimiter = '_'): array
@@ -43,6 +46,7 @@ class Arr extends SupportArr
                 $results[Str::snake($key, $delimiter)] = $value;
             }
         }
+
         return $results;
     }
 }
