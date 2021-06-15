@@ -37,7 +37,7 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
     }
 
     /**
-     * 変更可能なタグ
+     * 変更可能なタグ.
      *
      * @return array
      */

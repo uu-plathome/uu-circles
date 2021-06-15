@@ -13,12 +13,12 @@ use Illuminate\Support\Carbon;
 final class GetMainViewFixedAnnouncementsUsecase
 {
     /**
-     * キャッシュする時間
+     * キャッシュする時間.
      */
     const TTL = 60 * 60;
 
     /**
-     * メイン画面に固定して、表示するお知らせを取得
+     * メイン画面に固定して、表示するお知らせを取得.
      */
     public function invoke(): GetMainViewFixedAnnouncementsUsecaseDto
     {
@@ -47,6 +47,7 @@ final class GetMainViewFixedAnnouncementsUsecase
         $dto->announcements = $announcements->map(
             fn (Announcement $announcement) => MainAnnouncementDto::byEloquent($announcement)
         )->toArray();
+
         return $dto;
     }
 
@@ -57,6 +58,6 @@ final class GetMainViewFixedAnnouncementsUsecase
      */
     public static function getCacheKey(): string
     {
-        return 'GetMainViewFixedAnnouncementsUsecase1' . Carbon::today()->format("Y-m-d h");
+        return 'GetMainViewFixedAnnouncementsUsecase1'.Carbon::today()->format('Y-m-d h');
     }
 }

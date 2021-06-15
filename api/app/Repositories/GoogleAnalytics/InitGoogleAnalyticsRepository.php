@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Log;
 class InitGoogleAnalyticsRepository
 {
     /**
-     * Google Analytics の Client
+     * Google Analytics の Client.
+     *
+     * @throws \Google\ApiCore\ValidationException
      *
      * @return BetaAnalyticsDataGapicClient
-     * @throws \Google\ApiCore\ValidationException
      */
     public function init(): BetaAnalyticsDataGapicClient
     {
-        Log::debug("InitGoogleAnalyticsRepository args none");
+        Log::debug('InitGoogleAnalyticsRepository args none');
 
         // Using a default constructor instructs the client to use the credentials
         // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.

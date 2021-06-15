@@ -26,17 +26,19 @@ final class UpdateCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleNewJoyRequest $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return array
+     * @param int                       $circleId
+     * @param int                       $circleNewJoyId
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(
         UpdateCircleNewJoyRequest $request,
         int $circleId,
         int $circleNewJoyId
     ): array {
-        Log::debug("UpdateCircleNewJoyController args", [
+        Log::debug('UpdateCircleNewJoyController args', [
             'circleId'       => $circleId,
             'circleNewJoyId' => $circleNewJoyId,
         ]);
@@ -52,7 +54,7 @@ final class UpdateCircleNewJoyController extends Controller
         );
 
         return [
-            "data" => Arr::camel_keys([])
+            'data' => Arr::camel_keys([]),
         ];
     }
 }

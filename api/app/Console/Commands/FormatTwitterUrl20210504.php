@@ -42,29 +42,31 @@ class FormatTwitterUrl20210504 extends Command
      */
     public function handle()
     {
-        Log::debug("FormatTwitterUrl20210504 args none");
+        Log::debug('FormatTwitterUrl20210504 args none');
 
         CircleInformation::whereNotNull(CircleInformationProperty::twitter_url)
             ->chunk(
                 100,
                 function ($circleInformations) {
                     DB::beginTransaction();
+
                     try {
                         foreach ($circleInformations as $circleInformation) {
                             $circleInformation->fill([
-                                CircleInformationProperty::twitter_url =>
-                                    CircleInformation::formatTwitterUrl($circleInformation->twitter_url),
+                                CircleInformationProperty::twitter_url => CircleInformation::formatTwitterUrl($circleInformation->twitter_url),
                             ])->save();
                         }
                         DB::commit();
                     } catch (Exception $e) {
                         DB::rollBack();
+
                         throw $e;
                     }
                 }
             );
 
-        Log::debug("FormatTwitterUrl20210504 end");
+        Log::debug('FormatTwitterUrl20210504 end');
+
         return 0;
     }
 }

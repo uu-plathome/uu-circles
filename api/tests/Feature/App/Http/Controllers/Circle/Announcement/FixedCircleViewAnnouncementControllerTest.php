@@ -19,12 +19,12 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("FixedAdminViewAnnouncementControllerTest");
+        Log::info('FixedAdminViewAnnouncementControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -32,7 +32,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
 
     public function testRequest_サークル管理画面で固定表示用のお知らせが取得できる()
     {
-        Log::info("testRequest_サークル管理画面で固定表示用のお知らせが取得できる");
+        Log::info('testRequest_サークル管理画面で固定表示用のお知らせが取得できる');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -65,7 +65,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
             ->first();
 
         // WHEN
-        $response = $this->get("/circle/api/announcement/fixed", [
+        $response = $this->get('/circle/api/announcement/fixed', [
             'Authorization' => "Bearer $user->api_token",
         ]);
 
@@ -96,7 +96,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
 
     public function testRequest_サークル管理画面で固定表示用のお知らせがない場合は取得できない()
     {
-        Log::info("testRequest_サークル管理画面で固定表示用のお知らせがない場合は取得できない");
+        Log::info('testRequest_サークル管理画面で固定表示用のお知らせがない場合は取得できない');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -145,7 +145,7 @@ class FixedCircleViewAnnouncementControllerTest extends TestCase
         $this->assertFalse($announcement->is_circle_view_fixed);
 
         // WHEN
-        $response = $this->get("/circle/api/announcement/fixed", [
+        $response = $this->get('/circle/api/announcement/fixed', [
             'Authorization' => "Bearer $user->api_token",
         ]);
 

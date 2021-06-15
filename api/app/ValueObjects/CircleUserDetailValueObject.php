@@ -51,6 +51,7 @@ class CircleUserDetailValueObject
 
     /**
      * @param bool $isOwn 自分自身のアカウントかどうか
+     *
      * @return array
      */
     public function toArray(bool $isOwn = false): array

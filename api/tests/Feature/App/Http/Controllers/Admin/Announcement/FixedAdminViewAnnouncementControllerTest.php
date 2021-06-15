@@ -16,11 +16,11 @@ class FixedAdminViewAnnouncementControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("FixedAdminViewAnnouncementControllerTest");
+        Log::info('FixedAdminViewAnnouncementControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +28,7 @@ class FixedAdminViewAnnouncementControllerTest extends TestCase
 
     public function testRequest_管理者画面で固定表示用のお知らせが取得できる()
     {
-        Log::info("testRequest_管理者画面で固定表示用のお知らせが取得できる");
+        Log::info('testRequest_管理者画面で固定表示用のお知らせが取得できる');
 
         // GIVEN
         // お知らせの全削除
@@ -45,7 +45,7 @@ class FixedAdminViewAnnouncementControllerTest extends TestCase
             ->first();
 
         // WHEN
-        $response = $this->get("/admin/api/announcement/fixed", [
+        $response = $this->get('/admin/api/announcement/fixed', [
             'Authorization' => 'Bearer test1234',
         ]);
 
@@ -76,7 +76,7 @@ class FixedAdminViewAnnouncementControllerTest extends TestCase
 
     public function testRequest_管理者画面で固定表示用のお知らせがない場合は取得できない()
     {
-        Log::info("testRequest_管理者画面で固定表示用のお知らせがない場合は取得できない");
+        Log::info('testRequest_管理者画面で固定表示用のお知らせがない場合は取得できない');
 
         // GIVEN
         // お知らせの全削除
@@ -104,7 +104,7 @@ class FixedAdminViewAnnouncementControllerTest extends TestCase
             ->first();
 
         // WHEN
-        $response = $this->get("/admin/api/announcement/fixed", [
+        $response = $this->get('/admin/api/announcement/fixed', [
             'Authorization' => 'Bearer test1234',
         ]);
 

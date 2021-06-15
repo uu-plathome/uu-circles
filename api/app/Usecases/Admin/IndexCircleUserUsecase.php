@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleUserUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param int $circleId
+     *
      * @return array
      */
     public function invoke(int $circleId): array

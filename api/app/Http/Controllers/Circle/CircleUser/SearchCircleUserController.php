@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Circle\CircleUser;
 
-use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Support\Arr;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -21,19 +19,21 @@ final class SearchCircleUserController extends Controller
 
     /**
      * @param Request $request
-     * @param int $circleId
-     * @param string $searchText
-     * @return array
+     * @param int     $circleId
+     * @param string  $searchText
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return array
      */
     public function __invoke(
         Request $request,
         int $circleId,
         string $searchText
     ) {
-        Log::debug("SearchCircleUserController args", [
+        Log::debug('SearchCircleUserController args', [
             'circleId'   => $circleId,
-            'searchText' => $searchText
+            'searchText' => $searchText,
         ]);
 
         /** @var \App\Models\User $authUser */

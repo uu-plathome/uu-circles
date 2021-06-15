@@ -25,7 +25,8 @@ final class RegisterCircleUserController extends Controller
 
     /**
      * @param RegisterCircleUserRequest $request
-     * @param int $circleId
+     * @param int                       $circleId
+     *
      * @throws Exception
      */
     public function __invoke(

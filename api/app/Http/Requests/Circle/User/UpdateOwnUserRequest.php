@@ -34,8 +34,8 @@ class UpdateOwnUserRequest extends FormRequest
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.' . UserProperty::username),
-            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            UserProperty::username     => __('user.'.UserProperty::username),
+            UserProperty::display_name => __('user.'.UserProperty::display_name),
         ];
     }
 }

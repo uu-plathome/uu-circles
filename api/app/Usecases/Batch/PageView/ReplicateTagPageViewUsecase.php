@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 final class ReplicateTagPageViewUsecase
 {
     /**
-     * PageViewからTagPageViewの作成
+     * PageViewからTagPageViewの作成.
      *
      * @throws \Exception
      */
@@ -69,12 +69,13 @@ final class ReplicateTagPageViewUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
 
     /**
-     * アクセス数を集計するタグ一覧
+     * アクセス数を集計するタグ一覧.
      *
      * @return Collection
      */

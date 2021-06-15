@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Log;
 final class UpdateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param UpdateCircleUsecaseParam $param
-     * @return CircleValueObject
+     *
      * @throws Exception
+     *
+     * @return CircleValueObject
      */
     public function invoke(UpdateCircleUsecaseParam $param): CircleValueObject
     {
@@ -32,6 +34,7 @@ final class UpdateCircleUsecase
         $circleId = $param->circle_id;
 
         DB::beginTransaction();
+
         try {
             /** @var Circle $newCircle */
             $newCircle = Circle::findOrFail($circleId);
@@ -68,6 +71,7 @@ final class UpdateCircleUsecase
             );
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

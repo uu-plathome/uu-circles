@@ -3,7 +3,6 @@
 namespace App\Auth;
 
 use App\Enum\Property\UserProperty;
-use App\Models\CircleUser;
 use App\Models\User;
 use Illuminate\Auth\TokenGuard;
 use Illuminate\Database\Eloquent\Collection;
@@ -27,7 +26,7 @@ class CircleUserTokenGuard extends TokenGuard
      */
     public function user()
     {
-        Log::debug("CircleUserTokenGuard#user");
+        Log::debug('CircleUserTokenGuard#user');
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -43,7 +42,7 @@ class CircleUserTokenGuard extends TokenGuard
         if (!empty($token)) {
             $user = $this->provider->retrieveByCredentials([
                 $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
-                UserProperty::active => true
+                UserProperty::active => true,
             ]);
         }
 
@@ -52,6 +51,7 @@ class CircleUserTokenGuard extends TokenGuard
         if (is_null($this->circleUsers())) {
             $this->user = null;
             $this->circleUsers = null;
+
             return null;
         }
 
@@ -65,7 +65,7 @@ class CircleUserTokenGuard extends TokenGuard
      */
     public function circleUsers(): ?Collection
     {
-        Log::debug("CircleUserTokenGuard#circleUsers");
+        Log::debug('CircleUserTokenGuard#circleUsers');
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -78,7 +78,7 @@ class CircleUserTokenGuard extends TokenGuard
             return null;
         }
 
-        Log::debug("CircleUserTokenGuard#val", [
+        Log::debug('CircleUserTokenGuard#val', [
             'user' => $this->user,
         ]);
 

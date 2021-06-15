@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleNewJoyUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @return CircleNewJoyValueObject[]
      */

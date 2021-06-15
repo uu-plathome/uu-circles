@@ -6,8 +6,8 @@ use App\Models\Circle;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class GetCircleControllerTest extends TestCase
 {
@@ -16,12 +16,12 @@ class GetCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("GetCircleControllerTest");
+        Log::info('GetCircleControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -29,7 +29,7 @@ class GetCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Http::fake();
@@ -68,7 +68,7 @@ class GetCircleControllerTest extends TestCase
 
     public function testRequest_存在しないサークルは404である()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         $slug = 'aaaaabbbbbccccc';

@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleNewJoyUsecase
 {
     /**
-     * 新歓一覧の取得
+     * 新歓一覧の取得.
      *
      * @param int $circleId
+     *
      * @return SeparateReleaseCircleNewJoyDto
      */
     public function invoke(int $circleId): SeparateReleaseCircleNewJoyDto
@@ -30,29 +31,25 @@ final class IndexCircleNewJoyUsecase
 
         // 未来の公開中の新歓一覧
         $onReleasedFutureCircleNewJoys = $circleNewJoyValueObjects->filter(
-            fn (CircleNewJoyValueObject $circleNewJoy) =>
-            $circleNewJoy->release &&
+            fn (CircleNewJoyValueObject $circleNewJoy) => $circleNewJoy->release &&
                 $circleNewJoy->start_date && $circleNewJoy->start_date->isFuture()
         )->toArray();
 
         // 未来の非公開の新歓一覧
         $onPrivateFutureCircleNewJoys = $circleNewJoyValueObjects->filter(
-            fn (CircleNewJoyValueObject $circleNewJoy) =>
-            !$circleNewJoy->release  &&
+            fn (CircleNewJoyValueObject $circleNewJoy) => !$circleNewJoy->release &&
                 $circleNewJoy->start_date && $circleNewJoy->start_date->isFuture()
         )->toArray();
 
         // 未来の公開中の新歓一覧
         $onReleasedPastCircleNewJoys = $circleNewJoyValueObjects->filter(
-            fn (CircleNewJoyValueObject $circleNewJoy) =>
-            $circleNewJoy->release &&
+            fn (CircleNewJoyValueObject $circleNewJoy) => $circleNewJoy->release &&
                 $circleNewJoy->start_date && $circleNewJoy->start_date->isPast()
         )->toArray();
 
         // 未来の非公開の新歓一覧
         $onPrivatePastCircleNewJoys = $circleNewJoyValueObjects->filter(
-            fn (CircleNewJoyValueObject $circleNewJoy) =>
-            !$circleNewJoy->release  &&
+            fn (CircleNewJoyValueObject $circleNewJoy) => !$circleNewJoy->release &&
                 $circleNewJoy->start_date && $circleNewJoy->start_date->isPast()
         )->toArray();
 

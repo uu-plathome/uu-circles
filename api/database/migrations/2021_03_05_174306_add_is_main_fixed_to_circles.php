@@ -18,7 +18,7 @@ class AddIsMainFixedToCircles extends Migration
 
             $table->index([
                 'release',
-                'is_main_fixed'
+                'is_main_fixed',
             ]);
         });
     }
@@ -35,7 +35,7 @@ class AddIsMainFixedToCircles extends Migration
 
             $table->dropIndex([
                 'release',
-                'is_main_fixed'
+                'is_main_fixed',
             ]);
         });
     }

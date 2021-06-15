@@ -51,12 +51,13 @@ final class SearchTagCircleController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $tag
+     * @param string                   $tag
+     *
      * @return array|void
      */
     public function __invoke(Request $request, string $tag)
     {
-        Log::debug("#SearchTagCircleController args", [
+        Log::debug('#SearchTagCircleController args', [
             'tag' => $tag,
         ]);
 
@@ -136,16 +137,17 @@ final class SearchTagCircleController extends Controller
                 Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
-            'uuYellArticles' => $articles,
-            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
+            'uuYellArticles'     => $articles,
+            'announcements'      => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 
     /**
-     * タグが存在しているかどうか
+     * タグが存在しているかどうか.
      *
      * @param string $tag
-     * @return boolean
+     *
+     * @return bool
      */
     private function isExistTag(string $tag): bool
     {
@@ -155,6 +157,7 @@ final class SearchTagCircleController extends Controller
     private function getCacheKey(string $tag): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SearchTagCircleController.main' . $tag . $minutes;
+
+        return 'SearchTagCircleController.main'.$tag.$minutes;
     }
 }

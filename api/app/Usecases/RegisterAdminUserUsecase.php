@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\DB;
 class RegisterAdminUserUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param AdminUserValueObject $adminUserValueObject
-     * @return AdminUserValueObject
+     *
      * @throws Exception
+     *
+     * @return AdminUserValueObject
      */
     public function invoke(AdminUserValueObject $adminUserValueObject): AdminUserValueObject
     {
@@ -28,6 +30,7 @@ class RegisterAdminUserUsecase
         $user->createApiToken();
 
         DB::beginTransaction();
+
         try {
             $user->save();
             $adminUser = $user->adminUser()->create([
@@ -42,6 +45,7 @@ class RegisterAdminUserUsecase
             return AdminUserValueObject::byEloquent($user, $adminUser);
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

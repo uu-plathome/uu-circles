@@ -63,7 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * 管理者としてLoginできるユーザーを絞り込む
+     *
      * @param $query
+     *
      * @return User|Builder|\Illuminate\Database\Query\Builder
      */
     public function scopeCanAdminLogin($query)
@@ -88,6 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Mark the given user's email as verified.
      *
      * @param string $password
+     *
      * @return bool
      */
     public function markEmailAndPasswordAsVerified(string $password): bool
@@ -102,6 +105,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Send the password reset notification.
      *
      * @param string $token
+     *
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -113,6 +117,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Send the password reset notification.
      *
      * @param string $token
+     *
      * @return void
      */
     public function sendCircleUserPasswordResetNotification($token)
@@ -141,7 +146,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * 管理者かどうか
+     * 管理者かどうか.
      *
      * @return bool
      */
@@ -151,7 +156,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * サークルUserかどうか
+     * サークルUserかどうか.
      *
      * @return bool
      */

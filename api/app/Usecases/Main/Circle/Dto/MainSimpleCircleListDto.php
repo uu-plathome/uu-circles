@@ -7,7 +7,7 @@ namespace App\Usecases\Main\Circle\Dto;
 use Illuminate\Support\Collection;
 
 /**
- * 一覧用のサークル情報
+ * 一覧用のサークル情報.
  */
 final class MainSimpleCircleListDto
 {
@@ -21,7 +21,7 @@ final class MainSimpleCircleListDto
     public function toArray(): array
     {
         return [
-            self::LIST => (new Collection($this->list))->map(
+            self::LIST                        => (new Collection($this->list))->map(
                 fn (MainSimpleCircleDto $dto) => $dto->toArray()
             )->toArray(),
         ];
