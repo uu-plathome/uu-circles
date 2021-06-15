@@ -35,8 +35,7 @@ final class GachaDrawController extends Controller
         $drawCount = $request->query('number', 1);
 
         //ヘッダーから識別子取得
-        $identifierHash = $request->header("X-IDENTIFIER_HASH");
-
+        $identifierHash = $request->header('X-IDENTIFIER_HASH');
 
         //数字出なかったり、数値変だったりした場合を除外するバリデーション
         if (!is_numeric($drawCount) || $drawCount <= 0 || $drawCount > 10) {
@@ -48,8 +47,7 @@ final class GachaDrawController extends Controller
         $param->drawCount = intval($drawCount);
         $param->identifierHash = $identifierHash;
 
-        $dto = $this->drawGachaUsecase->invoke($param);//drawGachaUsecaseにparamが渡る
-
+        $dto = $this->drawGachaUsecase->invoke($param); //drawGachaUsecaseにparamが渡る
 
         return Arr::camel_keys($dto->toArray());
     }

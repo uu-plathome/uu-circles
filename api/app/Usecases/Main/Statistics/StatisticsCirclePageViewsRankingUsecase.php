@@ -13,7 +13,7 @@ use App\Usecases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
 final class StatisticsCirclePageViewsRankingUsecase
 {
     /**
-     * サークル閲覧数ランキング
+     * サークル閲覧数ランキング.
      *
      * @return StatisticsCirclePageViewsHighRankingDto
      */

@@ -31,15 +31,15 @@ class ImportCircleUserRequest extends FormRequest
             CircleUserProperty::role   => [
                 'required',
                 'string',
-                Rule::in([Role::MANAGER, Role::COMMON])
-            ]
+                Rule::in([Role::MANAGER, Role::COMMON]),
+            ],
         ]);
     }
 
     public function attributes()
     {
         return [
-            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+            CircleUserProperty::role   => __('circleUser.'.CircleUserProperty::role),
         ];
     }
 }

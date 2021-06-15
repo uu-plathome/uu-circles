@@ -45,9 +45,9 @@ class Announcement extends Model
         P::is_main_view_fixed   => 'boolean',
         P::is_circle_view_fixed => 'boolean',
         P::is_admin_view_fixed  => 'boolean',
-        P::notification_time  => 'datetime:Y-m-d H:i',
-        P::publish_from       => 'datetime:Y-m-d H:i',
-        P::publish_to         => 'datetime:Y-m-d H:i',
+        P::notification_time    => 'datetime:Y-m-d H:i',
+        P::publish_from         => 'datetime:Y-m-d H:i',
+        P::publish_to           => 'datetime:Y-m-d H:i',
     ];
 
     protected $dates = [
@@ -55,13 +55,14 @@ class Announcement extends Model
     ];
 
     /**
-     * 現在公開中かどうか
+     * 現在公開中かどうか.
      *
-     * @param boolean $active
+     * @param bool        $active
      * @param Carbon|null $publish_from
      * @param Carbon|null $publish_to
-     * @param Carbon $now
-     * @return boolean
+     * @param Carbon      $now
+     *
+     * @return bool
      */
     public static function getNowPublic(
         ?bool $active,
@@ -93,13 +94,14 @@ class Announcement extends Model
     }
 
     /**
-     * 現在公開中かどうか
+     * 現在公開中かどうか.
      *
-     * @return boolean
+     * @return bool
      */
     public function getNowPublicAttribute(): bool
     {
         $now = Carbon::now();
+
         return self::getNowPublic(
             $this->active,
             $this->publish_from,
@@ -109,10 +111,11 @@ class Announcement extends Model
     }
 
     /**
-     * 現在公開中のものを取得する
+     * 現在公開中のものを取得する.
      *
      * @param $query
      * @param Carbon $now
+     *
      * @return void
      */
     public function scopeNowPublic($query, Carbon $now)

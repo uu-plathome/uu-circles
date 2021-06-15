@@ -24,19 +24,20 @@ final class SynchronizeGoogleAnalyticsToAppUsecase
     }
 
     /**
-     * Application の DB (PageView) に Google Analytics のデータを入れる
+     * Application の DB (PageView) に Google Analytics のデータを入れる.
      *
      * @throws \Google\ApiCore\ApiException
      * @throws \Exception
      */
     public function invoke()
     {
-        Log::debug("SynchronizeGoogleAnalyticsToAppUsecase args none");
+        Log::debug('SynchronizeGoogleAnalyticsToAppUsecase args none');
 
         $entity = $this->uuCirclesPageViewsRepository->invoke();
         $now = new Carbon();
 
         DB::beginTransaction();
+
         try {
             // 既存のデータを全て削除
             PageView::query()->delete();
@@ -57,6 +58,7 @@ final class SynchronizeGoogleAnalyticsToAppUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

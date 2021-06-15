@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleByUserIdUsecase
 {
     /**
-     * UserIdに紐づくサークルを全て取得する
+     * UserIdに紐づくサークルを全て取得する.
      *
      * @param int $userId
+     *
      * @return CircleValueObject[]
      */
     public function invoke(int $userId): array
@@ -32,8 +33,7 @@ final class IndexCircleByUserIdUsecase
             ->get();
 
         return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+            fn (Circle $circle) => CircleValueObject::byEloquent(
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill

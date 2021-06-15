@@ -16,7 +16,7 @@ final class GetMainViewFixedAnnouncementsUsecaseDto
     public function toArray(): array
     {
         return [
-            'announcements' => (new Collection($this->announcements))->map(
+            'announcements'                   => (new Collection($this->announcements))->map(
                 fn (MainAnnouncementDto $dto) => $dto->toArray()
             )->toArray(),
         ];

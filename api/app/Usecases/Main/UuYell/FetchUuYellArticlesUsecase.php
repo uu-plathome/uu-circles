@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Log;
 final class FetchUuYellArticlesUsecase
 {
     /**
-     * 取得する投稿数
+     * 取得する投稿数.
      */
     const MAX_FETCH_NUMBER = 6;
 
     /**
-     * 最新のUU-yellの記事を6件取得する
+     * 最新のUU-yellの記事を6件取得する.
      */
     public function invoke()
     {
-        Log::debug("FetchUuYellArticlesUsecase args none");
+        Log::debug('FetchUuYellArticlesUsecase args none');
 
         $fetchNumber = self::MAX_FETCH_NUMBER;
 
@@ -31,7 +31,7 @@ final class FetchUuYellArticlesUsecase
                 UuyellPostProperty::date,
                 UuyellPostProperty::title,
                 UuyellPostProperty::featured_media,
-                UuyellPostProperty::slug
+                UuyellPostProperty::slug,
             ])
             ->take($fetchNumber)
             ->orderByDesc(UuyellPostProperty::date)
@@ -44,7 +44,7 @@ final class FetchUuYellArticlesUsecase
                 'slug'           => $post->slug,
                 'link'           => $post->link,
                 'featured_media' => $post->featured_media,
-                'title' => [
+                'title'          => [
                     'rendered' => $post->title,
                 ],
                 'type'  => 'post',

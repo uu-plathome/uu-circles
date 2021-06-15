@@ -22,13 +22,14 @@ class AdvertiseCounterTotalSheet implements FromCollection, WithHeadings, WithTi
     public function collection()
     {
         return AdvertiseCounter::whereAdvertiseId($this->advertiseId)
-            ->select(DB::raw("sum(count) as count"))
+            ->select(DB::raw('sum(count) as count'))
             ->addSelect(AdvertiseCounterProperty::link)
             ->groupBy(AdvertiseCounterProperty::link)
             ->get()
             ->map(function ($advertiseCounterHistory, $index) {
                 // 必ず、数値を出力するようにするため
                 $advertiseCounterHistory->count = $advertiseCounterHistory->count ?: '0';
+
                 return (new Collection([$index + 1]))->merge($advertiseCounterHistory);
             });
     }
@@ -43,7 +44,7 @@ class AdvertiseCounterTotalSheet implements FromCollection, WithHeadings, WithTi
     }
 
     /**
-     * シート名
+     * シート名.
      *
      * @return string
      */

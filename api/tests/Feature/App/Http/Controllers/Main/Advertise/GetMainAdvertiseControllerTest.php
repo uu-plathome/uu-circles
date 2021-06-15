@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Main\Advertise;
 use App\Enum\RouteProperty\ApiRouteProperty;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class GetMainAdvertiseControllerTest extends TestCase
 {
@@ -15,11 +15,11 @@ class GetMainAdvertiseControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("GetMainAdvertiseControllerTest");
+        Log::info('GetMainAdvertiseControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +27,7 @@ class GetMainAdvertiseControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class IndexCircleControllerTest extends TestCase
 {
@@ -15,12 +15,12 @@ class IndexCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexCircleControllerTest");
+        Log::info('IndexCircleControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,13 +28,13 @@ class IndexCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Http::fake();
 
         // WHEN
-        $response = $this->get("/api/circle");
+        $response = $this->get('/api/circle');
 
         // THEN
         $response->assertOk();

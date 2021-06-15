@@ -7,7 +7,7 @@ namespace App\Usecases\Main\Gacha\Dto;
 use Illuminate\Support\Collection;
 
 /**
- * 一覧用のサークル情報
+ * 一覧用のサークル情報.
  */
 final class GachaSimpleCircleListDto
 {
@@ -21,7 +21,7 @@ final class GachaSimpleCircleListDto
     public function toArray(): array
     {
         return [
-            self::LIST => (new Collection($this->list))->map(
+            self::LIST                         => (new Collection($this->list))->map(
                 fn (GachaSimpleCircleDto $dto) => $dto->toArray()
             )->toArray(),
         ];

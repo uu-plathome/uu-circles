@@ -17,14 +17,15 @@ class Identifier extends Model
     ];
 
     /**
-     * UUIDをハッシュ
+     * UUIDをハッシュ.
      *
      * @return string
      */
     public static function generateIdentifierHash(): string
     {
         $uuid = Str::uuid();
-        return base64_encode((string)$uuid);
+
+        return base64_encode((string) $uuid);
     }
 
     public function circleGachaResults(): HasMany

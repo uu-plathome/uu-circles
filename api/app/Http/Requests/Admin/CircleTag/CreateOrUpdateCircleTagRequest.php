@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin\CircleTag;
 
-use App\Entity\CircleTagEntity;
 use App\Enum\CircleTagModel;
 use App\Support\Arr;
 use App\Usecases\Admin\CircleTag\Params\CreateOrUpdateCircleTagUsecaseParam;
@@ -38,7 +37,7 @@ class CreateOrUpdateCircleTagRequest extends FormRequest
     }
 
     /**
-     * 変更可能なタグ
+     * 変更可能なタグ.
      *
      * @return array
      */

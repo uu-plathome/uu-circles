@@ -39,23 +39,24 @@ class MakeUsecase extends Command
     }
 
     /**
-    * 生成に使うスタブファイルを取得する
-    *
-    * @return string
-    */
+     * 生成に使うスタブファイルを取得する.
+     *
+     * @return string
+     */
     protected function getStub()
     {
         return app_path('Console/Commands/stubs/usecase.stub');
     }
 
     /**
-     * クラスのデフォルトの名前空間を取得する
+     * クラスのデフォルトの名前空間を取得する.
      *
-     * @param  string  $rootNamespace
+     * @param string $rootNamespace
+     *
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Usecases';
+        return $rootNamespace.'\Usecases';
     }
 }

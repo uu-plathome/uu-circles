@@ -6,8 +6,8 @@ use App\Enum\Property\IdentifierProperty;
 use App\Models\Identifier;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class PublishIdentificationControllerTest extends TestCase
 {
@@ -16,11 +16,11 @@ class PublishIdentificationControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("PublishIdentificationControllerTest");
+        Log::info('PublishIdentificationControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +28,7 @@ class PublishIdentificationControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("PublishIdentificationControllerTest");
+        Log::info('PublishIdentificationControllerTest');
 
         // GIVEN
 

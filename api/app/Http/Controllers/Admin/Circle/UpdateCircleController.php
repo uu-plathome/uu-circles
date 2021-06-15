@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin\Circle;
 
-use App\Enum\Property\CircleInformationProperty;
-use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
@@ -23,13 +21,14 @@ final class UpdateCircleController extends Controller
         $this->updateCircleUsecase = $updateCircleUsecase;
     }
 
-
     /**
      * Handle the incoming request.
      *
      * @param UpdateCircleFormRequest $request
-     * @return array
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(UpdateCircleFormRequest $request, int $circleId): array
     {
@@ -44,7 +43,7 @@ final class UpdateCircleController extends Controller
         );
 
         return [
-            'data' => Arr::camel_keys($circle->toArray())
+            'data' => Arr::camel_keys($circle->toArray()),
         ];
     }
 }

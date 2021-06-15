@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Log;
 class InitTwitterRepository
 {
     /**
-     * Twitter Client
+     * Twitter Client.
      *
      * @return TwitterOAuth
      */
     public function init(): TwitterOAuth
     {
-        Log::debug("InitTwitterRepository init args none");
+        Log::debug('InitTwitterRepository init args none');
 
         $consumer_key = config('twitter.consumer_key');
         $consumer_key_secret = config('twitter.consumer_secret_key');
@@ -31,7 +31,7 @@ class InitTwitterRepository
 
     public function tweet(TwitterOAuth $twitterOAuth, string $sendMessage)
     {
-        Log::debug("InitTwitterRepository tweet args", [
+        Log::debug('InitTwitterRepository tweet args', [
             'sendMessage' => $sendMessage,
         ]);
 
@@ -40,8 +40,8 @@ class InitTwitterRepository
             ['status' => $sendMessage]
         );
 
-        Log::debug("InitTwitterRepository", [
-            'post' => $post
+        Log::debug('InitTwitterRepository', [
+            'post' => $post,
         ]);
 
         return $post;

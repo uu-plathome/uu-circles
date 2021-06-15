@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enum\Property\CircleGachaResultProperty as P;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CircleGachaResult extends Model

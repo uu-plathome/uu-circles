@@ -36,7 +36,7 @@ class RegisterCircleUserRequest extends FormRequest
             CircleUserProperty::role   => [
                 'required',
                 'string',
-                Rule::in([Role::MANAGER, Role::COMMON])
+                Rule::in([Role::MANAGER, Role::COMMON]),
             ],
         ]);
     }

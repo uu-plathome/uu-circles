@@ -17,7 +17,8 @@ final class VerificationVerifyController extends Controller
      * Mark the user's email address as verified.
      *
      * @param Request $request
-     * @param int $userId
+     * @param int     $userId
+     *
      * @return JsonResponse
      */
     public function __invoke(Request $request, int $userId): JsonResponse
@@ -47,7 +48,7 @@ final class VerificationVerifyController extends Controller
         }
 
         return response()->json([
-            'status' => true
+            'status' => true,
         ]);
     }
 }

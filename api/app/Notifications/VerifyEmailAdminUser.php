@@ -12,12 +12,13 @@ class VerifyEmailAdminUser extends Notification
     /**
      * Get the verification URL for the given notifiable.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return string
      */
     protected function verificationUrl($notifiable): string
     {
-        $appUrl = Config::get('app.admin_url') . '/auth';
+        $appUrl = Config::get('app.admin_url').'/auth';
 
         $url = URL::temporarySignedRoute(
             'admin.verification.verify',

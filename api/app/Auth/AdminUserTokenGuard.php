@@ -26,7 +26,7 @@ class AdminUserTokenGuard extends TokenGuard
      */
     public function user()
     {
-        Log::debug("AdminUserTokenGuard#user");
+        Log::debug('AdminUserTokenGuard#user');
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -42,11 +42,11 @@ class AdminUserTokenGuard extends TokenGuard
         if (!empty($token)) {
             $user = $this->provider->retrieveByCredentials([
                 $this->storageKey    => $this->hash ? hash('sha256', $token) : $token,
-                UserProperty::active => true
+                UserProperty::active => true,
             ]);
         }
 
-        Log::debug("AdminUserTokenGuard#user val", [
+        Log::debug('AdminUserTokenGuard#user val', [
             'user' => $user,
         ]);
 
@@ -54,6 +54,7 @@ class AdminUserTokenGuard extends TokenGuard
         if (is_null($this->adminUser())) {
             $this->user = null;
             $this->adminUser = null;
+
             return null;
         }
 
@@ -67,7 +68,7 @@ class AdminUserTokenGuard extends TokenGuard
      */
     public function adminUser(): ?AdminUser
     {
-        Log::debug("AdminUserTokenGuard#adminUser");
+        Log::debug('AdminUserTokenGuard#adminUser');
 
         // If we've already retrieved the user for the current request we can just
         // return it back immediately. We do not want to fetch the user data on
@@ -82,7 +83,7 @@ class AdminUserTokenGuard extends TokenGuard
 
         $adminUser = $this->user->adminUser;
 
-        Log::debug("AdminUserTokenGuard#adminUser val", [
+        Log::debug('AdminUserTokenGuard#adminUser val', [
             'user'      => $this->user,
             'adminUser' => $adminUser,
         ]);

@@ -24,19 +24,20 @@ final class IndexCircleController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("IndexCircleController args none");
+        Log::debug('IndexCircleController args none');
 
         $circles = $this->indexCircleUsecase->invoke();
 
         return [
-            'data' => (new Collection($circles))->map(
+            'data'                             => (new Collection($circles))->map(
                 fn (CircleValueObject $circle) => Arr::camel_keys($circle->toArray())
-            )
+            ),
         ];
     }
 }
