@@ -67,9 +67,9 @@ final class GetRandomCircleWithMainFixedUsecase
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
             fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
-                    $circle,
-                    $circle->circleHandbill
-                )
+                $circle,
+                $circle->circleHandbill
+            )
         )->toArray();
 
         return $dto;

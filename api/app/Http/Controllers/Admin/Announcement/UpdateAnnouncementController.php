@@ -33,6 +33,5 @@ final class UpdateAnnouncementController extends Controller
         $this->updateAnnouncementUsecase->invoke(
             $request->makeUpdateAnnouncementUsecaseParam()
         );
-
     }
 }
