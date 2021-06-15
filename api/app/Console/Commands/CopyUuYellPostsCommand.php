@@ -35,12 +35,12 @@ class CopyUuYellPostsCommand extends Command
         $this->copyUuYellPostsUsecase = $copyUuYellPostsUsecase;
     }
 
-
     /**
      * Execute the console command.
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function handle()
     {

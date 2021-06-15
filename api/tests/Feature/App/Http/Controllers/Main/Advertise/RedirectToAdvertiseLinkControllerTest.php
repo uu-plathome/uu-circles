@@ -19,12 +19,12 @@ class RedirectToAdvertiseLinkControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("RedirectToAdvertiseLinkControllerTest");
+        Log::info('RedirectToAdvertiseLinkControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -32,7 +32,7 @@ class RedirectToAdvertiseLinkControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         $advertise = Advertise::nowPublic(Carbon::now())->inRandomOrder()->first();
@@ -41,7 +41,7 @@ class RedirectToAdvertiseLinkControllerTest extends TestCase
             ->whereLink($advertise->link)
             ->get()
             ->sum(AdvertiseCounterProperty::count);
-        Log::info("広告のクリック数", [
+        Log::info('広告のクリック数', [
             'oldAdvertiseCountersCount' => $oldAdvertiseCountersCount,
         ]);
 
@@ -58,7 +58,7 @@ class RedirectToAdvertiseLinkControllerTest extends TestCase
             ->whereLink($advertise->link)
             ->get()
             ->sum(AdvertiseCounterProperty::count);
-        Log::info("広告のクリック数", [
+        Log::info('広告のクリック数', [
             'oldAdvertiseCountersCount' => $oldAdvertiseCountersCount,
             'newAdvertiseCountersCount' => $newAdvertiseCountersCount,
         ]);

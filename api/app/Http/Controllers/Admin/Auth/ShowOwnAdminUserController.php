@@ -16,12 +16,13 @@ final class ShowOwnAdminUserController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("ShowOwnAdminUserController args none");
+        Log::debug('ShowOwnAdminUserController args none');
 
         /** @var \App\Models\User $user */
         $user = Auth::user();
@@ -29,6 +30,7 @@ final class ShowOwnAdminUserController extends Controller
 
         if (!$adminUser) {
             Log::info("[INFO] ShowOwnAdminUserController code=400, userId=$user->id");
+
             return abort(400);
         }
 

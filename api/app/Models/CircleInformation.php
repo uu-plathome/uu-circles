@@ -96,18 +96,19 @@ class CircleInformation extends Model
     }
 
     /**
-     * カタカナに強制変換
+     * カタカナに強制変換.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return void
      */
     public function setNameKanaAttribute($value)
     {
-        $this->attributes['name_kana'] = mb_convert_kana($value, "KVC");
+        $this->attributes['name_kana'] = mb_convert_kana($value, 'KVC');
     }
 
     /**
-     * WordPressのURLの末尾のスラッシュを必ず削除
+     * WordPressのURLの末尾のスラッシュを必ず削除.
      *
      * @param $value
      */
@@ -117,7 +118,7 @@ class CircleInformation extends Model
     }
 
     /**
-     * TwitterのURLの整形
+     * TwitterのURLの整形.
      *
      * @param $value
      */
@@ -127,9 +128,9 @@ class CircleInformation extends Model
     }
 
     /**
-     * 週の活動日数
+     * 週の活動日数.
      *
-     * @return integer
+     * @return int
      */
     public function weeklyActivityDays(): int
     {
@@ -167,7 +168,7 @@ class CircleInformation extends Model
     }
 
     /**
-     * 週5以上
+     * 週5以上.
      */
     public function getActiveActivityAttribute(): bool
     {
@@ -175,7 +176,7 @@ class CircleInformation extends Model
     }
 
     /**
-     * マンモス団体かどうか
+     * マンモス団体かどうか.
      */
     public function getMammothAttribute(): bool
     {
@@ -192,9 +193,10 @@ class CircleInformation extends Model
     }
 
     /**
-     * 活動日数が週に5日以上
+     * 活動日数が週に5日以上.
      *
      * @param mixed $query
+     *
      * @return void
      */
     public function scopeWhereActiveActivity($query)

@@ -27,15 +27,17 @@ final class RegisterCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param RegisterCircleNewJoyRequest $request
-     * @param int $circleId
-     * @return Response
+     * @param int                         $circleId
+     *
      * @throws Exception
+     *
+     * @return Response
      */
     public function __invoke(
         RegisterCircleNewJoyRequest $request,
         int $circleId
     ) {
-        Log::debug("RegisterCircleNewJoyController args", [
+        Log::debug('RegisterCircleNewJoyController args', [
             'circleId'       => $circleId,
         ]);
 

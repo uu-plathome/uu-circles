@@ -18,13 +18,14 @@ final class CheckIdentificationController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param $identifer_hash
+     *
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, $identifer_hash)
     {
-        Log::debug("#CheckIdentificationController args: none");
+        Log::debug('#CheckIdentificationController args: none');
 
-        $identifier = Identifier::where("identifier_hash", $identifer_hash)->first();
+        $identifier = Identifier::where('identifier_hash', $identifer_hash)->first();
 
         if (is_null($identifier)) {
             // ステータスコード400を返す

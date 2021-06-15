@@ -3,7 +3,7 @@
 namespace App\Enum\SlugProperty;
 
 /**
- * /api/circle/tag/{tag}のtagのパス一覧
+ * /api/circle/tag/{tag}のtagのパス一覧.
  */
 class TagSlugProperty
 {

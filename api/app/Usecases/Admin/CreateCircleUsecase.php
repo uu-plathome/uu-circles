@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\Log;
 final class CreateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param CircleValueObject $circleValueObject
-     * @return CircleValueObject
+     *
      * @throws Exception
+     *
+     * @return CircleValueObject
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        Log::debug("CreateCircleUsecase args", [
+        Log::debug('CreateCircleUsecase args', [
             'CircleUserValueObject' => $circleValueObject,
         ]);
 
@@ -29,6 +31,7 @@ final class CreateCircleUsecase
         $circleInformation = $circleValueObject->toCircleInformationProperty();
 
         DB::beginTransaction();
+
         try {
             $circle->save();
             $circle->circleInformation()->create($circleInformation->toArray());
@@ -38,6 +41,7 @@ final class CreateCircleUsecase
             return CircleValueObject::byEloquent($circle, $circleInformation, null);
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

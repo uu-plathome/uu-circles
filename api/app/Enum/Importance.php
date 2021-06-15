@@ -3,22 +3,22 @@
 namespace App\Enum;
 
 /**
- * 重要度
+ * 重要度.
  */
 class Importance
 {
     /**
-     * 高
+     * 高.
      */
     const HIGH = 'HIGH';
 
     /**
-     * 中
+     * 中.
      */
     const MIDDLE = 'MIDDLE';
 
     /**
-     * 低
+     * 低.
      */
     const LOW = 'LOW';
 

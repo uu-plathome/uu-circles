@@ -15,11 +15,13 @@ use Illuminate\Validation\ValidationException;
 final class VerificationResendController extends Controller
 {
     /**
-     * 認証用のメールを再通知
+     * 認証用のメールを再通知.
      *
      * @param VerificationResendAdminUserFormRequest $request
-     * @return JsonResponse
+     *
      * @throws ValidationException
+     *
+     * @return JsonResponse
      */
     public function __invoke(VerificationResendAdminUserFormRequest $request): JsonResponse
     {

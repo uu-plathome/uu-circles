@@ -14,6 +14,7 @@ final class PutStorageController extends Controller
      * Handle the incoming request.
      *
      * @param AdminPutStorageRequest $request
+     *
      * @return array
      */
     public function __invoke(AdminPutStorageRequest $request): array

@@ -29,7 +29,7 @@ final class GetGachaPickupListUsecase
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'id', 'name', 'slug'
+                'id', 'name', 'slug',
             ])
             ->inRandomOrder()
             ->take(self::LIMIT)

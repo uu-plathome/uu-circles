@@ -4,8 +4,8 @@ namespace Tests\Feature\App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class LoginAdminControllerTest extends TestCase
 {
@@ -14,12 +14,12 @@ class LoginAdminControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("LoginAdminControllerTest");
+        Log::info('LoginAdminControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +27,7 @@ class LoginAdminControllerTest extends TestCase
 
     public function testSuccess_usernameでログインできる()
     {
-        Log::info("testSuccess_usernameでログインできる");
+        Log::info('testSuccess_usernameでログインできる');
 
         // GIVEN
 
@@ -47,7 +47,7 @@ class LoginAdminControllerTest extends TestCase
 
     public function testSuccess_emailでログインできる()
     {
-        Log::info("testSuccess_emailでログインできる");
+        Log::info('testSuccess_emailでログインできる');
 
         // GIVEN
 
@@ -67,7 +67,7 @@ class LoginAdminControllerTest extends TestCase
 
     public function testRequest_ログイン中のとき()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

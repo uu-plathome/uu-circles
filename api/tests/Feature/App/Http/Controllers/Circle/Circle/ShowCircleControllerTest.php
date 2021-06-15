@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Circle\Circle;
 use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ShowCircleControllerTest extends TestCase
 {
@@ -15,11 +15,11 @@ class ShowCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowCircleControllerTest");
+        Log::info('ShowCircleControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +27,7 @@ class ShowCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var \App\Models\User $user */

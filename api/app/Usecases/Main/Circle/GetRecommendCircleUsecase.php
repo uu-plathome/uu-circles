@@ -22,7 +22,7 @@ final class GetRecommendCircleUsecase
     }
 
     /**
-     * おすすめのサークル
+     * おすすめのサークル.
      *
      * @return MainSimpleCircleListDto
      */
@@ -34,6 +34,7 @@ final class GetRecommendCircleUsecase
     public static function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'RecommendCircles ' . $minutes;
+
+        return 'RecommendCircles '.$minutes;
     }
 }

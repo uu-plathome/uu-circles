@@ -3,13 +3,12 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
-use App\Models\Circle;
 use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class SearchCategoryCircleControllerTest extends TestCase
 {
@@ -18,12 +17,12 @@ class SearchCategoryCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("SearchCategoryCircleControllerTest");
+        Log::info('SearchCategoryCircleControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -31,7 +30,7 @@ class SearchCategoryCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Http::fake();
@@ -59,7 +58,7 @@ class SearchCategoryCircleControllerTest extends TestCase
 
     public function testRequest_存在しないカテゴリーは404である()
     {
-        Log::info("testRequest_存在しないカテゴリーは404である");
+        Log::info('testRequest_存在しないカテゴリーは404である');
 
         // GIVEN
         $category = 'aaaaa';

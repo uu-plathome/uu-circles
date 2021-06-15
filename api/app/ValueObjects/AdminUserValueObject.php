@@ -39,6 +39,7 @@ class AdminUserValueObject
         $adminUserValueObject->created_at = $user->created_at;
         $adminUserValueObject->updated_at = $user->updated_at;
         $adminUserValueObject->role = $adminUser->role;
+
         return $adminUserValueObject;
     }
 
@@ -78,11 +79,13 @@ class AdminUserValueObject
             UserProperty::remember_token => $this->remember_token,
         ]);
         $user->id = $this->id;
+
         return $user;
     }
 
     /**
      * @param bool $isOwn 自分自身のアカウントかどうか
+     *
      * @return array
      */
     public function toArray(bool $isOwn = false): array
@@ -94,7 +97,7 @@ class AdminUserValueObject
             UserProperty::active            => $this->active,
             UserProperty::email             => $this->email,
             UserProperty::email_verified_at => $this->email_verified_at,
-            AdminUserProperty::role       => $this->role,
+            AdminUserProperty::role         => $this->role,
         ];
 
         if ($isOwn) {

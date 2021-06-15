@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Log;
 final class FixedAdminViewAnnouncementController extends Controller
 {
     /**
-     * 管理者画面に固定表示するお知らせの取得
+     * 管理者画面に固定表示するお知らせの取得.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("FixedAdminViewAnnouncementController args none");
+        Log::debug('FixedAdminViewAnnouncementController args none');
 
         $now = Carbon::now();
 

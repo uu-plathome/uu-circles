@@ -16,7 +16,7 @@ final class AggregateAnnouncementCounterPerDayUsecase
     private Collection $aggregateAnnouncements;
 
     /**
-     * 指定された日として、お知らせのクリック数を集計する
+     * 指定された日として、お知らせのクリック数を集計する.
      *
      * @param Carbon $date
      */
@@ -56,7 +56,7 @@ final class AggregateAnnouncementCounterPerDayUsecase
                                     ACHP::count              => $announcementCounter->count,
                                     ACHP::created_at         => $now,
                                     ACHP::updated_at         => $now,
-                                ]
+                                ],
                             ]);
                         } else {
                             $this->aggregateAnnouncements = $this->aggregateAnnouncements->replace([
@@ -67,7 +67,7 @@ final class AggregateAnnouncementCounterPerDayUsecase
                                     ACHP::count              => $oldAggregateAnnouncement[ACHP::count] + $announcementCounter->count,
                                     ACHP::created_at         => $now,
                                     ACHP::updated_at         => $now,
-                                ]
+                                ],
                             ]);
                         }
 
@@ -108,14 +108,14 @@ final class AggregateAnnouncementCounterPerDayUsecase
                         }
 
                         $this->aggregateAnnouncements = $this->aggregateAnnouncements->replace([
-                            $nowAggregateAnnouncementKey =>                                 [
+                            $nowAggregateAnnouncementKey => [
                                 ACHP::announcement_id    => $nowAggregateAnnouncement[ACHP::announcement_id],
                                 ACHP::announcement_place => $nowAggregateAnnouncement[ACHP::announcement_place],
                                 ACHP::date               => $nowAggregateAnnouncement[ACHP::date],
                                 ACHP::count              => $nowAggregateAnnouncement[ACHP::count] - $announcementCounterHistory->count,
                                 ACHP::created_at         => $nowAggregateAnnouncement[ACHP::created_at],
                                 ACHP::updated_at         => $nowAggregateAnnouncement[ACHP::updated_at],
-                            ]
+                            ],
                         ]);
                     }
 
@@ -130,7 +130,7 @@ final class AggregateAnnouncementCounterPerDayUsecase
         );
 
         Log::debug('AnnouncementCounterHistory insert', [
-            $filterOnlyNaturalNumber->toArray()
+            $filterOnlyNaturalNumber->toArray(),
         ]);
         AnnouncementCounterHistory::insert($filterOnlyNaturalNumber->toArray());
     }

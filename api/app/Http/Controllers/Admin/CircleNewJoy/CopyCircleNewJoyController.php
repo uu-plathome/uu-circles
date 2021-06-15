@@ -14,8 +14,9 @@ final class CopyCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
+     * @param int     $circleId
+     * @param int     $circleNewJoyId
+     *
      * @return array
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
@@ -24,11 +25,11 @@ final class CopyCircleNewJoyController extends Controller
             ->findOrFail($circleNewJoyId)
             ->replicate();
 
-        $circleNewJoy->title = $circleNewJoy->title . ' コピー';
+        $circleNewJoy->title = $circleNewJoy->title.' コピー';
         $circleNewJoy->save();
 
         return [
-            'success' => true
+            'success' => true,
         ];
     }
 }

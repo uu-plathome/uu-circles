@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Log;
 final class IndexAnnouncementController extends Controller
 {
     /**
-     * お知らせ一覧
+     * お知らせ一覧.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("IndexAnnouncementController args none");
+        Log::debug('IndexAnnouncementController args none');
 
         $announcements = Announcement::all();
 

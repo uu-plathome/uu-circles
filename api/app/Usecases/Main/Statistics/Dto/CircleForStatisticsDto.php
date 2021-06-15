@@ -9,7 +9,7 @@ use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
 
 /**
- * 統計のためのサークル情報
+ * 統計のためのサークル情報.
  */
 final class CircleForStatisticsDto
 {
@@ -44,6 +44,7 @@ final class CircleForStatisticsDto
         $dto->number_of_members = $circleInformation->number_of_members;
         $dto->main_image_url = $circleInformation->main_image_url;
         $dto->handbill_image_url = $circleHandbill->main_image_url;
+
         return $dto;
     }
 

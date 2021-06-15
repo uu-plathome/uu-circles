@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 final class SitemapUsecase
 {
     /**
-     * サイトトップの作成
+     * サイトトップの作成.
      */
     public function invoke(): array
     {
@@ -44,31 +44,31 @@ final class SitemapUsecase
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/terms',
+                $url.'/terms',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/privacy',
+                $url.'/privacy',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/circle',
+                $url.'/circle',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/circle/newjoy',
+                $url.'/circle/newjoy',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/guide/discord',
+                $url.'/guide/discord',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/guide/management-team',
+                $url.'/guide/management-team',
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url . '/guide/to-new-students',
+                $url.'/guide/to-new-students',
                 '2021-03-07',
             ),
         ];
@@ -84,16 +84,14 @@ final class SitemapUsecase
 
         return [
             ...$circles->map(
-                fn ($circle) =>
-                SitemapDto::of(
-                    $url . "/circle/$circle->slug",
+                fn ($circle) => SitemapDto::of(
+                    $url."/circle/$circle->slug",
                     $circle->created_at->format('Y-m-d')
                 ),
             )->toArray(),
             ...$circles->map(
-                fn ($circle) =>
-                SitemapDto::of(
-                    $url . "/circle/$circle->slug/newjoy",
+                fn ($circle) => SitemapDto::of(
+                    $url."/circle/$circle->slug/newjoy",
                     $circle->created_at->format('Y-m-d')
                 ),
             )->toArray(),
@@ -109,9 +107,8 @@ final class SitemapUsecase
         $url = config('app.client_url');
 
         return $circleNewJoys->map(
-            fn ($circleNewJoy) =>
-            SitemapDto::of(
-                $url . "/circle/{$circleNewJoy->circle->slug}/newjoy/{$circleNewJoy->id}",
+            fn ($circleNewJoy) => SitemapDto::of(
+                $url."/circle/{$circleNewJoy->circle->slug}/newjoy/{$circleNewJoy->id}",
                 $circleNewJoy->created_at->format('Y-m-d')
             )
         )->toArray();
@@ -126,9 +123,8 @@ final class SitemapUsecase
         $tags = TagSlugProperty::getAll();
 
         return (new Collection($tags))->map(
-            fn ($tag) =>
-            SitemapDto::of(
-                $url . "/circle/tag/$tag",
+            fn ($tag) => SitemapDto::of(
+                $url."/circle/tag/$tag",
                 '2021-03-07',
             ),
         )->toArray();
@@ -148,9 +144,8 @@ final class SitemapUsecase
         ];
 
         return (new Collection($categories))->map(
-            fn ($category) =>
-            SitemapDto::of(
-                $url . "/circle/category/$category",
+            fn ($category) => SitemapDto::of(
+                $url."/circle/category/$category",
                 '2021-03-07',
             )
         )->toArray();

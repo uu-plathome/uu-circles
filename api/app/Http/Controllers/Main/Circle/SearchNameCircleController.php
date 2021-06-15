@@ -48,7 +48,7 @@ final class SearchNameCircleController extends Controller
 
     public function __invoke(Request $request, string $search)
     {
-        Log::debug("#SearchNameCircleController args", [
+        Log::debug('#SearchNameCircleController args', [
             'search' => $search,
         ]);
 
@@ -107,6 +107,7 @@ final class SearchNameCircleController extends Controller
     private function getCacheKey(string $search): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SearchNameCircleController.main' . $search . $minutes;
+
+        return 'SearchNameCircleController.main'.$search.$minutes;
     }
 }
