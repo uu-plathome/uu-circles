@@ -34,23 +34,23 @@ final class PaginateCircleController extends Controller
         $request->validate(Arr::camel_keys([
             'id'         => 'nullable|integer',
             'updated_at' => 'nullable|string',
-            'previos'    => 'nullable|boolean',
+            'previous'    => 'nullable|boolean',
             'next'       => 'nullable|boolean',
             'name'       => 'nullable|string',
         ]));
         $requestId = $request->query('id', null);
         $requestUpdatedAt = $request->query(Str::camel('updated_at'), null);
-        $requestPrevios = $request->query('previos', false);
-        $requestNext = $request->query('next', false);
+        $requestPrevious = !!$request->query('previous', false);
+        $requestNext = !!$request->query('next', false);
         $requestName = $request->query('name', null);
         $params = new PaginateCircleUsecaseParams();
         $params->id = $requestId;
         $params->updated_at = $requestUpdatedAt;
-        $params->previos = $requestPrevios;
+        $params->previous = $requestPrevious;
         $params->next = $requestNext;
         $params->name = $requestName;
-        if ($params->previos === $params->next) {
-            $params->previos = !$params->previos;
+        if ($params->previous === $params->next) {
+            $params->previous = !$params->previous;
         }
 
         $circles = $this->paginateCircleUsecase->invoke($params);
