@@ -30,14 +30,13 @@ type PaginateUserCursor = {
   name?: string
 } | null
 const IndexPage: NextPage = () => {
-  const [users, setUsers] =
-    useState<{
-      hasNext: boolean | null
-      hasPrevious: boolean | null
-      nextCursor: PaginateUserCursor
-      previousCursor: PaginateUserCursor
-      records: User[]
-    }>(undefined)
+  const [users, setUsers] = useState<{
+    hasNext: boolean | null
+    hasPrevious: boolean | null
+    nextCursor: PaginateUserCursor
+    previousCursor: PaginateUserCursor
+    records: User[]
+  }>(undefined)
   const { isMd } = useMediaQuery()
   const name = useStringInput('')
   const [isOpen, setIsOpen] = useState(false)
