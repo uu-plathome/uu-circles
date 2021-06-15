@@ -6,7 +6,7 @@ export const linkConst = {
   },
 
   ADVERTISE: {
-    GET: `${GROUP}/advertise`,
+    GET: `${GROUP}/advertises`,
   },
 
   STATISTICS: {
