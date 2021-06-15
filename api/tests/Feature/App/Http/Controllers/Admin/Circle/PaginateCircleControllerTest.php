@@ -43,7 +43,7 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequestAdditionParam()
     {
-        Log::info("testRequestAdditionParam");
+        Log::info('testRequestAdditionParam');
 
         // GIVEN
 
@@ -64,7 +64,7 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequestAdditionParamBoolean()
     {
-        Log::info("testRequestAdditionParamBoolean");
+        Log::info('testRequestAdditionParamBoolean');
 
         // GIVEN
 
