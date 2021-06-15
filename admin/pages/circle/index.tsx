@@ -21,7 +21,7 @@ import { scroller } from 'react-scroll'
 type PaginateCircleCursor = {
   'circles.id'?: number
   'circleInformation.updatedAt'?: string
-  previos: boolean
+  previous: boolean
   next: boolean
   name?: string
 } | null
@@ -53,7 +53,7 @@ const IndexPage: NextPage = () => {
         await paginateCircleList({
           'circles.id': null,
           'circleInformation.updatedAt': null,
-          previos: false,
+          previous: false,
           next: true,
           name: name.value,
         })
@@ -68,7 +68,7 @@ const IndexPage: NextPage = () => {
     foundCircleList({
       'circles.id': null,
       'circleInformation.updatedAt': null,
-      previos: false,
+      previous: false,
       next: true,
       name: name.value,
     })
@@ -108,13 +108,13 @@ const IndexPage: NextPage = () => {
 
             {circles && circles.records.length > 0
               ? circles.records.map((circle: Circle) => {
-                  return (
-                    <CircleListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                    />
-                  )
-                })
+                return (
+                  <CircleListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                  />
+                )
+              })
               : ''}
 
             {circles && circles.records.length === 0 ? (
@@ -133,7 +133,7 @@ const IndexPage: NextPage = () => {
                   onClick={() =>
                     foundCircleList({
                       ...circles.previousCursor,
-                      previos: true,
+                      previous: true,
                       next: false,
                       name: name.value,
                     })
@@ -152,7 +152,7 @@ const IndexPage: NextPage = () => {
                   onClick={() =>
                     foundCircleList({
                       ...circles.nextCursor,
-                      previos: false,
+                      previous: false,
                       next: true,
                       name: name.value,
                     })
