@@ -2,18 +2,19 @@
 
 namespace Tests\Feature\App\Http\Controllers\Admin\Circle;
 
+use App\Enum\RouteProperty\AdminRouteProperty;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 use Tests\Traits\RefreshDatabaseLite;
 
-class PaginateCircleControllerTest extends TestCase
+class IndexCircleControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info('PaginateCircleControllerTest');
+        Log::info('IndexCircleControllerTest');
     }
 
     /**
@@ -30,7 +31,7 @@ class PaginateCircleControllerTest extends TestCase
         // GIVEN
 
         // WHEN
-        $response = $this->get('/admin/api/circle/paginate', [
+        $response = $this->get(route(AdminRouteProperty::AdminCircleIndex), [
             'Authorization' => 'Bearer test1234',
         ]);
 
