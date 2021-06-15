@@ -19,12 +19,13 @@ final class RedirectToAnnouncementLinkController
 
     /**
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
+     *
      * @return RedirectResponse
      */
     public function __invoke(Request $request, string $slug): RedirectResponse
     {
-        Log::debug("RedirectToAnnouncementLinkController", [
+        Log::debug('RedirectToAnnouncementLinkController', [
             'slug' => $slug,
         ]);
 
@@ -35,7 +36,7 @@ final class RedirectToAnnouncementLinkController
         $announcementPlace = $this->queryToAnnouncementPlace($place);
 
         if (is_null($announcement)) {
-            Log::warning("存在しないお知らせのslugが選択されています", [
+            Log::warning('存在しないお知らせのslugが選択されています', [
                 'slug' => $slug,
             ]);
 
@@ -43,7 +44,7 @@ final class RedirectToAnnouncementLinkController
         }
 
         if (!$announcement->link) {
-            Log::warning("お知らせにlinkが設定されていません。", [
+            Log::warning('お知らせにlinkが設定されていません。', [
                 'slug'      => $slug,
                 'advertise' => $announcement,
             ]);
@@ -51,7 +52,7 @@ final class RedirectToAnnouncementLinkController
             return redirect()->away($this->redirectToHomeUrl());
         }
 
-        Log::debug("RedirectToAnnouncementLinkController count up start");
+        Log::debug('RedirectToAnnouncementLinkController count up start');
 
         // 広告のクリック数
         AnnouncementCounter::whereAnnouncementId($announcement->id)
@@ -60,7 +61,7 @@ final class RedirectToAnnouncementLinkController
             ->first()
             ->increment('count', 1);
 
-        Log::debug("RedirectToAnnouncementLinkController redirect to", [
+        Log::debug('RedirectToAnnouncementLinkController redirect to', [
             'link' => $announcement->link,
         ]);
 
@@ -68,9 +69,10 @@ final class RedirectToAnnouncementLinkController
     }
 
     /**
-     * クエリパラメータからenumを生成
+     * クエリパラメータからenumを生成.
      *
      * @param string $query
+     *
      * @return AnnouncementPlace|string
      */
     private function queryToAnnouncementPlace(string $query): string

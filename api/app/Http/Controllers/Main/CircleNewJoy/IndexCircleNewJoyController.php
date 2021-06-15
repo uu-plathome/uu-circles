@@ -46,13 +46,14 @@ final class IndexCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $slug
+     * @param string                   $slug
+     *
      * @return array
      */
     public function __invoke(Request $request, string $slug)
     {
-        Log::debug("#IndexCircleNewJoyController args", [
-            'slug' => $slug
+        Log::debug('#IndexCircleNewJoyController args', [
+            'slug' => $slug,
         ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
@@ -117,7 +118,7 @@ final class IndexCircleNewJoyController extends Controller
                         'name'           => $arr['name'],
                         'circle_type'    => $arr['circle_type'],
                         'main_image_url' => $arr['main_image_url'],
-                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray(),
                     ]
                 )->values()->toArray()
             ),
@@ -129,12 +130,14 @@ final class IndexCircleNewJoyController extends Controller
     private function getCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'IndexCircleNewJoyController.circleNewJoys' . $minutes;
+
+        return 'IndexCircleNewJoyController.circleNewJoys'.$minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'IndexCircleNewJoyController.allCircleNewJoys' . $minutes;
+
+        return 'IndexCircleNewJoyController.allCircleNewJoys'.$minutes;
     }
 }

@@ -33,12 +33,12 @@ final class GachaPickupListController extends Controller
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
             60 * 60 * 24,
-            fn()=>$this->getGachaPickupListUsecase->invoke()
+            fn () => $this->getGachaPickupListUsecase->invoke()
         );
 
         return Arr::camel_keys([
-            "pickupCircle" => $pickupList->toArrayPickupCircles(),
-            "pickupDate"   => $pickupList->pickupDate,
+            'pickupCircle' => $pickupList->toArrayPickupCircles(),
+            'pickupDate'   => $pickupList->pickupDate,
         ]);
     }
 }

@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleUserUsecase
 {
     /**
-     * サークルに紐づく部員アカウント一覧を取得
+     * サークルに紐づく部員アカウント一覧を取得.
      *
-     * @param integer $circleId
+     * @param int $circleId
+     *
      * @return SeparateIsEmailVerifyCircleUserDto
      */
     public function invoke(int $circleId): SeparateIsEmailVerifyCircleUserDto
     {
-        Log::debug("IndexCircleUserUsecase args", [
+        Log::debug('IndexCircleUserUsecase args', [
             'circleId' => $circleId,
         ]);
 
@@ -29,7 +30,7 @@ final class IndexCircleUserUsecase
             'circleUsers' => function ($query) use ($circleId) {
                 /** @var \App\Models\CircleUser $query */
                 $query->whereCircleId($circleId);
-            }
+            },
         ])
             ->whereActive(true)
             ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {

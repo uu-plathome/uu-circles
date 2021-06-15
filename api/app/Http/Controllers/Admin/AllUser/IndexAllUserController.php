@@ -23,7 +23,7 @@ final class IndexAllUserController extends Controller
 
     public function __invoke(Request $request): array
     {
-        Log::debug("IndexAllUserController args none");
+        Log::debug('IndexAllUserController args none');
 
         $request->validate(Arr::camel_keys([
             'id'         => 'nullable|integer',

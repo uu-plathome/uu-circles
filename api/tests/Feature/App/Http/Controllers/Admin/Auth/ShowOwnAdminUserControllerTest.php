@@ -3,8 +3,8 @@
 namespace Tests\Feature\App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ShowOwnAdminUserControllerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class ShowOwnAdminUserControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowOwnAdminUserControllerTest");
+        Log::info('ShowOwnAdminUserControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -25,7 +25,7 @@ class ShowOwnAdminUserControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

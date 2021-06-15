@@ -19,16 +19,16 @@ class ShowAdminUserRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowAdminUserRequest");
+        Log::info('ShowAdminUserRequest');
 
         $this->setUpHasLang();
         $request = $this->createRequest();
         $this->rules = array_keys($request->rules());
-        Log::info("rules", [$this->rules]);
+        Log::info('rules', [$this->rules]);
         $this->attributesValue = Arr::flatten($request->attributes());
-        Log::info("attributesValue", [$this->attributesValue]);
+        Log::info('attributesValue', [$this->attributesValue]);
         $this->attributesKey = array_keys($request->attributes());
-        Log::info("attributesKey", [$this->attributesKey]);
+        Log::info('attributesKey', [$this->attributesKey]);
     }
 
     protected function tearDown(): void

@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Log;
 final class SearchTagCircleListUsecase
 {
     /**
-     * タグで検索する
-     * 
+     * タグで検索する.
+     *
      * @param SearchTagCircleListParam $param
+     *
      * @return MainSimpleCircleListDto
      */
     public function invoke(SearchTagCircleListParam $param): MainSimpleCircleListDto
     {
-        Log::debug("#SearchTagCircleListUsecase args", [
-            'param' => $param
+        Log::debug('#SearchTagCircleListUsecase args', [
+            'param' => $param,
         ]);
 
         $with = [
@@ -212,10 +213,10 @@ final class SearchTagCircleListUsecase
                 });
             })
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug'
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
@@ -223,12 +224,12 @@ final class SearchTagCircleListUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                     $circle,
                     $circle->circleHandbill
                 )
         )->toArray();
+
         return $dto;
     }
 

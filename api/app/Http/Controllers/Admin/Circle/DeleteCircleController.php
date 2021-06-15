@@ -21,13 +21,15 @@ final class DeleteCircleController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @return array
+     * @param int     $circleId
+     *
      * @throws Exception
+     *
+     * @return array
      */
     public function __invoke(Request $request, int $circleId)
     {
-        Log::debug("DeleteCircleController args", [
+        Log::debug('DeleteCircleController args', [
             'circleId' => $circleId,
         ]);
 
@@ -50,18 +52,19 @@ final class DeleteCircleController extends Controller
         $circleTag = $circle->circleTag();
         $circleInvitation = $circle->circleInvitation();
         $circleInformation = $circle->circleInformation();
-        Log::info("DeleteCircleData", [
+        Log::info('DeleteCircleData', [
             'circle'            => $circle,
         ]);
 
         Slack::channel(SlackChannel::delete)->send(
             json_encode([
-                'title'             => $circle->name . 'を削除します。',
+                'title'             => $circle->name.'を削除します。',
                 'circle'            => $circle,
             ])
         );
 
         DB::beginTransaction();
+
         try {
             $circleUsers->delete();
             $circleHandbill->delete();
@@ -74,9 +77,10 @@ final class DeleteCircleController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error("DeleteCircleController [ERROR]", [
+            Log::error('DeleteCircleController [ERROR]', [
                 'circleId' => $circleId,
             ]);
+
             throw $e;
         }
 

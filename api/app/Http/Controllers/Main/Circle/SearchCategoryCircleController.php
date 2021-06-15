@@ -51,12 +51,13 @@ final class SearchCategoryCircleController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $category
+     * @param string                   $category
+     *
      * @return array|void
      */
     public function __invoke(Request $request, string $category)
     {
-        Log::debug("#SearchCategoryCircleController args", [
+        Log::debug('#SearchCategoryCircleController args', [
             'category' => $category,
         ]);
 
@@ -113,14 +114,15 @@ final class SearchCategoryCircleController extends Controller
                 Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
-            'uuYellArticles' => $articles,
-            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
+            'uuYellArticles'     => $articles,
+            'announcements'      => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 
     private function getCacheKey(string $category): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SearchCategoryCircleController.main' . $category . $minutes;
+
+        return 'SearchCategoryCircleController.main'.$category.$minutes;
     }
 }

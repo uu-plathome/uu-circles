@@ -33,7 +33,7 @@ final class GetCircleController extends Controller
     private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
 
     /**
-     * 新歓取得数
+     * 新歓取得数.
      */
     const TAKE_NEWJOY_COUNT = 6;
 
@@ -55,13 +55,14 @@ final class GetCircleController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $slug
+     * @param string                   $slug
+     *
      * @return array
      */
     public function __invoke(Request $request, string $slug): array
     {
-        Log::debug("#GetCircleController args", [
-            'slug' => $slug
+        Log::debug('#GetCircleController args', [
+            'slug' => $slug,
         ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
@@ -123,6 +124,7 @@ final class GetCircleController extends Controller
     private function getCacheKey(int $circleId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'GetCircleController.circleNewJoys' . $circleId . $minutes;
+
+        return 'GetCircleController.circleNewJoys'.$circleId.$minutes;
     }
 }

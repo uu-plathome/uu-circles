@@ -5,40 +5,40 @@ declare(strict_types=1);
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
- * 活動人数ランキング
+ * 活動人数ランキング.
  */
 final class StatisticsNumberOfActivitiesRankingDto
 {
     /**
-     * 1位
+     * 1位.
      *
      * @var CircleForStatisticsDto|null
      */
     public ?CircleForStatisticsDto $first;
 
     /**
-     * 2位
+     * 2位.
      *
      * @var CircleForStatisticsDto|null
      */
     public ?CircleForStatisticsDto $second;
 
     /**
-     * 3位
+     * 3位.
      *
      * @var CircleForStatisticsDto|null
      */
     public ?CircleForStatisticsDto $third;
 
     /**
-     * 4位
+     * 4位.
      *
      * @var CircleForStatisticsDto|null
      */
     public ?CircleForStatisticsDto $fourth;
 
     /**
-     * 5位
+     * 5位.
      *
      * @var CircleForStatisticsDto|null
      */

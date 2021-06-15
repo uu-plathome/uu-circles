@@ -3,9 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Enum\Property\UserProperty;
-use App\Enum\UserTokenModel;
 use App\Models\User;
-use App\Models\UserToken;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

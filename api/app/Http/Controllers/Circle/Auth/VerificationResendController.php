@@ -16,15 +16,17 @@ use Illuminate\Validation\ValidationException;
 final class VerificationResendController extends Controller
 {
     /**
-     * 認証用のメールを再通知
+     * 認証用のメールを再通知.
      *
      * @param VerificationResendCircleUserFormRequest $request
-     * @return JsonResponse
+     *
      * @throws ValidationException
+     *
+     * @return JsonResponse
      */
     public function __invoke(VerificationResendCircleUserFormRequest $request): JsonResponse
     {
-        Log::debug("VerificationResendController args none");
+        Log::debug('VerificationResendController args none');
 
         $email = $request->get(UserProperty::email);
 

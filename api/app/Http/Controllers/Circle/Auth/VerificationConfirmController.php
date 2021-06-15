@@ -17,7 +17,8 @@ final class VerificationConfirmController extends Controller
      * Mark the user's email address as verified.
      *
      * @param VerificationEmailCircleUserRequest $request
-     * @param int $userId
+     * @param int                                $userId
+     *
      * @return JsonResponse
      */
     public function __invoke(VerificationEmailCircleUserRequest $request, int $userId): JsonResponse

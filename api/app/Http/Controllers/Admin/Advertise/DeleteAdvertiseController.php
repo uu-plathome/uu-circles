@@ -17,9 +17,11 @@ final class DeleteAdvertiseController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $advertiseId
-     * @return \Illuminate\Http\Response
+     * @param int                      $advertiseId
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, int $advertiseId)
     {
@@ -33,8 +35,8 @@ final class DeleteAdvertiseController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] DeleteAdvertiseController", [
-                "advertiseId" => $advertiseId,
+            Log::error('[ERROR] DeleteAdvertiseController', [
+                'advertiseId' => $advertiseId,
             ]);
 
             throw $e;

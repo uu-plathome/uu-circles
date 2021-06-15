@@ -27,11 +27,12 @@ final class IndexAdminUserController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function __invoke(IndexAdminUserRequest $request): array
     {
-        Log::debug("IndexAdminUserController args none");
+        Log::debug('IndexAdminUserController args none');
 
         $users = $this->indexAdminUserUsecase->invoke(Auth::user()->adminUser->role);
 

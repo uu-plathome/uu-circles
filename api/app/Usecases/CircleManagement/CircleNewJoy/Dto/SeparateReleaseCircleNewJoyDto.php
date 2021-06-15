@@ -8,40 +8,40 @@ use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Collection;
 
 /**
- * 公開中、非公開で新歓一覧を作る
+ * 公開中、非公開で新歓一覧を作る.
  */
 final class SeparateReleaseCircleNewJoyDto
 {
     /**
-     * 過去の公開中の新歓一覧
+     * 過去の公開中の新歓一覧.
      *
      * @var \App\ValueObjects\CircleNewJoyValueObjects[]
      */
     public array $on_release_past;
 
     /**
-     * 未来の公開中の新歓一覧
+     * 未来の公開中の新歓一覧.
      *
      * @var \App\ValueObjects\CircleNewJoyValueObjects[]
      */
     public array $on_release_future;
 
     /**
-     * 過去の非公開の新歓一覧
+     * 過去の非公開の新歓一覧.
      *
      * @var \App\ValueObjects\CircleNewJoyValueObjects[]
      */
     public array $on_private_past;
 
     /**
-     * 未来の非公開の新歓一覧
+     * 未来の非公開の新歓一覧.
      *
      * @var \App\ValueObjects\CircleNewJoyValueObjects[]
      */
     public array $on_private_future;
 
     /**
-     * 過去の公開中の新歓一覧
+     * 過去の公開中の新歓一覧.
      *
      * @var array
      */
@@ -53,7 +53,7 @@ final class SeparateReleaseCircleNewJoyDto
     }
 
     /**
-     * 未来の公開中の新歓一覧
+     * 未来の公開中の新歓一覧.
      *
      * @var array
      */
@@ -65,7 +65,7 @@ final class SeparateReleaseCircleNewJoyDto
     }
 
     /**
-     * 過去の非公開の新歓一覧
+     * 過去の非公開の新歓一覧.
      *
      * @var array
      */
@@ -77,7 +77,7 @@ final class SeparateReleaseCircleNewJoyDto
     }
 
     /**
-     * 未来の非公開の新歓一覧
+     * 未来の非公開の新歓一覧.
      *
      * @var array
      */

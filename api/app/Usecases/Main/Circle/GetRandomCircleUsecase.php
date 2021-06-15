@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Log;
 final class GetRandomCircleUsecase
 {
     /**
-     * ランダムなサークルを取得する
+     * ランダムなサークルを取得する.
      *
      * @param int $limit
+     *
      * @return MainSimpleCircleListDto
      */
     public function invoke(int $limit = 6): MainSimpleCircleListDto
     {
-        Log::debug("#GetRandomCircleUsecase args", [
-            'limit' => $limit
+        Log::debug('#GetRandomCircleUsecase args', [
+            'limit' => $limit,
         ]);
 
         $circles = Circle::with([
@@ -40,12 +41,12 @@ final class GetRandomCircleUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                     $circle,
                     $circle->circleHandbill
                 )
         )->toArray();
+
         return $dto;
     }
 }

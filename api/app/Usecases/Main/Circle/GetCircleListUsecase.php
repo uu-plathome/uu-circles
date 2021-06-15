@@ -15,13 +15,13 @@ final class GetCircleListUsecase
     const TTL = 60;
 
     /**
-     * 全てのサークルを取得する
+     * 全てのサークルを取得する.
      *
      * @return MainSimpleCircleListDto
      */
     public function invoke(): MainSimpleCircleListDto
     {
-        Log::debug("#GetCircleListUsecase args: none");
+        Log::debug('#GetCircleListUsecase args: none');
 
         $circles = Circle::with([
             'circleInformation:circle_id',
@@ -30,10 +30,10 @@ final class GetCircleListUsecase
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug',
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
@@ -41,18 +41,19 @@ final class GetCircleListUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                     $circle,
                     $circle->circleHandbill
                 )
         )->toArray();
+
         return $dto;
     }
 
     public static function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.circle.GetCircleListUsecase.' . $minutes;
+
+        return 'main.circle.GetCircleListUsecase.'.$minutes;
     }
 }
