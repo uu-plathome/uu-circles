@@ -17,8 +17,9 @@ final class ShowCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
+     * @param int     $circleId
+     * @param int     $circleNewJoyId
+     *
      * @return array
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array

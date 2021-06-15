@@ -27,7 +27,7 @@ class AddWpTagTaxonomyToCircleInformation extends Migration
     {
         Schema::table('circle_information', function (Blueprint $table) {
             $table->dropColumn([
-                'wp_tag_taxonomy'
+                'wp_tag_taxonomy',
             ]);
         });
     }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 final class ReplicateCirclePageViewUsecase
 {
     /**
-     * PageViewからCirclePageViewの作成
+     * PageViewからCirclePageViewの作成.
      *
      * @throws \Exception
      */
@@ -66,7 +66,7 @@ final class ReplicateCirclePageViewUsecase
                 $circlePageViews->toArray(),
                 [
                     CirclePageViewProperty::circle_id,
-                    CirclePageViewProperty::slug
+                    CirclePageViewProperty::slug,
                 ],
                 [
                     CirclePageViewProperty::active_users,
@@ -76,6 +76,7 @@ final class ReplicateCirclePageViewUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

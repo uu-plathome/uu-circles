@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Log;
 final class IndexAdminUserUsecase
 {
     /**
-     * 管理者アカウント一覧の取得
+     * 管理者アカウント一覧の取得.
+     *
+     * @throws Exception
      *
      * @return AdminUserValueObject[]
-     * @throws Exception
      */
     public function invoke(string $ownRole = Role::MANAGER): array
     {
@@ -44,8 +45,7 @@ final class IndexAdminUserUsecase
             ->get();
 
         return $users->map(
-            fn (User $user) =>
-            AdminUserValueObject::byEloquent($user, $user->adminUser)
+            fn (User $user) => AdminUserValueObject::byEloquent($user, $user->adminUser)
         )->all();
     }
 }

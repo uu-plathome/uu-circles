@@ -23,21 +23,21 @@ final class CopyUuYellPostsUsecase
     const DONE_TAG = 59;
 
     /**
-     * 現在取得するページ数
+     * 現在取得するページ数.
      *
      * @var int
      */
     protected int $nowPage = 1;
 
     /**
-     * 次のページを取得するかどうか
+     * 次のページを取得するかどうか.
      *
      * @var bool
      */
     protected bool $isNextFetch = false;
 
     /**
-     * 今回取得した WordPress Id 一覧
+     * 今回取得した WordPress Id 一覧.
      *
      * @var int[]
      */
@@ -48,7 +48,7 @@ final class CopyUuYellPostsUsecase
      */
     public function invoke()
     {
-        Log::debug("CopyUuYellPostsUsecase args none");
+        Log::debug('CopyUuYellPostsUsecase args none');
 
         // 無限ループだと処理失敗時に大変なことになりそうなので、50回(50000記事分)までしかループしないようにしている
         for ($i = 0; $i < 50; $i++) {
@@ -70,11 +70,12 @@ final class CopyUuYellPostsUsecase
 
     /**
      * @param int $page 現在取得したいページ数
+     *
      * @throws Exception
      */
     protected function handler(int $page)
     {
-        Log::debug("CopyUuYellPostsUsecase handler args", [
+        Log::debug('CopyUuYellPostsUsecase handler args', [
             'page' => $page,
         ]);
 
@@ -94,7 +95,7 @@ final class CopyUuYellPostsUsecase
 
         // 画像の取得
         $featuredMedias = $fetchedPosts->map(
-            fn (array $arr) => Arr::get($arr, "featured_media")
+            fn (array $arr) => Arr::get($arr, 'featured_media')
         )->unique()
             ->toArray();
         // 画像の取得
@@ -122,8 +123,7 @@ final class CopyUuYellPostsUsecase
                     UuyellPostProperty::date             => Arr::get($arr, 'date'),
                     UuyellPostProperty::featured_media   => Arr::get($arr, 'featured_media'),
                     UuyellPostProperty::published        => true,
-                    UuyellPostProperty::can_repost       =>
-                        in_array(self::DONE_TAG, Arr::get($arr, 'tags', [])) === false,
+                    UuyellPostProperty::can_repost       => in_array(self::DONE_TAG, Arr::get($arr, 'tags', [])) === false,
                     UuyellPostProperty::media_source_url => Arr::get($media, 'source_url'),
                     UuyellPostProperty::media_alt_text   => Arr::get($media, 'alt_text'),
                 ];
@@ -137,10 +137,11 @@ final class CopyUuYellPostsUsecase
         $this->wordpressIds = array_merge($this->wordpressIds, $wordpressIds);
 
         DB::beginTransaction();
+
         try {
             UuyellPost::upsert(
                 $formatForUuyellPosts->toArray(),
-                [ UuyellPostProperty::wordpress_id ],
+                [UuyellPostProperty::wordpress_id],
                 [
                     UuyellPostProperty::wordpress_id,
                     UuyellPostProperty::title,
@@ -159,19 +160,21 @@ final class CopyUuYellPostsUsecase
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
+
             throw $e;
         }
     }
 
     /**
-     * uu-yellの記事を取得する
+     * uu-yellの記事を取得する.
      *
      * @param int $page
+     *
      * @return Collection
      */
     protected function fetchUuYellPosts(int $page = 1): Collection
     {
-        Log::debug("CopyUuYellPostsUsecase fetchUuYellPosts args", [
+        Log::debug('CopyUuYellPostsUsecase fetchUuYellPosts args', [
             'page' => $page,
         ]);
 
@@ -183,7 +186,7 @@ final class CopyUuYellPostsUsecase
         $response = Http::retry(3, 100)->get($requestUrl);
         Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
         if ($response->serverError()) {
-            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+            Log::info('uu-yellの記事が取得できてない可能性があります。', [
                 'request_url' => $requestUrl,
                 'response'    => $response,
             ]);
@@ -193,17 +196,19 @@ final class CopyUuYellPostsUsecase
     }
 
     /**
-     * 画像の取得
+     * 画像の取得.
      *
      * @param array $featuredMedias
-     * @return Collection
+     *
      * @throws Exception
+     *
+     * @return Collection
      */
     protected function fetchUuYellMedias(array $featuredMedias): Collection
     {
         $baseUrl = self::UU_YELL_URL;
         $fetchNumber = self::FETCH_NUMBER;
-        $mediaIdsStr = implode(",", $featuredMedias);
+        $mediaIdsStr = implode(',', $featuredMedias);
 
         // MEDIA取得 HTTP リクエスト
         $response = Http::retry(3, 100)->get(
@@ -211,7 +216,7 @@ final class CopyUuYellPostsUsecase
         );
 
         if (!$response->successful()) {
-            throw new Exception("uu-yellのメディアデータの取得ができませんでした。");
+            throw new Exception('uu-yellのメディアデータの取得ができませんでした。');
         }
 
         return new Collection($response->json());

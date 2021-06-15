@@ -6,8 +6,8 @@ use App\Enum\RouteProperty\ApiRouteProperty;
 use App\Http\Controllers\Main\Main\IndexController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class IndexControllerTest extends TestCase
 {
@@ -16,11 +16,11 @@ class IndexControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexControllerTest");
+        Log::info('IndexControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +28,7 @@ class IndexControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         Http::fake();
@@ -40,7 +40,7 @@ class IndexControllerTest extends TestCase
         $response->assertOk();
         $this->assertArrayHasKey('data', $response);
         $this->assertIsArray($response['data']);
-        Log::debug("[THEN] IndexControllerTest", [
+        Log::debug('[THEN] IndexControllerTest', [
             'circles' => $response['data'],
         ]);
         $this->assertCount(IndexController::CIRCLE_MAX_VIEW, $response['data']);

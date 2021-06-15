@@ -10,7 +10,7 @@ namespace App\Usecases\Main\Statistics\Dto;
 final class StatisticsOnlineActivityDto
 {
     /**
-     * オンライン活動する
+     * オンライン活動する.
      *
      * @var int
      */

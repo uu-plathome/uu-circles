@@ -3,13 +3,11 @@
 namespace App\Http\Requests\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
-use App\Enum\Role;
 use App\Enum\Property\UserProperty;
 use App\Support\Arr;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class UpdateAdminUserRequest extends FormRequest
 {
@@ -21,6 +19,7 @@ class UpdateAdminUserRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
+
         return $user->adminUser->isManager();
     }
 
@@ -43,13 +42,14 @@ class UpdateAdminUserRequest extends FormRequest
             AdminUserProperty::role    => ['required', 'string'],
         ]);
     }
+
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.' . UserProperty::username),
-            UserProperty::display_name => __('user.' . UserProperty::display_name),
-            UserProperty::email        => __('user.' . UserProperty::email),
-            AdminUserProperty::role    => __('adminUser.' . AdminUserProperty::role),
+            UserProperty::username     => __('user.'.UserProperty::username),
+            UserProperty::display_name => __('user.'.UserProperty::display_name),
+            UserProperty::email        => __('user.'.UserProperty::email),
+            AdminUserProperty::role    => __('adminUser.'.AdminUserProperty::role),
         ];
     }
 
@@ -61,7 +61,7 @@ class UpdateAdminUserRequest extends FormRequest
             UserProperty::username     => $request[UserProperty::username],
             UserProperty::display_name => $request[UserProperty::display_name],
             UserProperty::active       => $request[UserProperty::active],
-            AdminUserProperty::role  => $request[AdminUserProperty::role],
+            AdminUserProperty::role    => $request[AdminUserProperty::role],
         ]);
     }
 }

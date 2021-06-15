@@ -29,8 +29,9 @@ class AdvertisesTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws Exception
+     *
+     * @return void
      */
     public function run()
     {
@@ -44,9 +45,9 @@ class AdvertisesTableSeeder extends Seeder
                 ->make()
                 ->each(function (Advertise $advertise) use ($idx) {
                     $advertise->fill([
-                        AdvertiseProperty::title  => $advertise->title . $idx,
-                        AdvertiseProperty::slug   => Str::uuid(),
-                        AdvertiseProperty::active => $idx === 1,
+                        AdvertiseProperty::title          => $advertise->title.$idx,
+                        AdvertiseProperty::slug           => Str::uuid(),
+                        AdvertiseProperty::active         => $idx === 1,
                         AdvertiseProperty::main_image_url => $idx === 1 ?
                             'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fcycle-club.jpg?alt=media&token=d934d034-58f9-4082-bf72-2f2524713ddc' :
                             null,
@@ -56,6 +57,7 @@ class AdvertisesTableSeeder extends Seeder
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
 
@@ -93,6 +95,7 @@ class AdvertisesTableSeeder extends Seeder
                 200,
                 function ($advertiseCounters) {
                     DB::beginTransaction();
+
                     try {
                         /** @var AdvertiseCounter $advertiseCounter */
                         foreach ($advertiseCounters as $advertiseCounter) {
@@ -115,6 +118,7 @@ class AdvertisesTableSeeder extends Seeder
                 200,
                 function ($advertiseCounters) {
                     DB::beginTransaction();
+
                     try {
                         /** @var AdvertiseCounter $advertiseCounter */
                         foreach ($advertiseCounters as $advertiseCounter) {

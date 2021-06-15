@@ -6,8 +6,8 @@ use App\Enum\Property\UserProperty;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class LoginCircleControllerTest extends TestCase
 {
@@ -16,12 +16,12 @@ class LoginCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("LoginCircleControllerTest");
+        Log::info('LoginCircleControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -29,7 +29,7 @@ class LoginCircleControllerTest extends TestCase
 
     public function testSuccess_usernameでログインできる()
     {
-        Log::info("testSuccess_usernameでログインできる");
+        Log::info('testSuccess_usernameでログインできる');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -56,7 +56,7 @@ class LoginCircleControllerTest extends TestCase
 
     public function testSuccess_emailでログインできる()
     {
-        Log::info("testSuccess_emailでログインできる");
+        Log::info('testSuccess_emailでログインできる');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -83,7 +83,7 @@ class LoginCircleControllerTest extends TestCase
 
     public function testRequest_ログイン中のとき()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var \App\Models\User $user */
@@ -105,7 +105,7 @@ class LoginCircleControllerTest extends TestCase
 
     public function testFailed_emailVerifiedAtがnullのとき、ログインできない()
     {
-        Log::info("testFailed_emailVerifiedAtがnullのとき、ログインできない");
+        Log::info('testFailed_emailVerifiedAtがnullのとき、ログインできない');
 
         // GIVEN
         /** @var \App\Models\User $user */

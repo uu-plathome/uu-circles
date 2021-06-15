@@ -39,7 +39,7 @@ final class StatisticsUsecase
 
     public function invoke(): StatisticsDto
     {
-        Log::debug("StatisticsUsecase args none");
+        Log::debug('StatisticsUsecase args none');
         $now = Carbon::now();
 
         // サークル一覧
@@ -90,38 +90,31 @@ final class StatisticsUsecase
             fn (Circle $circle) => $circle->circleInformation->number_of_members <= 10
         )->count();
         $statisticsNumberOfActivitiesCountDto->tenToTwenty = $circles->filter(
-            fn (Circle $circle) =>
-                11 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 11 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 20
         )->count();
         $statisticsNumberOfActivitiesCountDto->twentyToThirty = $circles->filter(
-            fn (Circle $circle) =>
-                21 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 21 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 30
         )->count();
         $statisticsNumberOfActivitiesCountDto->thirtyToForty = $circles->filter(
-            fn (Circle $circle) =>
-                31 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 31 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 40
         )->count();
         $statisticsNumberOfActivitiesCountDto->fortyToFifty = $circles->filter(
-            fn (Circle $circle) =>
-                41 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 41 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 50
         )->count();
         $statisticsNumberOfActivitiesCountDto->fiftyToSixty = $circles->filter(
-            fn (Circle $circle) =>
-                51 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 51 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 60
         )->count();
         $statisticsNumberOfActivitiesCountDto->sixtyToSeventy = $circles->filter(
-            fn (Circle $circle) =>
-                61 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 61 <= $circle->circleInformation->number_of_members
                 && $circle->circleInformation->number_of_members <= 70
         )->count();
         $statisticsNumberOfActivitiesCountDto->seventyOrMore = $circles->filter(
-            fn (Circle $circle) =>
-                71 <= $circle->circleInformation->number_of_members
+            fn (Circle $circle) => 71 <= $circle->circleInformation->number_of_members
         )->count();
         $statisticsDto->statisticsNumberOfActivitiesCountDto = $statisticsNumberOfActivitiesCountDto;
 
@@ -258,7 +251,7 @@ final class StatisticsUsecase
         // 新歓
         $newCircleNewJoysByStartDate = $circleNewJoys->map(
             fn (CircleNewJoy $circleNewJoy) => [
-                CircleNewJoyProperty::start_date => $circleNewJoy->start_date->format('Y年m月d日')
+                CircleNewJoyProperty::start_date => $circleNewJoy->start_date->format('Y年m月d日'),
             ]
         )->groupBy(CircleNewJoyProperty::start_date)
             ->map(fn (Collection $c) => $c->count())

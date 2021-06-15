@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Admin\CircleTag;
 use App\Enum\CircleTagModel;
 use App\Models\Circle;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class GetCircleTagControllerTest extends TestCase
 {
@@ -15,11 +15,11 @@ class GetCircleTagControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("GetCircleTagControllerTest");
+        Log::info('GetCircleTagControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -27,7 +27,7 @@ class GetCircleTagControllerTest extends TestCase
 
     public function testRequest_circleTagがないとき、取得できる()
     {
-        Log::info("testRequest_circleTagがないとき、取得できる");
+        Log::info('testRequest_circleTagがないとき、取得できる');
 
         // GIVEN
         /** @var Circle $circle */
@@ -56,7 +56,7 @@ class GetCircleTagControllerTest extends TestCase
 
     public function testRequest_circleTagがあるとき、取得できる()
     {
-        Log::info("testRequest_circleTagがないとき、取得できる");
+        Log::info('testRequest_circleTagがないとき、取得できる');
 
         // GIVEN
         /** @var Circle $circle */

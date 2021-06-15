@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Database\Factories;
 
@@ -44,7 +44,7 @@ class AnnouncementFactory extends Factory
     }
 
     /**
-     * 管理者画面でのみ、固定するお知らせ
+     * 管理者画面でのみ、固定するお知らせ.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */

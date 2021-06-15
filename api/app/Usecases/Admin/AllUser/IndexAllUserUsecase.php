@@ -9,21 +9,21 @@ use App\Models\User;
 use App\Support\Arr;
 use App\Usecases\Admin\AllUser\Params\IndexAllUserUsecaseParam;
 use App\ValueObjects\CircleUserValueObject;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 final class IndexAllUserUsecase
 {
     /**
-     * 管理者ではないアカウント一覧
+     * 管理者ではないアカウント一覧.
      *
      * @param IndexAllUserUsecaseParam $param
+     *
      * @return array
      */
     public function invoke(IndexAllUserUsecaseParam $param): array
     {
-        Log::debug("IndexAllUserUsecase args", [
+        Log::debug('IndexAllUserUsecase args', [
             'IndexAllUserUsecaseParam' => $param,
         ]);
 
@@ -42,8 +42,8 @@ final class IndexAllUserUsecase
                     ->orWhere(UserProperty::username, 'like', "%{$param->search}%");
             })
             ->lampager()
-            ->forward(!!$param->next)
-            ->backward(!!$param->previous)
+            ->forward((bool) $param->next)
+            ->backward((bool) $param->previous)
             ->limit(10)
             ->orderByDesc('updated_at')
             ->orderByDesc('id')
@@ -52,8 +52,7 @@ final class IndexAllUserUsecase
             ->toArray(JSON_PRETTY_PRINT);
 
         $newAllUser = (new Collection($allUser['records']))->map(
-            fn (User $user) =>
-            CircleUserValueObject::byEloquent($user)->toArray()
+            fn (User $user) => CircleUserValueObject::byEloquent($user)->toArray()
         )->all();
 
         Arr::set($allUser, 'records', $newAllUser);

@@ -14,7 +14,7 @@ final class GetRandomAdvertiseUsecase
 {
     public function invoke(int $limit = 2)
     {
-        Log::debug("GetRandomAdvertiseUsecase args none");
+        Log::debug('GetRandomAdvertiseUsecase args none');
 
         $now = Carbon::now();
 

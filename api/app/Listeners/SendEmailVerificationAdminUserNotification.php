@@ -10,6 +10,7 @@ class SendEmailVerificationAdminUserNotification
      * Handle the event.
      *
      * @param RegisteredAdminUser $event
+     *
      * @return void
      */
     public function handle(RegisteredAdminUser $event)

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleNewJoyUsecase
 {
     /**
-     * 新歓一覧の取得
+     * 新歓一覧の取得.
      *
      * 第2引数のcircleNewJoyIdを指定すると、検索結果から探す。
      *
@@ -22,9 +22,9 @@ final class IndexCircleNewJoyUsecase
      */
     public function invoke(int $circleId, ?int $circleNewJoyId = null)
     {
-        Log::debug("#IndexCircleNewJoyUsecase args", [
+        Log::debug('#IndexCircleNewJoyUsecase args', [
             'circleId'       => $circleId,
-            'circleNewJoyId' => $circleNewJoyId
+            'circleNewJoyId' => $circleNewJoyId,
         ]);
 
         $circleNewJoys = CircleNewJoy::nowPublic(Carbon::now())
@@ -45,24 +45,25 @@ final class IndexCircleNewJoyUsecase
                     fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
                 )->toArray(),
             // 新歓開催前
-            'futureCircleNewJoys' => $mapCircleNewJoys['future']->sortBy('start_date')->map(
+            'futureCircleNewJoys'               => $mapCircleNewJoys['future']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
             // 現在開催中
-            'nowCircleNewJoys' => $mapCircleNewJoys['now']->sortBy('start_date')->map(
+            'nowCircleNewJoys'                  => $mapCircleNewJoys['now']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
             // 今日の新歓
-            'todayCircleNewJoys' => $mapCircleNewJoys['today']->sortBy('start_date')->map(
+            'todayCircleNewJoys'                => $mapCircleNewJoys['today']->sortBy('start_date')->map(
                 fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
             )->toArray(),
         ];
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @param @var \Illuminate\Database\Eloquent\Collection<mixed, (\Illuminate\Database\Eloquent\Builder|\App\Models\CircleNewJoy)> $circleNewJoys
+     *
      * @return array
      */
     private function splitBeforeOrAfter(Collection $circleNewJoys): array
@@ -95,6 +96,7 @@ final class IndexCircleNewJoyUsecase
             function (CircleNewJoy $circleNewJoy) {
                 if ($circleNewJoy->start_date) {
                     $startDate = new Carbon($circleNewJoy->start_date);
+
                     return $startDate->isToday();
                 }
 
@@ -132,7 +134,6 @@ final class IndexCircleNewJoyUsecase
                 return false;
             }
         );
-
 
         return [
             /** 新歓開催済み */

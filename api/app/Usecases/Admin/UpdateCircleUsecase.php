@@ -5,25 +5,26 @@ declare(strict_types=1);
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\CircleInformationProperty;
-use App\Enum\Property\CircleProperty;
 use App\Enum\Role;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 final class UpdateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param CircleValueObject $circleValueObject
-     * @param string $role
-     * @return CircleValueObject
+     * @param string            $role
+     *
      * @throws Exception
+     *
+     * @return CircleValueObject
      */
     public function invoke(CircleValueObject $circleValueObject, string $role): CircleValueObject
     {
@@ -74,6 +75,7 @@ final class UpdateCircleUsecase
             );
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

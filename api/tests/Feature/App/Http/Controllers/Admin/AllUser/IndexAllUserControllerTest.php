@@ -3,8 +3,8 @@
 namespace Tests\Feature\App\Http\Controllers\Admin\AllUser;
 
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class IndexAllUserControllerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class IndexAllUserControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexAllUserControllerTest");
+        Log::info('IndexAllUserControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -25,7 +25,7 @@ class IndexAllUserControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 
@@ -42,7 +42,7 @@ class IndexAllUserControllerTest extends TestCase
 
     public function testRequest_検索つき()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

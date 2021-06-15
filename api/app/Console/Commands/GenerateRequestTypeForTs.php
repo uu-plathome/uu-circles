@@ -146,7 +146,8 @@ class GenerateRequestTypeForTs extends Command
 
         $ruleFunction = $reflectionClass->getMethod('rules');
         /**
-         * rule関数の実行
+         * rule関数の実行.
+         *
          * @var array{(string|array)} $rulesData
          */
         $rulesData = $ruleFunction->invoke($reflectionClass->newInstance());
@@ -155,7 +156,6 @@ class GenerateRequestTypeForTs extends Command
             fn (string $ruleKey) => !preg_match('/\*/', $ruleKey),
             ARRAY_FILTER_USE_KEY
         );
-
 
         foreach ($rulesDataWithOutAsterisk as $key => $value) {
             /** @var array $arrVal */
@@ -189,7 +189,7 @@ class GenerateRequestTypeForTs extends Command
         $validationObject = substr($validationObject, 0, -1);
 
         /**
-         * stubの置き換え
+         * stubの置き換え.
          *
          * Classのコメントと名前を置き換え
          * 定数をkeyとvalueにする
@@ -207,16 +207,17 @@ class GenerateRequestTypeForTs extends Command
          * ファイルへの書き込み
          */
         file_put_contents(
-            $outputPath . '/' . $className . '.ts',
+            $outputPath.'/'.$className.'.ts',
             $writableData
         );
     }
 
     /**
-     * まとめて置き換える
+     * まとめて置き換える.
      *
      * @param ReplaceValueObject[] $replaceValueObjects
-     * @param string $data
+     * @param string               $data
+     *
      * @return string
      */
     private function replaceTogether(array $replaceValueObjects, string $data): string

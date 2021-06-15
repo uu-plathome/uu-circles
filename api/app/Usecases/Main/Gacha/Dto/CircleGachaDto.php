@@ -18,7 +18,7 @@ final class CircleGachaDto
     public GachaSimpleCircleListDto $result_circles;
 
     /**
-     * ピックアップ
+     * ピックアップ.
      */
     public GachaSimpleCircleListDto $pickup_circles;
 

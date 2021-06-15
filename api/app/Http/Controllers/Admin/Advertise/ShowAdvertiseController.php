@@ -16,7 +16,8 @@ final class ShowAdvertiseController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $advertiseId
+     * @param int     $advertiseId
+     *
      * @return array
      */
     public function __invoke(Request $request, int $advertiseId): array
@@ -26,7 +27,7 @@ final class ShowAdvertiseController extends Controller
         $advertise = Advertise::findOrFail($advertiseId)->toArray();
 
         return [
-            'data' => Arr::camel_keys($advertise)
+            'data' => Arr::camel_keys($advertise),
         ];
     }
 }
