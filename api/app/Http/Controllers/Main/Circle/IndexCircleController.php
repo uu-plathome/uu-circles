@@ -40,12 +40,13 @@ final class IndexCircleController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#IndexCircleController args none");
+        Log::debug('#IndexCircleController args none');
 
         // サークル一覧
         /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
@@ -90,6 +91,7 @@ final class IndexCircleController extends Controller
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.circle.IndexCircleController.' . $minutes;
+
+        return 'main.circle.IndexCircleController.'.$minutes;
     }
 }

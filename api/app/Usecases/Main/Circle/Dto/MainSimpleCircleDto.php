@@ -8,7 +8,7 @@ use App\Models\Circle;
 use App\Models\CircleHandbill;
 
 /**
- * 一覧用のサークル情報
+ * 一覧用のサークル情報.
  */
 final class MainSimpleCircleDto
 {
@@ -22,10 +22,11 @@ final class MainSimpleCircleDto
     public string $handbill_image_url;
 
     /**
-     * EloquentからDto生成
+     * EloquentからDto生成.
      *
-     * @param Circle $circle
+     * @param Circle         $circle
      * @param CircleHandbill $circleHandbill
+     *
      * @return self
      */
     public static function byEloquent(
@@ -36,6 +37,7 @@ final class MainSimpleCircleDto
         $dto->name = $circle->name;
         $dto->slug = $circle->slug;
         $dto->handbill_image_url = $circleHandbill->image_url;
+
         return $dto;
     }
 

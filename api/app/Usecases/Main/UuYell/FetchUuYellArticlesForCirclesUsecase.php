@@ -17,11 +17,12 @@ final class FetchUuYellArticlesForCirclesUsecase
      * uu-yellからサークルに関する記事を検索し、取得する。
      *
      * @param FetchUuYellArticlesForCirclesUsecaseParam $param
+     *
      * @return array
      */
     public function invoke(FetchUuYellArticlesForCirclesUsecaseParam $param): array
     {
-        Log::debug("FetchUuYellArticlesForCirclesUsecase args", [
+        Log::debug('FetchUuYellArticlesForCirclesUsecase args', [
             'param' => $param,
         ]);
 
@@ -34,7 +35,7 @@ final class FetchUuYellArticlesForCirclesUsecase
         $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->name}");
         Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
         if ($response->status() >= 500) {
-            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+            Log::info('uu-yellの記事が取得できてない可能性があります。', [
                 'request_url' => "$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->name}",
                 'param'       => $param,
                 'response'    => $response,
@@ -46,7 +47,7 @@ final class FetchUuYellArticlesForCirclesUsecase
         $response = Http::get("$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->circle_url}");
         Log::debug("FetchUuYellArticlesForCirclesUsecase status {$response->status()}");
         if ($response->status() >= 500) {
-            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+            Log::info('uu-yellの記事が取得できてない可能性があります。', [
                 'request_url' => "$baseUrl/wp-json/wp/v2/posts?context=embed&search={$param->circle_url}",
                 'param'       => $param,
                 'response'    => $response,
@@ -59,11 +60,11 @@ final class FetchUuYellArticlesForCirclesUsecase
 
         // 画像の取得
         $mediaIds = $fetched->map(
-            fn (array $arr) => $arr["featured_media"]
+            fn (array $arr) => $arr['featured_media']
         )
             ->unique()
             ->toArray();
-        $mediaIdsStr = implode(",", $mediaIds);
+        $mediaIdsStr = implode(',', $mediaIds);
         // MEDIA取得 HTTP リクエスト
         $responseMedias = Http::get(
             "$baseUrl/wp-json/wp/v2/media?context=embed&include=$mediaIdsStr"

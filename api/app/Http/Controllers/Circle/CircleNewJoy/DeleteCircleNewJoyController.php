@@ -26,14 +26,16 @@ final class DeleteCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return bool[]
+     * @param int     $circleId
+     * @param int     $circleNewJoyId
+     *
      * @throws Exception
+     *
+     * @return bool[]
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {
-        Log::debug("DeleteCircleNewJoyController args", [
+        Log::debug('DeleteCircleNewJoyController args', [
             'circleId'       => $circleId,
             'circleNewJoyId' => $circleNewJoyId,
         ]);
@@ -45,7 +47,7 @@ final class DeleteCircleNewJoyController extends Controller
         $this->deleteCircleNewJoyUsecase->invoke($circleId, $circleNewJoyId);
 
         return [
-            'success' => true
+            'success' => true,
         ];
     }
 }

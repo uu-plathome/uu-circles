@@ -8,26 +8,26 @@ use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;
 
 /**
- * メールアドレスの認証が済んでいるかどうかでユーザーを分ける
+ * メールアドレスの認証が済んでいるかどうかでユーザーを分ける.
  */
 final class SeparateIsEmailVerifyCircleUserDto
 {
     /**
-     * メールアドレスの認証が済んでいる
+     * メールアドレスの認証が済んでいる.
      *
      * @var \App\ValueObjects\CircleUserDetailValueObject[]
      */
     public array $done;
 
     /**
-     * メールアドレスの認証が済んでいない
+     * メールアドレスの認証が済んでいない.
      *
      * @var \App\ValueObjects\CircleUserDetailValueObject[]
      */
     public array $notDone;
 
     /**
-     * メールアドレスの認証が済んでいるユーザー一覧
+     * メールアドレスの認証が済んでいるユーザー一覧.
      *
      * @var array
      */
@@ -39,7 +39,7 @@ final class SeparateIsEmailVerifyCircleUserDto
     }
 
     /**
-     * メールアドレスの認証が済んでいないユーザー一覧
+     * メールアドレスの認証が済んでいないユーザー一覧.
      *
      * @var array
      */

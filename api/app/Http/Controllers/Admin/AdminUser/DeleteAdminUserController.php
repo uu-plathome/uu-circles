@@ -17,9 +17,11 @@ final class DeleteAdminUserController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $userId
-     * @return bool[]
+     * @param int     $userId
+     *
      * @throws ValidationException
+     *
+     * @return bool[]
      */
     public function __invoke(DeleteAdminUserRequest $request, int $userId): array
     {
@@ -43,7 +45,7 @@ final class DeleteAdminUserController extends Controller
         $user->delete();
 
         return [
-            'status' => true
+            'status' => true,
         ];
     }
 }

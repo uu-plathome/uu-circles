@@ -15,15 +15,16 @@ final class DownloadAdvertiseCounterHistoryExcelController
 {
     /**
      * @param Request $request
-     * @param int $advertiseId
+     * @param int     $advertiseId
+     *
      * @return BinaryFileResponse
      */
     public function __invoke(Request $request, int $advertiseId): BinaryFileResponse
     {
-        Log::debug("DownloadAdvertiseCounterHistoryExcelController args none");
+        Log::debug('DownloadAdvertiseCounterHistoryExcelController args none');
 
         $advertise = Advertise::findOrFail($advertiseId);
-        Log::debug("DownloadAdvertiseCounterHistoryExcelController fetched Data", [
+        Log::debug('DownloadAdvertiseCounterHistoryExcelController fetched Data', [
             'advertiseId' => $advertiseId,
             'advertise'   => $advertise,
         ]);

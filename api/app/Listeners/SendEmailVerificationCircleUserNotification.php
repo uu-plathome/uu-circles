@@ -10,6 +10,7 @@ class SendEmailVerificationCircleUserNotification
      * Handle the event.
      *
      * @param RegisteredCircleUser $event
+     *
      * @return void
      */
     public function handle(RegisteredCircleUser $event)

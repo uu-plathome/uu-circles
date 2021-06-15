@@ -24,7 +24,7 @@ class CreateCirclesTable extends Migration
             $table->index('release');
             $table->index([
                 'release',
-                'slug'
+                'slug',
             ]);
         });
 

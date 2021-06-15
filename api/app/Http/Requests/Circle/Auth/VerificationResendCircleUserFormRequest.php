@@ -25,14 +25,14 @@ class VerificationResendCircleUserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            UserProperty::email => ['required', 'email', 'string']
+            UserProperty::email => ['required', 'email', 'string'],
         ];
     }
 
     public function attributes()
     {
         return [
-            UserProperty::email => __('user.' . UserProperty::email),
+            UserProperty::email => __('user.'.UserProperty::email),
         ];
     }
 }

@@ -5,10 +5,11 @@ namespace App\Support;
 class Str extends \Illuminate\Support\Str
 {
     /**
-     * 文字数の超過をした時、...に自動で置き換える
+     * 文字数の超過をした時、...に自動で置き換える.
      *
      * @param string|null $text
-     * @param int $limit
+     * @param int         $limit
+     *
      * @return string
      */
     public static function limitCharacters(?string $text, int $limit): string
@@ -18,7 +19,7 @@ class Str extends \Illuminate\Support\Str
         }
 
         if (mb_strlen($text) > $limit) {
-            return mb_substr($text, 0, $limit) . '...' ;
+            return mb_substr($text, 0, $limit).'...';
         }
 
         return $text;

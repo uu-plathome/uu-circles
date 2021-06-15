@@ -25,26 +25,26 @@ final class DrawGachaUsecase
         $this->getGachaPickupListUsecase = $getGachaPickupListUsecase;
     }
 
-
     public function invoke(DrawGachaUsecaseParam $param): CircleGachaDto
     {
         Log::debug('DrawGachaUsecase args none', [
-            "DrawGachaUsecaseParam" => $param,
+            'DrawGachaUsecaseParam' => $param,
         ]);
 
         $drawCount = $param->drawCount;
 
         /**
-         * ピックアップ一覧取得
+         * ピックアップ一覧取得.
+         *
          * @var \App\Usecases\Main\Gacha\Dto\GachaPickupListDto $pickupList
          */
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
             60 * 60 * 24,
-            fn()=>$this->getGachaPickupListUsecase->invoke()
+            fn () => $this->getGachaPickupListUsecase->invoke()
         );
 
-        $limit = $drawCount >= 10 ? $drawCount + 2 : $drawCount + 1;//10連のときは+2だが、それ以下では+1分多くサークル取る
+        $limit = $drawCount >= 10 ? $drawCount + 2 : $drawCount + 1; //10連のときは+2だが、それ以下では+1分多くサークル取る
 
         /** @var \App\Models\Circle $circles */
         $circles = Circle::with([
@@ -53,7 +53,7 @@ final class DrawGachaUsecase
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'id', 'name', 'release', 'slug'
+                'id', 'name', 'release', 'slug',
             ])
             ->inRandomOrder()
             ->take($limit)
@@ -76,8 +76,9 @@ final class DrawGachaUsecase
             $pickupListCircles = $pickupListCirclesCollection;
             $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
+                fn (GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
             );
+
             return !is_null($found);
         });
         Log::debug('DrawGachaUsecase pickupCircles', [$pickupCircles]);
@@ -87,12 +88,12 @@ final class DrawGachaUsecase
             $pickupListCircles = $pickupListCirclesCollection;
             $found = $pickupListCircles->first(
                 //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn(GachaSimpleCircleDto $pickupCvo)=>$pickupCvo->circleId === $cvo->circleId
+                fn (GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
             );
+
             return is_null($found);
         });
         Log::debug('DrawGachaUsecase notPickupCircles', [$notPickupCircles]);
-
 
         //値の確定 コレクション
         $drewCircles = new Collection([]);
@@ -110,8 +111,8 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $pickupCircle_ids = $pickupCircles->map(fn(GachaSimpleCircleDto $cvo)=>$cvo->circleId)->values();
-        $drewCircle_ids = $drewCircles->map(fn(GachaSimpleCircleDto $cvo)=>$cvo->circleId)->values();
+        $pickupCircle_ids = $pickupCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
+        $drewCircle_ids = $drewCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
 
         //DBに挿入
         $data = [

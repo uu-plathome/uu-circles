@@ -10,6 +10,7 @@ class SendPasswordResetCircleUserNotification
      * Handle the event.
      *
      * @param PasswordResetCircleUser $event
+     *
      * @return void
      */
     public function handle(PasswordResetCircleUser $event)

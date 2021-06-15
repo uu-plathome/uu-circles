@@ -16,11 +16,12 @@ use Illuminate\Validation\ValidationException;
 final class CreateCircleUserRelationController
 {
     /**
-     * UserとCircleを紐づける
+     * UserとCircleを紐づける.
      *
      * @param Request $request
-     * @param int $userId
-     * @param int $circleId
+     * @param int     $userId
+     * @param int     $circleId
+     *
      * @throws ValidationException
      * @throws \Exception
      */
@@ -60,10 +61,11 @@ final class CreateCircleUserRelationController
         }
 
         DB::beginTransaction();
+
         try {
             (new CircleUser())->fill([
                 'circle_id' => $circleId,
-                'user_id'   => $userId
+                'user_id'   => $userId,
             ])->save();
 
             DB::commit();
@@ -74,6 +76,7 @@ final class CreateCircleUserRelationController
             ]);
 
             DB::rollBack();
+
             throw $e;
         }
     }

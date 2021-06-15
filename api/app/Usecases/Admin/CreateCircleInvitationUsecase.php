@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\DB;
 final class CreateCircleInvitationUsecase
 {
     /**
-     * サークルの招待レコードを作成する
+     * サークルの招待レコードを作成する.
      *
      * @param int $circleId
      * @param int $createdUserId
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function invoke(int $circleId, int $createdUserId)
     {
@@ -33,6 +35,7 @@ final class CreateCircleInvitationUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

@@ -14,8 +14,9 @@ class UsersTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws Exception
+     *
+     * @return void
      */
     public function run()
     {
@@ -31,6 +32,7 @@ class UsersTableSeeder extends Seeder
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

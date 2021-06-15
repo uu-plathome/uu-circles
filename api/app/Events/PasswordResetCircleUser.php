@@ -18,7 +18,8 @@ class PasswordResetCircleUser
     /**
      * Create a new event instance.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return void
      */
     public function __construct($user)

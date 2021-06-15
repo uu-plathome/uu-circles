@@ -38,7 +38,8 @@ final class ResetPasswordAdminController extends Controller
      * Get the response for a successful password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return array
      */
     protected function sendResetResponse(Request $request, $response)
@@ -50,7 +51,8 @@ final class ResetPasswordAdminController extends Controller
      * Get the response for a failed password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)

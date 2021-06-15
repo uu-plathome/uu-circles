@@ -4,8 +4,8 @@ namespace Tests\Feature\App\Http\Controllers\Main\Statistics;
 
 use App\Support\Str;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class StatisticsControllerTest extends TestCase
 {
@@ -14,11 +14,11 @@ class StatisticsControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("StatisticsControllerTest");
+        Log::info('StatisticsControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -26,7 +26,7 @@ class StatisticsControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

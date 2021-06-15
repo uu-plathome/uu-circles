@@ -24,12 +24,13 @@ final class PaginateCircleController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("PaginateCircleController args none");
+        Log::debug('PaginateCircleController args none');
 
         $request->validate(Arr::camel_keys([
             'id'         => 'nullable|integer',

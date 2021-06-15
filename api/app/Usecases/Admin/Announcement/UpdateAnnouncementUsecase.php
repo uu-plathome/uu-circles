@@ -14,21 +14,23 @@ use Illuminate\Support\Facades\Log;
 final class UpdateAnnouncementUsecase
 {
     /**
-     * お知らせの更新
+     * お知らせの更新.
      *
      * @param UpdateAnnouncementUsecaseParam $param
+     *
      * @throws \Exception
      */
     public function invoke(UpdateAnnouncementUsecaseParam $param)
     {
-        Log::debug("UpdateAnnouncementUsecase args", [
-            "UpdateAnnouncementUsecaseParam" => $param,
+        Log::debug('UpdateAnnouncementUsecase args', [
+            'UpdateAnnouncementUsecaseParam' => $param,
         ]);
 
         // インサート用のデータ
         $insertData = $this->getInsertData($param);
 
         DB::beginTransaction();
+
         try {
             // お知らせをDBに保存する
             Announcement::findOrFail($param->announcement_id)
@@ -38,6 +40,7 @@ final class UpdateAnnouncementUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -46,6 +49,7 @@ final class UpdateAnnouncementUsecase
      * DBに挿入するデータ
      *
      * @param UpdateAnnouncementUsecaseParam $param
+     *
      * @return array
      */
     private function getInsertData(UpdateAnnouncementUsecaseParam $param): array

@@ -17,7 +17,8 @@ final class ShowAdminUserController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $userId
+     * @param int     $userId
+     *
      * @return array
      */
     public function __invoke(ShowAdminUserRequest $request, int $userId): array
@@ -30,7 +31,7 @@ final class ShowAdminUserController extends Controller
         }
 
         return [
-            'data' => Arr::camel_keys(AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray())
+            'data' => Arr::camel_keys(AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray()),
         ];
     }
 }

@@ -23,8 +23,9 @@ class AnnouncementSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     public function run()
     {
@@ -34,6 +35,7 @@ class AnnouncementSeeder extends Seeder
         $ids = [];
 
         DB::beginTransaction();
+
         try {
             // 通常のお知らせ
             $announcement = Announcement::factory()
@@ -90,6 +92,7 @@ class AnnouncementSeeder extends Seeder
                 200,
                 function ($announcementCounters) {
                     DB::beginTransaction();
+
                     try {
                         /** @var AnnouncementCounter $announcementCounter */
                         foreach ($announcementCounters as $announcementCounter) {
@@ -112,6 +115,7 @@ class AnnouncementSeeder extends Seeder
                 200,
                 function ($announcementCounters) {
                     DB::beginTransaction();
+
                     try {
                         /** @var AnnouncementCounter $announcementCounter */
                         foreach ($announcementCounters as $announcementCounter) {

@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Log;
 final class DeleteAnnouncementController extends Controller
 {
     /**
-     * お知らせの削除
+     * お知らせの削除.
      *
      * @param Request $request
-     * @param int $announcementId
+     * @param int     $announcementId
      */
     public function __invoke(Request $request, int $announcementId)
     {
-        Log::debug("DeleteAnnouncementController args none");
+        Log::debug('DeleteAnnouncementController args none');
 
         Announcement::findOrFail($announcementId)->delete();
     }

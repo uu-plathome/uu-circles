@@ -16,17 +16,20 @@ final class ShowOwnCircleUserController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array
+     *
      * @throws AuthorizationException
+     *
+     * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("ShowOwnCircleUserController args none");
+        Log::debug('ShowOwnCircleUserController args none');
 
         /** @var \App\Models\User $user */
         $user = $request->user();
         if (!$user->circleUsers) {
             Log::info("[INFO] ShowOwnCircleUserController code=400, userId=$user->id");
+
             throw new AuthorizationException();
         }
 

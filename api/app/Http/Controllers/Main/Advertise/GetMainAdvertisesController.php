@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class GetMainAdvertisesController
 {
     /**
-     * 広告の取得数
+     * 広告の取得数.
      */
     const ADVERTISE_MAX_VIEW = 2;
 
@@ -31,12 +31,13 @@ class GetMainAdvertisesController
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request): array
     {
-        Log::debug("GetFixedTopAdvertisesController args: none");
+        Log::debug('GetFixedTopAdvertisesController args: none');
 
         // 広告
         $advertises = Cache::remember(
@@ -61,12 +62,14 @@ class GetMainAdvertisesController
     private function getMainTopAdvertiseCacheKey(): string
     {
         $hour = Carbon::now()->format('YmdH');
-        return 'main.advertise.mainTop' . $hour;
+
+        return 'main.advertise.mainTop'.$hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.advertise' . $minutes;
+
+        return 'main.advertise'.$minutes;
     }
 }

@@ -13,16 +13,17 @@ class VerifyEmailCircleUser extends Notification
     /**
      * Get the verification URL for the given notifiable.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return string
      */
     protected function verificationUrl($notifiable): string
     {
-        Log::debug("VerifyEmailCircleUser", [
+        Log::debug('VerifyEmailCircleUser', [
             'notifiable' => $notifiable,
         ]);
 
-        $appUrl = Config::get('app.circle_url') . '/auth';
+        $appUrl = Config::get('app.circle_url').'/auth';
 
         $url = URL::temporarySignedRoute(
             'circle.verification.verify',

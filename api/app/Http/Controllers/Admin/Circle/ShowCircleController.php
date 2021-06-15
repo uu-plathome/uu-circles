@@ -17,12 +17,13 @@ final class ShowCircleController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
+     *
      * @return array
      */
     public function __invoke(Request $request, int $circleId): array
     {
-        Log::debug("ShowCircleController args none");
+        Log::debug('ShowCircleController args none');
 
         $circle = Circle::findOrFail($circleId);
 
@@ -31,7 +32,7 @@ final class ShowCircleController extends Controller
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill ?? null
-            )->toArray())
+            )->toArray()),
         ];
     }
 }
