@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\DB;
 final class UpdateAdminUserUsecase
 {
     /**
-     * @param int $userId
+     * @param int                  $userId
      * @param AdminUserValueObject $adminUserValueObject
+     *
      * @throws Exception
      */
     public function invoke(int $userId, AdminUserValueObject $adminUserValueObject)
@@ -27,6 +28,7 @@ final class UpdateAdminUserUsecase
         ];
 
         DB::beginTransaction();
+
         try {
             $user = User::findOrFail($userId);
             $user->update($inputs);
@@ -37,6 +39,7 @@ final class UpdateAdminUserUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class ChangePlaceOfActivityValue extends Migration
 {
@@ -27,6 +25,7 @@ class ChangePlaceOfActivityValue extends Migration
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -49,6 +48,7 @@ class ChangePlaceOfActivityValue extends Migration
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

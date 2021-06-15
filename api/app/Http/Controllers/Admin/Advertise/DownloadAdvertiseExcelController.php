@@ -16,7 +16,7 @@ final class DownloadAdvertiseExcelController
      */
     public function __invoke(): BinaryFileResponse
     {
-        Log::debug("DownloadAdvertiseExcelController args none");
+        Log::debug('DownloadAdvertiseExcelController args none');
 
         return (new AdvertisesExport())
             ->download('advertise.xlsx', ExcelType::XLSX);

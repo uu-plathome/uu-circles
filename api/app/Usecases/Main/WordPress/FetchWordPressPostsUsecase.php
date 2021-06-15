@@ -16,11 +16,11 @@ final class FetchWordPressPostsUsecase
     const MAX_FETCH_NUMBER = 4;
 
     /**
-     * 最新のWordPressの記事を6件取得する
+     * 最新のWordPressの記事を6件取得する.
      */
     public function invoke(string $wpUrl, ?string $tagsTaxonomy): array
     {
-        Log::debug("FetchUuYellArticlesUsecase args none");
+        Log::debug('FetchUuYellArticlesUsecase args none');
 
         $baseUrl = $wpUrl;
         $fetchNumber = self::MAX_FETCH_NUMBER;
@@ -51,11 +51,11 @@ final class FetchWordPressPostsUsecase
             $postsNotTags
         ));
         $mediaIds = $postItems->map(
-            fn (array $arr) => $arr["featured_media"]
+            fn (array $arr) => $arr['featured_media']
         )
             ->unique()
             ->toArray();
-        $mediaIdsStr = implode(",", $mediaIds);
+        $mediaIdsStr = implode(',', $mediaIds);
         // MEDIA取得 HTTP リクエスト
         $responseMedias = Http::get(
             "$baseUrl/wp-json/wp/v2/media?context=embed&include=$mediaIdsStr"
@@ -75,6 +75,7 @@ final class FetchWordPressPostsUsecase
         $now = Carbon::now();
         $day = $now->format('Ymd');
         $hour = $now->hour - $now->hour % 4;
+
         return "FetchWordPressPostsUsecase.$wpUrl.$tagsTaxonomy.$day.$hour";
     }
 }

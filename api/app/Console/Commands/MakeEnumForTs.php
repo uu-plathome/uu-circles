@@ -5,11 +5,11 @@ namespace App\Console\Commands;
 use App\Console\Commands\ValueObjects\ReplaceValueObject;
 use App\Enum\AdvertiseType;
 use App\Enum\AnnouncementType;
+use App\Enum\CircleTagModel;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
 use App\Enum\Importance;
 use App\Enum\PlaceOfActivity;
-use App\Enum\CircleTagModel;
 use App\Enum\Role;
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Enum\SlugProperty\TagSlugProperty;
@@ -36,19 +36,19 @@ class MakeEnumForTs extends Command
     protected $description = 'Enumを生成する';
 
     /**
-     * enum class一覧
+     * enum class一覧.
      *
      * @var string[]
      */
     protected array $enumClasses;
 
     /**
-     * Stubの格納
+     * Stubの格納.
      */
     protected string $stubDataForMain;
 
     /**
-     * Stubの格納
+     * Stubの格納.
      */
     protected string $stubDataForTest;
 
@@ -101,7 +101,7 @@ class MakeEnumForTs extends Command
         $className = $reflectionClass->getShortName();
 
         /**
-         * key名よりオブジェクト値とis〇〇関数の作成
+         * key名よりオブジェクト値とis〇〇関数の作成.
          */
         $keyValue = '';
         $keyValueGuardFunction = '';
@@ -110,7 +110,7 @@ class MakeEnumForTs extends Command
             $keyStudly = Str::studly(strtolower($key));
 
             /**
-             * 定数のDoc Commentを取得
+             * 定数のDoc Commentを取得.
              */
             $constantDocComment = $reflectionClassConstant->getDocComment();
             if ($constantDocComment) {
@@ -132,7 +132,7 @@ class MakeEnumForTs extends Command
         $keyValueGuardFunction = substr($keyValueGuardFunction, 0, -1);
 
         /**
-         * stubの置き換え
+         * stubの置き換え.
          *
          * Classのコメントと名前を置き換え
          * 定数をkeyとvalueにする
@@ -153,7 +153,7 @@ class MakeEnumForTs extends Command
         $outputJsPathes = $this->getOutputJsPath();
         foreach ($outputJsPathes as $outputJsPath) {
             file_put_contents(
-                $outputJsPath . '/' . $className . '.ts',
+                $outputJsPath.'/'.$className.'.ts',
                 $writableData
             );
         }
@@ -173,7 +173,7 @@ class MakeEnumForTs extends Command
         $keyValueTest = substr($keyValueTest, 0, -1);
 
         /**
-         * stubの置き換え
+         * stubの置き換え.
          *
          * Classのコメントと名前を置き換え
          * 定数をkeyとvalueにする
@@ -192,17 +192,18 @@ class MakeEnumForTs extends Command
         $outputJsTestPathes = $this->getOutputJsTestPath();
         foreach ($outputJsTestPathes as $outputJsTestPath) {
             file_put_contents(
-                $outputJsTestPath . '/' . $className . '.spec.ts',
+                $outputJsTestPath.'/'.$className.'.spec.ts',
                 $writableData
             );
         }
     }
 
     /**
-     * まとめて置き換える
+     * まとめて置き換える.
      *
      * @param ReplaceValueObject[] $replaceValueObjects
-     * @param string $data
+     * @param string               $data
+     *
      * @return string
      */
     private function replaceTogether(array $replaceValueObjects, string $data): string

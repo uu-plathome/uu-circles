@@ -29,12 +29,14 @@ final class LoginCircleController extends Controller
      * Handle the incoming request.
      *
      * @param LoginCircleFormRequest $request
-     * @return JsonResponse|void
+     *
      * @throws ValidationException
+     *
+     * @return JsonResponse|void
      */
     public function __invoke(LoginCircleFormRequest $request)
     {
-        Log::debug("LoginCircleController args none");
+        Log::debug('LoginCircleController args none');
 
         $usernameOrEmail = $request->get(Str::camel(self::username_or_email));
 
@@ -42,7 +44,7 @@ final class LoginCircleController extends Controller
             ? UserProperty::email
             : UserProperty::username;
         $request->merge([
-            $this->username() => $usernameOrEmail
+            $this->username() => $usernameOrEmail,
         ]);
 
         return $this->login($request);
@@ -52,11 +54,12 @@ final class LoginCircleController extends Controller
      * Attempt to log the user into the application.
      *
      * @param Request $request
+     *
      * @return bool
      */
     protected function attemptLogin(Request $request)
     {
-        Log::debug("LoginCircleController#attemptLogin");
+        Log::debug('LoginCircleController#attemptLogin');
 
         $token = $this->guard()->attempt($this->credentials($request));
 
@@ -82,11 +85,12 @@ final class LoginCircleController extends Controller
      * Send the response after the user was authenticated.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
-        Log::debug("LoginCircleController#sendLoginResponse");
+        Log::debug('LoginCircleController#sendLoginResponse');
 
         $this->clearLoginAttempts($request);
 
@@ -100,13 +104,14 @@ final class LoginCircleController extends Controller
      * Get the failed login response instance.
      *
      * @param Request $request
-     * @return JsonResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return JsonResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        Log::debug("LoginCircleController#sendFailedLoginResponse");
+        Log::debug('LoginCircleController#sendFailedLoginResponse');
 
         /** @var User $user */
         $user = $this->guard()->user();

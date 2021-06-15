@@ -21,11 +21,12 @@ final class ImportCircleUserController extends Controller
     use Permission;
 
     /**
-     * 既存部員アカウントをサークルと連携させる
+     * 既存部員アカウントをサークルと連携させる.
      *
      * @param ImportCircleUserRequest $request
-     * @param int $circleId
-     * @param int $userId
+     * @param int                     $circleId
+     * @param int                     $userId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(
@@ -53,6 +54,7 @@ final class ImportCircleUserController extends Controller
         }
 
         DB::beginTransaction();
+
         try {
             $user->circleUsers()
                 ->create([
@@ -62,12 +64,13 @@ final class ImportCircleUserController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] ImportCircleUserController", [
+            Log::error('[ERROR] ImportCircleUserController', [
                 'value'    => $request->all(),
                 'circleId' => $circleId,
                 'userId'   => $userId,
             ]);
             DB::rollBack();
+
             throw $e;
         }
     }

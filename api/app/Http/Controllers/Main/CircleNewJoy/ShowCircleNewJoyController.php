@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
-use App\Models\CircleNewJoy;
 use App\Support\Arr;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
+use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
@@ -48,13 +47,14 @@ final class ShowCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $slug
-     * @param int $circleNewJoyId
+     * @param string                   $slug
+     * @param int                      $circleNewJoyId
+     *
      * @return array
      */
     public function __invoke(Request $request, string $slug, int $circleNewJoyId)
     {
-        Log::debug("#ShowCircleNewJoyController args", [
+        Log::debug('#ShowCircleNewJoyController args', [
             'slug'           => $slug,
             'circleNewJoyId' => $circleNewJoyId,
         ]);
@@ -125,7 +125,7 @@ final class ShowCircleNewJoyController extends Controller
                         'name'           => $arr['name'],
                         'circle_type'    => $arr['circle_type'],
                         'main_image_url' => $arr['main_image_url'],
-                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray(),
                     ]
                 )->values()->toArray()
             ),
@@ -137,12 +137,14 @@ final class ShowCircleNewJoyController extends Controller
     private function getCircleNewJoysCacheKey(string $slug, int $circleNewJoyId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'ShowCircleNewJoyController.circleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
+
+        return 'ShowCircleNewJoyController.circleNewJoys'.$slug.'.circleNewJoyId.'.$circleNewJoyId.$minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(string $slug, int $circleNewJoyId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'ShowCircleNewJoyController.allCircleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
+
+        return 'ShowCircleNewJoyController.allCircleNewJoys'.$slug.'.circleNewJoyId.'.$circleNewJoyId.$minutes;
     }
 }

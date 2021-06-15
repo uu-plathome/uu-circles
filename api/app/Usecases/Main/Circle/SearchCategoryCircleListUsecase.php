@@ -15,15 +15,16 @@ use Illuminate\Support\Facades\Log;
 final class SearchCategoryCircleListUsecase
 {
     /**
-     * カテゴリー検索をする
+     * カテゴリー検索をする.
      *
      * @param SearchCategoryCircleListParam $param
+     *
      * @return MainSimpleCircleListDto
      */
     public function invoke(SearchCategoryCircleListParam $param): MainSimpleCircleListDto
     {
-        Log::debug("#SearchCategoryCircleListParam args", [
-            'param' => $param
+        Log::debug('#SearchCategoryCircleListParam args', [
+            'param' => $param,
         ]);
 
         $circleType = [];
@@ -56,10 +57,10 @@ final class SearchCategoryCircleListUsecase
                 });
             })
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug'
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
@@ -67,12 +68,12 @@ final class SearchCategoryCircleListUsecase
 
         $dto = new MainSimpleCircleListDto();
         $dto->list = $circles->map(
-            fn (Circle $circle) =>
-                MainSimpleCircleDto::byEloquent(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                     $circle,
                     $circle->circleHandbill
                 )
         )->toArray();
+
         return $dto;
     }
 }

@@ -36,18 +36,18 @@ class RegisterCircleUserRequest extends FormRequest
             CircleUserProperty::role   => [
                 'required',
                 'string',
-                Rule::in([Role::MANAGER, Role::COMMON])
-            ]
+                Rule::in([Role::MANAGER, Role::COMMON]),
+            ],
         ]);
     }
 
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.' . UserProperty::username),
-            UserProperty::display_name => __('user.' . UserProperty::display_name),
-            UserProperty::email        => __('user.' . UserProperty::email),
-            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+            UserProperty::username     => __('user.'.UserProperty::username),
+            UserProperty::display_name => __('user.'.UserProperty::display_name),
+            UserProperty::email        => __('user.'.UserProperty::email),
+            CircleUserProperty::role   => __('circleUser.'.CircleUserProperty::role),
         ];
     }
 

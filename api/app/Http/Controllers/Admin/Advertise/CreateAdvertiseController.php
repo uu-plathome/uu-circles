@@ -21,17 +21,20 @@ final class CreateAdvertiseController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     *
      * @throws Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function __invoke(CreateAdvertiseRequest $request)
     {
-        Log::debug("CreateAdvertiseController args none");
+        Log::debug('CreateAdvertiseController args none');
 
         $advertise = $request->makeAdvertise();
         $now = Carbon::now();
 
         DB::beginTransaction();
+
         try {
             $advertise->save();
 
@@ -56,8 +59,8 @@ final class CreateAdvertiseController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] CreateAdvertiseController", [
-                "advertise" => $advertise,
+            Log::error('[ERROR] CreateAdvertiseController', [
+                'advertise' => $advertise,
             ]);
 
             throw $e;

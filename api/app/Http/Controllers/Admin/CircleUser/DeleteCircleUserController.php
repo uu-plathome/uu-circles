@@ -19,7 +19,7 @@ final class DeleteCircleUserController extends Controller
         $user->delete();
 
         return [
-            'status' => true
+            'status' => true,
         ];
     }
 }

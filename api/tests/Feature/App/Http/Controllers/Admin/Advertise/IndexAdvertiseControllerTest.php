@@ -3,8 +3,8 @@
 namespace Tests\Feature\App\Http\Controllers\Admin\Advertise;
 
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class IndexAdvertiseControllerTest extends TestCase
 {
@@ -13,11 +13,11 @@ class IndexAdvertiseControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("IndexAdvertiseControllerTest");
+        Log::info('IndexAdvertiseControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -25,7 +25,7 @@ class IndexAdvertiseControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 

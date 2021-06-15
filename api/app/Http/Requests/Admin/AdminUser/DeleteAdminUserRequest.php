@@ -16,6 +16,7 @@ class DeleteAdminUserRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
+
         return $user->adminUser->isManager();
     }
 

@@ -14,7 +14,7 @@ final class GetMainTopAdvertiseUsecase
 {
     public function invoke()
     {
-        Log::debug("GetMainTopAdvertiseUsecase args none");
+        Log::debug('GetMainTopAdvertiseUsecase args none');
 
         $now = Carbon::now();
 

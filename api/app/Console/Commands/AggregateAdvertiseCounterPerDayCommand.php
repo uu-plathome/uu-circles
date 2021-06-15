@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Usecases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
-use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class AggregateAdvertiseCounterPerDayCommand extends Command
@@ -39,8 +39,9 @@ class AggregateAdvertiseCounterPerDayCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function handle()
     {

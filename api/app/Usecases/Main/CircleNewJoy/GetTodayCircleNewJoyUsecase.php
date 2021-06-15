@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 final class GetTodayCircleNewJoyUsecase
 {
     /**
-     * 今日の新歓
+     * 今日の新歓.
      *
      * 今日の新歓と明日以降の10件の新歓を取得
      *
@@ -21,14 +21,14 @@ final class GetTodayCircleNewJoyUsecase
      */
     public function invoke(): array
     {
-        Log::debug("#GetTodayCircleNewJoyUsecase args: none");
+        Log::debug('#GetTodayCircleNewJoyUsecase args: none');
 
         $now = Carbon::now();
         $today = Carbon::today();
 
         $todayCircleNewJoysQuery = CircleNewJoy::with([
             'circle:id,slug,release,name',
-            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url',
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -45,7 +45,7 @@ final class GetTodayCircleNewJoyUsecase
 
         $fetchCircleNewJoys = CircleNewJoy::with([
             'circle:id,slug,release,name',
-            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,short_name,main_image_url',
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -81,7 +81,7 @@ final class GetTodayCircleNewJoyUsecase
                         'short_name'              => $circleNewJoy->circle->circleInformation['short_name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy),
                     ]
                 )->toArray(),
             'futureCircleNewJoys' => $futureCircleNewJoys->sortBy('start_date')
@@ -92,7 +92,7 @@ final class GetTodayCircleNewJoyUsecase
                         'short_name'              => $circleNewJoy->circle->circleInformation['short_name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy),
                     ]
                 )->toArray(),
         ];
