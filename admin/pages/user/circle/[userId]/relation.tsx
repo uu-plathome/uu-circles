@@ -9,7 +9,6 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getCircleList, getCircleListByUserId } from '@/infra/api/circle'
 import { createRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
 import { Circle } from '@/lib/types/model/Circle'
-import { User } from '@/lib/types/model/User'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -17,10 +16,7 @@ import { FormEvent, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
-  const [relationedCircles, setRelationedCircles] = useState<Circle[]>([])
   const [selectItems, setSelectItems] = useState<SelectItem[]>([])
-  const [allCirlces, setAllCircles] = useState<Circle[]>([])
-  const [user, setUser] = useState<User | null>(null)
   const { userId } = router.query
   const [error, setError] = useState<string>('')
   const circleId = useNumberInput(0)
@@ -31,9 +27,6 @@ const CreatePage: NextPage = () => {
       const relationedCircles = await getCircleListByUserId(Number(userId))
       const allCircles = await getCircleList()
 
-      setUser(relationedCircles.user)
-      setRelationedCircles(relationedCircles.circles)
-      setAllCircles(allCircles)
       const relationedCirclesIds = relationedCircles.circles.map(
         (circle: Circle) => circle.id
       )
@@ -43,10 +36,10 @@ const CreatePage: NextPage = () => {
           .filter((circle: Circle) => !relationedCirclesIds.includes(circle.id))
           .map(
             (circle: Circle) =>
-              ({
-                value: circle.id,
-                label: circle.name,
-              } as SelectItem)
+            ({
+              value: circle.id,
+              label: circle.name,
+            } as SelectItem)
           ),
       ]
       setSelectItems(newSelectItems)
