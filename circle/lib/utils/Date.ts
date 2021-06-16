@@ -94,7 +94,7 @@ export const getTimeFormat = (
 }
 
 /**
- * 2021年2月26日　18:00-21:00などを返す
+ * 2021年2月26日 18:00-21:00などを返す
  *
  * @param originStartDate
  * @param originEndDate
