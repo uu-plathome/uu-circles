@@ -1,6 +1,6 @@
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Statistics } from '@/lib/types/model/Statistics'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
 
@@ -9,12 +9,12 @@ import { axiosInstance } from '.'
  */
 export const getStatistics = async (): Promise<{
   /** 統計情報 */ statistics: Statistics
-  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     /** 統計情報 */ statistics: Statistics
-    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
     /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(linkConst.STATISTICS.INDEX)

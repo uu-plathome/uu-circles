@@ -26,11 +26,11 @@ import Error from 'next/error'
 import Image from 'next/image'
 import { FC } from 'react'
 import useSWR from 'swr'
-import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
-  media?: WP_REST_API_Media
+  media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
@@ -84,7 +84,7 @@ type Props = {
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
+    medias: WP_REST_API_Attachment[]
   }
   errorCode?: number
   /** お知らせ */ announcements?: Announcement[]
@@ -108,7 +108,7 @@ const Page: NextPage<Props> = ({
 
   const { data: uuYellForCircles } = useSWR<{
     posts: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
+    medias: WP_REST_API_Attachment[]
   }>(['/circle/[slug]', circle.slug], async () => {
     const fetchedPosts = await Promise.all([
       axios.get<WP_REST_API_Post[]>(
@@ -141,7 +141,7 @@ const Page: NextPage<Props> = ({
     const mediaIds = posts.map((post) => post.featured_media)
     const queryMediaIds = mediaIds.join(',')
 
-    const fetchedMedias = await axios.get<WP_REST_API_Media[]>(
+    const fetchedMedias = await axios.get<WP_REST_API_Attachment[]>(
       `${UU_YELL_URL}/wp-json/wp/v2/media?context=embed&include=${queryMediaIds}`
     )
 
@@ -244,8 +244,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+                wpPosts.postsExistTags &&
+                wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -273,8 +273,8 @@ const Page: NextPage<Props> = ({
               )}
 
               {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+                wpPosts.postsNotTags &&
+                wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -300,8 +300,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+              uuYellForCircles.posts &&
+              uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！

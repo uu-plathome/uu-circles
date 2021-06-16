@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Attachment, WP_REST_API_Attachments, WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
-  media?: WP_REST_API_Media
+  media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
@@ -56,8 +56,8 @@ const WpPostBlock: FC<{
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
-  posts: WP_REST_API_Post[]
-  medias: WP_REST_API_Media[]
+  posts: WP_REST_API_Posts
+  medias: WP_REST_API_Attachments
 }
 const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
   const { isMd } = useMediaQuery()
