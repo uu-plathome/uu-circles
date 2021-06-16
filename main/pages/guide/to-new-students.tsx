@@ -21,7 +21,7 @@ const SubHeader: FC = ({ children }) => {
   )
 }
 
-type Props = {}
+type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
