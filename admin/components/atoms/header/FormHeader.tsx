@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-type Props = {}
+type Props = Record<string, never>
 const FormHeader: FC<Props> = ({ children }) => {
   return <h2 className="text-white text-lg mb-4 font-bold">{children}</h2>
 }
