@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { BaseContainer } from '../molecules/Container/BaseContainer'
 
-type Props = {}
+type Props = Record<string, never>
 const BaseFooter: FC<Props> = () => {
   return (
     <div className="bg-gray-50 pt-8 text-center">
