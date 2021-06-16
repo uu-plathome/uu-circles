@@ -1,8 +1,8 @@
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Statistics } from '@/lib/types/model/Statistics'
+import { WP_REST_API_Post } from 'wp-types'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
-import { WP_REST_API_Post } from 'wp-types'
-import { Announcement } from '@/lib/types/model/Announcement'
 
 /**
  * 統計情報取得API
