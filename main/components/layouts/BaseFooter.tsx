@@ -8,7 +8,7 @@ import { Category } from '@/lib/enum/app/Category'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
-import { WP_REST_API_Posts } from 'wp-types'
+import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
 import { BaseContainer } from '../molecules/Container/BaseContainer'
 
 type TagItem = {
