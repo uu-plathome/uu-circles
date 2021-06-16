@@ -24,7 +24,7 @@ const SubHeaderPink: FC = ({ children }) => {
   )
 }
 
-type Props = {}
+type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   return (
     <div>
