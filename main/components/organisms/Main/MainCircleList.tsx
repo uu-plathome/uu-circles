@@ -16,7 +16,10 @@ const MainCircleList: FC<Props> = ({ circles }) => {
       <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-7">
         {circles.map((circle) => {
           return (
-            <div key={`MainCircleList-${circle.slug}`} className="mb-6 md:mb-16">
+            <div
+              key={`MainCircleList-${circle.slug}`}
+              className="mb-6 md:mb-16"
+            >
               <Link
                 href="/circle/[slug]"
                 as={`/circle/${circle.slug}`}
