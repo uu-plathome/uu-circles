@@ -244,8 +244,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {wpPosts &&
-                wpPosts.postsExistTags &&
-                wpPosts.postsExistTags.length > 0 ? (
+              wpPosts.postsExistTags &&
+              wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -273,8 +273,8 @@ const Page: NextPage<Props> = ({
               )}
 
               {wpPosts &&
-                wpPosts.postsNotTags &&
-                wpPosts.postsNotTags.length > 0 ? (
+              wpPosts.postsNotTags &&
+              wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -300,8 +300,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {uuYellForCircles &&
-              uuYellForCircles.posts &&
-              uuYellForCircles.posts.length > 0 ? (
+            uuYellForCircles.posts &&
+            uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
