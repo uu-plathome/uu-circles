@@ -6,7 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { WP_REST_API_Attachment, WP_REST_API_Attachments, WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
+import {
+  WP_REST_API_Attachment,
+  WP_REST_API_Attachments,
+  WP_REST_API_Post,
+  WP_REST_API_Posts,
+} from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
