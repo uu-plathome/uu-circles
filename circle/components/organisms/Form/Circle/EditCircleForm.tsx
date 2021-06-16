@@ -1,5 +1,4 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import {
@@ -62,7 +61,7 @@ type Props = {
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
   } & NameEditCircleFormProps['form'] &
-    CommonInfoEditCircleFormProps['form']
+  CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({
   onDropMainImage,
