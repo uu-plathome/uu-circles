@@ -9,11 +9,14 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
-export const getCircleNameSize = (circleShowName: string): GetCircleNameSizeRetVal => {
+export const getCircleNameSize = (
+  circleShowName: string
+): GetCircleNameSizeRetVal => {
   if (circleShowName.length <= 9) {
     return 'text-xl'
   } else if (circleShowName.length <= 11) {
