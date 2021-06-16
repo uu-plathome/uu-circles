@@ -1,5 +1,4 @@
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import {

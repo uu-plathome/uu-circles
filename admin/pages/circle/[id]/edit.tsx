@@ -199,7 +199,7 @@ const EditPage: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async () => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,
@@ -232,7 +232,7 @@ const EditPage: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async () => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,
@@ -268,7 +268,7 @@ const EditPage: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async () => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: 800,

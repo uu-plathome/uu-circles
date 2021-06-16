@@ -1,5 +1,4 @@
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
-import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'

@@ -1,6 +1,5 @@
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
-import { Circle } from '@/lib/types/model/Circle'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 

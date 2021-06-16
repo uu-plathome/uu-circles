@@ -43,7 +43,6 @@ const BaseDatetime: FC<Props> = ({
           isClearable
           timeIntervals={10}
           onChange={(date) => {
-            console.info('BaseDatetime [UPDATE]', date)
             onChangeDate(date)
           }}
           onFocus={(e: any) => (e.target.readOnly = true)}

@@ -13,7 +13,10 @@ const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
     todayCircleNewJoy.circleNewJoy.title
   }`
 
-export const getCircleNameSize = (circleShowName: string) => {
+type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
+export const getCircleNameSize = (
+  circleShowName: string
+): GetCircleNameSizeRetVal => {
   if (circleShowName.length <= 9) {
     return 'text-xl'
   } else if (circleShowName.length <= 11) {
@@ -29,8 +32,7 @@ const PcLayout: FC<{
 }> = ({ todayCircleNewJoy }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
-  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
-  //shortNameあればそれ使い、なければnameを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
+  // shortNameあればそれ使い、なければnameを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
   const circleShowNameRaw =
     todayCircleNewJoy.shortName || todayCircleNewJoy.name
   const circleShowName =

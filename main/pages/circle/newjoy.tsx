@@ -19,13 +19,13 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number
   futureCircleNewJoys?: TodayCircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys?: TodayCircleNewJoy[]
-  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({

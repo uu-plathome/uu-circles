@@ -15,12 +15,12 @@ import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { FormEvent } from 'react'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
-  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
