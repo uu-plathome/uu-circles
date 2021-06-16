@@ -36,10 +36,10 @@ const CreatePage: NextPage = () => {
           .filter((circle: Circle) => !relationedCirclesIds.includes(circle.id))
           .map(
             (circle: Circle) =>
-            ({
-              value: circle.id,
-              label: circle.name,
-            } as SelectItem)
+              ({
+                value: circle.id,
+                label: circle.name,
+              } as SelectItem)
           ),
       ]
       setSelectItems(newSelectItems)

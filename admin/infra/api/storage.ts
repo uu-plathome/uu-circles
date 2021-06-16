@@ -1,6 +1,4 @@
-import {
-  AdminPutStorageRequestValidationError,
-} from '@/lib/types/api/AdminPutStorageRequest'
+import { AdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
 
