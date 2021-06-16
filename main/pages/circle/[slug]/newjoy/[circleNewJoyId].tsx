@@ -11,7 +11,7 @@ import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number
@@ -25,7 +25,7 @@ type Props = {
     slug: string
     circleNewJoy: CircleNewJoy
   }[]
-  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
 }
 const Page: NextPage<Props> = ({

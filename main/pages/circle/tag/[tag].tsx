@@ -12,13 +12,13 @@ import { Circle } from '@/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
-  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
