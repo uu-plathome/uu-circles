@@ -94,7 +94,7 @@ export const getTimeFormat = (
 }
 
 /**
- * 2021年2月26日　18:00-21:00などを返す
+ * 2021年2月26日 18:00-21:00などを返す
  *
  * @param originStartDate
  * @param originEndDate
@@ -114,7 +114,7 @@ export const getFullJPDate = (
   return fullDate + '　' + getTime(originStartDate, originEndDate)
 }
 
-export const isDate = (strDate: string) => {
+export const isDate = (strDate: string): boolean => {
   // 空文字は無視
   if (strDate === '') {
     return true
@@ -140,7 +140,7 @@ export const isDate = (strDate: string) => {
   return true
 }
 
-export const isDatetime = (strDatetime: string) => {
+export const isDatetime = (strDatetime: string): boolean => {
   // 空文字は無視
   if (strDatetime === '') {
     return true

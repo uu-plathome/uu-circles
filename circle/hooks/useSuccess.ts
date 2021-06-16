@@ -1,4 +1,3 @@
-import { time } from 'console'
 import { useState } from 'react'
 
 export const useSuccess = <T>(initialState: T) => {

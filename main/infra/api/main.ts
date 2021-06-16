@@ -1,7 +1,7 @@
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
 
@@ -9,14 +9,14 @@ export const getMain = async (): Promise<{
   /** サークル */ circles: Circle[]
   /** 広告 */ advertises: Advertise[]
   /** トップのカルーセル用の広告 */ mainAdvertises: Advertise[]
-  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }> => {
   type Response = {
     /** サークル */ data: Circle[]
     /** 広告 */ advertises: Advertise[]
     /** トップのカルーセル用の広告 */ mainAdvertises: Advertise[]
-    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+    /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
     /** お知らせ */ announcements: Announcement[]
   }
   const { data } = await axiosInstance.get<Response>(linkConst.MAIN.INDEX)

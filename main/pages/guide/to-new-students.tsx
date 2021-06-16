@@ -9,7 +9,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { FC } from 'react'
 import useSWR from 'swr'
-import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const UU_YELL_URL = 'https://media.uu-circles.com'
 
@@ -21,15 +21,15 @@ const SubHeader: FC = ({ children }) => {
   )
 }
 
-type Props = {}
+type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
-    posts: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
+    posts: WP_REST_API_Posts
+    medias: WP_REST_API_Attachments
   }>(['main'], async () => {
     const TAG_NUMBER = 60
-    const fetchedPosts = await axios.get<WP_REST_API_Post[]>(
+    const fetchedPosts = await axios.get<WP_REST_API_Posts>(
       `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&tags=${TAG_NUMBER}`
     )
 
@@ -43,7 +43,7 @@ const Page: NextPage<Props> = () => {
     const mediaIds = fetchedPosts.data.map((post) => post.featured_media)
     const queryMediaIds = mediaIds.join(',')
 
-    const fetchedMedias = await axios.get<WP_REST_API_Media[]>(
+    const fetchedMedias = await axios.get<WP_REST_API_Attachments>(
       `${UU_YELL_URL}/wp-json/wp/v2/media?perPage=100&context=embed&include=${queryMediaIds}`
     )
 

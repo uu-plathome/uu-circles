@@ -1,12 +1,12 @@
 import { CircleType } from '@/lib/enum/api/CircleType'
+import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { AxiosError } from 'axios'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 import { InternalServerError, PageNotFoundError } from './error'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
-import { Announcement } from '@/lib/types/model/Announcement'
 
 /**
  * 今日の新歓
@@ -25,14 +25,14 @@ export type TodayCircleNewJoy = {
 export const getTodayCircleNewJoy = async (): Promise<{
   /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
   /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
-  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }> => {
   try {
     type Response = {
       /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
       /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
-      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
       /** お知らせ */ announcements: Announcement[]
     }
     const { data } = await axiosInstance.get<Response>(
@@ -61,7 +61,7 @@ export const getCircleNewJoyBySlug = async (
   /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
   /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
-  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }> => {
   try {
@@ -72,7 +72,7 @@ export const getCircleNewJoyBySlug = async (
       /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
       /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
       /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
-      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
       /** お知らせ */ announcements: Announcement[]
     }
     const { data } = await axiosInstance.get<Response>(
@@ -111,7 +111,7 @@ export const showCircleNewJoyBySlug = async (
   /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
   /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
-  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }> => {
   try {
@@ -123,7 +123,7 @@ export const showCircleNewJoyBySlug = async (
       /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
       /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
       /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
-      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Post[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
       /** お知らせ */ announcements: Announcement[]
     }
     const { data } = await axiosInstance.get<Response>(
