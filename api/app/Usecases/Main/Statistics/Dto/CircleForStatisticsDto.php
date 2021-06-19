@@ -39,11 +39,11 @@ final class CircleForStatisticsDto
         $dto->short_name = $circleInformation->short_name;
         $dto->prefix_name = $circleInformation->prefix_name;
         $dto->admission_fee_per_year = $circleInformation->admission_fee_per_year;
-        $dto->weekly_activity_days = $circleInformation->weekly_activity_days;
+        $dto->weekly_activity_days = $circleInformation->weeklyActivityDays();
         $dto->active_activity = $circleInformation->active_activity;
         $dto->number_of_members = $circleInformation->number_of_members;
         $dto->main_image_url = $circleInformation->main_image_url;
-        $dto->handbill_image_url = $circleHandbill->main_image_url;
+        $dto->handbill_image_url = $circleHandbill->image_url;
 
         return $dto;
     }
