@@ -3,6 +3,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { dayjs } from '@/plugins/Dayjs'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -21,9 +22,11 @@ const WpPostBlock: FC<{
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
-          <img
+          <Image
             src={(media && media.source_url) || '/images/uuyell-post.png'}
             alt={(media && media.alt_text) || ''}
+            width={342}
+            height={180}
           />
         </p>
 
