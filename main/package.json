@@ -43,6 +43,7 @@
     "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
     "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.23.4",
