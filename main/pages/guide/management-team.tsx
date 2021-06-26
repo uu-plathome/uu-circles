@@ -60,6 +60,7 @@ const Page: NextPage<Props> = () => {
                   src={ImagePath.U_LAB.ICON_RECTANGLE_WHITE}
                   width="680"
                   height="404"
+                  alt="U-lab（ウラボ）のサイトを見る"
                 />
               </a>
             </div>
