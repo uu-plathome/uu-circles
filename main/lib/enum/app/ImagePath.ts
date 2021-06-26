@@ -20,5 +20,11 @@ export const ImagePath = {
     PEING: '/images/sns-icon/peing.png',
     TWITTER: '/images/sns-icon/twitter.png',
     YOUTUBE: '/images/sns-icon/youtube.png'
+  },
+
+  U_LAB: {
+    ICON_RECTANGLE_WHITE: '/images/u-lab/u-lab-rectangle-white.png',
+    COPY_LIGHT: '/images/u-lab/u-lab-copy-light.png',
+    OFFICIAL_SITE_EYE_CATCH: '/images/u-lab/u-lab-official-site-eye-catch.png',
   }
 } as const

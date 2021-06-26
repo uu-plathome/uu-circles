@@ -39,7 +39,7 @@ const MainUucircleAd: FC<Props> = () => {
       <div className="mb-10 mx-auto md:mr-auto md:ml-0" style={{ width }}>
         <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
           <Image
-            src="/images/ulab-post.png"
+            src={ImagePath.U_LAB.OFFICIAL_SITE_EYE_CATCH}
             alt="u-lab公式サイト"
             width={width}
             height={height}
