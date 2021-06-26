@@ -2,6 +2,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
@@ -55,7 +56,7 @@ const Page: NextPage<Props> = () => {
 
             <div className="flex justify-center items-center pt-6 pb-6">
               <a href="http://ulab-uu.com/" target="_blank" rel="noreferrer">
-                <Image src="/images/ulab-bg.png" width="680" height="404" />
+                <Image src={ImagePath.U_LAB.ICON_RECTANGLE_WHITE} width="680" height="404" />
               </a>
             </div>
 

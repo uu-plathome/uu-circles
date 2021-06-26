@@ -428,7 +428,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <div className="text-center pb-8">
           <a href="https://ulab-uu.com/">
             <Image
-              src="/images/ulab-copylight.png"
+              src={ImagePath.U_LAB.COPY_LIGHT}
               width={160}
               height={40}
               alt="U-lab CopyLight"
