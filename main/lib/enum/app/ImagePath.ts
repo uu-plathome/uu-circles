@@ -1,4 +1,9 @@
 export const ImagePath = {
+  ADVERTISE: {
+    // 広告が空のときのサムネ用
+    ADVERTISE_EMPTY_THUMBNAIL: '/images/advertise/company_ad_tmp.png',
+  },
+
   UU_YELL: {
     BANNER: '/images/uu-yell/uu-yell_banner.jpg',
     POSTER: '/images/uu-yell/uu-yell_poster.jpg',
