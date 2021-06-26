@@ -5,6 +5,7 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Category } from '@/lib/enum/app/Category'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
@@ -196,7 +197,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <div className="md:px-6 md:mb-10 text-center">
           <a href="https://media.uu-circles.com/">
             <Image
-              src="/images/uuyell-poster.png"
+              src={ImagePath.UU_YELL.POSTER}
               width={width > 700 ? 700 : width}
               height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
             />
