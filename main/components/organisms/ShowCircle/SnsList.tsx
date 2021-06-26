@@ -1,3 +1,4 @@
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Circle } from '@/lib/types/model/Circle'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +16,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.twitterUrl}>
             <Image
-              src="/images/twitter.png"
+              src={ImagePath.SNS_ICON.TWITTER}
               alt="twiiter link"
               width="40"
               height="40"
@@ -29,7 +30,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.facebookUrl}>
             <Image
-              src="/images/facebook.png"
+              src={ImagePath.SNS_ICON.FACEBOOK}
               alt="Fackbook link"
               width="40"
               height="40"
@@ -43,7 +44,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.instagramUrl}>
             <Image
-              src="/images/instagram.png"
+              src={ImagePath.SNS_ICON.INSTAGRAM}
               alt="Instagram link"
               width="40"
               height="40"
@@ -57,7 +58,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.homepageUrl}>
             <Image
-              src="/images/hp.png"
+              src={ImagePath.SNS_ICON.HP}
               alt="Homepage link"
               width="40"
               height="40"
@@ -71,7 +72,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.youtubeUrl}>
             <Image
-              src="/images/youtube.png"
+              src={ImagePath.SNS_ICON.YOUTUBE}
               alt="Youtube link"
               width="40"
               height="40"
@@ -85,7 +86,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.lineUrl}>
             <Image
-              src="/images/line.png"
+              src={ImagePath.SNS_ICON.LINE}
               alt="twiiter link"
               width="40"
               height="40"
@@ -99,7 +100,7 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.githubUrl}>
             <Image
-              src="/images/github.png"
+              src={ImagePath.SNS_ICON.GITHUB}
               alt="twiiter link"
               width="40"
               height="40"
@@ -126,8 +127,8 @@ const SnsList: FC<Props> = ({ circle }) => {
         <div className="w-10 h-10 mb-4">
           <a href={circle.peingUrl}>
             <Image
-              src="/images/peing.png"
-              alt="twiiter link"
+              src={ImagePath.SNS_ICON.PEING}
+              alt="peing link"
               width="40"
               height="40"
             />
