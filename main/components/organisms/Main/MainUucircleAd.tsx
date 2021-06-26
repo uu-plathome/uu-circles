@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
@@ -24,7 +25,7 @@ const MainUucircleAd: FC<Props> = () => {
           rel="noreferrer"
         >
           <Image
-            src="/images/uuyell-post.png"
+            src={ImagePath.UU_YELL.MAIN}
             alt="メディアサイト"
             width={width}
             height={height}

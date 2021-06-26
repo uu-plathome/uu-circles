@@ -14,6 +14,7 @@ import { TwitterEmbed } from '@/components/organisms/Twitter/TwitterEmbed'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
@@ -37,7 +38,7 @@ const WpPostBlock: FC<{
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
           <img
-            src={(media && media.source_url) || '/images/uuyell-post.png'}
+            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
           />
         </p>
@@ -244,8 +245,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+                wpPosts.postsExistTags &&
+                wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -273,8 +274,8 @@ const Page: NextPage<Props> = ({
               )}
 
               {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+                wpPosts.postsNotTags &&
+                wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -300,8 +301,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+              uuYellForCircles.posts &&
+              uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
