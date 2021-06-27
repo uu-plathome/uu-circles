@@ -1,5 +1,6 @@
 import colors from '@/colors'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { dayjs } from '@/plugins/Dayjs'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +24,7 @@ const WpPostBlock: FC<{
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
           <Image
-            src={(media && media.source_url) || '/images/uuyell-post.png'}
+            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
             width={342}
             height={180}

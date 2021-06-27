@@ -3,6 +3,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -84,7 +85,7 @@ const Page: NextPage<Props> = () => {
                 rel="noreferrer"
               >
                 <Image
-                  src="/images/uuyell-poster.png"
+                  src={ImagePath.UU_YELL.POSTER}
                   width="280"
                   height={(280 * 888) / 1501}
                 />
