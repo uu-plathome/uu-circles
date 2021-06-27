@@ -3,7 +3,6 @@ import { axiosInstance } from '@/infra/api'
 import { Role } from '@/lib/enum/api/Role'
 import { User } from '@/lib/types/model/User'
 import { Bugsnag } from '@/lib/utils/Bugsnag'
-import * as gtag from '@/lib/utils/Gtag'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -76,21 +75,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
     f()
   }, [])
-
-  useEffect(() => {
-    if (!gtag.existsGaId) {
-      return
-    }
-
-    const handleRouteChange = (path) => {
-      gtag.pageview(path)
-    }
-
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
 
   return (
     <ErrorBoundary>
