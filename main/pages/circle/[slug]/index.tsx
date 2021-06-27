@@ -14,6 +14,7 @@ import { TwitterEmbed } from '@/components/organisms/Twitter/TwitterEmbed'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
@@ -37,7 +38,7 @@ const WpPostBlock: FC<{
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
           <img
-            src={(media && media.source_url) || '/images/uuyell-post.png'}
+            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
           />
         </p>

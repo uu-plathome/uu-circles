@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 
@@ -24,7 +25,7 @@ const MainUucircleAd: FC<Props> = () => {
           rel="noreferrer"
         >
           <Image
-            src="/images/uuyell-post.png"
+            src={ImagePath.UU_YELL.MAIN}
             alt="メディアサイト"
             width={width}
             height={height}
@@ -38,7 +39,7 @@ const MainUucircleAd: FC<Props> = () => {
       <div className="mb-10 mx-auto md:mr-auto md:ml-0" style={{ width }}>
         <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
           <Image
-            src="/images/ulab-post.png"
+            src={ImagePath.U_LAB.OFFICIAL_SITE_EYE_CATCH}
             alt="u-lab公式サイト"
             width={width}
             height={height}
