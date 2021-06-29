@@ -1,6 +1,5 @@
 import { existsGaId, GA_ID } from '@/lib/utils/Gtag'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
-import Script from 'next/script'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -24,11 +23,11 @@ export default class MyDocument extends Document {
           {/* Google Analytics */}
           {existsGaId && (
             <>
-              <Script
+              <script
+                async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                strategy="afterInteractive"
               />
-              <Script
+              <script
                 dangerouslySetInnerHTML={{
                   __html: `
                             window.dataLayer = window.dataLayer || [];
@@ -43,9 +42,10 @@ export default class MyDocument extends Document {
           )}
 
           {/* Google AdSense */}
-          <Script
+          <script
+            async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6683230775343969"
-            strategy="afterInteractive"
+            crossOrigin="anonymous"
           />
         </Head>
         <body className="font-body">
