@@ -11,7 +11,7 @@ use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
+use App\Usecases\Main\Circle\GetCircleWithDemoFixedUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
@@ -33,20 +33,20 @@ final class DemoIndexController extends Controller
 
     private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
     private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase;
-    private GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase;
+    private GetCircleWithDemoFixedUsecase $getCircleWithDemoFixedUsecase;
     private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 
     public function __construct(
         GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
         GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase,
-        GetRandomCircleWithMainFixedUsecase $getRandomCircleWithMainFixedUsecase,
+        GetCircleWithDemoFixedUsecase $getCircleWithDemoFixedUsecase,
         GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase
     ) {
         $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
         $this->getMainTopAdvertiseUsecase = $getMainTopAdvertiseUsecase;
-        $this->getRandomCircleWithMainFixedUsecase = $getRandomCircleWithMainFixedUsecase;
+        $this->getCircleWithDemoFixedUsecase = $getCircleWithDemoFixedUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
     }
@@ -66,7 +66,7 @@ final class DemoIndexController extends Controller
         $circles = Cache::remember(
             $this->getCacheKey(),
             60,
-            fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
+            fn () => $this->getCircleWithDemoFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
         $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60 * 5, function () {
