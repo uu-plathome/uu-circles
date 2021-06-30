@@ -54,7 +54,7 @@ export const getTodayCircleNewJoy = async (): Promise<{
 /**
  * 今日の新歓(デモ)
  */
- export const getDemoTodayCircleNewJoy = async (): Promise<{
+export const getDemoTodayCircleNewJoy = async (): Promise<{
   /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
   /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
