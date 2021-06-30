@@ -42,7 +42,7 @@ final class DemoTodayCircleNewJoyController extends Controller
      */
     public function __invoke(Request $request)
     {
-        Log::debug('#TodayCircleNewJoyController args: none');
+        Log::debug('DemoTodayCircleNewJoyController args: none');
 
         $circleNewJoys = Cache::remember(
             $this->getCircleNewJoysCacheKey(),
