@@ -21,7 +21,7 @@ final class GetTodayCircleNewJoyUsecase
      */
     public function invoke(): array
     {
-        Log::debug('#GetTodayCircleNewJoyUsecase args: none');
+        Log::debug('GetTodayCircleNewJoyUsecase args: none');
 
         $now = Carbon::now();
         $today = Carbon::today();
