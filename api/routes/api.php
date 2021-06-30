@@ -24,6 +24,9 @@ use App\Http\Controllers\Main\Statistics;
 // トップページ用
 Route::get('/main', Main\IndexController::class)
     ->name(ARP::MainIndex);
+// トップページ (デモ)
+Route::get('/main/demo', Main\DemoIndexController::class)
+    ->name(ARP::MainDemoIndex);
 // サイトマップ
 Route::get('/sitemap', Sitemap\SitemapController::class)
     ->name(ARP::MainSitemap);
@@ -36,6 +39,9 @@ Route::get('/advertises', Advertise\GetMainAdvertisesController::class)
 // 今日の新歓
 Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
     ->name(ARP::MainCircleNewJoyToday);
+// 今日の新歓 (デモ)
+Route::get('/circle/newjoy/demo', CircleNewJoy\DemoTodayCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyTodayDemo);
 
 // サークル一覧
 Route::get('/circle', Circle\IndexCircleController::class)
