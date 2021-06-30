@@ -89,7 +89,10 @@ const PcButtonGroup = () => {
       </div>
 
       <div className="m-4">
-        <PcButton href="/circle/newjoy/demo" src="/images/topButtons/shinkan1.png" />
+        <PcButton
+          href="/circle/newjoy/demo"
+          src="/images/topButtons/shinkan1.png"
+        />
       </div>
 
       <div className="m-4">
