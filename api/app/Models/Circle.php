@@ -16,6 +16,7 @@ class Circle extends Model
         P::release,
         P::is_main_fixed,
         P::is_demo_fixed,
+        P::demo_priority,
     ];
 
     protected $casts = [
