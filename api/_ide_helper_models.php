@@ -262,6 +262,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property bool                            $is_main_fixed メイン画面に固定するかどうか
+     * @property bool                            $is_demo_fixed デモで表示するか
      * @property-read \App\Models\CircleHandbill|null $circleHandbill
      * @property-read \App\Models\CircleInformation|null $circleInformation
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleInvitation[] $circleInvitation
@@ -277,6 +278,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Circle query()
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsDemoFixed($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsMainFixed($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereRelease($value)
@@ -672,6 +674,47 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|CircleUser whereUserId($value)
      */
     class CircleUser extends \Eloquent
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\DemoCircleNewjoy.
+     *
+     * @property int                             $id
+     * @property int                             $circle_id
+     * @property string                          $demo_circle_newjoy_type  デモの種類
+     * @property string                          $title                    新歓名
+     * @property string|null                     $description              新歓紹介
+     * @property string|null                     $url                      新歓URL
+     * @property string|null                     $place_of_activity        活動場所
+     * @property string|null                     $place_of_activity_detail 活動場所詳細
+     * @property \datetime|null                  $start_date               新歓開始日時
+     * @property \datetime|null                  $end_date                 新歓終了日時
+     * @property bool                            $published                公開設定
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Circle $circle
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy query()
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereCircleId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereDemoCircleNewjoyType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereEndDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy wherePlaceOfActivity($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy wherePlaceOfActivityDetail($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy wherePublished($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereStartDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereTitle($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DemoCircleNewjoy whereUrl($value)
+     */
+    class DemoCircleNewjoy extends \Eloquent
     {
     }
 }

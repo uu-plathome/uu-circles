@@ -15,11 +15,13 @@ class Circle extends Model
         P::slug,
         P::release,
         P::is_main_fixed,
+        P::is_demo_fixed,
     ];
 
     protected $casts = [
         P::release       => 'boolean',
         P::is_main_fixed => 'boolean',
+        P::is_demo_fixed => 'boolean',
     ];
 
     public function circleInformation(): HasOne
