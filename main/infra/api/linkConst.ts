@@ -3,6 +3,8 @@ export const GROUP = '/api'
 export const linkConst = {
   MAIN: {
     INDEX: `${GROUP}/main`,
+
+    DEMO: `${GROUP}/main/demo`,
   },
 
   ADVERTISE: {

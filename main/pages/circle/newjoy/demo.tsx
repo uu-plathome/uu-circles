@@ -1,3 +1,4 @@
+import { BaseHead } from '@/components/layouts/BaseHead'
 import { NewjoyTemplate } from '@/components/pages/Newjoy/NewjoyTemplate'
 import {
   getDemoTodayCircleNewJoy,
@@ -27,12 +28,16 @@ const Page: NextPage<Props> = ({
   }
 
   return (
-    <NewjoyTemplate
-      futureCircleNewJoys={futureCircleNewJoys}
-      todayCircleNewJoys={todayCircleNewJoys}
-      uuYellArticles={uuYellArticles}
-      announcements={announcements}
-    />
+    <>
+      <BaseHead title="今日の新歓 デモ画面" />
+
+      <NewjoyTemplate
+        futureCircleNewJoys={futureCircleNewJoys}
+        todayCircleNewJoys={todayCircleNewJoys}
+        uuYellArticles={uuYellArticles}
+        announcements={announcements}
+      />
+    </>
   )
 }
 
