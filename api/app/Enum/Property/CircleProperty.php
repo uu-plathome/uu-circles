@@ -13,4 +13,5 @@ class CircleProperty
     const release = 'release';
     const is_main_fixed = 'is_main_fixed';
     const is_demo_fixed = 'is_demo_fixed';
+    const demo_priority = 'demo_priority';
 }
