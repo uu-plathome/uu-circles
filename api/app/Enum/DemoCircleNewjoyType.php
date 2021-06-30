@@ -8,17 +8,17 @@ namespace App\Enum;
 class DemoCircleNewjoyType
 {
     /**
-     * 今
+     * 今.
      */
     const NOW = 'NOW';
 
     /**
-     * 今日
+     * 今日.
      */
     const TODAY = 'TODAY';
 
     /**
-     * 未来
+     * 未来.
      */
     const FUTURE = 'FUTURE';
 }
