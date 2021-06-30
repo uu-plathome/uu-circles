@@ -1,5 +1,4 @@
 import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { IndexCircleNewJoyListForNoSlug } from '@/components/organisms/List/IndexCircleNewJoyListForNoSlug'
@@ -33,8 +32,6 @@ export const NewjoyTemplate: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead title="今日の新歓" />
-
       <BaseLayout
         announcement={
           announcements && announcements.length > 0
