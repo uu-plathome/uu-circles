@@ -51,6 +51,38 @@ export const getTodayCircleNewJoy = async (): Promise<{
     throw new InternalServerError(e.response.status, e.response.statusText)
   }
 }
+/**
+ * 今日の新歓(デモ)
+ */
+export const getDemoTodayCircleNewJoy = async (): Promise<{
+  /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
+  /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+  /** お知らせ */ announcements: Announcement[]
+}> => {
+  try {
+    type Response = {
+      /** 今日の新歓 */ todayCircleNewJoys: TodayCircleNewJoy[]
+      /** 新歓開催前 */ futureCircleNewJoys: TodayCircleNewJoy[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+      /** お知らせ */ announcements: Announcement[]
+    }
+    const { data } = await axiosInstance.get<Response>(
+      linkConst.CIRCLE_NEW_JOY.TODAY_DEMO
+    )
+
+    return {
+      /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
+      /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
+      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** お知らせ */ announcements: data.announcements,
+    }
+  } catch (_e) {
+    const e = _e as AxiosError
+
+    throw new InternalServerError(e.response.status, e.response.statusText)
+  }
+}
 
 export const getCircleNewJoyBySlug = async (
   slug: string

@@ -36,6 +36,8 @@ export const linkConst = {
   CIRCLE_NEW_JOY: {
     TODAY: `${GROUP}/circle/newjoy`,
 
+    TODAY_DEMO: `${GROUP}/circle/newjoy/demo`,
+
     LIST: (slug: string): `${typeof GROUP}/circle/${string}/newjoy` =>
       `${GROUP}/circle/${slug}/newjoy` as `${typeof GROUP}/circle/${string}/newjoy`,
 
