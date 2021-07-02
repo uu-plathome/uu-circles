@@ -9,7 +9,6 @@ use App\Http\Requests\Admin\DemoCircleNewJoy\RegisterDemoCircleNewJoyRequest;
 use App\Support\Arr;
 use App\Usecases\Admin\DemoCircleNewJoy\CreateDemoCircleNewJoyUsecase;
 use Exception;
-use Illuminate\Http\Response;
 
 final class RegisterDemoCircleNewJoyController extends Controller
 {
@@ -24,10 +23,11 @@ final class RegisterDemoCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param RegisterDemoCircleNewJoyRequest $request
-     * @param int                         $circleId
+     * @param int                             $circleId
+     *
+     * @throws Exception
      *
      * @return array
-     * @throws Exception
      */
     public function __invoke(RegisterDemoCircleNewJoyRequest $request, int $circleId): array
     {

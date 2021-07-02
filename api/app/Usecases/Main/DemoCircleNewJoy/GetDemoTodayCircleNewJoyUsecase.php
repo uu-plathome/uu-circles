@@ -34,12 +34,10 @@ final class GetDemoTodayCircleNewJoyUsecase
             ->get();
 
         $todayCircleNewJoys = $fetchCircleNewJoys->filter(
-            fn (DemoCircleNewJoy $circleNewJoy) => 
-                $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::TODAY
+            fn (DemoCircleNewJoy $circleNewJoy) => $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::TODAY
         );
         $futureCircleNewJoys = $fetchCircleNewJoys->filter(
-            fn (DemoCircleNewJoy $circleNewJoy) => 
-                $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::FUTURE
+            fn (DemoCircleNewJoy $circleNewJoy) => $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::FUTURE
         );
 
         return [
