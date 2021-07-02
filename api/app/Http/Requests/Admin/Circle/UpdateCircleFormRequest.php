@@ -198,7 +198,7 @@ class UpdateCircleFormRequest extends FormRequest
         $param->description = Arr::get($request, CircleInformationProperty::description);
         $param->common_place_of_activity = Arr::get($request, CircleInformationProperty::common_place_of_activity);
         $param->common_place_of_activity_detail = Arr::get($request, CircleInformationProperty::common_place_of_activity_detail);
-        $param->common_date_of_activity_monday =  Arr::get($request, CircleInformationProperty::common_date_of_activity_monday);
+        $param->common_date_of_activity_monday = Arr::get($request, CircleInformationProperty::common_date_of_activity_monday);
         $param->common_date_of_activity_tuesday = Arr::get($request, CircleInformationProperty::common_date_of_activity_tuesday);
         $param->common_date_of_activity_wednesday = Arr::get($request, CircleInformationProperty::common_date_of_activity_wednesday);
         $param->common_date_of_activity_thursday = Arr::get($request, CircleInformationProperty::common_date_of_activity_thursday);
@@ -241,7 +241,7 @@ class UpdateCircleFormRequest extends FormRequest
         $param->activity_image_url5 = Arr::get($request, CircleInformationProperty::activity_image_url5);
         $param->activity_image_url6 = Arr::get($request, CircleInformationProperty::activity_image_url6);
         $param->wp_url = Arr::get($request, CircleInformationProperty::wp_url);
-        $param->is_view_wp_post = Arr::get($request, CircleInformationProperty::is_view_wp_post );
+        $param->is_view_wp_post = Arr::get($request, CircleInformationProperty::is_view_wp_post);
         $param->wp_tag_taxonomy = Arr::get($request, CircleInformationProperty::wp_tag_taxonomy);
         $param->handbill_image_url = Arr::get($request, 'handbill_image_url');
 
