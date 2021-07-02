@@ -7,8 +7,7 @@ use App\Http\Requests\Admin\AdminPutStorageRequest;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
 use App\Http\Requests\Admin\Advertise\CreateAdvertiseRequest;
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
-use App\Http\Requests\Admin\Announcement\CreateAnnouncementRequest;
-use App\Http\Requests\Admin\Announcement\UpdateAnnouncementRequest;
+use App\Http\Requests\Admin\Announcement;
 use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminFormRequest;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
@@ -19,10 +18,9 @@ use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
-use App\Http\Requests\Admin\CircleTag\CreateOrUpdateCircleTagRequest;
-use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
-use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
-use App\Http\Requests\Admin\CircleUser\VerificationEmailCircleUserRequest;
+use App\Http\Requests\Admin\CircleTag;
+use App\Http\Requests\Admin\CircleUser;
+use App\Http\Requests\Admin\DemoCircleNewJoy;
 use App\Http\Requests\Circle\Auth\ForgotPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
@@ -79,29 +77,31 @@ class GenerateRequestTypeForTs extends Command
             LoginAdminFormRequest::class,
             RegisterAdminFormRequest::class,
             RegisterCircleNewJoyRequest::class,
-            RegisterCircleUserRequest::class,
+            CircleUser\RegisterCircleUserRequest::class,
             UpdateCircleNewJoyRequest::class,
             CreateCircleFormRequest::class,
             UpdateCircleFormRequest::class,
             VerificationResendAdminUserFormRequest::class,
             VerificationConfirmRequest::class,
             AdminPutStorageRequest::class,
-            UpdateCircleUserRequest::class,
+            CircleUser\UpdateCircleUserRequest::class,
             UpdateAdminUserRequest::class,
             ForgotPasswordAdminRequest::class,
             ResetPasswordAdminRequest::class,
             CreateAdvertiseRequest::class,
             UpdateAdvertiseRequest::class,
-            CreateOrUpdateCircleTagRequest::class,
-            CreateAnnouncementRequest::class,
-            UpdateAnnouncementRequest::class,
+            CircleTag\CreateOrUpdateCircleTagRequest::class,
+            Announcement\CreateAnnouncementRequest::class,
+            Announcement\UpdateAnnouncementRequest::class,
+            DemoCircleNewJoy\RegisterDemoCircleNewJoyRequest::class,
+            DemoCircleNewJoy\UpdateDemoCircleNewJoyRequest::class,
         ];
         $this->requestCircleClasses = [
             ForgotPasswordCircleRequest::class,
             LoginCircleFormRequest::class,
             RegisterCircleFormRequest::class,
             ResetPasswordCircleRequest::class,
-            VerificationEmailCircleUserRequest::class,
+            CircleUser\VerificationEmailCircleUserRequest::class,
             VerificationResendCircleUserFormRequest::class,
             CirclePutStorageRequest::class,
             CircleUpdateCircleFormRequest::class,
