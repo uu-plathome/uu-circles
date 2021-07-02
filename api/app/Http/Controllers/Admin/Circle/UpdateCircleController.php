@@ -55,6 +55,5 @@ final class UpdateCircleController extends Controller
             $request->makeCircleValueObject(),
             $role
         );
-
     }
 }
