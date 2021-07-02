@@ -16,9 +16,7 @@ import { deleteCircle, showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
 import { isSystem } from '@/lib/enum/api/Role'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
-import {
-  isUpdateCircleFormRequestValidationError,
-} from '@/lib/types/api/UpdateCircleFormRequest'
+import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
