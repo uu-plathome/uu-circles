@@ -6,6 +6,7 @@ import { EditDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircle
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getDemoCircleNewJoy, updateDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
+import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
 import { isUpdateDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/UpdateDemoCircleNewJoyRequest'
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -27,6 +28,7 @@ const CreatePage: NextPage = () => {
   const url = useStringInput('')
   const placeOfActivity = useStringInput('')
   const placeOfActivityDetail = useStringInput('')
+  const demoCircleNewjoyType = useStringInput(DemoCircleNewjoyType.FUTURE)
   const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const published = useBooleanInput(true)
@@ -46,6 +48,7 @@ const CreatePage: NextPage = () => {
       url.set(demoCircleNewJoy.demoCircleNewJoy.url)
       placeOfActivity.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivity)
       placeOfActivityDetail.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivityDetail)
+      demoCircleNewjoyType.set(demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyType)
       startDate.set(demoCircleNewJoy.demoCircleNewJoy.startDate)
       endDate.set(demoCircleNewJoy.demoCircleNewJoy.endDate)
       published.set(demoCircleNewJoy.demoCircleNewJoy.published)
@@ -67,6 +70,7 @@ const CreatePage: NextPage = () => {
       placeOfActivity:
         placeOfActivity.value !== 'null' ? placeOfActivity.value : null,
       placeOfActivityDetail: placeOfActivityDetail.value,
+      demoCircleNewjoyType: demoCircleNewjoyType.value,
       startDate: startDate.toFormatApi,
       endDate: endDate.toFormatApi,
       published: published.toBoolean,
@@ -78,6 +82,7 @@ const CreatePage: NextPage = () => {
       url.setErrors(data.errors.url)
       placeOfActivity.setErrors(data.errors.placeOfActivity)
       placeOfActivityDetail.setErrors(data.errors.placeOfActivityDetail)
+      demoCircleNewjoyType.setErrors(data.errors.demoCircleNewjoyType)
       startDate.setErrors(data.errors.startDate)
       endDate.setErrors(data.errors.endDate)
       published.setErrors(data.errors.published)
@@ -116,6 +121,7 @@ const CreatePage: NextPage = () => {
                   url,
                   placeOfActivity,
                   placeOfActivityDetail,
+                  demoCircleNewjoyType,
                   startDate,
                   endDate,
                   published,
