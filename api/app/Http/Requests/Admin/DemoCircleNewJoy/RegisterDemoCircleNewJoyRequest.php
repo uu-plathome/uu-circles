@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\DemoCircleNewJoy;
 
+use App\Enum\DemoCircleNewjoyType;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Enum\Property\DemoCircleNewJoyProperty;
@@ -41,6 +42,15 @@ class RegisterDemoCircleNewJoyRequest extends FormRequest
                 Rule::in(PlaceOfActivity::toArrayForCircleNewJoy()),
             ],
             DemoCircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
+            DemoCircleNewJoyProperty::demo_circle_newjoy_type  => [
+                'string',
+                'required',
+                Rule::in([
+                    DemoCircleNewjoyType::FUTURE,
+                    DemoCircleNewjoyType::NOW,
+                    DemoCircleNewjoyType::TODAY,
+                ])
+            ],
             DemoCircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
             DemoCircleNewJoyProperty::end_date
                     => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
@@ -69,6 +79,7 @@ class RegisterDemoCircleNewJoyRequest extends FormRequest
         $param = new CreateDemoCircleNewJoyUsecaseParam();
         $param->circle_id = $this->circleId;
         $param->title = Arr::get($request, 'title');
+        $param->demo_circle_newjoy_type = Arr::get($request, 'demo_circle_newjoy_type');
         $param->description = Arr::get($request, 'description');
         $param->url = Arr::get($request, 'url');
         $param->place_of_activity = Arr::get($request, 'place_of_activity');

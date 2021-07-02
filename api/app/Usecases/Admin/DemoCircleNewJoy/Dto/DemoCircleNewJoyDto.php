@@ -14,6 +14,7 @@ final class DemoCircleNewJoyDto
     public ?string $url;
     public ?string $place_of_activity;
     public ?string $place_of_activity_detail;
+    public string $demo_circle_newjoy_type;
     public ?Carbon $start_date;
     public ?Carbon $end_date;
     public ?bool $published;
@@ -31,6 +32,7 @@ final class DemoCircleNewJoyDto
         $dto->url = $circleNewJoy->url;
         $dto->place_of_activity = $circleNewJoy->place_of_activity;
         $dto->place_of_activity_detail = $circleNewJoy->place_of_activity_detail;
+        $dto->demo_circle_newjoy_type = $circleNewJoy->demo_circle_newjoy_type;
         $dto->start_date = $circleNewJoy->start_date;
         $dto->end_date = $circleNewJoy->end_date;
         $dto->published = $circleNewJoy->published;
@@ -50,6 +52,7 @@ final class DemoCircleNewJoyDto
             'url'                        => $this->url,
             'place_of_activity'          => $this->place_of_activity,
             'place_of_activity_detail'   => $this->place_of_activity_detail,
+            'demo_circle_newjoy_type'    => $this->demo_circle_newjoy_type,
             'start_date'                 => $this->start_date->format('Y-m-d H:i'),
             'end_date'                   => $this->end_date->format('Y-m-d H:i'),
             'published'                  => $this->published,

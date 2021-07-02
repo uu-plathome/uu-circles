@@ -15,6 +15,7 @@ final class UpdateDemoCircleNewJoyUsecaseParam
     public ?string $url = null;
     public ?string $place_of_activity = null;
     public ?string $place_of_activity_detail = null;
+    public string $demo_circle_newjoy_type;
     public ?Carbon $start_date = null;
     public ?Carbon $end_date = null;
     public bool $published = true;

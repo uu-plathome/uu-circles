@@ -62,9 +62,7 @@ describe('Enum CircleTagModel', () => {
     expect(TestFunc.isProgramming('aaaaabbbbcccc')).toBeFalsy()
   })
   it('isUrgentRecruitment', () => {
-    expect(TestFunc.CircleTagModel.URGENT_RECRUITMENT).toBe(
-      'URGENT_RECRUITMENT'
-    )
+    expect(TestFunc.CircleTagModel.URGENT_RECRUITMENT).toBe('URGENT_RECRUITMENT')
     expect(TestFunc.isCircleTagModel('URGENT_RECRUITMENT')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('URGENT_RECRUITMENT')).toBeTruthy()
     expect(TestFunc.isUrgentRecruitment('aaaaabbbbcccc')).toBeFalsy()
