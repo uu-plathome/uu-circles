@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Log;
 final class IndexDemoCircleNewJoyUsecase
 {
     /**
-     * デモ新歓一覧を取得
+     * デモ新歓一覧を取得.
      *
      * @return MultipleDemoCircleNewJoyDto
      */
     public function invoke(): MultipleDemoCircleNewJoyDto
     {
-        Log::debug("IndexDemoCircleNewJoyUsecase args none");
+        Log::debug('IndexDemoCircleNewJoyUsecase args none');
 
         $demoCircleNewJoys = DemoCircleNewJoy::with('circle')
             ->get();

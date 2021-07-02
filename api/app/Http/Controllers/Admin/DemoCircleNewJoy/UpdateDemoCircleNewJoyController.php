@@ -22,12 +22,12 @@ final class UpdateDemoCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateDemoCircleNewJoyRequest $request
-     * @param int                       $circleId
-     * @param int                       $circleNewJoyId
+     * @param int                           $circleId
+     * @param int                           $circleNewJoyId
      *
-     * @return array
      * @throws \Exception
      *
+     * @return array
      */
     public function __invoke(
         UpdateDemoCircleNewJoyRequest $request,
