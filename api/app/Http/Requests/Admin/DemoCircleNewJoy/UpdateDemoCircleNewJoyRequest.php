@@ -43,7 +43,7 @@ class UpdateDemoCircleNewJoyRequest extends FormRequest
                     DemoCircleNewjoyType::TODAY,
                     DemoCircleNewjoyType::NOW,
                     DemoCircleNewjoyType::FUTURE,
-                ])
+                ]),
             ],
             DemoCircleNewJoyProperty::place_of_activity        => [
                 'required',
