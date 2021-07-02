@@ -3,7 +3,7 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircleNewJoy/CreateDemoCircleNewJoyForm'
-import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
+import { useBooleanInput, useDateInput, useNumberInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
 import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
@@ -28,12 +28,13 @@ const CreatePage: NextPage = () => {
   const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const published = useBooleanInput(true)
+  const circleId = useNumberInput(1)
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsOpen(true)
 
-    const data = await createDemoCircleNewJoy(1, {
+    const data = await createDemoCircleNewJoy(circleId.toNumber, {
       type: 'RegisterDemoCircleNewJoyRequest',
       title: title.value,
       description: description.value,
@@ -84,6 +85,7 @@ const CreatePage: NextPage = () => {
                 shortName: 'aaa',
               }}
               form={{
+                circleId,
                 title,
                 description,
                 url,

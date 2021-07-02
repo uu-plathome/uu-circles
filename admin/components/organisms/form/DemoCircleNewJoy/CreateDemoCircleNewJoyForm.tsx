@@ -4,7 +4,7 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
-import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
+import { UseBooleanInput, UseDateInput, UseNumberInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
@@ -17,6 +17,7 @@ type Props = {
     shortName: string
   }
   form: {
+    circleId: UseNumberInput
     published: UseBooleanInput
     title: UseStringInput
     url: UseStringInput
@@ -34,6 +35,15 @@ const CreateDemoCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
       <FormHeader>新歓基本情報</FormHeader>
 
       <div className="mb-8">
+        <BaseTextField
+          label="サークルID"
+          name="circleId"
+          id="circleId"
+          expand
+          required
+          {...form.circleId}
+        />
+
         <BaseTextField
           label="新歓名"
           name="title"
