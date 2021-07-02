@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin\DemoCircleNewJoy;
 
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\Admin\DemoCircleNewJoy\ShowDemoCircleNewJoyUsecase;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ final class ShowDemoCircleNewJoyController extends Controller
         $demoCircleNewJoy = $this->showDemoCircleNewJoyUsecase->invoke($demoCircleNewJoyId);
 
         return [
-            'demoCircleNewJoy' => $demoCircleNewJoy->toArray(),
+            'demoCircleNewJoy' => Arr::camel_keys($demoCircleNewJoy->toArray()),
         ];
     }
 }

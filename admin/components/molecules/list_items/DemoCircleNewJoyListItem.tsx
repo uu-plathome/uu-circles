@@ -139,8 +139,8 @@ const DemoCircleNewJoyListItem: FC<Props> = ({
 
           <CircleListItemTableColumn title="編集">
             <Link
-              href="/circle/demo/newjoy/[circleNewJoyId]/edit"
-              as={`/circle/demo/newjoy/${demoCircleNewJoy.demoCircleNewJoyId}/edit`}
+              href="/demo/newjoy/[demoCircleNewJoyId]/edit"
+              as={`/demo/newjoy/${demoCircleNewJoy.demoCircleNewJoyId}/edit`}
             >
               <a>
                 <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />

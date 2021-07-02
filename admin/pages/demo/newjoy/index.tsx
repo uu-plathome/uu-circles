@@ -12,7 +12,7 @@ const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()
 
   // デモ新歓一覧の取得
-  const { data: { demoCircleNewJoys } } = useSWR(`/admin/api/circle/demo/newjoy`, getDemoCircleNewJoyList)
+  const { data } = useSWR(`/admin/api/circle/demo/newjoy`, getDemoCircleNewJoyList)
 
   return (
     <div>
@@ -26,13 +26,13 @@ const IndexPage: NextPage = () => {
         <BaseWrapper
           title="デモ新歓一覧"
           actionText="新歓新規作成"
-          actionHref="/circle/demo/newjoy/create"
-          actionAs={`/circle/demo/newjoy/create`}
+          actionHref="/demo/newjoy/create"
+          actionAs={`/demo/newjoy/create`}
         >
           <div className="border-2 border-gray-800 p-2">
 
-            {demoCircleNewJoys && demoCircleNewJoys.length > 0
-              ? demoCircleNewJoys.map((demoCircleNewJoy) => {
+            {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length > 0
+              ? data.demoCircleNewJoys.map((demoCircleNewJoy) => {
                 return (
                   <DemoCircleNewJoyListItem
                     key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
@@ -43,7 +43,7 @@ const IndexPage: NextPage = () => {
                 )
               })
               : ''}
-            {demoCircleNewJoys.length === 0 ? (
+            {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length === 0 ? (
               <div className="py-4">
                 <p className="text-white">まだ新歓が登録されていません</p>
               </div>

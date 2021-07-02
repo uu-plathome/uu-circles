@@ -3,10 +3,12 @@
 namespace App\Http\Requests\Admin\DemoCircleNewJoy;
 
 use App\Enum\PlaceOfActivity;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Support\Arr;
 use App\Usecases\Admin\DemoCircleNewJoy\Params\UpdateDemoCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -64,7 +66,7 @@ class UpdateDemoCircleNewJoyRequest extends FormRequest
         $request = Arr::snake_keys($this->validated());
 
         $param = new UpdateDemoCircleNewJoyUsecaseParam();
-        $param->circle_id = $this->circleId;
+        $param->demo_circle_newjoy_id = $this->demoCircleNewJoyId;
         $param->title = Arr::get($request, 'title');
         $param->description = Arr::get($request, 'description');
         $param->url = Arr::get($request, 'url');
