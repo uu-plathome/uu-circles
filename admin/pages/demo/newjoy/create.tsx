@@ -15,7 +15,6 @@ import { FormEvent, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
-  const { id } = router.query
   const { isMd } = useMediaQuery()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -32,7 +31,7 @@ const CreatePage: NextPage = () => {
     event.preventDefault()
     setIsOpen(true)
 
-    const data = await createDemoCircleNewJoy(Number(id), {
+    const data = await createDemoCircleNewJoy(1, {
       type: 'RegisterDemoCircleNewJoyRequest',
       title: title.value,
       description: description.value,
@@ -59,7 +58,7 @@ const CreatePage: NextPage = () => {
     }
 
     setIsOpen(false)
-    await router.push(`/circle/demo/newjoy`)
+    await router.push(`/demo/newjoy`)
   }
 
   return (

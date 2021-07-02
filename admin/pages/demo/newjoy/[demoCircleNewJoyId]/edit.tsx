@@ -87,13 +87,13 @@ const CreatePage: NextPage = () => {
     }
 
     setIsOpen(false)
-    await router.push(`/circle/demo/newjoy`)
+    await router.push(`/demo/newjoy`)
   }
 
   return (
     <div>
       <Head>
-        <title>新歓編集</title>
+        <title>デモ新歓編集</title>
       </Head>
 
       {isMd ? <BaseHeader /> : ''}

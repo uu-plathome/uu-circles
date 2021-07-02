@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 
 final class UpdateDemoCircleNewJoyUsecaseParam
 {
-    public int $circle_id;
     public int $demo_circle_newjoy_id;
 
     public string $title;

@@ -10,7 +10,7 @@ export const createDemoCircleNewJoy = async (
 ) => {
   try {
     await axiosInstance.post(
-      `/admin/api/circle/${circleId}/newjoy`,
+      `/admin/api/circle/${circleId}/demo/newjoy`,
       demoCircleNewJoy
     )
 
@@ -55,6 +55,8 @@ export const updateDemoCircleNewJoy = async (
 }
 
 export const getDemoCircleNewJoyList = async () => {
+  console.log('getDemoCircleNewJoyList args none')
+
   const { data } = await axiosInstance.get<{
     demoCircleNewJoys: {
       circleId: number

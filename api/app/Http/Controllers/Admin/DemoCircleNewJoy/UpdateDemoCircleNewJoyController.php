@@ -31,8 +31,7 @@ final class UpdateDemoCircleNewJoyController extends Controller
      */
     public function __invoke(
         UpdateDemoCircleNewJoyRequest $request,
-        int $circleId,
-        int $circleNewJoyId
+        int $demoCircleNewJoyId
     ): array {
         $param = $request->makeUpdateDemoCircleNewJoyUsecaseParam();
 

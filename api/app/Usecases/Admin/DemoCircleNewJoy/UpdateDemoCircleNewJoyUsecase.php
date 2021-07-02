@@ -28,7 +28,6 @@ final class UpdateDemoCircleNewJoyUsecase
             'UpdateDemoCircleNewJoyUsecaseParam' => $param,
         ]);
 
-        $circleId = $param->circle_id;
         $demoCircleNewJoyId = $param->demo_circle_newjoy_id;
         $newDemoCircleNewJoy = [
             Property::title                    => $param->title,
@@ -44,8 +43,7 @@ final class UpdateDemoCircleNewJoyUsecase
         DB::beginTransaction();
 
         try {
-            DemoCircleNewjoy::whereCircleId($circleId)
-                ->findOrFail($demoCircleNewJoyId)
+            DemoCircleNewjoy::findOrFail($demoCircleNewJoyId)
                 ->update($newDemoCircleNewJoy);
 
             DB::commit();
