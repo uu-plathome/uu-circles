@@ -98,7 +98,7 @@ final class UpdateCircleForSystemUsecaseDto
         $dto->description = $circleInformation->description;
         $dto->common_place_of_activity = $circleInformation->common_place_of_activity;
         $dto->common_place_of_activity_detail = $circleInformation->common_place_of_activity_detail;
-        $dto->common_date_of_activity_monday =  $circleInformation->common_date_of_activity_monday;
+        $dto->common_date_of_activity_monday = $circleInformation->common_date_of_activity_monday;
         $dto->common_date_of_activity_tuesday = $circleInformation->common_date_of_activity_tuesday;
         $dto->common_date_of_activity_wednesday = $circleInformation->common_date_of_activity_wednesday;
         $dto->common_date_of_activity_thursday = $circleInformation->common_date_of_activity_thursday;
@@ -146,7 +146,7 @@ final class UpdateCircleForSystemUsecaseDto
         $dto->activity_image_url5 = $circleInformation->activity_image_url5;
         $dto->activity_image_url6 = $circleInformation->activity_image_url6;
         $dto->wp_url = $circleInformation->wp_url;
-        $dto->is_view_wp_post = $circleInformation->is_view_wp_post ;
+        $dto->is_view_wp_post = $circleInformation->is_view_wp_post;
         $dto->wp_tag_taxonomy = $circleInformation->wp_tag_taxonomy;
         $dto->handbill_image_url = $circleHandbill ? $circleHandbill->image_url : null;
 

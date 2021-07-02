@@ -104,10 +104,7 @@ const NewJoyDateTime: FC<{
   )
 }
 
-const DemoCircleNewJoyListItem: FC<Props> = ({
-  name,
-  demoCircleNewJoy
-}) => {
+const DemoCircleNewJoyListItem: FC<Props> = ({ name, demoCircleNewJoy }) => {
   return (
     <div className="mb-8">
       <div className="ml-2 w-full">

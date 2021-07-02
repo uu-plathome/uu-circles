@@ -5,7 +5,10 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircleNewJoy/EditDemoCircleNewJoyForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getDemoCircleNewJoy, updateDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
+import {
+  getDemoCircleNewJoy,
+  updateDemoCircleNewJoy,
+} from '@/infra/api/demo_cirecle_new_joy'
 import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
 import { isUpdateDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/UpdateDemoCircleNewJoyRequest'
 import { NextPage } from 'next'
@@ -17,8 +20,8 @@ const CreatePage: NextPage = () => {
   const router = useRouter()
   const { demoCircleNewJoyId } = router.query
   const [circle, setCircle] = useState<{
-    circleId: number;
-    name: string;
+    circleId: number
+    name: string
   } | null>(null)
   const { isMd } = useMediaQuery()
   const [isOpen, setIsOpen] = useState(true)
@@ -47,8 +50,12 @@ const CreatePage: NextPage = () => {
       description.set(demoCircleNewJoy.demoCircleNewJoy.description)
       url.set(demoCircleNewJoy.demoCircleNewJoy.url)
       placeOfActivity.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivity)
-      placeOfActivityDetail.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivityDetail)
-      demoCircleNewjoyType.set(demoCircleNewJoy.demoCircleNewJoy.demoCircleNewjoyType)
+      placeOfActivityDetail.set(
+        demoCircleNewJoy.demoCircleNewJoy.placeOfActivityDetail
+      )
+      demoCircleNewjoyType.set(
+        demoCircleNewJoy.demoCircleNewJoy.demoCircleNewjoyType
+      )
       startDate.set(demoCircleNewJoy.demoCircleNewJoy.startDate)
       endDate.set(demoCircleNewJoy.demoCircleNewJoy.endDate)
       published.set(demoCircleNewJoy.demoCircleNewJoy.published)
