@@ -48,7 +48,7 @@ const CreatePage: NextPage = () => {
       url.set(demoCircleNewJoy.demoCircleNewJoy.url)
       placeOfActivity.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivity)
       placeOfActivityDetail.set(demoCircleNewJoy.demoCircleNewJoy.placeOfActivityDetail)
-      demoCircleNewjoyType.set(demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyType)
+      demoCircleNewjoyType.set(demoCircleNewJoy.demoCircleNewJoy.demoCircleNewjoyType)
       startDate.set(demoCircleNewJoy.demoCircleNewJoy.startDate)
       endDate.set(demoCircleNewJoy.demoCircleNewJoy.endDate)
       published.set(demoCircleNewJoy.demoCircleNewJoy.published)
