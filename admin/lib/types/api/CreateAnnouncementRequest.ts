@@ -49,5 +49,10 @@ export interface CreateAnnouncementRequestValidationError {
   message: string
 }
 
-export const isCreateAnnouncementRequest = (v: any): v is CreateAnnouncementRequest => v && v.type === 'CreateAnnouncementRequest'
-export const isCreateAnnouncementRequestValidationError = (v: any): v is CreateAnnouncementRequestValidationError => v && v.type === 'CreateAnnouncementRequestValidationError'
+export const isCreateAnnouncementRequest = (
+  v: any
+): v is CreateAnnouncementRequest => v && v.type === 'CreateAnnouncementRequest'
+export const isCreateAnnouncementRequestValidationError = (
+  v: any
+): v is CreateAnnouncementRequestValidationError =>
+  v && v.type === 'CreateAnnouncementRequestValidationError'

@@ -12,7 +12,10 @@ const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()
 
   // デモ新歓一覧の取得
-  const { data } = useSWR(`/admin/api/circle/demo/newjoy`, getDemoCircleNewJoyList)
+  const { data } = useSWR(
+    `/admin/api/circle/demo/newjoy`,
+    getDemoCircleNewJoyList
+  )
 
   return (
     <div>
@@ -30,20 +33,21 @@ const IndexPage: NextPage = () => {
           actionAs={`/demo/newjoy/create`}
         >
           <div className="border-2 border-gray-800 p-2">
-
             {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length > 0
               ? data.demoCircleNewJoys.map((demoCircleNewJoy) => {
-                return (
-                  <DemoCircleNewJoyListItem
-                    key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
-                    name={demoCircleNewJoy.name}
-                    circleId={demoCircleNewJoy.circleId}
-                    demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
-                  />
-                )
-              })
+                  return (
+                    <DemoCircleNewJoyListItem
+                      key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
+                      name={demoCircleNewJoy.name}
+                      circleId={demoCircleNewJoy.circleId}
+                      demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
+                    />
+                  )
+                })
               : ''}
-            {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length === 0 ? (
+            {data &&
+            data.demoCircleNewJoys &&
+            data.demoCircleNewJoys.length === 0 ? (
               <div className="py-4">
                 <p className="text-white">まだ新歓が登録されていません</p>
               </div>
