@@ -18,8 +18,9 @@ final class UpdateDemoCircleNewJoyUsecase
      *
      * @param UpdateDemoCircleNewJoyUsecaseParam $param
      *
-     * @return void
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         UpdateDemoCircleNewJoyUsecaseParam $param
