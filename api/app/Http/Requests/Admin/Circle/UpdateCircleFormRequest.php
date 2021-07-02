@@ -40,7 +40,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:50',
-                'unique:circles,slug,'.$this->id.'id',
+                'unique:circles,slug,'.$this->circleId.'id',
                 new SmallAlphaNum(),
                 Rule::notIn(['newjoy']),
             ],
@@ -183,7 +183,7 @@ class UpdateCircleFormRequest extends FormRequest
         $param = new UpdateCircleForSystemUsecaseParam();
         $request = Arr::snake_keys($this->validated());
 
-        $param->circle_id = Arr::get($request, CircleProperty::id);
+        $param->circle_id = $this->circleId;
         $param->slug = Arr::get($request, CircleProperty::slug);
         $param->release = Arr::get($request, CircleProperty::release);
         $param->name = Arr::get($request, CircleProperty::name);

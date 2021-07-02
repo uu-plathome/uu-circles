@@ -79,7 +79,7 @@ final class UpdateCircleForSystemUsecaseDto
     public static function byEloquent(
         Circle $circle,
         CircleInformation $circleInformation,
-        CircleHandbill $circleHandbill
+        ?CircleHandbill $circleHandbill
     ): self {
         $dto = new self();
 
@@ -148,7 +148,7 @@ final class UpdateCircleForSystemUsecaseDto
         $dto->wp_url = $circleInformation->wp_url;
         $dto->is_view_wp_post = $circleInformation->is_view_wp_post ;
         $dto->wp_tag_taxonomy = $circleInformation->wp_tag_taxonomy;
-        $dto->handbill_image_url = $circleHandbill->image_url;
+        $dto->handbill_image_url = $circleHandbill ? $circleHandbill->image_url : null;
 
         return $dto;
     }
