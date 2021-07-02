@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Circle;
 use App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Admin\CircleTag;
 use App\Http\Controllers\Admin\CircleUser;
+use App\Http\Controllers\Admin\DemoCircleNewJoy;
 use App\Http\Controllers\Admin\Storage;
 
 Route::middleware('throttle:60,1')->group(function () {
@@ -22,7 +23,8 @@ Route::group(['middleware' => 'guest:adminUser'], function () {
     });
 
     Route::middleware('throttle:30,1')->group(function () {
-        Route::get('email/verify/{userId}', Auth\VerificationVerifyController::class)->name('admin.verification.verify');
+        Route::get('email/verify/{userId}', Auth\VerificationVerifyController::class)
+            ->name('admin.verification.verify');
         Route::post('email/verify/{userId}', Auth\VerificationConfirmController::class);
 
         Route::post('password/reset', Auth\ForgotPasswordAdminController::class);
@@ -107,6 +109,21 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', CircleNewJoy\CopyCircleNewJoyController::class)
         ->where('circleId', '[0-9]+')
         ->where('circleNewJoyId', '[0-9]+');
+
+    // DemoCircleNewJoy デモサークル新歓管理
+    Route::get('/circle/demo/newjoy', DemoCircleNewJoy\IndexDemoCircleNewJoyController::class);
+    Route::post('/circle/{circleId}/demo/newjoy', DemoCircleNewJoy\RegisterDemoCircleNewJoyController::class)
+        ->where('circleId', '[0-9]+');
+    Route::get(
+        '/circle/demo/newjoy/{demoCircleNewJoyId}',
+        DemoCircleNewJoy\ShowDemoCircleNewJoyController::class
+    )
+        ->where('demoCircleNewJoyId', '[0-9]+');
+    Route::put(
+        '/circle/demo/newjoy/{demoCircleNewJoyId}',
+        DemoCircleNewJoy\UpdateDemoCircleNewJoyController::class
+    )
+        ->where('demoCircleNewJoyId', '[0-9]+');
 
     // CircleTag サークルタグ管理
     Route::get('/circle/{circleId}/tag', CircleTag\GetCircleTagController::class);

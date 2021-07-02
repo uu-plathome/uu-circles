@@ -16,10 +16,7 @@ import { deleteCircle, showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
 import { isSystem } from '@/lib/enum/api/Role'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
-import {
-  isUpdateCircleFormRequestValidationError,
-  UpdateCircleFormRequest,
-} from '@/lib/types/api/UpdateCircleFormRequest'
+import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -40,6 +37,8 @@ const EditPage: NextPage = () => {
   const slug = useStringInput('')
   const release = useBooleanInput(false)
   const isMainFixed = useBooleanInput(false)
+  const isDemoFixed = useBooleanInput(false)
+  const demoPriority = useNumberInput(0)
   const circleType = useStringInput('')
   const nameKana = useStringInput('')
   const shortName = useStringInput('')
@@ -105,6 +104,8 @@ const EditPage: NextPage = () => {
         slug.set(foundCircle.slug)
         release.set(foundCircle.release)
         isMainFixed.set(foundCircle.isMainFixed)
+        isDemoFixed.set(foundCircle.isDemoFixed)
+        demoPriority.set(foundCircle.demoPriority)
         nameKana.set(foundCircle.nameKana)
         shortName.set(foundCircle.shortName)
         prefixName.set(foundCircle.prefixName)
@@ -369,6 +370,8 @@ const EditPage: NextPage = () => {
         slug: slug.value.toLowerCase(),
         release: release.toBoolean,
         isMainFixed: isMainFixed.toBoolean,
+        isDemoFixed: isDemoFixed.toBoolean,
+        demoPriority: demoPriority.toNumber,
         nameKana: HiraToKana(nameKana.value),
         circleType: circleType.value,
         shortName: shortName.value,
@@ -422,7 +425,7 @@ const EditPage: NextPage = () => {
         wpUrl: wpUrl.value,
         wpTagTaxonomy: wpTagTaxonomy.value,
         isViewWpPost: isViewWpPost.toBoolean,
-      } as UpdateCircleFormRequest)
+      })
 
       if (isUpdateCircleFormRequestValidationError(data)) {
         name.setErrors(data.errors.name)
@@ -430,6 +433,8 @@ const EditPage: NextPage = () => {
         nameKana.setErrors(data.errors.nameKana)
         release.setErrors(data.errors.release)
         isMainFixed.setErrors(data.errors.isMainFixed)
+        isDemoFixed.setErrors(data.errors.isDemoFixed)
+        demoPriority.setErrors(data.errors.demoPriority)
         circleType.setErrors(data.errors.circleType)
         shortName.setErrors(data.errors.shortName)
         prefixName.setErrors(data.errors.prefixName)
@@ -588,6 +593,8 @@ const EditPage: NextPage = () => {
                     name,
                     slug,
                     isMainFixed,
+                    isDemoFixed,
+                    demoPriority,
                     nameKana,
                     shortName,
                     prefixName,

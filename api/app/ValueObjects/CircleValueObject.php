@@ -16,6 +16,8 @@ class CircleValueObject
     public bool $release;
     public string $name;
     public bool $is_main_fixed;
+    public bool $is_demo_fixed;
+    public ?int $demo_priority;
     public ?string $circle_type;
     public ?string $name_kana;
     public ?string $short_name;
@@ -86,6 +88,8 @@ class CircleValueObject
         $circleValueObject->release = $circle->release;
         $circleValueObject->name = $circle->name;
         $circleValueObject->is_main_fixed = (bool) $circle->is_main_fixed;
+        $circleValueObject->is_demo_fixed = $circle->is_demo_fixed;
+        $circleValueObject->demo_priority = $circle->demo_priority;
 
         $circleValueObject->circle_type = $circleInformation ? $circleInformation->circle_type : null;
         $circleValueObject->name_kana = $circleInformation ? $circleInformation->name_kana : null;
@@ -156,6 +160,8 @@ class CircleValueObject
             CircleProperty::slug          => $this->slug,
             CircleProperty::release       => $this->release,
             CircleProperty::is_main_fixed => $this->is_main_fixed,
+            CircleProperty::is_demo_fixed => $this->is_demo_fixed,
+            CircleProperty::demo_priority => $this->demo_priority,
             CircleProperty::created_at    => $this->created_at,
             CircleProperty::updated_at    => $this->updated_at,
         ]);
@@ -241,6 +247,8 @@ class CircleValueObject
             CircleProperty::release                                      => $this->release,
             CircleProperty::name                                         => $this->name,
             CircleProperty::is_main_fixed                                => $this->is_main_fixed,
+            CircleProperty::is_demo_fixed                                => $this->is_demo_fixed,
+            CircleProperty::demo_priority                                => $this->demo_priority,
             CircleProperty::created_at                                   => $this->created_at,
             CircleProperty::updated_at                                   => $this->updated_at,
             CircleInformationProperty::circle_type                       => $this->circle_type,

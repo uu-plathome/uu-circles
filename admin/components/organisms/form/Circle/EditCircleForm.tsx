@@ -2,7 +2,11 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
-import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import {
+  UseBooleanInput,
+  UseNumberInput,
+  UseStringInput,
+} from '@/hooks/useInput'
 import { isSystem, Role } from '@/lib/enum/api/Role'
 import {
   faFacebook,
@@ -34,6 +38,8 @@ type Props = {
   role?: Role
   form: {
     isMainFixed: UseBooleanInput
+    isDemoFixed: UseBooleanInput
+    demoPriority: UseNumberInput
     release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
@@ -109,6 +115,26 @@ const EditCircleForm: FC<Props> = ({
               { value: 'false', label: '固定しない' },
             ]}
             {...form.isMainFixed}
+          />
+
+          <BaseSelect
+            label="デモ画面に固定するか"
+            id="isDemoFixed"
+            name="isDemoFixed"
+            required
+            items={[
+              { value: 'true', label: '固定' },
+              { value: 'false', label: '固定しない' },
+            ]}
+            {...form.isDemoFixed}
+          />
+
+          <BaseTextField
+            label="デモ画面の優先度"
+            name="demoPriority"
+            id="demoPriority"
+            placeholder="0"
+            {...form.demoPriority}
           />
         </div>
       ) : (
