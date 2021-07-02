@@ -8,7 +8,6 @@ use App\Enum\DemoCircleNewjoyType;
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Models\DemoCircleNewjoy;
 use App\Usecases\Main\DemoCircleNewJoy\Dto\DemoCircleNewJoyDto;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 final class GetDemoTodayCircleNewJoyUsecase
@@ -21,9 +20,6 @@ final class GetDemoTodayCircleNewJoyUsecase
     public function invoke(): array
     {
         Log::debug('GetDemoTodayCircleNewJoyUsecase args: none');
-
-        $now = Carbon::now();
-        $today = Carbon::today();
 
         $fetchCircleNewJoys = DemoCircleNewjoy::with([
             'circle:id,slug,release,name',
@@ -41,7 +37,7 @@ final class GetDemoTodayCircleNewJoyUsecase
             fn (DemoCircleNewJoy $circleNewJoy) => $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::TODAY
         );
         $futureCircleNewJoys = $fetchCircleNewJoys->filter(
-            fn (DemoCircleNewJoy $circleNewJoy) => $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::TODAY
+            fn (DemoCircleNewJoy $circleNewJoy) => $circleNewJoy->demo_circle_newjoy_type === DemoCircleNewjoyType::FUTURE
         );
 
         return [

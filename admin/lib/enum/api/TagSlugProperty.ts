@@ -1,5 +1,5 @@
 /**
- * /api/circle/tag/{tag}のtagのパス一覧
+ * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const TagSlugProperty = {
   sport: 'sport',
@@ -64,17 +64,17 @@ export type TagSlugProperty =
   typeof TagSlugProperty[keyof typeof TagSlugProperty]
 
 /**
- * /api/circle/tag/{tag}のtagのパス一覧
+ * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const getAllTagSlugProperty = (): TagSlugProperty[] =>
   Object.values(TagSlugProperty)
 /**
- * /api/circle/tag/{tag}のtagのパス一覧
+ * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const getAllTagSlugPropertyKey = (): TagSlugPropertyKey[] =>
   Object.keys(TagSlugProperty) as TagSlugPropertyKey[]
 /**
- * /api/circle/tag/{tag}のtagのパス一覧
+ * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const isTagSlugProperty = (s: any): s is TagSlugProperty =>
   Object.values(TagSlugProperty).includes(s)

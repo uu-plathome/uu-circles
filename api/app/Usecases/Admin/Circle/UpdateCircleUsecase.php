@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\Circle;
 
 use App\Enum\Property\CircleInformationProperty;
 use App\Enum\Role;

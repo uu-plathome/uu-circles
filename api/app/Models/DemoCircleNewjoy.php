@@ -18,6 +18,7 @@ class DemoCircleNewjoy extends Model
         P::url,
         P::place_of_activity,
         P::place_of_activity_detail,
+        P::demo_circle_newjoy_type,
         P::start_date,
         P::end_date,
         P::published,

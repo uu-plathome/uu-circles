@@ -263,6 +263,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property bool                            $is_main_fixed メイン画面に固定するかどうか
      * @property bool                            $is_demo_fixed デモで表示するか
+     * @property int                             $demo_priority デモの表示順
      * @property-read \App\Models\CircleHandbill|null $circleHandbill
      * @property-read \App\Models\CircleInformation|null $circleInformation
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleInvitation[] $circleInvitation
@@ -272,11 +273,14 @@ namespace App\Models{
      * @property-read \App\Models\CircleTag|null $circleTag
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleUser[] $circleUsers
      * @property-read int|null $circle_users_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\DemoCircleNewjoy[] $demoCircleNewJoys
+     * @property-read int|null $demo_circle_new_joys_count
      *
      * @method static \Illuminate\Database\Eloquent\Builder|Circle newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Circle newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Circle query()
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Circle whereDemoPriority($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsDemoFixed($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsMainFixed($value)
