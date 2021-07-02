@@ -28,6 +28,7 @@ class DemoCircleNewJoyDto
         $dto->id = $demoCircleNewJoy->id;
         $dto->circle_id = $demoCircleNewJoy->circle_id;
         $dto->title = $demoCircleNewJoy->title;
+        $dto->description = $demoCircleNewJoy->description;
         $dto->url = $demoCircleNewJoy->url;
         $dto->place_of_activity = $demoCircleNewJoy->place_of_activity;
         $dto->place_of_activity_detail = $demoCircleNewJoy->place_of_activity_detail;

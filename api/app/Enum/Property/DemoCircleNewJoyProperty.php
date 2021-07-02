@@ -14,6 +14,7 @@ class DemoCircleNewJoyProperty
     const url = 'url';
     const place_of_activity = 'place_of_activity';
     const place_of_activity_detail = 'place_of_activity_detail';
+    const demo_circle_newjoy_type = 'demo_circle_newjoy_type';
     const start_date = 'start_date';
     const end_date = 'end_date';
     const published = 'published';

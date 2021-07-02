@@ -34,6 +34,7 @@ final class CreateDemoCircleNewJoyUsecase
             Property::url                      => $param->url,
             Property::place_of_activity        => $param->place_of_activity,
             Property::place_of_activity_detail => $param->place_of_activity_detail,
+            Property::demo_circle_newjoy_type  => $param->demo_circle_newjoy_type,
             Property::start_date               => $param->start_date,
             Property::end_date                 => $param->end_date,
             Property::published                => $param->published,

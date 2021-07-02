@@ -8,6 +8,7 @@ use App\Enum\AnnouncementType;
 use App\Enum\CircleTagModel;
 use App\Enum\CircleType;
 use App\Enum\DateOfActivity;
+use App\Enum\DemoCircleNewjoyType;
 use App\Enum\Importance;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Role;
@@ -66,6 +67,7 @@ class MakeEnumForTs extends Command
             CategorySlugProperty::class,
             CircleType::class,
             CircleTagModel::class,
+            DemoCircleNewjoyType::class,
             DateOfActivity::class,
             Importance::class,
             PlaceOfActivity::class,
