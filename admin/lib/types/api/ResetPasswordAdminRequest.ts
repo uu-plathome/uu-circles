@@ -21,5 +21,10 @@ export interface ResetPasswordAdminRequestValidationError {
   message: string
 }
 
-export const isResetPasswordAdminRequest = (v: any): v is ResetPasswordAdminRequest => v && v.type === 'ResetPasswordAdminRequest'
-export const isResetPasswordAdminRequestValidationError = (v: any): v is ResetPasswordAdminRequestValidationError => v && v.type === 'ResetPasswordAdminRequestValidationError'
+export const isResetPasswordAdminRequest = (
+  v: any
+): v is ResetPasswordAdminRequest => v && v.type === 'ResetPasswordAdminRequest'
+export const isResetPasswordAdminRequestValidationError = (
+  v: any
+): v is ResetPasswordAdminRequestValidationError =>
+  v && v.type === 'ResetPasswordAdminRequestValidationError'

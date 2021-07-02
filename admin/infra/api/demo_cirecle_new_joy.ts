@@ -1,5 +1,11 @@
-import { RegisterDemoCircleNewJoyRequest, RegisterDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/RegisterDemoCircleNewJoyRequest'
-import { UpdateDemoCircleNewJoyRequest, UpdateDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/UpdateDemoCircleNewJoyRequest'
+import {
+  RegisterDemoCircleNewJoyRequest,
+  RegisterDemoCircleNewJoyRequestValidationError,
+} from '@/lib/types/api/RegisterDemoCircleNewJoyRequest'
+import {
+  UpdateDemoCircleNewJoyRequest,
+  UpdateDemoCircleNewJoyRequestValidationError,
+} from '@/lib/types/api/UpdateDemoCircleNewJoyRequest'
 import { DemoCircleNewJoy } from '@/lib/types/model/DemoCircleNewJoy'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
@@ -70,9 +76,7 @@ export const getDemoCircleNewJoyList = async () => {
   }
 }
 
-export const getDemoCircleNewJoy = async (
-  demoCircleNewJoyId: number
-) => {
+export const getDemoCircleNewJoy = async (demoCircleNewJoyId: number) => {
   const { data } = await axiosInstance.get<{
     demoCircleNewJoy: {
       circleId: number
@@ -82,6 +86,6 @@ export const getDemoCircleNewJoy = async (
   }>(`/admin/api/circle/demo/newjoy/${demoCircleNewJoyId}`)
 
   return {
-    demoCircleNewJoy: data.demoCircleNewJoy
+    demoCircleNewJoy: data.demoCircleNewJoy,
   }
 }
