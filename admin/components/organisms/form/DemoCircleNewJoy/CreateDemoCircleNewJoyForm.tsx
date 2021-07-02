@@ -6,6 +6,7 @@ import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
+import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { FC, FormEvent } from 'react'
 
@@ -22,6 +23,7 @@ type Props = {
     description: UseStringInput
     placeOfActivity: UseStringInput
     placeOfActivityDetail: UseStringInput
+    demoCircleNewjoyType: UseStringInput
     startDate: UseDateInput
     endDate: UseDateInput
   }
@@ -138,6 +140,28 @@ const CreateDemoCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
             { value: 'false', label: '非公開' },
           ]}
           {...form.published}
+        />
+
+        <BaseSelect
+          required
+          label="デモ新歓タイプ"
+          id="demoCircleNewjoyType"
+          name="demoCircleNewjoyType"
+          items={[
+            {
+              value: DemoCircleNewjoyType.FUTURE,
+              label: __(DemoCircleNewjoyType.FUTURE),
+            },
+            {
+              value: DemoCircleNewjoyType.NOW,
+              label: __(DemoCircleNewjoyType.NOW),
+            },
+            {
+              value: DemoCircleNewjoyType.TODAY,
+              label: __(DemoCircleNewjoyType.TODAY),
+            },
+          ]}
+          {...form.demoCircleNewjoyType}
         />
       </div>
 

@@ -6,6 +6,7 @@ import { CreateDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCirc
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
+import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { isRegisterDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/RegisterDemoCircleNewJoyRequest'
 import { NextPage } from 'next'
@@ -23,6 +24,7 @@ const CreatePage: NextPage = () => {
   const url = useStringInput('')
   const placeOfActivity = useStringInput(PlaceOfActivity.DISCORD)
   const placeOfActivityDetail = useStringInput('')
+  const demoCircleNewjoyType = useStringInput(DemoCircleNewjoyType.FUTURE)
   const startDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const endDate = useDateInput(null, 'YYYY/MM/DD HH:mm', 'YYYY-MM-DD HH:mm')
   const published = useBooleanInput(true)
@@ -38,6 +40,7 @@ const CreatePage: NextPage = () => {
       url: url.value,
       placeOfActivity: placeOfActivity.value,
       placeOfActivityDetail: placeOfActivityDetail.value,
+      demoCircleNewjoyType: demoCircleNewjoyType.value,
       startDate: startDate.toFormatApi,
       endDate: endDate.toFormatApi,
       published: published.toBoolean,
@@ -86,6 +89,7 @@ const CreatePage: NextPage = () => {
                 url,
                 placeOfActivity,
                 placeOfActivityDetail,
+                demoCircleNewjoyType,
                 startDate,
                 endDate,
                 published,

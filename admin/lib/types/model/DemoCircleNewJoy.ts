@@ -7,6 +7,7 @@ export interface DemoCircleNewJoy {
   url: string
   placeOfActivity: string
   placeOfActivityDetail: string
+  demoCircleNewJoyType: string
   startDate: string
   endDate: string
   published: boolean
