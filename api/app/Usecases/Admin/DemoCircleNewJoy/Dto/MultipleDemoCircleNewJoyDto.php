@@ -4,6 +4,7 @@ namespace App\Usecases\Admin\DemoCircleNewJoy\Dto;
 
 use App\Models\DemoCircleNewjoy;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 
 final class MultipleDemoCircleNewJoyDto
 {
@@ -33,6 +34,8 @@ final class MultipleDemoCircleNewJoyDto
 
     public function toArray(): array
     {
-        return [];
+        return (new SupportCollection($this->demoCircles))->map(
+            fn (DemoCircleDto $demoCircleDto) => $demoCircleDto->toArray()
+        )->toArray();
     }
 }

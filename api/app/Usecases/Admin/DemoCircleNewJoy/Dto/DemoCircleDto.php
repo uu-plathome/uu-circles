@@ -26,6 +26,10 @@ final class DemoCircleDto
 
     public function toArray(): array
     {
-        return [];
+        return [
+            'circle_id'           => $this->circle_id,
+            'name'                => $this->name,
+            'demo_circle_new_joy' => $this->demoCircleNewJoy->toArray(),
+        ];
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 
 final class DemoCircleNewJoyDto
 {
-    public int $demo_circle_newjoy_id;
+    public int $demo_circle_new_joy_id;
     public int $circle_id;
     public string $title;
     public ?string $description;
@@ -24,7 +24,7 @@ final class DemoCircleNewJoyDto
     {
         $dto = new self();
 
-        $dto->demo_circle_newjoy_id = $circleNewJoy->id;
+        $dto->demo_circle_new_joy_id = $circleNewJoy->id;
         $dto->circle_id = $circleNewJoy->circle_id;
         $dto->title = $circleNewJoy->title;
         $dto->description = $circleNewJoy->description;
@@ -39,9 +39,22 @@ final class DemoCircleNewJoyDto
 
         return $dto;
     }
-    
+
     public function toArray(): array
     {
-        return [];
+        return [
+            'demo_circle_new_joy_id'     => $this->demo_circle_new_joy_id,
+            'circle_id'                  => $this->circle_id,
+            'title'                      => $this->title,
+            'description'                => $this->description,
+            'url'                        => $this->url,
+            'place_of_activity'          => $this->place_of_activity,
+            'place_of_activity_detail'   => $this->place_of_activity_detail,
+            'start_date'                 => $this->start_date,
+            'end_date'                   => $this->end_date,
+            'published'                  => $this->published,
+            'created_at'                 => $this->created_at,
+            'updated_at'                 => $this->updated_at,
+        ];
     }
 }
