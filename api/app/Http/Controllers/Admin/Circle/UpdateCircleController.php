@@ -30,9 +30,11 @@ final class UpdateCircleController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleFormRequest $request
-     * @param int $circleId
-     * @return array
+     * @param int                     $circleId
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(UpdateCircleFormRequest $request, int $circleId)
     {
@@ -53,7 +55,5 @@ final class UpdateCircleController extends Controller
             $request->makeCircleValueObject(),
             $role
         );
-
-        return;
     }
 }

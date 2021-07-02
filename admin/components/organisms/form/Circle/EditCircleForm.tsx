@@ -2,7 +2,11 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
-import { UseBooleanInput, UseNumberInput, UseStringInput } from '@/hooks/useInput'
+import {
+  UseBooleanInput,
+  UseNumberInput,
+  UseStringInput,
+} from '@/hooks/useInput'
 import { isSystem, Role } from '@/lib/enum/api/Role'
 import {
   faFacebook,
@@ -71,7 +75,7 @@ type Props = {
     wpTagTaxonomy: UseStringInput
     isViewWpPost: UseBooleanInput
   } & NameEditCircleFormProps['form'] &
-  CommonInfoEditCircleFormProps['form']
+    CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({
   onDropMainImage,

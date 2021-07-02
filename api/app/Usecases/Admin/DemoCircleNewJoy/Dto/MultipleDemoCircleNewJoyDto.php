@@ -15,6 +15,7 @@ final class MultipleDemoCircleNewJoyDto
 
     /**
      * @param Collection $collection
+     *
      * @return static
      */
     public static function byEloquent(

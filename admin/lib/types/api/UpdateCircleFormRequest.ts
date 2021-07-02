@@ -133,5 +133,10 @@ export interface UpdateCircleFormRequestValidationError {
   message: string
 }
 
-export const isUpdateCircleFormRequest = (v: any): v is UpdateCircleFormRequest => v && v.type === 'UpdateCircleFormRequest'
-export const isUpdateCircleFormRequestValidationError = (v: any): v is UpdateCircleFormRequestValidationError => v && v.type === 'UpdateCircleFormRequestValidationError'
+export const isUpdateCircleFormRequest = (
+  v: any
+): v is UpdateCircleFormRequest => v && v.type === 'UpdateCircleFormRequest'
+export const isUpdateCircleFormRequestValidationError = (
+  v: any
+): v is UpdateCircleFormRequestValidationError =>
+  v && v.type === 'UpdateCircleFormRequestValidationError'
