@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Circle;
 use App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Admin\CircleTag;
 use App\Http\Controllers\Admin\CircleUser;
+use App\Http\Controllers\Admin\DemoCircleNewJoy;
 use App\Http\Controllers\Admin\Storage;
 
 Route::middleware('throttle:60,1')->group(function () {
@@ -108,6 +109,30 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::post('/circle/{circleId}/newjoy/{circleNewJoyId}/copy', CircleNewJoy\CopyCircleNewJoyController::class)
         ->where('circleId', '[0-9]+')
         ->where('circleNewJoyId', '[0-9]+');
+
+    // DemoCircleNewJoy デモサークル新歓管理
+    Route::get('/circle/{circleId}/demo/newjoy', DemoCircleNewJoy\IndexCircleNewJoyController::class)
+        ->where('circleId', '[0-9]+');
+    Route::post('/circle/{circleId}/demo/newjoy', DemoCircleNewJoy\RegisterDemoCircleNewJoyController::class)
+        ->where('circleId', '[0-9]+');
+    Route::get(
+        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
+        DemoCircleNewJoy\ShowDemoCircleNewJoyController::class
+    )
+        ->where('circleId', '[0-9]+')
+        ->where('demoCircleNewJoyId', '[0-9]+');
+    Route::put(
+        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
+        DemoCircleNewJoy\UpdateDemoCircleNewJoyController::class
+    )
+        ->where('circleId', '[0-9]+')
+        ->where('demoCircleNewJoyId', '[0-9]+');
+    Route::delete(
+        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
+        DemoCircleNewJoy\DeleteDemoCircleNewJoyController::class
+    )
+        ->where('circleId', '[0-9]+')
+        ->where('demoCircleNewJoyId', '[0-9]+');
 
     // CircleTag サークルタグ管理
     Route::get('/circle/{circleId}/tag', CircleTag\GetCircleTagController::class);
