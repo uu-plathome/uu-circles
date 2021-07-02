@@ -8,6 +8,7 @@ export interface RegisterDemoCircleNewJoyRequest {
   url?: string
   placeOfActivity: string
   placeOfActivityDetail?: string
+  demoCircleNewjoyType: string
   startDate: any
   endDate?: any
   published?: boolean
@@ -24,6 +25,7 @@ export interface RegisterDemoCircleNewJoyRequestValidationError {
     url?: string[]
     placeOfActivity?: string[]
     placeOfActivityDetail?: string[]
+    demoCircleNewjoyType?: string[]
     startDate?: string[]
     endDate?: string[]
     published?: string[]

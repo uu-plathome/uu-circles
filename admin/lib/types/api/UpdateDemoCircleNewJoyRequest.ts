@@ -6,6 +6,7 @@ export interface UpdateDemoCircleNewJoyRequest {
   title: string
   description?: string
   url?: string
+  demoCircleNewjoyType: string
   placeOfActivity: string
   placeOfActivityDetail?: string
   startDate: any
@@ -22,6 +23,7 @@ export interface UpdateDemoCircleNewJoyRequestValidationError {
     title?: string[]
     description?: string[]
     url?: string[]
+    demoCircleNewjoyType?: string[]
     placeOfActivity?: string[]
     placeOfActivityDetail?: string[]
     startDate?: string[]
