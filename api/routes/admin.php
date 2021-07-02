@@ -111,27 +111,18 @@ Route::middleware('auth:adminUser')->group(function () {
         ->where('circleNewJoyId', '[0-9]+');
 
     // DemoCircleNewJoy デモサークル新歓管理
-    Route::get('/circle/{circleId}/demo/newjoy', DemoCircleNewJoy\IndexCircleNewJoyController::class)
-        ->where('circleId', '[0-9]+');
+    Route::get('/circle/demo/newjoy', DemoCircleNewJoy\IndexDemoCircleNewJoyController::class);
     Route::post('/circle/{circleId}/demo/newjoy', DemoCircleNewJoy\RegisterDemoCircleNewJoyController::class)
         ->where('circleId', '[0-9]+');
     Route::get(
-        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
+        '/circle/demo/newjoy/{demoCircleNewJoyId}',
         DemoCircleNewJoy\ShowDemoCircleNewJoyController::class
     )
-        ->where('circleId', '[0-9]+')
         ->where('demoCircleNewJoyId', '[0-9]+');
     Route::put(
-        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
+        '/circle/demo/newjoy/{demoCircleNewJoyId}',
         DemoCircleNewJoy\UpdateDemoCircleNewJoyController::class
     )
-        ->where('circleId', '[0-9]+')
-        ->where('demoCircleNewJoyId', '[0-9]+');
-    Route::delete(
-        '/circle/{circleId}/demo/newjoy/{demoCircleNewJoyId}',
-        DemoCircleNewJoy\DeleteDemoCircleNewJoyController::class
-    )
-        ->where('circleId', '[0-9]+')
         ->where('demoCircleNewJoyId', '[0-9]+');
 
     // CircleTag サークルタグ管理
