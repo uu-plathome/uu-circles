@@ -93,12 +93,12 @@ Route::middleware('auth:adminUser')->group(function () {
     // CircleNewJoy サークル新歓管理
     Route::get('/circle/{circleId}/newjoy', CircleNewJoy\IndexCircleNewJoyController::class)
         ->where('circleId', '[0-9]+');
-    Route::post('/circle/{circleId}/newjoy', CircleNewJoy\RegisterCircleNewJoyController::class)
+    Route::post('/circle/{circleId}/newjoy', CircleNewJoy\RegisterDemoCircleNewJoyController::class)
         ->where('circleId', '[0-9]+');
     Route::get('/circle/{circleId}/newjoy/{circleNewJoyId}', CircleNewJoy\ShowCircleNewJoyController::class)
         ->where('circleId', '[0-9]+')
         ->where('circleNewJoyId', '[0-9]+');
-    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', CircleNewJoy\UpdateCircleNewJoyController::class)
+    Route::put('/circle/{circleId}/newjoy/{circleNewJoyId}', CircleNewJoy\UpdateDemoCircleNewJoyController::class)
         ->where('circleId', '[0-9]+')
         ->where('circleNewJoyId', '[0-9]+');
     Route::delete('/circle/{circleId}/newjoy/{circleNewJoyId}', CircleNewJoy\DeleteCircleNewJoyController::class)

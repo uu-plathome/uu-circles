@@ -61,6 +61,16 @@ class Circle extends Model
     }
 
     /**
+     * デモ新歓を取得する.
+     *
+     * @return HasMany
+     */
+    public function demoCircleNewJoys(): HasMany
+    {
+        return $this->hasMany(DemoCircleNewjoy::class);
+    }
+
+    /**
      * 新歓ビラ.
      *
      * @return HasOne
