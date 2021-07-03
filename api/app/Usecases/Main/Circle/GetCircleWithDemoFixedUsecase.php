@@ -41,7 +41,7 @@ final class GetCircleWithDemoFixedUsecase
             ->take($limit)
             ->get();
 
-        $circles = $foundCircles->unique(CircleProperty::id)
+        $circles = $foundCircles
             ->sortByDesc(CircleProperty::demo_priority)
             ->values();
 
