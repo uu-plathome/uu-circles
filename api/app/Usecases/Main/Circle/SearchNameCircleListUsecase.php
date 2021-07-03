@@ -33,6 +33,7 @@ final class SearchNameCircleListUsecase
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([

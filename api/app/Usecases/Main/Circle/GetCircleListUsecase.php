@@ -21,12 +21,13 @@ final class GetCircleListUsecase
      */
     public function invoke(): MainSimpleCircleListDto
     {
-        Log::debug('#GetCircleListUsecase args: none');
+        Log::debug('GetCircleListUsecase args: none');
 
         $circles = Circle::with([
             'circleInformation:circle_id',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([

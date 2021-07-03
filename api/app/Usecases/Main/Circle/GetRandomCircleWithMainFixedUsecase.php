@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Log;
 final class GetRandomCircleWithMainFixedUsecase
 {
     /**
-     * Undocumented function.
+     * メイン画面に固定するサークルをランダムに取得
+     * デモのサークルは取得しない
      *
      * @param int $limit
      *
@@ -29,6 +30,7 @@ final class GetRandomCircleWithMainFixedUsecase
             'circleHandbill:circle_id,image_url',
         ])
             ->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             ->whereIsMainFixed(true)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
