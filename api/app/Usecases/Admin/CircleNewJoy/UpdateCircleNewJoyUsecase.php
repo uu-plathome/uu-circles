@@ -16,8 +16,10 @@ final class UpdateCircleNewJoyUsecase
      * 新規新歓を更新する.
      *
      * @param UpdateCircleNewJoyUsecaseParam $param
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         UpdateCircleNewJoyUsecaseParam $param
@@ -27,6 +29,7 @@ final class UpdateCircleNewJoyUsecase
         $circleNewJoyId = $param->circle_new_joy_id;
 
         DB::beginTransaction();
+
         try {
             CircleNewJoy::whereCircleId($circleId)
                 ->whereId($circleNewJoyId)

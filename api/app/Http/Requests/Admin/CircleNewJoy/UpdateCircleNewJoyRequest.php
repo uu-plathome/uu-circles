@@ -6,7 +6,6 @@ use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
 use App\Usecases\Admin\CircleNewJoy\Params\UpdateCircleNewJoyUsecaseParam;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
