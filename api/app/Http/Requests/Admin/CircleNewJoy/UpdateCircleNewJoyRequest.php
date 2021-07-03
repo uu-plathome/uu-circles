@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin\CircleNewJoy;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
+use App\Usecases\Admin\CircleNewJoy\Params\UpdateCircleNewJoyUsecaseParam;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -63,23 +64,27 @@ class UpdateCircleNewJoyRequest extends FormRequest
         ]);
     }
 
-    public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
+    public function makeUpdateCircleNewJoyUsecaseParam(): UpdateCircleNewJoyUsecaseParam
     {
         $request = Arr::snake_keys($this->validated());
 
-        return CircleNewJoyValueObject::of([
-            CircleNewJoyProperty::circle_id                => $this->id,
-            CircleNewJoyProperty::title                    => Arr::get($request, 'title'),
-            CircleNewJoyProperty::description              => Arr::get($request, 'description'),
-            CircleNewJoyProperty::url                      => Arr::get($request, 'url'),
-            CircleNewJoyProperty::private_newjoy_link      => Arr::get($request, CircleNewJoyProperty::private_newjoy_link),
-            CircleNewJoyProperty::place_of_activity        => Arr::get($request, 'place_of_activity'),
-            CircleNewJoyProperty::place_of_activity_detail => Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
-                ? Arr::get($request, 'place_of_activity_detail') : '',
-            CircleNewJoyProperty::publish_from             => Arr::get($request, 'publish_from'),
-            CircleNewJoyProperty::start_date               => Arr::get($request, 'start_date'),
-            CircleNewJoyProperty::end_date                 => Arr::get($request, 'end_date'),
-            CircleNewJoyProperty::release                  => Arr::get($request, 'release'),
-        ]);
+        $param = new UpdateCircleNewJoyUsecaseParam();
+        $param->circle_id = $this->circleId;
+        $param->title = Arr::get($request, 'title');
+        $param->description = Arr::get($request, 'description');
+        $param->url = Arr::get($request, 'url');
+        $param->private_newjoy_link = Arr::get($request, CircleNewJoyProperty::private_newjoy_link);
+        $param->place_of_activity = Arr::get($request, 'place_of_activity');
+        $param->place_of_activity_detail =
+            Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
+                ? Arr::get($request, 'place_of_activity_detail') : '';
+        $param->publish_from = Arr::get($request, 'publish_from')
+            ? new Carbon(Arr::get($request, 'publish_from'))
+            : null;
+        $param->start_date = Arr::get($request, 'start_date') ? new Carbon(Arr::get($request, 'start_date')) : null;
+        $param->end_date = Arr::get($request, 'end_date') ? new Carbon(Arr::get($request, 'end_date')) : null;
+        $param->release = Arr::get($request, 'release');
+
+        return $param;
     }
 }

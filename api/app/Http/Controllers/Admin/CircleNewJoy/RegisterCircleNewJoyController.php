@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
-use App\Usecases\Admin\CreateCircleNewJoyUsecase;
+use App\Support\Arr;
+use App\Usecases\Admin\CircleNewJoy\CreateCircleNewJoyUsecase;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 final class RegisterCircleNewJoyController extends Controller
@@ -32,7 +32,11 @@ final class RegisterCircleNewJoyController extends Controller
      */
     public function __invoke(RegisterCircleNewJoyRequest $request, int $circleId)
     {
-        $circleNewJoyValueObject = $request->makeCircleNewJoyValueObject();
-        $this->createCircleNewJoyUsecase->invoke($circleId, $circleNewJoyValueObject);
+        $param = $request->makeCreateCircleNewJoyUsecaseParam();
+        $this->createCircleNewJoyUsecase->invoke($param);
+
+        return [
+            'data' => Arr::camel_keys([]),
+        ];
     }
 }

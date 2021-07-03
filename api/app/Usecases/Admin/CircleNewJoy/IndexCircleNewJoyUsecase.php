@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
 use App\ValueObjects\CircleNewJoyValueObject;
