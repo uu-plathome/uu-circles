@@ -15,6 +15,7 @@ class Circle extends Model
         P::slug,
         P::release,
         P::is_main_fixed,
+        P::is_only_demo,
         P::is_demo_fixed,
         P::demo_priority,
     ];
@@ -22,6 +23,7 @@ class Circle extends Model
     protected $casts = [
         P::release       => 'boolean',
         P::is_main_fixed => 'boolean',
+        P::is_only_demo  => 'boolean',
         P::is_demo_fixed => 'boolean',
     ];
 
