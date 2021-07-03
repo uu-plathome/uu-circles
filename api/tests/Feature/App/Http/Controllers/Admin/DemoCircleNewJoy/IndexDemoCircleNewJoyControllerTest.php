@@ -38,7 +38,7 @@ class IndexDemoCircleNewJoyControllerTest extends TestCase
 
         // WHEN
         $response = $this->getJson(
-            "/admin/api/circle/demo/newjoy",
+            '/admin/api/circle/demo/newjoy',
             [
                 'Authorization' => 'Bearer test1234',
             ]

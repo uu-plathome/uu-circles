@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 final class GetCircleWithDemoFixedUsecase
 {
     /**
-     * デモサークルを含むサークル一覧を取得
+     * デモサークルを含むサークル一覧を取得.
      *
      * @param int $limit
      *
