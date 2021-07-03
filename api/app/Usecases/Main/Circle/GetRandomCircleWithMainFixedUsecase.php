@@ -14,7 +14,7 @@ final class GetRandomCircleWithMainFixedUsecase
 {
     /**
      * メイン画面に固定するサークルをランダムに取得
-     * デモのサークルは取得しない
+     * デモのサークルは取得しない.
      *
      * @param int $limit
      *
