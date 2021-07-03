@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Admin\DemoCircleNewJoy;
 
-use App\Models\DemoCircleNewJoy;
+use App\Models\DemoCircleNewjoy;
 use App\Usecases\Admin\DemoCircleNewJoy\Dto\MultipleDemoCircleNewJoyDto;
 use Illuminate\Support\Facades\Log;
 
@@ -19,7 +19,7 @@ final class IndexDemoCircleNewJoyUsecase
     {
         Log::debug('IndexDemoCircleNewJoyUsecase args none');
 
-        $demoCircleNewJoys = DemoCircleNewJoy::with('circle')
+        $demoCircleNewJoys = DemoCircleNewjoy::with('circle')
             ->get();
 
         return MultipleDemoCircleNewJoyDto::byEloquent($demoCircleNewJoys);
