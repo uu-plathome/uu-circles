@@ -41,7 +41,7 @@ final class IndexAllUserController extends Controller
         $param->id = $requestId;
         $param->updated_at = $requestUpdatedAt;
         $param->previous = $requestPrevious;
-        $param->next = $requestNext;
+        $param->next = (bool) $requestNext;
         $param->search = $requestSearch;
         if ($param->previous === $param->next) {
             $param->previous = !$param->previous;
