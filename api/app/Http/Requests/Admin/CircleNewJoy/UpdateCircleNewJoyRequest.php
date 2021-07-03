@@ -8,6 +8,7 @@ use App\Support\Arr;
 use App\Usecases\Admin\CircleNewJoy\Params\UpdateCircleNewJoyUsecaseParam;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -70,10 +71,11 @@ class UpdateCircleNewJoyRequest extends FormRequest
 
         $param = new UpdateCircleNewJoyUsecaseParam();
         $param->circle_id = $this->circleId;
+        $param->circle_new_joy_id = $this->circleNewJoyId;
         $param->title = Arr::get($request, 'title');
         $param->description = Arr::get($request, 'description');
         $param->url = Arr::get($request, 'url');
-        $param->private_newjoy_link = Arr::get($request, CircleNewJoyProperty::private_newjoy_link);
+        $param->private_newjoy_url = Arr::get($request, CircleNewJoyProperty::private_newjoy_link);
         $param->place_of_activity = Arr::get($request, 'place_of_activity');
         $param->place_of_activity_detail =
             Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
