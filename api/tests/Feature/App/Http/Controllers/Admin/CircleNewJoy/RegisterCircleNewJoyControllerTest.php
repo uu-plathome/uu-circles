@@ -51,8 +51,8 @@ class RegisterCircleNewJoyControllerTest extends TestCase
 
         // WHEN
         $response = $this->postJson(
-            "/admin/api/circle/$circle->id/newjoy", 
-            $postData, 
+            "/admin/api/circle/$circle->id/newjoy",
+            $postData,
             [
                 'Authorization' => 'Bearer test1234',
             ]

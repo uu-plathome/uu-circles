@@ -17,8 +17,10 @@ final class CreateCircleNewJoyUsecase
      * 新規新歓を追加する.
      *
      * @param CreateCircleNewJoyUsecaseParam $param
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(CreateCircleNewJoyUsecaseParam $param)
     {
@@ -29,6 +31,7 @@ final class CreateCircleNewJoyUsecase
         $insertDataForCircleNewJoy = $this->insertData($param);
 
         DB::beginTransaction();
+
         try {
             $circle = Circle::findOrFail($param->circle_id);
             $circle->circleNewJoys()->create($insertDataForCircleNewJoy);
