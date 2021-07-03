@@ -7,8 +7,7 @@ namespace App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
-use App\Usecases\Admin\UpdateCircleNewJoyUsecase;
-use Illuminate\Http\Request;
+use App\Usecases\Admin\CircleNewJoy\UpdateCircleNewJoyUsecase;
 
 final class UpdateCircleNewJoyController extends Controller
 {
@@ -35,13 +34,9 @@ final class UpdateCircleNewJoyController extends Controller
         int $circleId,
         int $circleNewJoyId
     ): array {
-        $circleNewJoy = $request->makeCircleNewJoyValueObject();
+        $param = $request->makeUpdateCircleNewJoyUsecaseParam();
 
-        $this->updateCircleNewJoyUsecase->invoke(
-            $circleId,
-            $circleNewJoyId,
-            $circleNewJoy
-        );
+        $this->updateCircleNewJoyUsecase->invoke($param);
 
         return [
             'data' => Arr::camel_keys([]),
