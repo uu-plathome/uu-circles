@@ -210,7 +210,7 @@ const Page: NextPage<Props> = ({
                 ''
               )}
 
-              <div className="order-3 md:order-4 pt-10">
+              <div className="order-4 md:order-4 pt-10">
                 <div>
                   {circleNewJoys && circleNewJoys.length > 0 ? (
                     <div>
@@ -240,7 +240,7 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="order-4 md:order-3 pt-10">
+              <div className="order-3 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 
