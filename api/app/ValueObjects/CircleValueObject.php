@@ -16,8 +16,8 @@ class CircleValueObject
     public bool $release;
     public string $name;
     public bool $is_main_fixed;
-    public bool $is_demo_fixed;
-    public ?int $demo_priority;
+    public bool $is_demo_fixed = false;
+    public int $demo_priority = 0;
     public ?string $circle_type;
     public ?string $name_kana;
     public ?string $short_name;
@@ -88,8 +88,8 @@ class CircleValueObject
         $circleValueObject->release = $circle->release;
         $circleValueObject->name = $circle->name;
         $circleValueObject->is_main_fixed = (bool) $circle->is_main_fixed;
-        $circleValueObject->is_demo_fixed = $circle->is_demo_fixed;
-        $circleValueObject->demo_priority = $circle->demo_priority;
+        $circleValueObject->is_demo_fixed = (bool) $circle->is_demo_fixed;
+        $circleValueObject->demo_priority = is_integer($circle->demo_priority) ? $circle->demo_priority : 0;
 
         $circleValueObject->circle_type = $circleInformation ? $circleInformation->circle_type : null;
         $circleValueObject->name_kana = $circleInformation ? $circleInformation->name_kana : null;
