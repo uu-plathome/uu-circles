@@ -6,7 +6,10 @@ type Props = {
   circleNewJoys: TodayCircleNewJoy[]
   isDemo?: boolean
 }
-const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys, isDemo }) => {
+const IndexCircleNewJoyListForNoSlug: FC<Props> = ({
+  circleNewJoys,
+  isDemo,
+}) => {
   return (
     <div className="bg-gray-100">
       <div className="flex justify-center flex-wrap">

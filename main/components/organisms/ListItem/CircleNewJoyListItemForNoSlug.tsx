@@ -95,8 +95,16 @@ const PcLayout: FC<{
         style={{ paddingTop: '50px' }}
       >
         <Link
-          href={isDemo ? "/circle/[slug]/newjoy/demo/[circleNewJoy.id]" : "/circle/[slug]/newjoy/[circleNewJoy.id]"}
-          as={isDemo ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`  : `/circle/${slug}/newjoy/${circleNewJoy.id}`}
+          href={
+            isDemo
+              ? '/circle/[slug]/newjoy/demo/[circleNewJoy.id]'
+              : '/circle/[slug]/newjoy/[circleNewJoy.id]'
+          }
+          as={
+            isDemo
+              ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`
+              : `/circle/${slug}/newjoy/${circleNewJoy.id}`
+          }
           prefetch={false}
         >
           <a className="text-blue-600 border-b border-blue-600 text-xs w-20 ">
@@ -156,8 +164,16 @@ const SpLayout: FC<{
   return (
     // スマホレイアウト
     <Link
-      href={isDemo ? "/circle/[slug]/newjoy/demo/[circleNewJoy.id]" : "/circle/[slug]/newjoy/[circleNewJoy.id]"}
-      as={isDemo ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`  : `/circle/${slug}/newjoy/${circleNewJoy.id}`}
+      href={
+        isDemo
+          ? '/circle/[slug]/newjoy/demo/[circleNewJoy.id]'
+          : '/circle/[slug]/newjoy/[circleNewJoy.id]'
+      }
+      as={
+        isDemo
+          ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`
+          : `/circle/${slug}/newjoy/${circleNewJoy.id}`
+      }
       prefetch={false}
     >
       <div
@@ -207,7 +223,10 @@ type Props = {
   todayCircleNewJoy: TodayCircleNewJoy
   isDemo?: boolean
 }
-const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy, isDemo }) => {
+const CircleNewJoyListItemForNoSlug: FC<Props> = ({
+  todayCircleNewJoy,
+  isDemo,
+}) => {
   return (
     <div>
       <div className="hidden md:block">
