@@ -40,7 +40,7 @@ class DemoIndexCircleNewJoyControllerTest extends TestCase
 
         // WHEN
         $response = $this->get(route(ApiRouteProperty::MainDemoCircleNewJoyIndex, [
-            'slug' => $circle->slug
+            'slug' => $circle->slug,
         ]));
 
         // THEN
