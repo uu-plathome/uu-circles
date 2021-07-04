@@ -67,7 +67,7 @@ const Index: NextPage<Props> = ({
                   </div>
 
                   <div className="pt-8 flex">
-                    <div className="md:w-1/3">
+                    <div className="w-1/2 md:w-1/3 pr-4">
                       <BaseSelect
                         label="公開設定"
                         id="release"
@@ -81,7 +81,7 @@ const Index: NextPage<Props> = ({
                       />
                     </div>
 
-                    <div className="md:w-1/3">
+                    <div className="w-1/2 md:w-1/3 px-2">
                       <BaseSelect
                         label="サークル種別"
                         id="circleType"
