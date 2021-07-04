@@ -16,6 +16,7 @@ class CircleValueObject
     public bool $release;
     public string $name;
     public bool $is_main_fixed;
+    public bool $is_only_demo;
     public bool $is_demo_fixed = false;
     public int $demo_priority = 0;
     public ?string $circle_type;
@@ -88,6 +89,7 @@ class CircleValueObject
         $circleValueObject->release = $circle->release;
         $circleValueObject->name = $circle->name;
         $circleValueObject->is_main_fixed = (bool) $circle->is_main_fixed;
+        $circleValueObject->is_only_demo = (bool) $circle->is_only_demo;
         $circleValueObject->is_demo_fixed = (bool) $circle->is_demo_fixed;
         $circleValueObject->demo_priority = is_integer($circle->demo_priority) ? $circle->demo_priority : 0;
 
@@ -247,6 +249,7 @@ class CircleValueObject
             CircleProperty::release                                      => $this->release,
             CircleProperty::name                                         => $this->name,
             CircleProperty::is_main_fixed                                => $this->is_main_fixed,
+            CircleProperty::is_only_demo                                 => $this->is_only_demo,
             CircleProperty::is_demo_fixed                                => $this->is_demo_fixed,
             CircleProperty::demo_priority                                => $this->demo_priority,
             CircleProperty::created_at                                   => $this->created_at,
