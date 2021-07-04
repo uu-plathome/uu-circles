@@ -80,7 +80,7 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
 
         <div className="px-16">
           <p className="text-sm mb-2">
-            アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
+            宇大を生き抜くヒントがここに。
           </p>
         </div>
       </div>
