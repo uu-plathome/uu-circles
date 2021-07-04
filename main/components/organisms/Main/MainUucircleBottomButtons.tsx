@@ -82,13 +82,6 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
           <p className="text-sm mb-2">
             アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
           </p>
-
-          <a
-            href="https://media.uu-circles.com/"
-            className="text-blue-600 hover:underline"
-          >
-            uu-yellを見る
-          </a>
         </div>
       </div>
 
