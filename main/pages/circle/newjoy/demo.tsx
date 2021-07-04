@@ -38,6 +38,7 @@ const Page: NextPage<Props> = ({
         todayCircleNewJoys={todayCircleNewJoys}
         uuYellArticles={uuYellArticles}
         announcements={announcements}
+        isDemo={true}
       />
     </>
   )

@@ -56,7 +56,7 @@ final class DemoShowCircleNewJoyController extends Controller
     {
         Log::debug('DemoShowCircleNewJoyController args', [
             'slug'           => $slug,
-            'circleNewJoyId' => $demoCircleNewJoyId,
+            'demoCircleNewJoyId' => $demoCircleNewJoyId,
         ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);

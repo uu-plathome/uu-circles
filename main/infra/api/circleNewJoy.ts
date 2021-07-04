@@ -132,6 +132,55 @@ export const getCircleNewJoyBySlug = async (
   }
 }
 
+export const getDemoCircleNewJoyBySlug = async (
+  slug: string
+): Promise<{
+  /** サークル */ circle: Circle
+  /** 新歓開催済み */ pastCircleNewJoys: CircleNewJoy[]
+  /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
+  /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
+  /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
+  /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+  /** お知らせ */ announcements: Announcement[]
+}> => {
+  try {
+    type Response = {
+      /** サークル */ circle: Circle
+      /** 新歓開催済み */ pastCircleNewJoys: CircleNewJoy[]
+      /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
+      /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
+      /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
+      /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+      /** お知らせ */ announcements: Announcement[]
+    }
+    const { data } = await axiosInstance.get<Response>(
+      linkConst.CIRCLE_NEW_JOY.LIST_DEMO(slug)
+    )
+
+    return {
+      /** サークル */ circle: data.circle,
+      /** 新歓開催済み */ pastCircleNewJoys: data.pastCircleNewJoys,
+      /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
+      /** 現在開催中 */ nowCircleNewJoys: data.nowCircleNewJoys,
+      /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
+      /** 今日の新歓(全て) */ allTodayCircleNewJoys: data.allTodayCircleNewJoys,
+      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** お知らせ */ announcements: data.announcements,
+    }
+  } catch (_e) {
+    const e = _e as AxiosError
+
+    if (e.response.status === 404) {
+      throw new PageNotFoundError(e.response.status, e.response.statusText)
+    }
+
+    throw new InternalServerError(e.response.status, e.response.statusText)
+  }
+}
+
+
 export const showCircleNewJoyBySlug = async (
   slug: string,
   circleNewJoyId: number
@@ -160,6 +209,58 @@ export const showCircleNewJoyBySlug = async (
     }
     const { data } = await axiosInstance.get<Response>(
       linkConst.CIRCLE_NEW_JOY.SHOW(slug, circleNewJoyId)
+    )
+
+    return {
+      /** サークル */ circle: data.circle,
+      /** 新歓詳細 */ circleNewJoy: data.circleNewJoy,
+      /** 新歓開催済み */ pastCircleNewJoys: data.pastCircleNewJoys,
+      /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
+      /** 現在開催中 */ nowCircleNewJoys: data.nowCircleNewJoys,
+      /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
+      /** 今日の新歓(全て) */ allTodayCircleNewJoys: data.allTodayCircleNewJoys,
+      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+      /** お知らせ */ announcements: data.announcements,
+    }
+  } catch (_e) {
+    const e = _e as AxiosError
+
+    if (e.response.status === 404) {
+      throw new PageNotFoundError(e.response.status, e.response.statusText)
+    }
+
+    throw new InternalServerError(e.response.status, e.response.statusText)
+  }
+}
+
+export const showDemoCircleNewJoyBySlug = async (
+  slug: string,
+  demoCircleNewJoyId: number
+): Promise<{
+  /** サークル */ circle: Circle
+  /** 新歓詳細 */ circleNewJoy: CircleNewJoy
+  /** 新歓開催済み */ pastCircleNewJoys: CircleNewJoy[]
+  /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
+  /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
+  /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
+  /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
+  /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+  /** お知らせ */ announcements: Announcement[]
+}> => {
+  try {
+    type Response = {
+      /** サークル */ circle: Circle
+      /** 新歓詳細 */ circleNewJoy: CircleNewJoy
+      /** 新歓開催済み */ pastCircleNewJoys: CircleNewJoy[]
+      /** 新歓開催前 */ futureCircleNewJoys: CircleNewJoy[]
+      /** 現在開催中 */ nowCircleNewJoys: CircleNewJoy[]
+      /** 今日の新歓 */ todayCircleNewJoys: CircleNewJoy[]
+      /** 今日の新歓(全て) */ allTodayCircleNewJoys: TodayCircleNewJoy[]
+      /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
+      /** お知らせ */ announcements: Announcement[]
+    }
+    const { data } = await axiosInstance.get<Response>(
+      linkConst.CIRCLE_NEW_JOY.SHOW_DEMO(slug, demoCircleNewJoyId)
     )
 
     return {
