@@ -55,7 +55,7 @@ final class DemoShowCircleNewJoyController extends Controller
     public function __invoke(Request $request, string $slug, int $demoCircleNewJoyId)
     {
         Log::debug('DemoShowCircleNewJoyController args', [
-            'slug'           => $slug,
+            'slug'               => $slug,
             'demoCircleNewJoyId' => $demoCircleNewJoyId,
         ]);
 
