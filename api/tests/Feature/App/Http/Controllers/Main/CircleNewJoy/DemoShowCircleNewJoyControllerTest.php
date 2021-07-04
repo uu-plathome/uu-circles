@@ -7,6 +7,7 @@ use App\Enum\PlaceOfActivity;
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Enum\RouteProperty\ApiRouteProperty;
 use App\Models\Circle;
+use App\Models\DemoCircleNewjoy;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
