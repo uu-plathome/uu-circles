@@ -21,12 +21,14 @@ type Props = {
   /** 今日の新歓 */ todayCircleNewJoys?: TodayCircleNewJoy[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
+  isDemo?: boolean
 }
 export const NewjoyTemplate: NextPage<Props> = ({
   futureCircleNewJoys,
   todayCircleNewJoys,
   uuYellArticles,
   announcements,
+  isDemo,
 }) => {
   const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
 
@@ -53,6 +55,7 @@ export const NewjoyTemplate: NextPage<Props> = ({
               {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
                 <IndexCircleNewJoyListForNoSlug
                   circleNewJoys={todayCircleNewJoys}
+                  isDemo={isDemo}
                 />
               ) : (
                 <p className="text-center">今日の新歓はありません</p>
@@ -95,6 +98,7 @@ export const NewjoyTemplate: NextPage<Props> = ({
                 </h2>
                 <IndexCircleNewJoyListForNoSlug
                   circleNewJoys={futureCircleNewJoys}
+                  isDemo={isDemo}
                 />
               </section>
             </div>

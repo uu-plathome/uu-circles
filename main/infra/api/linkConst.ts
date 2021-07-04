@@ -43,7 +43,13 @@ export const linkConst = {
     LIST: (slug: string): `${typeof GROUP}/circle/${string}/newjoy` =>
       `${GROUP}/circle/${slug}/newjoy` as `${typeof GROUP}/circle/${string}/newjoy`,
 
+    LIST_DEMO: (slug: string): `${typeof GROUP}/circle/${string}/newjoy/demo` =>
+      `${GROUP}/circle/${slug}/newjoy/demo` as `${typeof GROUP}/circle/${string}/newjoy/demo`,
+
     SHOW: (slug: string, circleNewJoyId: number) =>
       `${GROUP}/circle/${slug}/newjoy/${circleNewJoyId}`,
+
+    SHOW_DEMO: (slug: string, demoCircleNewJoyId: number) =>
+      `${GROUP}/circle/${slug}/newjoy/demo/${demoCircleNewJoyId}`,
   },
 } as const
