@@ -7,7 +7,6 @@ use App\Enum\PlaceOfActivity;
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Enum\RouteProperty\ApiRouteProperty as ARP;
 use App\Models\Circle;
-use App\Models\CircleNewJoy;
 use App\Models\DemoCircleNewjoy;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -113,7 +112,7 @@ class DemoTodayCircleNewJoyControllerTest extends TestCase
             DemoCircleNewJoyProperty::end_date                => Carbon::now()->addHour(4)->copy()->format('Y-m-d H:i'),
         ];
         $demoCircleNewJoy = DemoCircleNewjoy::create($initialData);
-        
+
         // WHEN
         $response = $this->get(route(ARP::MainCircleNewJoyTodayDemo));
         Log::info('response', [

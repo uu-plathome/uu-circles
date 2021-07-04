@@ -44,15 +44,15 @@ final class IndexDemoCircleNewJoyUsecase
                     fn (DemoCircleNewjoy $circleNewJoy) => DemoCircleNewJoyDto::byEloquent($circleNewJoy)
                 )->toArray(),
             // 新歓開催前
-            'futureCircleNewJoys'               => $mapCircleNewJoys['future']->sortBy('start_date')->map(
+            'futureCircleNewJoys'                   => $mapCircleNewJoys['future']->sortBy('start_date')->map(
                 fn (DemoCircleNewjoy $circleNewJoy) => DemoCircleNewJoyDto::byEloquent($circleNewJoy)
             )->toArray(),
             // 現在開催中
-            'nowCircleNewJoys'                  => $mapCircleNewJoys['now']->sortBy('start_date')->map(
+            'nowCircleNewJoys'                      => $mapCircleNewJoys['now']->sortBy('start_date')->map(
                 fn (DemoCircleNewjoy $circleNewJoy) => DemoCircleNewJoyDto::byEloquent($circleNewJoy)
             )->toArray(),
             // 今日の新歓
-            'todayCircleNewJoys'                => $mapCircleNewJoys['today']->sortBy('start_date')->map(
+            'todayCircleNewJoys'                    => $mapCircleNewJoys['today']->sortBy('start_date')->map(
                 fn (DemoCircleNewjoy $circleNewJoy) => DemoCircleNewJoyDto::byEloquent($circleNewJoy)
             )->toArray(),
         ];
