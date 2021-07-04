@@ -10,7 +10,6 @@ use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
-use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\Usecases\Main\DemoCircleNewJoy\IndexDemoCircleNewJoyUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
@@ -48,8 +47,9 @@ final class DemoShowCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $slug
-     * @param int $demoCircleNewJoyId
+     * @param string                   $slug
+     * @param int                      $demoCircleNewJoyId
+     *
      * @return array
      */
     public function __invoke(Request $request, string $slug, int $demoCircleNewJoyId)
