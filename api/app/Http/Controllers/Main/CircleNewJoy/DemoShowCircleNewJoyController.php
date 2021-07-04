@@ -14,7 +14,6 @@ use App\Usecases\Main\DemoCircleNewJoy\Dto\DemoCircleNewJoyDto;
 use App\Usecases\Main\DemoCircleNewJoy\IndexDemoCircleNewJoyUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
