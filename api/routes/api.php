@@ -64,6 +64,13 @@ Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', CircleNewJoy\ShowCircleNewJ
     ->name(ARP::MainCircleNewJoyShow)
     ->where(['circleNewJoyId' => '[0-9]+']);
 
+// デモ新歓
+Route::get('/circle/{slug}/newjoy/demo', CircleNewJoy\DemoIndexCircleNewJoyController::class)
+    ->name(ARP::MainDemoCircleNewJoyIndex);
+Route::get('/circle/{slug}/newjoy/demo/{demoCircleNewJoyId}', CircleNewJoy\DemoShowCircleNewJoyController::class)
+    ->name(ARP::MainDemoCircleNewJoyShow)
+    ->where(['demoCircleNewJoyId' => '[0-9]+']);
+
 // ガチャ用
 Route::get('/gacha/circle/pickup', Gacha\GachaPickupListController::class)
     ->name(ARP::MainGachaPickup);
