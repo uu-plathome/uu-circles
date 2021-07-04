@@ -21,7 +21,7 @@ UU-Circles: https://uu-circles.com/
 
 [機能一覧/Change log](https://ulab-uu.com/2021/04/22/uu-circles-uu-yell-change-log/)
 
-### メイン画面
+### UU-Circles  メインページ
 
 - サークル一覧
 - サークル一覧 タグ検索
@@ -32,14 +32,14 @@ UU-Circles: https://uu-circles.com/
 - おすすめのuu-yellの記事
 - サークルに関するuu-yellの記事を表示する機能
 
-### サークル管理画面
+### UU-Circles サークル管理ページ
 
 - サークル管理
 - サークルタグ管理
 - 新歓管理
 - 部員アカウント管理
 
-### 管理者画面
+### UU-Circles  管理者ページ
 
 - サークル管理
 - サークルタグ管理
