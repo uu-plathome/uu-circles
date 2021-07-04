@@ -33,5 +33,11 @@ export interface UpdateDemoCircleNewJoyRequestValidationError {
   message: string
 }
 
-export const isUpdateDemoCircleNewJoyRequest = (v: any): v is UpdateDemoCircleNewJoyRequest => v && v.type === 'UpdateDemoCircleNewJoyRequest'
-export const isUpdateDemoCircleNewJoyRequestValidationError = (v: any): v is UpdateDemoCircleNewJoyRequestValidationError => v && v.type === 'UpdateDemoCircleNewJoyRequestValidationError'
+export const isUpdateDemoCircleNewJoyRequest = (
+  v: any
+): v is UpdateDemoCircleNewJoyRequest =>
+  v && v.type === 'UpdateDemoCircleNewJoyRequest'
+export const isUpdateDemoCircleNewJoyRequestValidationError = (
+  v: any
+): v is UpdateDemoCircleNewJoyRequestValidationError =>
+  v && v.type === 'UpdateDemoCircleNewJoyRequestValidationError'
