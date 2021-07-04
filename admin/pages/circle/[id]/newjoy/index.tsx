@@ -100,16 +100,16 @@ const IndexPage: NextPage = () => {
 
             {circle && circleNewJoys.length > 0
               ? circleNewJoys.map((circleNewJoy: CircleNewJoy) => {
-                return (
-                  <CircleNewJoyListItem
-                    key={`circle-${circleNewJoy.id}`}
-                    circle={circle}
-                    circleNewJoy={circleNewJoy}
-                    onCopy={onCopy}
-                    onDelete={onDelete}
-                  />
-                )
-              })
+                  return (
+                    <CircleNewJoyListItem
+                      key={`circle-${circleNewJoy.id}`}
+                      circle={circle}
+                      circleNewJoy={circleNewJoy}
+                      onCopy={onCopy}
+                      onDelete={onDelete}
+                    />
+                  )
+                })
               : ''}
             {circleNewJoys.length === 0 ? (
               <div className="py-4">
