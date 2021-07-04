@@ -207,35 +207,33 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         ''
       )}
 
-      <div className="hidden md:flex justify-center">
-        <div className="grid grid-cols-2 gap-6" style={{ maxWidth: 700 }}>
-          <div className="md:mb-10 text-center">
-            <Link href="/circle/newjoy">
-              <a>
-                <Image
-                  className="border-2 border-red-900 rounded"
-                  src="/images/topButtons/shinkan1.png"
-                  width={340}
-                  height={92}
-                  objectFit="cover"
-                />
-              </a>
-            </Link>
-          </div>
+      <div className="mb-10">
+        <BaseContainer>
+          {uuYellArticles && uuYellArticles.length > 0 ? (
+            <div className="px-6 pt-12 md:pt-20 mb-10">
+              <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
-          <div className="md:mb-10 text-center">
-            <Link href="/guide/discord">
-              <a>
-                <Image
-                  className="border-2 border-red-900 rounded"
-                  src="/images/topButtons/discordBunner1.png"
-                  width={340}
-                  height={92}
-                />
-              </a>
-            </Link>
-          </div>
-        </div>
+              <ul className="list-outside list-decimal text-gray-400 pl-4">
+                {uuYellArticles.map((uuYellArticle: WP_REST_API_Post, idx) => {
+                  return (
+                    <li key={`uuYellArticle-${idx}`} className="mb-3">
+                      <a
+                        href={uuYellArticle.link}
+                        className="text-gray-400 font-bold text-sm"
+                      >
+                        {uuYellArticle.title.rendered}
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <hr className="border border-gray-200" />
+        </BaseContainer>
       </div>
 
       <div className="px-6">
@@ -375,31 +373,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                   </li>
                 </ul>
               </div>
-
-              {uuYellArticles && uuYellArticles.length > 0 ? (
-                <div className="pt-20 md:w-1/2">
-                  <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
-
-                  <ul className="list-outside list-decimal text-gray-400 pl-4">
-                    {uuYellArticles.map(
-                      (uuYellArticle: WP_REST_API_Post, idx) => {
-                        return (
-                          <li key={`uuYellArticle-${idx}`} className="mb-3">
-                            <a
-                              href={uuYellArticle.link}
-                              className="text-gray-400 font-bold text-sm"
-                            >
-                              {uuYellArticle.title.rendered}
-                            </a>
-                          </li>
-                        )
-                      }
-                    )}
-                  </ul>
-                </div>
-              ) : (
-                ''
-              )}
             </div>
           </div>
         </BaseContainer>
