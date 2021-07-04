@@ -46,6 +46,7 @@ class UpdateCircleFormRequest extends FormRequest
             ],
             CircleProperty::release                               => ['required', 'boolean'],
             CircleProperty::is_main_fixed                         => ['nullable', 'boolean'],
+            CircleProperty::is_only_demo                          => ['nullable', 'boolean'],
             CircleProperty::is_demo_fixed                         => ['nullable', 'boolean'],
             CircleProperty::demo_priority                         => ['nullable', 'integer', 'min:0'],
             CircleProperty::name                                  => ['required', 'string', 'max:50'],
@@ -188,6 +189,7 @@ class UpdateCircleFormRequest extends FormRequest
         $param->release = Arr::get($request, CircleProperty::release);
         $param->name = Arr::get($request, CircleProperty::name);
         $param->is_main_fixed = Arr::get($request, CircleProperty::is_main_fixed);
+        $param->is_only_demo = Arr::get($request, CircleProperty::is_only_demo);
         $param->is_demo_fixed = Arr::get($request, CircleProperty::is_demo_fixed);
         $param->demo_priority = Arr::get($request, CircleProperty::demo_priority);
 
