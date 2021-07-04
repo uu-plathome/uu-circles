@@ -8,7 +8,7 @@ import { IndexCircleNewJoyListSP } from '@/components/organisms/List/IndexCircle
 import { InformationCircleBesideNewJoyPC } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoyPC'
 import { InformationCircleBesideNewJoySP } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoySP'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
+import { getDemoCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { PageNotFoundError } from '@/infra/api/error'
 import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
 import { Importance } from '@/lib/enum/api/Importance'
@@ -172,9 +172,8 @@ const Page: NextPage<Props> = ({
                     <div className="my-2 pb-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${
-                          circle.shortName || circle.name
-                        }の新歓を見る！`}
+                        title={`UU-Circlesで${circle.shortName || circle.name
+                          }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -260,9 +259,8 @@ const Page: NextPage<Props> = ({
                   <div className="my-2 pb-2 flex justify-center">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${
-                        circle.shortName || circle.name
-                      }の新歓を見る！`}
+                      title={`UU-Circlesで${circle.shortName || circle.name
+                        }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >
@@ -310,7 +308,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       todayCircleNewJoys,
       allTodayCircleNewJoys,
       uuYellArticles,
-    } = await getCircleNewJoyBySlug(params.slug)
+    } = await getDemoCircleNewJoyBySlug(params.slug)
 
     const announcements: Announcement[] = [
       {

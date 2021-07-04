@@ -4,7 +4,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { ShowCircleNewJoyPcLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoyPcLayout'
 import { ShowCircleNewJoySpLayout } from '@/components/organisms/CircleNewJoy/ShowCircleNewJoySpLayout'
-import { showCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
+import { showDemoCircleNewJoyBySlug } from '@/infra/api/circleNewJoy'
 import { PageNotFoundError } from '@/infra/api/error'
 import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
 import { Importance } from '@/lib/enum/api/Importance'
@@ -119,7 +119,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       todayCircleNewJoys,
       allTodayCircleNewJoys,
       uuYellArticles,
-    } = await showCircleNewJoyBySlug(params.slug, Number(params.circleNewJoyId))
+    } = await showDemoCircleNewJoyBySlug(params.slug, Number(params.demoCircleNewJoyId))
 
     const announcements: Announcement[] = [
       {
