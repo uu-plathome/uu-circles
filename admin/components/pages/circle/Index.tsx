@@ -37,7 +37,7 @@ const Index: NextPage<Props> = ({
   hasPrevious,
   hasNext,
   onPrevious,
-  onNext
+  onNext,
 }) => {
   const { isMd } = useMediaQuery()
 
@@ -106,13 +106,13 @@ const Index: NextPage<Props> = ({
 
             {circles && circles.length > 0
               ? circles.map((circle: Circle) => {
-                return (
-                  <CircleListItem
-                    key={`circle-${circle.id}`}
-                    circle={circle}
-                  />
-                )
-              })
+                  return (
+                    <CircleListItem
+                      key={`circle-${circle.id}`}
+                      circle={circle}
+                    />
+                  )
+                })
               : ''}
 
             {circles && circles.length === 0 ? (
