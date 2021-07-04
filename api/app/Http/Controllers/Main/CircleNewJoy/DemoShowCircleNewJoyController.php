@@ -10,10 +10,10 @@ use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
 use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
 use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
+use App\Usecases\Main\DemoCircleNewJoy\Dto\DemoCircleNewJoyDto;
 use App\Usecases\Main\DemoCircleNewJoy\IndexDemoCircleNewJoyUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -96,25 +96,25 @@ final class DemoShowCircleNewJoyController extends Controller
             // 新歓開催済み
             'pastCircleNewJoys'   => Arr::camel_keys(
                 (new Collection($circleNewJoys['pastCircleNewJoys']))->map(
-                    fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
+                    fn (DemoCircleNewJoyDto $dto) => $dto->toArray()
                 )->values()->toArray()
             ),
             // 新歓開催前
             'futureCircleNewJoys' => Arr::camel_keys(
                 (new Collection($circleNewJoys['futureCircleNewJoys']))->map(
-                    fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
+                    fn (DemoCircleNewJoyDto $dto) => $dto->toArray()
                 )->values()->toArray()
             ),
             // 現在開催中
             'nowCircleNewJoys'    => Arr::camel_keys(
                 (new Collection($circleNewJoys['nowCircleNewJoys']))->map(
-                    fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
+                    fn (DemoCircleNewJoyDto $dto) => $dto->toArray()
                 )->values()->toArray()
             ),
             // 今日の新歓
             'todayCircleNewJoys'  => Arr::camel_keys(
                 (new Collection($circleNewJoys['todayCircleNewJoys']))->map(
-                    fn (CircleNewJoyValueObject $circleNewJoyValueObject) => $circleNewJoyValueObject->toArray()
+                    fn (DemoCircleNewJoyDto $dto) => $dto->toArray()
                 )->values()->toArray()
             ),
             // 今日の新歓 全て
