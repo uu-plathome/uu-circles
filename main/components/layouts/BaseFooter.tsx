@@ -214,20 +214,18 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
               <ul className="list-outside list-decimal text-gray-400 pl-4">
-                {uuYellArticles.map(
-                  (uuYellArticle: WP_REST_API_Post, idx) => {
-                    return (
-                      <li key={`uuYellArticle-${idx}`} className="mb-3">
-                        <a
-                          href={uuYellArticle.link}
-                          className="text-gray-400 font-bold text-sm"
-                        >
-                          {uuYellArticle.title.rendered}
-                        </a>
-                      </li>
-                    )
-                  }
-                )}
+                {uuYellArticles.map((uuYellArticle: WP_REST_API_Post, idx) => {
+                  return (
+                    <li key={`uuYellArticle-${idx}`} className="mb-3">
+                      <a
+                        href={uuYellArticle.link}
+                        className="text-gray-400 font-bold text-sm"
+                      >
+                        {uuYellArticle.title.rendered}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ) : (

@@ -45,11 +45,8 @@ const Page: NextPage<Props> = ({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const {
-      futureCircleNewJoys,
-      todayCircleNewJoys,
-      uuYellArticles,
-    } = await getDemoTodayCircleNewJoy()
+    const { futureCircleNewJoys, todayCircleNewJoys, uuYellArticles } =
+      await getDemoTodayCircleNewJoy()
 
     const announcements: Announcement[] = [
       {
@@ -57,7 +54,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         title: 'これはデモ画面です。正しい新歓ではありません。',
         announcementType: AnnouncementType.UPDATE_FEATURE,
         importance: Importance.MIDDLE,
-      }
+      },
     ]
 
     return {
