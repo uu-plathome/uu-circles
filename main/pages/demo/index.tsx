@@ -10,6 +10,8 @@ import { MainUucircleAd } from '@/components/organisms/Main/MainUucircleAd'
 import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
 import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircleTopCarousel'
 import { getMainDemo } from '@/infra/api/main'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
+import { Importance } from '@/lib/enum/api/Importance'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
@@ -136,9 +138,17 @@ const Index: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { circles, advertises, mainAdvertises, uuYellArticles, announcements } =
+  const { circles, advertises, mainAdvertises, uuYellArticles } =
     await getMainDemo()
 
+  const announcements: Announcement[] = [
+    {
+      announcementId: 0,
+      title: 'これはデモ画面です。正しい情報ではありません。',
+      announcementType: AnnouncementType.UPDATE_FEATURE,
+      importance: Importance.HIGH,
+    }
+  ]
   return {
     props: {
       advertises,
