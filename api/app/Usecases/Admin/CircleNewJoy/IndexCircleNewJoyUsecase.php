@@ -5,24 +5,26 @@ declare(strict_types=1);
 namespace App\Usecases\Admin\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
+use App\Usecases\Admin\CircleNewJoy\Dto\MultipleCircleNewJoyDto;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Facades\Log;
 
 final class IndexCircleNewJoyUsecase
 {
     /**
-     * invoke.
+     * 新歓一覧の取得
      *
-     * @return CircleNewJoyValueObject[]
+     * @param int $circleId
+     * @return MultipleCircleNewJoyDto
      */
-    public function invoke(int $circleId): array
+    public function invoke(int $circleId): MultipleCircleNewJoyDto
     {
         Log::debug("IndexCircleNewJoyUsecase args circleId=$circleId");
 
-        $circleNewJoys = CircleNewJoy::whereCircleId($circleId)->get();
+        $circleNewJoys = CircleNewJoy::with('circle')
+            ->whereCircleId($circleId)
+            ->get();
 
-        return $circleNewJoys->map(
-            fn (CircleNewJoy $circleNewJoy) => CircleNewJoyValueObject::byEloquent($circleNewJoy)
-        )->toArray();
+        return MultipleCircleNewJoyDto::byEloquent($circleNewJoys);
     }
 }
