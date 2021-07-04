@@ -10,7 +10,6 @@ use App\Support\Arr;
 use App\Usecases\Admin\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 final class IndexCircleNewJoyController extends Controller
 {
@@ -41,9 +40,7 @@ final class IndexCircleNewJoyController extends Controller
             )->toArray()),
 
             'circleNewJoys' => Arr::camel_keys(
-                (new Collection($this->indexCircleNewJoyUsecase->invoke($circleId)))->map(
-                    fn ($_o) => $_o->toArray()
-                )->toArray()
+                $this->indexCircleNewJoyUsecase->invoke($circleId)->toArray()
             ),
         ];
     }

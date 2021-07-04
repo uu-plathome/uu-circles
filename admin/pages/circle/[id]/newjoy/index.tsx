@@ -34,7 +34,7 @@ const IndexPage: NextPage = () => {
   const fetchCircle = async () => {
     const { circle, circleNewJoys } = await getCircleNewJoyList(Number(id))
     setCircle(circle)
-    setCircleNewJoys(circleNewJoys)
+    setCircleNewJoys(circleNewJoys.map((c) => c.circleNewJoy))
   }
 
   useSWR([`/admin/api/circle/${id}/newjoy`, Number(id)], fetchCircle)
