@@ -9,6 +9,7 @@ final class UpdateCircleForSystemUsecaseParam
     public bool $release;
     public string $name;
     public bool $is_main_fixed;
+    public bool $is_only_demo;
     public bool $is_demo_fixed;
     public int $demo_priority;
     public ?string $circle_type;

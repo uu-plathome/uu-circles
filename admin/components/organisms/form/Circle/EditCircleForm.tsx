@@ -38,6 +38,7 @@ type Props = {
   role?: Role
   form: {
     isMainFixed: UseBooleanInput
+    isOnlyDemo: UseBooleanInput
     isDemoFixed: UseBooleanInput
     demoPriority: UseNumberInput
     release: UseBooleanInput
@@ -115,6 +116,18 @@ const EditCircleForm: FC<Props> = ({
               { value: 'false', label: '固定しない' },
             ]}
             {...form.isMainFixed}
+          />
+
+          <BaseSelect
+            label="デモ画面のみに表示するかどうか"
+            id="isOnlyDemo"
+            name="isOnlyDemo"
+            required
+            items={[
+              { value: 'true', label: '表示する' },
+              { value: 'false', label: '表示しない' },
+            ]}
+            {...form.isOnlyDemo}
           />
 
           <BaseSelect

@@ -79,6 +79,7 @@ final class UpdateCircleForSystemUsecase
             CP::slug          => $param->slug,
             CP::release       => $param->release,
             CP::is_main_fixed => $param->is_main_fixed,
+            CP::is_only_demo  => $param->is_only_demo,
             CP::is_demo_fixed => $param->is_demo_fixed,
             CP::demo_priority => $param->demo_priority,
         ];

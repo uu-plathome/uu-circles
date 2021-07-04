@@ -4,6 +4,7 @@ export interface Circle {
   slug: string
   release: boolean
   isMainFixed: boolean
+  isOnlyDemo: boolean
   isDemoFixed: boolean
   demoPriority: number
   circleType: string

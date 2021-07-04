@@ -6,6 +6,7 @@ export interface UpdateCircleFormRequest {
   slug: string
   release: boolean
   isMainFixed?: boolean
+  isOnlyDemo?: boolean
   isDemoFixed?: boolean
   demoPriority?: number
   name: string
@@ -73,6 +74,7 @@ export interface UpdateCircleFormRequestValidationError {
     slug?: string[]
     release?: string[]
     isMainFixed?: string[]
+    isOnlyDemo?: string[]
     isDemoFixed?: string[]
     demoPriority?: string[]
     name?: string[]
