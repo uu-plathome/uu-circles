@@ -146,7 +146,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       announcementId: 0,
       title: 'これはデモ画面です。正しい情報ではありません。',
       announcementType: AnnouncementType.UPDATE_FEATURE,
-      importance: Importance.HIGH,
+      importance: Importance.MIDDLE,
     }
   ]
   return {
