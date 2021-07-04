@@ -119,7 +119,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       todayCircleNewJoys,
       allTodayCircleNewJoys,
       uuYellArticles,
-    } = await showDemoCircleNewJoyBySlug(params.slug, Number(params.demoCircleNewJoyId))
+    } = await showDemoCircleNewJoyBySlug(
+      params.slug,
+      Number(params.demoCircleNewJoyId)
+    )
 
     const announcements: Announcement[] = [
       {
