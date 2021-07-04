@@ -4,6 +4,8 @@ import {
   getDemoTodayCircleNewJoy,
   TodayCircleNewJoy,
 } from '@/infra/api/circleNewJoy'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
+import { Importance } from '@/lib/enum/api/Importance'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
@@ -47,8 +49,16 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       futureCircleNewJoys,
       todayCircleNewJoys,
       uuYellArticles,
-      announcements,
     } = await getDemoTodayCircleNewJoy()
+
+    const announcements: Announcement[] = [
+      {
+        announcementId: 0,
+        title: 'これはデモ画面です。正しい新歓ではありません。',
+        announcementType: AnnouncementType.UPDATE_FEATURE,
+        importance: Importance.HIGH,
+      }
+    ]
 
     return {
       props: {
