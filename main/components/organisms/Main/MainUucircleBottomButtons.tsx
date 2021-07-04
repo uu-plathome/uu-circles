@@ -79,9 +79,7 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         </h2>
 
         <div className="px-16">
-          <p className="text-sm mb-2">
-            宇大を生き抜くヒントがここに。
-          </p>
+          <p className="text-sm mb-2">宇大を生き抜くヒントがここに。</p>
         </div>
       </div>
 

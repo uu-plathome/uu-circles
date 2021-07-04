@@ -28,7 +28,7 @@ export const NewjoyTemplate: NextPage<Props> = ({
   todayCircleNewJoys,
   uuYellArticles,
   announcements,
-  isDemo
+  isDemo,
 }) => {
   const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
 
