@@ -37,6 +37,7 @@ const EditPage: NextPage = () => {
   const slug = useStringInput('')
   const release = useBooleanInput(false)
   const isMainFixed = useBooleanInput(false)
+  const isOnlyDemo = useBooleanInput(false)
   const isDemoFixed = useBooleanInput(false)
   const demoPriority = useNumberInput(0)
   const circleType = useStringInput('')
@@ -105,6 +106,7 @@ const EditPage: NextPage = () => {
         release.set(foundCircle.release)
         isMainFixed.set(foundCircle.isMainFixed)
         isDemoFixed.set(foundCircle.isDemoFixed)
+        isOnlyDemo.set(foundCircle.isOnlyDemo)
         demoPriority.set(foundCircle.demoPriority)
         nameKana.set(foundCircle.nameKana)
         shortName.set(foundCircle.shortName)
@@ -370,6 +372,7 @@ const EditPage: NextPage = () => {
         slug: slug.value.toLowerCase(),
         release: release.toBoolean,
         isMainFixed: isMainFixed.toBoolean,
+        isOnlyDemo: isOnlyDemo.toBoolean,
         isDemoFixed: isDemoFixed.toBoolean,
         demoPriority: demoPriority.toNumber,
         nameKana: HiraToKana(nameKana.value),
@@ -433,6 +436,7 @@ const EditPage: NextPage = () => {
         nameKana.setErrors(data.errors.nameKana)
         release.setErrors(data.errors.release)
         isMainFixed.setErrors(data.errors.isMainFixed)
+        isOnlyDemo.setErrors(data.errors.isOnlyDemo)
         isDemoFixed.setErrors(data.errors.isDemoFixed)
         demoPriority.setErrors(data.errors.demoPriority)
         circleType.setErrors(data.errors.circleType)
@@ -593,6 +597,7 @@ const EditPage: NextPage = () => {
                     name,
                     slug,
                     isMainFixed,
+                    isOnlyDemo,
                     isDemoFixed,
                     demoPriority,
                     nameKana,
