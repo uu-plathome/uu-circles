@@ -10,13 +10,20 @@ import useSWR from 'swr'
 
 const usePageInput = ({
   initialMaxPage,
-  pageSize
-}: { initialMaxPage: number, pageSize: number }) => {
+  pageSize,
+}: {
+  initialMaxPage: number
+  pageSize: number
+}) => {
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(initialMaxPage)
 
-  const previousPage = () => { updatePage(page - 1) }
-  const nextPage = () => { updatePage(page + 1) }
+  const previousPage = () => {
+    updatePage(page - 1)
+  }
+  const nextPage = () => {
+    updatePage(page + 1)
+  }
 
   const updatePage = (newPage: number) => {
     console.log(page)
@@ -40,7 +47,7 @@ const usePageInput = ({
     setMaxPage,
     previousPage,
     nextPage,
-    updatePage
+    updatePage,
   }
 }
 
@@ -52,14 +59,16 @@ const IndexPage: NextPage = () => {
   const searchCircleType = useStringInput('')
 
   const page = usePageInput({
-    initialMaxPage: Math.ceil(originalCircles ? originalCircles.length / 10 : 1),
-    pageSize: 10
+    initialMaxPage: Math.ceil(
+      originalCircles ? originalCircles.length / 10 : 1
+    ),
+    pageSize: 10,
   })
 
   const searchedCircles = useMemo(() => {
     if (!originalCircles) {
       return {
-        circles: []
+        circles: [],
       }
     }
 
@@ -92,62 +101,66 @@ const IndexPage: NextPage = () => {
         return false
       })
 
-      const filteredRelease = searchRelease.value === ''
-        ? filteredName
-        : filteredName.filter((c) => {
-          if (searchRelease.value === 'true' && c.release === true) {
-            return true
-          }
+      const filteredRelease =
+        searchRelease.value === ''
+          ? filteredName
+          : filteredName.filter((c) => {
+              if (searchRelease.value === 'true' && c.release === true) {
+                return true
+              }
 
-          if (searchRelease.value === 'false' && c.release === false) {
-            return true
-          }
+              if (searchRelease.value === 'false' && c.release === false) {
+                return true
+              }
 
-          return false
-        })
+              return false
+            })
 
-      const filteredCircleType = searchCircleType.value === ''
-        ? filteredRelease
-        : filteredRelease.filter((c) => {
-          if (
-            searchCircleType.value === CircleType.OFFICIAL_ORGANIZATION
-            && c.circleType === CircleType.OFFICIAL_ORGANIZATION
-          ) {
-            return true
-          }
+      const filteredCircleType =
+        searchCircleType.value === ''
+          ? filteredRelease
+          : filteredRelease.filter((c) => {
+              if (
+                searchCircleType.value === CircleType.OFFICIAL_ORGANIZATION &&
+                c.circleType === CircleType.OFFICIAL_ORGANIZATION
+              ) {
+                return true
+              }
 
-          if (
-            searchCircleType.value === CircleType.SENDING_ORGANIZATION
-            && c.circleType === CircleType.SENDING_ORGANIZATION
-          ) {
-            return true
-          }
+              if (
+                searchCircleType.value === CircleType.SENDING_ORGANIZATION &&
+                c.circleType === CircleType.SENDING_ORGANIZATION
+              ) {
+                return true
+              }
 
-          if (
-            searchCircleType.value === CircleType.STUDENT_GROUP
-            && c.circleType === CircleType.STUDENT_GROUP
-          ) {
-            return true
-          }
+              if (
+                searchCircleType.value === CircleType.STUDENT_GROUP &&
+                c.circleType === CircleType.STUDENT_GROUP
+              ) {
+                return true
+              }
 
-          if (
-            searchCircleType.value === CircleType.UNOFFICIAL_ORGANIZATION
-            && c.circleType === CircleType.UNOFFICIAL_ORGANIZATION
-          ) {
-            return true
-          }
+              if (
+                searchCircleType.value === CircleType.UNOFFICIAL_ORGANIZATION &&
+                c.circleType === CircleType.UNOFFICIAL_ORGANIZATION
+              ) {
+                return true
+              }
 
-          if (
-            searchCircleType.value === '不明'
-            && ['', null].includes(c.circleType)
-          ) {
-            return true
-          }
+              if (
+                searchCircleType.value === '不明' &&
+                ['', null].includes(c.circleType)
+              ) {
+                return true
+              }
 
-          return false
-        })
+              return false
+            })
 
-      page.setMaxPage(Math.ceil(filteredCircleType ? filteredCircleType.length / 10 : 1))
+      page.setMaxPage(
+        Math.ceil(filteredCircleType ? filteredCircleType.length / 10 : 1)
+      )
 
       return filteredCircleType
     })()
@@ -156,7 +169,7 @@ const IndexPage: NextPage = () => {
       circles: newCircles.slice(
         (page.page - 1) * page.pageSize,
         page.page * page.pageSize
-      )
+      ),
     }
   }, [
     originalCircles,
@@ -169,11 +182,7 @@ const IndexPage: NextPage = () => {
 
   useMemo(() => {
     page.updatePage(1)
-  }, [
-    searchName.value,
-    searchRelease.value,
-    searchCircleType.value,
-  ])
+  }, [searchName.value, searchRelease.value, searchCircleType.value])
 
   if (!originalCircles) {
     return <SubmitLoading isOpen={true} />
@@ -190,7 +199,7 @@ const IndexPage: NextPage = () => {
         searchValue={{
           name: searchName,
           release: searchRelease,
-          circleType: searchCircleType
+          circleType: searchCircleType,
         }}
         hasPrevious={page.page !== 1}
         hasNext={page.page !== page.maxPage}
