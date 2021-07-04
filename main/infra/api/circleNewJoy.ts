@@ -180,7 +180,6 @@ export const getDemoCircleNewJoyBySlug = async (
   }
 }
 
-
 export const showCircleNewJoyBySlug = async (
   slug: string,
   circleNewJoyId: number
