@@ -68,7 +68,7 @@ const Page: NextPage<Props> = ({
   )
   return (
     <div>
-      <BaseHead title={`${circle.name}の新歓`} />
+      <BaseHead title={`${circle.name}の新歓 デモ画面`} />
 
       <BaseLayout
         announcement={
@@ -83,7 +83,7 @@ const Page: NextPage<Props> = ({
               //PC
               <div style={{ width: 750 }}>
                 <h1 className="text-2xl text-center py-20">
-                  {circle.name}の新歓
+                  {circle.name}の新歓 デモ画面
                 </h1>
 
                 <div className="grid grid-cols-7">
