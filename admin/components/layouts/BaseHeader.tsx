@@ -28,7 +28,7 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
             )}
 
             <Link href="/">
-              <a className="text-white text-xl hover:underline">UU-Circles</a>
+              <a className="text-white text-xl hover:underline">UU-Manager</a>
             </Link>
           </div>
 

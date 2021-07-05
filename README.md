@@ -21,12 +21,13 @@ UU-Circles: https://uu-circles.com/
 
 [機能一覧/Change log](https://ulab-uu.com/2021/04/22/uu-circles-uu-yell-change-log/)
 
-### UU-Circles  メインページ
+### UU-Circles メインページ
 
 - サークル一覧
 - サークル一覧 タグ検索
 - サークル一覧 カテゴリー検索
 - 今日の新歓
+- 今日の新歓 デモ画面
 - 新歓一覧
 - 統計情報
 - おすすめのuu-yellの記事
@@ -39,7 +40,7 @@ UU-Circles: https://uu-circles.com/
 - 新歓管理
 - 部員アカウント管理
 
-### UU-Circles  管理者ページ
+### UU-Manager
 
 - サークル管理
 - サークルタグ管理
@@ -50,6 +51,10 @@ UU-Circles: https://uu-circles.com/
 - 部員アカウント管理
 - 管理者アカウント管理
 
+### uu-yell
+
+- WordPress
+- Sango
 
 ### バッチ
 
