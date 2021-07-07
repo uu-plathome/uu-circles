@@ -191,11 +191,9 @@ const Page: NextPage<Props> = () => {
             </p>
 
             <div className="flex justify-center items-center pt-6 pb-8">
-              <a
-                href="https://uu-circle20.firebaseapp.com/"
-              >
+              <a href="https://uu-circle20.firebaseapp.com/">
                 <Image
-                  src="/images/uucircle2020-main.png"
+                  src={ImagePath.UU_CIRCLES_2020.MAIN}
                   width="900"
                   height="675"
                 />
@@ -237,13 +235,13 @@ const Page: NextPage<Props> = () => {
 
             <div className="px-4 pb-8">
               <p className="font-bold pb-2">プロジェクト責任者</p>
-              <p className="pb-2">元 U-lab 代表 4年 飯泉一馬</p>
+              <p className="pb-2">元 U-lab 代表 4年 飯泉 一馬</p>
               <p className="pb-2 text-sm">担当: プロダクトマネジメント、UI・UXデザイン</p>
             </div>
 
             <div className="px-4 pb-8">
               <p className="font-bold pb-2">プログラム管理責任者</p>
-              <p className="pb-2">U-lab 4年 樋口航也</p>
+              <p className="pb-2">U-lab 4年 樋口 航也</p>
               <p className="pb-2 text-sm">担当: システムアーキテクティング、プログラム</p>
             </div>
 
@@ -253,7 +251,7 @@ const Page: NextPage<Props> = () => {
               <p className="pb-2">U-lab?? 4年 野沢 万葉</p>
               <p className="pb-4 text-sm">担当：デザイン（ロゴ、アイキャッチ作成）</p>
 
-              <p className="pb-2">U-lab 4年 菊地ひなた</p>
+              <p className="pb-2">U-lab 4年 菊地 ひなた</p>
               <p className="pb-4 text-sm">担当：プログラム (サブシステム)</p>
 
               <p className="pb-2">U-lab 代表 2年 佐藤 歩夢</p>
