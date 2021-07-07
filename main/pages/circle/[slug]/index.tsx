@@ -209,17 +209,12 @@ const Page: NextPage<Props> = ({
 
             <div className="order-4 md:order-4 pt-10">
               {circleNewJoys && circleNewJoys.length > 0 ? (
-                <NewJoyList
-                  slug={circle.slug}
-                  circleNewJoys={circleNewJoys}
-                />
+                <NewJoyList slug={circle.slug} circleNewJoys={circleNewJoys} />
               ) : (
                 <>
                   <ShowCircleTitle>新歓イベント日程</ShowCircleTitle>
 
-                  <p className="text-center">
-                    現在開催予定の新歓はありません
-                  </p>
+                  <p className="text-center">現在開催予定の新歓はありません</p>
                 </>
               )}
 
@@ -238,17 +233,14 @@ const Page: NextPage<Props> = ({
             </div>
 
             {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+            wpPosts.postsExistTags &&
+            wpPosts.postsExistTags.length > 0 ? (
               <div className="order-5 pt-10 px-6 md:px-0">
                 <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
                 {wpPosts.postsExistTags.map((post, key) => {
                   return (
-                    <div
-                      key={`wpPosts.postsExistTags-${key}`}
-                      className="mb-4"
-                    >
+                    <div key={`wpPosts.postsExistTags-${key}`} className="mb-4">
                       <WpPostBlock
                         post={post}
                         media={
@@ -267,8 +259,8 @@ const Page: NextPage<Props> = ({
             )}
 
             {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+            wpPosts.postsNotTags &&
+            wpPosts.postsNotTags.length > 0 ? (
               <div className="order-6 pt-10 px-6 md:px-0">
                 <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -294,8 +286,8 @@ const Page: NextPage<Props> = ({
           </div>
 
           {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+          uuYellForCircles.posts &&
+          uuYellForCircles.posts.length > 0 ? (
             <div className="pt-10 px-6 md:px-0">
               <ShowCircleTitle>
                 uu-yellでサークルを詳しく知ろう！

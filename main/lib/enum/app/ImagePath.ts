@@ -29,6 +29,6 @@ export const ImagePath = {
   },
 
   UU_CIRCLES_2020: {
-    MAIN: '/images/uu-circles2020/uu-circles2020-main.png'
-  }
+    MAIN: '/images/uu-circles2020/uu-circles2020-main.png',
+  },
 } as const
