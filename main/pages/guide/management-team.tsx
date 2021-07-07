@@ -84,7 +84,7 @@ const Page: NextPage<Props> = () => {
             </p>
 
             <p className="px-4 pb-2 leading-relaxed">
-              そして、UU-Circles は一般ユーザー向けのページだけでなく、いくつかの Web サービスから成り立っています。
+              UU-Circles は一般ユーザー向けのページだけでなく、いくつかの Web サービスから成り立っています。
             </p>
 
             <ul className="list-disc list-inside px-4 pb-8">
@@ -110,10 +110,13 @@ const Page: NextPage<Props> = () => {
             </Header>
 
             <p className="px-4 pb-8 leading-relaxed">
-              こんにちは、私たちは「地域に根差すテクノロジー集団」U-labです。
+              こんにちは！地域に根差すテクノロジー集団 U-lab です。
             </p>
             <p className="px-4 pb-2 leading-relaxed">
-              デザインとエンジニアリングと地域おこしを掛け合わせたような団体です。主な活動はデザインセンスやプログラミング技術の向上、街を舞台にした作品展示、今までにないようなWebサービスの考案と制作・運営などを行っています。
+              デザインとエンジニアリングと地域おこしを掛け合わせたような、とにかく面白いことが大好きな団体です。
+            </p>
+            <p className="px-4 pb-2 leading-relaxed">
+              主に、デザインセンスやプログラミング技術の向上を図る勉強会、まちを舞台にした作品展示、今までにないようなWebサービスの考案と制作・運営などの活動を行なっています。
             </p>
 
             <div className="pt-6 pb-8">
@@ -234,7 +237,7 @@ const Page: NextPage<Props> = () => {
 
             <div className="px-4 pb-8">
               <p className="font-bold pb-2">プロジェクト責任者</p>
-              <p className="pb-2">元U-lab代表 4年 飯泉一馬</p>
+              <p className="pb-2">元 U-lab 代表 4年 飯泉一馬</p>
               <p className="pb-2 text-sm">担当: プロダクトマネジメント、UI・UXデザイン</p>
             </div>
 
@@ -247,7 +250,13 @@ const Page: NextPage<Props> = () => {
             <div className="px-4 pb-12">
               <p className="font-bold pb-2">開発サポートメンバー</p>
 
-              <p className="pb-2">U-lab代表 2年 佐藤 歩夢</p>
+              <p className="pb-2">U-lab?? 4年 野沢 万葉</p>
+              <p className="pb-4 text-sm">担当：デザイン（ロゴ、アイキャッチ作成）</p>
+
+              <p className="pb-2">U-lab 4年 菊地ひなた</p>
+              <p className="pb-4 text-sm">担当：プログラム (サブシステム)</p>
+
+              <p className="pb-2">U-lab 代表 2年 佐藤 歩夢</p>
               <p className="pb-4 text-sm">担当: UIデザイン</p>
 
               <p className="pb-2">U-lab 2年 小畑 尚史</p>
