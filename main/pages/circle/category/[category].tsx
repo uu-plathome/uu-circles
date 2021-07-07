@@ -40,7 +40,7 @@ const Page: NextPage<Props> = ({
   }
 
   return (
-    <div>
+    <>
       <BaseHead
         title={`${__(
           String(categoryToCircleType(category as Category))
@@ -91,7 +91,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

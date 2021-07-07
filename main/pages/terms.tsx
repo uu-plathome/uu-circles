@@ -32,7 +32,7 @@ const List: FunctionComponent<ListProps> = ({ list, children }) => {
 
 const Page: NextPage = () => {
   return (
-    <div>
+    <>
       <BaseHead title="利用規約" />
 
       <BaseLayout>
@@ -265,7 +265,7 @@ const Page: NextPage = () => {
         {/*  フッター */}
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

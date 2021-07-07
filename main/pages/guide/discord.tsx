@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 const Page: NextPage = () => {
   return (
-    <div>
+    <>
       <BaseHead title="Discordで行われるオンライン新歓に参加してみよう！" />
 
       <BaseLayout>
@@ -133,7 +133,7 @@ const Page: NextPage = () => {
         {/*  フッター */}
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

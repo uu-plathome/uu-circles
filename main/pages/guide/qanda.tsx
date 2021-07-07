@@ -28,7 +28,7 @@ const SubHeaderPink: FC = ({ children }) => {
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   return (
-    <div>
+    <>
       <BaseHead title={`Q and A`} />
 
       <BaseLayout>
@@ -216,7 +216,7 @@ const Page: NextPage<Props> = () => {
         {/*  フッター */}
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

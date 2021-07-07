@@ -26,7 +26,7 @@ const Header: FC<{
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   return (
-    <div>
+    <>
       <BaseHead title={`UU-Circlesについて`} />
 
       <BaseLayout>
@@ -291,7 +291,7 @@ const Page: NextPage<Props> = () => {
         {/*  フッター */}
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

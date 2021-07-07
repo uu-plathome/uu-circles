@@ -48,7 +48,7 @@ const Page: NextPage<Props> = ({
   }
 
   return (
-    <div>
+    <>
       <BaseHead
         title={`${circleNewJoy.title}の新歓イベント日程詳細`}
         description={circleNewJoy.description}
@@ -96,7 +96,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

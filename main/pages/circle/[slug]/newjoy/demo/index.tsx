@@ -67,7 +67,7 @@ const Page: NextPage<Props> = ({
     [circle.slug]
   )
   return (
-    <div>
+    <>
       <BaseHead title={`${circle.name}の新歓 デモ画面`} />
 
       <BaseLayout
@@ -172,9 +172,8 @@ const Page: NextPage<Props> = ({
                     <div className="my-2 pb-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${
-                          circle.shortName || circle.name
-                        }の新歓を見る！`}
+                        title={`UU-Circlesで${circle.shortName || circle.name
+                          }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -260,9 +259,8 @@ const Page: NextPage<Props> = ({
                   <div className="my-2 pb-2 flex justify-center">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${
-                        circle.shortName || circle.name
-                      }の新歓を見る！`}
+                      title={`UU-Circlesで${circle.shortName || circle.name
+                        }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >
@@ -290,7 +288,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

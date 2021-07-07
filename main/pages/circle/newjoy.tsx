@@ -42,7 +42,7 @@ const Page: NextPage<Props> = ({
   const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
 
   return (
-    <div>
+    <>
       <BaseHead title="今日の新歓" />
 
       <BaseLayout
@@ -117,7 +117,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

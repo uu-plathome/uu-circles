@@ -32,7 +32,7 @@ const Page: NextPage<Props> = ({
   const { name } = router.query
 
   return (
-    <div>
+    <>
       <BaseHead title={`${String(name)}の検索結果`} />
 
       <BaseLayout
@@ -64,7 +64,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 
