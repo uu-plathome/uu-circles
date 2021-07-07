@@ -1,6 +1,6 @@
 const withPWA = require('next-pwa')
 
-module.exports = withPWA({
+const settings = {
   env: {
     // Reference a variable that was defined in the .env file and make it available at Build Time
     API_URL: process.env.API_URL || 'http://localhost:8000',
@@ -23,4 +23,6 @@ module.exports = withPWA({
   pwa: {
     dest: 'public', // swの出力ディレクトリ
   },
-})
+}
+
+module.exports = process.env.NODE_ENV === 'development' ? settings : withPWA(settings)
