@@ -15,7 +15,6 @@ declare global {
   }
 }
 
-
 type ContactEvent = {
   action: 'submit_form'
   category: 'Contact'
