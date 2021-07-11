@@ -168,6 +168,14 @@ const Page: NextPage<Props> = () => {
               </li>
             </ul>
 
+            <div className="flex justify-center items-center pt-6 pb-8">
+              <Image
+                src={ImagePath.UU_CIRCLES.UU_CIRCLES_SERVICE}
+                width="900"
+                height="506"
+              />
+            </div>
+
             <Header id={ID_LIST.second}>2. 制作・運営団体U-labとは？</Header>
 
             <p className="px-4 pb-8 leading-relaxed">
