@@ -142,21 +142,27 @@ const Page: NextPage<Props> = () => {
 
             <ul className="list-disc list-inside px-4 pb-8">
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">一般ユーザー向けのページ：</span>
+                <span className="inline-block md:inline mb-2 md:mb-0">
+                  一般ユーザー向けのページ：
+                </span>
                 <br className="md:hidden" />
                 <span className="ml-6 md:ml-0">
                   「UU-Circles メインページ」
                 </span>
               </li>
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">サークル管理者向けのページ：</span>
+                <span className="inline-block md:inline mb-2 md:mb-0">
+                  サークル管理者向けのページ：
+                </span>
                 <br className="md:hidden" />
                 <span className="ml-6 md:ml-0">
                   「UU-Circles サークル管理ページ」
                 </span>
               </li>
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">UU-Circles運営向けのページ：</span>
+                <span className="inline-block md:inline mb-2 md:mb-0">
+                  UU-Circles運営向けのページ：
+                </span>
                 <br className="md:hidden" />
                 <span className="ml-6 md:ml-0">「UU-Manager」</span>
               </li>
@@ -255,11 +261,13 @@ const Page: NextPage<Props> = () => {
             </p>
 
             <p className="pb-2 px-4 leading-relaxed">
-              しかし、正式版の制作時間は1週間しかなかったため、システムやデザイン、UI・UX のどの観点も満足いくものが作れませんでした。
+              しかし、正式版の制作時間は1週間しかなかったため、システムやデザイン、UI・UX
+              のどの観点も満足いくものが作れませんでした。
             </p>
 
             <p className="pb-8 px-4 leading-relaxed">
-              次の年はさらにより良いものにしたいと思い、今年 (2021年) の1月くらいから密かに準備を進めてきました。
+              次の年はさらにより良いものにしたいと思い、今年 (2021年)
+              の1月くらいから密かに準備を進めてきました。
             </p>
 
             <p className="px-4 pb-2 leading-relaxed">
@@ -279,10 +287,13 @@ const Page: NextPage<Props> = () => {
             <Header id={ID_LIST.fourth}>4. 今後の展望</Header>
 
             <p className="px-4 pb-2 leading-relaxed">
-              UU-Circles は長く使われ続けるWebサービスを目指しています。 新入生とサークルを繋げるハブになることを願っています。
+              UU-Circles は長く使われ続けるWebサービスを目指しています。
+              新入生とサークルを繋げるハブになることを願っています。
             </p>
             <p className="px-4 pb-8 leading-relaxed">
-              そして、UU-Circles に登録されているサークルをまとめて管理するWebサービス UU-Manager により、新歓実行委員会が各サークルの管理を行いやすくなる可能性を秘めています。
+              そして、UU-Circles
+              に登録されているサークルをまとめて管理するWebサービス UU-Manager
+              により、新歓実行委員会が各サークルの管理を行いやすくなる可能性を秘めています。
             </p>
 
             <p className="px-4 pb-2">
@@ -303,7 +314,9 @@ const Page: NextPage<Props> = () => {
 
             <div className="px-4 pb-12 leading-relaxed">
               <p>
-                今回のサークルビラ一覧サイト「UU-Circles」は昨年以上に多くのメンバーに助けられて制作することができました。 特に去年入ってきて新型コロナで行動が制限される中、U-labを見つけて入ってきてくれた1年生(当時1年生で、現在は2年生)も今年は一緒に制作を行う側に立って活動できたことが一番嬉しいです。プロジェクトに参加してくれてありがとう！ （飯泉 一馬）
+                今回のサークルビラ一覧サイト「UU-Circles」は昨年以上に多くのメンバーに助けられて制作することができました。
+                特に去年入ってきて新型コロナで行動が制限される中、U-labを見つけて入ってきてくれた1年生(当時1年生で、現在は2年生)も今年は一緒に制作を行う側に立って活動できたことが一番嬉しいです。プロジェクトに参加してくれてありがとう！
+                （飯泉 一馬）
               </p>
             </div>
 
