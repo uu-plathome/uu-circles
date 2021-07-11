@@ -30,11 +30,11 @@ const Page: NextPage = () => {
                   1連ガチャ
                 </div>
               </Link>
-              <a className="" href="">
+              <Link href="/gacha/draw/10">
                 <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
                   10連ガチャ
                 </div>
-              </a>
+              </Link>
             </div>
           </BaseContainer>
         </div>
