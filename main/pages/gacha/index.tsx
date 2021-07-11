@@ -4,6 +4,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Page: NextPage = () => {
   return (
@@ -24,13 +25,13 @@ const Page: NextPage = () => {
             </div>
 
             <div className="flex justify-center">
-              <a className="" href="">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black hover:shadow-sm">
+              <Link href="/gacha/draw/1">
+                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
                   1連ガチャ
                 </div>
-              </a>
+              </Link>
               <a className="" href="">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
                   10連ガチャ
                 </div>
               </a>
