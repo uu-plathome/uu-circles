@@ -352,7 +352,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                   <li className="mb-3">
                     <Link href="/guide/management-team">
                       <a className="text-gray-400 font-bold text-sm">
-                        運営団体について
+                        UU-Circlesについて
                       </a>
                     </Link>
                   </li>
@@ -403,7 +403,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
             <hr className="border border-gray-200" />
             <div className="py-8">
               <Link href="/guide/management-team">
-                <a className="text-gray-400 px-2 text-xs">運営団体</a>
+                <a className="text-gray-400 px-2 text-xs">UU-Circlesについて</a>
               </Link>
 
               <Link href="/terms">

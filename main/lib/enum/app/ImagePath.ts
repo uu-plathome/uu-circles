@@ -27,4 +27,8 @@ export const ImagePath = {
     COPY_LIGHT: '/images/u-lab/u-lab-copy-light.png',
     OFFICIAL_SITE_EYE_CATCH: '/images/u-lab/u-lab-official-site-eye-catch.png',
   },
+
+  UU_CIRCLES_2020: {
+    MAIN: '/images/uu-circles2020/uu-circles2020-main.png',
+  },
 } as const
