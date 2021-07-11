@@ -1,30 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty as Property;
 use App\Models\CircleNewJoy;
 use App\Usecases\CircleManagement\CircleNewJoy\Params\UpdateCircleNewJoyUsecaseParam;
-use App\ValueObjects\CircleNewJoyValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleNewJoyUsecase
+final class UpdateCircleNewJoyUsecase
 {
     /**
-     * 新歓情報を更新する
+     * 新歓情報を更新する.
      *
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @param CircleNewJoyValueObject $circleNewJoyValueObject
-     * @return void
+     * @param UpdateCircleNewJoyUsecaseParam $param
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         UpdateCircleNewJoyUsecaseParam $param
     ) {
-        Log::debug("UpdateCircleNewJoyUsecase args", [
+        Log::debug('UpdateCircleNewJoyUsecase args', [
             'UpdateCircleNewJoyUsecaseParam' => $param,
         ]);
 
@@ -44,6 +45,7 @@ class UpdateCircleNewJoyUsecase
         ];
 
         DB::beginTransaction();
+
         try {
             CircleNewJoy::whereCircleId($circleId)
                 ->findOrFail($circleNewJoyId)
@@ -53,7 +55,7 @@ class UpdateCircleNewJoyUsecase
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] UpdateCircleNewJoyUsecase", [
+            Log::error('[ERROR] UpdateCircleNewJoyUsecase', [
                 'UpdateCircleNewJoyUsecaseParam' => $param,
             ]);
 

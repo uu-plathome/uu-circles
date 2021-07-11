@@ -3,12 +3,13 @@
 namespace Tests\Feature\App\Http\Controllers\Main\Circle;
 
 use App\Models\CircleSearchWord;
+use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class SearchNameCircleControllerTest extends TestCase
 {
@@ -17,12 +18,12 @@ class SearchNameCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("SearchNameCircleControllerTest");
+        Log::info('SearchNameCircleControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -30,7 +31,7 @@ class SearchNameCircleControllerTest extends TestCase
 
     public function testRequest_ランダムな文字列()
     {
-        Log::info("testRequest_ランダムな文字列");
+        Log::info('testRequest_ランダムな文字列');
 
         // GIVEN
         Http::fake();
@@ -44,7 +45,7 @@ class SearchNameCircleControllerTest extends TestCase
         // THEN
         $response->assertOk();
         $this->assertArrayHasKey('recommendCircles', $response);
-        $this->assertNotCount(0, $response['recommendCircles']);
+        $this->assertCount(GetRecommendCircleUsecase::LIMIT, $response['recommendCircles']);
 
         // DBに検索ワードが保存されているか
         $this->assertTrue(CircleSearchWord::whereWord($search)->exists());
@@ -52,7 +53,7 @@ class SearchNameCircleControllerTest extends TestCase
 
     public function testRequest_Ulabがみつかる()
     {
-        Log::info("testRequest_Ulabがみつかる");
+        Log::info('testRequest_Ulabがみつかる');
 
         // GIVEN
         $search = 'U-lab';
@@ -66,7 +67,10 @@ class SearchNameCircleControllerTest extends TestCase
         $this->assertArrayHasKey('data', $response);
         $this->assertArrayHasKey('recommendCircles', $response);
         $this->assertNotCount(0, $response['data']);
-        $this->assertNotCount(0, $response['recommendCircles']);
+        $this->assertCount(GetRecommendCircleUsecase::LIMIT, $response['recommendCircles']);
+
+        $this->assertArrayHasKey('tagPageViewRanking', $response);
+        $this->assertIsArray($response['tagPageViewRanking']);
 
         $this->assertArrayHasKey('uuYellArticles', $response);
         $this->assertIsArray($response['uuYellArticles']);

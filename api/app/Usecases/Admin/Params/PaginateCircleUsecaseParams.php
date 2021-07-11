@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Params;
 
-class PaginateCircleUsecaseParams
+final class PaginateCircleUsecaseParams
 {
     public ?int $id;
     public ?string $updated_at;
-    public bool $previos;
+    public bool $previous;
     public bool $next;
     public ?string $name;
 }

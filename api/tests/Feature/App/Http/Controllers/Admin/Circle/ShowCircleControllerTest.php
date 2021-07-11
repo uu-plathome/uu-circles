@@ -2,14 +2,10 @@
 
 namespace Tests\Feature\App\Http\Controllers\Admin\Circle;
 
-use App\Enum\Property\AdvertiseProperty;
-use App\Models\Advertise;
 use App\Models\Circle;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ShowCircleControllerTest extends TestCase
 {
@@ -18,11 +14,11 @@ class ShowCircleControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("ShowAdvertiseControllerTest");
+        Log::info('ShowAdvertiseControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -30,7 +26,7 @@ class ShowCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var Circle $advertise */

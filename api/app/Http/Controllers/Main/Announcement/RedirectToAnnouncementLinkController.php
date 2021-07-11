@@ -1,25 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Announcement;
 
 use App\Enum\AnnouncementPlace;
 use App\Enum\SlugProperty\AnnouncementPlaceQuerySlugProperty;
 use App\Models\Announcement;
 use App\Models\AnnouncementCounter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class RedirectToAnnouncementLinkController
+final class RedirectToAnnouncementLinkController
 {
     const place = 'place';
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param string  $slug
+     *
+     * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $slug)
+    public function __invoke(Request $request, string $slug): RedirectResponse
     {
-        Log::debug("RedirectToAnnouncementLinkController", [
+        Log::debug('RedirectToAnnouncementLinkController', [
             'slug' => $slug,
         ]);
 
@@ -30,23 +36,23 @@ class RedirectToAnnouncementLinkController
         $announcementPlace = $this->queryToAnnouncementPlace($place);
 
         if (is_null($announcement)) {
-            Log::warning("存在しないお知らせのslugが選択されています", [
+            Log::warning('存在しないお知らせのslugが選択されています', [
                 'slug' => $slug,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
         if (!$announcement->link) {
-            Log::warning("お知らせにlinkが設定されていません。", [
+            Log::warning('お知らせにlinkが設定されていません。', [
                 'slug'      => $slug,
                 'advertise' => $announcement,
             ]);
 
-            return;
+            return redirect()->away($this->redirectToHomeUrl());
         }
 
-        Log::debug("RedirectToAnnouncementLinkController count up start");
+        Log::debug('RedirectToAnnouncementLinkController count up start');
 
         // 広告のクリック数
         AnnouncementCounter::whereAnnouncementId($announcement->id)
@@ -55,7 +61,7 @@ class RedirectToAnnouncementLinkController
             ->first()
             ->increment('count', 1);
 
-        Log::debug("RedirectToAnnouncementLinkController redirect to", [
+        Log::debug('RedirectToAnnouncementLinkController redirect to', [
             'link' => $announcement->link,
         ]);
 
@@ -63,9 +69,10 @@ class RedirectToAnnouncementLinkController
     }
 
     /**
-     * クエリパラメータからenumを生成
+     * クエリパラメータからenumを生成.
      *
      * @param string $query
+     *
      * @return AnnouncementPlace|string
      */
     private function queryToAnnouncementPlace(string $query): string
@@ -87,5 +94,10 @@ class RedirectToAnnouncementLinkController
         }
 
         return AnnouncementPlaceQuerySlugProperty::main_fixed_view;
+    }
+
+    private function redirectToHomeUrl(): string
+    {
+        return config('app.client_url');
     }
 }

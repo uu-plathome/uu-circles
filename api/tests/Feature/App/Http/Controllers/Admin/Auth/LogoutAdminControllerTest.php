@@ -7,8 +7,8 @@ use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class LogoutAdminControllerTest extends TestCase
 {
@@ -21,7 +21,7 @@ class LogoutAdminControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("LogoutAdminControllerTest");
+        Log::info('LogoutAdminControllerTest');
         Cache::clear();
         $this->userId = User::whereApiToken(self::TOKEN)->first()->id;
     }
@@ -36,6 +36,7 @@ class LogoutAdminControllerTest extends TestCase
         }
 
         DB::beginTransaction();
+
         try {
             $user = User::find($this->userId);
             $user->api_token = self::TOKEN;
@@ -43,12 +44,13 @@ class LogoutAdminControllerTest extends TestCase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -56,12 +58,12 @@ class LogoutAdminControllerTest extends TestCase
 
     public function testログアウトできる()
     {
-        Log::info("testログアウトできる");
+        Log::info('testログアウトできる');
 
         // GIVEN
         $token = self::TOKEN;
         $user = User::whereApiToken($token)->first();
-        Log::debug("testログアウトできる [GIVEN]", [
+        Log::debug('testログアウトできる [GIVEN]', [
             'token' => $token,
             'user'  => $user,
         ]);
@@ -75,7 +77,7 @@ class LogoutAdminControllerTest extends TestCase
         $response->assertOk();
         $this->assertNull(User::whereApiToken($token)->first());
         $newUser = User::find($user->id);
-        Log::debug("testログアウトできる [THEN]", [
+        Log::debug('testログアウトできる [THEN]', [
             'oldUser' => $user,
             'newUser' => $newUser,
         ]);

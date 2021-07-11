@@ -16,11 +16,11 @@ class CreateAnnouncementControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("CreateAnnouncementControllerTest");
+        Log::info('CreateAnnouncementControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,7 +28,7 @@ class CreateAnnouncementControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         /** @var Announcement $announcement */
@@ -37,7 +37,7 @@ class CreateAnnouncementControllerTest extends TestCase
 
         // WHEN
         $response = $this->postJson(
-            "/admin/api/announcement",
+            '/admin/api/announcement',
             Arr::camel_keys([
                 AnnouncementProperty::title                => $announcement->title,
                 AnnouncementProperty::description          => $announcement->description,

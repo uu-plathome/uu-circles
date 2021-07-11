@@ -18,7 +18,7 @@ class AnnouncementCounter extends Model
     ];
 
     /**
-     * カラム数
+     * カラム数.
      *
      * @return int[]
      */

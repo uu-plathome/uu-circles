@@ -1,21 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleInformationProperty;
 use App\Models\Circle;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
-class SearchTagCircleListUsecase
+final class SearchTagCircleListUsecase
 {
-    public function invoke(SearchTagCircleListParam $param)
+    /**
+     * タグで検索する.
+     *
+     * @param SearchTagCircleListParam $param
+     *
+     * @return MainSimpleCircleListDto
+     */
+    public function invoke(SearchTagCircleListParam $param): MainSimpleCircleListDto
     {
-        Log::debug("#SearchTagCircleListUsecase args", [
-            'param' => $param
+        Log::debug('#SearchTagCircleListUsecase args', [
+            'param' => $param,
         ]);
 
         $with = [
@@ -27,6 +37,7 @@ class SearchTagCircleListUsecase
 
         $circles = Circle::with($with)
             ->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param) {
@@ -203,23 +214,24 @@ class SearchTagCircleListUsecase
                 });
             })
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug'
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                 $circle,
-                $circle->circleInformation,
                 $circle->circleHandbill
             )
         )->toArray();
+
+        return $dto;
     }
 
     private function shouldCircleTagSearch(SearchTagCircleListParam $param): bool

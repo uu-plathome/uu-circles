@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Enum\Role;
@@ -13,18 +15,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeleteCircleController extends Controller
+final class DeleteCircleController extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param Request $request
+     * @param int     $circleId
+     *
+     * @throws Exception
+     *
      * @return array
-     * @throws \Exception
      */
     public function __invoke(Request $request, int $circleId)
     {
-        Log::debug("DeleteCircleController args", [
+        Log::debug('DeleteCircleController args', [
             'circleId' => $circleId,
         ]);
 
@@ -47,18 +52,19 @@ class DeleteCircleController extends Controller
         $circleTag = $circle->circleTag();
         $circleInvitation = $circle->circleInvitation();
         $circleInformation = $circle->circleInformation();
-        Log::info("DeleteCircleData", [
+        Log::info('DeleteCircleData', [
             'circle'            => $circle,
         ]);
 
         Slack::channel(SlackChannel::delete)->send(
             json_encode([
-                'title'             => $circle->name . 'を削除します。',
+                'title'             => $circle->name.'を削除します。',
                 'circle'            => $circle,
             ])
         );
 
         DB::beginTransaction();
+
         try {
             $circleUsers->delete();
             $circleHandbill->delete();
@@ -71,9 +77,10 @@ class DeleteCircleController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error("DeleteCircleController [ERROR]", [
+            Log::error('DeleteCircleController [ERROR]', [
                 'circleId' => $circleId,
             ]);
+
             throw $e;
         }
 

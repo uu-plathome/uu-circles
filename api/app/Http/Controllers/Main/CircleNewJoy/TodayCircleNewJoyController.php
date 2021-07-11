@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
@@ -15,7 +17,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class TodayCircleNewJoyController extends Controller
+final class TodayCircleNewJoyController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase;
@@ -34,12 +36,13 @@ class TodayCircleNewJoyController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#TodayCircleNewJoyController args: none");
+        Log::debug('#TodayCircleNewJoyController args: none');
 
         $circleNewJoys = Cache::remember(
             $this->getCircleNewJoysCacheKey(),
@@ -70,7 +73,7 @@ class TodayCircleNewJoyController extends Controller
                         'short_name'     => $arr['short_name'],
                         'circle_type'    => $arr['circle_type'],
                         'main_image_url' => $arr['main_image_url'],
-                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray(),
                     ]
                 )->values()->toArray()
             ),
@@ -82,7 +85,7 @@ class TodayCircleNewJoyController extends Controller
                         'short_name'     => $arr['short_name'],
                         'circle_type'    => $arr['circle_type'],
                         'main_image_url' => $arr['main_image_url'],
-                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray(),
                     ]
                 )->values()->toArray()
             ),
@@ -94,6 +97,7 @@ class TodayCircleNewJoyController extends Controller
     private function getCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'TodayCircleNewJoyController.circleNewJoys' . $minutes;
+
+        return 'TodayCircleNewJoyController.circleNewJoys'.$minutes;
     }
 }

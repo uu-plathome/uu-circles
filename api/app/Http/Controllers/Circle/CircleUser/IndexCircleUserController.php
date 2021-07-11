@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Role;
@@ -12,7 +14,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUserController extends Controller
+final class IndexCircleUserController extends Controller
 {
     use Permission;
 

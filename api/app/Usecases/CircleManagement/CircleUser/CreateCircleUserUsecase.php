@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -13,20 +15,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class CreateCircleUserUsecase
+final class CreateCircleUserUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
-     * @param int $circleId
-     * @param CircleUserValueObject $circleValueObject
-     * @return void
+     * @param CreateCircleUserUsecaseParam $param
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         CreateCircleUserUsecaseParam $param
     ) {
-        Log::debug("CreateCircleUserUsecase args", [
+        Log::debug('CreateCircleUserUsecase args', [
             'CreateCircleUserUsecaseParam' => $param,
         ]);
 
@@ -43,6 +46,7 @@ class CreateCircleUserUsecase
         $user->createApiToken();
 
         DB::beginTransaction();
+
         try {
             $user->save();
             $user->circleUsers()->create([
@@ -55,11 +59,12 @@ class CreateCircleUserUsecase
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("CreateCircleUserUsecase [ERROR]", [
+            Log::error('CreateCircleUserUsecase [ERROR]', [
                 'CreateCircleUserUsecaseParam' => $param,
             ]);
 
             DB::rollBack();
+
             throw $e;
         }
     }

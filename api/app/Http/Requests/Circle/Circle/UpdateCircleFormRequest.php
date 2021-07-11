@@ -2,16 +2,12 @@
 
 namespace App\Http\Requests\Circle\Circle;
 
-use App\Enum\Property\CircleInformationProperty as CIP;
-use App\Enum\Property\CircleProperty;
 use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
-use App\Models\Circle;
-use App\Models\CircleHandbill;
-use App\Models\CircleInformation;
+use App\Enum\Property\CircleInformationProperty as CIP;
+use App\Enum\Property\CircleProperty;
 use App\Support\Arr;
 use App\Usecases\CircleManagement\Circle\Params\UpdateCircleUsecaseParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -42,9 +38,9 @@ class UpdateCircleFormRequest extends FormRequest
             CIP::circle_type                => [
                 'nullable',
                 'string',
-                Rule::in(CircleType::getAll())
+                Rule::in(CircleType::getAll()),
             ],
-            CIP::description                => ['nullable', 'string', 'max:500'],
+            CIP::description                       => ['nullable', 'string', 'max:500'],
             CIP::common_place_of_activity          => [
                 'nullable',
                 'string',
@@ -52,7 +48,7 @@ class UpdateCircleFormRequest extends FormRequest
                     PlaceOfActivity::MINE,
                     PlaceOfActivity::YOTO,
                     PlaceOfActivity::MINE_AND_YOTO,
-                    PlaceOfActivity::OTHER
+                    PlaceOfActivity::OTHER,
                 ]),
             ],
             CIP::common_place_of_activity_detail   => ['nullable', 'string', 'max:255'],
@@ -115,31 +111,31 @@ class UpdateCircleFormRequest extends FormRequest
                 'nullable',
                 'boolean',
             ],
-            CIP::common_date_of_activity_detail    => ['nullable', 'string', 'max:255'],
-            CIP::admission_fee_per_year              => ['nullable', 'integer', 'max:10000000'],
-            CIP::number_of_members          => ['nullable', 'integer', 'max:10000'],
-            CIP::is_club_activities  => ['nullable', 'boolean'],
-            CIP::appealing_point1    => ['nullable', 'string', 'max:50'],
-            CIP::appealing_point2    => ['nullable', 'string', 'max:50'],
-            CIP::appealing_point3    => ['nullable', 'string', 'max:50'],
-            CIP::public_email        => ['nullable', 'string', 'email', 'max:255'],
-            CIP::twitter_url         => ['nullable', 'string', 'url', 'max:255'],
-            CIP::facebook_url        => ['nullable', 'string', 'url', 'max:255'],
-            CIP::instagram_url       => ['nullable', 'string', 'url', 'max:255'],
-            CIP::line_url            => ['nullable', 'string', 'url', 'max:255'],
-            CIP::youtube_url         => ['nullable', 'string', 'url', 'max:255'],
-            CIP::homepage_url        => ['nullable', 'string', 'url', 'max:255'],
-            CIP::peing_url           => ['nullable', 'string', 'url', 'max:255'],
-            CIP::github_url          => ['nullable', 'string', 'url', 'max:255'],
-            CIP::tiktok_url          => ['nullable', 'string', 'url', 'max:255'],
-            CIP::participation_url   => ['nullable', 'string', 'url', 'max:255'],
-            CIP::main_image_url      => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url1 => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url2 => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url3 => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url4 => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url5 => ['nullable', 'string', 'url', 'max:255'],
-            CIP::activity_image_url6 => ['nullable', 'string', 'url', 'max:255'],
+            CIP::common_date_of_activity_detail         => ['nullable', 'string', 'max:255'],
+            CIP::admission_fee_per_year                 => ['nullable', 'integer', 'max:10000000'],
+            CIP::number_of_members                      => ['nullable', 'integer', 'max:10000'],
+            CIP::is_club_activities                     => ['nullable', 'boolean'],
+            CIP::appealing_point1                       => ['nullable', 'string', 'max:50'],
+            CIP::appealing_point2                       => ['nullable', 'string', 'max:50'],
+            CIP::appealing_point3                       => ['nullable', 'string', 'max:50'],
+            CIP::public_email                           => ['nullable', 'string', 'email', 'max:255'],
+            CIP::twitter_url                            => ['nullable', 'string', 'url', 'max:255'],
+            CIP::facebook_url                           => ['nullable', 'string', 'url', 'max:255'],
+            CIP::instagram_url                          => ['nullable', 'string', 'url', 'max:255'],
+            CIP::line_url                               => ['nullable', 'string', 'url', 'max:255'],
+            CIP::youtube_url                            => ['nullable', 'string', 'url', 'max:255'],
+            CIP::homepage_url                           => ['nullable', 'string', 'url', 'max:255'],
+            CIP::peing_url                              => ['nullable', 'string', 'url', 'max:255'],
+            CIP::github_url                             => ['nullable', 'string', 'url', 'max:255'],
+            CIP::tiktok_url                             => ['nullable', 'string', 'url', 'max:255'],
+            CIP::participation_url                      => ['nullable', 'string', 'url', 'max:255'],
+            CIP::main_image_url                         => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url1                    => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url2                    => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url3                    => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url4                    => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url5                    => ['nullable', 'string', 'url', 'max:255'],
+            CIP::activity_image_url6                    => ['nullable', 'string', 'url', 'max:255'],
             'handbill_image_url'                        => ['nullable', 'string', 'url', 'max:255'],
         ]);
     }

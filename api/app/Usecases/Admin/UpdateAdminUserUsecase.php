@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Enum\Property\AdminUserProperty;
@@ -9,11 +11,12 @@ use App\ValueObjects\AdminUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class UpdateAdminUserUsecase
+final class UpdateAdminUserUsecase
 {
     /**
-     * @param int $userId
+     * @param int                  $userId
      * @param AdminUserValueObject $adminUserValueObject
+     *
      * @throws Exception
      */
     public function invoke(int $userId, AdminUserValueObject $adminUserValueObject)
@@ -25,6 +28,7 @@ class UpdateAdminUserUsecase
         ];
 
         DB::beginTransaction();
+
         try {
             $user = User::findOrFail($userId);
             $user->update($inputs);
@@ -35,6 +39,7 @@ class UpdateAdminUserUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

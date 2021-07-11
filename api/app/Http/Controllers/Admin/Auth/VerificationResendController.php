@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\Property\UserProperty;
@@ -10,14 +12,16 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
-class VerificationResendController extends Controller
+final class VerificationResendController extends Controller
 {
     /**
-     * 認証用のメールを再通知
+     * 認証用のメールを再通知.
      *
      * @param VerificationResendAdminUserFormRequest $request
-     * @return JsonResponse
+     *
      * @throws ValidationException
+     *
+     * @return JsonResponse
      */
     public function __invoke(VerificationResendAdminUserFormRequest $request): JsonResponse
     {

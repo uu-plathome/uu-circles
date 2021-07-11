@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\ValueObjects\CircleValueObject;
@@ -7,18 +9,20 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateCircleUsecase
+final class CreateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param CircleValueObject $circleValueObject
-     * @return CircleValueObject
+     *
      * @throws Exception
+     *
+     * @return CircleValueObject
      */
     public function invoke(CircleValueObject $circleValueObject): CircleValueObject
     {
-        Log::debug("CreateCircleUsecase args", [
+        Log::debug('CreateCircleUsecase args', [
             'CircleUserValueObject' => $circleValueObject,
         ]);
 
@@ -27,6 +31,7 @@ class CreateCircleUsecase
         $circleInformation = $circleValueObject->toCircleInformationProperty();
 
         DB::beginTransaction();
+
         try {
             $circle->save();
             $circle->circleInformation()->create($circleInformation->toArray());
@@ -36,6 +41,7 @@ class CreateCircleUsecase
             return CircleValueObject::byEloquent($circle, $circleInformation, null);
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

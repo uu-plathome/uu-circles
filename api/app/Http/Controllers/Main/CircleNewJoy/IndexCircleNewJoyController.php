@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
@@ -18,7 +20,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleNewJoyController extends Controller
+final class IndexCircleNewJoyController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
     private GetCircleBySlugUsecase $getCircleBySlugUsecase;
@@ -44,13 +46,14 @@ class IndexCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $slug
+     * @param string                   $slug
+     *
      * @return array
      */
     public function __invoke(Request $request, string $slug)
     {
-        Log::debug("#IndexCircleNewJoyController args", [
-            'slug' => $slug
+        Log::debug('#IndexCircleNewJoyController args', [
+            'slug' => $slug,
         ]);
 
         $circle = $this->getCircleBySlugUsecase->invoke($slug);
@@ -115,7 +118,7 @@ class IndexCircleNewJoyController extends Controller
                         'name'           => $arr['name'],
                         'circle_type'    => $arr['circle_type'],
                         'main_image_url' => $arr['main_image_url'],
-                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray()
+                        'circleNewJoy'   => $arr['circleNewJoyValueObject']->toArray(),
                     ]
                 )->values()->toArray()
             ),
@@ -127,12 +130,14 @@ class IndexCircleNewJoyController extends Controller
     private function getCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'IndexCircleNewJoyController.circleNewJoys' . $minutes;
+
+        return 'IndexCircleNewJoyController.circleNewJoys'.$minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'IndexCircleNewJoyController.allCircleNewJoys' . $minutes;
+
+        return 'IndexCircleNewJoyController.allCircleNewJoys'.$minutes;
     }
 }

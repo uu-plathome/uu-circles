@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\UuYell;
 
 use App\Enum\Property\UuyellPostProperty;
@@ -9,12 +11,11 @@ use App\Support\Arr;
 use App\Support\Str;
 use Exception;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SendUuyellPostToTwitterUsecase
+final class SendUuyellPostToTwitterUsecase
 {
     const UU_YELL_URL = 'https://media.uu-circles.com';
 
@@ -30,14 +31,15 @@ class SendUuyellPostToTwitterUsecase
      */
     public function invoke()
     {
-        Log::debug("SendUuyellPostToTwitterUsecase args none");
+        Log::debug('SendUuyellPostToTwitterUsecase args none');
 
         $now = Carbon::now();
 
         $post = $this->getNotificationTargetPost();
 
         if (is_null($post)) {
-            Log::debug("SendUuyellPostToTwitterUsecase 通知対象がありませんでした");
+            Log::debug('SendUuyellPostToTwitterUsecase 通知対象がありませんでした');
+
             return;
         }
 
@@ -59,23 +61,24 @@ class SendUuyellPostToTwitterUsecase
 
         Log::debug("SendUuyellPostToTwitterUsecase getLastHttpCode={$twitterClient->getLastHttpCode()}", [
             'original'    => $tweetContent,
-            'originalArr' => (array)$tweetContent,
+            'originalArr' => (array) $tweetContent,
         ]);
         if ($twitterClient->getLastHttpCode() >= 400) {
             Log::error(
-                "SendUuyellPostToTwitterUsecase Tweetできなかった可能性があります。",
+                'SendUuyellPostToTwitterUsecase Tweetできなかった可能性があります。',
                 [
                     'original'    => $tweetContent,
-                    'originalArr' => (array)$tweetContent,
+                    'originalArr' => (array) $tweetContent,
                 ]
             );
 
             return;
         }
 
-        $tweetContentArr = (array)$tweetContent;
+        $tweetContentArr = (array) $tweetContent;
 
         DB::beginTransaction();
+
         try {
             $post->update([
                 UuyellPostProperty::tweet_id    => $tweetContentArr['id'],
@@ -87,23 +90,24 @@ class SendUuyellPostToTwitterUsecase
             return;
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error("SendUuyellPostToTwitterUsecase [ERROR]", [
+            Log::error('SendUuyellPostToTwitterUsecase [ERROR]', [
                 'now'      => $now,
                 'tweetId'  => $tweetContentArr['id'],
-                'original' => $tweetContent
+                'original' => $tweetContent,
             ]);
+
             throw $e;
         }
     }
 
     /**
-     * 今日Tweetするuu-yellの記事を取得する
+     * 今日Tweetするuu-yellの記事を取得する.
      *
      * @return UuyellPost|null
      */
     protected function getNotificationTargetPost(): ?UuyellPost
     {
-        Log::debug("SendUuyellPostToTwitterUsecase getNotificationTargetPost");
+        Log::debug('SendUuyellPostToTwitterUsecase getNotificationTargetPost');
 
         $post = UuyellPost::wherePublished(true)
             ->whereNotifiedAt(null)
@@ -123,7 +127,7 @@ class SendUuyellPostToTwitterUsecase
 
     protected function fetchedDescription(int $wordpress_id): string
     {
-        Log::debug("SendUuyellPostToTwitterUsecase fetchedDescription");
+        Log::debug('SendUuyellPostToTwitterUsecase fetchedDescription');
 
         $baseUrl = self::UU_YELL_URL;
         $requestUrl = "$baseUrl/wp-json/wp/v2/posts/{$wordpress_id}";
@@ -132,7 +136,7 @@ class SendUuyellPostToTwitterUsecase
         $response = Http::get($requestUrl);
         Log::debug("SendUuyellPostToTwitterUsecase fetchedDescription fetched {$response->status()}");
         if ($response->status() >= 500) {
-            Log::info("uu-yellの記事が取得できてない可能性があります。", [
+            Log::info('uu-yellの記事が取得できてない可能性があります。', [
                 'request_url' => $requestUrl,
                 'response'    => $response,
             ]);
@@ -148,7 +152,7 @@ class SendUuyellPostToTwitterUsecase
         $removedHtmlContent = strip_tags($mainContent);
         $requestContent = Str::limitCharacters($removedHtmlContent, 950);
 
-        Log::debug("SendUuyellPostToTwitterUsecase requestContent", [
+        Log::debug('SendUuyellPostToTwitterUsecase requestContent', [
             'requestContent' => $requestContent,
         ]);
 

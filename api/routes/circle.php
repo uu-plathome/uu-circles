@@ -52,13 +52,13 @@ Route::middleware('auth:circleUser')->group(function () {
     Route::post('/logout', LogoutCircleController::class);
 
     // サークル一覧
-    Route::get('/circle', IndexCircleController::class)->name('circle.circle.show');
+    Route::get('/circle', IndexCircleController::class)->name('circle.circle.index');
     Route::get('/circle/{circleId}', ShowCircleController::class)->name('circle.circle.show');
     Route::put('/circle/{circleId}', UpdateCircleController::class)->name('circle.circle.update');
     Route::post('/circle/{circleId}/withdrawal', WithdrawalOwnCircleUserController::class)
-        ->name('circle.circle.withdrawal');
+        ->name('circle.circle.withdrawal.own');
     Route::post('/circle/{circleId}/withdrawal/{userId}', WithdrawalOtherCircleUserController::class)
-        ->name('circle.circle.withdrawal');
+        ->name('circle.circle.withdrawal.other');
 
     // 新歓
     Route::get('/circle/{circleId}/newjoy', IndexCircleNewJoyController::class)
@@ -86,7 +86,7 @@ Route::middleware('auth:circleUser')->group(function () {
 
     // お知らせ
     Route::get('/announcement/fixed', FixedCircleViewAnnouncementController::class);
-    
+
     // Storage
     Route::post('/storage', PutStorageController::class);
 });

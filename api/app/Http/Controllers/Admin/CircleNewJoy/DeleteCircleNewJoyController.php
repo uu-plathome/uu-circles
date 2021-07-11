@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
-use App\Usecases\Admin\DeleteCircleNewJoyUsecase;
+use App\Usecases\Admin\CircleNewJoy\DeleteCircleNewJoyUsecase;
 use Exception;
 use Illuminate\Http\Request;
 
-class DeleteCircleNewJoyController extends Controller
+final class DeleteCircleNewJoyController extends Controller
 {
     private DeleteCircleNewJoyUsecase $deleteCircleNewJoyUsecase;
 
@@ -20,17 +22,19 @@ class DeleteCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return bool[]
+     * @param int     $circleId
+     * @param int     $circleNewJoyId
+     *
      * @throws Exception
+     *
+     * @return bool[]
      */
     public function __invoke(Request $request, int $circleId, int $circleNewJoyId): array
     {
         $this->deleteCircleNewJoyUsecase->invoke($circleId, $circleNewJoyId);
 
         return [
-            'success' => true
+            'success' => true,
         ];
     }
 }

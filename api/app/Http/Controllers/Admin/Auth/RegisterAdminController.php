@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Enum\Role;
@@ -8,10 +10,9 @@ use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
 use App\Support\Arr;
 use App\Usecases\RegisterAdminUserUsecase;
 use Exception;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class RegisterAdminController extends Controller
+final class RegisterAdminController extends Controller
 {
     private RegisterAdminUserUsecase $registerAdminUserUsecase;
 
@@ -23,13 +24,15 @@ class RegisterAdminController extends Controller
 
     /**
      * @param RegisterAdminFormRequest $request
-     * @return array
+     *
      * @throws Exception
+     *
+     * @return array
      */
     public function __invoke(RegisterAdminFormRequest $request): array
     {
         $request->validate([
-            'role' => [Rule::in($this->canSelectedRoles($request->user()))]
+            'role' => [Rule::in($this->canSelectedRoles($request->user()))],
         ]);
 
         $user = $this->registerAdminUserUsecase->invoke(
@@ -38,7 +41,7 @@ class RegisterAdminController extends Controller
 
         return Arr::camel_keys([
             'data'   => $user->toArray(true),
-            'status' => __('verification.sent')
+            'status' => __('verification.sent'),
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
@@ -9,24 +11,26 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateAnnouncementUsecase
+final class UpdateAnnouncementUsecase
 {
     /**
-     * お知らせの更新
+     * お知らせの更新.
      *
      * @param UpdateAnnouncementUsecaseParam $param
+     *
      * @throws \Exception
      */
     public function invoke(UpdateAnnouncementUsecaseParam $param)
     {
-        Log::debug("UpdateAnnouncementUsecase args", [
-            "UpdateAnnouncementUsecaseParam" => $param,
+        Log::debug('UpdateAnnouncementUsecase args', [
+            'UpdateAnnouncementUsecaseParam' => $param,
         ]);
 
         // インサート用のデータ
         $insertData = $this->getInsertData($param);
 
         DB::beginTransaction();
+
         try {
             // お知らせをDBに保存する
             Announcement::findOrFail($param->announcement_id)
@@ -36,6 +40,7 @@ class UpdateAnnouncementUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -44,6 +49,7 @@ class UpdateAnnouncementUsecase
      * DBに挿入するデータ
      *
      * @param UpdateAnnouncementUsecaseParam $param
+     *
      * @return array
      */
     private function getInsertData(UpdateAnnouncementUsecaseParam $param): array

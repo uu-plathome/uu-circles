@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Announcement\Dto;
 
 use App\Enum\RouteProperty\WebRouteProperty;
 use App\Models\Announcement;
 
 /**
- * メイン画面用のお知らせ
+ * メイン画面用のお知らせ.
  *
  * Class MainAnnouncementDto
- * @package App\Usecases\Main\Announcement\Dto
  */
-class MainAnnouncementDto
+final class MainAnnouncementDto
 {
     public int $announcement_id;
     public string $title;
@@ -31,6 +32,7 @@ class MainAnnouncementDto
             : null;
         $dto->announcement_type = $announcement->announcement_type;
         $dto->importance = $announcement->importance;
+
         return $dto;
     }
 

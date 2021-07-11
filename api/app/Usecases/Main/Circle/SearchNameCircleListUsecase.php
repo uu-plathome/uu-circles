@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\Property\CircleSearchWordProperty;
 use App\Models\Circle;
 use App\Models\CircleSearchWord;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class SearchNameCircleListUsecase
+final class SearchNameCircleListUsecase
 {
     /**
-     * サークルをテキストで検索する
+     * サークルをテキストで検索する.
      *
      * @param SearchNameCircleListParam $param
-     * @return mixed
+     *
+     * @return MainSimpleCircleListDto
      */
-    public function invoke(SearchNameCircleListParam $param)
+    public function invoke(SearchNameCircleListParam $param): MainSimpleCircleListDto
     {
         Log::debug('SearchNameCircleListUsecase', [
             'SearchNameCircleListParam' => $param,
@@ -29,6 +33,7 @@ class SearchNameCircleListUsecase
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
@@ -43,7 +48,7 @@ class SearchNameCircleListUsecase
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->where(function ($query) use ($param) {
                 // カタカナに変換
-                $katakana = mb_convert_kana($param->name, "K");
+                $katakana = mb_convert_kana($param->name, 'K');
                 $query->where('circles.name', 'like', "%$param->name%")
                     ->orWhere('circles.slug', "%$param->name%")
                     ->orWhere('circle_information.name_kana', 'like', "%$katakana%")
@@ -53,18 +58,19 @@ class SearchNameCircleListUsecase
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                 $circle,
-                null,
                 $circle->circleHandbill
             )
         )->toArray();
+
+        return $dto;
     }
 
     /**
-     * 検索ワードの保存
+     * 検索ワードの保存.
      *
      * @param string $word
      */

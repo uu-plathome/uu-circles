@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\Announcement;
 
 use App\Enum\Property\AnnouncementCounterProperty;
@@ -13,20 +15,21 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateAnnouncementUsecase
+final class CreateAnnouncementUsecase
 {
     const MAX_SLUG_CHECK = 3;
 
     /**
-     * お知らせの追加
+     * お知らせの追加.
      *
      * @param CreateAnnouncementUsecaseParam $param
+     *
      * @throws Exception
      */
     public function invoke(CreateAnnouncementUsecaseParam $param)
     {
-        Log::debug("CreateAnnouncementUsecase args", [
-            "CreateAnnouncementUsecaseParam" => $param,
+        Log::debug('CreateAnnouncementUsecase args', [
+            'CreateAnnouncementUsecaseParam' => $param,
         ]);
 
         $now = Carbon::now();
@@ -38,6 +41,7 @@ class CreateAnnouncementUsecase
         $insertData = $this->getInsertData($param, $slug);
 
         DB::beginTransaction();
+
         try {
             $announcement = new Announcement();
             // お知らせをDBに保存する
@@ -65,6 +69,7 @@ class CreateAnnouncementUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -76,7 +81,7 @@ class CreateAnnouncementUsecase
     {
         $loop = self::MAX_SLUG_CHECK;
         for ($i = $loop; $i > 0; $i--) {
-            $newSlug = (string)Str::uuid();
+            $newSlug = (string) Str::uuid();
 
             if (Announcement::whereSlug($newSlug)->doesntExist()) {
                 return $newSlug;
@@ -86,12 +91,12 @@ class CreateAnnouncementUsecase
         throw new Exception("UUIDが {$loop} 回重複しました");
     }
 
-
     /**
      * DBに挿入するデータ
      *
      * @param CreateAnnouncementUsecaseParam $param
-     * @param string $slug
+     * @param string                         $slug
+     *
      * @return array
      */
     private function getInsertData(CreateAnnouncementUsecaseParam $param, string $slug): array

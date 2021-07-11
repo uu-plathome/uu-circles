@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * オンライン活動状況
  */
-class StatisticsOnlineActivityDto
+final class StatisticsOnlineActivityDto
 {
     /**
-     * オンライン活動する
+     * オンライン活動する.
      *
      * @var int
      */

@@ -3,12 +3,12 @@
 namespace App\Enum;
 
 /**
- * Slackのチャンネル
+ * Slackのチャンネル.
  */
 class SlackChannel
 {
     /**
-     * 削除通知
+     * 削除通知.
      */
     const delete = 'delete';
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleTag;
 
 use App\Entity\CircleTagEntity;
@@ -13,7 +15,7 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class GetCircleTagController extends Controller
+final class GetCircleTagController extends Controller
 {
     use Permission;
 
@@ -21,9 +23,11 @@ class GetCircleTagController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
-     * @return array[]
+     * @param int     $circleId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return array[]
      */
     public function __invoke(Request $request, int $circleId)
     {

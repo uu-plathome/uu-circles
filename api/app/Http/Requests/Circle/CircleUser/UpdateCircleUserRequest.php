@@ -31,15 +31,15 @@ class UpdateCircleUserRequest extends FormRequest
             CircleUserProperty::role   => [
                 'required',
                 'string',
-            ]
+            ],
         ]);
     }
 
     public function attributes()
     {
         return [
-            UserProperty::display_name => __('user.' . UserProperty::display_name),
-            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
+            UserProperty::display_name => __('user.'.UserProperty::display_name),
+            CircleUserProperty::role   => __('circleUser.'.CircleUserProperty::role),
         ];
     }
 }

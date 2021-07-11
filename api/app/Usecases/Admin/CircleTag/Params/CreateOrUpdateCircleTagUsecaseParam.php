@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\CircleTag\Params;
 
-class CreateOrUpdateCircleTagUsecaseParam
+final class CreateOrUpdateCircleTagUsecaseParam
 {
     public int $circle_id;
     public bool $sport = false;

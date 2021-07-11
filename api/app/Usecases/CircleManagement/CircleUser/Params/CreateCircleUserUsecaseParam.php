@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser\Params;
 
-class CreateCircleUserUsecaseParam
+final class CreateCircleUserUsecaseParam
 {
     public int $circle_id;
     public ?string $display_name = null;

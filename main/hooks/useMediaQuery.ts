@@ -22,11 +22,11 @@ export const useMediaQuery = () => {
   const [isXl2, setIsXl2] = useState(false)
 
   useEffect(() => {
-    setIsSm(width > sm)
-    setIsMd(width > md)
-    setIsLg(width > lg)
-    setIsXl(width > xl)
-    setIsXl2(width > xl2)
+    setIsSm(width >= sm)
+    setIsMd(width >= md)
+    setIsLg(width >= lg)
+    setIsXl(width >= xl)
+    setIsXl2(width >= xl2)
   })
 
   return {

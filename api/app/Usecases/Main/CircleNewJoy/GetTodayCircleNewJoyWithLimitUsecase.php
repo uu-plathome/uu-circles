@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty;
@@ -8,18 +10,18 @@ use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class GetTodayCircleNewJoyWithLimitUsecase
+final class GetTodayCircleNewJoyWithLimitUsecase
 {
     /**
      * 今日の新歓
-     * 今日〜未来にかけて、最大$limit件取得する
+     * 今日〜未来にかけて、最大$limit件取得する.
      *
      * @return void
      */
     public function invoke(int $limit = 6)
     {
-        Log::debug("#GetTodayCircleNewJoyWithLimitUsecase args", [
-            'limit' => $limit
+        Log::debug('#GetTodayCircleNewJoyWithLimitUsecase args', [
+            'limit' => $limit,
         ]);
 
         $now = Carbon::now();
@@ -27,7 +29,7 @@ class GetTodayCircleNewJoyWithLimitUsecase
 
         $todayCircleNewJoy = CircleNewJoy::with([
             'circle:id,slug,release,name',
-            'circle.circleInformation:circle_id,circle_type,main_image_url'
+            'circle.circleInformation:circle_id,circle_type,main_image_url',
         ])
             ->nowPublic($now)
             ->hasByNonDependentSubquery('circle', function ($query) {
@@ -48,7 +50,7 @@ class GetTodayCircleNewJoyWithLimitUsecase
                         'name'                    => $circleNewJoy->circle['name'],
                         'circle_type'             => $circleNewJoy->circle->circleInformation['circle_type'],
                         'main_image_url'          => $circleNewJoy->circle->circleInformation['main_image_url'],
-                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy)
+                        'circleNewJoyValueObject' => CircleNewJoyValueObject::byEloquent($circleNewJoy),
                     ]
                 )->toArray(),
         ];

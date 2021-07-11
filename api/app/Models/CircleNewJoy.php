@@ -23,7 +23,6 @@ class CircleNewJoy extends Model
         P::release,
     ];
 
-
     protected $casts = [
         P::publish_from => 'datetime:Y-m-d',
         P::start_date   => 'datetime:Y-m-d H:i',
@@ -37,12 +36,13 @@ class CircleNewJoy extends Model
     }
 
     /**
-     * 現在公開中かどうか
+     * 現在公開中かどうか.
      *
-     * @param boolean $release
+     * @param bool        $release
      * @param Carbon|null $publish_from
-     * @param Carbon $now
-     * @return boolean
+     * @param Carbon      $now
+     *
+     * @return bool
      */
     public static function getNowPublic(
         bool $release,
@@ -65,13 +65,14 @@ class CircleNewJoy extends Model
     }
 
     /**
-     * 現在公開中かどうか
+     * 現在公開中かどうか.
      *
-     * @return boolean
+     * @return bool
      */
     public function getNowPublicAttribute(): bool
     {
         $now = Carbon::now();
+
         return self::getNowPublic(
             $this->release,
             $this->publish_from,
@@ -80,10 +81,11 @@ class CircleNewJoy extends Model
     }
 
     /**
-     * 現在公開中のものを取得する
+     * 現在公開中のものを取得する.
      *
      * @param $query
      * @param Carbon $now
+     *
      * @return void
      */
     public function scopeNowPublic($query, Carbon $now)

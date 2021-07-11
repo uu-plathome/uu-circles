@@ -41,7 +41,7 @@ class AdvertiseInfoSheet implements FromCollection, WithHeadings, WithTitle
     }
 
     /**
-     * シート名
+     * シート名.
      *
      * @return string
      */

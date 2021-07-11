@@ -54,6 +54,13 @@ jobs:
           docker-compose exec -T app php artisan cache:clear
           docker-compose exec -T app php artisan config:clear
           docker-compose exec -T app php artisan view:clear
+          docker-compose exec -T app php artisan route:cache
+          docker-compose exec -T app php artisan view:cache
+      - name: Check Laravel logs
+        if: ${{ always() }}
+        run: |
+          docker-compose exec -T app ls storage/logs
+          docker-compose exec -T app /bin/bash -c "cd storage/logs && find . -type f | xargs cat"
 
   deploy-stg:
     if: github.ref == 'refs/heads/develop/stg'
@@ -77,12 +84,13 @@ jobs:
             cd uu-circle/api && \
             git reset --hard origin/develop/stg && \
             cp ../../../.env .env && \
+            cp ../../../credentials.json credentials.json && \
             composer install && \
             php artisan migrate --force && \
             php artisan cache:clear && \
             php artisan config:cache && \
-            php artisan route:clear && \
-            php artisan view:clear
+            php artisan route:cache && \
+            php artisan view:cache
             cd ~/uu-circles.com && \
             ln -nfs ~/uu-circles.com/work/api-stg/${{ github.run_number }} ~/uu-circles.com/work/api-stg/current
           '
@@ -109,12 +117,13 @@ jobs:
             cd uu-circle/api && \
             git reset --hard origin/develop/production && \
             cp ../../../.env .env && \
+            cp ../../../credentials.json credentials.json && \
             composer install && \
             php artisan migrate --force && \
             php artisan cache:clear && \
             php artisan config:cache && \
-            php artisan route:clear && \
-            php artisan view:clear
+            php artisan route:cache && \
+            php artisan view:cache
             cd ~/uu-circles.com && \
             ln -nfs ~/uu-circles.com/work/api/${{ github.run_number }} ~/uu-circles.com/work/api/current
           '

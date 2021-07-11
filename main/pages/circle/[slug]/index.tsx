@@ -14,6 +14,7 @@ import { TwitterEmbed } from '@/components/organisms/Twitter/TwitterEmbed'
 import { getCircleBySlug } from '@/infra/api/circle'
 import { PageNotFoundError } from '@/infra/api/error'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
@@ -26,18 +27,18 @@ import Error from 'next/error'
 import Image from 'next/image'
 import { FC } from 'react'
 import useSWR from 'swr'
-import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
-  media?: WP_REST_API_Media
+  media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
           <img
-            src={(media && media.source_url) || '/images/uuyell-post.png'}
+            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
           />
         </p>
@@ -84,7 +85,7 @@ type Props = {
   /** WordPress記事 */ wpPosts?: {
     postsNotTags: WP_REST_API_Post[]
     postsExistTags: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
+    medias: WP_REST_API_Attachment[]
   }
   errorCode?: number
   /** お知らせ */ announcements?: Announcement[]
@@ -108,7 +109,7 @@ const Page: NextPage<Props> = ({
 
   const { data: uuYellForCircles } = useSWR<{
     posts: WP_REST_API_Post[]
-    medias: WP_REST_API_Media[]
+    medias: WP_REST_API_Attachment[]
   }>(['/circle/[slug]', circle.slug], async () => {
     const fetchedPosts = await Promise.all([
       axios.get<WP_REST_API_Post[]>(
@@ -141,7 +142,7 @@ const Page: NextPage<Props> = ({
     const mediaIds = posts.map((post) => post.featured_media)
     const queryMediaIds = mediaIds.join(',')
 
-    const fetchedMedias = await axios.get<WP_REST_API_Media[]>(
+    const fetchedMedias = await axios.get<WP_REST_API_Attachment[]>(
       `${UU_YELL_URL}/wp-json/wp/v2/media?context=embed&include=${queryMediaIds}`
     )
 
@@ -209,7 +210,7 @@ const Page: NextPage<Props> = ({
                 ''
               )}
 
-              <div className="order-3 md:order-4 pt-10">
+              <div className="order-4 md:order-4 pt-10">
                 <div>
                   {circleNewJoys && circleNewJoys.length > 0 ? (
                     <div>
@@ -239,7 +240,7 @@ const Page: NextPage<Props> = ({
                 </div>
               </div>
 
-              <div className="order-4 md:order-3 pt-10">
+              <div className="order-3 md:order-3 pt-10">
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 

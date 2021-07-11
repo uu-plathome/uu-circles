@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\AdminUser;
 
 use App\Http\Controllers\Controller;
@@ -11,13 +13,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class DeleteAdminUserController extends Controller
+final class DeleteAdminUserController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $userId
-     * @return bool[]
+     * @param int     $userId
+     *
      * @throws ValidationException
+     *
+     * @return bool[]
      */
     public function __invoke(DeleteAdminUserRequest $request, int $userId): array
     {
@@ -41,7 +45,7 @@ class DeleteAdminUserController extends Controller
         $user->delete();
 
         return [
-            'status' => true
+            'status' => true,
         ];
     }
 }

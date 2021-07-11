@@ -51,7 +51,7 @@ class AdvertisesCounterHistorySheet implements FromCollection, WithHeadings, Wit
     }
 
     /**
-     * シート名
+     * シート名.
      *
      * @return string
      */

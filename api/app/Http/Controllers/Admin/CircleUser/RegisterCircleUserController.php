@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
-use App\Enum\Property\UserProperty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
 use App\Usecases\Admin\CircleUser\CreateCircleUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class RegisterCircleUserController extends Controller
+final class RegisterCircleUserController extends Controller
 {
     private CreateCircleUserUsecase $createCircleUserUsecase;
 
@@ -20,7 +21,8 @@ class RegisterCircleUserController extends Controller
 
     /**
      * @param RegisterCircleUserRequest $request
-     * @param int $circleId
+     * @param int                       $circleId
+     *
      * @throws Exception
      */
     public function __invoke(

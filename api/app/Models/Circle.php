@@ -15,11 +15,16 @@ class Circle extends Model
         P::slug,
         P::release,
         P::is_main_fixed,
+        P::is_only_demo,
+        P::is_demo_fixed,
+        P::demo_priority,
     ];
 
     protected $casts = [
         P::release       => 'boolean',
         P::is_main_fixed => 'boolean',
+        P::is_only_demo  => 'boolean',
+        P::is_demo_fixed => 'boolean',
     ];
 
     public function circleInformation(): HasOne
@@ -33,7 +38,7 @@ class Circle extends Model
     }
 
     /**
-     * ランダムなSlugを生成する
+     * ランダムなSlugを生成する.
      *
      * @return void
      */
@@ -48,7 +53,7 @@ class Circle extends Model
     }
 
     /**
-     * 新歓を取得する
+     * 新歓を取得する.
      *
      * @return HasMany
      */
@@ -58,7 +63,17 @@ class Circle extends Model
     }
 
     /**
-     * 新歓ビラ
+     * デモ新歓を取得する.
+     *
+     * @return HasMany
+     */
+    public function demoCircleNewJoys(): HasMany
+    {
+        return $this->hasMany(DemoCircleNewjoy::class);
+    }
+
+    /**
+     * 新歓ビラ.
      *
      * @return HasOne
      */
@@ -68,7 +83,7 @@ class Circle extends Model
     }
 
     /**
-     * サークルタグ
+     * サークルタグ.
      *
      * @return HasOne
      */
@@ -78,7 +93,7 @@ class Circle extends Model
     }
 
     /**
-     * 現在公開中の新歓を取得する
+     * 現在公開中の新歓を取得する.
      *
      * @return void
      */

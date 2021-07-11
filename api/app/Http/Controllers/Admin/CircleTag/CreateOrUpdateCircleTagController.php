@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleTag;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class CreateOrUpdateCircleTagController extends Controller
+final class CreateOrUpdateCircleTagController extends Controller
 {
     private CreateOrUpdateCircleTagUsecase $createOrUpdateCircleTagUsecase;
 
@@ -22,9 +24,11 @@ class CreateOrUpdateCircleTagController extends Controller
      * Handle the incoming request.
      *
      * @param CreateOrUpdateCircleTagRequest $request
-     * @param int $circleId
-     * @return Response|string[]
+     * @param int                            $circleId
+     *
      * @throws Exception
+     *
+     * @return Response|string[]
      */
     public function __invoke(
         CreateOrUpdateCircleTagRequest $request,

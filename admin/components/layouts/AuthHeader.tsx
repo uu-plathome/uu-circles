@@ -8,7 +8,7 @@ const AuthHeader: React.FC = () => {
       <BaseContainer>
         <div className="h-14 flex items-center justify-between px-4 ">
           <div className="flex items-center">
-            <h1 className="text-white text-xl">UU-Circles</h1>
+            <h1 className="text-white text-xl">UU-Manager</h1>
           </div>
 
           <Link href="/login">

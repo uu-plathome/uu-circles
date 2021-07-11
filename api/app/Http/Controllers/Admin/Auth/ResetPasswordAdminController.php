@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -8,7 +10,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class ResetPasswordAdminController extends Controller
+final class ResetPasswordAdminController extends Controller
 {
     use ResetsPasswords;
 
@@ -36,7 +38,8 @@ class ResetPasswordAdminController extends Controller
      * Get the response for a successful password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return array
      */
     protected function sendResetResponse(Request $request, $response)
@@ -48,7 +51,8 @@ class ResetPasswordAdminController extends Controller
      * Get the response for a failed password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)

@@ -1,10 +1,15 @@
 import { Circle } from './Circle'
+import { CirclePageView } from './CirclePageView'
 
 export type Statistics = {
   /** サークル数 */
-  circleCount: 20
+  circleCount: number
   /** 活動費用の平均値 */
-  averageActivityCost: 3000
+  averageActivityCost: number
+  /** ページ閲覧数 */
+  allPageViews: number
+  /** ユーザ数 */
+  allActiveUsers: number
   /** 週の活動頻度 */
   activityFrequency: {
     zero: number
@@ -65,5 +70,18 @@ export type Statistics = {
     fourth: Circle
     second: Circle
     third: Circle
+  }
+  /** サークルページ閲覧数ランキング (高い順) */
+  circlePageViewsHighRanking: {
+    fifth: Circle
+    fifthPageView: CirclePageView
+    first: Circle
+    firstPageView: CirclePageView
+    fourth: Circle
+    fourthPageView: CirclePageView
+    second: Circle
+    secondPageView: CirclePageView
+    third: Circle
+    thirdPageView: CirclePageView
   }
 }

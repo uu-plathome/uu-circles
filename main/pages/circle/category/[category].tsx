@@ -11,23 +11,26 @@ import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 import { Category } from '@/lib/enum/app/Category'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
+import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number
   circles?: Circle[]
   recommendCircles?: Circle[]
-  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
+  /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
+  /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
 }
 const Page: NextPage<Props> = ({
   circles,
   recommendCircles,
   uuYellArticles,
   announcements,
+  tagPageViewRanking,
 }) => {
   const router = useRouter()
   const { category } = router.query
@@ -52,7 +55,9 @@ const Page: NextPage<Props> = ({
         }
       >
         <div className="bg-gray-100 px-2">
-          <TwoColumnContainer sidebar={<CircleSidebar />}>
+          <TwoColumnContainer
+            sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
+          >
             <div className="px-5">
               <h1 className="text-2xl py-8">
                 {__(String(categoryToCircleType(category as Category)))}
@@ -97,8 +102,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
-  const { circles, recommendCircles, uuYellArticles, announcements } =
-    await getCircleByCategory(params.category)
+  const {
+    circles,
+    recommendCircles,
+    uuYellArticles,
+    announcements,
+    tagPageViewRanking,
+  } = await getCircleByCategory(params.category)
 
   return {
     props: {
@@ -106,6 +116,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       recommendCircles,
       uuYellArticles,
       announcements,
+      tagPageViewRanking,
     },
     revalidate: 120,
   }

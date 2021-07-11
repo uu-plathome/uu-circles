@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Events\PasswordResetCircleUser;
@@ -11,13 +13,13 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
-class ResetPasswordCircleController extends Controller
+final class ResetPasswordCircleController extends Controller
 {
     use ResetsPasswords;
 
     public function __invoke(ResetPasswordCircleRequest $request)
     {
-        Log::debug("ResetPasswordCircleController args none");
+        Log::debug('ResetPasswordCircleController args none');
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -40,13 +42,14 @@ class ResetPasswordCircleController extends Controller
     /**
      * Reset the given user's password.
      *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
+     * @param \Illuminate\Contracts\Auth\CanResetPassword $user
+     * @param string                                      $password
+     *
      * @return void
      */
     protected function resetPassword($user, $password)
     {
-        Log::debug("ResetPasswordCircleController#resetPassword");
+        Log::debug('ResetPasswordCircleController#resetPassword');
 
         $this->setUserPassword($user, $password);
 
@@ -63,12 +66,13 @@ class ResetPasswordCircleController extends Controller
      * Get the response for a successful password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return array
      */
     protected function sendResetResponse(Request $request, $response)
     {
-        Log::debug("ResetPasswordCircleController#sendResetResponse");
+        Log::debug('ResetPasswordCircleController#sendResetResponse');
 
         return ['status' => trans($response)];
     }
@@ -77,12 +81,13 @@ class ResetPasswordCircleController extends Controller
      * Get the response for a failed password reset.
      *
      * @param Request $request
-     * @param  string  $response
+     * @param string  $response
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        Log::debug("ResetPasswordCircleController#sendResetFailedResponse");
+        Log::debug('ResetPasswordCircleController#sendResetFailedResponse');
 
         return response()->json(['email' => trans($response)], 400);
     }

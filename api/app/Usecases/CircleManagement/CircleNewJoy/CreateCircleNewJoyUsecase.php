@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty as Property;
@@ -9,18 +11,19 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateCircleNewJoyUsecase
+final class CreateCircleNewJoyUsecase
 {
     /**
-     * 新規新歓を追加する
+     * 新規新歓を追加する.
+     *
+     * @throws Exception
      *
      * @return void
-     * @throws Exception
      */
     public function invoke(
         CreateCircleNewJoyUsecaseParam $param
     ) {
-        Log::debug("CreateCircleNewJoyUsecase args", [
+        Log::debug('CreateCircleNewJoyUsecase args', [
             'CreateCircleNewJoyUsecaseParam' => $param,
         ]);
 
@@ -39,6 +42,7 @@ class CreateCircleNewJoyUsecase
         ];
 
         DB::beginTransaction();
+
         try {
             $circle = Circle::findOrFail($circleId);
             $circle->circleNewJoys()->create($newCircleNewJoy);
@@ -47,7 +51,7 @@ class CreateCircleNewJoyUsecase
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] CreateCircleNewJoyUsecase", [
+            Log::error('[ERROR] CreateCircleNewJoyUsecase', [
                 'CreateCircleNewJoyUsecaseParam' => $param,
             ]);
 

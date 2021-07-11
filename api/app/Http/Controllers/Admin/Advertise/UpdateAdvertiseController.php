@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Enum\Property\AdvertiseCounterProperty;
@@ -12,7 +14,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateAdvertiseController extends Controller
+final class UpdateAdvertiseController extends Controller
 {
     const COUNTER_ROWS = 20;
 
@@ -20,8 +22,10 @@ class UpdateAdvertiseController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     *
      * @throws Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function __invoke(UpdateAdvertiseRequest $request, int $advertiseId)
     {
@@ -31,6 +35,7 @@ class UpdateAdvertiseController extends Controller
         $now = Carbon::now();
 
         DB::beginTransaction();
+
         try {
             $advertise->update(
                 $request->makeAdvertise()->toArray()
@@ -64,8 +69,8 @@ class UpdateAdvertiseController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] UpdateAdvertiseController", [
-                "advertise" => $advertise,
+            Log::error('[ERROR] UpdateAdvertiseController', [
+                'advertise' => $advertise,
             ]);
 
             throw $e;

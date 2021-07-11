@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Statistics;
 
 use App\Support\Arr;
@@ -11,7 +13,7 @@ use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class StatisticsController
+final class StatisticsController
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 
@@ -30,13 +32,13 @@ class StatisticsController
     }
 
     /**
-     * 統計情報
+     * 統計情報.
      *
      * @return array
      */
     public function __invoke()
     {
-        Log::debug("StatisticsController args none");
+        Log::debug('StatisticsController args none');
 
         // 統計情報
         $statistics = Cache::remember(

@@ -9,6 +9,7 @@ import {
   faUser,
   faAd,
   faBullhorn,
+  faDemocrat,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -52,6 +53,13 @@ const generalSidebarList = [
     icon: faUser,
     exact: false,
     role: [Role.SYSTEM, Role.MANAGER],
+  },
+  {
+    name: 'デモ新歓',
+    link: '/demo/newjoy',
+    icon: faDemocrat,
+    exact: false,
+    role: [Role.SYSTEM],
   },
   {
     name: '広告管理',

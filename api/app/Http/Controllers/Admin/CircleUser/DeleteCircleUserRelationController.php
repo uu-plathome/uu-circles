@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\Circle;
@@ -10,14 +12,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\ValidationException;
 
-class DeleteCircleUserRelationController
+final class DeleteCircleUserRelationController
 {
     /**
-     * CircleとUserの連携を解除する
+     * CircleとUserの連携を解除する.
      *
      * @param Request $request
-     * @param int $userId
-     * @param int $circleId
+     * @param int     $userId
+     * @param int     $circleId
+     *
      * @throws ValidationException
      * @throws \Exception
      */
@@ -43,12 +46,14 @@ class DeleteCircleUserRelationController
         }
 
         DB::beginTransaction();
+
         try {
             $circleUser->delete();
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Identification;
 
 use App\Enum\Property\IdentifierHistoryProperty;
@@ -13,25 +15,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PublishIdentificationController extends Controller
+final class PublishIdentificationController extends Controller
 {
     /**
-     * UUIDをチェックする最大回数
+     * UUIDをチェックする最大回数.
      */
     const MAX_UUID_CHECK = 3;
 
     /**
-     * 識別子発行API
+     * 識別子発行API.
      *
      * @param Request $request
-     * @return array
+     *
      * @throws Exception
+     *
+     * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#PublishIdentificationController args: none");
+        Log::debug('#PublishIdentificationController args: none');
 
         DB::beginTransaction();
+
         try {
             for ($i = self::MAX_UUID_CHECK; $i > 0; $i--) {
                 $hash = Identifier::generateIdentifierHash();
@@ -41,7 +46,7 @@ class PublishIdentificationController extends Controller
                 }
 
                 $identifier = Identifier::create([
-                    IdentifierProperty::identifier_hash => $hash
+                    IdentifierProperty::identifier_hash => $hash,
                 ]);
 
                 // 識別子に情報を追加
@@ -57,18 +62,20 @@ class PublishIdentificationController extends Controller
 
             if ($i === 0) {
                 $check = self::MAX_UUID_CHECK;
+
                 throw new Exception("uuidがMAX_UUID_CHECK回重複しました MAX_UUID_CHECK=$check");
             }
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error("PublishIdentificationController [ERROR]");
+            Log::error('PublishIdentificationController [ERROR]');
+
             throw $e;
         }
 
         return Arr::camel_keys([
-            IdentifierProperty::identifier_hash => $identifier->identifier_hash
+            IdentifierProperty::identifier_hash => $identifier->identifier_hash,
         ]);
     }
 }

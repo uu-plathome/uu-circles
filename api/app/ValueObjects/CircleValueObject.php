@@ -8,7 +8,6 @@ use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class CircleValueObject
 {
@@ -17,6 +16,9 @@ class CircleValueObject
     public bool $release;
     public string $name;
     public bool $is_main_fixed;
+    public bool $is_only_demo;
+    public bool $is_demo_fixed = false;
+    public int $demo_priority = 0;
     public ?string $circle_type;
     public ?string $name_kana;
     public ?string $short_name;
@@ -86,7 +88,10 @@ class CircleValueObject
         $circleValueObject->slug = $circle->slug;
         $circleValueObject->release = $circle->release;
         $circleValueObject->name = $circle->name;
-        $circleValueObject->is_main_fixed = !!$circle->is_main_fixed;
+        $circleValueObject->is_main_fixed = (bool) $circle->is_main_fixed;
+        $circleValueObject->is_only_demo = (bool) $circle->is_only_demo;
+        $circleValueObject->is_demo_fixed = (bool) $circle->is_demo_fixed;
+        $circleValueObject->demo_priority = is_integer($circle->demo_priority) ? $circle->demo_priority : 0;
 
         $circleValueObject->circle_type = $circleInformation ? $circleInformation->circle_type : null;
         $circleValueObject->name_kana = $circleInformation ? $circleInformation->name_kana : null;
@@ -95,23 +100,23 @@ class CircleValueObject
         $circleValueObject->description = $circleInformation ? $circleInformation->description : null;
         $circleValueObject->common_place_of_activity = $circleInformation ? $circleInformation->common_place_of_activity : null;
         $circleValueObject->common_place_of_activity_detail = $circleInformation ? $circleInformation->common_place_of_activity_detail : null;
-        $circleValueObject->common_date_of_activity_monday = $circleInformation ? !!$circleInformation->common_date_of_activity_monday : false;
-        $circleValueObject->common_date_of_activity_tuesday = $circleInformation ? !!$circleInformation->common_date_of_activity_tuesday : false;
-        $circleValueObject->common_date_of_activity_wednesday = $circleInformation ? !!$circleInformation->common_date_of_activity_wednesday : false;
-        $circleValueObject->common_date_of_activity_thursday = $circleInformation ? !!$circleInformation->common_date_of_activity_thursday : false;
-        $circleValueObject->common_date_of_activity_friday = $circleInformation ? !!$circleInformation->common_date_of_activity_friday : false;
-        $circleValueObject->common_date_of_activity_saturday = $circleInformation ? !!$circleInformation->common_date_of_activity_saturday : false;
-        $circleValueObject->common_date_of_activity_sunday = $circleInformation ? !!$circleInformation->common_date_of_activity_sunday : false;
+        $circleValueObject->common_date_of_activity_monday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_monday : false;
+        $circleValueObject->common_date_of_activity_tuesday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_tuesday : false;
+        $circleValueObject->common_date_of_activity_wednesday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_wednesday : false;
+        $circleValueObject->common_date_of_activity_thursday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_thursday : false;
+        $circleValueObject->common_date_of_activity_friday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_friday : false;
+        $circleValueObject->common_date_of_activity_saturday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_saturday : false;
+        $circleValueObject->common_date_of_activity_sunday = $circleInformation ? (bool) $circleInformation->common_date_of_activity_sunday : false;
         $circleValueObject->common_date_of_activity_detail = $circleInformation ? $circleInformation->common_date_of_activity_detail : null;
         $circleValueObject->is_online_activity = $circleInformation ? $circleInformation->is_online_activity : null;
         $circleValueObject->online_place_of_activity_detail = $circleInformation ? $circleInformation->online_place_of_activity_detail : null;
-        $circleValueObject->online_date_of_activity_monday = $circleInformation ? !!$circleInformation->online_date_of_activity_monday : false;
-        $circleValueObject->online_date_of_activity_tuesday = $circleInformation ? !!$circleInformation->online_date_of_activity_tuesday : false;
-        $circleValueObject->online_date_of_activity_wednesday = $circleInformation ? !!$circleInformation->online_date_of_activity_wednesday : false;
-        $circleValueObject->online_date_of_activity_thursday = $circleInformation ? !!$circleInformation->online_date_of_activity_thursday : false;
-        $circleValueObject->online_date_of_activity_friday = $circleInformation ? !!$circleInformation->online_date_of_activity_friday : false;
-        $circleValueObject->online_date_of_activity_saturday = $circleInformation ? !!$circleInformation->online_date_of_activity_saturday : false;
-        $circleValueObject->online_date_of_activity_sunday = $circleInformation ? !!$circleInformation->online_date_of_activity_sunday : false;
+        $circleValueObject->online_date_of_activity_monday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_monday : false;
+        $circleValueObject->online_date_of_activity_tuesday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_tuesday : false;
+        $circleValueObject->online_date_of_activity_wednesday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_wednesday : false;
+        $circleValueObject->online_date_of_activity_thursday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_thursday : false;
+        $circleValueObject->online_date_of_activity_friday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_friday : false;
+        $circleValueObject->online_date_of_activity_saturday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_saturday : false;
+        $circleValueObject->online_date_of_activity_sunday = $circleInformation ? (bool) $circleInformation->online_date_of_activity_sunday : false;
         $circleValueObject->online_date_of_activity_detail = $circleInformation ? $circleInformation->online_date_of_activity_detail : null;
         $circleValueObject->is_club_activities = $circleInformation ? $circleInformation->is_club_activities : null;
         $circleValueObject->appealing_point1 = $circleInformation ? $circleInformation->appealing_point1 : null;
@@ -145,7 +150,7 @@ class CircleValueObject
         $circleValueObject->wp_url = $circleInformation ? $circleInformation->wp_url : null;
         $circleValueObject->is_view_wp_post = $circleInformation ? $circleInformation->is_view_wp_post : false;
         $circleValueObject->wp_tag_taxonomy = $circleInformation ? $circleInformation->wp_tag_taxonomy : null;
-        $circleValueObject->handbill_image_url = $circleHandbill ?  $circleHandbill->image_url : null;
+        $circleValueObject->handbill_image_url = $circleHandbill ? $circleHandbill->image_url : null;
 
         return $circleValueObject;
     }
@@ -157,71 +162,74 @@ class CircleValueObject
             CircleProperty::slug          => $this->slug,
             CircleProperty::release       => $this->release,
             CircleProperty::is_main_fixed => $this->is_main_fixed,
+            CircleProperty::is_demo_fixed => $this->is_demo_fixed,
+            CircleProperty::demo_priority => $this->demo_priority,
             CircleProperty::created_at    => $this->created_at,
             CircleProperty::updated_at    => $this->updated_at,
         ]);
         $circle->id = $this->id;
+
         return $circle;
     }
 
     public function toCircleInformationProperty(): CircleInformation
     {
         return new CircleInformation([
-            CircleInformationProperty::circle_id => $this->id,
-            CircleInformationProperty::circle_type => $this->circle_type,
-            CircleInformationProperty::name_kana => $this->name_kana,
-            CircleInformationProperty::short_name => $this->short_name,
-            CircleInformationProperty::prefix_name => $this->prefix_name,
-            CircleInformationProperty::description => $this->description,
-            CircleInformationProperty::common_place_of_activity => $this->common_place_of_activity,
-            CircleInformationProperty::common_place_of_activity_detail => $this->common_place_of_activity_detail,
-            CircleInformationProperty::common_date_of_activity_monday => $this->common_date_of_activity_monday,
-            CircleInformationProperty::common_date_of_activity_tuesday => $this->common_date_of_activity_tuesday,
+            CircleInformationProperty::circle_id                         => $this->id,
+            CircleInformationProperty::circle_type                       => $this->circle_type,
+            CircleInformationProperty::name_kana                         => $this->name_kana,
+            CircleInformationProperty::short_name                        => $this->short_name,
+            CircleInformationProperty::prefix_name                       => $this->prefix_name,
+            CircleInformationProperty::description                       => $this->description,
+            CircleInformationProperty::common_place_of_activity          => $this->common_place_of_activity,
+            CircleInformationProperty::common_place_of_activity_detail   => $this->common_place_of_activity_detail,
+            CircleInformationProperty::common_date_of_activity_monday    => $this->common_date_of_activity_monday,
+            CircleInformationProperty::common_date_of_activity_tuesday   => $this->common_date_of_activity_tuesday,
             CircleInformationProperty::common_date_of_activity_wednesday => $this->common_date_of_activity_wednesday,
-            CircleInformationProperty::common_date_of_activity_thursday => $this->common_date_of_activity_thursday,
-            CircleInformationProperty::common_date_of_activity_friday => $this->common_date_of_activity_friday,
-            CircleInformationProperty::common_date_of_activity_saturday => $this->common_date_of_activity_saturday,
-            CircleInformationProperty::common_date_of_activity_sunday => $this->common_date_of_activity_sunday,
-            CircleInformationProperty::common_date_of_activity_detail => $this->common_date_of_activity_detail,
-            CircleInformationProperty::is_online_activity => $this->is_online_activity !== null ?
+            CircleInformationProperty::common_date_of_activity_thursday  => $this->common_date_of_activity_thursday,
+            CircleInformationProperty::common_date_of_activity_friday    => $this->common_date_of_activity_friday,
+            CircleInformationProperty::common_date_of_activity_saturday  => $this->common_date_of_activity_saturday,
+            CircleInformationProperty::common_date_of_activity_sunday    => $this->common_date_of_activity_sunday,
+            CircleInformationProperty::common_date_of_activity_detail    => $this->common_date_of_activity_detail,
+            CircleInformationProperty::is_online_activity                => $this->is_online_activity !== null ?
                 $this->is_online_activity :
                 true,
-            CircleInformationProperty::online_place_of_activity_detail => $this->online_place_of_activity_detail,
-            CircleInformationProperty::online_date_of_activity_monday => $this->online_date_of_activity_monday,
-            CircleInformationProperty::online_date_of_activity_tuesday => $this->online_date_of_activity_tuesday,
+            CircleInformationProperty::online_place_of_activity_detail   => $this->online_place_of_activity_detail,
+            CircleInformationProperty::online_date_of_activity_monday    => $this->online_date_of_activity_monday,
+            CircleInformationProperty::online_date_of_activity_tuesday   => $this->online_date_of_activity_tuesday,
             CircleInformationProperty::online_date_of_activity_wednesday => $this->online_date_of_activity_wednesday,
-            CircleInformationProperty::online_date_of_activity_thursday => $this->online_date_of_activity_thursday,
-            CircleInformationProperty::online_date_of_activity_friday => $this->online_date_of_activity_friday,
-            CircleInformationProperty::online_date_of_activity_saturday => $this->online_date_of_activity_saturday,
-            CircleInformationProperty::online_date_of_activity_sunday => $this->online_date_of_activity_sunday,
-            CircleInformationProperty::online_date_of_activity_detail => $this->online_date_of_activity_detail,
-            CircleInformationProperty::admission_fee_per_year => $this->admission_fee_per_year,
-            CircleInformationProperty::number_of_members => $this->number_of_members,
-            CircleInformationProperty::is_club_activities => $this->is_club_activities,
-            CircleInformationProperty::appealing_point1 => $this->appealing_point1,
-            CircleInformationProperty::appealing_point2 => $this->appealing_point2,
-            CircleInformationProperty::appealing_point3 => $this->appealing_point3,
-            CircleInformationProperty::public_email => $this->public_email,
-            CircleInformationProperty::twitter_url => $this->twitter_url,
-            CircleInformationProperty::facebook_url => $this->facebook_url,
-            CircleInformationProperty::instagram_url => $this->instagram_url,
-            CircleInformationProperty::line_url => $this->line_url,
-            CircleInformationProperty::youtube_url => $this->youtube_url,
-            CircleInformationProperty::homepage_url => $this->homepage_url,
-            CircleInformationProperty::peing_url => $this->peing_url,
-            CircleInformationProperty::github_url => $this->github_url,
-            CircleInformationProperty::tiktok_url => $this->tiktok_url,
-            CircleInformationProperty::participation_url => $this->participation_url,
-            CircleInformationProperty::main_image_url => $this->main_image_url,
-            CircleInformationProperty::activity_image_url1 => $this->activity_image_url1,
-            CircleInformationProperty::activity_image_url2 => $this->activity_image_url2,
-            CircleInformationProperty::activity_image_url3 => $this->activity_image_url3,
-            CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
-            CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
-            CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
-            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
-            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
-            CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
+            CircleInformationProperty::online_date_of_activity_thursday  => $this->online_date_of_activity_thursday,
+            CircleInformationProperty::online_date_of_activity_friday    => $this->online_date_of_activity_friday,
+            CircleInformationProperty::online_date_of_activity_saturday  => $this->online_date_of_activity_saturday,
+            CircleInformationProperty::online_date_of_activity_sunday    => $this->online_date_of_activity_sunday,
+            CircleInformationProperty::online_date_of_activity_detail    => $this->online_date_of_activity_detail,
+            CircleInformationProperty::admission_fee_per_year            => $this->admission_fee_per_year,
+            CircleInformationProperty::number_of_members                 => $this->number_of_members,
+            CircleInformationProperty::is_club_activities                => $this->is_club_activities,
+            CircleInformationProperty::appealing_point1                  => $this->appealing_point1,
+            CircleInformationProperty::appealing_point2                  => $this->appealing_point2,
+            CircleInformationProperty::appealing_point3                  => $this->appealing_point3,
+            CircleInformationProperty::public_email                      => $this->public_email,
+            CircleInformationProperty::twitter_url                       => $this->twitter_url,
+            CircleInformationProperty::facebook_url                      => $this->facebook_url,
+            CircleInformationProperty::instagram_url                     => $this->instagram_url,
+            CircleInformationProperty::line_url                          => $this->line_url,
+            CircleInformationProperty::youtube_url                       => $this->youtube_url,
+            CircleInformationProperty::homepage_url                      => $this->homepage_url,
+            CircleInformationProperty::peing_url                         => $this->peing_url,
+            CircleInformationProperty::github_url                        => $this->github_url,
+            CircleInformationProperty::tiktok_url                        => $this->tiktok_url,
+            CircleInformationProperty::participation_url                 => $this->participation_url,
+            CircleInformationProperty::main_image_url                    => $this->main_image_url,
+            CircleInformationProperty::activity_image_url1               => $this->activity_image_url1,
+            CircleInformationProperty::activity_image_url2               => $this->activity_image_url2,
+            CircleInformationProperty::activity_image_url3               => $this->activity_image_url3,
+            CircleInformationProperty::activity_image_url4               => $this->activity_image_url4,
+            CircleInformationProperty::activity_image_url5               => $this->activity_image_url5,
+            CircleInformationProperty::activity_image_url6               => $this->activity_image_url6,
+            CircleInformationProperty::wp_url                            => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy                   => $this->wp_tag_taxonomy ?: null,
+            CircleInformationProperty::is_view_wp_post                   => (bool) $this->is_view_wp_post,
         ]);
     }
 
@@ -236,69 +244,72 @@ class CircleValueObject
     public function toArray(): array
     {
         return [
-            CircleProperty::id            => $this->id,
-            CircleProperty::slug          => $this->slug,
-            CircleProperty::release       => $this->release,
-            CircleProperty::name          => $this->name,
-            CircleProperty::is_main_fixed => $this->is_main_fixed,
-            CircleProperty::created_at    => $this->created_at,
-            CircleProperty::updated_at    => $this->updated_at,
-            CircleInformationProperty::circle_type => $this->circle_type,
-            CircleInformationProperty::name_kana => $this->name_kana,
-            CircleInformationProperty::short_name => $this->short_name,
-            CircleInformationProperty::prefix_name => $this->prefix_name,
-            CircleInformationProperty::description => $this->description,
-            CircleInformationProperty::common_place_of_activity => $this->common_place_of_activity,
-            CircleInformationProperty::common_place_of_activity_detail => $this->common_place_of_activity_detail,
-            CircleInformationProperty::common_date_of_activity_monday => $this->common_date_of_activity_monday,
-            CircleInformationProperty::common_date_of_activity_tuesday => $this->common_date_of_activity_tuesday,
+            CircleProperty::id                                           => $this->id,
+            CircleProperty::slug                                         => $this->slug,
+            CircleProperty::release                                      => $this->release,
+            CircleProperty::name                                         => $this->name,
+            CircleProperty::is_main_fixed                                => $this->is_main_fixed,
+            CircleProperty::is_only_demo                                 => $this->is_only_demo,
+            CircleProperty::is_demo_fixed                                => $this->is_demo_fixed,
+            CircleProperty::demo_priority                                => $this->demo_priority,
+            CircleProperty::created_at                                   => $this->created_at,
+            CircleProperty::updated_at                                   => $this->updated_at,
+            CircleInformationProperty::circle_type                       => $this->circle_type,
+            CircleInformationProperty::name_kana                         => $this->name_kana,
+            CircleInformationProperty::short_name                        => $this->short_name,
+            CircleInformationProperty::prefix_name                       => $this->prefix_name,
+            CircleInformationProperty::description                       => $this->description,
+            CircleInformationProperty::common_place_of_activity          => $this->common_place_of_activity,
+            CircleInformationProperty::common_place_of_activity_detail   => $this->common_place_of_activity_detail,
+            CircleInformationProperty::common_date_of_activity_monday    => $this->common_date_of_activity_monday,
+            CircleInformationProperty::common_date_of_activity_tuesday   => $this->common_date_of_activity_tuesday,
             CircleInformationProperty::common_date_of_activity_wednesday => $this->common_date_of_activity_wednesday,
-            CircleInformationProperty::common_date_of_activity_thursday => $this->common_date_of_activity_thursday,
-            CircleInformationProperty::common_date_of_activity_friday => $this->common_date_of_activity_friday,
-            CircleInformationProperty::common_date_of_activity_saturday => $this->common_date_of_activity_saturday,
-            CircleInformationProperty::common_date_of_activity_sunday => $this->common_date_of_activity_sunday,
-            CircleInformationProperty::common_date_of_activity_detail => $this->common_date_of_activity_detail,
-            CircleInformationProperty::is_online_activity => $this->is_online_activity !== null ? $this->is_online_activity : true,
-            CircleInformationProperty::online_place_of_activity_detail => $this->online_place_of_activity_detail,
-            CircleInformationProperty::online_date_of_activity_monday => $this->online_date_of_activity_monday,
-            CircleInformationProperty::online_date_of_activity_tuesday => $this->online_date_of_activity_tuesday,
+            CircleInformationProperty::common_date_of_activity_thursday  => $this->common_date_of_activity_thursday,
+            CircleInformationProperty::common_date_of_activity_friday    => $this->common_date_of_activity_friday,
+            CircleInformationProperty::common_date_of_activity_saturday  => $this->common_date_of_activity_saturday,
+            CircleInformationProperty::common_date_of_activity_sunday    => $this->common_date_of_activity_sunday,
+            CircleInformationProperty::common_date_of_activity_detail    => $this->common_date_of_activity_detail,
+            CircleInformationProperty::is_online_activity                => $this->is_online_activity !== null ? $this->is_online_activity : true,
+            CircleInformationProperty::online_place_of_activity_detail   => $this->online_place_of_activity_detail,
+            CircleInformationProperty::online_date_of_activity_monday    => $this->online_date_of_activity_monday,
+            CircleInformationProperty::online_date_of_activity_tuesday   => $this->online_date_of_activity_tuesday,
             CircleInformationProperty::online_date_of_activity_wednesday => $this->online_date_of_activity_wednesday,
-            CircleInformationProperty::online_date_of_activity_thursday => $this->online_date_of_activity_thursday,
-            CircleInformationProperty::online_date_of_activity_friday => $this->online_date_of_activity_friday,
-            CircleInformationProperty::online_date_of_activity_saturday => $this->online_date_of_activity_saturday,
-            CircleInformationProperty::online_date_of_activity_sunday => $this->online_date_of_activity_sunday,
-            CircleInformationProperty::online_date_of_activity_detail => $this->online_date_of_activity_detail,
-            CircleInformationProperty::is_club_activities => $this->is_club_activities,
-            CircleInformationProperty::appealing_point1 => $this->appealing_point1,
-            CircleInformationProperty::appealing_point2 => $this->appealing_point2,
-            CircleInformationProperty::appealing_point3 => $this->appealing_point3,
-            CircleInformationProperty::admission_fee_per_year => $this->admission_fee_per_year,
-            CircleInformationProperty::number_of_members => $this->number_of_members,
-            'weekly_activity_days' => $this->weekly_activity_days,
-            'mammoth' => $this->mammoth,
-            'active_activity' => $this->active_activity,
-            CircleInformationProperty::public_email => $this->public_email,
-            CircleInformationProperty::twitter_url => $this->twitter_url,
-            CircleInformationProperty::facebook_url => $this->facebook_url,
-            CircleInformationProperty::instagram_url => $this->instagram_url,
-            CircleInformationProperty::line_url => $this->line_url,
-            CircleInformationProperty::youtube_url => $this->youtube_url,
-            CircleInformationProperty::homepage_url => $this->homepage_url,
-            CircleInformationProperty::peing_url => $this->peing_url,
-            CircleInformationProperty::github_url => $this->github_url,
-            CircleInformationProperty::tiktok_url => $this->tiktok_url,
-            CircleInformationProperty::participation_url => $this->participation_url,
-            CircleInformationProperty::main_image_url => $this->main_image_url,
-            CircleInformationProperty::activity_image_url1 => $this->activity_image_url1,
-            CircleInformationProperty::activity_image_url2 => $this->activity_image_url2,
-            CircleInformationProperty::activity_image_url3 => $this->activity_image_url3,
-            CircleInformationProperty::activity_image_url4 => $this->activity_image_url4,
-            CircleInformationProperty::activity_image_url5 => $this->activity_image_url5,
-            CircleInformationProperty::activity_image_url6 => $this->activity_image_url6,
-            CircleInformationProperty::wp_url              => $this->wp_url ?: null,
-            CircleInformationProperty::wp_tag_taxonomy     => $this->wp_tag_taxonomy ?: null,
-            CircleInformationProperty::is_view_wp_post     => !!$this->is_view_wp_post,
-            'handbill_image_url' => $this->handbill_image_url,
+            CircleInformationProperty::online_date_of_activity_thursday  => $this->online_date_of_activity_thursday,
+            CircleInformationProperty::online_date_of_activity_friday    => $this->online_date_of_activity_friday,
+            CircleInformationProperty::online_date_of_activity_saturday  => $this->online_date_of_activity_saturday,
+            CircleInformationProperty::online_date_of_activity_sunday    => $this->online_date_of_activity_sunday,
+            CircleInformationProperty::online_date_of_activity_detail    => $this->online_date_of_activity_detail,
+            CircleInformationProperty::is_club_activities                => $this->is_club_activities,
+            CircleInformationProperty::appealing_point1                  => $this->appealing_point1,
+            CircleInformationProperty::appealing_point2                  => $this->appealing_point2,
+            CircleInformationProperty::appealing_point3                  => $this->appealing_point3,
+            CircleInformationProperty::admission_fee_per_year            => $this->admission_fee_per_year,
+            CircleInformationProperty::number_of_members                 => $this->number_of_members,
+            'weekly_activity_days'                                       => $this->weekly_activity_days,
+            'mammoth'                                                    => $this->mammoth,
+            'active_activity'                                            => $this->active_activity,
+            CircleInformationProperty::public_email                      => $this->public_email,
+            CircleInformationProperty::twitter_url                       => $this->twitter_url,
+            CircleInformationProperty::facebook_url                      => $this->facebook_url,
+            CircleInformationProperty::instagram_url                     => $this->instagram_url,
+            CircleInformationProperty::line_url                          => $this->line_url,
+            CircleInformationProperty::youtube_url                       => $this->youtube_url,
+            CircleInformationProperty::homepage_url                      => $this->homepage_url,
+            CircleInformationProperty::peing_url                         => $this->peing_url,
+            CircleInformationProperty::github_url                        => $this->github_url,
+            CircleInformationProperty::tiktok_url                        => $this->tiktok_url,
+            CircleInformationProperty::participation_url                 => $this->participation_url,
+            CircleInformationProperty::main_image_url                    => $this->main_image_url,
+            CircleInformationProperty::activity_image_url1               => $this->activity_image_url1,
+            CircleInformationProperty::activity_image_url2               => $this->activity_image_url2,
+            CircleInformationProperty::activity_image_url3               => $this->activity_image_url3,
+            CircleInformationProperty::activity_image_url4               => $this->activity_image_url4,
+            CircleInformationProperty::activity_image_url5               => $this->activity_image_url5,
+            CircleInformationProperty::activity_image_url6               => $this->activity_image_url6,
+            CircleInformationProperty::wp_url                            => $this->wp_url ?: null,
+            CircleInformationProperty::wp_tag_taxonomy                   => $this->wp_tag_taxonomy ?: null,
+            CircleInformationProperty::is_view_wp_post                   => (bool) $this->is_view_wp_post,
+            'handbill_image_url'                                         => $this->handbill_image_url,
         ];
     }
 }

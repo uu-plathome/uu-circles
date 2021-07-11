@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleUser;
 
 use App\Enum\Property\UserProperty;
@@ -9,17 +11,18 @@ use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUserUsecase
+final class IndexCircleUserUsecase
 {
     /**
-     * サークルに紐づく部員アカウント一覧を取得
+     * サークルに紐づく部員アカウント一覧を取得.
      *
-     * @param integer $circleId
+     * @param int $circleId
+     *
      * @return SeparateIsEmailVerifyCircleUserDto
      */
     public function invoke(int $circleId): SeparateIsEmailVerifyCircleUserDto
     {
-        Log::debug("IndexCircleUserUsecase args", [
+        Log::debug('IndexCircleUserUsecase args', [
             'circleId' => $circleId,
         ]);
 
@@ -27,7 +30,7 @@ class IndexCircleUserUsecase
             'circleUsers' => function ($query) use ($circleId) {
                 /** @var \App\Models\CircleUser $query */
                 $query->whereCircleId($circleId);
-            }
+            },
         ])
             ->whereActive(true)
             ->hasByNonDependentSubquery('circleUsers', function ($query) use ($circleId) {

@@ -1,35 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
- * サークル種別
+ * サークル種別.
  */
-class StatisticsCircleTypeDto
+final class StatisticsCircleTypeDto
 {
     /**
-     * 公認団体
+     * 公認団体.
      *
      * @var int
      */
     public int $officialOrganization;
 
     /**
-     * 非公認団体
+     * 非公認団体.
      *
      * @var int
      */
     public int $unofficialOrganization;
 
     /**
-     * 届出団体
+     * 届出団体.
      *
      * @var int
      */
     public int $sendingOrganization;
 
     /**
-     * 学生団体
+     * 学生団体.
      *
      * @var int
      */

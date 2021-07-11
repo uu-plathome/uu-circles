@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Sitemap\Dto;
 
-class SitemapDto
+final class SitemapDto
 {
     public string $site_url;
     public string $publish_at;

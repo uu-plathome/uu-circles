@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
@@ -8,15 +10,15 @@ use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\Dto\MainAnnouncementDto;
 use Illuminate\Support\Carbon;
 
-class GetMainViewFixedAnnouncementsUsecase
+final class GetMainViewFixedAnnouncementsUsecase
 {
     /**
-     * キャッシュする時間
+     * キャッシュする時間.
      */
     const TTL = 60 * 60;
 
     /**
-     * メイン画面に固定して、表示するお知らせを取得
+     * メイン画面に固定して、表示するお知らせを取得.
      */
     public function invoke(): GetMainViewFixedAnnouncementsUsecaseDto
     {
@@ -45,6 +47,7 @@ class GetMainViewFixedAnnouncementsUsecase
         $dto->announcements = $announcements->map(
             fn (Announcement $announcement) => MainAnnouncementDto::byEloquent($announcement)
         )->toArray();
+
         return $dto;
     }
 
@@ -55,6 +58,6 @@ class GetMainViewFixedAnnouncementsUsecase
      */
     public static function getCacheKey(): string
     {
-        return 'GetMainViewFixedAnnouncementsUsecase1' . Carbon::today()->format("Y-m-d h");
+        return 'GetMainViewFixedAnnouncementsUsecase1'.Carbon::today()->format('Y-m-d h');
     }
 }

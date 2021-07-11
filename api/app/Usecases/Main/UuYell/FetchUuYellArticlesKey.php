@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\UuYell;
 
 use Illuminate\Support\Carbon;
 
-class FetchUuYellArticlesKey
+final class FetchUuYellArticlesKey
 {
     const TTL = 60 * 60 * 2;
 
@@ -13,6 +15,7 @@ class FetchUuYellArticlesKey
         $now = Carbon::now();
         $day = $now->format('Ymd');
         $hour = $now->hour - $now->hour % 2;
-        return 'FetchUuYellArticlesKey' . $day . $hour;
+
+        return 'FetchUuYellArticlesKey '.$day.' '.$hour;
     }
 }
