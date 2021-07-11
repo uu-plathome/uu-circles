@@ -338,7 +338,7 @@ const Page: NextPage<Props> = () => {
               <p className="pb-4 text-sm">担当：ゴーストライティング</p>
 
               <p className="pb-2">U-lab 代表 2年 佐藤 歩夢</p>
-              <p className="pb-4 text-sm">担当: UIデザイン</p>
+              <p className="pb-4 text-sm">担当: UIデザイン、ライティング</p>
 
               <p className="pb-2">U-lab 2年 小畑 尚史</p>
               <p className="pb-4 text-sm">担当: プログラム (UU-Circles)</p>
