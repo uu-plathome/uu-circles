@@ -23,6 +23,15 @@ const Header: FC<{
   )
 }
 
+const ID_LIST = {
+  first: 'first',
+  second: 'second',
+  third: 'third',
+  fourth: 'fourth',
+  fifth: 'fifth',
+  sixth: 'sixth',
+} as const
+
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   return (
@@ -40,60 +49,72 @@ const Page: NextPage<Props> = () => {
               <ul>
                 <li className="pt-2">
                   <ScrollLink
-                    to="first"
+                    to={ID_LIST.first}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     1. UU-Circles について
                   </ScrollLink>
                 </li>
                 <li className="pt-2">
                   <ScrollLink
-                    to="second"
+                    to={ID_LIST.second}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     2. 制作・運営団体U-labとは？
                   </ScrollLink>
                 </li>
                 <li className="pt-2">
                   <ScrollLink
-                    to="third"
+                    to={ID_LIST.third}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     3. このサイトを作った動機
                   </ScrollLink>
                 </li>
                 <li className="pt-2">
                   <ScrollLink
-                    to="fourth"
+                    to={ID_LIST.fourth}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     4. 今後の展望
                   </ScrollLink>
                 </li>
                 <li className="pt-2">
                   <ScrollLink
-                    to="fifth"
+                    to={ID_LIST.fifth}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     5. クレジット
                   </ScrollLink>
                 </li>
                 <li className="pt-2">
                   <ScrollLink
-                    to="sixth"
+                    to={ID_LIST.sixth}
                     spy={true}
                     smooth={true}
                     duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
                   >
                     6. 開発の様子
                   </ScrollLink>
@@ -101,7 +122,7 @@ const Page: NextPage<Props> = () => {
               </ul>
             </div>
 
-            <Header id="first">1. UU-Circles について</Header>
+            <Header id={ID_LIST.first}>1. UU-Circles について</Header>
 
             <p className="px-4 pb-2 leading-relaxed">
               UU-Circles
@@ -121,27 +142,27 @@ const Page: NextPage<Props> = () => {
 
             <ul className="list-disc list-inside px-4 pb-8">
               <li className="pb-2">
-                一般ユーザー向けのページ：
-                <br className="none md:inline" />
-                <span className="pt-2 ml-4 md:ml-0">
+                <span className="inline-block md:inline mb-2 md:mb-0">一般ユーザー向けのページ：</span>
+                <br className="md:hidden" />
+                <span className="ml-6 md:ml-0">
                   「UU-Circles メインページ」
                 </span>
               </li>
               <li className="pb-2">
-                サークル管理者向けのページ：
-                <br className="none md:inline" />
-                <span className="pt-2 ml-4 md:ml-0">
+                <span className="inline-block md:inline mb-2 md:mb-0">サークル管理者向けのページ：</span>
+                <br className="md:hidden" />
+                <span className="ml-6 md:ml-0">
                   「UU-Circles サークル管理ページ」
                 </span>
               </li>
               <li className="pb-2">
-                UU-Circles運営向けのページ：
-                <br className="none md:inline" />
-                <span className="pt-2 ml-4 md:ml-0">「UU-Manager」</span>
+                <span className="inline-block md:inline mb-2 md:mb-0">UU-Circles運営向けのページ：</span>
+                <br className="md:hidden" />
+                <span className="ml-6 md:ml-0">「UU-Manager」</span>
               </li>
             </ul>
 
-            <Header id="second">2. 制作・運営団体U-labとは？</Header>
+            <Header id={ID_LIST.second}>2. 制作・運営団体U-labとは？</Header>
 
             <p className="px-4 pb-8 leading-relaxed">
               こんにちは！地域に根差すテクノロジー集団 U-lab です。
@@ -223,29 +244,26 @@ const Page: NextPage<Props> = () => {
               </a>
             </div>
 
-            <Header id="third">3. このサイトを作った動機</Header>
+            <Header id={ID_LIST.third}>3. このサイトを作った動機</Header>
 
             <p className="pb-2 px-4 leading-relaxed">
-              このサイトは今年が初めてというわけではなく、去年 (2020年)
-              に始めました。サークルビラ一覧の構想を考えたのは去年の合格発表日前日で、「思いたったがすぐ行動」と1日で急いでプロトタイプを制作して公開しました。
+              ときは、2020年3月。去年の大学入試の合格発表前日に、コロナ禍で例年のように新入生を迎えることができない状況を打開しようと、サークルビラ一覧の構想を考えました。「思いたったが吉日」とたった1日で急いでプロトタイプを制作して公開しました。
             </p>
 
             <p className="pb-2 px-4 leading-relaxed">
-              そこから大きな反響があり、U-labメンバーの全面協力により、その１週間後に正式にWebサービスとしてリリースしました。
+              そこから大きな反響があり、U-labメンバーの全面協力により、その1週間後に正式にWebサービスとしてリリースしました。
             </p>
 
             <p className="pb-2 px-4 leading-relaxed">
-              しかし、正式版の制作時間は１週間しかないため、システムやデザイン、UI・UX
-              のどの観点も満足ができるものが作れませんでした。
+              しかし、正式版の制作時間は1週間しかなかったため、システムやデザイン、UI・UX のどの観点も満足いくものが作れませんでした。
             </p>
 
             <p className="pb-8 px-4 leading-relaxed">
-              次の年はさらにより良いものにしたいと思い、今年 (2021年)
-              の1月くらいから密かに準備を進めてきました。
+              次の年はさらにより良いものにしたいと思い、今年 (2021年) の1月くらいから密かに準備を進めてきました。
             </p>
 
             <p className="px-4 pb-2 leading-relaxed">
-              2021年3月に、新デザインと新システムを用意し、プロジェクト名を「UU-Circles」と改名し公開しました。
+              2021年3月に、新システムと新デザインを用意し、プロジェクト名を「UU-Circles」と改名し公開しました。
             </p>
 
             <div className="flex justify-center items-center pt-6 pb-8">
@@ -258,22 +276,17 @@ const Page: NextPage<Props> = () => {
               </a>
             </div>
 
-            <Header id="fourth">4. 今後の展望</Header>
+            <Header id={ID_LIST.fourth}>4. 今後の展望</Header>
 
             <p className="px-4 pb-2 leading-relaxed">
-              UU-Circles
-              は何年間か使われ続けるWebサービスを目指したいと考えています。
-              新入生とサークル、サークルの SNS
-              を繋げるハブになることを願っています。
+              UU-Circles は長く使われ続けるWebサービスを目指しています。 新入生とサークルを繋げるハブになることを願っています。
             </p>
             <p className="px-4 pb-8 leading-relaxed">
-              そして、UU-Circles
-              に登録されているサークルをまとめて管理するWebサービス UU-Manager
-              により、サークルをまとめる団体がサークルの管理を行いやすくなる可能性を秘めています。
+              そして、UU-Circles に登録されているサークルをまとめて管理するWebサービス UU-Manager により、新歓実行委員会が各サークルの管理を行いやすくなる可能性を秘めています。
             </p>
 
             <p className="px-4 pb-2">
-              将来的には「今日の新歓はどこに行こうか？」「UU-Circlesで見てみようか」という風に学生生活に溶け込めたら団体冥利に尽きると思っています。
+              将来的には「今日の新歓はどこに行こうか？」「UU-Circlesで見てみようか！」という風に学生生活に溶け込めたら団体冥利に尽きると思っています。
             </p>
 
             <div className="flex justify-center items-center pt-6 pb-8">
@@ -286,13 +299,11 @@ const Page: NextPage<Props> = () => {
               </a>
             </div>
 
-            <Header id="fifth">5. クレジット</Header>
+            <Header id={ID_LIST.fifth}>5. クレジット</Header>
 
             <div className="px-4 pb-12 leading-relaxed">
               <p>
-                今回のサークルビラ一覧サイト「UU-Circles」は昨年以上に多くのメンバーに助けられて制作することができました。
-                特に去年入ってきて新型コロナで行動が制限される中、U-labを見つけて入ってきてくれた1年生(当時1年生で、現在は2年生)も今年は一緒に制作を行う側に立って活動できたことが一番嬉しいです。プロジェクトに参加してくれてありがとう！
-                （飯泉 一馬）
+                今回のサークルビラ一覧サイト「UU-Circles」は昨年以上に多くのメンバーに助けられて制作することができました。 特に去年入ってきて新型コロナで行動が制限される中、U-labを見つけて入ってきてくれた1年生(当時1年生で、現在は2年生)も今年は一緒に制作を行う側に立って活動できたことが一番嬉しいです。プロジェクトに参加してくれてありがとう！ （飯泉 一馬）
               </p>
             </div>
 
@@ -315,13 +326,16 @@ const Page: NextPage<Props> = () => {
             <div className="px-4 pb-12">
               <p className="font-bold pb-2">開発サポートメンバー</p>
 
-              <p className="pb-2">U-lab?? 4年 野沢 万葉</p>
+              <p className="pb-2">U-lab 4年 野沢 万葉</p>
               <p className="pb-4 text-sm">
                 担当：デザイン（ロゴ、アイキャッチ作成）
               </p>
 
               <p className="pb-2">U-lab 4年 菊地 ひなた</p>
               <p className="pb-4 text-sm">担当：プログラム (サブシステム)</p>
+
+              <p className="pb-2">U-lab 4年 藤倉 理子</p>
+              <p className="pb-4 text-sm">担当：ゴーストライティング</p>
 
               <p className="pb-2">U-lab 代表 2年 佐藤 歩夢</p>
               <p className="pb-4 text-sm">担当: UIデザイン</p>
@@ -336,7 +350,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <Header id="sixth">6. 開発の様子</Header>
+            <Header id={ID_LIST.sixth}>6. 開発の様子</Header>
 
             <div className="px-4 pb-4">
               <p>UU-Circlesでは、開発の様子を公開しています。</p>
