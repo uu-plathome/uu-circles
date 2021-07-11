@@ -6,7 +6,6 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 
 const Page: NextPage = () => {
-
   return (
     <div>
       <BaseHead title="サークルガチャ" />
