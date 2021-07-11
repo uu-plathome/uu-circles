@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Gacha;
 
 use Illuminate\Support\Carbon;
 
-class GachaPickupListKey
+final class GachaPickupListKey
 {
     public static function getPickupDate(): string
     {
-        return Carbon::today()->format("Y-m-d");
+        return Carbon::today()->format('Y-m-d');
     }
 
     /*
@@ -16,6 +18,6 @@ class GachaPickupListKey
      */
     public static function getCacheKey(): string
     {
-        return "GachaPickupListKey" . self::getPickupDate();
+        return 'GachaPickupListKey'.self::getPickupDate();
     }
 }

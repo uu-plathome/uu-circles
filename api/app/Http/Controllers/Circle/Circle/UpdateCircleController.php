@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Circle;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Circle\Traits\Permission;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
 use App\Usecases\CircleManagement\Circle\UpdateCircleUsecase;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleController extends Controller
+final class UpdateCircleController extends Controller
 {
     use Permission;
 
@@ -25,10 +26,12 @@ class UpdateCircleController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleFormRequest $request
-     * @param int $circleId
-     * @return array
+     * @param int                     $circleId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(UpdateCircleFormRequest $request, int $circleId): array
     {
@@ -43,7 +46,7 @@ class UpdateCircleController extends Controller
         );
 
         return [
-            'data' => Arr::camel_keys($circle->toArray())
+            'data' => Arr::camel_keys($circle->toArray()),
         ];
     }
 }

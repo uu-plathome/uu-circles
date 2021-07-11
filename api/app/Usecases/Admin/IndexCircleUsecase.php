@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 
-class IndexCircleUsecase
+final class IndexCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @return CircleValueObject[]
      */
     public function invoke(): array
     {
-        Log::debug("IndexCircleUsecase args none");
+        Log::debug('IndexCircleUsecase args none');
 
         $circles = Circle::with([
             'circleInformation',
@@ -24,8 +26,7 @@ class IndexCircleUsecase
             ->get();
 
         return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+            fn (Circle $circle) => CircleValueObject::byEloquent(
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill

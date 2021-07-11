@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordAdminController extends Controller
+final class ForgotPasswordAdminController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -38,12 +40,12 @@ class ForgotPasswordAdminController extends Controller
             : $this->sendResetLinkFailedResponse($request, $response);
     }
 
-
     /**
      * Get the response for a successful password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return RedirectResponse|int[]
      */
     protected function sendResetLinkResponse(Request $request, $response)
@@ -55,7 +57,8 @@ class ForgotPasswordAdminController extends Controller
      * Get the response for a failed password reset link.
      *
      * @param Request $request
-     * @param string $response
+     * @param string  $response
+     *
      * @return JsonResponse
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)

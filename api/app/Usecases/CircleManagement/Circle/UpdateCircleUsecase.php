@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\Circle;
 
 use App\Enum\Property\CircleInformationProperty as CIP;
@@ -12,14 +14,16 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleUsecase
+final class UpdateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @param UpdateCircleUsecaseParam $param
-     * @return CircleValueObject
+     *
      * @throws Exception
+     *
+     * @return CircleValueObject
      */
     public function invoke(UpdateCircleUsecaseParam $param): CircleValueObject
     {
@@ -30,6 +34,7 @@ class UpdateCircleUsecase
         $circleId = $param->circle_id;
 
         DB::beginTransaction();
+
         try {
             /** @var Circle $newCircle */
             $newCircle = Circle::findOrFail($circleId);
@@ -66,6 +71,7 @@ class UpdateCircleUsecase
             );
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

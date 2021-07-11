@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
@@ -10,10 +12,9 @@ use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
 use App\Usecases\Admin\UpdateAdminUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class UpdateAdminUserController extends Controller
+final class UpdateAdminUserController extends Controller
 {
     private UpdateAdminUserUsecase $updateAdminUserUsecase;
 
@@ -24,7 +25,8 @@ class UpdateAdminUserController extends Controller
 
     /**
      * @param UpdateAdminUserRequest $request
-     * @param int $userId
+     * @param int                    $userId
+     *
      * @throws Exception
      */
     public function __invoke(UpdateAdminUserRequest $request, int $userId)
@@ -32,8 +34,8 @@ class UpdateAdminUserController extends Controller
         Log::debug("UpdateAdminUserController args userId=$userId");
 
         $request->validate([
-            UserProperty::username  => 'unique:users,username,' . $userId,
-            AdminUserProperty::role => [Rule::in($this->canSelectedRoles($request->user()))]
+            UserProperty::username  => 'unique:users,username,'.$userId,
+            AdminUserProperty::role => [Rule::in($this->canSelectedRoles($request->user()))],
         ]);
 
         $this->updateAdminUserUsecase->invoke(

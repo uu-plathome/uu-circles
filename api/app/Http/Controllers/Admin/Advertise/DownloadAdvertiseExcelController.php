@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Exports\AdvertisesExport;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Excel as ExcelType;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class DownloadAdvertiseExcelController
+final class DownloadAdvertiseExcelController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
-    public function __invoke()
+    public function __invoke(): BinaryFileResponse
     {
-        Log::debug("DownloadAdvertiseExcelController args none");
+        Log::debug('DownloadAdvertiseExcelController args none');
 
         return (new AdvertisesExport())
             ->download('advertise.xlsx', ExcelType::XLSX);

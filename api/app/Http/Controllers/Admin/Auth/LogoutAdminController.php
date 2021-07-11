@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
@@ -9,22 +11,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class LogoutAdminController extends Controller
+final class LogoutAdminController extends Controller
 {
     /**
-     * ログアウト処理をする
+     * ログアウト処理をする.
      *
      * @param Request $request
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function __invoke(Request $request)
     {
-        Log::debug("LogoutAdminController args none");
+        Log::debug('LogoutAdminController args none');
 
         $user = Auth::user();
 
         DB::beginTransaction();
+
         try {
             $user->createApiToken();
             $user->save();
@@ -33,8 +38,8 @@ class LogoutAdminController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("LogoutAdminController [ERROR]", [
-                'user' => $user
+            Log::error('LogoutAdminController [ERROR]', [
+                'user' => $user,
             ]);
 
             throw $e;

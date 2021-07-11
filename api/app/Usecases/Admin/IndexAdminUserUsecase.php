@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Enum\Role;
@@ -9,10 +11,12 @@ use Exception;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
-class IndexAdminUserUsecase
+final class IndexAdminUserUsecase
 {
     /**
-     * 管理者アカウント一覧の取得
+     * 管理者アカウント一覧の取得.
+     *
+     * @throws Exception
      *
      * @return AdminUserValueObject[]
      */
@@ -41,8 +45,7 @@ class IndexAdminUserUsecase
             ->get();
 
         return $users->map(
-            fn (User $user) =>
-            AdminUserValueObject::byEloquent($user, $user->adminUser)
+            fn (User $user) => AdminUserValueObject::byEloquent($user, $user->adminUser)
         )->all();
     }
 }

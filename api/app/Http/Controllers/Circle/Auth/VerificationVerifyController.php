@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Auth;
 
 use App\Http\Controllers\Controller;
@@ -9,13 +11,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
-class VerificationVerifyController extends Controller
+final class VerificationVerifyController extends Controller
 {
     /**
      * Mark the user's email address as verified.
      *
      * @param Request $request
-     * @param int $userId
+     * @param int     $userId
+     *
      * @return JsonResponse
      */
     public function __invoke(Request $request, int $userId): JsonResponse
@@ -45,7 +48,7 @@ class VerificationVerifyController extends Controller
         }
 
         return response()->json([
-            'status' => true
+            'status' => true,
         ]);
     }
 }

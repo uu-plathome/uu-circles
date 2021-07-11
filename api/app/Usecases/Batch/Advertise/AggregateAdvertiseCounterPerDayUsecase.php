@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Batch\Advertise;
 
 use App\Models\AdvertiseCounter;
@@ -8,12 +10,12 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class AggregateAdvertiseCounterPerDayUsecase
+final class AggregateAdvertiseCounterPerDayUsecase
 {
     private Collection $aggregateAdvertises;
 
     /**
-     * 指定された日として、広告のクリック数を集計する
+     * 指定された日として、広告のクリック数を集計する.
      *
      * @param Carbon $date
      */
@@ -52,18 +54,18 @@ class AggregateAdvertiseCounterPerDayUsecase
                                     'count'        => $advertiseCounter->count,
                                     'created_at'   => $now,
                                     'updated_at'   => $now,
-                                ]
+                                ],
                             ]);
                         } else {
                             $this->aggregateAdvertises = $this->aggregateAdvertises->replace([
-                                $oldAggregateAdvertiseKey =>                                 [
+                                $oldAggregateAdvertiseKey => [
                                     'link'         => $advertiseCounter->link,
                                     'advertise_id' => $advertiseCounter->advertise_id,
                                     'date'         => $formatDate,
                                     'count'        => $oldAggregateAdvertise['count'] + $advertiseCounter->count,
                                     'created_at'   => $now,
                                     'updated_at'   => $now,
-                                ]
+                                ],
                             ]);
                         }
 
@@ -103,14 +105,14 @@ class AggregateAdvertiseCounterPerDayUsecase
                         }
 
                         $this->aggregateAdvertises = $this->aggregateAdvertises->replace([
-                            $nowAggregateAdvertiseKey =>                                 [
+                            $nowAggregateAdvertiseKey => [
                                 'link'         => $nowAggregateAdvertise['link'],
                                 'advertise_id' => $nowAggregateAdvertise['advertise_id'],
                                 'date'         => $nowAggregateAdvertise['date'],
                                 'count'        => $nowAggregateAdvertise['count'] - $advertiseCounterHistory->count,
                                 'created_at'   => $nowAggregateAdvertise['created_at'],
                                 'updated_at'   => $nowAggregateAdvertise['updated_at'],
-                            ]
+                            ],
                         ]);
                     }
 
@@ -121,7 +123,7 @@ class AggregateAdvertiseCounterPerDayUsecase
             );
 
         Log::debug('AdvertiseCounterHistory insert', [
-            $this->aggregateAdvertises->toArray()
+            $this->aggregateAdvertises->toArray(),
         ]);
         AdvertiseCounterHistory::insert($this->aggregateAdvertises->toArray());
     }

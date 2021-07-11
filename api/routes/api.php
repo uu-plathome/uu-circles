@@ -1,22 +1,14 @@
 <?php
 
-use App\Http\Controllers\Main\Circle\GetCircleController;
-use App\Http\Controllers\Main\Circle\IndexCircleController;
-use App\Http\Controllers\Main\Circle\SearchCategoryCircleController;
-use App\Http\Controllers\Main\Circle\SearchNameCircleController;
-use App\Http\Controllers\Main\Circle\SearchTagCircleController;
-use App\Http\Controllers\Main\CircleNewJoy\IndexCircleNewJoyController;
-use App\Http\Controllers\Main\CircleNewJoy\ShowCircleNewJoyController;
-use App\Http\Controllers\Main\CircleNewJoy\TodayCircleNewJoyController;
-use App\Http\Controllers\Main\Gacha\GachaDrawController;
-use App\Http\Controllers\Main\Sitemap\SitemapController;
-use App\Http\Controllers\Main\Statistics\StatisticsController;
-use App\Http\Controllers\Main\Gacha\GachaPickupListController;
-use App\Http\Controllers\Main\Gacha\GachaResultController;
-use App\Http\Controllers\Main\Identification\PublishIdentificationController;
-use App\Http\Controllers\Main\Identification\CheckIdentificationController;
-use App\Http\Controllers\Main\Main\IndexController;
-use Illuminate\Http\Request;
+use App\Enum\RouteProperty\ApiRouteProperty as ARP;
+use App\Http\Controllers\Main\Advertise;
+use App\Http\Controllers\Main\Circle;
+use App\Http\Controllers\Main\CircleNewJoy;
+use App\Http\Controllers\Main\Gacha;
+use App\Http\Controllers\Main\Identification;
+use App\Http\Controllers\Main\Main;
+use App\Http\Controllers\Main\Sitemap;
+use App\Http\Controllers\Main\Statistics;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,28 +22,65 @@ use Illuminate\Http\Request;
 */
 
 // トップページ用
-Route::get('/main', IndexController::class)->name('main.index');
-Route::get('/sitemap', SitemapController::class)->name('api.sitemap');
-Route::get('/statistics', StatisticsController::class)->name('main.api.statistics');
+Route::get('/main', Main\IndexController::class)
+    ->name(ARP::MainIndex);
+// トップページ (デモ)
+Route::get('/main/demo', Main\DemoIndexController::class)
+    ->name(ARP::MainDemoIndex);
+// サイトマップ
+Route::get('/sitemap', Sitemap\SitemapController::class)
+    ->name(ARP::MainSitemap);
+// 統計
+Route::get('/statistics', Statistics\StatisticsController::class)
+    ->name(ARP::MainStatistics);
+// 広告
+Route::get('/advertises', Advertise\GetMainAdvertisesController::class)
+    ->name(ARP::MainAdvertises);
+// 今日の新歓
+Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyToday);
+// 今日の新歓 (デモ)
+Route::get('/circle/newjoy/demo', CircleNewJoy\DemoTodayCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyTodayDemo);
 
-// サークル
-Route::get('/circle', IndexCircleController::class)->name('main.circle');
-Route::get('/circle/search/{search}', SearchNameCircleController::class)->name('main.circleNewJoy.today');
-Route::get('/circle/category/{category}', SearchCategoryCircleController::class)
-    ->name('main.circle.category');
-Route::get('/circle/tag/{tag}', SearchTagCircleController::class)->name('main.circle.tag');
-Route::get('/circle/newjoy', TodayCircleNewJoyController::class)->name('main.circleNewJoy.today');
-Route::get('/circle/{slug}', GetCircleController::class)->name('main.circle.show');
-Route::get('/circle/{slug}/newjoy', IndexCircleNewJoyController::class)->name('main.circleNewJoy.index');
-Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', ShowCircleNewJoyController::class)
-    ->name('main.circleNewJoy.show')
+// サークル一覧
+Route::get('/circle', Circle\IndexCircleController::class)
+    ->name(ARP::MainCircleList);
+Route::get('/circle/search/{search}', Circle\SearchNameCircleController::class)
+    ->name(ARP::MainSearchWord);
+Route::get('/circle/category/{category}', Circle\SearchCategoryCircleController::class)
+    ->name(ARP::MainSearchByCategory);
+Route::get('/circle/tag/{tag}', Circle\SearchTagCircleController::class)
+    ->name(ARP::MainSearchByTag);
+
+// サークル詳細
+Route::get('/circle/{slug}', Circle\GetCircleController::class)
+    ->name(ARP::MainCircleShow);
+
+// 新歓
+Route::get('/circle/{slug}/newjoy', CircleNewJoy\IndexCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyIndex);
+Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', CircleNewJoy\ShowCircleNewJoyController::class)
+    ->name(ARP::MainCircleNewJoyShow)
     ->where(['circleNewJoyId' => '[0-9]+']);
 
-// ガチャ用
-Route::get('/gacha/circle/pickup', GachaPickupListController::class)->name('main.gacha.pickup');
-Route::post('/gacha/circle', GachaDrawController::class)->name('main.gacha.draw');
-Route::get('/gacha/circle/result/{gachaHash}', GachaResultController::class)->name('main.gacha.result');
+// デモ新歓
+Route::get('/circle/{slug}/newjoy/demo', CircleNewJoy\DemoIndexCircleNewJoyController::class)
+    ->name(ARP::MainDemoCircleNewJoyIndex);
+Route::get('/circle/{slug}/newjoy/demo/{demoCircleNewJoyId}', CircleNewJoy\DemoShowCircleNewJoyController::class)
+    ->name(ARP::MainDemoCircleNewJoyShow)
+    ->where(['demoCircleNewJoyId' => '[0-9]+']);
 
-//識別子
-Route::post('/identification/publish', PublishIdentificationController::class)->name('main.identification.publish');
-Route::post('/identification/valid/{identifer_hash}', CheckIdentificationController::class)->name('main.identification.check');
+// ガチャ用
+Route::get('/gacha/circle/pickup', Gacha\GachaPickupListController::class)
+    ->name(ARP::MainGachaPickup);
+Route::post('/gacha/circle', Gacha\GachaDrawController::class)
+    ->name(ARP::MainGachaDraw);
+Route::get('/gacha/circle/result/{gachaHash}', Gacha\GachaResultController::class)
+    ->name(ARP::MainGachaResult);
+
+// 識別子
+Route::post('/identification/publish', Identification\PublishIdentificationController::class)
+    ->name(ARP::MainIdentificationPublish);
+Route::post('/identification/valid/{identifer_hash}', Identification\CheckIdentificationController::class)
+    ->name(ARP::MainIdentificationCheck);

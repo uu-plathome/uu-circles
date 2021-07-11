@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Gacha;
 
 use App\Models\Circle;
 use App\Usecases\Main\Gacha\Dto\GachaPickupListDto;
-use App\ValueObjects\CircleValueObject;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use Illuminate\Support\Facades\Log;
 
-class GetGachaPickupListUsecase
+final class GetGachaPickupListUsecase
 {
     /*
      * pickupする数
@@ -26,7 +29,7 @@ class GetGachaPickupListUsecase
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'id', 'name', 'release', 'slug'
+                'id', 'name', 'slug',
             ])
             ->inRandomOrder()
             ->take(self::LIMIT)
@@ -34,16 +37,19 @@ class GetGachaPickupListUsecase
 
         $pickupCircles = $circles->map(
             fn (Circle $circle) =>
-            //型変換
-            CircleValueObject::byEloquent(
+                // 型変換
+            GachaSimpleCircleDto::byEloquent(
                 $circle,
-                null,
                 $circle->circleHandbill
             )
         )->toArray();
 
         $dto = new GachaPickupListDto();
-        $dto->pickupCircles = $pickupCircles;
+
+        $pickupCirclesDto = new GachaSimpleCircleListDto();
+        $pickupCirclesDto->list = $pickupCircles;
+        $dto->pickupCircles = $pickupCirclesDto;
+
         $dto->pickupDate = $pickupDate;
 
         return $dto;

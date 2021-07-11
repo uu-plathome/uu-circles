@@ -4,8 +4,12 @@ import { CircleNewJoyListItemForNoSlug } from '../ListItem/CircleNewJoyListItemF
 
 type Props = {
   circleNewJoys: TodayCircleNewJoy[]
+  isDemo?: boolean
 }
-const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
+const IndexCircleNewJoyListForNoSlug: FC<Props> = ({
+  circleNewJoys,
+  isDemo,
+}) => {
   return (
     <div className="bg-gray-100">
       <div className="flex justify-center flex-wrap">
@@ -22,6 +26,7 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({ circleNewJoys }) => {
               >
                 <CircleNewJoyListItemForNoSlug
                   todayCircleNewJoy={circleNewJoy}
+                  isDemo={isDemo}
                 />
               </div>
             )

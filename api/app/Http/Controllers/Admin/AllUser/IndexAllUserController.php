@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\AllUser;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class IndexAllUserController extends Controller
+final class IndexAllUserController extends Controller
 {
     private IndexAllUserUsecase $indexAllUserUsecase;
 
@@ -21,7 +23,7 @@ class IndexAllUserController extends Controller
 
     public function __invoke(Request $request): array
     {
-        Log::debug("IndexAllUserController args none");
+        Log::debug('IndexAllUserController args none');
 
         $request->validate(Arr::camel_keys([
             'id'         => 'nullable|integer',
@@ -39,7 +41,7 @@ class IndexAllUserController extends Controller
         $param->id = $requestId;
         $param->updated_at = $requestUpdatedAt;
         $param->previous = $requestPrevious;
-        $param->next = $requestNext;
+        $param->next = (bool) $requestNext;
         $param->search = $requestSearch;
         if ($param->previous === $param->next) {
             $param->previous = !$param->previous;

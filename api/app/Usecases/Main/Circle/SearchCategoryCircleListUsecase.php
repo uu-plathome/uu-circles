@@ -1,26 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\CircleType;
 use App\Models\Circle;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
-class SearchCategoryCircleListUsecase
+final class SearchCategoryCircleListUsecase
 {
     /**
-     * カテゴリー検索をする
+     * カテゴリー検索をする.
      *
      * @param SearchCategoryCircleListParam $param
-     * @return array
+     *
+     * @return MainSimpleCircleListDto
      */
-    public function invoke(SearchCategoryCircleListParam $param): array
+    public function invoke(SearchCategoryCircleListParam $param): MainSimpleCircleListDto
     {
-        Log::debug("#SearchCategoryCircleListParam args", [
-            'param' => $param
+        Log::debug('#SearchCategoryCircleListParam args', [
+            'param' => $param,
         ]);
 
         $circleType = [];
@@ -40,6 +44,7 @@ class SearchCategoryCircleListUsecase
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param, $circleType) {
@@ -53,22 +58,23 @@ class SearchCategoryCircleListUsecase
                 });
             })
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug'
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
             ->get();
 
-        return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                 $circle,
-                null,
                 $circle->circleHandbill
             )
         )->toArray();
+
+        return $dto;
     }
 }

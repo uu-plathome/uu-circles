@@ -2,22 +2,23 @@
 
 namespace Tests\Feature\App\Http\Controllers\Admin\Circle;
 
+use App\Enum\RouteProperty\AdminRouteProperty;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
-class PaginateCircleControllerTest extends TestCase
+class IndexCircleControllerTest extends TestCase
 {
     use RefreshDatabaseLite;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("PaginateCircleControllerTest");
+        Log::info('IndexCircleControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -25,12 +26,12 @@ class PaginateCircleControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
 
         // WHEN
-        $response = $this->get('/admin/api/circle/paginate', [
+        $response = $this->get(route(AdminRouteProperty::AdminCircleIndex), [
             'Authorization' => 'Bearer test1234',
         ]);
 

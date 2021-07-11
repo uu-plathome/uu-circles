@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Http\Controllers\Main\Gacha;
 use App\Models\Identifier;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Tests\Traits\RefreshDatabaseLite;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class GachaResultControllerTest extends TestCase
 {
@@ -15,12 +15,12 @@ class GachaResultControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("GachaPickupListControllerTest");
+        Log::info('GachaPickupListControllerTest');
         Cache::clear();
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -28,11 +28,11 @@ class GachaResultControllerTest extends TestCase
 
     /**
      * /gacha/circleでガチャを引き、
-     * /gacha/circle/result/{gachaHash}でガチャの結果を取得する
+     * /gacha/circle/result/{gachaHash}でガチャの結果を取得する.
      */
     public function testRequest_APIで単発ガチャを引き、結果を得られるか()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         $NUMBER = 1;
@@ -45,18 +45,18 @@ class GachaResultControllerTest extends TestCase
 
         // WHEN
         $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            "X-IDENTIFIER_HASH" => $identifier->identifier_hash
+            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
         ]);
-        $this->assertArrayHasKey("resultCircles", $gachaDrewResponse);
-        $this->assertArrayHasKey("pickupCircles", $gachaDrewResponse);
-        $this->assertArrayHasKey("count", $gachaDrewResponse);
-        $this->assertArrayHasKey("createdAt", $gachaDrewResponse);
-        $this->assertArrayHasKey("gachaHash", $gachaDrewResponse);
+        $this->assertArrayHasKey('resultCircles', $gachaDrewResponse);
+        $this->assertArrayHasKey('pickupCircles', $gachaDrewResponse);
+        $this->assertArrayHasKey('count', $gachaDrewResponse);
+        $this->assertArrayHasKey('createdAt', $gachaDrewResponse);
+        $this->assertArrayHasKey('gachaHash', $gachaDrewResponse);
 
         //数の確認
-        $this->assertCount($NUMBER, $gachaDrewResponse["resultCircles"]);
-        $this->assertSame($NUMBER, $gachaDrewResponse["count"]);
-        $this->assertIsString($gachaDrewResponse["gachaHash"]);
+        $this->assertCount($NUMBER, $gachaDrewResponse['resultCircles']);
+        $this->assertSame($NUMBER, $gachaDrewResponse['count']);
+        $this->assertIsString($gachaDrewResponse['gachaHash']);
 
         $gachaHash = $gachaDrewResponse['gachaHash'];
 
@@ -65,25 +65,25 @@ class GachaResultControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
-        $this->assertArrayHasKey("resultCircles", $response);
-        $this->assertArrayHasKey("pickupCircles", $response);
-        $this->assertArrayHasKey("count", $response);
-        $this->assertArrayHasKey("createdAt", $response);
-        $this->assertArrayHasKey("gachaHash", $response);
+        $this->assertArrayHasKey('resultCircles', $response);
+        $this->assertArrayHasKey('pickupCircles', $response);
+        $this->assertArrayHasKey('count', $response);
+        $this->assertArrayHasKey('createdAt', $response);
+        $this->assertArrayHasKey('gachaHash', $response);
 
         //数の確認
-        $this->assertCount($NUMBER, $response["resultCircles"]);
-        $this->assertSame($NUMBER, $response["count"]);
-        $this->assertIsString($response["gachaHash"]);
+        $this->assertCount($NUMBER, $response['resultCircles']);
+        $this->assertSame($NUMBER, $response['count']);
+        $this->assertIsString($response['gachaHash']);
     }
 
     /**
      * /gacha/circleでガチャを引き、
-     * /gacha/circle/result/{gachaHash}でガチャの結果を取得する
+     * /gacha/circle/result/{gachaHash}でガチャの結果を取得する.
      */
     public function testRequest_APIで10連ガチャを引き、結果を得られるか()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
 
         // GIVEN
         $NUMBER = 10;
@@ -96,18 +96,18 @@ class GachaResultControllerTest extends TestCase
 
         // WHEN
         $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            "X-IDENTIFIER_HASH" => $identifier->identifier_hash
+            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
         ]);
-        $this->assertArrayHasKey("resultCircles", $gachaDrewResponse);
-        $this->assertArrayHasKey("pickupCircles", $gachaDrewResponse);
-        $this->assertArrayHasKey("count", $gachaDrewResponse);
-        $this->assertArrayHasKey("createdAt", $gachaDrewResponse);
-        $this->assertArrayHasKey("gachaHash", $gachaDrewResponse);
+        $this->assertArrayHasKey('resultCircles', $gachaDrewResponse);
+        $this->assertArrayHasKey('pickupCircles', $gachaDrewResponse);
+        $this->assertArrayHasKey('count', $gachaDrewResponse);
+        $this->assertArrayHasKey('createdAt', $gachaDrewResponse);
+        $this->assertArrayHasKey('gachaHash', $gachaDrewResponse);
 
         //数の確認
-        $this->assertCount($NUMBER, $gachaDrewResponse["resultCircles"]);
-        $this->assertSame($NUMBER, $gachaDrewResponse["count"]);
-        $this->assertIsString($gachaDrewResponse["gachaHash"]);
+        $this->assertCount($NUMBER, $gachaDrewResponse['resultCircles']);
+        $this->assertSame($NUMBER, $gachaDrewResponse['count']);
+        $this->assertIsString($gachaDrewResponse['gachaHash']);
 
         $gachaHash = $gachaDrewResponse['gachaHash'];
 
@@ -116,15 +116,15 @@ class GachaResultControllerTest extends TestCase
 
         // THEN
         $response->assertOk();
-        $this->assertArrayHasKey("resultCircles", $response);
-        $this->assertArrayHasKey("pickupCircles", $response);
-        $this->assertArrayHasKey("count", $response);
-        $this->assertArrayHasKey("createdAt", $response);
-        $this->assertArrayHasKey("gachaHash", $response);
+        $this->assertArrayHasKey('resultCircles', $response);
+        $this->assertArrayHasKey('pickupCircles', $response);
+        $this->assertArrayHasKey('count', $response);
+        $this->assertArrayHasKey('createdAt', $response);
+        $this->assertArrayHasKey('gachaHash', $response);
 
         //数の確認
-        $this->assertCount($NUMBER, $response["resultCircles"]);
-        $this->assertSame($NUMBER, $response["count"]);
-        $this->assertIsString($response["gachaHash"]);
+        $this->assertCount($NUMBER, $response['resultCircles']);
+        $this->assertSame($NUMBER, $response['count']);
+        $this->assertIsString($response['gachaHash']);
     }
 }

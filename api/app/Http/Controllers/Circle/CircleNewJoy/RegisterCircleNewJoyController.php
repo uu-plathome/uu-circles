@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -10,7 +12,7 @@ use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class RegisterCircleNewJoyController extends Controller
+final class RegisterCircleNewJoyController extends Controller
 {
     use Permission;
 
@@ -25,15 +27,17 @@ class RegisterCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param RegisterCircleNewJoyRequest $request
-     * @param int $circleId
-     * @return Response
+     * @param int                         $circleId
+     *
      * @throws Exception
+     *
+     * @return Response
      */
     public function __invoke(
         RegisterCircleNewJoyRequest $request,
         int $circleId
     ) {
-        Log::debug("RegisterCircleNewJoyController args", [
+        Log::debug('RegisterCircleNewJoyController args', [
             'circleId'       => $circleId,
         ]);
 

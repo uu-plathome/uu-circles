@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Sitemap;
 
 use App\Http\Controllers\Controller;
@@ -11,7 +13,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class SitemapController extends Controller
+final class SitemapController extends Controller
 {
     private SitemapUsecase $sitemapUsecase;
 
@@ -38,13 +40,14 @@ class SitemapController extends Controller
                 (new Collection($sitemaps))->map(
                     fn (SitemapDto $sitemap) => $sitemap->toArray()
                 )->toArray()
-            )
+            ),
         ];
     }
 
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SitemapController' . $minutes;
+
+        return 'SitemapController'.$minutes;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Main;
 
 use App\Http\Controllers\Controller;
@@ -8,25 +10,24 @@ use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
 use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class IndexController extends Controller
+final class IndexController extends Controller
 {
     /**
-     * サークルの取得数
+     * サークルの取得数.
      */
     const CIRCLE_MAX_VIEW = 12;
 
     /**
-     * 広告の取得数
+     * 広告の取得数.
      */
     const ADVERTISE_MAX_VIEW = 2;
 
@@ -53,13 +54,15 @@ class IndexController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function __invoke(Request $request)
     {
-        Log::debug("#IndexController args: none");
+        Log::debug('#IndexController args: none');
 
+        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
             $this->getCacheKey(),
             60,
@@ -91,13 +94,8 @@ class IndexController extends Controller
         );
 
         return [
-            'data' => Arr::camel_keys(
-                (new Collection($circles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+            'data'           => Arr::camel_keys(
+                Arr::get($circles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'mainAdvertises' => Arr::camel_keys($mainAdvertises),
             'advertises'     => Arr::camel_keys($advertises),
@@ -109,18 +107,21 @@ class IndexController extends Controller
     private function getCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main' . $minutes . rand(0, 2);
+
+        return 'main'.$minutes.rand(0, 2);
     }
 
     private function getMainTopAdvertiseCacheKey(): string
     {
         $hour = Carbon::now()->format('YmdH');
-        return 'main.advertise.mainTop' . $hour;
+
+        return 'main.advertise.mainTop'.$hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'main.advertise' . $minutes;
+
+        return 'main.advertise'.$minutes;
     }
 }

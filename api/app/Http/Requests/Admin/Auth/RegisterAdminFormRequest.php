@@ -3,15 +3,12 @@
 namespace App\Http\Requests\Admin\Auth;
 
 use App\Enum\Property\AdminUserProperty;
-use App\Enum\Role;
 use App\Enum\Property\UserProperty;
 use App\Models\User;
-use App\Rules\RegexPassword;
 use App\Support\Arr;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class RegisterAdminFormRequest extends FormRequest
 {
@@ -23,6 +20,7 @@ class RegisterAdminFormRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
+
         return $user->adminUser->isManager();
     }
 
@@ -37,7 +35,7 @@ class RegisterAdminFormRequest extends FormRequest
             UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash',  'unique:users'],
             UserProperty::display_name => ['nullable', 'string', 'max:50'],
             UserProperty::email        => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            AdminUserProperty::role  => ['required', 'string'],
+            AdminUserProperty::role    => ['required', 'string'],
         ]);
     }
 
@@ -49,7 +47,7 @@ class RegisterAdminFormRequest extends FormRequest
             UserProperty::display_name => $request[UserProperty::display_name],
             UserProperty::username     => $request[UserProperty::username],
             UserProperty::email        => $request[UserProperty::email],
-            AdminUserProperty::role  => $request[AdminUserProperty::role],
+            AdminUserProperty::role    => $request[AdminUserProperty::role],
         ]);
     }
 }

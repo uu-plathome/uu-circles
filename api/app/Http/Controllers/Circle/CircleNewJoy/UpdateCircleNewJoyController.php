@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
@@ -9,7 +11,7 @@ use App\Support\Arr;
 use App\Usecases\CircleManagement\CircleNewJoy\UpdateCircleNewJoyUsecase;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleNewJoyController extends Controller
+final class UpdateCircleNewJoyController extends Controller
 {
     use Permission;
 
@@ -24,17 +26,19 @@ class UpdateCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param UpdateCircleNewJoyRequest $request
-     * @param int $circleId
-     * @param int $circleNewJoyId
-     * @return array
+     * @param int                       $circleId
+     * @param int                       $circleNewJoyId
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function __invoke(
         UpdateCircleNewJoyRequest $request,
         int $circleId,
         int $circleNewJoyId
     ): array {
-        Log::debug("UpdateCircleNewJoyController args", [
+        Log::debug('UpdateCircleNewJoyController args', [
             'circleId'       => $circleId,
             'circleNewJoyId' => $circleNewJoyId,
         ]);
@@ -50,7 +54,7 @@ class UpdateCircleNewJoyController extends Controller
         );
 
         return [
-            "data" => Arr::camel_keys([])
+            'data' => Arr::camel_keys([]),
         ];
     }
 }

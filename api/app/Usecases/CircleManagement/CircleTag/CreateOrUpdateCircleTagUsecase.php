@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\CircleManagement\CircleTag;
 
 use App\Models\CircleTag;
@@ -8,19 +10,21 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CreateOrUpdateCircleTagUsecase
+final class CreateOrUpdateCircleTagUsecase
 {
     /**
-     * サークルタグを作成するか更新する
+     * サークルタグを作成するか更新する.
      *
      * @param CreateOrUpdateCircleTagUsecaseParam $param
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function invoke(
         CreateOrUpdateCircleTagUsecaseParam $param
     ) {
-        Log::debug("CreateOrUpdateCircleTagUsecase args", [
+        Log::debug('CreateOrUpdateCircleTagUsecase args', [
             'CreateOrUpdateCircleTagUsecaseParam' => $param,
         ]);
 
@@ -29,6 +33,7 @@ class CreateOrUpdateCircleTagUsecase
         $shouldInsertCircleTag = $this->toShouldInsertData($param);
 
         DB::beginTransaction();
+
         try {
             // 過去のCircleTag取得
             $circleTag = CircleTag::whereCircleId($circleId)->first();
@@ -46,7 +51,7 @@ class CreateOrUpdateCircleTagUsecase
         } catch (Exception $e) {
             DB::rollback();
 
-            Log::error("CreateOrUpdateCircleTagUsecase [ERROR]", [
+            Log::error('CreateOrUpdateCircleTagUsecase [ERROR]', [
                 'circleId'              => $circleId,
                 'shouldInsertCircleTag' => $shouldInsertCircleTag,
             ]);
@@ -59,6 +64,7 @@ class CreateOrUpdateCircleTagUsecase
      * インサート用のデータ
      *
      * @param CreateOrUpdateCircleTagUsecaseParam $param
+     *
      * @return CircleTag
      */
     protected function toShouldInsertData(CreateOrUpdateCircleTagUsecaseParam $param): CircleTag

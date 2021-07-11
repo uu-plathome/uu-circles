@@ -1,24 +1,33 @@
 import colors from '@/colors'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { dayjs } from '@/plugins/Dayjs'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { WP_REST_API_Media, WP_REST_API_Post } from 'wp-types'
+import {
+  WP_REST_API_Attachment,
+  WP_REST_API_Attachments,
+  WP_REST_API_Post,
+  WP_REST_API_Posts,
+} from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
-  media?: WP_REST_API_Media
+  media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
-          <img
-            src={(media && media.source_url) || '/images/uuyell-post.png'}
+          <Image
+            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
+            width={342}
+            height={180}
           />
         </p>
 
@@ -56,8 +65,8 @@ const WpPostBlock: FC<{
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
-  posts: WP_REST_API_Post[]
-  medias: WP_REST_API_Media[]
+  posts: WP_REST_API_Posts
+  medias: WP_REST_API_Attachments
 }
 const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
   const { isMd } = useMediaQuery()
@@ -70,23 +79,14 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         </h2>
 
         <div className="px-16">
-          <p className="text-sm mb-2">
-            アパートの探し方から美味しいお店、おすすめのカフェまで全てここ！
-          </p>
-
-          <a
-            href="https://media.uu-circles.com/"
-            className="text-blue-600 hover:underline"
-          >
-            uu-yellを見る
-          </a>
+          <p className="text-sm mb-2">宇大を生き抜くヒントがここに。</p>
         </div>
       </div>
 
       <div>
         <div className="md:flex md:justify-center">
           <nav
-            className="md:grid grid-cols-1 md:grid-cols-2 md:gap-4 md:justify-center hidden"
+            className="md:grid md:grid-cols-2 md:gap-4 md:justify-center hidden"
             style={{ width: isMd ? 700 : 280 }}
             id="top-button-scroll"
           >

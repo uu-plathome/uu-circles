@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Circle;
 
 use App\Enum\SlugProperty\CategorySlugProperty;
@@ -7,50 +9,55 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
 use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\GetRandomCircleUsecase;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
 use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
 use App\Usecases\Main\Circle\SearchCategoryCircleListUsecase;
+use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
 use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
-use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class SearchCategoryCircleController extends Controller
+final class SearchCategoryCircleController extends Controller
 {
     private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
 
-    private GetRandomCircleUsecase $getRandomCircleUsecase;
+    private GetRecommendCircleUsecase $getRecommendCircleUsecase;
 
     private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
 
     private SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase;
 
+    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
+
     public function __construct(
         FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetRandomCircleUsecase $getRandomCircleUsecase,
+        GetRecommendCircleUsecase $getRecommendCircleUsecase,
         GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase
+        SearchCategoryCircleListUsecase $searchCategoryCircleListUsecase,
+        TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
         $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getRandomCircleUsecase = $getRandomCircleUsecase;
+        $this->getRecommendCircleUsecase = $getRecommendCircleUsecase;
         $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
         $this->searchCategoryCircleListUsecase = $searchCategoryCircleListUsecase;
+        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     /**
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string $category
+     * @param string                   $category
+     *
      * @return array|void
      */
     public function __invoke(Request $request, string $category)
     {
-        Log::debug("#SearchCategoryCircleController args", [
+        Log::debug('#SearchCategoryCircleController args', [
             'category' => $category,
         ]);
 
@@ -65,14 +72,24 @@ class SearchCategoryCircleController extends Controller
         $params->sendingOrganization = $category === CategorySlugProperty::official_organization;
         $params->studentGroup = $category === CategorySlugProperty::student_group;
 
+        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $circles = Cache::remember($this->getCacheKey($category), 60, function () use ($params) {
             return $this->searchCategoryCircleListUsecase->invoke($params);
         });
 
+        // おすすめサークル
+        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $recommendCircles = Cache::remember(
-            $this->getRecommendCirclesCacheKey(),
-            120,
-            fn () => $this->getRandomCircleUsecase->invoke(6)
+            GetRecommendCircleUsecase::getCacheKey(),
+            GetRecommendCircleUsecase::TTL,
+            fn () => $this->getRecommendCircleUsecase->invoke()
+        );
+
+        // タグのアクセス数ランキング
+        $tagPageViewRanking = Cache::remember(
+            TagPageViewRankingUsecase::getCacheKey(),
+            TagPageViewRankingUsecase::TTL,
+            fn () => $this->tagPageViewRankingUsecase->invoke()
         );
 
         $articles = Cache::remember(
@@ -91,35 +108,21 @@ class SearchCategoryCircleController extends Controller
 
         return [
             'data' => Arr::camel_keys(
-                (new Collection($circles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+                Arr::get($circles->toArray(), MainSimpleCircleListDto::LIST)
             ),
             'recommendCircles' => Arr::camel_keys(
-                (new Collection($recommendCircles))->map(
-                    fn (CircleValueObject $circleValueObject) =>
-                    Arr::only($circleValueObject->toArray(), [
-                        'id', 'name', 'handbill_image_url', 'slug'
-                    ])
-                )->toArray()
+                Arr::get($recommendCircles->toArray(), MainSimpleCircleListDto::LIST)
             ),
-            'uuYellArticles' => $articles,
-            'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
+            'tagPageViewRanking' => Arr::camel_keys($tagPageViewRanking->toArray()),
+            'uuYellArticles'     => $articles,
+            'announcements'      => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
     }
 
     private function getCacheKey(string $category): string
     {
         $minutes = Carbon::now()->format('YmdHi');
-        return 'SearchCategoryCircleController.main' . $category . $minutes;
-    }
 
-    private function getRecommendCirclesCacheKey(): string
-    {
-        $minutes = Carbon::now()->format('YmdHi');
-        return 'RecommendCircles' . $minutes;
+        return 'SearchCategoryCircleController.main'.$category.$minutes;
     }
 }

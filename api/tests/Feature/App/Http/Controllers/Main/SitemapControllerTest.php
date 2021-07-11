@@ -14,11 +14,11 @@ class SitemapControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Log::info("SitemapControllerTest");
+        Log::info('SitemapControllerTest');
     }
 
     /**
-     * 各テストの前にデータベースをシードする必要があるかどうかを示す
+     * 各テストの前にデータベースをシードする必要があるかどうかを示す.
      *
      * @var bool
      */
@@ -26,19 +26,19 @@ class SitemapControllerTest extends TestCase
 
     public function testRequest()
     {
-        Log::info("testRequest");
+        Log::info('testRequest');
         $url = config('app.client_url');
 
         // GIVEN
         $expected = [
             $url,
-            $url . '/circle',
-            $url . '/circle/newjoy',
-            $url . '/terms',
-            $url . '/privacy',
-            $url . '/guide/discord',
-            $url . '/guide/management-team',
-            $url . '/guide/to-new-students',
+            $url.'/circle',
+            $url.'/circle/newjoy',
+            $url.'/terms',
+            $url.'/privacy',
+            $url.'/guide/discord',
+            $url.'/guide/management-team',
+            $url.'/guide/to-new-students',
         ];
 
         // WHEN

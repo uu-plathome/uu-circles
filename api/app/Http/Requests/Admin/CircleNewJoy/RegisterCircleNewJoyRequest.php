@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\Admin\CircleNewJoy;
 
-use App\Enum\Property\CircleNewJoyProperty;
 use App\Enum\PlaceOfActivity;
+use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
-use App\ValueObjects\CircleNewJoyValueObject;
+use App\Usecases\Admin\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -42,7 +43,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
             CircleNewJoyProperty::place_of_activity_detail => ['string', 'nullable', 'max:100'],
             CircleNewJoyProperty::publish_from             => ['date', 'nullable', 'date_format:Y-m-d'],
             CircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
-            CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
+            CircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:'.Str::camel('start_date')],
             CircleNewJoyProperty::release                  => ['boolean', 'nullable'],
         ]);
     }
@@ -50,34 +51,40 @@ class RegisterCircleNewJoyRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            CircleNewJoyProperty::title                    => __('circleNewJoy.' . CircleNewJoyProperty::title),
-            CircleNewJoyProperty::description              => __('circleNewJoy.' . CircleNewJoyProperty::description),
-            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity),
-            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity_detail),
-            CircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
-            CircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
-            CircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
-            CircleNewJoyProperty::private_newjoy_link      => __('circleNewJoy.' . CircleNewJoyProperty::private_newjoy_link),
-            CircleNewJoyProperty::release                  => __('circleNewJoy.' . CircleNewJoyProperty::release),
-            CircleNewJoyProperty::publish_from             => __('circleNewJoy.' . CircleNewJoyProperty::publish_from),
+            CircleNewJoyProperty::title                    => __('circleNewJoy.'.CircleNewJoyProperty::title),
+            CircleNewJoyProperty::description              => __('circleNewJoy.'.CircleNewJoyProperty::description),
+            CircleNewJoyProperty::place_of_activity        => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity),
+            CircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity_detail),
+            CircleNewJoyProperty::start_date               => __('circleNewJoy.'.CircleNewJoyProperty::start_date),
+            CircleNewJoyProperty::end_date                 => __('circleNewJoy.'.CircleNewJoyProperty::end_date),
+            CircleNewJoyProperty::url                      => __('circleNewJoy.'.CircleNewJoyProperty::url),
+            CircleNewJoyProperty::private_newjoy_link      => __('circleNewJoy.'.CircleNewJoyProperty::private_newjoy_link),
+            CircleNewJoyProperty::release                  => __('circleNewJoy.'.CircleNewJoyProperty::release),
+            CircleNewJoyProperty::publish_from             => __('circleNewJoy.'.CircleNewJoyProperty::publish_from),
         ]);
     }
 
-    public function makeCircleNewJoyValueObject(): CircleNewJoyValueObject
+    public function makeCreateCircleNewJoyUsecaseParam(): CreateCircleNewJoyUsecaseParam
     {
         $request = Arr::snake_keys($this->validated());
-        return CircleNewJoyValueObject::of([
-            CircleNewJoyProperty::title                    => $request['title'],
-            CircleNewJoyProperty::description              => $request['description'],
-            CircleNewJoyProperty::url                      => $request['url'],
-            CircleNewJoyProperty::private_newjoy_link      => Arr::get($request, CircleNewJoyProperty::private_newjoy_link),
-            CircleNewJoyProperty::place_of_activity        => $request['place_of_activity'],
-            CircleNewJoyProperty::place_of_activity_detail => Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
-                ? Arr::get($request, 'place_of_activity_detail') : '',
-            CircleNewJoyProperty::publish_from             => $request['publish_from'],
-            CircleNewJoyProperty::start_date               => $request['start_date'],
-            CircleNewJoyProperty::end_date                 => $request['end_date'],
-            CircleNewJoyProperty::release                  => $request['release'],
-        ]);
+
+        $param = new CreateCircleNewJoyUsecaseParam();
+        $param->circle_id = $this->circleId;
+        $param->title = Arr::get($request, 'title');
+        $param->description = Arr::get($request, 'description');
+        $param->url = Arr::get($request, 'url');
+        $param->private_newjoy_url = Arr::get($request, CircleNewJoyProperty::private_newjoy_link);
+        $param->place_of_activity = Arr::get($request, 'place_of_activity');
+        $param->place_of_activity_detail =
+            Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
+                ? Arr::get($request, 'place_of_activity_detail') : '';
+        $param->publish_from = Arr::get($request, 'publish_from')
+            ? new Carbon(Arr::get($request, 'publish_from'))
+            : null;
+        $param->start_date = Arr::get($request, 'start_date') ? new Carbon(Arr::get($request, 'start_date')) : null;
+        $param->end_date = Arr::get($request, 'end_date') ? new Carbon(Arr::get($request, 'end_date')) : null;
+        $param->release = Arr::get($request, 'release');
+
+        return $param;
     }
 }

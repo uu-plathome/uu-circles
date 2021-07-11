@@ -1,60 +1,62 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
-class StatisticsNumberOfActivitiesCountDto
+final class StatisticsNumberOfActivitiesCountDto
 {
     /**
-     * 0 ~ 10人
+     * 0 ~ 10人.
      *
      * @var int
      */
     public int $zeroToTen;
 
     /**
-     * 11 ~ 20人
+     * 11 ~ 20人.
      *
      * @var int
      */
     public int $tenToTwenty;
 
     /**
-     * 21 ~ 30人
+     * 21 ~ 30人.
      *
      * @var int
      */
     public int $twentyToThirty;
 
     /**
-     * 31 ~ 40人
+     * 31 ~ 40人.
      *
      * @var int
      */
     public int $thirtyToForty;
 
     /**
-     * 41 ~ 50人
+     * 41 ~ 50人.
      *
      * @var int
      */
     public int $fortyToFifty;
 
     /**
-     * 51 ~ 60人
+     * 51 ~ 60人.
      *
      * @var int
      */
     public int $fiftyToSixty;
 
     /**
-     * 61 ~ 70人
+     * 61 ~ 70人.
      *
      * @var int
      */
     public int $sixtyToSeventy;
 
     /**
-     * 71人以上
+     * 71人以上.
      *
      * @var int
      */

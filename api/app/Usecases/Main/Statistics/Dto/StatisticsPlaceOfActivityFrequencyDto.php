@@ -1,28 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
  * 活動場所
  */
-class StatisticsPlaceOfActivityFrequencyDto
+final class StatisticsPlaceOfActivityFrequencyDto
 {
     /**
-     * 峰キャンパス
+     * 峰キャンパス.
      *
      * @var int
      */
     public int $mine;
 
     /**
-     * 陽東キャンパス
+     * 陽東キャンパス.
      *
      * @var int
      */
     public int $yoto;
 
     /**
-     * その他
+     * その他.
      *
      * @var int
      */
@@ -33,7 +35,7 @@ class StatisticsPlaceOfActivityFrequencyDto
         return [
             'mine'  => $this->mine,
             'yoto'  => $this->yoto,
-            'other' => $this->other
+            'other' => $this->other,
         ];
     }
 }

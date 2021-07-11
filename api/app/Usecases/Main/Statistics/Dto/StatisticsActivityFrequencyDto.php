@@ -1,63 +1,65 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
- * 週の活動頻度
+ * 週の活動頻度.
  */
-class StatisticsActivityFrequencyDto
+final class StatisticsActivityFrequencyDto
 {
     /**
-     * 週に0回活動
+     * 週に0回活動.
      *
      * @var int
      */
     public int $zero;
 
     /**
-     * 週に1回活動
+     * 週に1回活動.
      *
      * @var int
      */
     public int $one;
 
     /**
-     * 週に2回活動
+     * 週に2回活動.
      *
      * @var int
      */
     public int $two;
 
     /**
-     * 週に3回活動
+     * 週に3回活動.
      *
      * @var int
      */
     public int $three;
 
     /**
-     * 週に4回活動
+     * 週に4回活動.
      *
      * @var int
      */
     public int $four;
 
     /**
-     * 週に5活動
+     * 週に5活動.
      *
      * @var int
      */
     public int $five;
 
     /**
-     * 週に6回活動
+     * 週に6回活動.
      *
      * @var int
      */
     public int $six;
 
     /**
-     * 週に7回活動
+     * 週に7回活動.
      *
      * @var int
      */

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Advertise;
 
 use App\Http\Controllers\Controller;
@@ -9,15 +11,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeleteAdvertiseController extends Controller
+final class DeleteAdvertiseController extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $advertiseId
-     * @return \Illuminate\Http\Response
+     * @param int                      $advertiseId
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, int $advertiseId)
     {
@@ -31,8 +35,8 @@ class DeleteAdvertiseController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
 
-            Log::error("[ERROR] DeleteAdvertiseController", [
-                "advertiseId" => $advertiseId,
+            Log::error('[ERROR] DeleteAdvertiseController', [
+                'advertiseId' => $advertiseId,
             ]);
 
             throw $e;

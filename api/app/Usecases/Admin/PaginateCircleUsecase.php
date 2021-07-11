@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin;
 
 use App\Models\Circle;
@@ -9,16 +11,16 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class PaginateCircleUsecase
+final class PaginateCircleUsecase
 {
     /**
-     * invoke
+     * invoke.
      *
      * @return CircleValueObject[]
      */
     public function invoke(PaginateCircleUsecaseParams $params): array
     {
-        Log::debug("PaginateCircleUsecase args", [
+        Log::debug('PaginateCircleUsecase args', [
             'PaginateCircleUsecaseParams' => $params,
         ]);
 
@@ -37,7 +39,7 @@ class PaginateCircleUsecase
             ->when($params->name, function ($query) use ($params) {
                 $query->where(function ($query) use ($params) {
                     // カタカナに変換
-                    $katakana = mb_convert_kana($params->name, "K");
+                    $katakana = mb_convert_kana($params->name, 'K');
                     $query->where('circles.name', 'like', "%$params->name%")
                         ->orWhere('circles.slug', "%$params->name%")
                         ->orWhere('circle_information.name_kana', 'like', "%$katakana%")
@@ -47,7 +49,7 @@ class PaginateCircleUsecase
             })
             ->lampager()
             ->forward($params->next)
-            ->backward($params->previos)
+            ->backward($params->previous)
             ->limit(10)
             ->orderByDesc('circle_information.updated_at')
             ->orderByDesc('circles.id')
@@ -56,8 +58,7 @@ class PaginateCircleUsecase
             ->toArray(JSON_PRETTY_PRINT);
 
         $newCircles = (new Collection($circles['records']))->map(
-            fn ($circle) =>
-            CircleValueObject::byEloquent(
+            fn ($circle) => CircleValueObject::byEloquent(
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill

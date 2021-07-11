@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Circle;
 
 use App\Http\Controllers\Controller;
@@ -9,27 +11,28 @@ use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ShowCircleController extends Controller
+final class ShowCircleController extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
+     *
      * @return array
      */
-    public function __invoke(Request $request, int $id): array
+    public function __invoke(Request $request, int $circleId): array
     {
-        Log::debug("ShowCircleController args none");
+        Log::debug('ShowCircleController args none');
 
-        $circle = Circle::findOrFail($id);
+        $circle = Circle::findOrFail($circleId);
 
         return [
             'data' => Arr::camel_keys(CircleValueObject::byEloquent(
                 $circle,
                 $circle->circleInformation,
                 $circle->circleHandbill ?? null
-            )->toArray())
+            )->toArray()),
         ];
     }
 }

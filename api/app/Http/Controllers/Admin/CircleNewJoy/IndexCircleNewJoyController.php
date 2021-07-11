@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Support\Arr;
-use App\Usecases\Admin\IndexCircleNewJoyUsecase;
+use App\Usecases\Admin\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
-class IndexCircleNewJoyController extends Controller
+final class IndexCircleNewJoyController extends Controller
 {
     private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase;
 
@@ -23,7 +24,8 @@ class IndexCircleNewJoyController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param int $circleId
+     * @param int     $circleId
+     *
      * @return array
      */
     public function __invoke(Request $request, int $circleId): array
@@ -38,9 +40,7 @@ class IndexCircleNewJoyController extends Controller
             )->toArray()),
 
             'circleNewJoys' => Arr::camel_keys(
-                (new Collection($this->indexCircleNewJoyUsecase->invoke($circleId)))->map(
-                    fn ($_o) => $_o->toArray()
-                )->toArray()
+                $this->indexCircleNewJoyUsecase->invoke($circleId)->toArray()
             ),
         ];
     }

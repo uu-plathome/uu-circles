@@ -1,34 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Circle;
 
 use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
-use App\ValueObjects\CircleValueObject;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
 use Illuminate\Support\Facades\Log;
 
-class GetRandomCircleWithMainFixedUsecase
+final class GetRandomCircleWithMainFixedUsecase
 {
-    public function invoke(int $limit = 12)
+    /**
+     * メイン画面に固定するサークルをランダムに取得
+     * デモのサークルは取得しない.
+     *
+     * @param int $limit
+     *
+     * @return MainSimpleCircleListDto
+     */
+    public function invoke(int $limit = 12): MainSimpleCircleListDto
     {
-        Log::debug("#GetRandomCircleWithMainFixedUsecase args", [
-            'limit' => $limit
+        Log::debug('#GetRandomCircleWithMainFixedUsecase args', [
+            'limit' => $limit,
         ]);
 
         $fixedCircles = Circle::with([
             'circleHandbill:circle_id,image_url',
-        ])->whereRelease(true)
+        ])
+            ->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             ->whereIsMainFixed(true)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 CircleProperty::id,
                 CircleProperty::name,
-                CircleProperty::release,
                 CircleProperty::slug,
                 CircleProperty::is_main_fixed,
             ])
-            ->inRandomOrder()
             ->take($limit);
 
         /** @var Circle $foundCircles */
@@ -41,7 +52,6 @@ class GetRandomCircleWithMainFixedUsecase
             ->select([
                 CircleProperty::id,
                 CircleProperty::name,
-                CircleProperty::release,
                 CircleProperty::slug,
                 CircleProperty::is_main_fixed,
             ])
@@ -50,19 +60,20 @@ class GetRandomCircleWithMainFixedUsecase
             ->union($fixedCircles)
             ->get();
 
-        $circles = $foundCircles->unique('id')
+        $circles = $foundCircles->unique(CircleProperty::id)
             ->sortByDesc(CircleProperty::is_main_fixed)
             ->values()
             ->take($limit)
             ->shuffle();
 
-        return $circles->map(
-            fn (Circle $circle) =>
-            CircleValueObject::byEloquent(
+        $dto = new MainSimpleCircleListDto();
+        $dto->list = $circles->map(
+            fn (Circle $circle) => MainSimpleCircleDto::byEloquent(
                 $circle,
-                null,
                 $circle->circleHandbill
             )
-        );
+        )->toArray();
+
+        return $dto;
     }
 }

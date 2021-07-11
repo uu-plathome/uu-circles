@@ -5,10 +5,11 @@ import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Category } from '@/lib/enum/app/Category'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC, Fragment, useEffect, useState } from 'react'
-import { WP_REST_API_Post } from 'wp-types'
+import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
 import { BaseContainer } from '../molecules/Container/BaseContainer'
 
 type TagItem = {
@@ -177,7 +178,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
 }
 
 type Props = {
-  uuYellArticles?: WP_REST_API_Post[]
+  uuYellArticles?: WP_REST_API_Posts
 }
 const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
   const [isTagOpen, setIsTagOpen] = useState(false)
@@ -196,7 +197,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <div className="md:px-6 md:mb-10 text-center">
           <a href="https://media.uu-circles.com/">
             <Image
-              src="/images/uuyell-poster.png"
+              src={ImagePath.UU_YELL.POSTER}
               width={width > 700 ? 700 : width}
               height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
             />
@@ -206,35 +207,33 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         ''
       )}
 
-      <div className="hidden md:flex justify-center">
-        <div className="grid grid-cols-2 gap-6" style={{ maxWidth: 700 }}>
-          <div className="md:mb-10 text-center">
-            <Link href="/circle/newjoy">
-              <a>
-                <Image
-                  className="border-2 border-red-900 rounded"
-                  src="/images/topButtons/shinkan1.png"
-                  width={340}
-                  height={92}
-                  objectFit="cover"
-                />
-              </a>
-            </Link>
-          </div>
+      <div className="mb-10">
+        <BaseContainer>
+          {uuYellArticles && uuYellArticles.length > 0 ? (
+            <div className="px-6 pt-12 md:pt-20 mb-10">
+              <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
-          <div className="md:mb-10 text-center">
-            <Link href="/guide/discord">
-              <a>
-                <Image
-                  className="border-2 border-red-900 rounded"
-                  src="/images/topButtons/discordBunner1.png"
-                  width={340}
-                  height={92}
-                />
-              </a>
-            </Link>
-          </div>
-        </div>
+              <ul className="list-outside list-decimal text-gray-400 pl-4">
+                {uuYellArticles.map((uuYellArticle: WP_REST_API_Post, idx) => {
+                  return (
+                    <li key={`uuYellArticle-${idx}`} className="mb-3">
+                      <a
+                        href={uuYellArticle.link}
+                        className="text-gray-400 font-bold text-sm"
+                      >
+                        {uuYellArticle.title.rendered}
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <hr className="border border-gray-200" />
+        </BaseContainer>
       </div>
 
       <div className="px-6">
@@ -353,7 +352,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                   <li className="mb-3">
                     <Link href="/guide/management-team">
                       <a className="text-gray-400 font-bold text-sm">
-                        運営団体について
+                        UU-Circlesについて
                       </a>
                     </Link>
                   </li>
@@ -375,30 +374,26 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                 </ul>
               </div>
 
-              {uuYellArticles && uuYellArticles.length > 0 ? (
-                <div className="pt-20 md:w-1/2">
-                  <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
+              <div className="pt-20 md:w-1/2">
+                <h2 className="text-lg mb-6">デモ画面</h2>
 
-                  <ul className="list-outside list-decimal text-gray-400 pl-4">
-                    {uuYellArticles.map(
-                      (uuYellArticle: WP_REST_API_Post, idx) => {
-                        return (
-                          <li key={`uuYellArticle-${idx}`} className="mb-3">
-                            <a
-                              href={uuYellArticle.link}
-                              className="text-gray-400 font-bold text-sm"
-                            >
-                              {uuYellArticle.title.rendered}
-                            </a>
-                          </li>
-                        )
-                      }
-                    )}
-                  </ul>
-                </div>
-              ) : (
-                ''
-              )}
+                <ul>
+                  <li className="mb-3">
+                    <Link href="/demo">
+                      <a className="text-gray-400 font-bold text-sm">
+                        メイン画面 (デモ)
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/circle/newjoy/demo">
+                      <a className="text-gray-400 font-bold text-sm">
+                        今日の新歓 (デモ)
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </BaseContainer>
@@ -408,7 +403,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
             <hr className="border border-gray-200" />
             <div className="py-8">
               <Link href="/guide/management-team">
-                <a className="text-gray-400 px-2 text-xs">運営団体</a>
+                <a className="text-gray-400 px-2 text-xs">UU-Circlesについて</a>
               </Link>
 
               <Link href="/terms">
@@ -427,7 +422,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <div className="text-center pb-8">
           <a href="https://ulab-uu.com/">
             <Image
-              src="/images/ulab-copylight.png"
+              src={ImagePath.U_LAB.COPY_LIGHT}
               width={160}
               height={40}
               alt="U-lab CopyLight"

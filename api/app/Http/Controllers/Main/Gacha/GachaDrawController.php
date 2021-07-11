@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class GachaDrawController extends Controller
+final class GachaDrawController extends Controller
 {
     private DrawGachaUsecase $drawGachaUsecase;
 
@@ -33,8 +35,7 @@ class GachaDrawController extends Controller
         $drawCount = $request->query('number', 1);
 
         //ヘッダーから識別子取得
-        $identifierHash = $request->header("X-IDENTIFIER_HASH");
-
+        $identifierHash = $request->header('X-IDENTIFIER_HASH');
 
         //数字出なかったり、数値変だったりした場合を除外するバリデーション
         if (!is_numeric($drawCount) || $drawCount <= 0 || $drawCount > 10) {
@@ -46,8 +47,7 @@ class GachaDrawController extends Controller
         $param->drawCount = intval($drawCount);
         $param->identifierHash = $identifierHash;
 
-        $dto = $this->drawGachaUsecase->invoke($param);//drawGachaUsecaseにparamが渡る
-
+        $dto = $this->drawGachaUsecase->invoke($param); //drawGachaUsecaseにparamが渡る
 
         return Arr::camel_keys($dto->toArray());
     }

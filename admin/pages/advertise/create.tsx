@@ -61,7 +61,7 @@ const CreatePage: NextPage = () => {
 
       reader.onabort = () => console.error('file reading was aborted')
       reader.onerror = () => console.error('file reading has failed')
-      reader.onload = async (e) => {
+      reader.onload = async () => {
         new Compressor(file, {
           quality: 1.0,
           maxWidth: advertiseType.value === AdvertiseType.MAIN_TOP ? 800 : 2000,

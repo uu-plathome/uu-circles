@@ -1,6 +1,7 @@
 import { LightBlueButton } from '@/components/atoms/button/LightBlueButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useWindowResize } from '@/hooks/useWindowResize'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { Advertise } from '@/lib/types/model/Advertise'
 import Image from 'next/image'
 import { FC } from 'react'
@@ -36,7 +37,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 src={
                   advertises[0].mainImageUrl
                     ? advertises[0].mainImageUrl
-                    : '/images/company_ad_tmp.png'
+                    : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
                 }
                 alt="協賛企業広告"
                 width={width || 375}
@@ -70,7 +71,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
                 src={
                   advertises[1].mainImageUrl
                     ? advertises[1].mainImageUrl
-                    : '/images/company_ad_tmp.png'
+                    : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
                 }
                 alt="協賛企業広告"
                 width={width || 375}

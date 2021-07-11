@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use App\Support\Arr;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
-class ShowCircleUserController extends Controller
+final class ShowCircleUserController extends Controller
 {
     public function __invoke(Request $request, int $circleId, int $userId)
     {

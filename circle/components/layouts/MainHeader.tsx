@@ -2,16 +2,12 @@ import { YellowButton } from '@/components/atoms/buttons/YellowButton'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
-import { useRouter } from 'next/dist/client/router'
-import Link from 'next/link'
 import { FC } from 'react'
 
 type Props = {
   onClick?(): void
 }
 const MainHeader: FC<Props> = ({ onClick }) => {
-  const router = useRouter()
-
   return (
     <div className="border-b border-gray-300">
       <div className="bg-white">

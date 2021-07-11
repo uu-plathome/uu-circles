@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\User;
 
 use App\Enum\Property\UserProperty;
@@ -12,27 +14,31 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class UpdateOwnUserController extends Controller
+final class UpdateOwnUserController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
+     * @throws AuthorizationException
+     *
      * @return array
      */
     public function __invoke(UpdateOwnUserRequest $request)
     {
-        Log::debug("UpdateOwnUserController args none");
+        Log::debug('UpdateOwnUserController args none');
 
         /** @var \App\Models\User $user */
         $user = $request->user();
         if (!$user->circleUsers) {
             Log::info("[INFO] UpdateOwnUserController code=400, userId=$user->id");
+
             throw new AuthorizationException();
         }
 
         $request->validate([
-            UserProperty::username => 'unique:users,username,' . $user->id
+            UserProperty::username => 'unique:users,username,'.$user->id,
         ]);
 
         $makeUpdateInput = [
@@ -41,19 +47,21 @@ class UpdateOwnUserController extends Controller
         ];
 
         DB::beginTransaction();
+
         try {
             $user->update($makeUpdateInput);
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] UpdateOwnUserController", [
+            Log::error('[ERROR] UpdateOwnUserController', [
                 'value' => $request->all(),
             ]);
             DB::rollBack();
+
             throw $e;
         }
 
         return [
-            'data' => Arr::camel_keys($user->toArray())
+            'data' => Arr::camel_keys($user->toArray()),
         ];
     }
 }

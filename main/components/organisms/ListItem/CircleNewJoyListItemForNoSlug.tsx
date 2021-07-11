@@ -13,7 +13,10 @@ const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
     todayCircleNewJoy.circleNewJoy.title
   }`
 
-export const getCircleNameSize = (circleShowName: string) => {
+type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
+export const getCircleNameSize = (
+  circleShowName: string
+): GetCircleNameSizeRetVal => {
   if (circleShowName.length <= 9) {
     return 'text-xl'
   } else if (circleShowName.length <= 11) {
@@ -26,11 +29,11 @@ export const getCircleNameSize = (circleShowName: string) => {
 }
 const PcLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
-}> = ({ todayCircleNewJoy }) => {
+  isDemo?: boolean
+}> = ({ todayCircleNewJoy, isDemo }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
-  const title = computedCircleNewJoyTitle(todayCircleNewJoy)
-  //shortNameあればそれ使い、なければnameを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
+  // shortNameあればそれ使い、なければnameを使う→15文字超えるとキツいので15文字以上なら省略→文字数におおじてサイズ調節
   const circleShowNameRaw =
     todayCircleNewJoy.shortName || todayCircleNewJoy.name
   const circleShowName =
@@ -92,8 +95,16 @@ const PcLayout: FC<{
         style={{ paddingTop: '50px' }}
       >
         <Link
-          href="/circle/[slug]/newjoy/[circleNewJoy.id]"
-          as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+          href={
+            isDemo
+              ? '/circle/[slug]/newjoy/demo/[circleNewJoy.id]'
+              : '/circle/[slug]/newjoy/[circleNewJoy.id]'
+          }
+          as={
+            isDemo
+              ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`
+              : `/circle/${slug}/newjoy/${circleNewJoy.id}`
+          }
           prefetch={false}
         >
           <a className="text-blue-600 border-b border-blue-600 text-xs w-20 ">
@@ -144,7 +155,8 @@ const PcLayout: FC<{
 
 const SpLayout: FC<{
   todayCircleNewJoy: TodayCircleNewJoy
-}> = ({ todayCircleNewJoy }) => {
+  isDemo?: boolean
+}> = ({ todayCircleNewJoy, isDemo }) => {
   const circleNewJoy = todayCircleNewJoy.circleNewJoy
   const slug = todayCircleNewJoy.slug
   const title = computedCircleNewJoyTitle(todayCircleNewJoy)
@@ -152,8 +164,16 @@ const SpLayout: FC<{
   return (
     // スマホレイアウト
     <Link
-      href="/circle/[slug]/newjoy/[circleNewJoyId]"
-      as={`/circle/${slug}/newjoy/${circleNewJoy.id}`}
+      href={
+        isDemo
+          ? '/circle/[slug]/newjoy/demo/[circleNewJoy.id]'
+          : '/circle/[slug]/newjoy/[circleNewJoy.id]'
+      }
+      as={
+        isDemo
+          ? `/circle/${slug}/newjoy/demo/${circleNewJoy.id}`
+          : `/circle/${slug}/newjoy/${circleNewJoy.id}`
+      }
       prefetch={false}
     >
       <div
@@ -201,18 +221,20 @@ const SpLayout: FC<{
 
 type Props = {
   todayCircleNewJoy: TodayCircleNewJoy
+  isDemo?: boolean
 }
-const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
-  // console.log(todayCircleNewJoy) //しょっちゅう使うため、コメントアウトしています。
-
+const CircleNewJoyListItemForNoSlug: FC<Props> = ({
+  todayCircleNewJoy,
+  isDemo,
+}) => {
   return (
     <div>
       <div className="hidden md:block">
-        <PcLayout todayCircleNewJoy={todayCircleNewJoy} />
+        <PcLayout todayCircleNewJoy={todayCircleNewJoy} isDemo={isDemo} />
       </div>
 
       <div className="md:hidden">
-        <SpLayout todayCircleNewJoy={todayCircleNewJoy} />
+        <SpLayout todayCircleNewJoy={todayCircleNewJoy} isDemo={isDemo} />
       </div>
     </div>
   )

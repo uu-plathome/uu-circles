@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\Circle;
 
 use App\Enum\Property\CircleUserProperty;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Circle\Traits\Permission;
+use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Models\CircleUser;
 use App\Support\Arr;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 
-class ShowCircleController extends Controller
+final class ShowCircleController extends Controller
 {
     use Permission;
 
@@ -39,7 +41,7 @@ class ShowCircleController extends Controller
             'role' => CircleUser::whereCircleId($circleId)
                 ->whereUserId($user->id)
                 ->firstOrFail([CircleUserProperty::role])
-                ->role
+                ->role,
         ];
     }
 }

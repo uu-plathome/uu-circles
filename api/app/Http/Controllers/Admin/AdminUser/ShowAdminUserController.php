@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\AdminUser;
 
 use App\Http\Controllers\Controller;
@@ -11,11 +13,12 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ShowAdminUserController extends Controller
+final class ShowAdminUserController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $userId
+     * @param int     $userId
+     *
      * @return array
      */
     public function __invoke(ShowAdminUserRequest $request, int $userId): array
@@ -28,7 +31,7 @@ class ShowAdminUserController extends Controller
         }
 
         return [
-            'data' => Arr::camel_keys(AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray())
+            'data' => Arr::camel_keys(AdminUserValueObject::byEloquent($user, $user->adminUser)->toArray()),
         ];
     }
 }

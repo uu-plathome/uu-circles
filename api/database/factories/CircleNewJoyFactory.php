@@ -2,7 +2,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;
@@ -37,8 +36,8 @@ $factory->state(CircleNewJoy::class, 'pastFixed', function (Faker $faker) {
         CircleNewJoyProperty::place_of_activity => PlaceOfActivity::NEWJOY_DISCORD,
         CircleNewJoyProperty::description       => 'ぜひ参加してください',
         CircleNewJoyProperty::release           => true,
-        CircleNewJoyProperty::start_date        => (new Carbon("2021-01-25 18:00:00"))->subHour(1)->copy(),
-        CircleNewJoyProperty::end_date          => (new Carbon("2021-01-25 18:00:00"))->addHour(4)->copy(),
+        CircleNewJoyProperty::start_date        => (new Carbon('2021-01-25 18:00:00'))->subHour(1)->copy(),
+        CircleNewJoyProperty::end_date          => (new Carbon('2021-01-25 18:00:00'))->addHour(4)->copy(),
     ];
 });
 
@@ -48,7 +47,7 @@ $factory->state(CircleNewJoy::class, 'futureFixed', function (Faker $faker) {
         CircleNewJoyProperty::place_of_activity => PlaceOfActivity::NEWJOY_DISCORD,
         CircleNewJoyProperty::description       => 'ぜひ参加してください',
         CircleNewJoyProperty::release           => true,
-        CircleNewJoyProperty::start_date        => (new Carbon("2021-05-25 18:00:00"))->subHour(1)->copy(),
-        CircleNewJoyProperty::end_date          => (new Carbon("2021-05-25 18:00:00"))->addHour(4)->copy(),
+        CircleNewJoyProperty::start_date        => (new Carbon('2021-05-25 18:00:00'))->subHour(1)->copy(),
+        CircleNewJoyProperty::end_date          => (new Carbon('2021-05-25 18:00:00'))->addHour(4)->copy(),
     ];
 });

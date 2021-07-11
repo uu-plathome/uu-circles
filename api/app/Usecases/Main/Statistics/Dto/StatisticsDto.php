@@ -1,28 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Main\Statistics\Dto;
 
 /**
- * 統計情報
+ * 統計情報.
  */
-class StatisticsDto
+final class StatisticsDto
 {
     /**
-     * サークル数
+     * サークル数.
      *
      * @var int
      */
     public int $circleCount;
 
     /**
-     * 活動費用の平均値
+     * ページ数.
+     *
+     * @var int
+     */
+    public int $allPageViews;
+
+    /**
+     * ユーザー数.
+     *
+     * @var int
+     */
+    public int $allActiveUsers;
+
+    /**
+     * 活動費用の平均値.
      *
      * @var int
      */
     public int $averageActivityCost;
 
     /**
-     * 日々の新歓数
+     * 日々の新歓数.
      *
      * @var array
      *
@@ -35,42 +51,42 @@ class StatisticsDto
     public array $circleNewJoyCount;
 
     /**
-     * 活動人数の幅
+     * 活動人数の幅.
      *
      * @var StatisticsNumberOfActivitiesCountDto
      */
     public StatisticsNumberOfActivitiesCountDto $statisticsNumberOfActivitiesCountDto;
 
     /**
-     * 活動人数ランキング
+     * 活動人数ランキング.
      *
      * @var StatisticsNumberOfActivitiesRankingDto
      */
     public StatisticsNumberOfActivitiesRankingDto $statisticsNumberOfActivitiesRankingDto;
 
     /**
-     * 活動費用ランキング (高い順)
+     * 活動費用ランキング (高い順).
      *
      * @var StatisticsAdmissionFeePerYearHighRankingDto
      */
     public StatisticsAdmissionFeePerYearHighRankingDto $statisticsAdmissionFeePerYearHighRankingDto;
 
     /**
-     * 活動費用ランキング (低い順)
+     * 活動費用ランキング (低い順).
      *
      * @var StatisticsAdmissionFeePerYearSmallRankingDto
      */
     public StatisticsAdmissionFeePerYearSmallRankingDto $statisticsAdmissionFeePerYearSmallRankingDto;
 
     /**
-     * 週の活動頻度
+     * 週の活動頻度.
      *
      * @var StatisticsActivityFrequencyDto
      */
     public StatisticsActivityFrequencyDto $statisticsActivityFrequencyDto;
 
     /**
-     * 週の活動頻度ランキング (高い順)
+     * 週の活動頻度ランキング (高い順).
      *
      * @var StatisticsActivityFrequencyRankingDto
      */
@@ -91,17 +107,28 @@ class StatisticsDto
     public StatisticsPlaceOfActivityFrequencyDto $statisticsPlaceOfActivityFrequencyDto;
 
     /**
-     * サークル種別
+     * サークル種別.
      *
      * @var StatisticsCircleTypeDto
      */
     public StatisticsCircleTypeDto $statisticsCircleTypeDto;
+
+    /**
+     * サークルページ閲覧数ランキング.
+     *
+     * @var StatisticsCirclePageViewsHighRankingDto
+     */
+    public StatisticsCirclePageViewsHighRankingDto $statisticsCirclePageViewsHighRankingDto;
 
     public function toArray(): array
     {
         return [
             // サークル数
             'circle_count'                 => $this->circleCount,
+            // ページ数
+            'all_page_views'               => $this->allPageViews,
+            // ユーザ数
+            'all_active_users'             => $this->allActiveUsers,
             // 活動費用の平均値
             'average_activity_cost'        => $this->averageActivityCost,
             // 日々の新歓数
@@ -124,6 +151,8 @@ class StatisticsDto
             'place_of_activity_frequency'           => $this->statisticsPlaceOfActivityFrequencyDto->toArray(),
             // サークル種別
             'circle_type'                           => $this->statisticsCircleTypeDto->toArray(),
+            // サークルページ閲覧数ランキング
+            'circle_page_views_high_ranking'        => $this->statisticsCirclePageViewsHighRankingDto->toArray(),
         ];
     }
 }

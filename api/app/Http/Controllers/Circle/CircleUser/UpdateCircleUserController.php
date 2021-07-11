@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Circle\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -17,19 +19,22 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class UpdateCircleUserController extends Controller
+final class UpdateCircleUserController extends Controller
 {
     use Permission;
 
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return array
      */
     public function __invoke(UpdateCircleUserRequest $request, int $circleId, int $userId)
     {
-        Log::debug("UpdateCircleUserController args", [
+        Log::debug('UpdateCircleUserController args', [
             'circleId' => $circleId,
             'userId'   => $userId,
         ]);
@@ -58,6 +63,7 @@ class UpdateCircleUserController extends Controller
         $newRole = $request->get(Str::camel(CircleUserProperty::role));
 
         DB::beginTransaction();
+
         try {
             $user->update($makeUpdateInput);
 
@@ -67,17 +73,18 @@ class UpdateCircleUserController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("[ERROR] UpdateCircleUserController", [
+            Log::error('[ERROR] UpdateCircleUserController', [
                 'value'    => $request->all(),
                 'circleId' => $circleId,
                 'userId'   => $userId,
             ]);
             DB::rollBack();
+
             throw $e;
         }
 
         return [
-            'data' => Arr::camel_keys($user->toArray())
+            'data' => Arr::camel_keys($user->toArray()),
         ];
     }
 }

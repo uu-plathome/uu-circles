@@ -12,4 +12,7 @@ class CircleProperty
     const name = 'name';
     const release = 'release';
     const is_main_fixed = 'is_main_fixed';
+    const is_only_demo = 'is_only_demo';
+    const is_demo_fixed = 'is_demo_fixed';
+    const demo_priority = 'demo_priority';
 }

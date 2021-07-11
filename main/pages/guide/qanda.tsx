@@ -3,6 +3,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
+import { ImagePath } from '@/lib/enum/app/ImagePath'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -24,7 +25,7 @@ const SubHeaderPink: FC = ({ children }) => {
   )
 }
 
-type Props = {}
+type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   return (
     <div>
@@ -78,9 +79,13 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="flex md:block justify-center">
-              <a href="https://media.uu-circles.com/" target="_blank">
+              <a
+                href="https://media.uu-circles.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Image
-                  src="/images/uuyell-poster.png"
+                  src={ImagePath.UU_YELL.POSTER}
                   width="280"
                   height={(280 * 888) / 1501}
                 />
@@ -157,6 +162,7 @@ const Page: NextPage<Props> = () => {
                   href="https://twitter.com/minegaokasai"
                   target="_blank"
                   className="text-blue-600 underline"
+                  rel="noreferrer"
                 >
                   新歓実行委員のTwitter
                 </a>

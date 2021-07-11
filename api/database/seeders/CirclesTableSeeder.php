@@ -18,12 +18,14 @@ class CirclesTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
      * @throws Exception
+     *
+     * @return void
      */
     public function run()
     {
         DB::beginTransaction();
+
         try {
             factory(Circle::class, 20)->create()->each(function (Circle $circle) {
                 $circle->update([
@@ -39,13 +41,13 @@ class CirclesTableSeeder extends Seeder
                 ]));
 
                 $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->make([
-                    'title'  => "交流会 {$circle->id} 2",
+                    'title'      => "交流会 {$circle->id} 2",
                     'start_date' => Carbon::now()->addDay(1)->subHour(1),
                     'end_date'   => Carbon::now()->addDay(1)->addHour(1),
                 ]));
 
                 $circle->circleNewJoys()->save(factory(CircleNewJoy::class)->make([
-                    'title'  => "交流会 {$circle->id} 3",
+                    'title'      => "交流会 {$circle->id} 3",
                     'start_date' => Carbon::now()->addDay(2)->subHour(1),
                     'end_date'   => Carbon::now()->addDay(2)->addHour(1),
                 ]));
@@ -72,15 +74,15 @@ class CirclesTableSeeder extends Seeder
                     ]);
                 });
 
-                if (!$this->getCircleHandbillImageUrl($circle->id)){
-            return;}
+                if (!$this->getCircleHandbillImageUrl($circle->id)) {
+                    return;
+                }
 
                 CircleHandbill::create([
                     'circle_id' => $circle->id,
                     'image_url' => $this->getCircleHandbillImageUrl($circle->id),
                     'year'      => 2021,
                 ]);
-
             });
 
             factory(Circle::class, 4)->state('非公開')->create()->each(function (Circle $circle) {
@@ -115,6 +117,7 @@ class CirclesTableSeeder extends Seeder
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

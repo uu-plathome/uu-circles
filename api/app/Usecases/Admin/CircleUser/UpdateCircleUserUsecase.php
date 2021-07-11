@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Usecases\Admin\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
@@ -7,22 +9,21 @@ use App\Enum\Property\UserProperty;
 use App\Models\CircleUser;
 use App\Models\User;
 use App\Usecases\Admin\CircleUser\Params\UpdateCircleUserUsecaseParam;
-use App\ValueObjects\CircleUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class UpdateCircleUserUsecase
+final class UpdateCircleUserUsecase
 {
     /**
-     * @param int $userId
-     * @param CircleUserValueObject $circleUserValueObject
+     * @param UpdateCircleUserUsecaseParam $param
+     *
      * @throws Exception
      */
     public function invoke(
         UpdateCircleUserUsecaseParam $param
     ) {
-        Log::debug("UpdateCircleUserUsecase args", [
+        Log::debug('UpdateCircleUserUsecase args', [
             'UpdateCircleUserUsecaseParam' => $param,
         ]);
 
@@ -33,6 +34,7 @@ class UpdateCircleUserUsecase
         ];
 
         DB::beginTransaction();
+
         try {
             User::findOrFail($param->user_id)
                 ->update($inputs);
@@ -45,11 +47,12 @@ class UpdateCircleUserUsecase
 
             DB::commit();
         } catch (Exception $e) {
-            Log::error("UpdateCircleUserUsecase [ERROR]", [
+            Log::error('UpdateCircleUserUsecase [ERROR]', [
                 'UpdateCircleUserUsecaseParam' => $param,
             ]);
 
             DB::rollBack();
+
             throw $e;
         }
     }

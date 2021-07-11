@@ -10,8 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import Modal from 'react-modal'
 import { FC, useState } from 'react'
+import Modal from 'react-modal'
 
 type Props = {
   announcement: Announcement
