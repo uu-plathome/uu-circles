@@ -25,12 +25,12 @@ const Page: NextPage = () => {
   const redirect = async () => {
     const identifierHash = localStorage.getItem(LocalStorageKey.identifierHash)
 
-    await drawGacha({
+    const { gachaHash } = await drawGacha({
       identifierHash,
       num: 1,
     })
 
-    await router.push('/gacha/result/1')
+    await router.push(`/gacha/result/${gachaHash}`)
   }
 
   return (
