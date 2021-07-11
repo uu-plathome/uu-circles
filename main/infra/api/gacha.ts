@@ -32,11 +32,9 @@ export const drawGacha = async ({
 }) => {
   const res = await axiosInstance.post<{
     gachaHash: string
-  }>(
-    `/api/gacha/circle?number=${num}&X-IDENTIFIER_HASH=${identifierHash}`
-  )
+  }>(`/api/gacha/circle?number=${num}&X-IDENTIFIER_HASH=${identifierHash}`)
 
   return {
-    gachaHash: res.data.gachaHash
+    gachaHash: res.data.gachaHash,
   }
 }
