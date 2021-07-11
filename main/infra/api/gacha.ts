@@ -23,6 +23,11 @@ export const getGachaPickup = async (): Promise<{
   return res.data
 }
 
-export const drawGacha = async (num: number) => {
-  await axiosInstance.post(`/api/gacha/circle?number=${num}`)
+export const drawGacha = async ({
+  identifierHash,
+  num,
+}:{ identifierHash: string, num: number }) => {
+  await axiosInstance.post(
+    `/api/gacha/circle?number=${num}&X-IDENTIFIER_HASH=${identifierHash}`
+  )
 }

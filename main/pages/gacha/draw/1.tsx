@@ -3,15 +3,35 @@ import { BaseHead } from "@/components/layouts/BaseHead"
 import { BaseLayout } from "@/components/layouts/BaseLayout"
 import { BaseContainer } from "@/components/molecules/Container/BaseContainer"
 import { drawGacha } from "@/infra/api/gacha"
+import { publishIdentification } from "@/infra/api/identification"
+import { LocalStorageKey } from "@/lib/enum/app/LocalStorageKey"
 import { NextPage } from "next"
 import { useRouter } from "next/dist/client/router"
 import Image from "next/image"
+import YouTube, { Options } from 'react-youtube'
+
+const opts: Options = {
+  height: '390',
+  width: '640',
+  playerVars: {
+    // https://developers.google.com/youtube/player_parameters
+    autoplay: 1,
+    mute: 1,
+  },
+};
 
 const Page: NextPage = () => {
   const router = useRouter()
 
   const redirect = async () => {
-    await drawGacha(1)
+    const identifierHash = localStorage.getItem(
+      LocalStorageKey.identifierHash
+    )
+
+    await drawGacha({
+      identifierHash,
+      num: 1
+    })
 
     await router.push('/gacha')
   }
@@ -27,7 +47,9 @@ const Page: NextPage = () => {
               <Image src="/images/gacha-logo.png" width="360" height="120" />
             </div>
 
-            aaa
+            <div className="py-8 flex justify-center">
+              <YouTube videoId="bMYQ8JhCpwg" opts={opts} onEnd={redirect} />
+            </div>
 
             <div className="flex justify-end">
               <a onClick={redirect} className="underline text-blue-600 text-right cursor-pointer">
