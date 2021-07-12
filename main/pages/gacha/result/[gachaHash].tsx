@@ -53,9 +53,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -67,6 +67,7 @@ const Page: NextPage<Props> = ({
                         src={resultCircles[0].handbillImageUrl}
                         width="250"
                         height="350"
+                        alt={`${resultCircles[0].name}-ビラ`}
                       />
                     </div>
 
@@ -79,31 +80,32 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
-              <div className="flex justify-center">
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
+              <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
                     <div
                       key={`resultCircles-${resultCircle.slug}-${idx}`}
-                      className="w-1/5 flex justify-center cursor-pointer"
+                      className="flex justify-center cursor-pointer"
                     >
                       <Link
                         href="/circle/slug"
-                        as={`/circle/${resultCircles[0].slug}`}
+                        as={`/circle/${resultCircle.slug}`}
                       >
                         <div>
                           <div className="rounded">
                             <Image
-                              src={resultCircles[0].handbillImageUrl}
+                              src={resultCircle.handbillImageUrl}
                               width="250"
                               height="350"
+                              alt={`${resultCircle.name}-ビラ`}
                             />
                           </div>
 
                           <h2 className="text-center">
-                            {resultCircles[0].name}
+                            {resultCircle.name}
                           </h2>
                         </div>
                       </Link>
@@ -120,8 +122,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {pickupCircles &&
-            Array.isArray(pickupCircles) &&
-            pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
               <div className="flex justify-center">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
@@ -160,6 +162,7 @@ const Page: NextPage<Props> = ({
                                   src={circle.handbillImageUrl}
                                   width="60"
                                   height="60"
+                                  alt={`${circle.name}-ビラ`}
                                 />
                               </div>
 
