@@ -29,7 +29,9 @@ export const drawGacha = async ({
 }: {
   identifierHash: string
   num: number
-}) => {
+}): Promise<{
+  gachaHash: string
+}> => {
   const res = await axiosInstance.post<{
     gachaHash: string
   }>(
@@ -39,4 +41,44 @@ export const drawGacha = async ({
   return {
     gachaHash: res.data.gachaHash
   }
+}
+
+export const resultGacha = async ({
+  gachaHash
+}: {
+  gachaHash: string
+}): Promise<{
+  count: number
+  createdAt: string
+  gachaHash: string
+  pickupCircles: {
+    handbillImageUrl: string
+    name: string
+    slug: string
+  }[]
+  resultCircles: {
+    handbillImageUrl: string
+    name: string
+    slug: string
+  }[]
+}> => {
+  const res = await axiosInstance.get<{
+    count: number
+    createdAt: string
+    gachaHash: string
+    pickupCircles: {
+      handbillImageUrl: string
+      name: string
+      slug: string
+    }[]
+    resultCircles: {
+      handbillImageUrl: string
+      name: string
+      slug: string
+    }[]
+  }>(
+    `/api/gacha/circle/result/${gachaHash}`
+  )
+
+  return res.data
 }
