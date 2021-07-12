@@ -65,7 +65,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                   <div>
                     {pickupCircle.list.map((circle, idx) => {
                       return (
-                        <div key={`${circle.slug}-${idx}`} className="mb-4">
+                        <div key={`${circle.slug}-${idx}`} className="mb-4 cursor-pointer">
                           <Link href={`/circle/${circle.slug}`}>
                             <div className="rounded bg-white flex items-center px-6 py-4">
                               <div style={{ minWidth: 60 }} className="rounded border border-gray-300">

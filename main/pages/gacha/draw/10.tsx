@@ -27,7 +27,7 @@ const Page: NextPage = () => {
 
     const { gachaHash } = await drawGacha({
       identifierHash,
-      num: 1,
+      num: 10,
     })
 
     await router.push(`/gacha/result/${gachaHash}`)
