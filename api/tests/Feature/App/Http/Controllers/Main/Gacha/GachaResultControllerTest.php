@@ -44,9 +44,7 @@ class GachaResultControllerTest extends TestCase
         $this->assertIsString($identifier->identifier_hash);
 
         // WHEN
-        $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
-        ]);
+        $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}&X-IDENTIFIER_HASH={$identifier->identifier_hash}", []);
         $this->assertArrayHasKey('resultCircles', $gachaDrewResponse);
         $this->assertArrayHasKey('pickupCircles', $gachaDrewResponse);
         $this->assertArrayHasKey('count', $gachaDrewResponse);
@@ -95,9 +93,7 @@ class GachaResultControllerTest extends TestCase
         $this->assertIsString($identifier->identifier_hash);
 
         // WHEN
-        $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
-        ]);
+        $gachaDrewResponse = $this->post("api/gacha/circle?number={$NUMBER}&X-IDENTIFIER_HASH={$identifier->identifier_hash}", []);
         $this->assertArrayHasKey('resultCircles', $gachaDrewResponse);
         $this->assertArrayHasKey('pickupCircles', $gachaDrewResponse);
         $this->assertArrayHasKey('count', $gachaDrewResponse);

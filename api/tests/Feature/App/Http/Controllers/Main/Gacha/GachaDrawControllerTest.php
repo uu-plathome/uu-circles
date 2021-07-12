@@ -39,9 +39,7 @@ class GachaDrawControllerTest extends TestCase
         $this->assertIsString($identifier->identifier_hash);
 
         // WHEN
-        $response = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
-        ]);
+        $response = $this->post("api/gacha/circle?number={$NUMBER}&X-IDENTIFIER_HASH={$identifier->identifier_hash}", []);
 
         // THEN
         $response->assertOk();
@@ -70,9 +68,7 @@ class GachaDrawControllerTest extends TestCase
         $this->assertNotNull($identifier);
         $this->assertIsString($identifier->identifier_hash);
         // WHEN
-        $response = $this->post("api/gacha/circle?number={$NUMBER}", [], [
-            'X-IDENTIFIER_HASH' => $identifier->identifier_hash,
-        ]);
+        $response = $this->post("api/gacha/circle?number={$NUMBER}&X-IDENTIFIER_HASH={$identifier->identifier_hash}", []);
 
         // THEN
         $response->assertOk();
