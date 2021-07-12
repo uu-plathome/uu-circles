@@ -46,7 +46,7 @@ export const drawGacha = async ({
 }
 
 export const resultGacha = async ({
-  gachaHash
+  gachaHash,
 }: {
   gachaHash: string
 }): Promise<{
@@ -78,9 +78,7 @@ export const resultGacha = async ({
       name: string
       slug: string
     }[]
-  }>(
-    `/api/gacha/circle/result/${gachaHash}`
-  )
+  }>(`/api/gacha/circle/result/${gachaHash}`)
 
   return res.data
 }

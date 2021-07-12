@@ -51,30 +51,54 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               </Link>
             </div>
 
-            {pickupCircle.list && Array.isArray(pickupCircle.list) && pickupCircle.list.length > 0 ? (
+            {pickupCircle.list &&
+            Array.isArray(pickupCircle.list) &&
+            pickupCircle.list.length > 0 ? (
               <div className="flex justify-center">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
-                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      color={colors.yellow[500]}
+                      size="lg"
+                    />
                     <h2 className="text-yellow-500 font-bold text-2xl">
                       Pick Up
                     </h2>
-                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      color={colors.yellow[500]}
+                      size="lg"
+                    />
                   </div>
 
                   <div>
                     {pickupCircle.list.map((circle, idx) => {
                       return (
-                        <div key={`${circle.slug}-${idx}`} className="mb-4 cursor-pointer">
+                        <div
+                          key={`${circle.slug}-${idx}`}
+                          className="mb-4 cursor-pointer"
+                        >
                           <Link href={`/circle/${circle.slug}`}>
                             <div className="rounded bg-white flex items-center px-6 py-4">
-                              <div style={{ minWidth: 60 }} className="rounded border border-gray-300">
-                                <Image src={circle.handbillImageUrl} width="60" height="60" />
+                              <div
+                                style={{ minWidth: 60 }}
+                                className="rounded border border-gray-300"
+                              >
+                                <Image
+                                  src={circle.handbillImageUrl}
+                                  width="60"
+                                  height="60"
+                                />
                               </div>
 
                               <div className="pl-2">
-                                <h3 className="font-bold text-lg mb-2">{circle.name}</h3>
-                                <p className="text-sm max-line-2">初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...</p>
+                                <h3 className="font-bold text-lg mb-2">
+                                  {circle.name}
+                                </h3>
+                                <p className="text-sm max-line-2">
+                                  初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...
+                                </p>
                               </div>
                             </div>
                           </Link>
@@ -84,7 +108,9 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                   </div>
                 </div>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
           </BaseContainer>
         </div>
 

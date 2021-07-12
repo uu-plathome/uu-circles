@@ -33,7 +33,7 @@ const Page: NextPage<Props> = ({
   count,
   pickupCircles,
   resultCircles,
-  errorCode
+  errorCode,
 }) => {
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -52,69 +52,124 @@ const Page: NextPage<Props> = ({
 
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
-            {count === 1 && resultCircles && Array.isArray(resultCircles) && resultCircles.length > 0 ? (
+            {count === 1 &&
+            resultCircles &&
+            Array.isArray(resultCircles) &&
+            resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
-                <Link href="/circle/slug" as={`/circle/${resultCircles[0].slug}`}>
+                <Link
+                  href="/circle/slug"
+                  as={`/circle/${resultCircles[0].slug}`}
+                >
                   <div>
                     <div className="rounded">
-                      <Image src={resultCircles[0].handbillImageUrl} width="250" height="350" />
+                      <Image
+                        src={resultCircles[0].handbillImageUrl}
+                        width="250"
+                        height="350"
+                      />
                     </div>
 
                     <h2 className="text-center">{resultCircles[0].name}</h2>
-                  </div></Link>
+                  </div>
+                </Link>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
 
-            {count === 10 && resultCircles && Array.isArray(resultCircles) && resultCircles.length > 0 ? (
+            {count === 10 &&
+            resultCircles &&
+            Array.isArray(resultCircles) &&
+            resultCircles.length > 0 ? (
               <div className="flex justify-center">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
-                    <div key={`resultCircles-${resultCircle.slug}-${idx}`} className="w-1/5 flex justify-center cursor-pointer">
-                      <Link href="/circle/slug" as={`/circle/${resultCircles[0].slug}`}>
+                    <div
+                      key={`resultCircles-${resultCircle.slug}-${idx}`}
+                      className="w-1/5 flex justify-center cursor-pointer"
+                    >
+                      <Link
+                        href="/circle/slug"
+                        as={`/circle/${resultCircles[0].slug}`}
+                      >
                         <div>
                           <div className="rounded">
-                            <Image src={resultCircles[0].handbillImageUrl} width="250" height="350" />
+                            <Image
+                              src={resultCircles[0].handbillImageUrl}
+                              width="250"
+                              height="350"
+                            />
                           </div>
 
-                          <h2 className="text-center">{resultCircles[0].name}</h2>
+                          <h2 className="text-center">
+                            {resultCircles[0].name}
+                          </h2>
                         </div>
                       </Link>
                     </div>
                   )
                 })}
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
 
             <div className="flex justify-center py-8">
-              <GreenButton href="/gacha">
-                ガチャTOPへ
-              </GreenButton>
+              <GreenButton href="/gacha">ガチャTOPへ</GreenButton>
             </div>
 
-            {pickupCircles && Array.isArray(pickupCircles) && pickupCircles.length > 0 ? (
+            {pickupCircles &&
+            Array.isArray(pickupCircles) &&
+            pickupCircles.length > 0 ? (
               <div className="flex justify-center">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
-                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      color={colors.yellow[500]}
+                      size="lg"
+                    />
                     <h2 className="text-yellow-500 font-bold text-2xl">
                       Pick Up
                     </h2>
-                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      color={colors.yellow[500]}
+                      size="lg"
+                    />
                   </div>
 
                   <div>
                     {pickupCircles.map((circle, idx) => {
                       return (
-                        <div key={`pickupCircles-${circle.slug}-${idx}`} className="mb-4 cursor-pointer">
-                          <Link href="/circle/slug" as={`/circle/${resultCircles[0].slug}`}>
+                        <div
+                          key={`pickupCircles-${circle.slug}-${idx}`}
+                          className="mb-4 cursor-pointer"
+                        >
+                          <Link
+                            href="/circle/slug"
+                            as={`/circle/${resultCircles[0].slug}`}
+                          >
                             <div className="rounded bg-white flex items-center px-6 py-4">
-                              <div style={{ minWidth: 60 }} className="rounded border border-gray-300">
-                                <Image src={circle.handbillImageUrl} width="60" height="60" />
+                              <div
+                                style={{ minWidth: 60 }}
+                                className="rounded border border-gray-300"
+                              >
+                                <Image
+                                  src={circle.handbillImageUrl}
+                                  width="60"
+                                  height="60"
+                                />
                               </div>
 
                               <div className="pl-2">
-                                <h3 className="font-bold text-lg mb-2">{circle.name}</h3>
-                                <p className="text-sm max-line-2">初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...</p>
+                                <h3 className="font-bold text-lg mb-2">
+                                  {circle.name}
+                                </h3>
+                                <p className="text-sm max-line-2">
+                                  初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...
+                                </p>
                               </div>
                             </div>
                           </Link>
@@ -124,7 +179,9 @@ const Page: NextPage<Props> = ({
                   </div>
                 </div>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
           </BaseContainer>
         </div>
 
@@ -144,7 +201,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   try {
     const res = await resultGacha({
-      gachaHash: params.gachaHash
+      gachaHash: params.gachaHash,
     })
 
     return {
