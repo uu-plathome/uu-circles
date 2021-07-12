@@ -46,7 +46,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         if (localStorageIdentifierHash) {
           try {
             // 識別子が有効かどうかを確認する
-            const status = validIdentification({
+            const status = await validIdentification({
               identifierHash: localStorageIdentifierHash,
             })
 

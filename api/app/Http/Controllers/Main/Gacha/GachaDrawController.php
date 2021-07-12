@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
+use App\Models\Identifier;
 use App\Support\Arr;
 use App\Usecases\Main\Gacha\DrawGachaUsecase;
 use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
@@ -35,14 +36,18 @@ final class GachaDrawController extends Controller
         $drawCount = $request->query('number', 1);
 
         //ヘッダーから識別子取得
-        $identifierHash = $request->header('X-IDENTIFIER_HASH');
+        $identifierHash = $request->query('X-IDENTIFIER_HASH');
 
         //数字出なかったり、数値変だったりした場合を除外するバリデーション
         if (!is_numeric($drawCount) || $drawCount <= 0 || $drawCount > 10) {
             return abort(404);
         }
 
-        //
+        Log::debug('identifierHash', [$identifierHash]);
+        if (Identifier::whereIdentifierHash($identifierHash)->doesntExist()) {
+            return abort(422);
+        }
+
         $param = new DrawGachaUsecaseParam();
         $param->drawCount = intval($drawCount);
         $param->identifierHash = $identifierHash;
