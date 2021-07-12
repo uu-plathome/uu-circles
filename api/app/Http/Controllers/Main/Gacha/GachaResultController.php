@@ -79,7 +79,7 @@ final class GachaResultController extends Controller
         $dto->result_circles = $resultCircleDto;
 
         $pickupCircleDto = new GachaSimpleCircleListDto();
-        $pickupCircleDto->list = $foundDrewCircles->toArray();
+        $pickupCircleDto->list = $foundPickupCircles->toArray();
         $dto->pickup_circles = $pickupCircleDto;
 
         $dto->created_at = $circleGachaResult->created_at instanceof Carbon ? $circleGachaResult->created_at : null;
