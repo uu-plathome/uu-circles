@@ -1,12 +1,26 @@
+import colors from '@/colors'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { NextPage } from 'next'
+import { getGachaPickup } from '@/infra/api/gacha'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Page: NextPage = () => {
+type Props = {
+  pickupCircle: {
+    list: {
+      handbillImageUrl: string
+      name: string
+      slug: string
+    }[]
+  }
+  pickupDate: string
+}
+const Page: NextPage<Props> = ({ pickupCircle }) => {
   return (
     <div>
       <BaseHead title="サークルガチャ" />
@@ -36,6 +50,41 @@ const Page: NextPage = () => {
                 </div>
               </Link>
             </div>
+
+            {pickupCircle.list && Array.isArray(pickupCircle.list) && pickupCircle.list.length > 0 ? (
+              <div className="flex justify-center">
+                <div style={{ width: 360 }}>
+                  <div className="flex justify-center items-center mb-4">
+                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                    <h2 className="text-yellow-500 font-bold text-2xl">
+                      Pick Up
+                    </h2>
+                    <FontAwesomeIcon icon={faStar} color={colors.yellow[500]} size="lg" />
+                  </div>
+
+                  <div>
+                    {pickupCircle.list.map((circle, idx) => {
+                      return (
+                        <div key={`${circle.slug}-${idx}`} className="mb-4">
+                          <Link href={`/circle/${circle.slug}`}>
+                            <div className="rounded bg-white flex items-center px-6 py-4">
+                              <div style={{ minWidth: 60 }} className="rounded border border-gray-300">
+                                <Image src={circle.handbillImageUrl} width="60" height="60" />
+                              </div>
+
+                              <div className="pl-2">
+                                <h3 className="font-bold text-lg mb-2">{circle.name}</h3>
+                                <p className="text-sm max-line-2">初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...</p>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : ''}
           </BaseContainer>
         </div>
 
@@ -44,6 +93,15 @@ const Page: NextPage = () => {
       </BaseLayout>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const res = await getGachaPickup()
+
+  return {
+    props: res,
+    revalidate: 60 * 60 * 6,
+  }
 }
 
 export default Page
