@@ -13,7 +13,14 @@ import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import { FacebookIcon, FacebookShareButton, LineIcon, LineShareButton, TwitterIcon, TwitterShareButton } from 'react-share'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type Props = {
   count?: number
@@ -42,7 +49,10 @@ const Page: NextPage<Props> = ({
     return <Error statusCode={errorCode} />
   }
 
-  const pageUrl = useMemo(() => `https://uu-circles.com/gacha/result/${gachaHash}`, [gachaHash])
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/gacha/result/${gachaHash}`,
+    [gachaHash]
+  )
 
   return (
     <div>
@@ -58,9 +68,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+            resultCircles &&
+            Array.isArray(resultCircles) &&
+            resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -85,9 +95,9 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+            resultCircles &&
+            Array.isArray(resultCircles) &&
+            resultCircles.length > 0 ? (
               <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
@@ -132,7 +142,11 @@ const Page: NextPage<Props> = ({
               <div className="my-2 pb-2 flex justify-center">
                 <TwitterShareButton
                   url={pageUrl}
-                  title={count === 10 ? '10連ガチャ結果を見る！' : `${resultCircles[0].name}があたりました！`}
+                  title={
+                    count === 10
+                      ? '10連ガチャ結果を見る！'
+                      : `${resultCircles[0].name}があたりました！`
+                  }
                   hashtags={['春から宇大']}
                   className="mr-2"
                 >
@@ -154,8 +168,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {pickupCircles &&
-              Array.isArray(pickupCircles) &&
-              pickupCircles.length > 0 ? (
+            Array.isArray(pickupCircles) &&
+            pickupCircles.length > 0 ? (
               <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
