@@ -12,6 +12,15 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useMemo } from 'react'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type Props = {
   count?: number
@@ -31,6 +40,7 @@ type Props = {
 }
 const Page: NextPage<Props> = ({
   count,
+  gachaHash,
   pickupCircles,
   resultCircles,
   errorCode,
@@ -38,6 +48,11 @@ const Page: NextPage<Props> = ({
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
+
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/gacha/result/${gachaHash}`,
+    [gachaHash]
+  )
 
   return (
     <div>
@@ -119,10 +134,43 @@ const Page: NextPage<Props> = ({
               <GreenButton href="/gacha">ガチャTOPへ</GreenButton>
             </div>
 
+            <div className="pb-16 md:pb-0">
+              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 md:text-center">
+                SNSでガチャ結果をShare
+              </h2>
+
+              <div className="my-2 pb-2 flex justify-center">
+                <TwitterShareButton
+                  url={pageUrl}
+                  title={
+                    count === 10
+                      ? '10連ガチャ結果を見る！'
+                      : `${resultCircles[0].name}があたりました！`
+                  }
+                  hashtags={['春から宇大']}
+                  className="mr-2"
+                >
+                  <TwitterIcon size={50} round />
+                </TwitterShareButton>
+
+                <LineShareButton url={pageUrl} className="mr-2">
+                  <LineIcon size={50} round />
+                </LineShareButton>
+
+                <FacebookShareButton
+                  url={pageUrl}
+                  hashtag={'春から宇大'}
+                  className="mr-2"
+                >
+                  <FacebookIcon size={50} round />
+                </FacebookShareButton>
+              </div>
+            </div>
+
             {pickupCircles &&
             Array.isArray(pickupCircles) &&
             pickupCircles.length > 0 ? (
-              <div className="flex justify-center">
+              <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
                     <FontAwesomeIcon
