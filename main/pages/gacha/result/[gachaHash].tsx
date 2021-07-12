@@ -9,9 +9,12 @@ import { resultGacha } from '@/infra/api/gacha'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { useRouter } from 'next/dist/client/router'
 import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useMemo } from 'react'
+import { FacebookIcon, FacebookShareButton, LineIcon, LineShareButton, TwitterIcon, TwitterShareButton } from 'react-share'
 
 type Props = {
   count?: number
@@ -31,6 +34,7 @@ type Props = {
 }
 const Page: NextPage<Props> = ({
   count,
+  gachaHash,
   pickupCircles,
   resultCircles,
   errorCode,
@@ -38,6 +42,8 @@ const Page: NextPage<Props> = ({
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
+
+  const pageUrl = useMemo(() => `https://uu-circles.com/gacha/result/${gachaHash}`, [gachaHash])
 
   return (
     <div>
@@ -53,9 +59,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -80,9 +86,9 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
@@ -119,10 +125,39 @@ const Page: NextPage<Props> = ({
               <GreenButton href="/gacha">ガチャTOPへ</GreenButton>
             </div>
 
+            <div className="pb-16 md:pb-0">
+              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 md:text-center">
+                SNSでガチャ結果をShare
+              </h2>
+
+              <div className="my-2 pb-2 flex justify-center">
+                <TwitterShareButton
+                  url={pageUrl}
+                  title={count === 10 ? '10連ガチャ結果を見る！' : `${resultCircles[0].name}があたりました！`}
+                  hashtags={['春から宇大']}
+                  className="mr-2"
+                >
+                  <TwitterIcon size={50} round />
+                </TwitterShareButton>
+
+                <LineShareButton url={pageUrl} className="mr-2">
+                  <LineIcon size={50} round />
+                </LineShareButton>
+
+                <FacebookShareButton
+                  url={pageUrl}
+                  hashtag={'春から宇大'}
+                  className="mr-2"
+                >
+                  <FacebookIcon size={50} round />
+                </FacebookShareButton>
+              </div>
+            </div>
+
             {pickupCircles &&
-            Array.isArray(pickupCircles) &&
-            pickupCircles.length > 0 ? (
-              <div className="flex justify-center">
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
+              <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
                     <FontAwesomeIcon
