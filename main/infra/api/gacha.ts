@@ -5,18 +5,22 @@ import { axiosInstance } from '.'
  */
 export const getGachaPickup = async (): Promise<{
   pickupCircle: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-  }[]
-  pickupDate: string
-}> => {
-  const res = await axiosInstance.get<{
-    pickupCircle: {
+    list: {
       handbillImageUrl: string
       name: string
       slug: string
     }[]
+  }
+  pickupDate: string
+}> => {
+  const res = await axiosInstance.get<{
+    pickupCircle: {
+      list: {
+        handbillImageUrl: string
+        name: string
+        slug: string
+      }[]
+    }
     pickupDate: string
   }>('/api/gacha/circle/pickup')
 
