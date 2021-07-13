@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Main\Gacha\GachaPickupListKey;
 use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -32,8 +33,8 @@ final class GachaPickupListController extends Controller
 
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
-            60 * 60 * 24,
-            fn () => $this->getGachaPickupListUsecase->invoke()
+            60 * 60,
+            fn () => $this->getGachaPickupListUsecase->invoke(Carbon::today())
         );
 
         return Arr::camel_keys([
