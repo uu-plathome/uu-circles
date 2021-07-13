@@ -10,6 +10,7 @@ use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
 use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
 use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -40,8 +41,8 @@ final class DrawGachaUsecase
          */
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),
-            60 * 60 * 24,
-            fn () => $this->getGachaPickupListUsecase->invoke()
+            60 * 60 * 2,
+            fn () => $this->getGachaPickupListUsecase->invoke(Carbon::today())
         );
 
         $limit = $drawCount >= 10 ? $drawCount + 2 : $drawCount + 1; //10連のときは+2だが、それ以下では+1分多くサークル取る
