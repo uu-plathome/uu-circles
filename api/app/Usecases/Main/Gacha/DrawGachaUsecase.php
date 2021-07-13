@@ -45,6 +45,8 @@ final class DrawGachaUsecase
             fn () => $this->getGachaPickupListUsecase->invoke(Carbon::today())
         );
 
+        Log::debug('DrawGachaUsecase ピックアップ一覧取得', [$pickupList]);
+
         $limit = $drawCount >= 10 ? $drawCount + 2 : $drawCount + 1; //10連のときは+2だが、それ以下では+1分多くサークル取る
 
         /** @var \App\Models\Circle $circles */
@@ -112,13 +114,14 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $pickupCircle_ids = $pickupCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
         $drewCircle_ids = $drewCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
 
         //DBに挿入
         $data = [
             'result_circle_ids' => $drewCircle_ids,
-            'pickup_circle_ids' => $pickupCircle_ids,
+            'pickup_circle_ids' => (new Collection($pickupList->pickupCircles->list))
+                ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
+                ->values(),
             'gacha_hash'        => (string) Str::uuid(),
             'identifier_hash'   => $param->identifierHash,
         ];
