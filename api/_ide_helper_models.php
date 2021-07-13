@@ -262,6 +262,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property bool                            $is_main_fixed メイン画面に固定するかどうか
+     * @property bool                            $is_only_demo  デモ画面でのみ表示するかどうか
      * @property bool                            $is_demo_fixed デモで表示するか
      * @property int                             $demo_priority デモの表示順
      * @property-read \App\Models\CircleHandbill|null $circleHandbill
@@ -284,12 +285,39 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsDemoFixed($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsMainFixed($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Circle whereIsOnlyDemo($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereRelease($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereSlug($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Circle whereUpdatedAt($value)
      */
     class Circle extends \Eloquent
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\CircleGachaPickup.
+     *
+     * @property int                             $id
+     * @property int                             $circle_id1 ピックアップされたサークル1
+     * @property int                             $circle_id2 ピックアップされたサークル2
+     * @property int                             $circle_id3 ピックアップされたサークル3
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup query()
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereCircleId1($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereCircleId2($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereCircleId3($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|CircleGachaPickup whereUpdatedAt($value)
+     */
+    class CircleGachaPickup extends \Eloquent
     {
     }
 }
