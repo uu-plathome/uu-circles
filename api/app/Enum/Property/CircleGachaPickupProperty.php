@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Enum\Property;
-
 
 class CircleGachaPickupProperty
 {

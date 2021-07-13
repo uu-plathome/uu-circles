@@ -96,6 +96,7 @@ final class GetGachaPickupListUsecase
         $dto->pickupCircles = $pickupCirclesDto;
 
         $dto->pickupDate = $circleGachaPickup->created_at->format('Y-m-d');
+
         return $dto;
     }
 }
