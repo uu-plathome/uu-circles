@@ -145,27 +145,27 @@ class CirclesTableSeeder extends Seeder
     {
         if ($idx % 6 == 0) {
             // U-lab
-            return 'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fzzu-lab.jpg?alt=media&token=7b432c71-f65a-4064-9339-7545cc762791';
+            return 'https://static.uu-circles.com/images/wYrgrNzRcyztp1mwmvdFpTVGWfSfEOoNagzO8eFl.png';
         }
 
         if ($idx % 6 == 1) {
-            // 滑空部
-            return 'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fflyclub2.jpg?alt=media&token=405b82c6-ac28-47f9-ac62-33a4ff09e7f9';
+            // TinCarbel
+            return 'https://static.uu-circles.com/images/DE9kVZkJyiJVdQtZYJ2GF2qc29tOf9MwaKIS8n7d.png';
         }
 
         if ($idx % 6 == 2) {
-            // メロディースタッフ
-            return 'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fmelody-staff.jpg?alt=media&token=1b069154-1137-4621-953d-35fe39f6113b';
+            // uu-yell
+            return 'https://static.uu-circles.com/DOMChKiSFmifuypt2OLF4mMZb8plCD6bm64T1j3A.jpg';
         }
 
         if ($idx % 6 == 3) {
             // 硬式テニス部
-            return 'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fhardtenis.jpg?alt=media&token=5abe0fab-d088-4d22-bc2c-00fcfe9a1b0e';
+            return 'https://static.uu-circles.com/images/kN6BV35XRZeYZd3u5DtSyz8W0TT6i93ezeBcM37P.png';
         }
 
         if ($idx % 6 == 4) {
-            // cycle club
-            return 'https://firebasestorage.googleapis.com/v0/b/uu-circle20.appspot.com/o/circles%2Fcycle-club.jpg?alt=media&token=d934d034-58f9-4082-bf72-2f2524713ddc';
+            // U-lab
+            return 'https://static.uu-circles.com/images/wYrgrNzRcyztp1mwmvdFpTVGWfSfEOoNagzO8eFl.png';
         }
 
         if ($idx % 6 == 5) {
