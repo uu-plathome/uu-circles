@@ -18,6 +18,6 @@ final class GachaPickupListKey
      */
     public static function getCacheKey(): string
     {
-        return 'GachaPickupListKey'.self::getPickupDate();
+        return 'Usecase.Main.GachaPickupListKey　'.self::getPickupDate();
     }
 }
