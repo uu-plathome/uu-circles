@@ -45,7 +45,10 @@ const Page: NextPage = () => {
             </div>
 
             <div className="py-8 flex justify-center">
-              <div className="w-full relative h-0 overflow-hidden mb-12" style={{ paddingBottom: '56.25%' }}>
+              <div
+                className="w-full relative h-0 overflow-hidden mb-12"
+                style={{ paddingBottom: '56.25%' }}
+              >
                 <YouTube
                   className="w-full h-full absolute top-0 left-0"
                   videoId="bMYQ8JhCpwg"
