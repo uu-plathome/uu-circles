@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class CircleGachaPickup extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         CircleGachaPickupProperty::circle_id1,
         CircleGachaPickupProperty::circle_id2,
