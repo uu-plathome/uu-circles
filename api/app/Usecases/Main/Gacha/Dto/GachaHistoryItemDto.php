@@ -43,7 +43,7 @@ class GachaHistoryItemDto
     public function toArray(): array
     {
         return [
-            'result_circles' => (new Collection($this->circles))->map(
+            'result_circles'                   => (new Collection($this->circles))->map(
                 fn (GachaSimpleCircleDto $dto) => $dto->toArray()
             )->toArray(),
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d') : null,

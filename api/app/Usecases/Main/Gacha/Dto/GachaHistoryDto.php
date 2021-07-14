@@ -22,11 +22,9 @@ final class GachaHistoryDto
         $dto = new self();
 
         $dto->list = $circleGachaResults->map(
-            fn (CircleGachaResult $circleGachaResult) =>
-                GachaHistoryItemDto::byEloquent(
+            fn (CircleGachaResult $circleGachaResult) => GachaHistoryItemDto::byEloquent(
                     $circles->filter(
-                        fn (Circle $circle) =>
-                            in_array($circle->id, json_decode($circleGachaResult->result_circle_ids))
+                        fn (Circle $circle) => in_array($circle->id, json_decode($circleGachaResult->result_circle_ids))
                     )->values(),
                     $circleGachaResult
                 )
@@ -38,7 +36,7 @@ final class GachaHistoryDto
     public function toArray(): array
     {
         return [
-            'list' => (new \Illuminate\Support\Collection($this->list))->map(
+            'list'                            => (new \Illuminate\Support\Collection($this->list))->map(
                 fn (GachaHistoryItemDto $dto) => $dto->toArray()
             )->toArray(),
         ];
