@@ -24,8 +24,8 @@ final class GachaHistoryDto
         $dto->list = $circleGachaResults->map(
             fn (CircleGachaResult $circleGachaResult) => GachaHistoryItemDto::byEloquent(
                 $circles->filter(
-                        fn (Circle $circle) => in_array($circle->id, json_decode($circleGachaResult->result_circle_ids))
-                    )->values(),
+                    fn (Circle $circle) => in_array($circle->id, json_decode($circleGachaResult->result_circle_ids))
+                )->values(),
                 $circleGachaResult
             )
         )->toArray();
