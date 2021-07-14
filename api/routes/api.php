@@ -78,6 +78,8 @@ Route::post('/gacha/circle', Gacha\GachaDrawController::class)
     ->name(ARP::MainGachaDraw);
 Route::get('/gacha/circle/result/{gachaHash}', Gacha\GachaResultController::class)
     ->name(ARP::MainGachaResult);
+Route::get('/gacha/circle/history', Gacha\GachaHistoryController::class)
+    ->name(ARP::MainGachaHistory);
 
 // 識別子
 Route::post('/identification/publish', Identification\PublishIdentificationController::class)
