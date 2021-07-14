@@ -41,6 +41,7 @@ class ApiRouteProperty
     const MainGachaPickup = 'main.gacha.pickup';
     const MainGachaDraw = 'main.gacha.draw';
     const MainGachaResult = 'main.gacha.result';
+    const MainGachaHistory = 'main.gacha.history';
 
     // 識別子
     const MainIdentificationPublish = 'main.identification.publish';

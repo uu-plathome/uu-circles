@@ -21,21 +21,24 @@ final class GachaDrawController extends Controller
         $this->drawGachaUsecase = $drawGachaUsecase;
     }
 
-    /*
-    単発ガチャ：
-    - 2つのサークルをランダムに拾い、ピックアップと一致するものがあったら、それを取得する。
-    - ピックアップと一致しない場合は、一つ目のサークルを取得する。
-
-    10連ガチャ：
-    - 12つのサークルをランダムに拾い、ピックアップと一致するものを優先的にひろう。
-
+    /**
+     * 単発ガチャ：
+     * - 2つのサークルをランダムに拾い、ピックアップと一致するものがあったら、それを取得する。
+     * - ピックアップと一致しない場合は、一つ目のサークルを取得する。
+     *
+     * 10連ガチャ：
+     * - 12つのサークルをランダムに拾い、ピックアップと一致するものを優先的にひろう。
+     *
+     * @param Request $request
+     *
+     * @return array|void
      */
     public function __invoke(Request $request)
     {
         Log::debug('GachaDrawController args none');
         $drawCount = $request->query('number', 1);
 
-        //ヘッダーから識別子取得
+        // ヘッダーから識別子取得
         $identifierHash = $request->query('X-IDENTIFIER_HASH');
 
         //数字出なかったり、数値変だったりした場合を除外するバリデーション
