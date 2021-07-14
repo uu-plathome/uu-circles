@@ -30,6 +30,7 @@ final class GachaDrawController extends Controller
      * - 12つのサークルをランダムに拾い、ピックアップと一致するものを優先的にひろう。
      *
      * @param Request $request
+     *
      * @return array|void
      */
     public function __invoke(Request $request)
