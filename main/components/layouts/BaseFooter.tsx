@@ -336,6 +336,20 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     </Link>
                   </li>
                   <li className="mb-3">
+                    <Link href="/gacha">
+                      <a className="text-gray-400 font-bold text-sm">
+                        サークルガチャ
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/gacha/history">
+                      <a className="text-gray-400 font-bold text-sm">
+                        サークルガチャ履歴
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
                     <Link href="/statistics">
                       <a className="text-gray-400 font-bold text-sm">
                         統計情報
