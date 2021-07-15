@@ -113,7 +113,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               ''
             )}
 
-            <div className="py-8">
+            <div className="py-8 flex justify-center">
               <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
             </div>
           </BaseContainer>
