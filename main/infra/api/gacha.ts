@@ -45,6 +45,9 @@ export const drawGacha = async ({
   }
 }
 
+/**
+ * ガチャ結果を取得
+ */
 export const resultGacha = async ({
   gachaHash,
 }: {
@@ -79,6 +82,44 @@ export const resultGacha = async ({
       slug: string
     }[]
   }>(`/api/gacha/circle/result/${gachaHash}`)
+
+  return res.data
+}
+
+/**
+ * ガチャ履歴を取得
+ */
+export const getGachaHistory = async ({
+  identifierHash
+}: {
+  identifierHash: string
+}): Promise<{
+  history: {
+    list: {
+      createdAt: string
+      resultCircles: {
+        handbillImageUrl: string
+        name: string
+        slug: string
+      }[]
+    }[]
+  }
+}> => {
+  type Response = {
+    history: {
+      list: {
+        createdAt: string
+        resultCircles: {
+          handbillImageUrl: string
+          name: string
+          slug: string
+        }[]
+      }[]
+    }
+  }
+  const res = await axiosInstance.get<Response>(
+    `/api/gacha/circle/history?X-IDENTIFIER_HASH=${identifierHash}`
+  )
 
   return res.data
 }
