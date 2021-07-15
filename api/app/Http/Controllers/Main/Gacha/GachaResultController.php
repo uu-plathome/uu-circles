@@ -33,7 +33,10 @@ final class GachaResultController extends Controller
             ->firstOrFail(); //結果かnullを返す(ただのfirst)→firstorFailで結果もしくは404返す
 
         //DBから引っ張ってくる result
-        $fetchedDrewCircles = Circle::with('circleHandbill')->whereRelease(true)
+        $fetchedDrewCircles = Circle::with([
+            'circleInformation:circle_id,description',
+            'circleHandbill',
+        ])->whereRelease(true)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
@@ -47,12 +50,16 @@ final class GachaResultController extends Controller
              //型変換
              GachaSimpleCircleDto::byEloquent(
                  $circle,
+                 $circle->circleInformation,
                  $circle->circleHandbill
              )
         );
 
         //DBから引っ張ってくる  pickup
-        $fetchedPickupCircles = Circle::with('circleHandbill')
+        $fetchedPickupCircles = Circle::with([
+            'circleInformation:circle_id,description',
+            'circleHandbill',
+        ])
              ->whereRelease(true)
              // 新歓が登録されているのものを取得
              ->hasByNonDependentSubquery('circleHandbill')
@@ -67,6 +74,7 @@ final class GachaResultController extends Controller
               //型変換
               GachaSimpleCircleDto::byEloquent(
                   $circle,
+                  $circle->circleInformation,
                   $circle->circleHandbill
               )
         );
