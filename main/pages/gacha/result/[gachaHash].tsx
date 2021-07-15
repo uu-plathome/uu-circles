@@ -133,7 +133,16 @@ const Page: NextPage<Props> = ({
             )}
 
             <div className="flex justify-center py-8">
-              <GreenButton href="/gacha">ガチャTOPへ</GreenButton>
+              <Link href="/gacha">
+                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                  ガチャTOPへ
+                </div>
+              </Link>
+              <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
+                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                  もう一回引く
+                </div>
+              </Link>
             </div>
 
             <div className="pb-16 md:pb-0">
@@ -233,6 +242,10 @@ const Page: NextPage<Props> = ({
             ) : (
               ''
             )}
+
+            <div className="py-8">
+              <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
+            </div>
           </BaseContainer>
         </div>
 
