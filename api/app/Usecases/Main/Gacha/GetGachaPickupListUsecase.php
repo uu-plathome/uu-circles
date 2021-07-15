@@ -32,6 +32,7 @@ final class GetGachaPickupListUsecase
                 'circleInformation:circle_id,description',
                 'circleHandbill:circle_id,image_url',
             ])->whereRelease(true)
+                ->whereIsOnlyDemo(false)
                 ->whereIn(
                     'id',
                     [
@@ -57,6 +58,7 @@ final class GetGachaPickupListUsecase
             'circleInformation:circle_id,description',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
