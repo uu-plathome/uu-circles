@@ -26,7 +26,9 @@ const SubHeader: FC<{
 }> = ({ children, id }) => {
   return (
     <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-      <h2 id={id} className="text-2xl px-4 font-bold">{children}</h2>
+      <h2 id={id} className="text-2xl px-4 font-bold">
+        {children}
+      </h2>
     </div>
   )
 }
@@ -152,7 +154,9 @@ const Page: NextPage<Props> = () => {
               在校生一同皆様のご入学を心からお祝い申し上げます
             </p>
 
-            <SubHeader id={ID_LIST.second}>1. 気になったサークルを見てみよう</SubHeader>
+            <SubHeader id={ID_LIST.second}>
+              1. 気になったサークルを見てみよう
+            </SubHeader>
 
             <p className="pb-6 px-4">
               ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
@@ -179,7 +183,9 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div> */}
 
-            <SubHeader id={ID_LIST.third}>2. いつ・どんな新歓があるか確認してみよう</SubHeader>
+            <SubHeader id={ID_LIST.third}>
+              2. いつ・どんな新歓があるか確認してみよう
+            </SubHeader>
 
             <div className="px-4 pb-6">
               <p>
