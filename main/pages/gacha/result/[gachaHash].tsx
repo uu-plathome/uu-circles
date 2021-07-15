@@ -30,11 +30,13 @@ type Props = {
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
   resultCircles?: {
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
   errorCode?: number
 }
@@ -68,9 +70,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -95,9 +97,9 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
@@ -168,8 +170,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {pickupCircles &&
-            Array.isArray(pickupCircles) &&
-            pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
               <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
@@ -217,7 +219,7 @@ const Page: NextPage<Props> = ({
                                   {circle.name}
                                 </h3>
                                 <p className="text-sm max-line-2">
-                                  初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...
+                                  {circle.description}
                                 </p>
                               </div>
                             </div>

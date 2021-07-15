@@ -37,6 +37,7 @@ final class GachaResultController extends Controller
             'circleInformation:circle_id,description',
             'circleHandbill',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
@@ -61,6 +62,7 @@ final class GachaResultController extends Controller
             'circleHandbill',
         ])
              ->whereRelease(true)
+            ->whereIsOnlyDemo(false)
              // 新歓が登録されているのものを取得
              ->hasByNonDependentSubquery('circleHandbill')
              ->select([
