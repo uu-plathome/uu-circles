@@ -16,6 +16,8 @@ class GachaHistoryItemDto
      */
     public array $circles;
 
+    public string $gacha_hash;
+
     public ?Carbon $created_at;
 
     public static function byEloquent(
@@ -33,6 +35,7 @@ class GachaHistoryItemDto
             )
         )->values()
             ->toArray();
+        $dto->gacha_hash = $circleGachaResult->gacha_hash;
         $dto->created_at = $circleGachaResult->created_at instanceof Carbon
             ? $circleGachaResult->created_at
             : null;
@@ -46,6 +49,7 @@ class GachaHistoryItemDto
             'result_circles'                   => (new Collection($this->circles))->map(
                 fn (GachaSimpleCircleDto $dto) => $dto->toArray()
             )->toArray(),
+            'gacha_hash' => $this->gacha_hash,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d') : null,
         ];
     }
