@@ -25,6 +25,7 @@ final class GachaHistoryByIdentifierHashUsecase
             'circleInformation:circle_id,description',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             ->whereIn('id', $circleIdsMadeByCirclesGachaResutls)
             // 新歓が登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
