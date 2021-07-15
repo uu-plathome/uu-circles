@@ -96,7 +96,7 @@ export const resultGacha = async ({
  * ガチャ履歴を取得
  */
 export const getGachaHistory = async ({
-  identifierHash
+  identifierHash,
 }: {
   identifierHash: string
 }): Promise<{
