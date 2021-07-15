@@ -9,6 +9,7 @@ export const getGachaPickup = async (): Promise<{
       handbillImageUrl: string
       name: string
       slug: string
+      description?: string
     }[]
   }
   pickupDate: string
@@ -19,6 +20,7 @@ export const getGachaPickup = async (): Promise<{
         handbillImageUrl: string
         name: string
         slug: string
+        description?: string
       }[]
     }
     pickupDate: string
@@ -60,11 +62,13 @@ export const resultGacha = async ({
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
   resultCircles: {
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
 }> => {
   const res = await axiosInstance.get<{
@@ -75,11 +79,13 @@ export const resultGacha = async ({
       handbillImageUrl: string
       name: string
       slug: string
+      description?: string
     }[]
     resultCircles: {
       handbillImageUrl: string
       name: string
       slug: string
+      description?: string
     }[]
   }>(`/api/gacha/circle/result/${gachaHash}`)
 
@@ -90,17 +96,19 @@ export const resultGacha = async ({
  * ガチャ履歴を取得
  */
 export const getGachaHistory = async ({
-  identifierHash
+  identifierHash,
 }: {
   identifierHash: string
 }): Promise<{
   history: {
     list: {
       createdAt: string
+      gachaHash: string
       resultCircles: {
         handbillImageUrl: string
         name: string
         slug: string
+        description?: string
       }[]
     }[]
   }
@@ -109,10 +117,12 @@ export const getGachaHistory = async ({
     history: {
       list: {
         createdAt: string
+        gachaHash: string
         resultCircles: {
           handbillImageUrl: string
           name: string
           slug: string
+          description?: string
         }[]
       }[]
     }

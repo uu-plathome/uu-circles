@@ -31,6 +31,7 @@ class GachaHistoryItemDto
         )->map(
             fn (Circle $circle) => GachaSimpleCircleDto::byEloquent(
                 $circle,
+                $circle->circleInformation,
                 $circle->circleHandbill
             )
         )->values()
