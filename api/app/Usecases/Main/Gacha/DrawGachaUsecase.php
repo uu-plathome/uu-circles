@@ -51,6 +51,7 @@ final class DrawGachaUsecase
 
         /** @var \App\Models\Circle $circles */
         $circles = Circle::with([
+            'circleInformation:circle_id,description',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             // 新歓が登録されているのものを取得
@@ -68,6 +69,7 @@ final class DrawGachaUsecase
             // 型変換
             GachaSimpleCircleDto::byEloquent(
                 $circle,
+                $circle->circleInformation,
                 $circle->circleHandbill
             )
         );
