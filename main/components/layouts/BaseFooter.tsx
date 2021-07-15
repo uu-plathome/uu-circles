@@ -210,7 +210,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
       <div className="mb-10">
         <BaseContainer>
           {uuYellArticles && uuYellArticles.length > 0 ? (
-            <div className="px-6 pt-12 md:pt-20 mb-10">
+            <div className="px-6 pt-12 md:pt-16 mb-10">
               <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
               <ul className="list-outside list-decimal text-gray-400 pl-4">
@@ -332,6 +332,20 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     <Link href="/circle/newjoy">
                       <a className="text-gray-400 font-bold text-sm">
                         今日の新歓
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/gacha">
+                      <a className="text-gray-400 font-bold text-sm">
+                        サークルガチャ
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link href="/gacha/history">
+                      <a className="text-gray-400 font-bold text-sm">
+                        サークルガチャ履歴
                       </a>
                     </Link>
                   </li>
