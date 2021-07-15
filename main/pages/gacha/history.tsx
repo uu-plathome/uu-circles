@@ -34,7 +34,7 @@ const Page: NextPage<Props> = () => {
     identifierHash
       ? `/api/gacha/circle/history?X-IDENTIFIER_HASH=${identifierHash}`
       : null,
-    getGachaHistory
+    () => getGachaHistory({ identifierHash })
   )
 
   return (
