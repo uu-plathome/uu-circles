@@ -29,7 +29,7 @@ final class GetGachaPickupListUsecase
             ->first();
         if (!is_null($pickup)) {
             $circles = Circle::with([
-                'circleInformation:description',
+                'circleInformation:circle_id,description',
                 'circleHandbill:circle_id,image_url',
             ])->whereRelease(true)
                 ->whereIn(
