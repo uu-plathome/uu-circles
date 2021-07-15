@@ -30,9 +30,9 @@ final class GachaSimpleCircleDto
     /**
      * EloquentからDto生成.
      *
-     * @param Circle $circle
+     * @param Circle            $circle
      * @param CircleInformation $circleInformation
-     * @param CircleHandbill $circleHandbill
+     * @param CircleHandbill    $circleHandbill
      *
      * @return self
      */
