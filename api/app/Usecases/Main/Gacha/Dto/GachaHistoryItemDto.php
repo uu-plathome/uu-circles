@@ -15,7 +15,7 @@ class GachaHistoryItemDto
      * @var GachaSimpleCircleDto[]
      */
     public array $circles;
-    
+
     public string $gacha_hash;
 
     public ?Carbon $created_at;
