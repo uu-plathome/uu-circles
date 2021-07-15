@@ -73,13 +73,9 @@ const BaseSpMenu: FC = () => {
             オンライン新歓に参加しよう！
           </MenuItem>
 
-          <MenuItem href="/gacha">
-            サークルガチャ
-          </MenuItem>
+          <MenuItem href="/gacha">サークルガチャ</MenuItem>
 
-          <MenuItem href="/gacha/history">
-            サークルガチャ履歴
-          </MenuItem>
+          <MenuItem href="/gacha/history">サークルガチャ履歴</MenuItem>
 
           <MenuItem href="/statistics">統計情報</MenuItem>
 
