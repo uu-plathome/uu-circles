@@ -1,3 +1,4 @@
+import { GreenButton } from '@/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -67,7 +68,7 @@ const Page: NextPage<Props> = () => {
               </Link>
             </div>
 
-            <h2 className="text-lg pt-6 px-4 text-center">ガチャ結果</h2>
+            <h2 className="text-lg pt-6 px-4 text-center mb-4">ガチャ結果</h2>
             {gachaHistory &&
               gachaHistory.history.list &&
               gachaHistory.history.list.map((gachaResult, index) => {
@@ -106,6 +107,10 @@ const Page: NextPage<Props> = () => {
                   </div>
                 )
               })}
+
+            <div className="py-8 flex justify-center">
+              <GreenButton href="/gacha">ガチャTOP</GreenButton>
+            </div>
           </BaseContainer>
         </div>
 
