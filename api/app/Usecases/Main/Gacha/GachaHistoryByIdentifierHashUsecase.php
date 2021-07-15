@@ -22,6 +22,7 @@ final class GachaHistoryByIdentifierHashUsecase
             ->toArray();
 
         $circles = Circle::with([
+            'circleInformation:circle_id,description',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             ->whereIn('id', $circleIdsMadeByCirclesGachaResutls)

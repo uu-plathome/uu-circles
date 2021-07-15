@@ -66,9 +66,29 @@ const Page: NextPage<Props> = () => {
             <h2 className="text-lg pt-6 px-4 text-center">ガチャ結果</h2>
             {gachaHistory && gachaHistory.history.list && gachaHistory.history.list.map((gachaResult, index) => {
               return (
-                <div key={`gachaHistory-${index}-container`}>
-                  <Link href="/gacha/result/[gachaHash]" as={`/gacha/result/`}>
-                    aaa
+                <div key={`gachaHistory-${index}-container-${gachaResult.gachaHash}`}>
+                  <Link href="/gacha/result/[gachaHash]" as={`/gacha/result/${gachaResult.gachaHash}`}>
+                    <div className="rounded bg-white flex items-center px-6 py-4">
+                      <div
+                        style={{ minWidth: 60 }}
+                        className="rounded border border-gray-300"
+                      >
+                        <Image
+                          src={gachaResult.resultCircles[0].handbillImageUrl}
+                          width="60"
+                          height="60"
+                        />
+                      </div>
+
+                      <div className="pl-2">
+                        <h3 className="font-bold text-lg mb-2">
+                          {gachaResult.resultCircles[0].name}
+                        </h3>
+                        <p className="text-sm max-line-2 text-gray-400">
+                          {gachaResult.resultCircles.length + 1}連ガチャ
+                        </p>
+                      </div>
+                    </div>
                   </Link>
                 </div>
               )
