@@ -210,7 +210,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
       <div className="mb-10">
         <BaseContainer>
           {uuYellArticles && uuYellArticles.length > 0 ? (
-            <div className="px-6 pt-12 md:pt-20 mb-10">
+            <div className="px-6 pt-12 md:pt-16 mb-10">
               <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
 
               <ul className="list-outside list-decimal text-gray-400 pl-4">
