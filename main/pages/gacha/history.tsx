@@ -4,7 +4,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { getGachaHistory } from '@/infra/api/gacha'
 import { LocalStorageKey } from '@/lib/enum/app/LocalStorageKey'
-import { GetStaticProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -30,7 +30,7 @@ const Page: NextPage<Props> = () => {
     setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
   }, [])
 
-  const { data: gachaHistory, error } = useSWR(
+  const { data: gachaHistory } = useSWR(
     identifierHash
       ? `/api/gacha/circle/history?X-IDENTIFIER_HASH=${identifierHash}`
       : null,
