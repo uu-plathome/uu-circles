@@ -29,6 +29,7 @@ final class GetGachaPickupListUsecase
             ->first();
         if (!is_null($pickup)) {
             $circles = Circle::with([
+                'circleInformation:circle_id,description',
                 'circleHandbill:circle_id,image_url',
             ])->whereRelease(true)
                 ->whereIn(
@@ -53,6 +54,7 @@ final class GetGachaPickupListUsecase
         }
 
         $circles = Circle::with([
+            'circleInformation:circle_id,description',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             // 新歓が登録されているのものを取得
@@ -90,6 +92,7 @@ final class GetGachaPickupListUsecase
                 // 型変換
             GachaSimpleCircleDto::byEloquent(
                 $circle,
+                $circle->circleInformation,
                 $circle->circleHandbill
             )
         )->toArray();
