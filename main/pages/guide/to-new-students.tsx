@@ -8,15 +8,27 @@ import axios from 'axios'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { FC } from 'react'
+import { Link as ScrollLink } from 'react-scroll'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const UU_YELL_URL = 'https://media.uu-circles.com'
 
-const SubHeader: FC = ({ children }) => {
+const ID_LIST = {
+  first: 'first',
+  second: 'second',
+  third: 'third',
+  fourth: 'fourth',
+} as const
+
+const SubHeader: FC<{
+  id: string
+}> = ({ children, id }) => {
   return (
     <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-      <h2 className="text-2xl px-4 font-bold">{children}</h2>
+      <h2 id={id} className="text-2xl px-4 font-bold">
+        {children}
+      </h2>
     </div>
   )
 }
@@ -72,14 +84,69 @@ const Page: NextPage<Props> = () => {
             <h1 className="text-2xl pt-6 pb-8 px-4">新入生へ</h1>
             <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
               <h1 className="text-2xl pt-1">目次</h1>
-              <p className="pt-2">0. 新入生へ</p>
-              <p className="pt-2">1. 気になったサークルを見てみよう</p>
-              {/* <p className="pt-2">2. オンライン新歓会場に参加してみよう</p> */}
-              <p className="pt-2">2. いつ・どんな新歓があるか確認してみよう</p>
-              <p className="pt-2">3. uu-yellをみよう</p>
+              <p className="pt-2">
+                <ScrollLink
+                  to={ID_LIST.first}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:underline cursor-pointer"
+                >
+                  0. 新入生へ
+                </ScrollLink>
+              </p>
+              <p className="pt-2">
+                <ScrollLink
+                  to={ID_LIST.second}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:underline cursor-pointer"
+                >
+                  1. 気になったサークルを見てみよう
+                </ScrollLink>
+              </p>
+              {/* <p className="pt-2">
+                <ScrollLink
+                    to={ID_LIST.first}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
+                  >
+                  2. オンライン新歓会場に参加してみよう
+                  </ScrollLink>
+                </p> */}
+              <p className="pt-2">
+                <ScrollLink
+                  to={ID_LIST.third}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:underline cursor-pointer"
+                >
+                  2. いつ・どんな新歓があるか確認してみよう
+                </ScrollLink>
+              </p>
+              <p className="pt-2">
+                <ScrollLink
+                  to={ID_LIST.fourth}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:underline cursor-pointer"
+                >
+                  3. uu-yellをみよう
+                </ScrollLink>
+              </p>
             </div>
 
-            <SubHeader>0. 新入生へ</SubHeader>
+            <SubHeader id={ID_LIST.first}>0. 新入生へ</SubHeader>
             <p className="px-4 pb-6">新入生の方々合格おめでとうございます。</p>
             <p className="px-4 pb-6">
               新型コロナという残念な状況ではありますが、
@@ -87,7 +154,9 @@ const Page: NextPage<Props> = () => {
               在校生一同皆様のご入学を心からお祝い申し上げます
             </p>
 
-            <SubHeader>1. 気になったサークルを見てみよう</SubHeader>
+            <SubHeader id={ID_LIST.second}>
+              1. 気になったサークルを見てみよう
+            </SubHeader>
 
             <p className="pb-6 px-4">
               ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
@@ -114,7 +183,9 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div> */}
 
-            <SubHeader>2. いつ・どんな新歓があるか確認してみよう</SubHeader>
+            <SubHeader id={ID_LIST.third}>
+              2. いつ・どんな新歓があるか確認してみよう
+            </SubHeader>
 
             <div className="px-4 pb-6">
               <p>
@@ -129,7 +200,7 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div>
 
-            <SubHeader>3. uu-yellをみよう</SubHeader>
+            <SubHeader id={ID_LIST.fourth}>3. uu-yellをみよう</SubHeader>
 
             <div className="px-4 pb-6">
               <p className="pb-6 px-4">

@@ -30,11 +30,13 @@ type Props = {
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
   resultCircles?: {
     handbillImageUrl: string
     name: string
     slug: string
+    description?: string
   }[]
   errorCode?: number
 }
@@ -217,7 +219,7 @@ const Page: NextPage<Props> = ({
                                   {circle.name}
                                 </h3>
                                 <p className="text-sm max-line-2">
-                                  初めましてU-labです。私たちは工学の知識を活用して地域で役に立つwebサービスの開発や...
+                                  {circle.description}
                                 </p>
                               </div>
                             </div>
