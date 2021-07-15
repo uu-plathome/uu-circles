@@ -49,6 +49,7 @@ final class StatisticsUsecase
             'circleHandbill',
         ])
             ->whereRelease(true)
+            ->whereIsOnlyDemo(false)
             ->hasByNonDependentSubquery('circleInformation')
             ->hasByNonDependentSubquery('circleHandbill')
             ->get();
