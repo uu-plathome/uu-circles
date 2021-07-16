@@ -350,13 +350,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     </Link>
                   </li>
                   <li className="mb-3">
-                    <Link href="/guide/discord">
-                      <a className="text-gray-400 font-bold text-sm">
-                        オンライン新歓に参加しよう！
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
                     <a
                       href="https://forms.gle/1oULcDjiPaknvfvc8"
                       target="_blank"
@@ -365,11 +358,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     >
                       お問い合わせ
                     </a>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/guide/qanda">
-                      <a className="text-gray-400 font-bold text-sm">Q and A</a>
-                    </Link>
                   </li>
                 </ul>
               </div>

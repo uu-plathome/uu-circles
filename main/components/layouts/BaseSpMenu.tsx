@@ -67,21 +67,9 @@ const BaseSpMenu: FC = () => {
 
           <MenuItem href="/circle/newjoy">今日の新歓イベント</MenuItem>
 
-          <MenuItem href="/guide/to-new-students">新入生の方へ</MenuItem>
-
-          <MenuItem href="/guide/discord">
-            オンライン新歓に参加しよう！
-          </MenuItem>
-
           <MenuItem href="/gacha">サークルガチャ</MenuItem>
 
-          <MenuItem href="/gacha/history">サークルガチャ履歴</MenuItem>
-
           <MenuItem href="/statistics">統計情報</MenuItem>
-
-          <MenuExternalItem href="https://media.uu-circles.com">
-            uu-yell
-          </MenuExternalItem>
 
           <MenuExternalItem href="https://forms.gle/1oULcDjiPaknvfvc8">
             お問い合わせ
