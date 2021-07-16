@@ -55,12 +55,12 @@ const Page: NextPage<Props> = () => {
 
             <div className="flex justify-center">
               <Link href="/gacha/draw/1">
-                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                   1連ガチャ
                 </div>
               </Link>
               <Link href="/gacha/draw/10">
-                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                   10連ガチャ
                 </div>
               </Link>

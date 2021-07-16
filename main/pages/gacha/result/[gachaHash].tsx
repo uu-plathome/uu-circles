@@ -125,14 +125,14 @@ const Page: NextPage<Props> = ({
             <div className="flex justify-center py-8">
               <Link href="/gacha">
                 <a>
-                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
+                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     ガチャTOPへ
                   </div>
                 </a>
               </Link>
               <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
                 <a>
-                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
+                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     もう一回引く
                   </div>
                 </a>
