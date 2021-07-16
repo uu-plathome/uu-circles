@@ -5,7 +5,7 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { PageNotFoundError } from '@/infra/api/error'
-import { resultGacha } from '@/infra/api/gacha'
+import { resultGacha, SimpleGachaDto } from '@/infra/api/gacha'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -26,18 +26,8 @@ type Props = {
   count?: number
   createdAt?: string
   gachaHash?: string
-  pickupCircles?: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
-  resultCircles?: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
+  pickupCircles?: SimpleGachaDto[]
+  resultCircles?: SimpleGachaDto[]
   errorCode?: number
 }
 const Page: NextPage<Props> = ({
