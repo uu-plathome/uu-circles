@@ -134,19 +134,19 @@ const Page: NextPage<Props> = ({
 
             <div className="flex justify-center py-8">
               <Link href="/gacha">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   ガチャTOPへ
                 </div>
               </Link>
               <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   もう一回引く
                 </div>
               </Link>
             </div>
 
-            <div className="pb-16 md:pb-0">
-              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 md:text-center">
+            <div className="pb-12 md:pb-0">
+              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 text-center">
                 SNSでガチャ結果をShare
               </h2>
 
