@@ -27,6 +27,12 @@ final class GachaSimpleCircleDto
     // サークル説明分
     public ?string $description;
 
+    // サークル種別
+    public string $circle_type;
+
+    // 部活か
+    public bool $is_club_activities;
+
     /**
      * EloquentからDto生成.
      *
@@ -47,6 +53,8 @@ final class GachaSimpleCircleDto
         $dto->slug = $circle->slug;
         $dto->handbill_image_url = $circleHandbill->image_url;
         $dto->description = $circleInformation->description;
+        $dto->circle_type = $circleInformation->circle_type;
+        $dto->is_club_activities = $circleInformation->is_club_activities;
 
         return $dto;
     }

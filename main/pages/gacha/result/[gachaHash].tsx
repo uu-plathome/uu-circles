@@ -5,7 +5,7 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { PageNotFoundError } from '@/infra/api/error'
-import { resultGacha } from '@/infra/api/gacha'
+import { resultGacha, SimpleGachaDto } from '@/infra/api/gacha'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -26,18 +26,8 @@ type Props = {
   count?: number
   createdAt?: string
   gachaHash?: string
-  pickupCircles?: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
-  resultCircles?: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
+  pickupCircles?: SimpleGachaDto[]
+  resultCircles?: SimpleGachaDto[]
   errorCode?: number
 }
 const Page: NextPage<Props> = ({
@@ -70,9 +60,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -97,9 +87,9 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
@@ -179,8 +169,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {pickupCircles &&
-            Array.isArray(pickupCircles) &&
-            pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
               <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">

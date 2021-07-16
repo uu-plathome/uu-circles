@@ -3,7 +3,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { getGachaHistory } from '@/infra/api/gacha'
+import { getGachaHistory, SimpleGachaDto } from '@/infra/api/gacha'
 import { LocalStorageKey } from '@/lib/enum/app/LocalStorageKey'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -16,11 +16,7 @@ type Props = {
   history: {
     list: {
       createdAt: string
-      resultCircles: {
-        handbillImageUrl: string
-        name: string
-        slug: string
-      }[]
+      resultCircles: SimpleGachaDto[]
     }[]
   }
 }
