@@ -4,7 +4,7 @@ import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { getGachaPickup } from '@/infra/api/gacha'
+import { getGachaPickup, SimpleGachaDto } from '@/infra/api/gacha'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticProps, NextPage } from 'next'
@@ -13,11 +13,7 @@ import Link from 'next/link'
 
 type Props = {
   pickupCircle: {
-    list: {
-      handbillImageUrl: string
-      name: string
-      slug: string
-    }[]
+    list: SimpleGachaDto[]
   }
   pickupDate: string
 }

@@ -1,27 +1,27 @@
+import { CircleType } from '@/lib/enum/api/CircleType'
 import { axiosInstance } from '.'
+
+export type SimpleGachaDto = {
+  handbillImageUrl: string
+  name: string
+  slug: string
+  description?: string
+  circleType: CircleType
+  isClubActivity: boolean
+}
 
 /**
  * ガチャのピックアップ取得
  */
 export const getGachaPickup = async (): Promise<{
   pickupCircle: {
-    list: {
-      handbillImageUrl: string
-      name: string
-      slug: string
-      description?: string
-    }[]
+    list: SimpleGachaDto[]
   }
   pickupDate: string
 }> => {
   const res = await axiosInstance.get<{
     pickupCircle: {
-      list: {
-        handbillImageUrl: string
-        name: string
-        slug: string
-        description?: string
-      }[]
+      list: SimpleGachaDto[]
     }
     pickupDate: string
   }>('/api/gacha/circle/pickup')
@@ -36,15 +36,21 @@ export const drawGacha = async ({
   identifierHash: string
   num: number
 }): Promise<{
+  count: number
+  createdAt: string
   gachaHash: string
+  pickupCircles: SimpleGachaDto[]
+  resultCircles: SimpleGachaDto[]
 }> => {
   const res = await axiosInstance.post<{
+    count: number
+    createdAt: string
     gachaHash: string
+    pickupCircles: SimpleGachaDto[]
+    resultCircles: SimpleGachaDto[]
   }>(`/api/gacha/circle?number=${num}&X-IDENTIFIER_HASH=${identifierHash}`)
 
-  return {
-    gachaHash: res.data.gachaHash,
-  }
+  return res.data
 }
 
 /**
@@ -58,35 +64,15 @@ export const resultGacha = async ({
   count: number
   createdAt: string
   gachaHash: string
-  pickupCircles: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
-  resultCircles: {
-    handbillImageUrl: string
-    name: string
-    slug: string
-    description?: string
-  }[]
+  pickupCircles: SimpleGachaDto[]
+  resultCircles: SimpleGachaDto[]
 }> => {
   const res = await axiosInstance.get<{
     count: number
     createdAt: string
     gachaHash: string
-    pickupCircles: {
-      handbillImageUrl: string
-      name: string
-      slug: string
-      description?: string
-    }[]
-    resultCircles: {
-      handbillImageUrl: string
-      name: string
-      slug: string
-      description?: string
-    }[]
+    pickupCircles: SimpleGachaDto[]
+    resultCircles: SimpleGachaDto[]
   }>(`/api/gacha/circle/result/${gachaHash}`)
 
   return res.data
@@ -104,12 +90,7 @@ export const getGachaHistory = async ({
     list: {
       createdAt: string
       gachaHash: string
-      resultCircles: {
-        handbillImageUrl: string
-        name: string
-        slug: string
-        description?: string
-      }[]
+      resultCircles: SimpleGachaDto[]
     }[]
   }
 }> => {
@@ -118,12 +99,7 @@ export const getGachaHistory = async ({
       list: {
         createdAt: string
         gachaHash: string
-        resultCircles: {
-          handbillImageUrl: string
-          name: string
-          slug: string
-          description?: string
-        }[]
+        resultCircles: SimpleGachaDto[]
       }[]
     }
   }
