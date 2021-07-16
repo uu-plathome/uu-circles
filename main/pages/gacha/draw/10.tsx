@@ -67,7 +67,7 @@ const Page: NextPage = () => {
 
       const data = await drawGacha({
         identifierHash,
-        num: 1,
+        num: 10,
       })
 
       setGachaHash(data.gachaHash)
