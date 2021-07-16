@@ -68,6 +68,9 @@ const Page: NextPage = () => {
 
   useEffect(() => {
     const f = async () => {
+      setGachaHash(null)
+      setGachaData(null)
+
       const identifierHash = localStorage.getItem(
         LocalStorageKey.identifierHash
       )
@@ -105,7 +108,7 @@ const Page: NextPage = () => {
                 className="w-full relative h-0 overflow-hidden mb-12"
                 style={{ paddingBottom: '56.25%' }}
               >
-                {gachaHash ? (
+                {gachaHash && gachaData.resultCircles && Array.isArray(gachaData.resultCircles) ? (
                   <YouTube
                     className="w-full h-full absolute top-0 left-0"
                     videoId={getGachaMovieId(gachaData.resultCircles[0])}
