@@ -107,7 +107,7 @@ const Page: NextPage = () => {
                 className="w-full relative h-0 overflow-hidden mb-12"
                 style={{ paddingBottom: '56.25%' }}
               >
-                {gachaHash && gachaData.resultCircles && Array.isArray(gachaData.resultCircles) ? (
+                {gachaHash && gachaData && gachaData.resultCircles && Array.isArray(gachaData.resultCircles) ? (
                   <YouTube
                     className="w-full h-full absolute top-0 left-0"
                     videoId={getGachaMovieId(gachaData.resultCircles[0])}
