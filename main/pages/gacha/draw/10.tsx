@@ -15,12 +15,13 @@ const opts: Options = {
   width: '640',
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
-    autoplay: 1,
+    // autoplay: 1,
     mute: 1,
     controls: 0,
     modestbranding: 1,
     playsinline: 1,
     rel: 0,
+    showinfo: 0,
   },
 }
 
@@ -38,6 +39,11 @@ const Page: NextPage = () => {
     })
 
     await router.push(`/gacha/result/${data.gachaHash}`)
+  }
+
+  const onPlayerReady = (event) => {
+    event.target.mute()
+    event.target.playVideo()
   }
 
   return (
@@ -59,6 +65,7 @@ const Page: NextPage = () => {
                 <YouTube
                   className="w-full h-full absolute top-0 left-0"
                   videoId={GachaMovieId.B}
+                  onReady={onPlayerReady}
                   opts={opts}
                   onEnd={redirect}
                 />
