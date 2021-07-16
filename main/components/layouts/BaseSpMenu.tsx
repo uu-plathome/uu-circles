@@ -63,7 +63,7 @@ const BaseSpMenu: FC = () => {
         <SearchForm />
 
         <ul>
-          <MenuItem href="/circle">団体・サークルを探す</MenuItem>
+          <MenuItem href="/circle">サークルを見つける</MenuItem>
 
           <MenuItem href="/circle/newjoy">今日の新歓イベント</MenuItem>
 
