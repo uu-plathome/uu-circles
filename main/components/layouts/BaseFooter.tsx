@@ -343,13 +343,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     </Link>
                   </li>
                   <li className="mb-3">
-                    <Link href="/gacha/history">
-                      <a className="text-gray-400 font-bold text-sm">
-                        サークルガチャ履歴
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
                     <Link href="/statistics">
                       <a className="text-gray-400 font-bold text-sm">
                         統計情報
@@ -360,13 +353,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     <Link href="/guide/discord">
                       <a className="text-gray-400 font-bold text-sm">
                         オンライン新歓に参加しよう！
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/guide/management-team">
-                      <a className="text-gray-400 font-bold text-sm">
-                        UU-Circlesについて
                       </a>
                     </Link>
                   </li>
