@@ -28,7 +28,9 @@ const Page: NextPage = () => {
 
   useEffect(() => {
     const f = async () => {
-      const identifierHash = localStorage.getItem(LocalStorageKey.identifierHash)
+      const identifierHash = localStorage.getItem(
+        LocalStorageKey.identifierHash
+      )
 
       const { gachaHash } = await drawGacha({
         identifierHash,
@@ -67,7 +69,9 @@ const Page: NextPage = () => {
                     opts={opts}
                     onEnd={redirect}
                   />
-                ) : ''}
+                ) : (
+                  ''
+                )}
               </div>
             </div>
 
