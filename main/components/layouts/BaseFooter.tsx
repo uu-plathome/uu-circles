@@ -86,39 +86,9 @@ const tagOtherItems: TagItem[] = [
     as: `/circle/tag/${TagSlugProperty.mammoth}`,
   },
   {
-    text: 'オンライン活動',
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.online}`,
-  },
-  {
     text: __(CircleTagModel.ACTIVE_ACTIVITY),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.active_activity}`,
-  },
-  {
-    text: __(CircleTagModel.MONDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.monday}`,
-  },
-  {
-    text: __(CircleTagModel.TUESDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.tuesday}`,
-  },
-  {
-    text: __(CircleTagModel.WEDNESDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.wednesday}`,
-  },
-  {
-    text: __(CircleTagModel.THURSDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.thursday}`,
-  },
-  {
-    text: __(CircleTagModel.FRIDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.friday}`,
   },
   {
     text: __(CircleTagModel.ONLY_MONDAY),
@@ -343,30 +313,9 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     </Link>
                   </li>
                   <li className="mb-3">
-                    <Link href="/gacha/history">
-                      <a className="text-gray-400 font-bold text-sm">
-                        サークルガチャ履歴
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
                     <Link href="/statistics">
                       <a className="text-gray-400 font-bold text-sm">
                         統計情報
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/guide/discord">
-                      <a className="text-gray-400 font-bold text-sm">
-                        オンライン新歓に参加しよう！
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/guide/management-team">
-                      <a className="text-gray-400 font-bold text-sm">
-                        UU-Circlesについて
                       </a>
                     </Link>
                   </li>
@@ -379,11 +328,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     >
                       お問い合わせ
                     </a>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/guide/qanda">
-                      <a className="text-gray-400 font-bold text-sm">Q and A</a>
-                    </Link>
                   </li>
                 </ul>
               </div>
