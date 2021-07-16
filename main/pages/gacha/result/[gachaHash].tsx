@@ -70,9 +70,9 @@ const Page: NextPage<Props> = ({
             <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
             {count === 1 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="flex justify-center cursor-pointer">
                 <Link
                   href="/circle/slug"
@@ -97,9 +97,9 @@ const Page: NextPage<Props> = ({
             )}
 
             {count === 10 &&
-            resultCircles &&
-            Array.isArray(resultCircles) &&
-            resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
               <div className="grid grid-cols-5 gap-4">
                 {resultCircles.map((resultCircle, idx) => {
                   return (
@@ -134,19 +134,19 @@ const Page: NextPage<Props> = ({
 
             <div className="flex justify-center py-8">
               <Link href="/gacha">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   ガチャTOPへ
                 </div>
               </Link>
               <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   もう一回引く
                 </div>
               </Link>
             </div>
 
-            <div className="pb-16 md:pb-0">
-              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 md:text-center">
+            <div className="pb-12 md:pb-0">
+              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 text-center">
                 SNSでガチャ結果をShare
               </h2>
 
@@ -179,8 +179,8 @@ const Page: NextPage<Props> = ({
             </div>
 
             {pickupCircles &&
-            Array.isArray(pickupCircles) &&
-            pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
               <div className="flex justify-center pt-8">
                 <div style={{ width: 360 }}>
                   <div className="flex justify-center items-center mb-4">
