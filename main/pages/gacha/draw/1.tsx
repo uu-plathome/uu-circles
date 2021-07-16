@@ -20,6 +20,7 @@ const opts: Options = {
     controls: 0,
     modestbranding: 1,
     playsinline: 1,
+    rel: 0,
   },
 }
 
