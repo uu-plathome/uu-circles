@@ -8,3 +8,6 @@ export const GachaMovieId = {
   // サークル (学生団体)
   D: 'Apr4jK1AXMg',
 } as const
+
+export type GachaMovieIdKey = keyof typeof GachaMovieId
+export type GachaMovieId = typeof GachaMovieId[keyof typeof GachaMovieId]
