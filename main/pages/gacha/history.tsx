@@ -60,9 +60,9 @@ const Page: NextPage<Props> = () => {
                     1連ガチャ
                   </div>
                 </Link>
-                <Link href="/gacha/draw/10">
+                <Link href="/gacha/draw/5">
                   <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
-                    10連ガチャ
+                    5連ガチャ
                   </div>
                 </Link>
               </div>

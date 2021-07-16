@@ -3,7 +3,6 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { drawGacha } from '@/infra/api/gacha'
-import { GachaMovieId } from '@/lib/enum/app/GachaMovieId'
 import { LocalStorageKey } from '@/lib/enum/app/LocalStorageKey'
 import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -35,7 +34,7 @@ const Page: NextPage = () => {
 
     const data = await drawGacha({
       identifierHash,
-      num: 10,
+      num: 5,
     })
 
     await router.push(`/gacha/result/${data.gachaHash}`)
@@ -65,7 +64,7 @@ const Page: NextPage = () => {
                 >
                   <YouTube
                     className="w-full h-full absolute top-0 left-0"
-                    videoId={GachaMovieId.B}
+                    videoId="bMYQ8JhCpwg"
                     onReady={onPlayerReady}
                     opts={opts}
                     onEnd={redirect}

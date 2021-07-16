@@ -149,8 +149,8 @@ const Page: NextPage<Props> = ({
                   <TwitterShareButton
                     url={pageUrl}
                     title={
-                      count === 10
-                        ? '10連ガチャ結果を見る！'
+                      count === 5
+                        ? '5連ガチャ結果を見る！'
                         : `${resultCircles[0].name}があたりました！`
                     }
                     hashtags={['春から宇大']}
