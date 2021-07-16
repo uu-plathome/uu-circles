@@ -86,39 +86,9 @@ const tagOtherItems: TagItem[] = [
     as: `/circle/tag/${TagSlugProperty.mammoth}`,
   },
   {
-    text: 'オンライン活動',
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.online}`,
-  },
-  {
     text: __(CircleTagModel.ACTIVE_ACTIVITY),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.active_activity}`,
-  },
-  {
-    text: __(CircleTagModel.MONDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.monday}`,
-  },
-  {
-    text: __(CircleTagModel.TUESDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.tuesday}`,
-  },
-  {
-    text: __(CircleTagModel.WEDNESDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.wednesday}`,
-  },
-  {
-    text: __(CircleTagModel.THURSDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.thursday}`,
-  },
-  {
-    text: __(CircleTagModel.FRIDAY),
-    href: '/circle/tag/[tag]',
-    as: `/circle/tag/${TagSlugProperty.friday}`,
   },
   {
     text: __(CircleTagModel.ONLY_MONDAY),
