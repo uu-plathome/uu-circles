@@ -3,7 +3,11 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { drawGacha, SimpleGachaDto } from '@/infra/api/gacha'
-import { isOfficialOrganization, isStudentGroup, isUnofficialOrganization } from '@/lib/enum/api/CategorySlugProperty'
+import {
+  isOfficialOrganization,
+  isStudentGroup,
+  isUnofficialOrganization,
+} from '@/lib/enum/api/CategorySlugProperty'
 import { isSendingOrganization } from '@/lib/enum/api/CircleType'
 import { GachaMovieId } from '@/lib/enum/app/GachaMovieId'
 import { LocalStorageKey } from '@/lib/enum/app/LocalStorageKey'
@@ -34,7 +38,10 @@ const getGachaMovieId = (simpleGachaDto: SimpleGachaDto): GachaMovieId => {
     return GachaMovieId.A
   }
 
-  if (isOfficialOrganization(simpleGachaDto.circleType) || isSendingOrganization(simpleGachaDto.circleType)) {
+  if (
+    isOfficialOrganization(simpleGachaDto.circleType) ||
+    isSendingOrganization(simpleGachaDto.circleType)
+  ) {
     return GachaMovieId.B
   }
 
