@@ -53,32 +53,34 @@ const Page: NextPage = () => {
       <BaseLayout>
         <div className="bg-gray-100 px-2 pb-36">
           <BaseContainer>
-            <div className="flex justify-center items-center pt-6">
-              <Image src="/images/gacha-logo.png" width="360" height="120" />
-            </div>
-
-            <div className="py-8 flex justify-center">
-              <div
-                className="w-full relative h-0 overflow-hidden mb-12"
-                style={{ paddingBottom: '56.25%' }}
-              >
-                <YouTube
-                  className="w-full h-full absolute top-0 left-0"
-                  videoId={GachaMovieId.B}
-                  onReady={onPlayerReady}
-                  opts={opts}
-                  onEnd={redirect}
-                />
+            <div className="px-4">
+              <div className="flex justify-center items-center pt-6">
+                <Image src="/images/gacha-logo.png" width="360" height="120" />
               </div>
-            </div>
 
-            <div className="flex justify-end">
-              <a
-                onClick={redirect}
-                className="underline text-blue-600 text-right cursor-pointer"
-              >
-                動画が再生されない場合はこちらをクリック
-              </a>
+              <div className="py-8 flex justify-center">
+                <div
+                  className="w-full relative h-0 overflow-hidden mb-12"
+                  style={{ paddingBottom: '56.25%' }}
+                >
+                  <YouTube
+                    className="w-full h-full absolute top-0 left-0"
+                    videoId={GachaMovieId.B}
+                    onReady={onPlayerReady}
+                    opts={opts}
+                    onEnd={redirect}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end">
+                <a
+                  onClick={redirect}
+                  className="underline text-blue-600 text-right cursor-pointer"
+                >
+                  動画が再生されない場合はこちらをクリック
+                </a>
+              </div>
             </div>
           </BaseContainer>
         </div>

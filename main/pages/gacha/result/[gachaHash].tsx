@@ -53,192 +53,194 @@ const Page: NextPage<Props> = ({
       <BaseLayout>
         <div className="bg-gray-100 px-2 pb-36">
           <BaseContainer>
-            <div className="flex justify-center items-center pt-6">
-              <Image src="/images/gacha-logo.png" width="360" height="120" />
-            </div>
+            <div className="px-4">
+              <div className="flex justify-center items-center pt-6">
+                <Image src="/images/gacha-logo.png" width="360" height="120" />
+              </div>
 
-            <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
+              <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
-            {count === 1 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
-              <div className="flex justify-center cursor-pointer">
-                <Link
-                  href="/circle/slug"
-                  as={`/circle/${resultCircles[0].slug}`}
-                >
-                  <div>
-                    <div className="rounded">
-                      <Image
-                        src={resultCircles[0].handbillImageUrl}
-                        width="250"
-                        height="350"
-                        alt={`${resultCircles[0].name}-ビラ`}
+              {count === 1 &&
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
+                <div className="flex justify-center cursor-pointer">
+                  <Link
+                    href="/circle/slug"
+                    as={`/circle/${resultCircles[0].slug}`}
+                  >
+                    <div>
+                      <div className="rounded">
+                        <Image
+                          src={resultCircles[0].handbillImageUrl}
+                          width="250"
+                          height="350"
+                          alt={`${resultCircles[0].name}-ビラ`}
+                        />
+                      </div>
+
+                      <h2 className="text-center">{resultCircles[0].name}</h2>
+                    </div>
+                  </Link>
+                </div>
+              ) : (
+                ''
+              )}
+
+              {count === 10 &&
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
+                <div className="grid grid-cols-5 gap-4">
+                  {resultCircles.map((resultCircle, idx) => {
+                    return (
+                      <div
+                        key={`resultCircles-${resultCircle.slug}-${idx}`}
+                        className="flex justify-center cursor-pointer"
+                      >
+                        <Link
+                          href="/circle/slug"
+                          as={`/circle/${resultCircle.slug}`}
+                        >
+                          <div>
+                            <div className="rounded">
+                              <Image
+                                src={resultCircle.handbillImageUrl}
+                                width="250"
+                                height="350"
+                                alt={`${resultCircle.name}-ビラ`}
+                              />
+                            </div>
+
+                            <h2 className="text-center">{resultCircle.name}</h2>
+                          </div>
+                        </Link>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                ''
+              )}
+
+              <div className="flex justify-center py-8">
+                <Link href="/gacha">
+                  <a>
+                    <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                      ガチャTOPへ
+                    </div>
+                  </a>
+                </Link>
+                <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
+                  <a>
+                    <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                      もう一回引く
+                    </div>
+                  </a>
+                </Link>
+              </div>
+
+              <div className="pb-12 md:pb-0">
+                <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 text-center">
+                  SNSでガチャ結果をShare
+                </h2>
+
+                <div className="my-2 pb-2 flex justify-center">
+                  <TwitterShareButton
+                    url={pageUrl}
+                    title={
+                      count === 10
+                        ? '10連ガチャ結果を見る！'
+                        : `${resultCircles[0].name}があたりました！`
+                    }
+                    hashtags={['春から宇大']}
+                    className="mr-2"
+                  >
+                    <TwitterIcon size={50} round />
+                  </TwitterShareButton>
+
+                  <LineShareButton url={pageUrl} className="mr-2">
+                    <LineIcon size={50} round />
+                  </LineShareButton>
+
+                  <FacebookShareButton
+                    url={pageUrl}
+                    hashtag={'春から宇大'}
+                    className="mr-2"
+                  >
+                    <FacebookIcon size={50} round />
+                  </FacebookShareButton>
+                </div>
+              </div>
+
+              {pickupCircles &&
+                Array.isArray(pickupCircles) &&
+                pickupCircles.length > 0 ? (
+                <div className="flex justify-center pt-8">
+                  <div style={{ width: 360 }}>
+                    <div className="flex justify-center items-center mb-4">
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        color={colors.yellow[500]}
+                        size="lg"
+                      />
+                      <h2 className="text-yellow-500 font-bold text-2xl">
+                        Pick Up
+                      </h2>
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        color={colors.yellow[500]}
+                        size="lg"
                       />
                     </div>
 
-                    <h2 className="text-center">{resultCircles[0].name}</h2>
-                  </div>
-                </Link>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {count === 10 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
-              <div className="grid grid-cols-5 gap-4">
-                {resultCircles.map((resultCircle, idx) => {
-                  return (
-                    <div
-                      key={`resultCircles-${resultCircle.slug}-${idx}`}
-                      className="flex justify-center cursor-pointer"
-                    >
-                      <Link
-                        href="/circle/slug"
-                        as={`/circle/${resultCircle.slug}`}
-                      >
-                        <div>
-                          <div className="rounded">
-                            <Image
-                              src={resultCircle.handbillImageUrl}
-                              width="250"
-                              height="350"
-                              alt={`${resultCircle.name}-ビラ`}
-                            />
-                          </div>
-
-                          <h2 className="text-center">{resultCircle.name}</h2>
-                        </div>
-                      </Link>
-                    </div>
-                  )
-                })}
-              </div>
-            ) : (
-              ''
-            )}
-
-            <div className="flex justify-center py-8">
-              <Link href="/gacha">
-                <a>
-                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
-                    ガチャTOPへ
-                  </div>
-                </a>
-              </Link>
-              <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
-                <a>
-                  <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
-                    もう一回引く
-                  </div>
-                </a>
-              </Link>
-            </div>
-
-            <div className="pb-12 md:pb-0">
-              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 text-center">
-                SNSでガチャ結果をShare
-              </h2>
-
-              <div className="my-2 pb-2 flex justify-center">
-                <TwitterShareButton
-                  url={pageUrl}
-                  title={
-                    count === 10
-                      ? '10連ガチャ結果を見る！'
-                      : `${resultCircles[0].name}があたりました！`
-                  }
-                  hashtags={['春から宇大']}
-                  className="mr-2"
-                >
-                  <TwitterIcon size={50} round />
-                </TwitterShareButton>
-
-                <LineShareButton url={pageUrl} className="mr-2">
-                  <LineIcon size={50} round />
-                </LineShareButton>
-
-                <FacebookShareButton
-                  url={pageUrl}
-                  hashtag={'春から宇大'}
-                  className="mr-2"
-                >
-                  <FacebookIcon size={50} round />
-                </FacebookShareButton>
-              </div>
-            </div>
-
-            {pickupCircles &&
-              Array.isArray(pickupCircles) &&
-              pickupCircles.length > 0 ? (
-              <div className="flex justify-center pt-8">
-                <div style={{ width: 360 }}>
-                  <div className="flex justify-center items-center mb-4">
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      color={colors.yellow[500]}
-                      size="lg"
-                    />
-                    <h2 className="text-yellow-500 font-bold text-2xl">
-                      Pick Up
-                    </h2>
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      color={colors.yellow[500]}
-                      size="lg"
-                    />
-                  </div>
-
-                  <div>
-                    {pickupCircles.map((circle, idx) => {
-                      return (
-                        <div
-                          key={`pickupCircles-${circle.slug}-${idx}`}
-                          className="mb-4 cursor-pointer"
-                        >
-                          <Link
-                            href="/circle/slug"
-                            as={`/circle/${resultCircles[0].slug}`}
+                    <div>
+                      {pickupCircles.map((circle, idx) => {
+                        return (
+                          <div
+                            key={`pickupCircles-${circle.slug}-${idx}`}
+                            className="mb-4 cursor-pointer"
                           >
-                            <div className="rounded bg-white flex items-center px-6 py-4">
-                              <div
-                                style={{ minWidth: 60 }}
-                                className="rounded border border-gray-300"
-                              >
-                                <Image
-                                  src={circle.handbillImageUrl}
-                                  width="60"
-                                  height="60"
-                                  alt={`${circle.name}-ビラ`}
-                                />
-                              </div>
+                            <Link
+                              href="/circle/slug"
+                              as={`/circle/${resultCircles[0].slug}`}
+                            >
+                              <div className="rounded bg-white flex items-center px-6 py-4">
+                                <div
+                                  style={{ minWidth: 60 }}
+                                  className="rounded border border-gray-300"
+                                >
+                                  <Image
+                                    src={circle.handbillImageUrl}
+                                    width="60"
+                                    height="60"
+                                    alt={`${circle.name}-ビラ`}
+                                  />
+                                </div>
 
-                              <div className="pl-2">
-                                <h3 className="font-bold text-lg mb-2">
-                                  {circle.name}
-                                </h3>
-                                <p className="text-sm max-line-2">
-                                  {circle.description}
-                                </p>
+                                <div className="pl-2">
+                                  <h3 className="font-bold text-lg mb-2">
+                                    {circle.name}
+                                  </h3>
+                                  <p className="text-sm max-line-2">
+                                    {circle.description}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        </div>
-                      )
-                    })}
+                            </Link>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              ''
-            )}
+              ) : (
+                ''
+              )}
 
-            <div className="py-8 flex justify-center">
-              <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
+              <div className="py-8 flex justify-center">
+                <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
+              </div>
             </div>
           </BaseContainer>
         </div>
