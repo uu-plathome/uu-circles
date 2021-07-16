@@ -15,6 +15,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useMemo } from 'react'
 import { useEffect, useState } from 'react'
 import YouTube, { Options } from 'react-youtube'
 
@@ -88,6 +89,11 @@ const Page: NextPage = () => {
     f()
   }, [])
 
+  const nowGachaMovieId = useMemo(() => {
+    return getGachaMovieId(gachaData.resultCircles[0])
+  }, gachaData.resultCircles)
+
+
   const redirect = async () => {
     await router.push(``)
   }
@@ -111,7 +117,7 @@ const Page: NextPage = () => {
                 {gachaHash && gachaData && gachaData.resultCircles && Array.isArray(gachaData.resultCircles) ? (
                   <YouTube
                     className="w-full h-full absolute top-0 left-0"
-                    videoId={getGachaMovieId(gachaData.resultCircles[0])}
+                    videoId={nowGachaMovieId}
                     opts={opts}
                     onEnd={redirect}
                   />
