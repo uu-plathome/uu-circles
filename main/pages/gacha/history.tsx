@@ -49,7 +49,7 @@ const Page: NextPage<Props> = () => {
               <Image src="/images/gacha-logo.png" width="360" height="120" />
             </div>
 
-            <h1 className="text-2xl pt-6 px-4 text-center">- ガチャ結果 -</h1>
+            <h1 className="text-2xl pt-6 px-4 text-center font-bold">- ガチャ結果 -</h1>
 
             <h2 className="text-lg pt-6 px-4 text-center">
               もう一度ガチャを引く
@@ -57,12 +57,12 @@ const Page: NextPage<Props> = () => {
 
             <div className="flex justify-center">
               <Link href="/gacha/draw/1">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   1連ガチャ
                 </div>
               </Link>
               <Link href="/gacha/draw/10">
-                <div className="flex-initial rounded bg-green-500 px-8 py-4 text-white mx-6 my-6 font-black cursor-pointer hover:shadow-sm">
+                <div className="flex-initial rounded bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer hover:shadow-sm">
                   10連ガチャ
                 </div>
               </Link>
