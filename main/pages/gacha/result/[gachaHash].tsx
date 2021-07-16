@@ -87,7 +87,7 @@ const Page: NextPage<Props> = ({
                 ''
               )}
 
-              {count === 10 &&
+              {count === 5 &&
                 resultCircles &&
                 Array.isArray(resultCircles) &&
                 resultCircles.length > 0 ? (
