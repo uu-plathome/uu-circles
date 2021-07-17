@@ -34,7 +34,7 @@ final class GachaResultController extends Controller
 
         //DBから引っ張ってくる result
         $fetchedDrewCircles = Circle::with([
-            'circleInformation:circle_id,description,circle_type,is_club_activities',
+            'circleInformation:circle_id,description,short_name,circle_type,is_club_activities',
             'circleHandbill',
         ])->whereRelease(true)
             ->whereIsOnlyDemo(false)
@@ -58,7 +58,7 @@ final class GachaResultController extends Controller
 
         //DBから引っ張ってくる  pickup
         $fetchedPickupCircles = Circle::with([
-            'circleInformation:circle_id,description,circle_type,is_club_activities',
+            'circleInformation:circle_id,description,short_name,circle_type,is_club_activities',
             'circleHandbill',
         ])
              ->whereRelease(true)

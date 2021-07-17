@@ -61,9 +61,9 @@ const Page: NextPage<Props> = ({
               <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
               {count === 1 &&
-                resultCircles &&
-                Array.isArray(resultCircles) &&
-                resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
                 <div className="flex justify-center cursor-pointer">
                   <Link
                     href="/circle/slug"
@@ -87,11 +87,11 @@ const Page: NextPage<Props> = ({
                 ''
               )}
 
-              {count === 10 &&
-                resultCircles &&
-                Array.isArray(resultCircles) &&
-                resultCircles.length > 0 ? (
-                <div className="grid grid-cols-5 gap-4">
+              {count === 5 &&
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
+                <div className="grid grid-cols-2 gap-4">
                   {resultCircles.map((resultCircle, idx) => {
                     return (
                       <div
@@ -174,8 +174,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {pickupCircles &&
-                Array.isArray(pickupCircles) &&
-                pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
                 <div className="flex justify-center pt-8">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
