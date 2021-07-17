@@ -28,13 +28,23 @@ type Props = {
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
 }
-const Index: NextPage<Props> = ({
-  advertises,
-  mainAdvertises,
-  circles,
-  uuYellArticles,
-  announcements,
-}) => {
+const Index: NextPage<Props> = (ssrProps) => {
+  const { data: {
+    advertises,
+    mainAdvertises,
+    circles,
+    uuYellArticles,
+    announcements,
+  } } = useSWR('main.refresh', getMain, {
+    initialData: {
+      advertises: ssrProps.advertises,
+      mainAdvertises: ssrProps.mainAdvertises,
+      circles: ssrProps.circles,
+      uuYellArticles: ssrProps.uuYellArticles,
+      announcements: ssrProps.announcements,
+    }
+  })
+
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
     posts: WP_REST_API_Posts
