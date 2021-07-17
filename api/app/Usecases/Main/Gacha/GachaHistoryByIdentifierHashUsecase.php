@@ -22,7 +22,7 @@ final class GachaHistoryByIdentifierHashUsecase
             ->toArray();
 
         $circles = Circle::with([
-            'circleInformation:circle_id,description,circle_type,is_club_activities',
+            'circleInformation:circle_id,description,short_name,circle_type,is_club_activities',
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             ->whereIsOnlyDemo(false)
