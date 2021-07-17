@@ -91,7 +91,7 @@ const Page: NextPage<Props> = ({
                 resultCircles &&
                 Array.isArray(resultCircles) &&
                 resultCircles.length > 0 ? (
-                <div className="grid grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   {resultCircles.map((resultCircle, idx) => {
                     return (
                       <div
