@@ -29,20 +29,22 @@ type Props = {
   /** お知らせ */ announcements: Announcement[]
 }
 const Index: NextPage<Props> = (ssrProps) => {
-  const { data: {
-    advertises,
-    mainAdvertises,
-    circles,
-    uuYellArticles,
-    announcements,
-  } } = useSWR('main.refresh', getMain, {
+  const {
+    data: {
+      advertises,
+      mainAdvertises,
+      circles,
+      uuYellArticles,
+      announcements,
+    },
+  } = useSWR('main.refresh', getMain, {
     initialData: {
       advertises: ssrProps.advertises,
       mainAdvertises: ssrProps.mainAdvertises,
       circles: ssrProps.circles,
       uuYellArticles: ssrProps.uuYellArticles,
       announcements: ssrProps.announcements,
-    }
+    },
   })
 
   // uu-yellの記事の取得
