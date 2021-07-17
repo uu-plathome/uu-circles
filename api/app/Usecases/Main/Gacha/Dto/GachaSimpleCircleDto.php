@@ -24,6 +24,8 @@ final class GachaSimpleCircleDto
     // 新歓画像URL
     public string $handbill_image_url;
 
+    public ?string $short_name;
+
     // サークル説明分
     public ?string $description;
 
@@ -52,6 +54,7 @@ final class GachaSimpleCircleDto
         $dto->name = $circle->name;
         $dto->slug = $circle->slug;
         $dto->handbill_image_url = $circleHandbill->image_url;
+        $dto->short_name = $circleInformation->short_name;
         $dto->description = $circleInformation->description;
         $dto->circle_type = $circleInformation->circle_type;
         $dto->is_club_activities = (bool) $circleInformation->is_club_activities;
@@ -64,6 +67,7 @@ final class GachaSimpleCircleDto
         return [
             'name'               => $this->name,
             'slug'               => $this->slug,
+            'short_name'         => $this->short_name,
             'handbill_image_url' => $this->handbill_image_url,
             'description'        => $this->description,
         ];
