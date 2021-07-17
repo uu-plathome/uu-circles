@@ -23,7 +23,7 @@ final class GachaSimpleCircleDto
 
     // 新歓画像URL
     public string $handbill_image_url;
-    
+
     public ?string $short_name;
 
     // サークル説明分
