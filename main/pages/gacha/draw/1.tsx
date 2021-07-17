@@ -29,9 +29,7 @@ const Page: NextPage = () => {
   const router = useRouter()
 
   const redirect = async () => {
-    const identifierHash = localStorage.getItem(
-      LocalStorageKey.identifierHash
-    )
+    const identifierHash = localStorage.getItem(LocalStorageKey.identifierHash)
 
     const data = await drawGacha({
       identifierHash,
