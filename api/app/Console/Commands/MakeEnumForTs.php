@@ -107,6 +107,10 @@ class MakeEnumForTs extends Command
          */
         $keyValue = '';
         $keyValueGuardFunction = '';
+
+        // _type: クラス名の生成
+        $keyValue .= "  _type: '{$className}',\n\n";
+
         foreach ($reflectionClass->getConstants() as $key => $value) {
             $reflectionClassConstant = new ReflectionClassConstant($class, $key);
             $keyStudly = Str::studly(strtolower($key));
@@ -128,7 +132,7 @@ class MakeEnumForTs extends Command
         }
 
         /** いらない改行、カンマの削除 */
-        $keyValue = substr($keyValue, 0, -3);
+        $keyValue = substr($keyValue, 0, -2);
         $keyValue = str_replace('    ', '  ', $keyValue);
         /** いらない改行の削除 */
         $keyValueGuardFunction = substr($keyValueGuardFunction, 0, -1);

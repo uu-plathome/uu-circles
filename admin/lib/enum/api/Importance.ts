@@ -2,6 +2,8 @@
  * 重要度.
  */
 export const Importance = {
+  _type: 'Importance',
+
   /**
    * 高.
    */
@@ -28,13 +30,11 @@ export const getAllImportance = (): Importance[] => Object.values(Importance)
 /**
  * 重要度.
  */
-export const getAllImportanceKey = (): ImportanceKey[] =>
-  Object.keys(Importance) as ImportanceKey[]
+export const getAllImportanceKey = (): ImportanceKey[] => Object.keys(Importance) as ImportanceKey[]
 /**
  * 重要度.
  */
-export const isImportance = (s: any): s is Importance =>
-  Object.values(Importance).includes(s)
+export const isImportance = (s: any): s is Importance => Object.values(Importance).includes(s)
 
 /**
  * 高.
