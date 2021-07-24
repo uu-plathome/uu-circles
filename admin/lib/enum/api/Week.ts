@@ -2,6 +2,8 @@
  * 曜日.
  */
 export const Week = {
+  _type: 'Week',
+
   /**
    * 月曜日.
    */

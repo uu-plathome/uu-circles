@@ -2,6 +2,8 @@
  * 広告種類.
  */
 export const DemoCircleNewjoyType = {
+  _type: 'DemoCircleNewjoyType',
+
   /**
    * 今.
    */

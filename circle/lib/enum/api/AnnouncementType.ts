@@ -2,6 +2,8 @@
  * お知らせ種類.
  */
 export const AnnouncementType = {
+  _type: 'AnnouncementType',
+
   /**
    * メンテナンス.
    */

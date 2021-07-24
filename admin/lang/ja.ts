@@ -9,19 +9,25 @@ import { Role } from '@/lib/enum/api/Role'
 import { Week } from '@/lib/enum/api/Week'
 
 export const ja = {
-  [CircleType.OFFICIAL_ORGANIZATION]: '公認団体',
-  [CircleType.UNOFFICIAL_ORGANIZATION]: '非公認団体',
-  [CircleType.SENDING_ORGANIZATION]: '届出団体',
-  [CircleType.STUDENT_GROUP]: '学生団体',
-  [DateOfActivity.EVERY_WEEK]: '毎週',
-  [DateOfActivity.EVERY_OTHER_WEEK]: '隔週',
-  [PlaceOfActivity.MINE]: '峰キャンパス',
-  [PlaceOfActivity.MINE_AND_YOTO]: '峰と陽東キャンパス',
-  [PlaceOfActivity.YOTO]: '陽東キャンパス',
-  [PlaceOfActivity.NEWJOY_DISCORD]: '新歓ディスコード',
-  [PlaceOfActivity.DISCORD]: 'ディスコード',
-  [PlaceOfActivity.ZOOM]: 'Zoom',
-  [PlaceOfActivity.OTHER]: 'その他',
+  [CircleType._type]: {
+    [CircleType.OFFICIAL_ORGANIZATION]: '公認団体',
+    [CircleType.UNOFFICIAL_ORGANIZATION]: '非公認団体',
+    [CircleType.SENDING_ORGANIZATION]: '届出団体',
+    [CircleType.STUDENT_GROUP]: '学生団体',
+  },
+  [DateOfActivity._type]: {
+    [DateOfActivity.EVERY_WEEK]: '毎週',
+    [DateOfActivity.EVERY_OTHER_WEEK]: '隔週',
+  },
+  [PlaceOfActivity._type]: {
+    [PlaceOfActivity.MINE]: '峰キャンパス',
+    [PlaceOfActivity.MINE_AND_YOTO]: '峰と陽東キャンパス',
+    [PlaceOfActivity.YOTO]: '陽東キャンパス',
+    [PlaceOfActivity.NEWJOY_DISCORD]: '新歓ディスコード',
+    [PlaceOfActivity.DISCORD]: 'ディスコード',
+    [PlaceOfActivity.ZOOM]: 'Zoom',
+    [PlaceOfActivity.OTHER]: 'その他',
+  },
   [CircleTagModel.NATURE]: '農業・自然',
   [CircleTagModel.SPORT]: '運動系',
   [CircleTagModel.MUSIC]: '音楽系',
@@ -56,7 +62,7 @@ export const ja = {
     [Role.MANAGER]: 'サークル管理者',
     [Role.COMMON]: '一般ユーザー',
   },
-  Week: {
+  [Week._type]: {
     [Week.MONDAY]: '月曜日',
     [Week.TUESDAY]: '火曜日',
     [Week.WEDNESDAY]: '水曜日',

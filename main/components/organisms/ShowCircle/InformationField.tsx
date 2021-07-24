@@ -1,6 +1,6 @@
 import { __ } from '@/lang/ja'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { isCircleType } from '@/lib/enum/api/CircleType'
+import { CircleType, isCircleType } from '@/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/lib/types/model/Circle'
 import Link from 'next/link'
@@ -57,7 +57,9 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           {circle.circleType && isCircleType(circle.circleType) ? (
             <div className="border-b border-gray-400 py-4">
               <p className="text-sm text-gray-400 mb-2">サークル種別</p>
-              <p className="text-sm text-black">{__(circle.circleType)}</p>
+              <p className="text-sm text-black">
+                {__(circle.circleType, CircleType._type)}
+              </p>
             </div>
           ) : (
             ''
@@ -96,7 +98,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           <div className="border-b border-gray-400 py-4">
             <p className="text-sm text-gray-400 mb-2">通常活動場所</p>
             <p className="text-sm text-black">
-              {__(circle.commonPlaceOfActivity) || __(PlaceOfActivity.OTHER)}
+              {__(circle.commonPlaceOfActivity, PlaceOfActivity._type) ||
+                __(PlaceOfActivity.OTHER, PlaceOfActivity._type)}
             </p>
           </div>
 

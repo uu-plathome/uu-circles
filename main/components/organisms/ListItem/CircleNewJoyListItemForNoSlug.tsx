@@ -1,5 +1,6 @@
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 import { __ } from '@/lang/ja'
+import { CircleType } from '@/lib/enum/api/CircleType'
 import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -137,7 +138,9 @@ const PcLayout: FC<{
               </div>
 
               <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                <p className="text-sm">{__(todayCircleNewJoy.circleType)}</p>
+                <p className="text-sm">
+                  {__(todayCircleNewJoy.circleType, CircleType._type)}
+                </p>
 
                 <p className="inline  border-b font-bold cursor-pointer">
                   <span className={getCircleNameSize(circleShowName)}>

@@ -2,6 +2,8 @@
  * 活動日時
  */
 export const DateOfActivity = {
+  _type: 'DateOfActivity',
+
   /**
    * 毎週.
    */

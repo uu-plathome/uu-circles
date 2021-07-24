@@ -212,7 +212,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
           ...getAllWeek().map((_week) => ({
             value: _week,
             checked: checkedCommonDateOfActivity.includes(_week),
-            label: __(_week, 'Week'),
+            label: __(_week, Week._type),
           })),
         ]}
         error={
@@ -259,7 +259,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
               ...getAllWeek().map((_week) => ({
                 value: _week,
                 checked: checkedOnlineDateOfActivity.includes(_week),
-                label: __(_week, 'Week'),
+                label: __(_week, Week._type),
               })),
             ]}
             error={

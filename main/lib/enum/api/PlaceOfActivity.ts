@@ -2,6 +2,8 @@
  * 活動場所
  */
 export const PlaceOfActivity = {
+  _type: 'PlaceOfActivity',
+
   /**
    * 峰キャンパス.
    */

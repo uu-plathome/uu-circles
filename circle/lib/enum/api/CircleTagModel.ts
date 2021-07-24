@@ -2,6 +2,8 @@
  * サークルタグ.
  */
 export const CircleTagModel = {
+  _type: 'CircleTagModel',
+
   /**
    * 運動系.
    */
