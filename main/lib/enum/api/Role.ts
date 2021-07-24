@@ -2,6 +2,8 @@
  * 権限.
  */
 export const Role = {
+  _type: 'Role',
+
   /**
    * システム管理者.
    */
