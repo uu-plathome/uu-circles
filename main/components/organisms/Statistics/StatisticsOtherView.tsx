@@ -116,10 +116,10 @@ const StatisticsOtherView: FC<Props> = ({ statistics }) => {
           width={300}
           data={{
             labels: [
-              __(CircleType.OFFICIAL_ORGANIZATION),
-              __(CircleType.UNOFFICIAL_ORGANIZATION),
-              __(CircleType.STUDENT_GROUP),
-              __(CircleType.SENDING_ORGANIZATION),
+              __(CircleType.OFFICIAL_ORGANIZATION, CircleType._type),
+              __(CircleType.UNOFFICIAL_ORGANIZATION, CircleType._type),
+              __(CircleType.STUDENT_GROUP, CircleType._type),
+              __(CircleType.SENDING_ORGANIZATION, CircleType._type),
             ],
             datasets: [
               {

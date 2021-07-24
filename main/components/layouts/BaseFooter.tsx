@@ -255,7 +255,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${Category.officialOrganization}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.OFFICIAL_ORGANIZATION)}
+                      {__(CircleType.OFFICIAL_ORGANIZATION, CircleType._type)}
                     </a>
                   </Link>
                 </li>
@@ -265,7 +265,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${Category.studentGroup}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.STUDENT_GROUP)}
+                      {__(CircleType.STUDENT_GROUP, CircleType._type)}
                     </a>
                   </Link>
                 </li>
@@ -275,7 +275,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${Category.unofficialOrganization}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.UNOFFICIAL_ORGANIZATION)}
+                      {__(CircleType.UNOFFICIAL_ORGANIZATION, CircleType._type)}
                     </a>
                   </Link>
                 </li>

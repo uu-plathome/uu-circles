@@ -69,7 +69,7 @@ const CircleTypeBadge: FC<Props> = ({ circleType }) => {
                 items-center
             `}
       >
-        <span className="hidden md:block">{__(circleType)}</span>
+        <span className="hidden md:block">{__(circleType, CircleType._type)}</span>
         <span className="md:hidden">{shortCircleType(circleType)}</span>
       </p>
     </div>

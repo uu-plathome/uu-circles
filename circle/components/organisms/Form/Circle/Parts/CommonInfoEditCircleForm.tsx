@@ -10,7 +10,7 @@ import {
   UseStringInput,
 } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { getAllCircleType } from '@/lib/enum/api/CircleType'
+import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
 import { FC } from 'react'
 
 export type Props = {
@@ -88,7 +88,7 @@ const CommonInfoEditCircleForm: FC<Props> = ({
         items={[
           ...getAllCircleType().map((_circleType) => ({
             value: _circleType,
-            label: __(_circleType),
+            label: __(_circleType, CircleType._type),
           })),
           { value: '', label: '不明' },
         ]}
