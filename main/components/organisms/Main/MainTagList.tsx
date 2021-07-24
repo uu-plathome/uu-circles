@@ -17,7 +17,7 @@ const MainTagList: FC = () => {
             href="/circle/tag/[tag]"
             as={`/circle/tag/${TagSlugProperty.sport}`}
           >
-            {__(CircleTagModel.SPORT)}
+            {__(CircleTagModel.SPORT, CircleTagModel._type)}
           </WhiteBadge>
         </div>
 
@@ -26,7 +26,7 @@ const MainTagList: FC = () => {
             href="/circle/tag/[tag]"
             as={`/circle/tag/${TagSlugProperty.music}`}
           >
-            {__(CircleTagModel.MUSIC)}
+            {__(CircleTagModel.MUSIC, CircleTagModel._type)}
           </WhiteBadge>
         </div>
 
@@ -35,7 +35,7 @@ const MainTagList: FC = () => {
             href="/circle/tag/[tag]"
             as={`/circle/tag/${TagSlugProperty.culture}`}
           >
-            {__(CircleTagModel.CULTURE)}
+            {__(CircleTagModel.CULTURE, CircleTagModel._type)}
           </WhiteBadge>
         </div>
 
@@ -44,7 +44,7 @@ const MainTagList: FC = () => {
             href="/circle/tag/[tag]"
             as={`/circle/tag/${TagSlugProperty.community}`}
           >
-            {__(CircleTagModel.COMMUNITY)}
+            {__(CircleTagModel.COMMUNITY, CircleTagModel._type)}
           </WhiteBadge>
         </div>
       </div>

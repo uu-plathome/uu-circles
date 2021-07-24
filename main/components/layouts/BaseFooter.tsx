@@ -19,114 +19,114 @@ type TagItem = {
 }
 const tagAlwaysItems: TagItem[] = [
   {
-    text: __(CircleTagModel.SPORT),
+    text: __(CircleTagModel.SPORT, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.sport}`,
   },
   {
-    text: __(CircleTagModel.MUSIC),
+    text: __(CircleTagModel.MUSIC, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.music}`,
   },
   {
-    text: __(CircleTagModel.CULTURE),
+    text: __(CircleTagModel.CULTURE, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.culture}`,
   },
   {
-    text: __(CircleTagModel.VOLUNTEER),
+    text: __(CircleTagModel.VOLUNTEER, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.volunteer}`,
   },
   {
-    text: __(CircleTagModel.PROGRAMMING),
+    text: __(CircleTagModel.PROGRAMMING, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.programming}`,
   },
   {
-    text: __(CircleTagModel.NATURE),
+    text: __(CircleTagModel.NATURE, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.nature}`,
   },
   {
-    text: __(CircleTagModel.INTERNATIONAL),
+    text: __(CircleTagModel.INTERNATIONAL, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.international}`,
   },
 ]
 const tagOtherItems: TagItem[] = [
   {
-    text: __(CircleTagModel.INCARE),
+    text: __(CircleTagModel.INCARE, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.incare}`,
   },
   {
-    text: __(CircleTagModel.LOOSE),
+    text: __(CircleTagModel.LOOSE, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.loose}`,
   },
   {
-    text: __(CircleTagModel.COMMUNITY),
+    text: __(CircleTagModel.COMMUNITY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.community}`,
   },
   {
-    text: __(CircleTagModel.URGENT_RECRUITMENT),
+    text: __(CircleTagModel.URGENT_RECRUITMENT, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.urgent_recruitment}`,
   },
   {
-    text: __(CircleTagModel.MYSTERY),
+    text: __(CircleTagModel.MYSTERY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.mystery}`,
   },
   {
-    text: __(CircleTagModel.MAMMOTH),
+    text: __(CircleTagModel.MAMMOTH, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.mammoth}`,
   },
   {
-    text: __(CircleTagModel.ACTIVE_ACTIVITY),
+    text: __(CircleTagModel.ACTIVE_ACTIVITY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.active_activity}`,
   },
   {
-    text: __(CircleTagModel.ONLY_MONDAY),
+    text: __(CircleTagModel.ONLY_MONDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.only_monday}`,
   },
   {
-    text: __(CircleTagModel.ONLY_TUESDAY),
+    text: __(CircleTagModel.ONLY_TUESDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.only_tuesday}`,
   },
   {
-    text: __(CircleTagModel.ONLY_WEDNESDAY),
+    text: __(CircleTagModel.ONLY_WEDNESDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.only_wednesday}`,
   },
   {
-    text: __(CircleTagModel.ONLY_THURSDAY),
+    text: __(CircleTagModel.ONLY_THURSDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.only_thursday}`,
   },
   {
-    text: __(CircleTagModel.ONLY_FRIDAY),
+    text: __(CircleTagModel.ONLY_FRIDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.only_friday}`,
   },
   {
-    text: __(CircleTagModel.HOLIDAY),
+    text: __(CircleTagModel.HOLIDAY, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.holiday}`,
   },
   {
-    text: __(CircleTagModel.MINE),
+    text: __(CircleTagModel.MINE, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.mine}`,
   },
   {
-    text: __(CircleTagModel.YOTO),
+    text: __(CircleTagModel.YOTO, CircleTagModel._type),
     href: '/circle/tag/[tag]',
     as: `/circle/tag/${TagSlugProperty.yoto}`,
   },
