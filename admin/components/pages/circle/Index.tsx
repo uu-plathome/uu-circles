@@ -7,7 +7,7 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
-import { getAllCircleType } from '@/lib/enum/api/CircleType'
+import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import {
   faChevronCircleLeft,
@@ -106,13 +106,13 @@ const Index: NextPage<Props> = ({
 
             {circles && circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                    />
-                  )
-                })
+                return (
+                  <CircleListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                  />
+                )
+              })
               : ''}
 
             {circles && circles.length === 0 ? (
