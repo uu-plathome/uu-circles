@@ -90,7 +90,7 @@ const Index: NextPage<Props> = ({
                           { value: '', label: '未選択' },
                           ...getAllCircleType().map((_circleType) => ({
                             value: _circleType,
-                            label: __(_circleType),
+                            label: __(_circleType, CircleType._type),
                           })),
                           { value: '不明', label: '不明' },
                         ]}
@@ -106,13 +106,13 @@ const Index: NextPage<Props> = ({
 
             {circles && circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                    />
-                  )
-                })
+                return (
+                  <CircleListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                  />
+                )
+              })
               : ''}
 
             {circles && circles.length === 0 ? (

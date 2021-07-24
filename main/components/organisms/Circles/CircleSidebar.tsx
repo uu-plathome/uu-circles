@@ -35,17 +35,17 @@ const categoryItems: CategoryItem[] = [
     as: `/circle/category/${Category.club}`,
   },
   {
-    text: __(CircleType.OFFICIAL_ORGANIZATION),
+    text: __(CircleType.OFFICIAL_ORGANIZATION, CircleType._type),
     href: '/circle/category/[category]',
     as: `/circle/category/${Category.officialOrganization}`,
   },
   {
-    text: __(CircleType.STUDENT_GROUP),
+    text: __(CircleType.STUDENT_GROUP, CircleType._type),
     href: '/circle/category/[category]',
     as: `/circle/category/${Category.studentGroup}`,
   },
   {
-    text: __(CircleType.UNOFFICIAL_ORGANIZATION),
+    text: __(CircleType.UNOFFICIAL_ORGANIZATION, CircleType._type),
     href: '/circle/category/[category]',
     as: `/circle/category/${Category.unofficialOrganization}`,
   },
