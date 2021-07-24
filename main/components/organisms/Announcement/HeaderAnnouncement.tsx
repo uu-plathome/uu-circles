@@ -1,4 +1,5 @@
 import { __ } from '@/lang/ja'
+import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
 import { isHigh } from '@/lib/enum/api/Importance'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { FC } from 'react'
@@ -11,7 +12,7 @@ const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
     <div className="border-blue-300 border-4 py-2 px-4 bg-white">
       <div className="max-w-3xl mx-auto">
         <p className="text-center text-xs mb-1">
-          -{__(announcement.announcementType, 'AnnouncementType')}-
+          -{__(announcement.announcementType, AnnouncementType._type)}-
         </p>
 
         <p
