@@ -10,7 +10,8 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
@@ -137,7 +138,9 @@ const PcLayout: FC<{
               </div>
 
               <div className="pl-2 mt-2" style={{ width: '280px' }}>
-                <p className="text-sm">{__(todayCircleNewJoy.circleType, CircleType._type)}</p>
+                <p className="text-sm">
+                  {__(todayCircleNewJoy.circleType, CircleType._type)}
+                </p>
 
                 <p className="inline  border-b font-bold cursor-pointer">
                   <span className={getCircleNameSize(circleShowName)}>
