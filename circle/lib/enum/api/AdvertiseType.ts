@@ -2,6 +2,8 @@
  * 広告種類.
  */
 export const AdvertiseType = {
+  _type: 'AdvertiseType',
+
   /**
    * 通常広告.
    */

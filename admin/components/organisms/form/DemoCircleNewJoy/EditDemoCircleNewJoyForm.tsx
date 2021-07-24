@@ -62,27 +62,27 @@ const EditDemoCircleNewJoyForm: FC<Props> = ({ onSubmit, circle, form }) => {
           items={[
             {
               value: PlaceOfActivity.NEWJOY_DISCORD,
-              label: __(PlaceOfActivity.NEWJOY_DISCORD),
+              label: __(PlaceOfActivity.NEWJOY_DISCORD, PlaceOfActivity._type),
             },
             {
               value: PlaceOfActivity.MINE,
-              label: __(PlaceOfActivity.MINE),
+              label: __(PlaceOfActivity.MINE, PlaceOfActivity._type),
             },
             {
               value: PlaceOfActivity.YOTO,
-              label: __(PlaceOfActivity.YOTO),
+              label: __(PlaceOfActivity.YOTO, PlaceOfActivity._type),
             },
             {
               value: PlaceOfActivity.ZOOM,
-              label: __(PlaceOfActivity.ZOOM),
+              label: __(PlaceOfActivity.ZOOM, PlaceOfActivity._type),
             },
             {
               value: PlaceOfActivity.DISCORD,
-              label: __(PlaceOfActivity.DISCORD),
+              label: __(PlaceOfActivity.DISCORD, PlaceOfActivity._type),
             },
             {
               value: PlaceOfActivity.OTHER,
-              label: __(PlaceOfActivity.OTHER),
+              label: __(PlaceOfActivity.OTHER, PlaceOfActivity._type),
             },
           ]}
           {...form.placeOfActivity}

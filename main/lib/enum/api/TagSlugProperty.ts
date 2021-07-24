@@ -2,6 +2,8 @@
  * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const TagSlugProperty = {
+  _type: 'TagSlugProperty',
+
   sport: 'sport',
 
   music: 'music',

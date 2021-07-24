@@ -1,4 +1,5 @@
 import { __ } from '@/lang/ja'
+import { CircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import {
   faCheckCircle,
@@ -67,7 +68,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
             />
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="種別">
-            {__(circle.circleType) || '不明'}
+            {__(circle.circleType, CircleType._type) || '不明'}
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="編集">
             <Link href="/circle/[id]/edit" as={`/circle/${circle.id}/edit`}>

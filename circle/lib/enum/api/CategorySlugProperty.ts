@@ -1,4 +1,6 @@
 export const CategorySlugProperty = {
+  _type: 'CategorySlugProperty',
+
   official_organization: 'official_organization',
 
   unofficial_organization: 'unofficial_organization',

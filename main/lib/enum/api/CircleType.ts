@@ -2,6 +2,8 @@
  * サークル種類.
  */
 export const CircleType = {
+  _type: 'CircleType',
+
   /**
    * 公式団体.
    */

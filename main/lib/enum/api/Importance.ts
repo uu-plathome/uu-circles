@@ -2,6 +2,8 @@
  * 重要度.
  */
 export const Importance = {
+  _type: 'Importance',
+
   /**
    * 高.
    */

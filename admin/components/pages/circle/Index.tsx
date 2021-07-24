@@ -7,7 +7,7 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
-import { getAllCircleType } from '@/lib/enum/api/CircleType'
+import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 import {
   faChevronCircleLeft,
@@ -90,7 +90,7 @@ const Index: NextPage<Props> = ({
                           { value: '', label: '未選択' },
                           ...getAllCircleType().map((_circleType) => ({
                             value: _circleType,
-                            label: __(_circleType),
+                            label: __(_circleType, CircleType._type),
                           })),
                           { value: '不明', label: '不明' },
                         ]}
