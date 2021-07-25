@@ -20,23 +20,28 @@ export const Importance = {
   LOW: 'LOW',
 } as const
 
-export type ImportanceKey = keyof typeof Importance
-export type Importance = typeof Importance[keyof typeof Importance]
+export type ImportanceKey = keyof Omit<typeof Importance, '_type'>
+export type ImportanceAllKey = keyof typeof Importance
+export type Importance = typeof Importance[ImportanceKey]
 
 /**
  * 重要度.
  */
-export const getAllImportance = (): Importance[] => Object.values(Importance)
+export const getAllImportance = (): Importance[] => {
+  const { _type: _, ...data } = Importance
+  return Object.values(data)
+}
 /**
  * 重要度.
  */
-export const getAllImportanceKey = (): ImportanceKey[] =>
-  Object.keys(Importance) as ImportanceKey[]
+export const getAllImportanceKey = (): ImportanceKey[] => {
+  const { _type: _, ...data } = Importance
+  return Object.keys(data) as ImportanceKey[]
+}
 /**
  * 重要度.
  */
-export const isImportance = (s: any): s is Importance =>
-  Object.values(Importance).includes(s)
+export const isImportance = (s: any): s is Importance => getAllImportance().includes(s)
 
 /**
  * 高.
