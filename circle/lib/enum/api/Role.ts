@@ -21,21 +21,28 @@ export const Role = {
   COMMON: 'COMMON',
 } as const
 
-export type RoleKey = keyof typeof Role
-export type Role = typeof Role[keyof typeof Role]
+export type RoleKey = keyof Omit<typeof Role, '_type'>
+export type RoleAllKey = keyof typeof Role
+export type Role = typeof Role[RoleKey]
 
 /**
  * 権限.
  */
-export const getAllRole = (): Role[] => Object.values(Role)
+export const getAllRole = (): Role[] => {
+  const { _type: _, ...data } = Role
+  return Object.values(data)
+}
 /**
  * 権限.
  */
-export const getAllRoleKey = (): RoleKey[] => Object.keys(Role) as RoleKey[]
+export const getAllRoleKey = (): RoleKey[] => {
+  const { _type: _, ...data } = Role
+  return Object.keys(data) as RoleKey[]
+}
 /**
  * 権限.
  */
-export const isRole = (s: any): s is Role => Object.values(Role).includes(s)
+export const isRole = (s: any): s is Role => getAllRole().includes(s)
 
 /**
  * システム管理者.

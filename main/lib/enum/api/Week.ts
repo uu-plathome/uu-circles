@@ -40,21 +40,28 @@ export const Week = {
   SUNDAY: 'SUNDAY',
 } as const
 
-export type WeekKey = keyof typeof Week
-export type Week = typeof Week[keyof typeof Week]
+export type WeekKey = keyof Omit<typeof Week, '_type'>
+export type WeekAllKey = keyof typeof Week
+export type Week = typeof Week[WeekKey]
 
 /**
  * 曜日.
  */
-export const getAllWeek = (): Week[] => Object.values(Week)
+export const getAllWeek = (): Week[] => {
+  const { _type: _, ...data } = Week
+  return Object.values(data)
+}
 /**
  * 曜日.
  */
-export const getAllWeekKey = (): WeekKey[] => Object.keys(Week) as WeekKey[]
+export const getAllWeekKey = (): WeekKey[] => {
+  const { _type: _, ...data } = Week
+  return Object.keys(data) as WeekKey[]
+}
 /**
  * 曜日.
  */
-export const isWeek = (s: any): s is Week => Object.values(Week).includes(s)
+export const isWeek = (s: any): s is Week => getAllWeek().includes(s)
 
 /**
  * 月曜日.

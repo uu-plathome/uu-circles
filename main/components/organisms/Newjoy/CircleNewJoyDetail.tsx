@@ -1,4 +1,5 @@
 import { __ } from '@/lang/ja'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getFullJPDate } from '@/lib/utils/Date'
@@ -79,7 +80,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>活動場所</TableTitle>
               <p className="text-black text-sm  my-2 pb-2 font-bold">
-                {__(circleNewJoy.placeOfActivity)}
+                {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </p>
             </section>
 
@@ -174,7 +175,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <TableTitle>活動場所</TableTitle>
 
               <p className="text-black text-sm  my-2 pb-2 font-bold">
-                {__(circleNewJoy.placeOfActivity)}
+                {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </p>
             </section>
 

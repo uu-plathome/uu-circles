@@ -6,13 +6,11 @@ import { CircleSidebar } from '@/components/organisms/Circles/CircleSidebar'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { getCircleByCategory } from '@/infra/api/circle'
-import { __ } from '@/lang/ja'
+import { namespaceType, __ } from '@/lang/ja'
 import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
-import { Category } from '@/lib/enum/app/Category'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
-import { categoryToCircleType } from '@/lib/utils/category/Category'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { WP_REST_API_Posts } from 'wp-types'
@@ -41,11 +39,7 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead
-        title={`${__(
-          String(categoryToCircleType(category as Category))
-        )} カテゴリー検索`}
-      />
+      <BaseHead title={`${__(String(category))} カテゴリー検索`} />
 
       <BaseLayout
         announcement={
@@ -60,20 +54,17 @@ const Page: NextPage<Props> = ({
           >
             <div className="px-5">
               <h1 className="text-2xl py-8">
-                {__(String(categoryToCircleType(category as Category)))}
+                {__(String(category), CategorySlugProperty._type)}
               </h1>
 
               <p className="text-base pb-4 font-bold">
                 {__(
-                  String(categoryToCircleType(category as Category)),
-                  'CircleTypeTitle'
+                  String(category),
+                  namespaceType.TitleByCategorySlugProperty
                 )}
               </p>
               <p className="text-sm pb-8">
-                {__(
-                  String(categoryToCircleType(category as Category)),
-                  'CircleTypeText'
-                )}
+                {__(String(category), namespaceType.TextByCategorySlugProperty)}
               </p>
 
               {/*  サークル一覧 */}

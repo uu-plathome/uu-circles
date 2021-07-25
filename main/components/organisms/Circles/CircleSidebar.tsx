@@ -1,7 +1,6 @@
 import { __ } from '@/lang/ja'
-import { CircleType } from '@/lib/enum/api/CircleType'
+import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
-import { Category } from '@/lib/enum/app/Category'
 import { TagPageView } from '@/lib/types/model/TagPageView'
 import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
 import Link from 'next/link'
@@ -30,24 +29,30 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
 }
 const categoryItems: CategoryItem[] = [
   {
-    text: __('CLUB'),
+    text: __(CategorySlugProperty.club, CategorySlugProperty._type),
     href: '/circle/category/[category]',
-    as: `/circle/category/${Category.club}`,
+    as: `/circle/category/${CategorySlugProperty.club}`,
   },
   {
-    text: __(CircleType.OFFICIAL_ORGANIZATION, CircleType._type),
+    text: __(
+      CategorySlugProperty.official_organization,
+      CategorySlugProperty._type
+    ),
     href: '/circle/category/[category]',
-    as: `/circle/category/${Category.officialOrganization}`,
+    as: `/circle/category/${CategorySlugProperty.official_organization}`,
   },
   {
-    text: __(CircleType.STUDENT_GROUP, CircleType._type),
+    text: __(CategorySlugProperty.student_group, CategorySlugProperty._type),
     href: '/circle/category/[category]',
-    as: `/circle/category/${Category.studentGroup}`,
+    as: `/circle/category/${CategorySlugProperty.student_group}`,
   },
   {
-    text: __(CircleType.UNOFFICIAL_ORGANIZATION, CircleType._type),
+    text: __(
+      CategorySlugProperty.unofficial_organization,
+      CategorySlugProperty._type
+    ),
     href: '/circle/category/[category]',
-    as: `/circle/category/${Category.unofficialOrganization}`,
+    as: `/circle/category/${CategorySlugProperty.unofficial_organization}`,
   },
 ]
 type CategoryItemFcProps = {
@@ -91,7 +96,7 @@ const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
       })
       .map(
         (tagPageView): TagItem => ({
-          text: __(String(tagPageView.tagName).toUpperCase()),
+          text: __(String(tagPageView.tagName), TagSlugProperty._type),
           href: '/circle/tag/[tag]',
           as: `/circle/tag/${tagPageView.tagName}`,
         })

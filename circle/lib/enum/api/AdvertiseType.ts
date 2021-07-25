@@ -15,24 +15,29 @@ export const AdvertiseType = {
   MAIN_TOP: 'MAIN_TOP',
 } as const
 
-export type AdvertiseTypeKey = keyof typeof AdvertiseType
-export type AdvertiseType = typeof AdvertiseType[keyof typeof AdvertiseType]
+export type AdvertiseTypeKey = keyof Omit<typeof AdvertiseType, '_type'>
+export type AdvertiseTypeAllKey = keyof typeof AdvertiseType
+export type AdvertiseType = typeof AdvertiseType[AdvertiseTypeKey]
 
 /**
  * 広告種類.
  */
-export const getAllAdvertiseType = (): AdvertiseType[] =>
-  Object.values(AdvertiseType)
+export const getAllAdvertiseType = (): AdvertiseType[] => {
+  const { _type: _, ...data } = AdvertiseType
+  return Object.values(data)
+}
 /**
  * 広告種類.
  */
-export const getAllAdvertiseTypeKey = (): AdvertiseTypeKey[] =>
-  Object.keys(AdvertiseType) as AdvertiseTypeKey[]
+export const getAllAdvertiseTypeKey = (): AdvertiseTypeKey[] => {
+  const { _type: _, ...data } = AdvertiseType
+  return Object.keys(data) as AdvertiseTypeKey[]
+}
 /**
  * 広告種類.
  */
 export const isAdvertiseType = (s: any): s is AdvertiseType =>
-  Object.values(AdvertiseType).includes(s)
+  getAllAdvertiseType().includes(s)
 
 /**
  * 通常広告.

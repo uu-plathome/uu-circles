@@ -25,23 +25,29 @@ export const CircleType = {
   STUDENT_GROUP: 'STUDENT_GROUP',
 } as const
 
-export type CircleTypeKey = keyof typeof CircleType
-export type CircleType = typeof CircleType[keyof typeof CircleType]
+export type CircleTypeKey = keyof Omit<typeof CircleType, '_type'>
+export type CircleTypeAllKey = keyof typeof CircleType
+export type CircleType = typeof CircleType[CircleTypeKey]
 
 /**
  * サークル種類.
  */
-export const getAllCircleType = (): CircleType[] => Object.values(CircleType)
+export const getAllCircleType = (): CircleType[] => {
+  const { _type: _, ...data } = CircleType
+  return Object.values(data)
+}
 /**
  * サークル種類.
  */
-export const getAllCircleTypeKey = (): CircleTypeKey[] =>
-  Object.keys(CircleType) as CircleTypeKey[]
+export const getAllCircleTypeKey = (): CircleTypeKey[] => {
+  const { _type: _, ...data } = CircleType
+  return Object.keys(data) as CircleTypeKey[]
+}
 /**
  * サークル種類.
  */
 export const isCircleType = (s: any): s is CircleType =>
-  Object.values(CircleType).includes(s)
+  getAllCircleType().includes(s)
 
 /**
  * 公式団体.
