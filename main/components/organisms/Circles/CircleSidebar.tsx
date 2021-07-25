@@ -90,7 +90,7 @@ const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
       })
       .map(
         (tagPageView): TagItem => ({
-          text: __(String(tagPageView.tagName).toUpperCase()),
+          text: __(String(tagPageView.tagName), TagSlugProperty._type),
           href: '/circle/tag/[tag]',
           as: `/circle/tag/${tagPageView.tagName}`,
         })
