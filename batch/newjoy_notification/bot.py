@@ -65,7 +65,7 @@ async def on_ready():
     channel = client.get_channel(CHANNEL_ID)
     # アナウンス
     if (len(r['todayCircleNewJoys']) == 0):
-        await channel.send('***:crescent_moon:今日の新歓はありません***')
+        # await channel.send('***:crescent_moon:今日の新歓はありません***')
         exit()
     else:
         now = get_now()
