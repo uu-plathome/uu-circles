@@ -39,11 +39,7 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead
-        title={`${__(
-          String(category)
-        )} カテゴリー検索`}
-      />
+      <BaseHead title={`${__(String(category))} カテゴリー検索`} />
 
       <BaseLayout
         announcement={
@@ -68,10 +64,7 @@ const Page: NextPage<Props> = ({
                 )}
               </p>
               <p className="text-sm pb-8">
-                {__(
-                  String(category),
-                  namespaceType.TextByCategorySlugProperty
-                )}
+                {__(String(category), namespaceType.TextByCategorySlugProperty)}
               </p>
 
               {/*  サークル一覧 */}

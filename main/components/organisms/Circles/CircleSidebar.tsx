@@ -34,7 +34,10 @@ const categoryItems: CategoryItem[] = [
     as: `/circle/category/${CategorySlugProperty.club}`,
   },
   {
-    text: __(CategorySlugProperty.official_organization, CategorySlugProperty._type),
+    text: __(
+      CategorySlugProperty.official_organization,
+      CategorySlugProperty._type
+    ),
     href: '/circle/category/[category]',
     as: `/circle/category/${CategorySlugProperty.official_organization}`,
   },
@@ -44,7 +47,10 @@ const categoryItems: CategoryItem[] = [
     as: `/circle/category/${CategorySlugProperty.student_group}`,
   },
   {
-    text: __(CategorySlugProperty.unofficial_organization, CategorySlugProperty._type),
+    text: __(
+      CategorySlugProperty.unofficial_organization,
+      CategorySlugProperty._type
+    ),
     href: '/circle/category/[category]',
     as: `/circle/category/${CategorySlugProperty.unofficial_organization}`,
   },
