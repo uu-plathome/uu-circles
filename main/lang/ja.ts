@@ -10,7 +10,7 @@ import { Week } from '@/lib/enum/api/Week'
 export const namespaceType = {
   TitleByCategorySlugProperty: 'TitleByCategorySlugProperty',
   TitleByTagSlugProperty: 'TitleByTagSlugProperty',
-  TextByCategorySlugProperty: 'TitleByCategorySlugProperty',
+  TextByCategorySlugProperty: 'TextByCategorySlugProperty',
   TextByTagSlugProperty: 'TextByTagSlugProperty',
 } as const
 
