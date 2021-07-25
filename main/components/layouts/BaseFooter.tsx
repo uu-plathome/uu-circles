@@ -1,10 +1,9 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useWindowResize } from '@/hooks/useWindowResize'
 import { __ } from '@/lang/ja'
+import { CategorySlugProperty } from '@/lib/enum/api/CategorySlugProperty'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { CircleType } from '@/lib/enum/api/CircleType'
 import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
-import { Category } from '@/lib/enum/app/Category'
 import { ImagePath } from '@/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -244,38 +243,40 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                 <li className="mb-3">
                   <Link
                     href="/circle/category/[category]"
-                    as={`/circle/category/${Category.club}`}
-                  >
-                    <a className="text-gray-400 font-bold text-sm">部活</a>
-                  </Link>
-                </li>
-                <li className="mb-3">
-                  <Link
-                    href="/circle/category/[category]"
-                    as={`/circle/category/${Category.officialOrganization}`}
+                    as={`/circle/category/${CategorySlugProperty.club}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.OFFICIAL_ORGANIZATION, CircleType._type)}
+                      {__(CategorySlugProperty.club, CategorySlugProperty._type)}
                     </a>
                   </Link>
                 </li>
                 <li className="mb-3">
                   <Link
                     href="/circle/category/[category]"
-                    as={`/circle/category/${Category.studentGroup}`}
+                    as={`/circle/category/${CategorySlugProperty.official_organization}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.STUDENT_GROUP, CircleType._type)}
+                      {__(CategorySlugProperty.official_organization, CategorySlugProperty._type)}
                     </a>
                   </Link>
                 </li>
                 <li className="mb-3">
                   <Link
                     href="/circle/category/[category]"
-                    as={`/circle/category/${Category.unofficialOrganization}`}
+                    as={`/circle/category/${CategorySlugProperty.student_group}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CircleType.UNOFFICIAL_ORGANIZATION, CircleType._type)}
+                      {__(CategorySlugProperty.student_group, CategorySlugProperty._type)}
+                    </a>
+                  </Link>
+                </li>
+                <li className="mb-3">
+                  <Link
+                    href="/circle/category/[category]"
+                    as={`/circle/category/${CategorySlugProperty.unofficial_organization}`}
+                  >
+                    <a className="text-gray-400 font-bold text-sm">
+                      {__(CategorySlugProperty.unofficial_organization, CategorySlugProperty._type)}
                     </a>
                   </Link>
                 </li>
