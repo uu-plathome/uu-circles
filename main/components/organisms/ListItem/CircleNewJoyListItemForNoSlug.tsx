@@ -1,6 +1,7 @@
 import { TodayCircleNewJoy } from '@/infra/api/circleNewJoy'
 import { __ } from '@/lang/ja'
 import { CircleType } from '@/lib/enum/api/CircleType'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { getDOW, getMonth, getDay, getDate, getTime } from '@/lib/utils/Date'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,8 +11,7 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
-    todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
@@ -79,7 +79,7 @@ const PcLayout: FC<{
             <p className="text-gray-600 text-xs col-span-1">場所</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
               {' '}
-              {__(circleNewJoy.placeOfActivity)}
+              {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
             </p>
           </div>
           <div className="border-b-2  grid grid-cols-8">
@@ -191,7 +191,7 @@ const SpLayout: FC<{
               場所
             </span>
             <span className="block  text-center mx-auto">
-              {__(circleNewJoy.placeOfActivity)}
+              {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
             </span>
           </p>
 
