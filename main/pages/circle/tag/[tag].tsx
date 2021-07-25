@@ -6,7 +6,8 @@ import { CircleSidebar } from '@/components/organisms/Circles/CircleSidebar'
 import { BaseCircleList } from '@/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/components/organisms/List/CarouselCircleList'
 import { getCircleByTag } from '@/infra/api/circle'
-import { __ } from '@/lang/ja'
+import { namespaceType, __ } from '@/lang/ja'
+import { TagSlugProperty } from '@/lib/enum/api/TagSlugProperty'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/lib/types/model/TagPageViewRanking'
@@ -31,8 +32,8 @@ const Page: NextPage<Props> = ({
 }) => {
   const router = useRouter()
   const { tag } = router.query
-  const circleTagTitle = __(String(tag).toUpperCase(), 'CircleTagTitle')
-  const circleTagText = __(String(tag).toUpperCase(), 'CircleTagText')
+  const circleTagTitle = __(String(tag), namespaceType.TitleByTagSlugProperty)
+  const circleTagText = __(String(tag), namespaceType.TextByTagSlugProperty)
 
   if (!circles) {
     return <div></div>
@@ -40,7 +41,7 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead title={`${__(String(tag).toUpperCase())}タグ検索`} />
+      <BaseHead title={`${__(String(tag), TagSlugProperty._type)}タグ検索`} />
 
       <BaseLayout
         announcement={
@@ -54,7 +55,9 @@ const Page: NextPage<Props> = ({
             sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
           >
             <div className="px-5">
-              <h1 className="text-2xl py-8">{__(String(tag).toUpperCase())}</h1>
+              <h1 className="text-2xl py-8">
+                {__(String(tag), TagSlugProperty._type)}
+              </h1>
 
               {circleTagTitle ? (
                 <p className="text-base pb-4 font-bold">{circleTagTitle}</p>

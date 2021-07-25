@@ -3,14 +3,21 @@ export const {{ $className }} = {
 {{ $keyValue }}
 } as const
 
-export type {{ $className }}Key = keyof typeof {{ $className }}
-export type {{ $className }} = typeof {{ $className }}[keyof typeof {{ $className }}]
+export type {{ $className }}Key = keyof Omit<typeof {{ $className }}, '_type'>
+export type {{ $className }}AllKey = keyof typeof {{ $className }}
+export type {{ $className }} = typeof {{ $className }}[{{ $className }}Key]
 
 {{ $classComment }}
-export const getAll{{ $className }} = (): {{ $className }}[] => Object.values({{ $className }})
+export const getAll{{ $className }} = (): {{ $className }}[] => {
+  const { _type: _, ...data } = {{ $className }}
+  return Object.values(data)
+}
 {{ $classComment }}
-export const getAll{{ $className }}Key = (): {{ $className }}Key[] => Object.keys({{ $className }}) as {{ $className }}Key[]
+export const getAll{{ $className }}Key = (): {{ $className }}Key[] => {
+  const { _type: _, ...data } = {{ $className }}
+  return Object.keys(data) as {{ $className }}Key[]
+}
 {{ $classComment }}
-export const is{{ $className }} = (s: any): s is {{ $className }} => Object.values({{ $className }}).includes(s)
+export const is{{ $className }} = (s: any): s is {{ $className }} => getAll{{ $className }}().includes(s)
 
 {{ $keyValueGuardFunction }}

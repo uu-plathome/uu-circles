@@ -61,25 +61,29 @@ export const TagSlugProperty = {
   yoto: 'yoto',
 } as const
 
-export type TagSlugPropertyKey = keyof typeof TagSlugProperty
-export type TagSlugProperty =
-  typeof TagSlugProperty[keyof typeof TagSlugProperty]
+export type TagSlugPropertyKey = keyof Omit<typeof TagSlugProperty, '_type'>
+export type TagSlugPropertyAllKey = keyof typeof TagSlugProperty
+export type TagSlugProperty = typeof TagSlugProperty[TagSlugPropertyKey]
 
 /**
  * /api/circle/tag/{tag}のtagのパス一覧.
  */
-export const getAllTagSlugProperty = (): TagSlugProperty[] =>
-  Object.values(TagSlugProperty)
+export const getAllTagSlugProperty = (): TagSlugProperty[] => {
+  const { _type: _, ...data } = TagSlugProperty
+  return Object.values(data)
+}
 /**
  * /api/circle/tag/{tag}のtagのパス一覧.
  */
-export const getAllTagSlugPropertyKey = (): TagSlugPropertyKey[] =>
-  Object.keys(TagSlugProperty) as TagSlugPropertyKey[]
+export const getAllTagSlugPropertyKey = (): TagSlugPropertyKey[] => {
+  const { _type: _, ...data } = TagSlugProperty
+  return Object.keys(data) as TagSlugPropertyKey[]
+}
 /**
  * /api/circle/tag/{tag}のtagのパス一覧.
  */
 export const isTagSlugProperty = (s: any): s is TagSlugProperty =>
-  Object.values(TagSlugProperty).includes(s)
+  getAllTagSlugProperty().includes(s)
 
 export const isSport = (v: any): v is 'sport' => v === TagSlugProperty.sport
 export const isMusic = (v: any): v is 'music' => v === TagSlugProperty.music

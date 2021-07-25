@@ -140,24 +140,29 @@ export const CircleTagModel = {
   YOTO: 'YOTO',
 } as const
 
-export type CircleTagModelKey = keyof typeof CircleTagModel
-export type CircleTagModel = typeof CircleTagModel[keyof typeof CircleTagModel]
+export type CircleTagModelKey = keyof Omit<typeof CircleTagModel, '_type'>
+export type CircleTagModelAllKey = keyof typeof CircleTagModel
+export type CircleTagModel = typeof CircleTagModel[CircleTagModelKey]
 
 /**
  * サークルタグ.
  */
-export const getAllCircleTagModel = (): CircleTagModel[] =>
-  Object.values(CircleTagModel)
+export const getAllCircleTagModel = (): CircleTagModel[] => {
+  const { _type: _, ...data } = CircleTagModel
+  return Object.values(data)
+}
 /**
  * サークルタグ.
  */
-export const getAllCircleTagModelKey = (): CircleTagModelKey[] =>
-  Object.keys(CircleTagModel) as CircleTagModelKey[]
+export const getAllCircleTagModelKey = (): CircleTagModelKey[] => {
+  const { _type: _, ...data } = CircleTagModel
+  return Object.keys(data) as CircleTagModelKey[]
+}
 /**
  * サークルタグ.
  */
 export const isCircleTagModel = (s: any): s is CircleTagModel =>
-  Object.values(CircleTagModel).includes(s)
+  getAllCircleTagModel().includes(s)
 
 /**
  * 運動系.

@@ -10,18 +10,26 @@ export const CategorySlugProperty = {
   club: 'club',
 } as const
 
-export type CategorySlugPropertyKey = keyof typeof CategorySlugProperty
+export type CategorySlugPropertyKey = keyof Omit<
+  typeof CategorySlugProperty,
+  '_type'
+>
+export type CategorySlugPropertyAllKey = keyof typeof CategorySlugProperty
 export type CategorySlugProperty =
-  typeof CategorySlugProperty[keyof typeof CategorySlugProperty]
+  typeof CategorySlugProperty[CategorySlugPropertyKey]
 
-export const getAllCategorySlugProperty = (): CategorySlugProperty[] =>
-  Object.values(CategorySlugProperty)
+export const getAllCategorySlugProperty = (): CategorySlugProperty[] => {
+  const { _type: _, ...data } = CategorySlugProperty
+  return Object.values(data)
+}
 
-export const getAllCategorySlugPropertyKey = (): CategorySlugPropertyKey[] =>
-  Object.keys(CategorySlugProperty) as CategorySlugPropertyKey[]
+export const getAllCategorySlugPropertyKey = (): CategorySlugPropertyKey[] => {
+  const { _type: _, ...data } = CategorySlugProperty
+  return Object.keys(data) as CategorySlugPropertyKey[]
+}
 
 export const isCategorySlugProperty = (s: any): s is CategorySlugProperty =>
-  Object.values(CategorySlugProperty).includes(s)
+  getAllCategorySlugProperty().includes(s)
 
 export const isOfficialOrganization = (v: any): v is 'official_organization' =>
   v === CategorySlugProperty.official_organization

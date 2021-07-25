@@ -45,25 +45,29 @@ export const AnnouncementType = {
   UU_YELL: 'UU_YELL',
 } as const
 
-export type AnnouncementTypeKey = keyof typeof AnnouncementType
-export type AnnouncementType =
-  typeof AnnouncementType[keyof typeof AnnouncementType]
+export type AnnouncementTypeKey = keyof Omit<typeof AnnouncementType, '_type'>
+export type AnnouncementTypeAllKey = keyof typeof AnnouncementType
+export type AnnouncementType = typeof AnnouncementType[AnnouncementTypeKey]
 
 /**
  * お知らせ種類.
  */
-export const getAllAnnouncementType = (): AnnouncementType[] =>
-  Object.values(AnnouncementType)
+export const getAllAnnouncementType = (): AnnouncementType[] => {
+  const { _type: _, ...data } = AnnouncementType
+  return Object.values(data)
+}
 /**
  * お知らせ種類.
  */
-export const getAllAnnouncementTypeKey = (): AnnouncementTypeKey[] =>
-  Object.keys(AnnouncementType) as AnnouncementTypeKey[]
+export const getAllAnnouncementTypeKey = (): AnnouncementTypeKey[] => {
+  const { _type: _, ...data } = AnnouncementType
+  return Object.keys(data) as AnnouncementTypeKey[]
+}
 /**
  * お知らせ種類.
  */
 export const isAnnouncementType = (s: any): s is AnnouncementType =>
-  Object.values(AnnouncementType).includes(s)
+  getAllAnnouncementType().includes(s)
 
 /**
  * メンテナンス.

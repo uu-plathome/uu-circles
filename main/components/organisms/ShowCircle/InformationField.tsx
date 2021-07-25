@@ -373,7 +373,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                       as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
                     >
                       <a className="tag-title text-gray-400 text-sm hover:underline">
-                        {__(circleTag)}
+                        {__(circleTag, CircleTagModel._type)}
                       </a>
                     </Link>
                   )

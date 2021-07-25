@@ -40,25 +40,29 @@ export const PlaceOfActivity = {
   OTHER: 'OTHER',
 } as const
 
-export type PlaceOfActivityKey = keyof typeof PlaceOfActivity
-export type PlaceOfActivity =
-  typeof PlaceOfActivity[keyof typeof PlaceOfActivity]
+export type PlaceOfActivityKey = keyof Omit<typeof PlaceOfActivity, '_type'>
+export type PlaceOfActivityAllKey = keyof typeof PlaceOfActivity
+export type PlaceOfActivity = typeof PlaceOfActivity[PlaceOfActivityKey]
 
 /**
  * 活動場所
  */
-export const getAllPlaceOfActivity = (): PlaceOfActivity[] =>
-  Object.values(PlaceOfActivity)
+export const getAllPlaceOfActivity = (): PlaceOfActivity[] => {
+  const { _type: _, ...data } = PlaceOfActivity
+  return Object.values(data)
+}
 /**
  * 活動場所
  */
-export const getAllPlaceOfActivityKey = (): PlaceOfActivityKey[] =>
-  Object.keys(PlaceOfActivity) as PlaceOfActivityKey[]
+export const getAllPlaceOfActivityKey = (): PlaceOfActivityKey[] => {
+  const { _type: _, ...data } = PlaceOfActivity
+  return Object.keys(data) as PlaceOfActivityKey[]
+}
 /**
  * 活動場所
  */
 export const isPlaceOfActivity = (s: any): s is PlaceOfActivity =>
-  Object.values(PlaceOfActivity).includes(s)
+  getAllPlaceOfActivity().includes(s)
 
 /**
  * 峰キャンパス.

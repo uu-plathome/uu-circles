@@ -1,4 +1,5 @@
 import { __ } from '@/lang/ja'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDate, getTime } from '@/lib/utils/Date'
 import Link from 'next/link'
@@ -28,7 +29,7 @@ const CircleNewJoyListItemSP: FC<Props> = ({ slug, circleNewJoy }) => {
                 場所
               </span>
               <span className="block w-full text-center">
-                {__(circleNewJoy.placeOfActivity)}
+                {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </span>
             </p>
             <div className="text-sm flex">
