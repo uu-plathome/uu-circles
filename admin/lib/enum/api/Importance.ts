@@ -41,7 +41,8 @@ export const getAllImportanceKey = (): ImportanceKey[] => {
 /**
  * 重要度.
  */
-export const isImportance = (s: any): s is Importance => getAllImportance().includes(s)
+export const isImportance = (s: any): s is Importance =>
+  getAllImportance().includes(s)
 
 /**
  * 高.
