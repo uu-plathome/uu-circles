@@ -36,13 +36,16 @@ export const getAllDateOfActivityKey = (): DateOfActivityKey[] => {
 /**
  * 活動日時
  */
-export const isDateOfActivity = (s: any): s is DateOfActivity => getAllDateOfActivity().includes(s)
+export const isDateOfActivity = (s: any): s is DateOfActivity =>
+  getAllDateOfActivity().includes(s)
 
 /**
  * 毎週.
  */
-export const isEveryWeek = (v: any): v is 'EVERY_WEEK' => v === DateOfActivity.EVERY_WEEK
+export const isEveryWeek = (v: any): v is 'EVERY_WEEK' =>
+  v === DateOfActivity.EVERY_WEEK
 /**
  * 隔週.
  */
-export const isEveryOtherWeek = (v: any): v is 'EVERY_OTHER_WEEK' => v === DateOfActivity.EVERY_OTHER_WEEK
+export const isEveryOtherWeek = (v: any): v is 'EVERY_OTHER_WEEK' =>
+  v === DateOfActivity.EVERY_OTHER_WEEK
