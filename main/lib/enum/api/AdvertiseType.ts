@@ -36,7 +36,8 @@ export const getAllAdvertiseTypeKey = (): AdvertiseTypeKey[] => {
 /**
  * 広告種類.
  */
-export const isAdvertiseType = (s: any): s is AdvertiseType => getAllAdvertiseType().includes(s)
+export const isAdvertiseType = (s: any): s is AdvertiseType =>
+  getAllAdvertiseType().includes(s)
 
 /**
  * 通常広告.
@@ -45,4 +46,5 @@ export const isCommon = (v: any): v is 'COMMON' => v === AdvertiseType.COMMON
 /**
  * メイントップ画面.
  */
-export const isMainTop = (v: any): v is 'MAIN_TOP' => v === AdvertiseType.MAIN_TOP
+export const isMainTop = (v: any): v is 'MAIN_TOP' =>
+  v === AdvertiseType.MAIN_TOP

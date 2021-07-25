@@ -55,7 +55,9 @@ const Page: NextPage<Props> = ({
             sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
           >
             <div className="px-5">
-              <h1 className="text-2xl py-8">{__(String(tag), TagSlugProperty._type)}</h1>
+              <h1 className="text-2xl py-8">
+                {__(String(tag), TagSlugProperty._type)}
+              </h1>
 
               {circleTagTitle ? (
                 <p className="text-base pb-4 font-bold">{circleTagTitle}</p>

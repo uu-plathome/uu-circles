@@ -20,9 +20,13 @@ export const DemoCircleNewjoyType = {
   FUTURE: 'FUTURE',
 } as const
 
-export type DemoCircleNewjoyTypeKey = keyof Omit<typeof DemoCircleNewjoyType, '_type'>
+export type DemoCircleNewjoyTypeKey = keyof Omit<
+  typeof DemoCircleNewjoyType,
+  '_type'
+>
 export type DemoCircleNewjoyTypeAllKey = keyof typeof DemoCircleNewjoyType
-export type DemoCircleNewjoyType = typeof DemoCircleNewjoyType[DemoCircleNewjoyTypeKey]
+export type DemoCircleNewjoyType =
+  typeof DemoCircleNewjoyType[DemoCircleNewjoyTypeKey]
 
 /**
  * 広告種類.
@@ -41,7 +45,8 @@ export const getAllDemoCircleNewjoyTypeKey = (): DemoCircleNewjoyTypeKey[] => {
 /**
  * 広告種類.
  */
-export const isDemoCircleNewjoyType = (s: any): s is DemoCircleNewjoyType => getAllDemoCircleNewjoyType().includes(s)
+export const isDemoCircleNewjoyType = (s: any): s is DemoCircleNewjoyType =>
+  getAllDemoCircleNewjoyType().includes(s)
 
 /**
  * 今.
@@ -50,8 +55,10 @@ export const isNow = (v: any): v is 'NOW' => v === DemoCircleNewjoyType.NOW
 /**
  * 今日.
  */
-export const isToday = (v: any): v is 'TODAY' => v === DemoCircleNewjoyType.TODAY
+export const isToday = (v: any): v is 'TODAY' =>
+  v === DemoCircleNewjoyType.TODAY
 /**
  * 未来.
  */
-export const isFuture = (v: any): v is 'FUTURE' => v === DemoCircleNewjoyType.FUTURE
+export const isFuture = (v: any): v is 'FUTURE' =>
+  v === DemoCircleNewjoyType.FUTURE

@@ -246,7 +246,10 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${CategorySlugProperty.club}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CategorySlugProperty.club, CategorySlugProperty._type)}
+                      {__(
+                        CategorySlugProperty.club,
+                        CategorySlugProperty._type
+                      )}
                     </a>
                   </Link>
                 </li>
@@ -256,7 +259,10 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${CategorySlugProperty.official_organization}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CategorySlugProperty.official_organization, CategorySlugProperty._type)}
+                      {__(
+                        CategorySlugProperty.official_organization,
+                        CategorySlugProperty._type
+                      )}
                     </a>
                   </Link>
                 </li>
@@ -266,7 +272,10 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${CategorySlugProperty.student_group}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CategorySlugProperty.student_group, CategorySlugProperty._type)}
+                      {__(
+                        CategorySlugProperty.student_group,
+                        CategorySlugProperty._type
+                      )}
                     </a>
                   </Link>
                 </li>
@@ -276,7 +285,10 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     as={`/circle/category/${CategorySlugProperty.unofficial_organization}`}
                   >
                     <a className="text-gray-400 font-bold text-sm">
-                      {__(CategorySlugProperty.unofficial_organization, CategorySlugProperty._type)}
+                      {__(
+                        CategorySlugProperty.unofficial_organization,
+                        CategorySlugProperty._type
+                      )}
                     </a>
                   </Link>
                 </li>

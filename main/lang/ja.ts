@@ -115,7 +115,8 @@ export const ja = {
     [CategorySlugProperty.unofficial_organization]:
       '公に認められなくても良い。大学内の自由な自治体',
     // [CategorySlugProperty.sending_organization]: '公認を目指して邁進中',
-    [CategorySlugProperty.student_group]: '社会のために。過去と未来の自分のために',
+    [CategorySlugProperty.student_group]:
+      '社会のために。過去と未来の自分のために',
     [CategorySlugProperty.club]: '大学の1つの顔',
   },
   [namespaceType.TextByCategorySlugProperty]: {
@@ -127,7 +128,8 @@ export const ja = {
     //  '公認サークルになりたい非公認サークルです。大輪の花が眠っているかもしれません。可能性のつぼみを一緒に開きませんか？',
     [CategorySlugProperty.student_group]:
       'サークルと違い、外部を対象にした活動を主とする集団です。（就職にも有利かも。）このサイトも学生集団制作です。一緒に過去の自分をサポートし、未来の自分の成功に繋げましょう。',
-    [CategorySlugProperty.club]: 'その分野での大学の代表となるのが部活動です。大学の名前を背負って、宇都宮大学という集団の一つの顔を担ってみませんか？',
+    [CategorySlugProperty.club]:
+      'その分野での大学の代表となるのが部活動です。大学の名前を背負って、宇都宮大学という集団の一つの顔を担ってみませんか？',
   },
   [namespaceType.TitleByTagSlugProperty]: {
     [TagSlugProperty.sport]: '質実剛健への道',
