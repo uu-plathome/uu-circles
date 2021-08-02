@@ -4,6 +4,7 @@ import { BaseHead } from '@/components/layouts/BaseHead'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
+import { ApiUrl } from '@/lib/enum/app/ApiUrl'
 import axios from 'axios'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
-const UU_YELL_URL = 'https://media.uu-circles.com'
+const UU_YELL_URL = ApiUrl.UU_YELL
 
 const ID_LIST = {
   first: 'first',
