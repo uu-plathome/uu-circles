@@ -9,6 +9,9 @@ export interface Circle {
   shortName: string
   prefixName: string
   /** サークル紹介文 */ description: string
+  /** デモ画面のみに表示 */ isOnlyDemo: boolean
+  /** デモ画面に固定表示 */ isDemoFixed: true
+  /** メイン画面に固定表示 */ isMainFixed: true
   commonPlaceOfActivity: string
   commonPlaceOfActivityDetail: string
   commonDateOfActivityMonday: boolean
