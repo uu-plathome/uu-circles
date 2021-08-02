@@ -1,6 +1,10 @@
 const withPWA = require('next-pwa')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-module.exports = withPWA({
+
+module.exports = withBundleAnalyzer(withPWA({
   env: {
     // Reference a variable that was defined in the .env file and make it available at Build Time
     API_URL: process.env.API_URL || 'http://localhost:8000',
@@ -23,4 +27,4 @@ module.exports = withPWA({
   pwa: {
     dest: 'public', // swの出力ディレクトリ
   },
-})
+}))
