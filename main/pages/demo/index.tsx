@@ -13,6 +13,7 @@ import { getMainDemo } from '@/infra/api/main'
 import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
 import { Importance } from '@/lib/enum/api/Importance'
 import { ApiUrl } from '@/lib/enum/app/ApiUrl'
+import { UuYellTagNumber } from '@/lib/enum/app/UuYellTagNumber'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
@@ -43,7 +44,7 @@ const Index: NextPage<Props> = ({
     posts: WP_REST_API_Posts
     medias: WP_REST_API_Attachments
   }>(['main'], async () => {
-    const TAG_NUMBER = 60
+    const TAG_NUMBER = UuYellTagNumber.UuCirclesRecommend
     const fetchedPosts = await axios.get<WP_REST_API_Posts>(
       `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&tags=${TAG_NUMBER}`
     )
