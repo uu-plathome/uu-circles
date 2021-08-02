@@ -5,6 +5,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout'
 import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
 import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucircleBottomButtons'
 import { ApiUrl } from '@/lib/enum/app/ApiUrl'
+import { UuYellTagNumber } from '@/lib/enum/app/UuYellTagNumber'
 import axios from 'axios'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -41,7 +42,7 @@ const Page: NextPage<Props> = () => {
     posts: WP_REST_API_Posts
     medias: WP_REST_API_Attachments
   }>(['main'], async () => {
-    const TAG_NUMBER = 60
+    const TAG_NUMBER = UuYellTagNumber.UuCirclesRecommend
     const fetchedPosts = await axios.get<WP_REST_API_Posts>(
       `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&tags=${TAG_NUMBER}`
     )
