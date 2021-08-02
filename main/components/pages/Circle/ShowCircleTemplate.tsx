@@ -20,7 +20,7 @@ import { dayjs } from '@/plugins/Dayjs'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
-import { FC } from "react"
+import { FC } from 'react'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
@@ -188,8 +188,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               </div>
 
               {wpPosts &&
-                wpPosts.postsExistTags &&
-                wpPosts.postsExistTags.length > 0 ? (
+              wpPosts.postsExistTags &&
+              wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -217,8 +217,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               )}
 
               {wpPosts &&
-                wpPosts.postsNotTags &&
-                wpPosts.postsNotTags.length > 0 ? (
+              wpPosts.postsNotTags &&
+              wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -244,8 +244,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             </div>
 
             {uuYellForCircles &&
-              uuYellForCircles.posts &&
-              uuYellForCircles.posts.length > 0 ? (
+            uuYellForCircles.posts &&
+            uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
