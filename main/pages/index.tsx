@@ -10,6 +10,7 @@ import { MainUucircleBottomButtons } from '@/components/organisms/Main/MainUucir
 import { MainUucircleTopButtons } from '@/components/organisms/Main/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/components/organisms/Main/MainUucircleTopCarousel'
 import { getMain } from '@/infra/api/main'
+import { ApiUrl } from '@/lib/enum/app/ApiUrl'
 import { Advertise } from '@/lib/types/model/Advertise'
 import { Announcement } from '@/lib/types/model/Announcement'
 import { Circle } from '@/lib/types/model/Circle'
@@ -19,7 +20,7 @@ import Head from 'next/head'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
-const UU_YELL_URL = 'https://media.uu-circles.com'
+const UU_YELL_URL = ApiUrl.UU_YELL
 
 type Props = {
   advertises: Advertise[]
