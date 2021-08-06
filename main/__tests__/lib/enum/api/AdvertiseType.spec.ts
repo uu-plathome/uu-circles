@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/AdvertiseType'
+import * as TestFunc from '@/src/lib/enum/api/AdvertiseType'
 
 describe('Enum AdvertiseType', () => {
   it('isCommon', () => {

@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/TagSlugProperty'
+import * as TestFunc from '@/src/lib/enum/api/TagSlugProperty'
 
 describe('Enum TagSlugProperty', () => {
   it('isSport', () => {
