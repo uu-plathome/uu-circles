@@ -1,5 +1,5 @@
-import { axiosInstance } from '@/src/infra/api'
 import { SitemapDto } from '@/src/lib/enum/app/SitemapDto'
+import { axiosInstance } from '@/src/lib/infra/api'
 import { GetServerSidePropsContext } from 'next'
 import React from 'react'
 

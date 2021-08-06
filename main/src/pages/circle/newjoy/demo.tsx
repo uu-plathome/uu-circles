@@ -1,11 +1,11 @@
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { NewjoyTemplate } from '@/src/components/pages/Newjoy/NewjoyTemplate'
+import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { Importance } from '@/src/lib/enum/api/Importance'
 import {
   getDemoTodayCircleNewJoy,
   TodayCircleNewJoy,
-} from '@/src/infra/api/circleNewJoy'
-import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
-import { Importance } from '@/src/lib/enum/api/Importance'
+} from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'

@@ -5,7 +5,7 @@ import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColu
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
 import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
 import { CarouselCircleList } from '@/src/components/organisms/List/CarouselCircleList'
-import { searchCircle } from '@/src/infra/api/circle'
+import { searchCircle } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'

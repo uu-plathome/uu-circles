@@ -7,7 +7,7 @@ import { StatisticsButtonState } from '@/src/components/organisms/Statistics/Sta
 import { StatisticsCircleView } from '@/src/components/organisms/Statistics/StatisticsCircleView'
 import { StatisticsCommonView } from '@/src/components/organisms/Statistics/StatisticsCommonView'
 import { StatisticsOtherView } from '@/src/components/organisms/Statistics/StatisticsOtherView'
-import { getStatistics } from '@/src/infra/api/statistics'
+import { getStatistics } from '@/src/lib/infra/api/statistics'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Statistics } from '@/src/lib/types/model/Statistics'
 import { GetStaticProps, NextPage } from 'next'

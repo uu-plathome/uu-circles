@@ -1,8 +1,8 @@
+import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import {
   publishIdentification,
   validIdentification,
-} from '@/src/infra/api/identification'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
+} from '@/src/lib/infra/api/identification'
 import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 import * as gtag from '@/src/lib/utils/Gtag'
 import { AppProps } from 'next/app'
