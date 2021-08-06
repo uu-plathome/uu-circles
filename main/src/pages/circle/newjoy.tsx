@@ -6,7 +6,7 @@ import { IndexCircleNewJoyListForNoSlug } from '@/src/components/organisms/List/
 import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
-} from '@/src/infra/api/circleNewJoy'
+} from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'

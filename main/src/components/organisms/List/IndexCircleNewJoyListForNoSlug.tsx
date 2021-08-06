@@ -1,4 +1,4 @@
-import { TodayCircleNewJoy } from '@/src/infra/api/circleNewJoy'
+import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import { FC } from 'react'
 import { CircleNewJoyListItemForNoSlug } from '../ListItem/CircleNewJoyListItemForNoSlug'
 
