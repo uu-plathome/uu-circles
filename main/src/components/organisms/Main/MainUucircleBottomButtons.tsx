@@ -22,14 +22,14 @@ const WpPostBlock: FC<{
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
-        <p className="wp-cardtype__img">
+        <div className="wp-cardtype__img">
           <Image
             src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
             width={342}
             height={180}
           />
-        </p>
+        </div>
 
         <div className="px-6 py-2 mb-2">
           {post.date ? (
