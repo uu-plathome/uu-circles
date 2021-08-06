@@ -1,7 +1,7 @@
-import colors from '@/colors'
 import { CircleTypeBadge } from '@/src/components/molecules/Badge/CircleTypeBadge'
 import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { Circle } from '@/src/lib/types/model/Circle'
+import colors from '@/src/styles/colors'
 import {
   faUserFriends,
   faWallet,

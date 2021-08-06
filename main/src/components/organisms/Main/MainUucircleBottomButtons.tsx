@@ -1,7 +1,7 @@
-import colors from '@/colors'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { dayjs } from '@/src/plugins/Dayjs'
+import colors from '@/src/styles/colors'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
