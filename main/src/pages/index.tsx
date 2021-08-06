@@ -18,10 +18,13 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+import Pusher from 'pusher-js'
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
+Pusher.logToConsole = true;
 
 type Props = {
   advertises: Advertise[]
@@ -103,6 +106,17 @@ const Index: NextPage<Props> = (ssrProps) => {
   //     })
   //   })
   // }, [])
+
+  // const [pusher, setPusher] = useState<Pusher | null>()
+  useEffect(() => {
+    const pusher = new Pusher('a9b069e2da6cbb2a3766', {
+      cluster: 'ap3'
+    });
+
+    pusher.subscribe('my-channel-name').bind('my-event', (data) => {
+      console.info('Received event:', data)
+    })
+  }, [])
 
   return (
     <div>
