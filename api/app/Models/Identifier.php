@@ -37,4 +37,9 @@ class Identifier extends Model
     {
         return $this->hasMany(IdentifierHistory::class);
     }
+    
+    public function pagePositionHistory(): HasMany
+    {
+        return $this->hasMany(PagePositionHistory::class);
+    }
 }
