@@ -5,16 +5,16 @@ import { axiosInstance } from "../lib/infra/api";
 const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
 export const usePagePosition = ({
-  pageName,
+  pageUrl,
   identifierHash,
 }: {
-  pageName: string
+  pageUrl: string
   identifierHash: string
 }) => {
-  const [nowId, setNowId] = useState<string>('')
+  const [pagePositionId, setPagePositionId] = useState<string>('')
   const [pageData, setPageData] = useState<any>({})
   const onChangeId = async (id: string) => {
-    setNowId(id)
+    setPagePositionId(id)
 
     if (identifierHash) {
       await axiosInstance.get('/api/page-position')
@@ -35,9 +35,9 @@ export const usePagePosition = ({
   }, [identifierHash])
 
   return {
-    nowId,
+    pagePositionId,
     pageData,
-    pageName,
+    pageUrl,
     identifierHash,
     onChangeId,
   };
