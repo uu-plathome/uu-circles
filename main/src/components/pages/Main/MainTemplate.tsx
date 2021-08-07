@@ -13,8 +13,14 @@ import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainU
 import { Advertise } from "@/src/lib/types/model/Advertise";
 import { Announcement } from "@/src/lib/types/model/Announcement";
 import { Circle } from "@/src/lib/types/model/Circle";
+import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { NextPage } from "next";
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from "wp-types";
+
+const ID_LIST = {
+  HEADER_CATCH_COPY: 'header_catch_copy',
+  TOP_BUTTONS: 'top_buttons',
+} as const
 
 type Props = {
   advertises: Advertise[]
@@ -26,6 +32,8 @@ type Props = {
     posts: WP_REST_API_Posts
     medias: WP_REST_API_Attachments
   }
+  pagePositions: PagePositions
+  onChangeId: (_pagePositionId: string) => Promise<void>
 }
 export const MainTemplate: NextPage<Props> = ({
   advertises,
@@ -33,7 +41,9 @@ export const MainTemplate: NextPage<Props> = ({
   circles,
   uuYellArticles,
   uuYellForMain,
-  announcements
+  announcements,
+  pagePositions,
+  onChangeId,
 }) => {
   return (
     <div>
@@ -48,11 +58,33 @@ export const MainTemplate: NextPage<Props> = ({
       >
         <MainUucircleTopCarousel advertises={mainAdvertises} />
 
-        <div style={{ marginTop: '-6px' }} className="bg-white">
+        <div
+          id={ID_LIST.HEADER_CATCH_COPY}
+          style={{ marginTop: '-6px' }}
+          className="bg-white"
+          onMouseOver={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
+        >
           <p className="text-center py-8">新歓をハックする！</p>
         </div>
 
-        <MainUucircleTopButtons />
+        {
+          pagePositions.pagePositions.filter(
+            (pagePosition) => pagePosition.pagePositionId === ID_LIST.HEADER_CATCH_COPY
+          ).length
+        }
+
+        <div
+          id={ID_LIST.TOP_BUTTONS}
+          onMouseOver={() => onChangeId(ID_LIST.TOP_BUTTONS)}
+        >
+          <MainUucircleTopButtons />
+        </div>
+
+        {
+          pagePositions.pagePositions.filter(
+            (pagePosition) => pagePosition.pagePositionId === ID_LIST.TOP_BUTTONS
+          ).length
+        }
 
         <BaseContainer>
           <div className="px-7">

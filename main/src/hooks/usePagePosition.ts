@@ -1,6 +1,7 @@
 import Pusher from "pusher-js";
 import { useEffect, useState } from "react";
 import { createPagePosition } from "../lib/infra/api/pagePosition";
+import { PagePositions } from "../lib/types/model/PagePosition";
 
 const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
@@ -12,8 +13,15 @@ export const usePagePosition = ({
   identifierHash: string
 }) => {
   const [pagePositionId, setPagePositionId] = useState<string>('')
-  const [pageData, setPageData] = useState<any>({})
+  const [pageData, setPageData] = useState<PagePositions>({
+    pageUrl,
+    pagePositions: [],
+  })
   const [onProcess, setOnProcess] = useState<boolean>(false)
+
+  /**
+   * 位置の記録を行う
+   */
   const onChangeId = async (_pagePositionId: string) => {
     setPagePositionId(_pagePositionId)
 
@@ -43,6 +51,9 @@ export const usePagePosition = ({
     }
   }
 
+  /**
+   * リアルタイム同期
+   */
   useEffect(() => {
     if (identifierHash) {
       const channelName = 'my-channel-name'
@@ -50,7 +61,7 @@ export const usePagePosition = ({
         cluster: 'ap3'
       });
 
-      pusher.subscribe(channelName).bind('my-event', (data) => {
+      pusher.subscribe(channelName).bind('my-event', (data: PagePositions) => {
         console.info('Received event:', data)
         setPageData(data)
       })
