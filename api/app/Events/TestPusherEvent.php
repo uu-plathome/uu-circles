@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 final class TestPusherEvent implements ShouldBroadcast
 {
@@ -23,6 +24,9 @@ final class TestPusherEvent implements ShouldBroadcast
      */
     public function __construct(TestPusherEventArg $arg)
     {
+        Log::debug("TestPusherEvent constructor args", [
+            'arg' => $arg,
+        ]);
         $this->arg = $arg;
     }
 

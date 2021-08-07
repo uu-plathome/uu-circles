@@ -26,6 +26,7 @@ class CreatePagePositionRequest extends FormRequest
         return [
             'pageUrl'        => 'required|string|max:255',
             'pagePositionId' => 'required|string|max:255',
+            'screenWidth'    => 'nullable|regex:/^[0-9]+$/i|min:0',
         ];
     }
 }

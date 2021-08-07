@@ -71,7 +71,7 @@ const Index: NextPage<Props> = (ssrProps) => {
   const { uuYellForMain } = useFetchUuYell()
 
   // ページ位置
-  const { onChangeId } = usePagePosition({ pageUrl: '/', identifierHash })
+  const { pageData, onChangeId } = usePagePosition({ pageUrl: '/', identifierHash })
 
   return <MainTemplate
     advertises={advertises}
@@ -80,6 +80,7 @@ const Index: NextPage<Props> = (ssrProps) => {
     uuYellArticles={uuYellArticles}
     uuYellForMain={uuYellForMain}
     announcements={announcements}
+    pagePositions={pageData}
     onChangeId={onChangeId}
   />
 }
