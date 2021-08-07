@@ -88,5 +88,5 @@ Route::post('/identification/publish', Identification\PublishIdentificationContr
 Route::post('/identification/valid/{identifer_hash}', Identification\CheckIdentificationController::class)
     ->name(ARP::MainIdentificationCheck);
 
-// ページの位置
-Route::get('/page-position', PagePosition\CreatePagePositionController::class);
+// ページの位置を記録
+Route::post('/page-position', PagePosition\CreatePagePositionController::class);

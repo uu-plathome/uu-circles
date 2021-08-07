@@ -22,6 +22,8 @@ import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+import { usePagePosition } from '../hooks/usePagePosition'
+import { LocalStorageKey } from '../lib/enum/app/LocalStorageKey'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 Pusher.logToConsole = true;
@@ -34,6 +36,11 @@ type Props = {
   /** お知らせ */ announcements: Announcement[]
 }
 const Index: NextPage<Props> = (ssrProps) => {
+  const [identifierHash, setIdentifierHash] = useState(null)
+  useEffect(() => {
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+  }, [])
+
   const {
     data: {
       advertises,
@@ -82,41 +89,7 @@ const Index: NextPage<Props> = (ssrProps) => {
     }
   })
 
-
-  // const [socket, _] = useState(() => io())
-  // useEffect(() => {
-  //   socket.on('connect', () => {
-  //     console.info('socket connected!!')
-  //   })
-  //   socket.on('disconnect', () => {
-  //     console.info('socket disconnected!!')
-  //   })
-  //   socket.on('update-data', (newData) => {
-  //     console.info('Get Updated Data', newData)
-  //   })
-  //   return () => {
-  //     socket.close()
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     axiosInstance.post('http://localhost:3000/api/chat', {
-  //       data: 'aaaa'
-  //     })
-  //   })
-  // }, [])
-
-  // const [pusher, setPusher] = useState<Pusher | null>()
-  useEffect(() => {
-    const pusher = new Pusher('a9b069e2da6cbb2a3766', {
-      cluster: 'ap3'
-    });
-
-    pusher.subscribe('my-channel-name').bind('my-event', (data) => {
-      console.info('Received event:', data)
-    })
-  }, [])
+  usePagePosition({ pageName: '/', identifierHash })
 
   return (
     <div>

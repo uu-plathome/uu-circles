@@ -17,9 +17,5 @@ export interface AdminPutStorageRequestValidationError {
   message: string
 }
 
-export const isAdminPutStorageRequest = (v: any): v is AdminPutStorageRequest =>
-  v && v.type === 'AdminPutStorageRequest'
-export const isAdminPutStorageRequestValidationError = (
-  v: any
-): v is AdminPutStorageRequestValidationError =>
-  v && v.type === 'AdminPutStorageRequestValidationError'
+export const isAdminPutStorageRequest = (v: any): v is AdminPutStorageRequest => v && v.type === 'AdminPutStorageRequest'
+export const isAdminPutStorageRequestValidationError = (v: any): v is AdminPutStorageRequestValidationError => v && v.type === 'AdminPutStorageRequestValidationError'
