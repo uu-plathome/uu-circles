@@ -7,6 +7,7 @@ use App\Events\Arg\TestPusherEventArg;
 use App\Events\TestPusherEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\PagePosition\CreatePagePositionRequest;
+use App\Models\Identifier;
 use App\Models\PagePositionHistory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -35,7 +36,7 @@ class CreatePagePositionController extends Controller
             'X-IDENTIFIER_HASH' => $identifierHash,
         ]);
 
-        $identifier =  Identifier::whereIdentifierHash($identifierHash)
+        $identifier = Identifier::whereIdentifierHash($identifierHash)
             ->hasByNonDependentSubquery('identifierHistory', function ($query) use ($request) {
                 $query->whereUserAgent($request->userAgent());
                 $query->whereIpAddress($request->ip());
@@ -51,14 +52,14 @@ class CreatePagePositionController extends Controller
             PagePositionHistoryProperty::identifier_id    => $identifier->id,
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
             PagePositionHistoryProperty::page_position_id => $requestPagePositionId,
-        ]);
-        
+        ])->save();
+
         /** @var Collection $pagePositionsByPageUrl */
         $pagePositionsByPageUrl = PagePositionHistory::wherePageUrl($requestPageUrl)
             // 3s以内
             ->where(
-                PagePositionHistoryProperty::created_at, 
-                '<=', 
+                PagePositionHistoryProperty::created_at,
+                '<=',
                 date('Y-m-d H:i:s', time()-3)
             )
             ->orderByDesc(PagePositionHistoryProperty::created_at)
@@ -69,8 +70,7 @@ class CreatePagePositionController extends Controller
                 PagePositionHistoryProperty::created_at
             ])
             ->unique(PagePositionHistoryProperty::identifier_id)
-            ->values()
-            ->all();
+            ->values();
 
         $arg = TestPusherEventArg::byEloquent($pagePositionsByPageUrl);
         event(new TestPusherEvent($arg));
