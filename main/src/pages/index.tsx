@@ -53,6 +53,7 @@ type Props = {
   /** お知らせ */ announcements: Announcement[]
 }
 const Index: NextPage<Props> = (ssrProps) => {
+  // 識別子の取得
   const [identifierHash, setIdentifierHash] = useState(null)
   useEffect(() => {
     setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
@@ -66,9 +67,11 @@ const Index: NextPage<Props> = (ssrProps) => {
     announcements
   } = useRefetchMainData(ssrProps)
 
+  // 「編集長イチオシ」の取得
   const { uuYellForMain } = useFetchUuYell()
 
-  usePagePosition({ pageUrl: '/', identifierHash })
+  // ページ位置
+  const { onChangeId } = usePagePosition({ pageUrl: '/', identifierHash })
 
   return <MainTemplate
     advertises={advertises}
@@ -77,6 +80,7 @@ const Index: NextPage<Props> = (ssrProps) => {
     uuYellArticles={uuYellArticles}
     uuYellForMain={uuYellForMain}
     announcements={announcements}
+    onChangeId={onChangeId}
   />
 }
 
