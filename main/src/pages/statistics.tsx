@@ -13,18 +13,20 @@ import { useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 
 const StatisticsCircleView = dynamic(() =>
-  import('@/src/components/organisms/Statistics/StatisticsCircleView')
-    .then(mod => mod.StatisticsCircleView)
+  import('@/src/components/organisms/Statistics/StatisticsCircleView').then(
+    (mod) => mod.StatisticsCircleView
+  )
 )
 const StatisticsCommonView = dynamic(() =>
-  import('@/src/components/organisms/Statistics/StatisticsCommonView')
-    .then(mod => mod.StatisticsCommonView)
+  import('@/src/components/organisms/Statistics/StatisticsCommonView').then(
+    (mod) => mod.StatisticsCommonView
+  )
 )
 const StatisticsOtherView = dynamic(() =>
-  import('@/src/components/organisms/Statistics/StatisticsOtherView')
-    .then(mod => mod.StatisticsOtherView)
+  import('@/src/components/organisms/Statistics/StatisticsOtherView').then(
+    (mod) => mod.StatisticsOtherView
+  )
 )
-
 
 type Props = {
   statistics?: Statistics
@@ -64,15 +66,17 @@ const Page: NextPage<Props> = ({
               />
 
               <div
-                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>

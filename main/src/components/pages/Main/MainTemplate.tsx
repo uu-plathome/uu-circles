@@ -15,20 +15,24 @@ import { FC } from 'react'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const MainTagList = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainTagList')
-    .then(mod => mod.MainTagList)
+  import('@/src/components/pages/Main/Parts/MainTagList').then(
+    (mod) => mod.MainTagList
+  )
 )
 const MainUucircleAd = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainUucircleAd')
-    .then(mod => mod.MainUucircleAd)
+  import('@/src/components/pages/Main/Parts/MainUucircleAd').then(
+    (mod) => mod.MainUucircleAd
+  )
 )
 const MainUucircleBottomButtons = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainUucircleBottomButtons')
-    .then(mod => mod.MainUucircleBottomButtons)
+  import('@/src/components/pages/Main/Parts/MainUucircleBottomButtons').then(
+    (mod) => mod.MainUucircleBottomButtons
+  )
 )
 const MainSponsorshipFooter = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainSponsorshipFooter')
-    .then(mod => mod.MainSponsorshipFooter)
+  import('@/src/components/pages/Main/Parts/MainSponsorshipFooter').then(
+    (mod) => mod.MainSponsorshipFooter
+  )
 )
 
 const ID_LIST = {
