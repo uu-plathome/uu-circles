@@ -22,7 +22,7 @@ export const usePagePosition = ({
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
   // 画面サイズ
-  const { width } = useWindowResize()
+  const { width, height } = useWindowResize()
 
   /**
    * 位置の記録を行う
@@ -51,6 +51,7 @@ export const usePagePosition = ({
           pageName,
           pagePositionId: _pagePositionId,
           screenWidth: width,
+          screenHeight: height,
         },
       })
     } finally {
@@ -64,21 +65,17 @@ export const usePagePosition = ({
    * リアルタイム同期
    */
   useEffect(() => {
-    if (identifierHash) {
-      const channelName = 'page-position-channel'
-      const pusher = new Pusher(PUSHER_KEY, {
-        cluster: 'ap3',
+    const channelName = 'page-position-channel'
+    const pusher = new Pusher(PUSHER_KEY, {
+      cluster: 'ap3',
+    })
+
+    pusher
+      .subscribe(channelName)
+      .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
+        console.info('Received event:', data)
+        setPageData(data.arg)
       })
-
-      pusher
-        .subscribe(channelName)
-        .bind('my-event', (data: { arg: PagePositions }) => {
-          console.info('Received event:', data)
-          setPageData(data.arg)
-        })
-
-      return () => pusher.unsubscribe(channelName)
-    }
   }, [identifierHash])
 
   return {

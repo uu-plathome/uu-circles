@@ -7,6 +7,7 @@ export interface CreatePagePositionRequest {
   pageName: string
   pagePositionId: string
   screenWidth?: number
+  screenHeight?: number
 }
 
 /**
@@ -19,6 +20,7 @@ export interface CreatePagePositionRequestValidationError {
     pageName?: string[]
     pagePositionId?: string[]
     screenWidth?: string[]
+    screenHeight?: string[]
   }
   message: string
 }
