@@ -85,7 +85,7 @@ class CreatePagePositionController extends Controller
         ) {
             $searchStartTime = $now->timestamp - 3;
             $searchTimeFormat = 'Y-m-d H:i:s';
-            
+
             /** @var Collection $pagePositionsByPageUrl */
             $pagePositionsByPageUrl = PagePositionHistory::with([
                 'identifier:id,identifier_hash',
