@@ -7,15 +7,23 @@ import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
 import { RecommendTagList } from '@/src/components/organisms/Circles/RecommendTagList'
 import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
 import { useStringInput } from '@/src/hooks/useInput'
+import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
+import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getAllCircleList } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { FormEvent } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
+
+const ID_LIST = {
+  CIRCLE_LENGTH: 'circle_length',
+  RECOMMEND_TAG_LIST: 'recommend_tag_list',
+  CIRCLE_LIST: 'circle_list',
+}
 
 type Props = {
   errorCode?: number
@@ -31,6 +39,13 @@ const Page: NextPage<Props> = ({
   tagPageViewRanking,
 }) => {
   const router = useRouter()
+  // 識別子の取得
+  const [identifierHash, setIdentifierHash] = useState(null)
+  useEffect(() => {
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+  }, [])
+
+
   const name = useStringInput('')
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -40,6 +55,13 @@ const Page: NextPage<Props> = ({
       router.push(`/circle`)
     }
   }
+
+  // ページ位置
+  const { onChangeId } = usePagePosition({
+    pageUrl: '/circle',
+    pageName: 'circle_index',
+    identifierHash,
+  })
 
   return (
     <div>
@@ -75,7 +97,11 @@ const Page: NextPage<Props> = ({
                 </form>
               </div>
 
-              <div className="text-right mb-8">
+              <div
+                id={ID_LIST.CIRCLE_LENGTH}
+                className="text-right mb-8"
+                onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LENGTH)}
+              >
                 <p className="text-sm">
                   現在の掲載団体数
                   <span className="ml-4 mr-2 text-2xl font-bold">
@@ -85,10 +111,20 @@ const Page: NextPage<Props> = ({
                 </p>
               </div>
 
-              <RecommendTagList />
+              <div
+                id={ID_LIST.RECOMMEND_TAG_LIST}
+                onMouseMove={() => onChangeId(ID_LIST.RECOMMEND_TAG_LIST)}
+              >
+                <RecommendTagList />
+              </div>
 
-              {/*  サークル一覧 */}
-              <BaseCircleList circles={circles} />
+              <div
+                id={ID_LIST.CIRCLE_LIST}
+                onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
+              >
+                {/*  サークル一覧 */}
+                <BaseCircleList circles={circles} />
+              </div>
             </div>
           </TwoColumnContainer>
         </div>
@@ -96,7 +132,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </div >
   )
 }
 
