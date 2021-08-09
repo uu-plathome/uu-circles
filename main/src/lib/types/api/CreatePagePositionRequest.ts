@@ -7,6 +7,7 @@ export interface CreatePagePositionRequest {
   pageName: string
   pagePositionId: string
   screenWidth?: number
+  screenHeight?: number
 }
 
 /**
@@ -19,14 +20,10 @@ export interface CreatePagePositionRequestValidationError {
     pageName?: string[]
     pagePositionId?: string[]
     screenWidth?: string[]
+    screenHeight?: string[]
   }
   message: string
 }
 
-export const isCreatePagePositionRequest = (
-  v: any
-): v is CreatePagePositionRequest => v && v.type === 'CreatePagePositionRequest'
-export const isCreatePagePositionRequestValidationError = (
-  v: any
-): v is CreatePagePositionRequestValidationError =>
-  v && v.type === 'CreatePagePositionRequestValidationError'
+export const isCreatePagePositionRequest = (v: any): v is CreatePagePositionRequest => v && v.type === 'CreatePagePositionRequest'
+export const isCreatePagePositionRequestValidationError = (v: any): v is CreatePagePositionRequestValidationError => v && v.type === 'CreatePagePositionRequestValidationError'
