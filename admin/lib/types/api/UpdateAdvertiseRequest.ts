@@ -29,5 +29,9 @@ export interface UpdateAdvertiseRequestValidationError {
   message: string
 }
 
-export const isUpdateAdvertiseRequest = (v: any): v is UpdateAdvertiseRequest => v && v.type === 'UpdateAdvertiseRequest'
-export const isUpdateAdvertiseRequestValidationError = (v: any): v is UpdateAdvertiseRequestValidationError => v && v.type === 'UpdateAdvertiseRequestValidationError'
+export const isUpdateAdvertiseRequest = (v: any): v is UpdateAdvertiseRequest =>
+  v && v.type === 'UpdateAdvertiseRequest'
+export const isUpdateAdvertiseRequestValidationError = (
+  v: any
+): v is UpdateAdvertiseRequestValidationError =>
+  v && v.type === 'UpdateAdvertiseRequestValidationError'
