@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Enum\BroadCastProperty\BroadCastProperty;
-use App\Events\Arg\TestPusherEventArg;
+use App\Events\Arg\PagePositions;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -11,20 +11,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-final class TestPusherEvent implements ShouldBroadcast
+final class SendPagePosition implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public TestPusherEventArg $arg;
+    public PagePositions $arg;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(TestPusherEventArg $arg)
+    public function __construct(PagePositions $arg)
     {
-        Log::debug("TestPusherEvent constructor args", [
+        Log::debug("SendPagePosition constructor args", [
             'arg' => $arg,
         ]);
         $this->arg = $arg;
