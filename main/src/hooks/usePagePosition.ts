@@ -2,14 +2,17 @@ import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import { createPagePosition } from '../lib/infra/api/pagePosition'
 import { PagePositions } from '../lib/types/model/PagePosition'
+import { useWindowResize } from './useWindowResize'
 
 const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
 export const usePagePosition = ({
   pageUrl,
+  pageName,
   identifierHash,
 }: {
   pageUrl: string
+  pageName: string
   identifierHash: string
 }) => {
   const [pagePositionId, setPagePositionId] = useState<string>('')
@@ -18,6 +21,8 @@ export const usePagePosition = ({
     pagePositions: [],
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
+  // 画面サイズ
+  const { width } = useWindowResize()
 
   /**
    * 位置の記録を行う
@@ -43,7 +48,9 @@ export const usePagePosition = ({
         request: {
           type: 'CreatePagePositionRequest',
           pageUrl,
+          pageName,
           pagePositionId: _pagePositionId,
+          screenWidth: width
         },
       })
     } finally {

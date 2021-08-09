@@ -68,6 +68,7 @@ const Index: NextPage<Props> = (ssrProps) => {
   // ページ位置
   const { pageData, onChangeId } = usePagePosition({
     pageUrl: '/',
+    pageName: 'Main',
     identifierHash,
   })
 
