@@ -13,6 +13,7 @@ class PagePositionHistory extends Model
     
     protected $fillable = [
         PagePositionHistoryProperty::identifier_id,
+        PagePositionHistoryProperty::page_name,
         PagePositionHistoryProperty::page_url,
         PagePositionHistoryProperty::page_position_id,
     ];

@@ -34,6 +34,7 @@ class CreatePagePositionController extends Controller
 
         $requestPagePositionId = $request->get('pagePositionId');
         $requestPageUrl = $request->get('pageUrl');
+        $requestPageName = $request->get('pageName');
         $requestScreenWidth = intval($request->get('screenWidth', 320));
 
         // 識別子取得
@@ -60,6 +61,7 @@ class CreatePagePositionController extends Controller
         (new PagePositionHistory())->fill([
             PagePositionHistoryProperty::identifier_id    => $identifier->id,
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
+            PagePositionHistoryProperty::page_name        => $requestPageName,
             PagePositionHistoryProperty::page_position_id => $requestPagePositionId,
         ])->save();
 
@@ -88,6 +90,7 @@ class CreatePagePositionController extends Controller
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
+                    PagePositionHistoryProperty::page_name,
                     PagePositionHistoryProperty::page_url,
                     PagePositionHistoryProperty::created_at
                 ]);
@@ -113,6 +116,7 @@ class CreatePagePositionController extends Controller
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
+                    PagePositionHistoryProperty::page_name,
                     PagePositionHistoryProperty::page_url,
                     PagePositionHistoryProperty::created_at
                 ]);
