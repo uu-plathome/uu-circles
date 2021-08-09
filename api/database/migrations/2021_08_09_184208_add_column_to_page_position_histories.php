@@ -35,7 +35,7 @@ class AddColumnToPagePositionHistories extends Migration
         Schema::table('page_position_histories', function (Blueprint $table) {
             $table->dropColumn([
                 'screen_width',
-                'screen_height'
+                'screen_height',
             ]);
         });
     }
