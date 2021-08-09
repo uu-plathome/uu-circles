@@ -296,7 +296,8 @@ class GenerateRequestTypeForTs extends Command
             if (
                 $value === 'integer' ||
                 $value === 'numeric' ||
-                preg_match('/digits/', $value)
+                preg_match('/digits/', $value) ||
+                $value === 'regex:/^[0-9]+$/i'
             ) {
                 return 'number';
             }
