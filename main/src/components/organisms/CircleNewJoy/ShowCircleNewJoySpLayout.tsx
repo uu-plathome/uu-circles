@@ -17,9 +17,9 @@ type ShowCircleNewJoySpLayoutProps = {
   /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓(全て) */ allTodayCircleNewJoys?: {
-  slug: string
-  circleNewJoy: CircleNewJoy
-}[]
+    slug: string
+    circleNewJoy: CircleNewJoy
+  }[]
 }
 const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
   circle,

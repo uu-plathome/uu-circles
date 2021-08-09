@@ -31,7 +31,16 @@ const StatisticsOtherView: FC<Props> = ({ statistics }) => {
           <div style={{ width: 300 }}>
             <Doughnut
               data={{
-                labels: ['週0', '週1', '週2', '週3', '週4', '週5', '週6', '週7'],
+                labels: [
+                  '週0',
+                  '週1',
+                  '週2',
+                  '週3',
+                  '週4',
+                  '週5',
+                  '週6',
+                  '週7',
+                ],
                 datasets: [
                   {
                     label: '週の活動頻度',
@@ -109,7 +118,10 @@ const StatisticsOtherView: FC<Props> = ({ statistics }) => {
                       statistics.onlineActivityActivity.doOnlineCount,
                       statistics.onlineActivityActivity.onlyOnlineCount,
                     ],
-                    backgroundColor: [rgba(colors.blue[600], 0.5), colors.white],
+                    backgroundColor: [
+                      rgba(colors.blue[600], 0.5),
+                      colors.white,
+                    ],
                     hoverOffset: 4,
                   },
                 ],

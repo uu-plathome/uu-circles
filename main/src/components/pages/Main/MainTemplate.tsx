@@ -10,12 +10,12 @@ import { MainUucircleAd } from '@/src/components/pages/Main/Parts/MainUucircleAd
 import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
-import { Advertise } from "@/src/lib/types/model/Advertise";
-import { Announcement } from "@/src/lib/types/model/Announcement";
-import { Circle } from "@/src/lib/types/model/Circle";
+import { Advertise } from '@/src/lib/types/model/Advertise'
+import { Announcement } from '@/src/lib/types/model/Announcement'
+import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
-import { NextPage } from "next";
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from "wp-types";
+import { NextPage } from 'next'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const ID_LIST = {
   HEADER_CATCH_COPY: 'header_catch_copy',

@@ -1,7 +1,7 @@
-import Pusher from "pusher-js";
-import { useEffect, useState } from "react";
-import { createPagePosition } from "../lib/infra/api/pagePosition";
-import { PagePositions } from "../lib/types/model/PagePosition";
+import Pusher from 'pusher-js'
+import { useEffect, useState } from 'react'
+import { createPagePosition } from '../lib/infra/api/pagePosition'
+import { PagePositions } from '../lib/types/model/PagePosition'
 
 const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
@@ -44,7 +44,7 @@ export const usePagePosition = ({
           type: 'CreatePagePositionRequest',
           pageUrl,
           pagePositionId: _pagePositionId,
-        }
+        },
       })
     } finally {
       setOnProcess(false)
@@ -58,15 +58,17 @@ export const usePagePosition = ({
     if (identifierHash) {
       const channelName = 'page-position-channel'
       const pusher = new Pusher(PUSHER_KEY, {
-        cluster: 'ap3'
-      });
-
-      pusher.subscribe(channelName).bind('my-event', (data: { arg: PagePositions }) => {
-        console.info('Received event:', data)
-        setPageData(data.arg)
+        cluster: 'ap3',
       })
 
-      return () => pusher.unsubscribe(channelName);
+      pusher
+        .subscribe(channelName)
+        .bind('my-event', (data: { arg: PagePositions }) => {
+          console.info('Received event:', data)
+          setPageData(data.arg)
+        })
+
+      return () => pusher.unsubscribe(channelName)
     }
   }, [identifierHash])
 
@@ -76,5 +78,5 @@ export const usePagePosition = ({
     pageUrl,
     identifierHash,
     onChangeId,
-  };
+  }
 }

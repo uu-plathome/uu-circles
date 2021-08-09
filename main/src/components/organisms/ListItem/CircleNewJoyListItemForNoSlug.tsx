@@ -2,7 +2,13 @@ import { __ } from '@/src/lang/ja'
 import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
-import { getDOW, getMonth, getDay, getDate, getTime } from '@/src/lib/utils/Date'
+import {
+  getDOW,
+  getMonth,
+  getDay,
+  getDate,
+  getTime,
+} from '@/src/lib/utils/Date'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -11,7 +17,8 @@ import { FC } from 'react'
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'

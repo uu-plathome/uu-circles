@@ -11,15 +11,15 @@ const createSitemap = (response: SitemapDto[]) => {
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         ${response
-      .map((sitemapDto: SitemapDto) => {
-        return `
+          .map((sitemapDto: SitemapDto) => {
+            return `
                     <url>
                         <loc>${sitemapDto.siteUrl}</loc>
                         <lastmod>${sitemapDto.publishAt}</lastmod>
                     </url>
                 `
-      })
-      .join('')}
+          })
+          .join('')}
     </urlset>
     `
 }
