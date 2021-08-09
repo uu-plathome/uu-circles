@@ -65,21 +65,17 @@ export const usePagePosition = ({
    * リアルタイム同期
    */
   useEffect(() => {
-    if (identifierHash) {
-      const channelName = 'page-position-channel'
-      const pusher = new Pusher(PUSHER_KEY, {
-        cluster: 'ap3',
+    const channelName = 'page-position-channel'
+    const pusher = new Pusher(PUSHER_KEY, {
+      cluster: 'ap3',
+    })
+
+    pusher
+      .subscribe(channelName)
+      .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
+        console.info('Received event:', data)
+        setPageData(data.arg)
       })
-
-      pusher
-        .subscribe(channelName)
-        .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
-          console.info('Received event:', data)
-          setPageData(data.arg)
-        })
-
-      return () => pusher.unsubscribe(channelName)
-    }
   }, [identifierHash])
 
   return {
