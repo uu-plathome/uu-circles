@@ -10,6 +10,8 @@ final class PagePositions
 {
     public string $pageUrl;
 
+    public string $pageName;
+
     /**
      * @var PagePositionItemArg[]
      */
@@ -24,12 +26,14 @@ final class PagePositions
 
         if (count($pagePositions->all()) === 0) {
             $arg->pageUrl = '';
+            $arg->pageName = '';
             $arg->pagePositions = [];
 
             return $arg;
         }
 
         $arg->pageUrl = $pagePositions->first()->page_url;
+        $arg->pageName = $pagePositions->first()->page_name;
         $arg->pagePositions = $pagePositions->map(
             fn (PagePositionHistory $pagePositionHistory) => PagePositionItemArg::byEloquent($pagePositionHistory)
         )->toArray();

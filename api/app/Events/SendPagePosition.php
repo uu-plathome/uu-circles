@@ -42,8 +42,8 @@ final class SendPagePosition implements ShouldBroadcast
         return new Channel(BroadCastProperty::PagePositionChannel);
     }
 
-    public function broadcastAs()
+    public function broadcastAs(): string
     {
-        return 'my-event';
+        return 'my-event'.'_'.$this->arg->pageName;
     }
 }

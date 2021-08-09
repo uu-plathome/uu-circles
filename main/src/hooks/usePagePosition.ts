@@ -73,7 +73,7 @@ export const usePagePosition = ({
 
       pusher
         .subscribe(channelName)
-        .bind('my-event', (data: { arg: PagePositions }) => {
+        .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
           console.info('Received event:', data)
           setPageData(data.arg)
         })
