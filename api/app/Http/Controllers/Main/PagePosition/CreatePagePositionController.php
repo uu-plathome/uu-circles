@@ -124,9 +124,9 @@ class CreatePagePositionController extends Controller
                 ->unique(PagePositionHistoryProperty::identifier_id)
                 ->values();
 
-            Log::debug('CreatePagePositionController $mergedPagePosition', [
+            Log::debug('CreatePagePositionController mergedPagePosition', [
                 'old' => (new Collection($pagePositionsByPageUrl))->merge($pagePositionsByIdentifier),
-                '$mergedPagePosition' => $mergedPagePosition
+                'mergedPagePosition' => $mergedPagePosition
             ]);
 
             // リクエストが送られたページの位置データのみに加工
@@ -135,7 +135,7 @@ class CreatePagePositionController extends Controller
                     $pagePositionHistory->page_url === $requestPageUrl
             )->values();
 
-            Log::debug('CreatePagePositionController $newPagePositionsByPageUrl', [
+            Log::debug('CreatePagePositionController newPagePositionsByPageUrl', [
                 'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl
             ]);
 
