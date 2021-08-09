@@ -13,8 +13,9 @@ import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
 
 const MainTemplate = dynamic(() =>
-  import('@/src/components/pages/Main/MainTemplate')
-    .then(mod => mod.MainTemplate)
+  import('@/src/components/pages/Main/MainTemplate').then(
+    (mod) => mod.MainTemplate
+  )
 )
 
 Pusher.logToConsole = true
