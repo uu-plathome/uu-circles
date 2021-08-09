@@ -12,8 +12,8 @@ const AppealingPoint: FC<Props> = ({ circle }) => {
   return (
     <Fragment>
       {circle.appealingPoint1 ||
-        circle.appealingPoint2 ||
-        circle.appealingPoint3 ? (
+      circle.appealingPoint2 ||
+      circle.appealingPoint3 ? (
         <div className="pt-10">
           <ShowCircleTitle>{circle.name}について</ShowCircleTitle>
 

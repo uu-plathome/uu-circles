@@ -1,13 +1,16 @@
-import { AxiosError } from "axios"
-import { CreatePagePositionRequest, CreatePagePositionRequestValidationError } from "../../types/api/CreatePagePositionRequest"
-import { axiosInstance } from "."
+import { AxiosError } from 'axios'
+import {
+  CreatePagePositionRequest,
+  CreatePagePositionRequestValidationError,
+} from '../../types/api/CreatePagePositionRequest'
+import { axiosInstance } from '.'
 
 /**
  * ページの位置記録
  */
 export const createPagePosition = async ({
   identifierHash,
-  request
+  request,
 }: {
   identifierHash: string
   request: CreatePagePositionRequest

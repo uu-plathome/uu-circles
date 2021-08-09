@@ -1,10 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "import",
-    "jest"
-  ],
+  "plugins": ["@typescript-eslint", "import", "jest"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -26,11 +22,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".ts", ".tsx"]
       }
     }
   },
@@ -54,11 +46,7 @@
     "no-console": [
       2,
       {
-        "allow": [
-          "info",
-          "warn",
-          "error"
-        ]
+        "allow": ["info", "warn", "error"]
       }
     ],
     "sort-imports": 0,
