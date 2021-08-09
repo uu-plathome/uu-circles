@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\SynchronizeGoogleAnalyticsToAppCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -48,8 +49,23 @@ class Kernel extends ConsoleKernel
         //            ->dailyAt('19:30');
 
         // Queueの実行
-        $schedule->command('queue:restart')->everyTenMinutes();
-        $schedule->command('queue:work --tries=3')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:restart')
+            ->everyTenMinutes()
+            ->before(function () {
+                Log::debug('[Queue Restart] start');
+            })
+            ->after(function () {
+                Log::debug('[Queue Restart] end');
+            });
+        $schedule->command('queue:work --tries=3')
+            ->everyMinute()
+            ->withoutOverlapping()
+            ->before(function () {
+                Log::debug('[Queue Work] start');
+            })
+            ->after(function () {
+                Log::debug('[Queue Work] end');
+            });
     }
 
     /**
