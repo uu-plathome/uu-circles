@@ -37,7 +37,7 @@ final class SendPagePosition implements ShouldBroadcast
      */
     public function broadcastOn(): Channel
     {
-        return new Channel(BroadCastProperty::MyChannelName);
+        return new Channel(BroadCastProperty::PagePositionChannel);
     }
 
     public function broadcastAs()
