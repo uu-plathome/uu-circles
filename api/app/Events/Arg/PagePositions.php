@@ -25,14 +25,15 @@ final class PagePositions
         if (count($pagePositions->all()) === 0) {
             $arg->pageUrl = '';
             $arg->pagePositions = [];
+
             return $arg;
         }
 
         $arg->pageUrl = $pagePositions->first()->page_url;
         $arg->pagePositions = $pagePositions->map(
-            fn (PagePositionHistory $pagePositionHistory) =>
-                PagePositionItemArg::byEloquent($pagePositionHistory)
+            fn (PagePositionHistory $pagePositionHistory) => PagePositionItemArg::byEloquent($pagePositionHistory)
         )->toArray();
+
         return $arg;
     }
 }

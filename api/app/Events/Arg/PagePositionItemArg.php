@@ -25,7 +25,7 @@ final class PagePositionItemArg
      * @var string 登録日
      */
     public string $createdAt;
-    
+
     public static function byEloquent(
         PagePositionHistory $pagePositionHistory
     ): self {
