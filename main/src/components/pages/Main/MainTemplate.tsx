@@ -20,6 +20,9 @@ import { WP_REST_API_Attachments, WP_REST_API_Posts } from "wp-types";
 const ID_LIST = {
   HEADER_CATCH_COPY: 'header_catch_copy',
   TOP_BUTTONS: 'top_buttons',
+  CIRCLE_LIST: 'circle_list',
+  UU_CIRCLES_AD: 'uu_circles_ad',
+  UU_YELL_ARTICLES: 'uu_yell_articles',
 } as const
 
 type Props = {
@@ -42,7 +45,7 @@ export const MainTemplate: NextPage<Props> = ({
   uuYellArticles,
   uuYellForMain,
   announcements,
-  pagePositions,
+  // pagePositions,
   onChangeId,
 }) => {
   return (
@@ -62,32 +65,24 @@ export const MainTemplate: NextPage<Props> = ({
           id={ID_LIST.HEADER_CATCH_COPY}
           style={{ marginTop: '-6px' }}
           className="bg-white"
-          onMouseOver={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
+          onMouseMove={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
         >
           <p className="text-center py-8">新歓をハックする！</p>
         </div>
 
-        {
-          pagePositions.pagePositions.filter(
-            (pagePosition) => pagePosition.pagePositionId === ID_LIST.HEADER_CATCH_COPY
-          ).length
-        }
-
         <div
           id={ID_LIST.TOP_BUTTONS}
-          onMouseOver={() => onChangeId(ID_LIST.TOP_BUTTONS)}
+          onMouseMove={() => onChangeId(ID_LIST.TOP_BUTTONS)}
         >
           <MainUucircleTopButtons />
         </div>
 
-        {
-          pagePositions.pagePositions.filter(
-            (pagePosition) => pagePosition.pagePositionId === ID_LIST.TOP_BUTTONS
-          ).length
-        }
-
         <BaseContainer>
-          <div className="px-7">
+          <div
+            className="px-7"
+            id={ID_LIST.CIRCLE_LIST}
+            onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
+          >
             <MainTagList />
 
             {/*  サークル一覧 */}
@@ -102,12 +97,22 @@ export const MainTemplate: NextPage<Props> = ({
         <div className="bg-gray-100">
           {/*  フッター */}
 
-          <MainUucircleAd />
+          <div
+            id={ID_LIST.UU_CIRCLES_AD}
+            onMouseMove={() => onChangeId(ID_LIST.UU_CIRCLES_AD)}
+          >
+            <MainUucircleAd />
+          </div>
 
-          <MainUucircleBottomButtons
-            medias={uuYellForMain ? uuYellForMain.medias : []}
-            posts={uuYellForMain ? uuYellForMain.posts : []}
-          />
+          <div
+            id={ID_LIST.UU_YELL_ARTICLES}
+            onMouseMove={() => onChangeId(ID_LIST.UU_YELL_ARTICLES)}
+          >
+            <MainUucircleBottomButtons
+              medias={uuYellForMain ? uuYellForMain.medias : []}
+              posts={uuYellForMain ? uuYellForMain.posts : []}
+            />
+          </div>
 
           <MainSponsorshipFooter advertises={advertises} />
 

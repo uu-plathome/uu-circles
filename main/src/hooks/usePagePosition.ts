@@ -61,9 +61,9 @@ export const usePagePosition = ({
         cluster: 'ap3'
       });
 
-      pusher.subscribe(channelName).bind('my-event', (data: PagePositions) => {
+      pusher.subscribe(channelName).bind('my-event', (data: { arg: PagePositions }) => {
         console.info('Received event:', data)
-        setPageData(data)
+        setPageData(data.arg)
       })
 
       return () => pusher.unsubscribe(channelName);
