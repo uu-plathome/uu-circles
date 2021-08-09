@@ -52,19 +52,19 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:restart')
             ->everyTenMinutes()
             ->before(function () {
-                Log::debug("[Queue Restart] start");
+                Log::debug('[Queue Restart] start');
             })
             ->after(function () {
-                Log::debug("[Queue Restart] end");
+                Log::debug('[Queue Restart] end');
             });
         $schedule->command('queue:work --tries=3')
             ->everyMinute()
             ->withoutOverlapping()
             ->before(function () {
-                Log::debug("[Queue Work] start");
+                Log::debug('[Queue Work] start');
             })
             ->after(function () {
-                Log::debug("[Queue Work] end");
+                Log::debug('[Queue Work] end');
             });
     }
 
@@ -75,7 +75,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }
