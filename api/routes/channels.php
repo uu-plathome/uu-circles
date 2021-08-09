@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel(BCP::MyChannelName, function () {
+Broadcast::channel(BCP::PagePositionChannel, function () {
     return true;
 });

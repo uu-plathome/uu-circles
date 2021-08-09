@@ -4,5 +4,5 @@ namespace App\Enum\BroadCastProperty;
 
 class BroadCastProperty
 {
-    const MyChannelName = 'my-channel-name';
+    const PagePositionChannel = 'page-position-channel';
 }

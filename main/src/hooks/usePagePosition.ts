@@ -56,7 +56,7 @@ export const usePagePosition = ({
    */
   useEffect(() => {
     if (identifierHash) {
-      const channelName = 'my-channel-name'
+      const channelName = 'page-position-channel'
       const pusher = new Pusher(PUSHER_KEY, {
         cluster: 'ap3'
       });
