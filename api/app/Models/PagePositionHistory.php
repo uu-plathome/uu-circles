@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PagePositionHistory extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         PagePositionHistoryProperty::identifier_id,
         PagePositionHistoryProperty::page_name,

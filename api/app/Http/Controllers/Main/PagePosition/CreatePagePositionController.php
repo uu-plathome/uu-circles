@@ -17,13 +17,14 @@ class CreatePagePositionController extends Controller
 {
     /**
      * ユーザーのページ位置を記録し、
-     * 送信してきたユーザーのページ位置を見ている他のユーザーの位置情報を更新する
+     * 送信してきたユーザーのページ位置を見ている他のユーザーの位置情報を更新する.
      *
      * 1. 2人以上のアクセスのときに、イベント発生
      * 2. スマホのときは記録のみをして、イベント発生させない
      * 3. 9:00 ~ 26:00 のときに、イベントを発生
      *
      * @param CreatePagePositionRequest $request
+     *
      * @return bool[]|void
      */
     public function __invoke(CreatePagePositionRequest $request)
@@ -85,14 +86,14 @@ class CreatePagePositionController extends Controller
                 ->where(
                     PagePositionHistoryProperty::created_at,
                     '<=',
-                    date('Y-m-d H:i:s', time()-3)
+                    date('Y-m-d H:i:s', time() - 3)
                 )
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
                     PagePositionHistoryProperty::page_name,
                     PagePositionHistoryProperty::page_url,
-                    PagePositionHistoryProperty::created_at
+                    PagePositionHistoryProperty::created_at,
                 ]);
 
             // 関係のあるユーザーの識別子ID一覧作成
@@ -111,14 +112,14 @@ class CreatePagePositionController extends Controller
                 ->where(
                     PagePositionHistoryProperty::created_at,
                     '<=',
-                    date('Y-m-d H:i:s', time()-3)
+                    date('Y-m-d H:i:s', time() - 3)
                 )
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
                     PagePositionHistoryProperty::page_name,
                     PagePositionHistoryProperty::page_url,
-                    PagePositionHistoryProperty::created_at
+                    PagePositionHistoryProperty::created_at,
                 ]);
 
             // 他のページに遷移したユーザーを弾く
@@ -129,18 +130,17 @@ class CreatePagePositionController extends Controller
                 ->values();
 
             Log::debug('CreatePagePositionController mergedPagePosition', [
-                'old' => (new Collection($pagePositionsByPageUrl))->merge($pagePositionsByIdentifier),
-                'mergedPagePosition' => $mergedPagePosition
+                'old'                => (new Collection($pagePositionsByPageUrl))->merge($pagePositionsByIdentifier),
+                'mergedPagePosition' => $mergedPagePosition,
             ]);
 
             // リクエストが送られたページの位置データのみに加工
             $newPagePositionsByPageUrl = $mergedPagePosition->filter(
-                fn (PagePositionHistory $pagePositionHistory) =>
-                    $pagePositionHistory->page_url === $requestPageUrl
+                fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->page_url === $requestPageUrl
             )->values();
 
             Log::debug('CreatePagePositionController newPagePositionsByPageUrl', [
-                'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl
+                'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl,
             ]);
 
             // 2人以上のアクセスのときに、イベント発生
