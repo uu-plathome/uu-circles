@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/DemoCircleNewjoyType'
+import * as TestFunc from '@/src/lib/enum/api/DemoCircleNewjoyType'
 
 describe('Enum DemoCircleNewjoyType', () => {
   it('isNow', () => {

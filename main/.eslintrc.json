@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "import", "jest"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -46,10 +46,17 @@
     "no-console": [
       2,
       {
-        "allow": ["warn", "error"]
+        "allow": ["info", "warn", "error"]
       }
     ],
     "sort-imports": 0,
-    "import/order": [2, { "alphabetize": { "order": "asc" } }]
+    "import/order": [
+      2,
+      {
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
   }
 }

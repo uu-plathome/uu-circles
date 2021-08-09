@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/CategorySlugProperty'
+import * as TestFunc from '@/src/lib/enum/api/CategorySlugProperty'
 
 describe('Enum CategorySlugProperty', () => {
   it('isOfficialOrganization', () => {

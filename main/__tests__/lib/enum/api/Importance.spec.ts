@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/Importance'
+import * as TestFunc from '@/src/lib/enum/api/Importance'
 
 describe('Enum Importance', () => {
   it('isHigh', () => {

@@ -34,6 +34,7 @@ use App\Http\Requests\Circle\CircleUser\ImportCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest as CircleUserRegisterCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest as CircleUserUpdateCircleUserRequest;
 use App\Http\Requests\Circle\User\UpdateOwnUserRequest;
+use App\Http\Requests\Main;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -61,6 +62,10 @@ class GenerateRequestTypeForTs extends Command
      * @var string[]
      */
     private array $requestCircleClasses = [];
+    /**
+     * @var string[]
+     */
+    private array $requestMainClasses = [];
 
     private string $stubDataForMain;
 
@@ -113,6 +118,9 @@ class GenerateRequestTypeForTs extends Command
             ImportCircleUserRequest::class,
             \App\Http\Requests\Circle\CircleTag\CreateOrUpdateCircleTagRequest::class,
         ];
+        $this->requestMainClasses = [
+            Main\PagePosition\CreatePagePositionRequest::class,
+        ];
     }
 
     private function init()
@@ -128,6 +136,9 @@ class GenerateRequestTypeForTs extends Command
      */
     public function handle()
     {
+        foreach ($this->requestMainClasses as $requestClass) {
+            $this->generateRequestUsecase($requestClass, $this->getMainOutputTsPath());
+        }
         foreach ($this->requestAdminClasses as $requestClass) {
             $this->generateRequestUsecase($requestClass, $this->getAdminOutputTsPath());
         }
@@ -247,6 +258,11 @@ class GenerateRequestTypeForTs extends Command
     private function getCircleOutputTsPath(): string
     {
         return base_path('../circle/lib/types/api');
+    }
+
+    private function getMainOutputTsPath(): string
+    {
+        return base_path('../main/src/lib/types/api');
     }
 
     private function getTsType(array $ruleData): string
