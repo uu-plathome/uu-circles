@@ -30,7 +30,7 @@ const Page: NextPage<Props> = ({
   }, [])
 
   // ページ位置
-  const { onChangeId } = usePagePosition({
+  const { pageData, onChangeId } = usePagePosition({
     pageUrl: '/circle',
     pageName: 'circle_index',
     identifierHash,
@@ -41,6 +41,7 @@ const Page: NextPage<Props> = ({
     uuYellArticles={uuYellArticles}
     announcements={announcements}
     tagPageViewRanking={tagPageViewRanking}
+    pagePositions={pageData}
     onChangeId={onChangeId}
   />
 }
