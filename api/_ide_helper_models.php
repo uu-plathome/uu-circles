@@ -754,15 +754,18 @@ namespace App\Models{
  * @property int $id
  * @property int $identifier_id
  * @property string $page_url ページURL
+ * @property string $page_name ページ名
  * @property string $page_position_id ページ内での位置 (id)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Identifier $identifier
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory query()
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory whereIdentifierId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory wherePageName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory wherePagePositionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory wherePageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PagePositionHistory whereUpdatedAt($value)
