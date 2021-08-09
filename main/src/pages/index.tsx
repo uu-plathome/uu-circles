@@ -1,3 +1,4 @@
+import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
@@ -6,17 +7,10 @@ import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { GetStaticProps, NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
-
-const MainTemplate = dynamic(() =>
-  import('@/src/components/pages/Main/MainTemplate').then(
-    (mod) => mod.MainTemplate
-  )
-)
 
 Pusher.logToConsole = true
 
