@@ -7,9 +7,9 @@ use App\Http\Controllers\Main\CircleNewJoy;
 use App\Http\Controllers\Main\Gacha;
 use App\Http\Controllers\Main\Identification;
 use App\Http\Controllers\Main\Main;
+use App\Http\Controllers\Main\PagePosition;
 use App\Http\Controllers\Main\Sitemap;
 use App\Http\Controllers\Main\Statistics;
-use App\Http\Controllers\Main\PagePosition;
 
 /*
 |--------------------------------------------------------------------------

@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Log;
 
 final class SendPagePosition implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public PagePositions $arg;
 
@@ -24,14 +26,14 @@ final class SendPagePosition implements ShouldBroadcast
      */
     public function __construct(PagePositions $arg)
     {
-        Log::debug("SendPagePosition constructor args", [
+        Log::debug('SendPagePosition constructor args', [
             'arg' => $arg,
         ]);
         $this->arg = $arg;
     }
 
     /**
-     * イベントがブロードキャストするチャンネルを取得
+     * イベントがブロードキャストするチャンネルを取得.
      *
      * @return Channel
      */
