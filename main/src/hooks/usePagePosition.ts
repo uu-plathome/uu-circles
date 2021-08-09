@@ -22,7 +22,7 @@ export const usePagePosition = ({
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
   // 画面サイズ
-  const { width } = useWindowResize()
+  const { width, height } = useWindowResize()
 
   /**
    * 位置の記録を行う
@@ -51,6 +51,7 @@ export const usePagePosition = ({
           pageName,
           pagePositionId: _pagePositionId,
           screenWidth: width,
+          screenHeight: height,
         },
       })
     } finally {
