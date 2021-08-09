@@ -50,7 +50,7 @@ export const usePagePosition = ({
           pageUrl,
           pageName,
           pagePositionId: _pagePositionId,
-          screenWidth: width
+          screenWidth: width,
         },
       })
     } finally {
