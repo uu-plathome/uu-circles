@@ -37,6 +37,7 @@ class CreatePagePositionController extends Controller
         $requestPageUrl = $request->get('pageUrl');
         $requestPageName = $request->get('pageName');
         $requestScreenWidth = intval($request->get('screenWidth', 320));
+        $requestScreenHeight = intval($request->get('screenHeight', 0));
 
         // 識別子取得
         $identifierHash = $request->query('X-IDENTIFIER_HASH');
@@ -44,6 +45,9 @@ class CreatePagePositionController extends Controller
         Log::debug('CreatePagePositionController request value', [
             'pagePositionId'    => $requestPagePositionId,
             'pageUrl'           => $requestPageUrl,
+            'pageName'          => $requestPageName,
+            'screenWidth'       => $requestScreenWidth,
+            'screenHeight'      => $requestScreenHeight,
             'X-IDENTIFIER_HASH' => $identifierHash,
         ]);
 
@@ -64,6 +68,8 @@ class CreatePagePositionController extends Controller
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
             PagePositionHistoryProperty::page_name        => $requestPageName,
             PagePositionHistoryProperty::page_position_id => $requestPagePositionId,
+            PagePositionHistoryProperty::screen_width     => $requestScreenWidth,
+            PagePositionHistoryProperty::screen_height    => $requestScreenHeight,
         ])->save();
 
         /**
@@ -77,6 +83,9 @@ class CreatePagePositionController extends Controller
             // 3. 9:00 ~ 26:00 のときに、イベントを発生
             2 <= $now->hour || 9 <= $now->hour
         ) {
+            $searchStartTime = $now->timestamp - 3;
+            $searchTimeFormat = 'Y-m-d H:i:s';
+            
             /** @var Collection $pagePositionsByPageUrl */
             $pagePositionsByPageUrl = PagePositionHistory::with([
                 'identifier:id,identifier_hash',
@@ -86,7 +95,7 @@ class CreatePagePositionController extends Controller
                 ->where(
                     PagePositionHistoryProperty::created_at,
                     '<=',
-                    date('Y-m-d H:i:s', time() - 3)
+                    date($searchTimeFormat, $searchStartTime)
                 )
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
@@ -112,7 +121,7 @@ class CreatePagePositionController extends Controller
                 ->where(
                     PagePositionHistoryProperty::created_at,
                     '<=',
-                    date('Y-m-d H:i:s', time() - 3)
+                    date($searchTimeFormat, $searchStartTime)
                 )
                 ->get([
                     PagePositionHistoryProperty::identifier_id,

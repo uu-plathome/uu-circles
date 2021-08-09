@@ -16,6 +16,8 @@ class PagePositionHistory extends Model
         PagePositionHistoryProperty::page_name,
         PagePositionHistoryProperty::page_url,
         PagePositionHistoryProperty::page_position_id,
+        PagePositionHistoryProperty::screen_width,
+        PagePositionHistoryProperty::screen_height,
     ];
 
     public function identifier(): BelongsTo
