@@ -3,6 +3,18 @@
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
+  "eslint.validate": [
+    "html",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
