@@ -26,7 +26,8 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "maatwebsite/excel": "^3.1",
         "mpyw/eloquent-has-by-join": "^2.0",
-        "mpyw/eloquent-has-by-non-dependent-subquery": "^2.0"
+        "mpyw/eloquent-has-by-non-dependent-subquery": "^2.0",
+        "pusher/pusher-php-server": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",

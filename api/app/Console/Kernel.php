@@ -27,12 +27,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // uu-yellの記事をコピー
         $schedule->command('copy:uu-yell')
             ->everyFourHours();
 
+        // 広告の集計
         $schedule->command('aggregate:advertise-counter')
             ->daily();
 
+        // お知らせの集計
         $schedule->command('aggregate:announcement-counter')
             ->dailyAt('1:00');
 
@@ -40,9 +43,13 @@ class Kernel extends ConsoleKernel
         $schedule->command(SynchronizeGoogleAnalyticsToAppCommand::SIGNATURE)
             ->dailyAt('4:30');
 
-        //
+        // Twitterへuu-yellの記事を投稿 (※ Twitter APIがないからできない)
         //        $schedule->command('twitter:send-uuyell')
         //            ->dailyAt('19:30');
+
+        // Queueの実行
+        $schedule->command('queue:restart')->everyTenMinutes();
+        $schedule->command('queue:work --tries=3')->everyMinute()->withoutOverlapping();
     }
 
     /**
