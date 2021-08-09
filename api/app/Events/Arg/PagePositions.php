@@ -6,7 +6,7 @@ use App\Models\PagePositionHistory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-final class TestPusherEventArg
+final class PagePositions
 {
     public string $pageUrl;
 

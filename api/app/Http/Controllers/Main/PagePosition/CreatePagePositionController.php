@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Main\PagePosition;
 
 use App\Enum\Property\PagePositionHistoryProperty;
-use App\Events\Arg\TestPusherEventArg;
-use App\Events\TestPusherEvent;
+use App\Events\Arg\PagePositions;
+use App\Events\SendPagePosition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\PagePosition\CreatePagePositionRequest;
 use App\Models\Identifier;
@@ -142,8 +142,8 @@ class CreatePagePositionController extends Controller
             // 2人以上のアクセスのときに、イベント発生
             if ($newPagePositionsByPageUrl->count() > 1) {
                 Log::debug('CreatePagePositionController event happen');
-                $arg = TestPusherEventArg::byEloquent($newPagePositionsByPageUrl);
-                event(new TestPusherEvent($arg));
+                $arg = PagePositions::byEloquent($newPagePositionsByPageUrl);
+                event(new SendPagePosition($arg));
             }
         }
 
