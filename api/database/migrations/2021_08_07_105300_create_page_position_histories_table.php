@@ -17,6 +17,7 @@ class CreatePagePositionHistoriesTable extends Migration
             $table->id();
             $table->foreignId('identifier_id')->constrained();
             $table->string('page_url')->comment('ページURL');
+            $table->string('page_name')->comment('ページ名');
             $table->string('page_position_id')->comment('ページ内での位置 (id)');
             $table->timestamps();
         });
