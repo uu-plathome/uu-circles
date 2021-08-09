@@ -10,7 +10,7 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
-import { FC } from "react"
+import { FC } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { CircleLengthView } from './Parts/CircleLengthView'
 import { SearchCircle } from './Parts/SearchCircle'
@@ -35,7 +35,7 @@ export const IndexCircleTemplate: FC<Props> = ({
   announcements,
   tagPageViewRanking,
   // pagePositions,
-  onChangeId
+  onChangeId,
 }) => {
   return (
     <div>
@@ -99,6 +99,6 @@ export const IndexCircleTemplate: FC<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div >
+    </div>
   )
 }

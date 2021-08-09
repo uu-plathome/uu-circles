@@ -22,7 +22,6 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-
   // 識別子の取得
   const [identifierHash, setIdentifierHash] = useState(null)
   useEffect(() => {
@@ -36,14 +35,16 @@ const Page: NextPage<Props> = ({
     identifierHash,
   })
 
-  return <IndexCircleTemplate
-    circles={circles}
-    uuYellArticles={uuYellArticles}
-    announcements={announcements}
-    tagPageViewRanking={tagPageViewRanking}
-    pagePositions={pageData}
-    onChangeId={onChangeId}
-  />
+  return (
+    <IndexCircleTemplate
+      circles={circles}
+      uuYellArticles={uuYellArticles}
+      announcements={announcements}
+      tagPageViewRanking={tagPageViewRanking}
+      pagePositions={pageData}
+      onChangeId={onChangeId}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
