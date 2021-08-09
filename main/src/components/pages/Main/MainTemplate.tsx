@@ -4,18 +4,36 @@ import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList'
 import { MainHead } from '@/src/components/pages/Main/Parts/MainHead'
-import { MainSponsorshipFooter } from '@/src/components/pages/Main/Parts/MainSponsorshipFooter'
-import { MainTagList } from '@/src/components/pages/Main/Parts/MainTagList'
-import { MainUucircleAd } from '@/src/components/pages/Main/Parts/MainUucircleAd'
-import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
-import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import { FC } from 'react'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+
+const MainTagList = dynamic(() =>
+  import('@/src/components/pages/Main/Parts/MainTagList').then(
+    (mod) => mod.MainTagList
+  )
+)
+const MainUucircleAd = dynamic(() =>
+  import('@/src/components/pages/Main/Parts/MainUucircleAd').then(
+    (mod) => mod.MainUucircleAd
+  )
+)
+const MainUucircleBottomButtons = dynamic(() =>
+  import('@/src/components/pages/Main/Parts/MainUucircleBottomButtons').then(
+    (mod) => mod.MainUucircleBottomButtons
+  )
+)
+const MainSponsorshipFooter = dynamic(() =>
+  import('@/src/components/pages/Main/Parts/MainSponsorshipFooter').then(
+    (mod) => mod.MainSponsorshipFooter
+  )
+)
 
 const ID_LIST = {
   HEADER_CATCH_COPY: 'header_catch_copy',
@@ -38,7 +56,7 @@ type Props = {
   pagePositions: PagePositions
   onChangeId: (_pagePositionId: string) => Promise<void>
 }
-export const MainTemplate: NextPage<Props> = ({
+export const MainTemplate: FC<Props> = ({
   advertises,
   mainAdvertises,
   circles,
