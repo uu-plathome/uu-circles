@@ -7,17 +7,20 @@ import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 const UU_YELL_URL = ApiUrl.UU_YELL
 
 type PostsList = {
-  posts: WP_REST_API_Posts;
-  medias: WP_REST_API_Attachments;
+  posts: WP_REST_API_Posts
+  medias: WP_REST_API_Attachments
 }
 /**
  * uu-yellの記事の取得
  */
-export const useFetchUuYell = ():  {
+export const useFetchUuYell = (): {
   uuYellForMain: PostsList
 } => {
   // uu-yellの記事の取得
-  const { data: uuYellForMain } = useSWR<PostsList>(['useFetchUuYell'], fetchUuYellPosts)
+  const { data: uuYellForMain } = useSWR<PostsList>(
+    ['useFetchUuYell'],
+    fetchUuYellPosts
+  )
 
   return {
     uuYellForMain,
