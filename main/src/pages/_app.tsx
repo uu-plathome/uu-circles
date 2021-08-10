@@ -97,11 +97,12 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
   window.gtag('event', metric.name, {
     event_category:
       metric.label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    value: String(Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value)), // values must be integers
+    value: String(
+      Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value)
+    ), // values must be integers
     event_label: metric.id, // id unique to current page load
     non_interaction: true, // avoids affecting bounce rate.
   })
 }
-
 
 export default MyApp
