@@ -9,8 +9,8 @@ import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
 type Props = {
   errorCode?: number
-  circles?: Circle[]
-  recommendCircles?: Circle[]
+  /** 検索結果 */ circles?: Circle[]
+  /** 他のサークルも見る */ recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
