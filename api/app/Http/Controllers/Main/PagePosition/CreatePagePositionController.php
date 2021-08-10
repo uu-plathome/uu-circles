@@ -9,8 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\PagePosition\CreatePagePositionRequest;
 use App\Models\Identifier;
 use App\Models\PagePositionHistory;
+use App\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class CreatePagePositionController extends Controller
@@ -51,11 +53,16 @@ class CreatePagePositionController extends Controller
             'X-IDENTIFIER_HASH' => $identifierHash,
         ]);
 
-        $identifier = Identifier::whereIdentifierHash($identifierHash)
-            ->hasByNonDependentSubquery('identifierHistory', function ($query) use ($request) {
-                $query->whereUserAgent($request->userAgent());
-                $query->whereIpAddress($request->ip());
-            })->first();
+        /** @var \App\Models\Identifier $identifier */
+        $identifier = Cache::remember(
+            'CreatePagePositionController.identifier.identifierHash=' . $identifierHash . 'ip=' . $request->ip() . 'user_agent=' . $request->userAgent(),
+            300,
+            fn () => Identifier::whereIdentifierHash($identifierHash)
+                ->hasByNonDependentSubquery('identifierHistory', function ($query) use ($request) {
+                    $query->whereUserAgent($request->userAgent());
+                    $query->whereIpAddress($request->ip());
+                })->first()
+        );
 
         // 識別子が存在しない場合は、バリデーションエラーを出す
         if (is_null($identifier)) {
@@ -63,7 +70,8 @@ class CreatePagePositionController extends Controller
         }
 
         // ページの位置を記録する
-        (new PagePositionHistory())->fill([
+        $pagePositionHistory = new PagePositionHistory();
+        $pagePositionHistory->fill([
             PagePositionHistoryProperty::identifier_id    => $identifier->id,
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
             PagePositionHistoryProperty::page_name        => $requestPageName,
@@ -118,6 +126,7 @@ class CreatePagePositionController extends Controller
                     );
                 })
                 ->get([
+                    PagePositionHistoryProperty::id,
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
                     PagePositionHistoryProperty::page_name,
@@ -153,8 +162,10 @@ class CreatePagePositionController extends Controller
             }
         }
 
-        return [
-            'data' => true,
-        ];
+        return Arr::camel_keys([
+            'pagePositionHistoryId' => $pagePositionHistory->id,
+            'createdAt'             => $pagePositionHistory->created_at,
+            'data'                  => true,
+        ]);
     }
 }
