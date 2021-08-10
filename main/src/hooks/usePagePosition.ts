@@ -63,7 +63,7 @@ export const usePagePosition = ({
     } finally {
       setTimeout(() => {
         setOnProcess(false)
-      }, 1000)
+      }, 500)
     }
   }
 
