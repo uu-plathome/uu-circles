@@ -95,11 +95,19 @@ const PcButtonGroup = () => {
       </div>
 
       <div className="m-4">
-        <PcButton href="/circle/newjoy" src="/images/topButtons/shinkan1.png" alt="今日の新歓" />
+        <PcButton
+          href="/circle/newjoy"
+          src="/images/topButtons/shinkan1.png"
+          alt="今日の新歓"
+        />
       </div>
 
       <div className="m-4">
-        <PcButton href="/guide/discord" src="/images/online.png" alt="新歓ディスコード" />
+        <PcButton
+          href="/guide/discord"
+          src="/images/online.png"
+          alt="新歓ディスコード"
+        />
       </div>
     </nav>
   )
