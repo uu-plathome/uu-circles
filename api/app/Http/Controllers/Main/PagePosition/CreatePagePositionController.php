@@ -55,7 +55,7 @@ class CreatePagePositionController extends Controller
 
         /** @var \App\Models\Identifier $identifier */
         $identifier = Cache::remember(
-            'CreatePagePositionController.identifier.identifierHash=' . $identifierHash . 'ip=' . $request->ip() . 'user_agent=' . $request->userAgent(),
+            'CreatePagePositionController.identifier.identifierHash='.$identifierHash.'ip='.$request->ip().'user_agent='.$request->userAgent(),
             300,
             fn () => Identifier::whereIdentifierHash($identifierHash)
                 ->hasByNonDependentSubquery('identifierHistory', function ($query) use ($request) {
@@ -104,7 +104,7 @@ class CreatePagePositionController extends Controller
                     '<=',
                     date($searchTimeFormat, $searchStartTime)
                 )
-                ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                ->where(function ($query) use ($requestPageUrl) {
                     // 今回のイベントで同じページにいるユーザーを取得
                     $query->wherePageUrl($requestPageUrl);
                 })
