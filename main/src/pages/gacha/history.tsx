@@ -43,7 +43,12 @@ const Page: NextPage<Props> = () => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" alt="サークルガチャへようこそ！" />
+                <Image
+                  src="/images/gacha-logo.png"
+                  width="360"
+                  height="120"
+                  alt="サークルガチャへようこそ！"
+                />
               </div>
 
               <h1 className="text-2xl pt-6 px-4 text-center font-bold">

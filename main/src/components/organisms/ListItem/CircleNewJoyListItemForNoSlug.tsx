@@ -17,7 +17,8 @@ import {
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
+    todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
