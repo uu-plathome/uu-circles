@@ -51,6 +51,12 @@ const Page: NextPage<Props> = ({
   uuYellArticles,
   announcements,
 }) => {
+  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
+  const pageUrl = useMemo(
+    () => `https://uu-circles.com/${circle.slug}/newjoy`,
+    [circle.slug]
+  )
+
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
@@ -59,11 +65,6 @@ const Page: NextPage<Props> = ({
     return <div></div>
   }
 
-  const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
-  const pageUrl = useMemo(
-    () => `https://uu-circles.com/${circle.slug}/newjoy`,
-    [circle.slug]
-  )
   return (
     <div>
       <BaseHead title={`${circle.name}の新歓`} />
@@ -170,9 +171,8 @@ const Page: NextPage<Props> = ({
                     <div className="my-2 pb-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${
-                          circle.shortName || circle.name
-                        }の新歓を見る！`}
+                        title={`UU-Circlesで${circle.shortName || circle.name
+                          }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -258,9 +258,8 @@ const Page: NextPage<Props> = ({
                   <div className="my-2 pb-2 flex justify-center">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${
-                        circle.shortName || circle.name
-                      }の新歓を見る！`}
+                      title={`UU-Circlesで${circle.shortName || circle.name
+                        }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >

@@ -31,9 +31,10 @@ const WpPostBlock: FC<{
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
-          <img
+          <Image
             src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
+            layout="fill"
           />
         </p>
 
@@ -188,8 +189,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               </div>
 
               {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+                wpPosts.postsExistTags &&
+                wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -217,8 +218,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               )}
 
               {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+                wpPosts.postsNotTags &&
+                wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -244,8 +245,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             </div>
 
             {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+              uuYellForCircles.posts &&
+              uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！

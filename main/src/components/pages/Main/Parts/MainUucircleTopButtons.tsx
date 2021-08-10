@@ -10,8 +10,9 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type SpButtonProps = {
   href: string
   src: string
+  alt: string
 }
-const SpButton: FC<SpButtonProps> = ({ href, src }) => {
+const SpButton: FC<SpButtonProps> = ({ href, src, alt }) => {
   return (
     <div className="mx-auto" style={{ width: 280, height: 65 }}>
       <Link href={href}>
@@ -19,7 +20,7 @@ const SpButton: FC<SpButtonProps> = ({ href, src }) => {
           className="text-gray-900 block shadow rounded"
           style={{ width: '100%', height: '100%' }}
         >
-          <Image width="280" height="65" src={src} />
+          <Image width="280" height="65" src={src} alt={alt} />
         </a>
       </Link>
     </div>
@@ -39,6 +40,7 @@ const SpButtonGroup = () => {
           <SpButton
             href="/guide/to-new-students"
             src="/images/topButtons/Rectangle15.png"
+            alt="新入生へ"
           />
         </SwiperSlide>
 
@@ -46,6 +48,7 @@ const SpButtonGroup = () => {
           <SpButton
             href="/circle/newjoy"
             src="/images/topButtons/shinkan1.png"
+            alt="今日の新歓"
           />
         </SwiperSlide>
 
@@ -53,6 +56,7 @@ const SpButtonGroup = () => {
           <SpButton
             href="/guide/discord"
             src="/images/topButtons/discordBunner1.png"
+            alt="新歓ディスコード"
           />
         </SwiperSlide>
       </nav>
@@ -63,8 +67,9 @@ const SpButtonGroup = () => {
 type PcButtonProps = {
   href: string
   src: string
+  alt: string
 }
-const PcButton: FC<PcButtonProps> = ({ href, src }) => {
+const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
   return (
     <div className="mx-auto" style={{ width: 280, height: 65 }}>
       <Link href={href}>
@@ -72,7 +77,7 @@ const PcButton: FC<PcButtonProps> = ({ href, src }) => {
           className="text-gray-900 block shadow rounded"
           style={{ width: '100%', height: '100%' }}
         >
-          <Image width="280" height="65" src={src} />
+          <Image width="280" height="65" src={src} alt={alt} />
         </a>
       </Link>
     </div>
@@ -85,15 +90,16 @@ const PcButtonGroup = () => {
         <PcButton
           href="/guide/to-new-students"
           src="/images/topButtons/Rectangle15.png"
+          alt="新入生へ"
         />
       </div>
 
       <div className="m-4">
-        <PcButton href="/circle/newjoy" src="/images/topButtons/shinkan1.png" />
+        <PcButton href="/circle/newjoy" src="/images/topButtons/shinkan1.png" alt="今日の新歓" />
       </div>
 
       <div className="m-4">
-        <PcButton href="/guide/discord" src="/images/online.png" />
+        <PcButton href="/guide/discord" src="/images/online.png" alt="新歓ディスコード" />
       </div>
     </nav>
   )

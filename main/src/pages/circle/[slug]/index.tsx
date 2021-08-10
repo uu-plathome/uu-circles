@@ -38,14 +38,6 @@ const Page: NextPage<Props> = ({
   errorCode,
   announcements,
 }) => {
-  if (errorCode) {
-    return <Error statusCode={errorCode} />
-  }
-
-  if (!circle) {
-    return <div></div>
-  }
-
   const { data: uuYellForCircles } = useSWR<{
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Attachment[]
@@ -92,6 +84,14 @@ const Page: NextPage<Props> = ({
       medias: fetchedMedias.data,
     }
   })
+
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
+  if (!circle) {
+    return <div></div>
+  }
 
   return (
     <ShowCircleTemplate

@@ -158,7 +158,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
     if (isMd) {
       setIsTagOpen(true)
     }
-  })
+  }, [isMd])
 
   return (
     <div className="bg-gray-100">
@@ -169,6 +169,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               src={ImagePath.UU_YELL.POSTER}
               width={width > 700 ? 700 : width}
               height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
+              alt="メディアサイトuu-yellを見る"
             />
           </a>
         </div>

@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           />
 
           {/* YouTube */}
-          <script src="https://www.youtube.com/iframe_api"></script>
+          <script src="https://www.youtube.com/iframe_api" async></script>
         </Head>
         <body className="font-body">
           <Main />
