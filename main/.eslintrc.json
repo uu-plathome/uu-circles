@@ -1,15 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "import",
-    "jest"
-  ],
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "import", "jest"],
+  "extends": ["next", "next/core-web-vitals", "prettier"],
   "env": {
     "es6": true,
     "browser": true,
@@ -22,11 +14,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".ts", ".tsx"]
       }
     }
   },
@@ -50,11 +38,7 @@
     "no-console": [
       2,
       {
-        "allow": [
-          "info",
-          "warn",
-          "error"
-        ]
+        "allow": ["info", "warn", "error"]
       }
     ],
     "sort-imports": 0,
