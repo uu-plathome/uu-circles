@@ -22,7 +22,9 @@ export const createPagePosition = async ({
 }: {
   identifierHash: string
   request: CreatePagePositionRequest
-}): Promise<CreatePagePositionResponse|CreatePagePositionRequestValidationError> => {
+}): Promise<
+  CreatePagePositionResponse | CreatePagePositionRequestValidationError
+> => {
   type Response = CreatePagePositionResponse
 
   try {
