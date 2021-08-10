@@ -86,43 +86,37 @@ class CreatePagePositionController extends Controller
             $searchStartTime = $now->timestamp - 3;
             $searchTimeFormat = 'Y-m-d H:i:s';
 
-            /** @var Collection $pagePositionsByPageUrl */
-            $pagePositionsByPageUrl = PagePositionHistory::with([
-                'identifier:id,identifier_hash',
-            ])
-                ->wherePageUrl($requestPageUrl)
-                // 3s以内
-                ->where(
-                    PagePositionHistoryProperty::created_at,
-                    '<=',
-                    date($searchTimeFormat, $searchStartTime)
-                )
-                ->get([
-                    PagePositionHistoryProperty::identifier_id,
-                    PagePositionHistoryProperty::page_position_id,
-                    PagePositionHistoryProperty::page_name,
-                    PagePositionHistoryProperty::page_url,
-                    PagePositionHistoryProperty::created_at,
-                ]);
-
-            // 関係のあるユーザーの識別子ID一覧作成
-            $identifierId = $pagePositionsByPageUrl->map(
-                fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->identifier_id
-            )->unique()
-                ->values()
-                ->toArray();
-
             // 他のページに遷移したユーザーを弾くために、関与したユーザーの履歴をまとめて取得
-            $pagePositionsByIdentifier = PagePositionHistory::with([
+            $pagePositions = PagePositionHistory::with([
                 'identifier:id,identifier_hash',
             ])
-                ->whereIn(PagePositionHistoryProperty::identifier_id, $identifierId)
                 // 3s以内
                 ->where(
                     PagePositionHistoryProperty::created_at,
                     '<=',
                     date($searchTimeFormat, $searchStartTime)
                 )
+                ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                    // 今回のイベントで同じページにいるユーザーを取得
+                    $query->wherePageUrl($requestPageUrl);
+                })
+                ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                    // 今回のイベントに関係のあるユーザーの識別子ID一覧作成し、それらが他のページに遷移していた場合は弾きたいので、一緒に拾ってくる
+                    $query->whereIn(
+                        PagePositionHistoryProperty::identifier_id,
+                        function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                            $query->select('identifier_id')
+                                ->distinct()
+                                ->from(with(new PagePositionHistory())->getTable())
+                                ->where('page_url', $requestPageUrl)
+                                ->where(
+                                    PagePositionHistoryProperty::created_at,
+                                    '<=',
+                                    date($searchTimeFormat, $searchStartTime)
+                                );
+                        }
+                    );
+                })
                 ->get([
                     PagePositionHistoryProperty::identifier_id,
                     PagePositionHistoryProperty::page_position_id,
@@ -132,14 +126,13 @@ class CreatePagePositionController extends Controller
                 ]);
 
             // 他のページに遷移したユーザーを弾く
-            $mergedPagePosition = (new Collection($pagePositionsByPageUrl))->merge($pagePositionsByIdentifier)
+            $mergedPagePosition = (new Collection($pagePositions))
                 ->sortByDesc(PagePositionHistoryProperty::created_at)
                 ->values()
                 ->unique(PagePositionHistoryProperty::identifier_id)
                 ->values();
 
             Log::debug('CreatePagePositionController mergedPagePosition', [
-                'old'                => (new Collection($pagePositionsByPageUrl))->merge($pagePositionsByIdentifier),
                 'mergedPagePosition' => $mergedPagePosition,
             ]);
 
