@@ -12,7 +12,13 @@ const useScreenSize = () => {
   }
 }
 
-export const useMediaQuery = () => {
+export const useMediaQuery = (): {
+  isSm: boolean
+  isMd: boolean
+  isLg: boolean
+  isXl: boolean
+  isXl2: boolean
+} => {
   const { width } = useWindowResize()
   const { sm, md, lg, xl, xl2 } = useScreenSize()
   const [isSm, setIsSm] = useState(false)
