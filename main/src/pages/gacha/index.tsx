@@ -27,13 +27,23 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" alt="サークルガチャへようこそ！" />
+                <Image
+                  src="/images/gacha-logo.png"
+                  width="360"
+                  height="120"
+                  alt="サークルガチャへようこそ！"
+                />
               </div>
 
               <h1 className="text-2xl pt-6 px-4 text-center">サークルガチャ</h1>
 
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha800.png" width="360" height="450" alt="サークルガチャを引く" />
+                <Image
+                  src="/images/gacha800.png"
+                  width="360"
+                  height="450"
+                  alt="サークルガチャを引く"
+                />
               </div>
 
               <div className="flex justify-center">
@@ -50,8 +60,8 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               </div>
 
               {pickupCircle.list &&
-                Array.isArray(pickupCircle.list) &&
-                pickupCircle.list.length > 0 ? (
+              Array.isArray(pickupCircle.list) &&
+              pickupCircle.list.length > 0 ? (
                 <div className="flex justify-center">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
@@ -77,7 +87,11 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                             key={`${circle.slug}-${idx}`}
                             className="mb-4 cursor-pointer"
                           >
-                            <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} passHref>
+                            <Link
+                              href="/circle/[slug]"
+                              as={`/circle/${circle.slug}`}
+                              passHref
+                            >
                               <div className="rounded bg-white flex items-center px-6 py-4">
                                 <div
                                   style={{ minWidth: 60 }}
