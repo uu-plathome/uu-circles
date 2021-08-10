@@ -28,6 +28,10 @@ module.exports = withBundleAnalyzer({
     includePaths: [path.join(__dirname, 'styles')],
   },
 
+  eslint: {
+    dirs: ['src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+  },
+
   pwa: {
     dest: 'public', // swの出力ディレクトリ
     disable: process.env.NODE_ENV === 'development',
