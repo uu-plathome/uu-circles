@@ -15,6 +15,30 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
+const useTag = () => {
+  const router = useRouter()
+  const { tag: _tag } = router.query
+  const tag = String(_tag) as TagSlugProperty
+
+  return {
+    tag,
+    tagTranslated: __(tag, TagSlugProperty._type),
+    tagDescriptionTitle: __(tag, namespaceType.TitleByTagSlugProperty),
+    tagDescriptionText: __(tag, namespaceType.TextByTagSlugProperty),
+  }
+}
+
+const ID_LIST = {
+  /** タイトル */
+  MAIN_HEADING: 'main_heading',
+  /** カテゴリー説明 */
+  TAG_DESCRIPTION: 'tag_description',
+  /** サークル一覧 */
+  CIRCLE_LIST: 'circle_list',
+  /** 他のサークルも見る */
+  SEARCH_OTHER_CIRCLE: 'search_other_circle',
+}
+
 type Props = {
   errorCode?: number
   circles?: Circle[]
@@ -30,10 +54,7 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-  const router = useRouter()
-  const { tag } = router.query
-  const circleTagTitle = __(String(tag), namespaceType.TitleByTagSlugProperty)
-  const circleTagText = __(String(tag), namespaceType.TextByTagSlugProperty)
+  const { tagTranslated, tagDescriptionText, tagDescriptionTitle } = useTag()
 
   if (!circles) {
     return <div></div>
@@ -41,7 +62,7 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead title={`${__(String(tag), TagSlugProperty._type)}タグ検索`} />
+      <BaseHead title={`${tagTranslated}タグ検索`} />
 
       <BaseLayout
         announcement={
@@ -55,25 +76,31 @@ const Page: NextPage<Props> = ({
             sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
           >
             <div className="px-5">
-              <h1 className="text-2xl py-8">
-                {__(String(tag), TagSlugProperty._type)}
+              <h1 id={ID_LIST.MAIN_HEADING} className="text-2xl py-8">
+                {tagTranslated}
               </h1>
 
-              {circleTagTitle ? (
-                <p className="text-base pb-4 font-bold">{circleTagTitle}</p>
-              ) : (
-                ''
-              )}
-              {circleTagText ? (
-                <p className="text-sm pb-8">{circleTagText}</p>
-              ) : (
-                ''
-              )}
+              <div id={ID_LIST.TAG_DESCRIPTION}>
+                {tagDescriptionTitle ? (
+                  <p className="text-base pb-4 font-bold">{tagDescriptionTitle}</p>
+                ) : (
+                  ''
+                )}
+                {tagDescriptionText ? (
+                  <p className="text-sm pb-8">{tagDescriptionText}</p>
+                ) : (
+                  ''
+                )}
+              </div>
 
               {/*  サークル一覧 */}
-              <BaseCircleList circles={circles} />
+              <BaseCircleList
+                id={ID_LIST.CIRCLE_LIST}
+                circles={circles}
+                onChangeId={async (_: string) => { return }}
+              />
 
-              <div className="pb-8">
+              <div id={ID_LIST.SEARCH_OTHER_CIRCLE} className="pb-8">
                 <h2 className="text-lg py-8">他のサークルも見る</h2>
 
                 <CarouselCircleList circles={recommendCircles} />

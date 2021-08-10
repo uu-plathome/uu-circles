@@ -15,6 +15,36 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
+const useCategory = () => {
+  const router = useRouter()
+  const { category: _category } = router.query
+  const category = String(_category) as CategorySlugProperty
+
+  return {
+    category,
+    categoryTranslated: __(category, CategorySlugProperty._type),
+    categoryDescriptionTitle: __(
+      category,
+      namespaceType.TitleByCategorySlugProperty
+    ),
+    categoryDescriptionText: __(
+      category,
+      namespaceType.TextByCategorySlugProperty
+    ),
+  }
+}
+
+const ID_LIST = {
+  /** タイトル */
+  MAIN_HEADING: 'main_heading',
+  /** カテゴリー説明 */
+  CATEGORY_DESCRIPTION: 'category_description',
+  /** サークル一覧 */
+  CIRCLE_LIST: 'circle_list',
+  /** 他のサークルも見る */
+  SEARCH_OTHER_CIRCLE: 'search_other_circle',
+}
+
 type Props = {
   errorCode?: number
   circles?: Circle[]
@@ -30,8 +60,11 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-  const router = useRouter()
-  const { category } = router.query
+  const {
+    categoryTranslated,
+    categoryDescriptionTitle,
+    categoryDescriptionText
+  } = useCategory()
 
   if (!circles) {
     return <div></div>
@@ -39,7 +72,7 @@ const Page: NextPage<Props> = ({
 
   return (
     <div>
-      <BaseHead title={`${__(String(category))} カテゴリー検索`} />
+      <BaseHead title={`${categoryTranslated} カテゴリー検索`} />
 
       <BaseLayout
         announcement={
@@ -53,24 +86,27 @@ const Page: NextPage<Props> = ({
             sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
           >
             <div className="px-5">
-              <h1 className="text-2xl py-8">
-                {__(String(category), CategorySlugProperty._type)}
+              <h1 id={ID_LIST.MAIN_HEADING} className="text-2xl py-8">
+                {categoryTranslated}
               </h1>
 
-              <p className="text-base pb-4 font-bold">
-                {__(
-                  String(category),
-                  namespaceType.TitleByCategorySlugProperty
-                )}
-              </p>
-              <p className="text-sm pb-8">
-                {__(String(category), namespaceType.TextByCategorySlugProperty)}
-              </p>
+              <div id={ID_LIST.CATEGORY_DESCRIPTION}>
+                <p className="text-base pb-4 font-bold">
+                  {categoryDescriptionTitle}
+                </p>
+                <p className="text-sm pb-8">
+                  {categoryDescriptionText}
+                </p>
+              </div>
 
               {/*  サークル一覧 */}
-              <BaseCircleList circles={circles} />
+              <BaseCircleList
+                id={ID_LIST.CIRCLE_LIST}
+                circles={circles}
+                onChangeId={async (_: string) => { return }}
+              />
 
-              <div className="pb-8">
+              <div id={ID_LIST.SEARCH_OTHER_CIRCLE} className="pb-8">
                 <h2 className="text-lg py-8">他のサークルも見る</h2>
 
                 <CarouselCircleList circles={recommendCircles} />
