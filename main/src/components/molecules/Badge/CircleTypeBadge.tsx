@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { __ } from '@/src/lang/ja'
 import { CircleType } from '@/src/lib/enum/api/CircleType'
-import { FC } from 'react'
 
 const getCircleTypeColor = (circleType: CircleType) => {
   if (circleType === CircleType.OFFICIAL_ORGANIZATION) {

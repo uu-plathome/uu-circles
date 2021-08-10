@@ -1,3 +1,8 @@
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
+import { FC } from 'react'
+import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
@@ -17,11 +22,6 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/src/plugins/Dayjs'
 import colors from '@/src/styles/colors'
-import { faClock } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import { FC } from 'react'
-import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 
 const WpPostBlock: FC<{
   post: WP_REST_API_Post
@@ -31,9 +31,10 @@ const WpPostBlock: FC<{
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
         <p className="wp-cardtype__img">
-          <img
+          <Image
             src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
+            layout="fill"
           />
         </p>
 

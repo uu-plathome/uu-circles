@@ -1,5 +1,5 @@
-import { existsGaId, GA_ID } from '@/src/lib/utils/Gtag'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { existsGaId, GA_ID } from '@/src/lib/utils/Gtag'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           />
 
           {/* YouTube */}
-          <script src="https://www.youtube.com/iframe_api"></script>
+          <script src="https://www.youtube.com/iframe_api" async></script>
         </Head>
         <body className="font-body">
           <Main />

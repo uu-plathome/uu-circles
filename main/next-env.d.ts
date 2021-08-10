@@ -13,6 +13,7 @@ interface Window {
       event_label: string
       event_category: string
       value?: string
+      non_interaction?: boolean
     }
   )
 }

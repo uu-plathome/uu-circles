@@ -1,6 +1,6 @@
-import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { FC } from 'react'
 import { CircleNewJoyListItemPC } from '../ListItem/CircleNewJoyListItemPC'
+import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 type Props = {
   slug: string

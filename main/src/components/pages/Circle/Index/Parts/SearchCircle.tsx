@@ -1,7 +1,7 @@
-import { SearchTextField } from '@/src/components/atoms/form/SearchTextField'
-import { useStringInput } from '@/src/hooks/useInput'
 import { useRouter } from 'next/dist/client/router'
 import { FC, FormEvent } from 'react'
+import { SearchTextField } from '@/src/components/atoms/form/SearchTextField'
+import { useStringInput } from '@/src/hooks/useInput'
 
 export const SearchCircle: FC = () => {
   const router = useRouter()

@@ -1,3 +1,8 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC, Fragment, useEffect, useState } from 'react'
+import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
+import { BaseContainer } from '../molecules/Container/BaseContainer'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { useWindowResize } from '@/src/hooks/useWindowResize'
 import { __ } from '@/src/lang/ja'
@@ -5,11 +10,6 @@ import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FC, Fragment, useEffect, useState } from 'react'
-import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
-import { BaseContainer } from '../molecules/Container/BaseContainer'
 
 type TagItem = {
   text: string
@@ -138,7 +138,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
   return (
     <li className="mb-3">
       <Link href={tagItem.href} as={tagItem.as}>
-        <a className="text-gray-400 font-bold text-sm tag-title">
+        <a className="text-gray-400 font-bold text-sm before:content-['#']">
           {tagItem.text}
         </a>
       </Link>
@@ -158,7 +158,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
     if (isMd) {
       setIsTagOpen(true)
     }
-  })
+  }, [isMd])
 
   return (
     <div className="bg-gray-100">
@@ -169,6 +169,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               src={ImagePath.UU_YELL.POSTER}
               width={width > 700 ? 700 : width}
               height={width > 700 ? (700 * 218) / 375 : (width * 218) / 375}
+              alt="メディアサイトuu-yellを見る"
             />
           </a>
         </div>

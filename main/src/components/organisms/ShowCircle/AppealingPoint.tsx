@@ -1,9 +1,9 @@
-import { Circle } from '@/src/lib/types/model/Circle'
-import Color from '@/src/styles/colors'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, Fragment } from 'react'
 import { ShowCircleTitle } from './ShowCircleTitle'
+import { Circle } from '@/src/lib/types/model/Circle'
+import Color from '@/src/styles/colors'
 
 type Props = {
   circle: Circle

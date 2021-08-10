@@ -1,3 +1,10 @@
+import axios from 'axios'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import { FC } from 'react'
+import { Link as ScrollLink } from 'react-scroll'
+import useSWR from 'swr'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { GreenLgButton } from '@/src/components/atoms/button/GreenLgButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
@@ -6,13 +13,6 @@ import { BaseContainer } from '@/src/components/molecules/Container/BaseContaine
 import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
-import axios from 'axios'
-import { NextPage } from 'next'
-import Image from 'next/image'
-import { FC } from 'react'
-import { Link as ScrollLink } from 'react-scroll'
-import useSWR from 'swr'
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 
@@ -80,6 +80,7 @@ const Page: NextPage<Props> = () => {
                   src="/images/topButtons/Rectangle15.png"
                   width="328"
                   height="76"
+                  alt="ディスコードをダウンロードしよう！"
                 />
               </a>
             </div>

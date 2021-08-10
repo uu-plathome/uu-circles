@@ -104,7 +104,7 @@ export const usePagePosition = ({
         // console.info('Received event:', data)
         setPageData(data.arg)
       })
-  }, [identifierHash])
+  }, [identifierHash, pageName])
 
   return {
     pagePositionId,

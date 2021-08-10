@@ -5,7 +5,7 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/pages/**/*.{js,ts,jsx,tsx}',
   ],
-  presets: [],
+  mode: 'jit',
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {

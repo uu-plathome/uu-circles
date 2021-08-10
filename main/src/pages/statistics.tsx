@@ -1,3 +1,7 @@
+import { GetStaticProps, NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
+import { WP_REST_API_Posts } from 'wp-types'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -7,10 +11,6 @@ import { StatisticsButtonState } from '@/src/components/organisms/Statistics/Sta
 import { getStatistics } from '@/src/lib/infra/api/statistics'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Statistics } from '@/src/lib/types/model/Statistics'
-import { GetStaticProps, NextPage } from 'next'
-import dynamic from 'next/dynamic'
-import { useState } from 'react'
-import { WP_REST_API_Posts } from 'wp-types'
 
 const StatisticsCircleView = dynamic(() =>
   import('@/src/components/organisms/Statistics/StatisticsCircleView').then(

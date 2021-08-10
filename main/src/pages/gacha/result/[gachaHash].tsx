@@ -1,11 +1,3 @@
-import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
-import { BaseLayout } from '@/src/components/layouts/BaseLayout'
-import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { PageNotFoundError } from '@/src/lib/infra/api/error'
-import { resultGacha, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
-import colors from '@/src/styles/colors'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -21,6 +13,14 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
+import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseHead } from '@/src/components/layouts/BaseHead'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { PageNotFoundError } from '@/src/lib/infra/api/error'
+import { resultGacha, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
+import colors from '@/src/styles/colors'
 
 type Props = {
   count?: number
@@ -37,14 +37,14 @@ const Page: NextPage<Props> = ({
   resultCircles,
   errorCode,
 }) => {
-  if (errorCode) {
-    return <Error statusCode={errorCode} />
-  }
-
   const pageUrl = useMemo(
     () => `https://uu-circles.com/gacha/result/${gachaHash}`,
     [gachaHash]
   )
+
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
 
   return (
     <div>
@@ -55,7 +55,12 @@ const Page: NextPage<Props> = ({
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image
+                  src="/images/gacha-logo.png"
+                  width="360"
+                  height="120"
+                  alt="サークルガチャへようこそ！"
+                />
               </div>
 
               <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
@@ -68,6 +73,7 @@ const Page: NextPage<Props> = ({
                   <Link
                     href="/circle/slug"
                     as={`/circle/${resultCircles[0].slug}`}
+                    passHref
                   >
                     <div>
                       <div className="rounded">
@@ -101,6 +107,7 @@ const Page: NextPage<Props> = ({
                         <Link
                           href="/circle/slug"
                           as={`/circle/${resultCircle.slug}`}
+                          passHref
                         >
                           <div>
                             <div className="rounded">
@@ -204,6 +211,7 @@ const Page: NextPage<Props> = ({
                             <Link
                               href="/circle/slug"
                               as={`/circle/${resultCircles[0].slug}`}
+                              passHref
                             >
                               <div className="rounded bg-white flex items-center px-6 py-4">
                                 <div

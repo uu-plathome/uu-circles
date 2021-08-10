@@ -1,7 +1,7 @@
-import { useMediaQuery } from '@/src/hooks/useMediaQuery'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
 type Props = Record<string, never>
 const MainUucircleAd: FC<Props> = () => {
@@ -14,7 +14,7 @@ const MainUucircleAd: FC<Props> = () => {
     // w : h = 220 : 130
     const newHeight = (width * 130) / 220
     setHeight(newHeight)
-  })
+  }, [isMd, width])
 
   return (
     <div className="bg-gray-100 md:grid md:grid-cols-2 gap-6 pt-10">

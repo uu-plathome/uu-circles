@@ -1,11 +1,11 @@
+import Link from 'next/link'
+import { FC } from 'react'
+import { SnsList } from './SnsList'
 import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { CircleType, isCircleType } from '@/src/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/src/lib/types/model/Circle'
-import Link from 'next/link'
-import { FC } from 'react'
-import { SnsList } from './SnsList'
 
 type Props = {
   circle: Circle
@@ -372,7 +372,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                       href={`/circle/tag/[tag]`}
                       as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
                     >
-                      <a className="tag-title text-gray-400 text-sm hover:underline">
+                      <a className="before:content-['#'] text-gray-400 text-sm hover:underline">
                         {__(circleTag, CircleTagModel._type)}
                       </a>
                     </Link>
