@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 活動日時
  */
-class DateOfActivity
+final class DateOfActivity
 {
     /**
      * 毎週.

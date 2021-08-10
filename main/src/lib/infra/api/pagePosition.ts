@@ -8,16 +8,24 @@ import { axiosInstance } from '.'
 /**
  * ページの位置記録
  */
+type CreatePagePositionResponse = {
+  pagePositionHistoryId: number
+  createdAt: string
+  data: boolean
+}
+/**
+ * ページの位置記録
+ */
 export const createPagePosition = async ({
   identifierHash,
   request,
 }: {
   identifierHash: string
   request: CreatePagePositionRequest
-}) => {
-  type Response = {
-    data: boolean
-  }
+}): Promise<
+  CreatePagePositionResponse | CreatePagePositionRequestValidationError
+> => {
+  type Response = CreatePagePositionResponse
 
   try {
     // ページの位置記録

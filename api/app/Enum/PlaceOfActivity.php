@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 活動場所
  */
-class PlaceOfActivity
+final class PlaceOfActivity
 {
     /**
      * 峰キャンパス.

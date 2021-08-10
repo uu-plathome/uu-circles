@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
 
-Pusher.logToConsole = true
+Pusher.logToConsole = process.env.NODE_ENV === 'development'
 
 /**
  * メインページのコンテンツを再取得
@@ -66,7 +66,7 @@ const Index: NextPage<Props> = (ssrProps) => {
   const { uuYellForMain } = useFetchUuYell()
 
   // ページ位置
-  const { pageData, onChangeId } = usePagePosition({
+  const { pageData, onChangeId, recordPagePosition } = usePagePosition({
     pageUrl: '/',
     pageName: 'Main',
     identifierHash,
@@ -81,6 +81,7 @@ const Index: NextPage<Props> = (ssrProps) => {
       uuYellForMain={uuYellForMain}
       announcements={announcements}
       pagePositions={pageData}
+      recordPagePosition={recordPagePosition}
       onChangeId={onChangeId}
     />
   )

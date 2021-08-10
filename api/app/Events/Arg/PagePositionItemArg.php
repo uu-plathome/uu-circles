@@ -7,6 +7,10 @@ use App\Models\PagePositionHistory;
 final class PagePositionItemArg
 {
     /**
+     * @var int id
+     */
+    public int $pagePositionHistoryId;
+    /**
      * @var string ページURL
      */
     public string $pageUrl;
@@ -31,6 +35,7 @@ final class PagePositionItemArg
     ): self {
         $item = new self();
 
+        $item->pagePositionHistoryId = $pagePositionHistory->id;
         $item->pageUrl = $pagePositionHistory->page_url;
         $item->pageName = $pagePositionHistory->page_name;
         $item->pagePositionId = $pagePositionHistory->page_position_id;

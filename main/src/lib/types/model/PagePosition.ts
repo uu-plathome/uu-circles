@@ -7,6 +7,7 @@ export interface PagePositions {
 }
 
 export interface PagePositionItem {
+  pagePositionHistoryId: number
   pageUrl: string
   pagePositionId: string
   createdAt: string

@@ -11,13 +11,13 @@ import {
  *
  * @param { EffectCallback } effect
  * @param { DependencyList } deps
- * @param { NUmber } delayTime
+ * @param { Number } delayTime
  */
 export const useDelayedEffect = (
   effect: EffectCallback,
   deps?: DependencyList,
   delayTime = 1000
-) => {
+): void => {
   const [waiting, setWaiting] = useState(false)
   const timer = useRef<number>()
 

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 広告種類.
  */
-class AdvertiseType
+final class AdvertiseType
 {
     /**
      * 通常広告.

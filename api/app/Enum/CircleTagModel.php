@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * サークルタグ.
  */
-class CircleTagModel
+final class CircleTagModel
 {
     /**
      * 運動系.
