@@ -138,7 +138,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
   return (
     <li className="mb-3">
       <Link href={tagItem.href} as={tagItem.as}>
-        <a className="text-gray-400 font-bold text-sm tag-title">
+        <a className="text-gray-400 font-bold text-sm before:content-['#']">
           {tagItem.text}
         </a>
       </Link>
