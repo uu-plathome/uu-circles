@@ -27,22 +27,22 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image src="/images/gacha-logo.png" width="360" height="120" alt="サークルガチャへようこそ！" />
               </div>
 
               <h1 className="text-2xl pt-6 px-4 text-center">サークルガチャ</h1>
 
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha800.png" width="360" height="450" />
+                <Image src="/images/gacha800.png" width="360" height="450" alt="サークルガチャを引く" />
               </div>
 
               <div className="flex justify-center">
-                <Link href="/gacha/draw/1">
+                <Link href="/gacha/draw/1" passHref>
                   <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     1連ガチャ
                   </div>
                 </Link>
-                <Link href="/gacha/draw/5">
+                <Link href="/gacha/draw/5" passHref>
                   <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     5連ガチャ
                   </div>
@@ -50,8 +50,8 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               </div>
 
               {pickupCircle.list &&
-              Array.isArray(pickupCircle.list) &&
-              pickupCircle.list.length > 0 ? (
+                Array.isArray(pickupCircle.list) &&
+                pickupCircle.list.length > 0 ? (
                 <div className="flex justify-center">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
@@ -77,7 +77,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                             key={`${circle.slug}-${idx}`}
                             className="mb-4 cursor-pointer"
                           >
-                            <Link href={`/circle/${circle.slug}`}>
+                            <Link href="/circle/[slug]" as={`/circle/${circle.slug}`} passHref>
                               <div className="rounded bg-white flex items-center px-6 py-4">
                                 <div
                                   style={{ minWidth: 60 }}
@@ -87,6 +87,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                                     src={circle.handbillImageUrl}
                                     width="60"
                                     height="60"
+                                    alt={`${circle.name} - 新歓ビラ`}
                                   />
                                 </div>
 

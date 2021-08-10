@@ -16,7 +16,7 @@ const BaseLayout: FC<Props> = ({ children, announcement }) => {
     if (isMd) {
       setMenuIsOpen(false)
     }
-  })
+  }, [isMd])
 
   return (
     <div>

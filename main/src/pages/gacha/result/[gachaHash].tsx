@@ -37,14 +37,15 @@ const Page: NextPage<Props> = ({
   resultCircles,
   errorCode,
 }) => {
-  if (errorCode) {
-    return <Error statusCode={errorCode} />
-  }
 
   const pageUrl = useMemo(
     () => `https://uu-circles.com/gacha/result/${gachaHash}`,
     [gachaHash]
   )
+
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
 
   return (
     <div>
@@ -55,19 +56,20 @@ const Page: NextPage<Props> = ({
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image src="/images/gacha-logo.png" width="360" height="120" alt="サークルガチャへようこそ！" />
               </div>
 
               <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
 
               {count === 1 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
                 <div className="flex justify-center cursor-pointer">
                   <Link
                     href="/circle/slug"
                     as={`/circle/${resultCircles[0].slug}`}
+                    passHref
                   >
                     <div>
                       <div className="rounded">
@@ -88,9 +90,9 @@ const Page: NextPage<Props> = ({
               )}
 
               {count === 5 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
                 <div className="grid grid-cols-2 gap-4">
                   {resultCircles.map((resultCircle, idx) => {
                     return (
@@ -101,6 +103,7 @@ const Page: NextPage<Props> = ({
                         <Link
                           href="/circle/slug"
                           as={`/circle/${resultCircle.slug}`}
+                          passHref
                         >
                           <div>
                             <div className="rounded">
@@ -174,8 +177,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {pickupCircles &&
-              Array.isArray(pickupCircles) &&
-              pickupCircles.length > 0 ? (
+                Array.isArray(pickupCircles) &&
+                pickupCircles.length > 0 ? (
                 <div className="flex justify-center pt-8">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
@@ -204,6 +207,7 @@ const Page: NextPage<Props> = ({
                             <Link
                               href="/circle/slug"
                               as={`/circle/${resultCircles[0].slug}`}
+                              passHref
                             >
                               <div className="rounded bg-white flex items-center px-6 py-4">
                                 <div

@@ -173,6 +173,7 @@ const Page: NextPage<Props> = () => {
                 src={ImagePath.UU_CIRCLES.UU_CIRCLES_SERVICE}
                 width="900"
                 height="506"
+                alt="UU-Circlesと関連サービス (UU-Circles メインページ, UU-Circles サークル管理ページ, UU-Manager)"
               />
             </div>
 
@@ -288,6 +289,7 @@ const Page: NextPage<Props> = () => {
                   src={ImagePath.UU_CIRCLES_2020.MAIN}
                   width="900"
                   height="675"
+                  alt="宇都宮大学サークルビラ一覧 (2020)"
                 />
               </a>
             </div>
@@ -314,6 +316,7 @@ const Page: NextPage<Props> = () => {
                   src="/images/future-uucircle.png"
                   width="1020"
                   height="544"
+                  alt="将来のUU-Circles"
                 />
               </a>
             </div>

@@ -53,7 +53,7 @@ const Page: NextPage = () => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image src="/images/gacha-logo.png" width="360" height="120" alt="サークルガチャへようこそ！" />
               </div>
 
               <div className="py-8 flex justify-center">

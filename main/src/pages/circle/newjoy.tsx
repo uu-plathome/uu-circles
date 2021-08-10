@@ -35,11 +35,11 @@ const Page: NextPage<Props> = ({
   uuYellArticles,
   announcements,
 }) => {
+  const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
+
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
-
-  const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
 
   return (
     <div>

@@ -33,7 +33,7 @@ export const useMediaQuery = (): {
     setIsLg(width >= lg)
     setIsXl(width >= xl)
     setIsXl2(width >= xl2)
-  })
+  }, [width, sm, md, lg, xl, xl2])
 
   return {
     isSm,

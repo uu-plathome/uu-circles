@@ -14,7 +14,7 @@ const MainUucircleAd: FC<Props> = () => {
     // w : h = 220 : 130
     const newHeight = (width * 130) / 220
     setHeight(newHeight)
-  })
+  }, [isMd, width])
 
   return (
     <div className="bg-gray-100 md:grid md:grid-cols-2 gap-6 pt-10">

@@ -17,8 +17,7 @@ import {
  * 新歓タイトル
  */
 const computedCircleNewJoyTitle = (todayCircleNewJoy: TodayCircleNewJoy) =>
-  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${
-    todayCircleNewJoy.circleNewJoy.title
+  `${todayCircleNewJoy.shortName || todayCircleNewJoy.name} ${todayCircleNewJoy.circleNewJoy.title
   }`
 
 type GetCircleNameSizeRetVal = 'text-xl' | 'text-base' | 'text-sm' | 'text-xs'
@@ -185,6 +184,7 @@ const SpLayout: FC<{
           : `/circle/${slug}/newjoy/${circleNewJoy.id}`
       }
       prefetch={false}
+      passHref
     >
       <div
         className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"

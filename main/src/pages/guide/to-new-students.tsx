@@ -80,6 +80,7 @@ const Page: NextPage<Props> = () => {
                   src="/images/topButtons/Rectangle15.png"
                   width="328"
                   height="76"
+                  alt="ディスコードをダウンロードしよう！"
                 />
               </a>
             </div>
