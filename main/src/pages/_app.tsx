@@ -11,7 +11,7 @@ import Head from 'next/head'
 import React, { useEffect } from 'react'
 
 import 'swiper/swiper-bundle.min.css'
-import '../styles/index.scss'
+import '@/src/styles/index.scss'
 
 const ErrorBoundary = process.env.BUGSNAG_API_KEY
   ? Bugsnag.getPlugin('react').createErrorBoundary(React)
