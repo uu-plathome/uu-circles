@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 重要度.
  */
-class Importance
+final class Importance
 {
     /**
      * 高.
