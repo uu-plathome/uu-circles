@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * お知らせ種類.
  */
-class AnnouncementType
+final class AnnouncementType
 {
     /**
      * メンテナンス.

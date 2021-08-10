@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\PagePosition;
 
 use App\Enum\Property\PagePositionHistoryProperty;
@@ -15,7 +17,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class CreatePagePositionController extends Controller
+final class CreatePagePositionController extends Controller
 {
     /**
      * ユーザーのページ位置を記録し、
