@@ -1,11 +1,16 @@
 import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import { createPagePosition } from '../lib/infra/api/pagePosition'
+import { isCreatePagePositionRequestValidationError } from '../lib/types/api/CreatePagePositionRequest'
 import { PagePositions } from '../lib/types/model/PagePosition'
 import { useWindowResize } from './useWindowResize'
 
 const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
+export type PagePositionRecord = {
+  pagePositionHistoryId: number
+  createdAt: string
+}
 export const usePagePosition = ({
   pageUrl,
   pageName,
@@ -19,6 +24,7 @@ export const usePagePosition = ({
   pageData: PagePositions
   pageUrl: string
   identifierHash: string
+  recordPagePosition: PagePositionRecord[]
   onChangeId: (_pagePositionId: string) => Promise<void>
 } => {
   const [pagePositionId, setPagePositionId] = useState<string>('')
@@ -27,6 +33,7 @@ export const usePagePosition = ({
     pagePositions: [],
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
+  const [recordPagePosition, setRecordPagePosition] = useState<PagePositionRecord[]>([])
   // 画面サイズ
   const { width, height } = useWindowResize()
 
@@ -49,7 +56,7 @@ export const usePagePosition = ({
     try {
       setOnProcess(true)
 
-      await createPagePosition({
+      const apiResponse = await createPagePosition({
         identifierHash,
         request: {
           type: 'CreatePagePositionRequest',
@@ -60,6 +67,19 @@ export const usePagePosition = ({
           screenHeight: height,
         },
       })
+
+      if (isCreatePagePositionRequestValidationError(apiResponse)) {
+        console.error(apiResponse)
+        return
+      }
+
+      setRecordPagePosition([
+        ...recordPagePosition,
+        {
+          pagePositionHistoryId: apiResponse.pagePositionHistoryId,
+          createdAt: apiResponse.createdAt
+        },
+      ])
     } finally {
       setTimeout(() => {
         setOnProcess(false)
@@ -79,7 +99,7 @@ export const usePagePosition = ({
     pusher
       .subscribe(channelName)
       .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
-        console.info('Received event:', data)
+        // console.info('Received event:', data)
         setPageData(data.arg)
       })
   }, [identifierHash])
@@ -89,6 +109,7 @@ export const usePagePosition = ({
     pageData,
     pageUrl,
     identifierHash,
+    recordPagePosition,
     onChangeId,
   }
 }
