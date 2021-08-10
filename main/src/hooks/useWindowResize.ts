@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react'
  *
  * @returns
  */
-export const useWindowResize = () => {
+export const useWindowResize = (): {
+  width: number
+  height: number
+} => {
   const [windowWidth, setWindowWidth] = useState<number>(undefined)
   const [windowHeight, setWindowHeight] = useState<number>(undefined)
 

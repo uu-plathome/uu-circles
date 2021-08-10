@@ -5,6 +5,9 @@ import {
 } from '../../types/api/CreatePagePositionRequest'
 import { axiosInstance } from '.'
 
+type CreatePagePositionResponse = {
+  data: boolean
+}
 /**
  * ページの位置記録
  */
@@ -14,7 +17,7 @@ export const createPagePosition = async ({
 }: {
   identifierHash: string
   request: CreatePagePositionRequest
-}) => {
+}): Promise<CreatePagePositionResponse|CreatePagePositionRequestValidationError> => {
   type Response = {
     data: boolean
   }

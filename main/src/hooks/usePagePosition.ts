@@ -14,7 +14,13 @@ export const usePagePosition = ({
   pageUrl: string
   pageName: string
   identifierHash: string
-}) => {
+}): {
+  pagePositionId: string
+  pageData: PagePositions
+  pageUrl: string
+  identifierHash: string
+  onChangeId: (_pagePositionId: string) => Promise<void>
+} => {
   const [pagePositionId, setPagePositionId] = useState<string>('')
   const [pageData, setPageData] = useState<PagePositions>({
     pageUrl,
