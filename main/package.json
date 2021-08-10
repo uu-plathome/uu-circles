@@ -13,7 +13,8 @@
     "clean": "rimraf .next out",
     "start": "next start",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
-    "lint": "eslint . --fix --ext ts --ext tsx --ext js"
+    "lint": "eslint . --fix --ext ts --ext tsx --ext js",
+    "lint:fix": "npm run lint && npm run format"
   },
   "dependencies": {
     "@bugsnag/js": "^7.11.0",
