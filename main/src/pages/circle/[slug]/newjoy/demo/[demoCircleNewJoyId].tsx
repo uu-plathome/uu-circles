@@ -1,3 +1,6 @@
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Error from 'next/error'
+import { WP_REST_API_Posts } from 'wp-types'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -11,9 +14,6 @@ import { PageNotFoundError } from '@/src/lib/infra/api/error'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Error from 'next/error'
-import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number

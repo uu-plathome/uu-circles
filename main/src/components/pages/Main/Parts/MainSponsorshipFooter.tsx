@@ -1,10 +1,10 @@
+import Image from 'next/image'
+import { FC } from 'react'
 import { LightBlueButton } from '@/src/components/atoms/button/LightBlueButton'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { useWindowResize } from '@/src/hooks/useWindowResize'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { Advertise } from '@/src/lib/types/model/Advertise'
-import Image from 'next/image'
-import { FC } from 'react'
 
 type Props = {
   advertises: Advertise[]

@@ -1,3 +1,7 @@
+import { AppProps } from 'next/app'
+import { useRouter } from 'next/dist/client/router'
+import Head from 'next/head'
+import React, { useEffect } from 'react'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import {
   publishIdentification,
@@ -5,10 +9,6 @@ import {
 } from '@/src/lib/infra/api/identification'
 import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 import * as gtag from '@/src/lib/utils/Gtag'
-import { AppProps } from 'next/app'
-import { useRouter } from 'next/dist/client/router'
-import Head from 'next/head'
-import React, { useEffect } from 'react'
 
 import 'swiper/swiper-bundle.min.css'
 import '@/src/styles/index.scss'

@@ -1,8 +1,8 @@
+import { FC } from 'react'
 import { WhiteBadge } from '@/src/components/atoms/badge/WhiteBadge'
 import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
-import { FC } from 'react'
 
 const RecommendTagList: FC = () => {
   return (

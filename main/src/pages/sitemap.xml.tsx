@@ -1,7 +1,7 @@
-import { SitemapDto } from '@/src/lib/enum/app/SitemapDto'
-import { axiosInstance } from '@/src/lib/infra/api'
 import { GetServerSidePropsContext } from 'next'
 import React from 'react'
+import { SitemapDto } from '@/src/lib/enum/app/SitemapDto'
+import { axiosInstance } from '@/src/lib/infra/api'
 
 const createSitemap = (response: SitemapDto[]) => {
   return `<?xml version="1.0" encoding="UTF-8"?>

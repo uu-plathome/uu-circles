@@ -1,7 +1,7 @@
-import { useMediaQuery } from '@/src/hooks/useMediaQuery'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
 type Props = Record<string, never>
 const MainUucircleAd: FC<Props> = () => {

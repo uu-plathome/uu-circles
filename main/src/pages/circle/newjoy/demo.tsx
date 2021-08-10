@@ -1,3 +1,6 @@
+import { GetStaticProps, NextPage } from 'next'
+import Error from 'next/error'
+import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { NewjoyTemplate } from '@/src/components/pages/Newjoy/NewjoyTemplate'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
@@ -7,9 +10,6 @@ import {
   TodayCircleNewJoy,
 } from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
-import { GetStaticProps, NextPage } from 'next'
-import Error from 'next/error'
-import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number

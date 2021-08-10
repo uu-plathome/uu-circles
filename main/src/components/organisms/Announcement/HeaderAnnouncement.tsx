@@ -1,8 +1,8 @@
+import { FC } from 'react'
 import { __ } from '@/src/lang/ja'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { isHigh } from '@/src/lib/enum/api/Importance'
 import { Announcement } from '@/src/lib/types/model/Announcement'
-import { FC } from 'react'
 
 type Props = {
   announcement: Announcement
@@ -18,11 +18,10 @@ const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
         <p
           className={`
           text-center
-          ${
-            isHigh(announcement.importance)
+          ${isHigh(announcement.importance)
               ? 'text-base md:text-lg'
               : 'text-sm md:text-base'
-          }
+            }
         `}
         >
           {announcement.title}

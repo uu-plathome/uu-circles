@@ -1,9 +1,9 @@
-import { Circle } from '@/src/lib/types/model/Circle'
-import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { FC } from 'react'
 import { IndexCircleNewJoyListSP } from '../List/IndexCircleNewJoyListSP'
 import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
 import { InformationCircleBesideNewJoySP } from '../ShowCircle/InformationCircleBesideNewJoySP'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const CircleNewJoyTitle: FC = ({ children }) => {
   return <h2 className="font-bold text-center mb-3">{children}</h2>
@@ -17,9 +17,9 @@ type ShowCircleNewJoySpLayoutProps = {
   /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓(全て) */ allTodayCircleNewJoys?: {
-    slug: string
-    circleNewJoy: CircleNewJoy
-  }[]
+  slug: string
+  circleNewJoy: CircleNewJoy
+}[]
 }
 const ShowCircleNewJoySpLayout: FC<ShowCircleNewJoySpLayoutProps> = ({
   circle,

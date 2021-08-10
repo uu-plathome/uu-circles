@@ -1,11 +1,11 @@
+import Link from 'next/link'
+import { FC } from 'react'
+import { SnsList } from './SnsList'
 import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { CircleType, isCircleType } from '@/src/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/src/lib/types/model/Circle'
-import Link from 'next/link'
-import { FC } from 'react'
-import { SnsList } from './SnsList'
 
 type Props = {
   circle: Circle
