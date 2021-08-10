@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Main\Main;
 
-class WelcomeController
+use Illuminate\View\View;
+
+final class WelcomeController
 {
-    public function __invoke()
+    public function __invoke(): View
     {
         return view('welcome');
     }

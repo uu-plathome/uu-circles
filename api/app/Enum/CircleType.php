@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * サークル種類.
  */
-class CircleType
+final class CircleType
 {
     /**
      * 公式団体.

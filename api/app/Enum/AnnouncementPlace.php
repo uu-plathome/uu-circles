@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
-class AnnouncementPlace
+final class AnnouncementPlace
 {
     /**
      * メイン画面 (固定表示).

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Main\PagePosition;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePagePositionRequest extends FormRequest
+final class CreatePagePositionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

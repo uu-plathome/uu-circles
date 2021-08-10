@@ -6,11 +6,13 @@ import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList
 import { MainHead } from '@/src/components/pages/Main/Parts/MainHead'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
+import { PagePositionRecord } from '@/src/hooks/usePagePosition'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import dynamic from 'next/dynamic'
+import { useMemo } from 'react'
 import { FC } from 'react'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
@@ -54,6 +56,7 @@ type Props = {
     medias: WP_REST_API_Attachments
   }
   pagePositions: PagePositions
+  recordPagePosition: PagePositionRecord[]
   onChangeId: (_pagePositionId: string) => Promise<void>
 }
 export const MainTemplate: FC<Props> = ({
@@ -63,9 +66,44 @@ export const MainTemplate: FC<Props> = ({
   uuYellArticles,
   uuYellForMain,
   announcements,
-  // pagePositions,
+  pagePositions,
+  recordPagePosition,
   onChangeId,
 }) => {
+  // const pagePositionIdNowLength =
+  useMemo(() => {
+    // 自分自身のIdを取得
+    const recordPagePositionHistoryIds = recordPagePosition.map(
+      (r) => r.pagePositionHistoryId
+    )
+    // 自分自身は除外する
+    const pagePositionsExcludeOwn = pagePositions.pagePositions.filter(
+      (p) => !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
+    )
+
+    const retVal = {
+      [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
+      ).length,
+      [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
+      ).length,
+      [ID_LIST.CIRCLE_LIST]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.CIRCLE_LIST
+      ).length,
+      [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
+      ).length,
+      [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
+      ).length,
+    }
+
+    console.info(retVal)
+
+    return retVal
+  }, [pagePositions, recordPagePosition])
+
   return (
     <div>
       <MainHead />
@@ -82,7 +120,7 @@ export const MainTemplate: FC<Props> = ({
         <div
           id={ID_LIST.HEADER_CATCH_COPY}
           style={{ marginTop: '-6px' }}
-          className="bg-white"
+          className="bg-white relative"
           onMouseMove={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
         >
           <p className="text-center py-8">新歓をハックする！</p>
@@ -90,6 +128,7 @@ export const MainTemplate: FC<Props> = ({
 
         <div
           id={ID_LIST.TOP_BUTTONS}
+          className="bg-white relative"
           onMouseMove={() => onChangeId(ID_LIST.TOP_BUTTONS)}
         >
           <MainUucircleTopButtons />
@@ -97,7 +136,7 @@ export const MainTemplate: FC<Props> = ({
 
         <BaseContainer>
           <div
-            className="px-7"
+            className="px-7 relative"
             id={ID_LIST.CIRCLE_LIST}
             onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
           >

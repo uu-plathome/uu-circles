@@ -17,7 +17,7 @@ const ErrorBoundary = process.env.BUGSNAG_API_KEY
   ? Bugsnag.getPlugin('react').createErrorBoundary(React)
   : ({ children }) => <div>{children}</div>
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter()
 
   useEffect(() => {

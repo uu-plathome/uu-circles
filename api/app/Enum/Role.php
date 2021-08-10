@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 権限.
  */
-class Role
+final class Role
 {
     /**
      * システム管理者.

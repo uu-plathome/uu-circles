@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enum;
 
 /**
  * 曜日.
  */
-class Week
+final class Week
 {
     /**
      * 月曜日.
