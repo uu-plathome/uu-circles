@@ -33,7 +33,9 @@ export const usePagePosition = ({
     pagePositions: [],
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
-  const [recordPagePosition, setRecordPagePosition] = useState<PagePositionRecord[]>([])
+  const [recordPagePosition, setRecordPagePosition] = useState<
+    PagePositionRecord[]
+  >([])
   // 画面サイズ
   const { width, height } = useWindowResize()
 
@@ -77,7 +79,7 @@ export const usePagePosition = ({
         ...recordPagePosition,
         {
           pagePositionHistoryId: apiResponse.pagePositionHistoryId,
-          createdAt: apiResponse.createdAt
+          createdAt: apiResponse.createdAt,
         },
       ])
     } finally {

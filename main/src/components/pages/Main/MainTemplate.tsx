@@ -73,27 +73,29 @@ export const MainTemplate: FC<Props> = ({
   // const pagePositionIdNowLength =
   useMemo(() => {
     // 自分自身のIdを取得
-    const recordPagePositionHistoryIds = recordPagePosition.map(r => r.pagePositionHistoryId)
+    const recordPagePositionHistoryIds = recordPagePosition.map(
+      (r) => r.pagePositionHistoryId
+    )
     // 自分自身は除外する
-    const pagePositionsExcludeOwn = pagePositions.pagePositions.filter(p =>
-      !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
+    const pagePositionsExcludeOwn = pagePositions.pagePositions.filter(
+      (p) => !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
     )
 
     const retVal = {
-      [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(p =>
-        p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
+      [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
       ).length,
-      [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(p =>
-        p.pagePositionId === ID_LIST.TOP_BUTTONS
+      [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
       ).length,
-      [ID_LIST.CIRCLE_LIST]: pagePositionsExcludeOwn.filter(p =>
-        p.pagePositionId === ID_LIST.CIRCLE_LIST
+      [ID_LIST.CIRCLE_LIST]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.CIRCLE_LIST
       ).length,
-      [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(p =>
-        p.pagePositionId === ID_LIST.UU_CIRCLES_AD
+      [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
       ).length,
-      [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(p =>
-        p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
+      [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
       ).length,
     }
 

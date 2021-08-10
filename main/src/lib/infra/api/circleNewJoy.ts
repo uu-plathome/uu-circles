@@ -32,25 +32,26 @@ type GetTodayCircleNewJoyResponse = {
 /**
  * 今日の新歓一覧
  */
-export const getTodayCircleNewJoy = async (): Promise<GetTodayCircleNewJoyResponse> => {
-  try {
-    type Response = GetTodayCircleNewJoyResponse
-    const { data } = await axiosInstance.get<Response>(
-      linkConst.CIRCLE_NEW_JOY.TODAY
-    )
+export const getTodayCircleNewJoy =
+  async (): Promise<GetTodayCircleNewJoyResponse> => {
+    try {
+      type Response = GetTodayCircleNewJoyResponse
+      const { data } = await axiosInstance.get<Response>(
+        linkConst.CIRCLE_NEW_JOY.TODAY
+      )
 
-    return {
-      /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
-      /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
-      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** お知らせ */ announcements: data.announcements,
+      return {
+        /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
+        /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
+        /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+        /** お知らせ */ announcements: data.announcements,
+      }
+    } catch (_e) {
+      const e = _e as AxiosError
+
+      throw new InternalServerError(e.response.status, e.response.statusText)
     }
-  } catch (_e) {
-    const e = _e as AxiosError
-
-    throw new InternalServerError(e.response.status, e.response.statusText)
   }
-}
 
 /**
  * 今日の新歓(デモ)
@@ -64,25 +65,26 @@ type GetDemoTodayCircleNewJoyResponse = {
 /**
  * 今日の新歓(デモ)
  */
-export const getDemoTodayCircleNewJoy = async (): Promise<GetDemoTodayCircleNewJoyResponse> => {
-  try {
-    type Response = GetDemoTodayCircleNewJoyResponse
-    const { data } = await axiosInstance.get<Response>(
-      linkConst.CIRCLE_NEW_JOY.TODAY_DEMO
-    )
+export const getDemoTodayCircleNewJoy =
+  async (): Promise<GetDemoTodayCircleNewJoyResponse> => {
+    try {
+      type Response = GetDemoTodayCircleNewJoyResponse
+      const { data } = await axiosInstance.get<Response>(
+        linkConst.CIRCLE_NEW_JOY.TODAY_DEMO
+      )
 
-    return {
-      /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
-      /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
-      /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
-      /** お知らせ */ announcements: data.announcements,
+      return {
+        /** 今日の新歓 */ todayCircleNewJoys: data.todayCircleNewJoys,
+        /** 新歓開催前 */ futureCircleNewJoys: data.futureCircleNewJoys,
+        /** uu-yell記事 */ uuYellArticles: data.uuYellArticles,
+        /** お知らせ */ announcements: data.announcements,
+      }
+    } catch (_e) {
+      const e = _e as AxiosError
+
+      throw new InternalServerError(e.response.status, e.response.statusText)
     }
-  } catch (_e) {
-    const e = _e as AxiosError
-
-    throw new InternalServerError(e.response.status, e.response.statusText)
   }
-}
 
 /**
  * サークルの新歓を取得
