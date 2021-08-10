@@ -1,11 +1,3 @@
-import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
-import { BaseLayout } from '@/src/components/layouts/BaseLayout'
-import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { PageNotFoundError } from '@/src/lib/infra/api/error'
-import { resultGacha, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
-import colors from '@/src/styles/colors'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
@@ -21,6 +13,14 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
+import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseHead } from '@/src/components/layouts/BaseHead'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { PageNotFoundError } from '@/src/lib/infra/api/error'
+import { resultGacha, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
+import colors from '@/src/styles/colors'
 
 type Props = {
   count?: number

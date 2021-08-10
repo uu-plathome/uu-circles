@@ -1,6 +1,6 @@
-import { Advertise } from '@/src/lib/types/model/Advertise'
 import { linkConst } from './linkConst'
 import { axiosInstance } from '.'
+import { Advertise } from '@/src/lib/types/model/Advertise'
 
 /**
  * 広告の取得

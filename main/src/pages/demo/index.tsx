@@ -1,3 +1,8 @@
+import axios from 'axios'
+import { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
+import useSWR from 'swr'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -17,11 +22,6 @@ import { getMainDemo } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
-import axios from 'axios'
-import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
-import useSWR from 'swr'
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 

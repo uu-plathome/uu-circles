@@ -1,9 +1,9 @@
-import { useMediaQuery } from '@/src/hooks/useMediaQuery'
-import { Announcement } from '@/src/lib/types/model/Announcement'
 import { FC, useEffect, useState } from 'react'
 import { HeaderAnnouncement } from '../organisms/Announcement/HeaderAnnouncement'
 import { BaseHeader } from './BaseHeader'
 import { BaseSpMenu } from './BaseSpMenu'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
+import { Announcement } from '@/src/lib/types/model/Announcement'
 
 type Props = {
   announcement?: Announcement

@@ -1,3 +1,8 @@
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GetStaticProps, NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
@@ -5,11 +10,6 @@ import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { getGachaPickup, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 import colors from '@/src/styles/colors'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
 type Props = {
   pickupCircle: {

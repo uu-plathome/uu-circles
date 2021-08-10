@@ -1,10 +1,10 @@
+import Link from 'next/link'
+import { FC, useMemo } from 'react'
 import { __ } from '@/src/lang/ja'
 import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 import { TagPageView } from '@/src/lib/types/model/TagPageView'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
-import Link from 'next/link'
-import { FC, useMemo } from 'react'
 
 type BaseItem = {
   text: string

@@ -1,9 +1,9 @@
+import { NextPage } from 'next'
+import Image from 'next/image'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { NextPage } from 'next'
-import Image from 'next/image'
 
 const Page: NextPage = () => {
   return (

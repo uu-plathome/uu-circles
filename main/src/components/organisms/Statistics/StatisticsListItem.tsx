@@ -1,8 +1,8 @@
-import { Circle } from '@/src/lib/types/model/Circle'
 import { faCrown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 type StatisticsListItem = {
   rank: 1 | 2 | 3 | 4 | 5

@@ -1,3 +1,7 @@
+import { FC } from 'react'
+import { WP_REST_API_Posts } from 'wp-types'
+import { CircleLengthView } from './Parts/CircleLengthView'
+import { SearchCircle } from './Parts/SearchCircle'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -10,10 +14,6 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
-import { FC } from 'react'
-import { WP_REST_API_Posts } from 'wp-types'
-import { CircleLengthView } from './Parts/CircleLengthView'
-import { SearchCircle } from './Parts/SearchCircle'
 
 const ID_LIST = {
   CIRCLE_LENGTH: 'circle_length',

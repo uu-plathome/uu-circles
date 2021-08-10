@@ -1,8 +1,8 @@
-import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
-import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 import axios from 'axios'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
+import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 

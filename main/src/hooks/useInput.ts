@@ -1,6 +1,6 @@
+import { SetStateAction, Dispatch, useState } from 'react'
 import { isDate, isDatetime } from '@/src/lib/utils/Date'
 import { dayjs } from '@/src/plugins/Dayjs'
-import { SetStateAction, Dispatch, useState } from 'react'
 
 export const useInput = <T extends string>(
   initialValue: T

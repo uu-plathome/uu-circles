@@ -1,7 +1,7 @@
-import { Circle } from '@/src/lib/types/model/Circle'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Circle } from '@/src/lib/types/model/Circle'
 type Props = {
   circle: Circle
 }

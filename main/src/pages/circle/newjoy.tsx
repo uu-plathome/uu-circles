@@ -1,13 +1,3 @@
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
-import { BaseLayout } from '@/src/components/layouts/BaseLayout'
-import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { IndexCircleNewJoyListForNoSlug } from '@/src/components/organisms/List/IndexCircleNewJoyListForNoSlug'
-import {
-  getTodayCircleNewJoy,
-  TodayCircleNewJoy,
-} from '@/src/lib/infra/api/circleNewJoy'
-import { Announcement } from '@/src/lib/types/model/Announcement'
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
 import { useMemo } from 'react'
@@ -20,6 +10,16 @@ import {
   TwitterShareButton,
 } from 'react-share'
 import { WP_REST_API_Posts } from 'wp-types'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseHead } from '@/src/components/layouts/BaseHead'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { IndexCircleNewJoyListForNoSlug } from '@/src/components/organisms/List/IndexCircleNewJoyListForNoSlug'
+import {
+  getTodayCircleNewJoy,
+  TodayCircleNewJoy,
+} from '@/src/lib/infra/api/circleNewJoy'
+import { Announcement } from '@/src/lib/types/model/Announcement'
 
 type Props = {
   errorCode?: number
