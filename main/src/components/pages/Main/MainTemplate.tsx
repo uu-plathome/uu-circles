@@ -1,3 +1,7 @@
+import dynamic from 'next/dynamic'
+import { useMemo } from 'react'
+import { FC } from 'react'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -11,10 +15,6 @@ import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
-import dynamic from 'next/dynamic'
-import { useMemo } from 'react'
-import { FC } from 'react'
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 
 const MainTagList = dynamic(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(

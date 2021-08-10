@@ -1,10 +1,10 @@
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
-import { Circle } from '@/src/lib/types/model/Circle'
-import Color from '@/src/styles/colors'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import { FC } from 'react'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
+import { Circle } from '@/src/lib/types/model/Circle'
+import Color from '@/src/styles/colors'
 
 type Props = {
   circle: Circle

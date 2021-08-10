@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
 import { __ } from '@/src/lang/ja'
 import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
@@ -9,9 +12,6 @@ import {
   getDate,
   getTime,
 } from '@/src/lib/utils/Date'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FC } from 'react'
 
 /**
  * 新歓タイトル
@@ -185,6 +185,7 @@ const SpLayout: FC<{
           : `/circle/${slug}/newjoy/${circleNewJoy.id}`
       }
       prefetch={false}
+      passHref
     >
       <div
         className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"

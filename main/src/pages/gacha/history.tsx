@@ -1,3 +1,9 @@
+import { NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import useSWR from 'swr'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
@@ -5,12 +11,6 @@ import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getGachaHistory, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
-import { NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import useSWR from 'swr'
 
 type Props = {
   history: {
@@ -43,7 +43,12 @@ const Page: NextPage<Props> = () => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image
+                  src="/images/gacha-logo.png"
+                  width="360"
+                  height="120"
+                  alt="サークルガチャへようこそ！"
+                />
               </div>
 
               <h1 className="text-2xl pt-6 px-4 text-center font-bold">
@@ -55,12 +60,12 @@ const Page: NextPage<Props> = () => {
               </h2>
 
               <div className="flex justify-center">
-                <Link href="/gacha/draw/1">
+                <Link href="/gacha/draw/1" passHref>
                   <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     1連ガチャ
                   </div>
                 </Link>
-                <Link href="/gacha/draw/5">
+                <Link href="/gacha/draw/5" passHref>
                   <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
                     5連ガチャ
                   </div>
@@ -81,6 +86,7 @@ const Page: NextPage<Props> = () => {
                         <Link
                           href="/gacha/result/[gachaHash]"
                           as={`/gacha/result/${gachaResult.gachaHash}`}
+                          passHref
                         >
                           <div className="rounded bg-white flex items-center px-6 py-4">
                             <div
@@ -93,6 +99,7 @@ const Page: NextPage<Props> = () => {
                                 }
                                 width="60"
                                 height="60"
+                                alt={`${gachaResult.resultCircles[0].name}の新歓ビラ`}
                               />
                             </div>
 

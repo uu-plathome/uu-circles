@@ -1,3 +1,6 @@
+import { GetStaticProps, NextPage } from 'next'
+import { useEffect, useState } from 'react'
+import { WP_REST_API_Posts } from 'wp-types'
 import { IndexCircleTemplate } from '@/src/components/pages/Circle/Index/IndexCircleTemplate'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
@@ -5,9 +8,6 @@ import { getAllCircleList } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
-import { GetStaticProps, NextPage } from 'next'
-import { useEffect, useState } from 'react'
-import { WP_REST_API_Posts } from 'wp-types'
 
 type Props = {
   errorCode?: number

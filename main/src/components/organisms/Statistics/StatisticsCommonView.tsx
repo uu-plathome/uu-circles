@@ -1,8 +1,8 @@
-import { Statistics } from '@/src/lib/types/model/Statistics'
-import { dayjs } from '@/src/plugins/Dayjs'
 import { FC } from 'react'
 import { StatisticsHeader } from './StatisticsHeader'
 import { StatisticsListItem } from './StatisticsListItem'
+import { Statistics } from '@/src/lib/types/model/Statistics'
+import { dayjs } from '@/src/plugins/Dayjs'
 
 type Props = {
   statistics: Statistics

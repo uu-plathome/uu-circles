@@ -1,9 +1,9 @@
+import { NextPage } from 'next'
+import Image from 'next/image'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { NextPage } from 'next'
-import Image from 'next/image'
 
 const Page: NextPage = () => {
   return (
@@ -15,7 +15,12 @@ const Page: NextPage = () => {
           <BaseContainer>
             <div className="flex justify-center items-center pt-6">
               <a href="https://discord.com/download">
-                <Image src="/images/banner.png" width="328" height="76" />
+                <Image
+                  src="/images/banner.png"
+                  width="328"
+                  height="76"
+                  alt="ディスコードをダウンロードしよう！"
+                />
               </a>
             </div>
             <h1 className="text-2xl pt-6 pb-8 px-4">
@@ -49,7 +54,12 @@ const Page: NextPage = () => {
             </p>
             <div className="flex justify-center items-center pb-6">
               <a href="https://discord.com/download">
-                <Image src="/images/discord2.png" width="250" height="70" />
+                <Image
+                  src="/images/discord2.png"
+                  width="250"
+                  height="70"
+                  alt="ディスコードをダウンロードしよう！"
+                />
               </a>
             </div>
 

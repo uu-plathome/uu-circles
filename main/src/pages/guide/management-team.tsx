@@ -1,8 +1,3 @@
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
-import { BaseLayout } from '@/src/components/layouts/BaseLayout'
-import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
@@ -10,6 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseHead } from '@/src/components/layouts/BaseHead'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
 const Header: FC<{
   id: string
@@ -173,6 +173,7 @@ const Page: NextPage<Props> = () => {
                 src={ImagePath.UU_CIRCLES.UU_CIRCLES_SERVICE}
                 width="900"
                 height="506"
+                alt="UU-Circlesと関連サービス (UU-Circles メインページ, UU-Circles サークル管理ページ, UU-Manager)"
               />
             </div>
 
@@ -288,6 +289,7 @@ const Page: NextPage<Props> = () => {
                   src={ImagePath.UU_CIRCLES_2020.MAIN}
                   width="900"
                   height="675"
+                  alt="宇都宮大学サークルビラ一覧 (2020)"
                 />
               </a>
             </div>
@@ -314,6 +316,7 @@ const Page: NextPage<Props> = () => {
                   src="/images/future-uucircle.png"
                   width="1020"
                   height="544"
+                  alt="将来のUU-Circles"
                 />
               </a>
             </div>

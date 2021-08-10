@@ -1,9 +1,9 @@
+import { NextPage } from 'next'
+import { FunctionComponent } from 'react'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { NextPage } from 'next'
-import { FunctionComponent } from 'react'
 
 const Section: FunctionComponent = ({ children }) => (
   <section className="my-8">{children}</section>

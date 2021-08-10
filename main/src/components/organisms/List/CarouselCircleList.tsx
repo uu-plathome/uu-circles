@@ -1,10 +1,10 @@
-import { useMediaQuery } from '@/src/hooks/useMediaQuery'
-import { Circle } from '@/src/lib/types/model/Circle'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
@@ -30,13 +30,13 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
     loop: true,
   }
   return (
-    <div>
+    <>
       {isMd ? (
         <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
           {circles.map((circle) => {
             return (
-              <div key={circle.id}>
-                <div key={circle.id} className="mb-6 md:mb-16">
+              <div key={`isMd-${circle.id}`}>
+                <div className="mb-6 md:mb-16">
                   <Link
                     href="/circle/[slug]"
                     as={`/circle/${circle.slug}`}
@@ -67,8 +67,8 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
           <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
             {circles.map((circle) => {
               return (
-                <SwiperSlide key={circle.id}>
-                  <div key={circle.id} className="pb-10 flex justify-center">
+                <SwiperSlide key={`not-isMd-${circle.id}`}>
+                  <div className="pb-10 flex justify-center">
                     <div>
                       <Link
                         href="/circle/[slug]"
@@ -98,7 +98,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
           </div>
         </Swiper>
       )}
-    </div>
+    </>
   )
 }
 

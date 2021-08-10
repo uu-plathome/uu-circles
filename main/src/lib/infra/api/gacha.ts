@@ -1,5 +1,5 @@
-import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { axiosInstance } from '.'
+import { CircleType } from '@/src/lib/enum/api/CircleType'
 
 export type SimpleGachaDto = {
   handbillImageUrl: string

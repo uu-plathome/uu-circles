@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import { useRouter } from 'next/dist/client/router'
+import Image from 'next/image'
+import YouTube, { Options } from 'react-youtube'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -5,10 +9,6 @@ import { BaseContainer } from '@/src/components/molecules/Container/BaseContaine
 import { GachaMovieId } from '@/src/lib/enum/app/GachaMovieId'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { drawGacha } from '@/src/lib/infra/api/gacha'
-import { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
-import Image from 'next/image'
-import YouTube, { Options } from 'react-youtube'
 
 const opts: Options = {
   height: '390',
@@ -53,7 +53,12 @@ const Page: NextPage = () => {
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
-                <Image src="/images/gacha-logo.png" width="360" height="120" />
+                <Image
+                  src="/images/gacha-logo.png"
+                  width="360"
+                  height="120"
+                  alt="サークルガチャへようこそ！"
+                />
               </div>
 
               <div className="py-8 flex justify-center">

@@ -1,6 +1,6 @@
-import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import { FC } from 'react'
 import { CircleNewJoyListItemForNoSlug } from '../ListItem/CircleNewJoyListItemForNoSlug'
+import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 
 type Props = {
   circleNewJoys: TodayCircleNewJoy[]

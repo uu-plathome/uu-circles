@@ -35,5 +35,5 @@ export const useDelayedEffect = (
     if (!waiting) {
       effect()
     }
-  }, [waiting])
+  }, [waiting, effect])
 }
