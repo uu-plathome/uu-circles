@@ -54,8 +54,6 @@ Route::middleware('auth:adminUser')->group(function () {
     // Circle サークル管理
     Route::get('/circle', Circle\IndexCircleController::class)
         ->name(ARP::AdminCircleIndex);
-    Route::get('/circle/paginate', Circle\PaginateCircleController::class)
-        ->name(ARP::AdminCirclePaginate);
     Route::post('/circle', Circle\CreateCircleController::class)
         ->name(ARP::AdminCircleRegister);
     Route::get('/circle/{circleId}', Circle\ShowCircleController::class)
