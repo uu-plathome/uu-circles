@@ -33,7 +33,7 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
     spaceBetween: 50,
     centeredSlides: true,
     autoplay: {
-      delay: 6000,
+      delay: 10000,
       disableOnInteraction: false,
     },
     loop: true,
