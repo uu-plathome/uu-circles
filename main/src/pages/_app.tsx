@@ -1,3 +1,4 @@
+import { config } from '@fortawesome/fontawesome-svg-core'
 import { AppProps, NextWebVitalsMetric } from 'next/app'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
@@ -11,7 +12,10 @@ import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 import * as gtag from '@/src/lib/utils/Gtag'
 
 import 'swiper/swiper-bundle.min.css'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@/src/styles/index.scss'
+
+config.autoAddCss = false
 
 const ErrorBoundary = process.env.BUGSNAG_API_KEY
   ? Bugsnag.getPlugin('react').createErrorBoundary(React)
