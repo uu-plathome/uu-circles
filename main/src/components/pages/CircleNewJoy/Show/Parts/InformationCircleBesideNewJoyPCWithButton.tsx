@@ -2,12 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Circle } from '@/src/lib/types/model/Circle'
+
 type Props = {
   circle: Circle
 }
-//インポート時は下記をコピー
-//import { InformationCircleBesideNewJoy } from '@/components/organisms/ShowCircle/InformationCircleBesideNewJoy'
-
 const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
   return (
     <div className="bg-white mt-3 rounded-xl px-3 pb-6 " style={{ width: 222 }}>

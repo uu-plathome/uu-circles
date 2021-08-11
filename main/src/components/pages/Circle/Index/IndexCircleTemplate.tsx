@@ -16,8 +16,11 @@ import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
 const ID_LIST = {
+  /** 現在の掲載団体数 */
   CIRCLE_LENGTH: 'circle_length',
+  /** おすすめのタグ */
   RECOMMEND_TAG_LIST: 'recommend_tag_list',
+  /** サークル一覧 */
   CIRCLE_LIST: 'circle_list',
 }
 
@@ -85,13 +88,12 @@ export const IndexCircleTemplate: FC<Props> = ({
                 <RecommendTagList />
               </div>
 
-              <div
+              {/*  サークル一覧 */}
+              <BaseCircleList
                 id={ID_LIST.CIRCLE_LIST}
-                onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
-              >
-                {/*  サークル一覧 */}
-                <BaseCircleList circles={circles} />
-              </div>
+                circles={circles}
+                onChangeId={onChangeId}
+              />
             </div>
           </TwoColumnContainer>
         </div>
