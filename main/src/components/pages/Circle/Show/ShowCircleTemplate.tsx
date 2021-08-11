@@ -1,74 +1,25 @@
-import { faClock } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import { FC } from 'react'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
+import { AppealingPoint } from './Parts/AppealingPoint'
+import { CircleTopInformation } from './Parts/CircleTopInformation'
+import { InformationField } from './Parts/InformationField'
+import { NewJoyList } from './Parts/NewJoyList'
+import { ShowCircleTitle } from './Parts/ShowCircleTitle'
+import { TopImage } from './Parts/TopImage'
+import { WpPostBlock } from './Parts/WpPostBlock'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { AppealingPoint } from '@/src/components/organisms/ShowCircle/AppealingPoint'
-import { CircleTopInformation } from '@/src/components/organisms/ShowCircle/CircleTopInformation'
-import { InformationField } from '@/src/components/organisms/ShowCircle/InformationField'
-import { NewJoyList } from '@/src/components/organisms/ShowCircle/NewJoyList'
-import { ShowCircleTitle } from '@/src/components/organisms/ShowCircle/ShowCircleTitle'
-import { TopImage } from '@/src/components/organisms/ShowCircle/TopImage'
 import { TwitterEmbed } from '@/src/components/organisms/Twitter/TwitterEmbed'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
-import { dayjs } from '@/src/plugins/Dayjs'
-import colors from '@/src/styles/colors'
 
-const WpPostBlock: FC<{
-  post: WP_REST_API_Post
-  media?: WP_REST_API_Attachment
-}> = ({ post, media }) => {
-  return (
-    <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
-      <a href={post.link} className="transition-all">
-        <p className="wp-cardtype__img">
-          <Image
-            src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
-            alt={(media && media.alt_text) || ''}
-            layout="fill"
-          />
-        </p>
 
-        <div className="px-6 py-2 mb-2">
-          {post.date ? (
-            <p className="pt-2 flex items-center mb-2">
-              <FontAwesomeIcon
-                icon={faClock}
-                color={colors.gray[400]}
-                className="mr-1"
-              />
-              <span className="text-sm text-gray-400">
-                {dayjs(post.date).format('YYYY年MM月DD日')}
-              </span>
-            </p>
-          ) : (
-            ''
-          )}
-
-          <div className="w-full pr-3">
-            <h3
-              className="text-black font-bold mb-1 max-line-4"
-              style={{
-                minHeight: '48px',
-              }}
-            >
-              {post.title.rendered}
-            </h3>
-          </div>
-        </div>
-      </a>
-    </article>
-  )
-}
 
 type Props = {
   circle?: Circle
@@ -189,8 +140,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               </div>
 
               {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+                wpPosts.postsExistTags &&
+                wpPosts.postsExistTags.length > 0 ? (
                 <div className="order-5 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -218,8 +169,8 @@ export const ShowCircleTemplate: FC<Props> = ({
               )}
 
               {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+                wpPosts.postsNotTags &&
+                wpPosts.postsNotTags.length > 0 ? (
                 <div className="order-6 pt-10 px-6 md:px-0">
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -245,8 +196,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             </div>
 
             {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+              uuYellForCircles.posts &&
+              uuYellForCircles.posts.length > 0 ? (
               <div className="pt-10 px-6 md:px-0">
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
