@@ -302,6 +302,6 @@ export const allCircleUserList = async (): Promise<{
   }>('/admin/api/user/circle')
 
   return {
-    data: data.data
+    data: data.data,
   }
 }
