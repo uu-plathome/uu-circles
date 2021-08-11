@@ -106,13 +106,13 @@ const Index: NextPage<Props> = ({
 
             {circles && circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                    />
-                  )
-                })
+                return (
+                  <CircleListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                  />
+                )
+              })
               : ''}
 
             {circles && circles.length === 0 ? (
@@ -126,6 +126,7 @@ const Index: NextPage<Props> = ({
             {circles ? (
               <div className="text-center">
                 <button
+                  aria-label="前へ"
                   className="mx-2 disabled:opacity-50 "
                   disabled={!hasPrevious}
                   onClick={onPrevious}
@@ -138,6 +139,7 @@ const Index: NextPage<Props> = ({
                 </button>
 
                 <button
+                  aria-label="次へ"
                   className="mx-2 disabled:opacity-50 "
                   disabled={!hasNext}
                   onClick={onNext}
