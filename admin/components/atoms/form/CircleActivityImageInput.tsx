@@ -1,7 +1,7 @@
-import { UseStringInput } from '@/hooks/useInput'
 import { createRef, FC, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { BaseLabel } from './BaseLabel'
+import { UseStringInput } from '@/hooks/useInput'
 
 const inputClass = `
     transition

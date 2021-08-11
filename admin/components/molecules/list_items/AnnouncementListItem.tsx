@@ -1,7 +1,3 @@
-import { GrayButton } from '@/components/atoms/buttons/GrayButton'
-import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { __ } from '@/lang/ja'
-import { Announcement } from '@/lib/types/model/Announcement'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -12,6 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import { RedButton } from '@/components/atoms/buttons/RedButton'
+import { __ } from '@/lang/ja'
+import { Announcement } from '@/lib/types/model/Announcement'
 
 type Props = {
   announcement: Announcement

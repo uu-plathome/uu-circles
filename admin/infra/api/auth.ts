@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+import { axiosInstance } from './index'
 import {
   ForgotPasswordAdminRequest,
   ForgotPasswordAdminRequestValidationError,
@@ -14,8 +16,6 @@ import { VerificationConfirmRequestValidationError } from '@/lib/types/api/Verif
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendAdminUserFormRequestValidationError } from '@/lib/types/api/VerificationResendAdminUserFormRequest'
 import { User } from '@/lib/types/model/User'
-import { AxiosError } from 'axios'
-import { axiosInstance } from './index'
 
 export const getAuthUser = async () => {
   const { data } = await axiosInstance.get<User>('/admin/api/user')

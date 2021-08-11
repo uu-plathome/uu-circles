@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+import { axiosInstance } from './index'
 import {
   RegisterCircleUserRequest,
   RegisterCircleUserRequestValidationError,
@@ -10,8 +12,6 @@ import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/a
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
 import { User, UserByAllCircle } from '@/lib/types/model/User'
-import { AxiosError } from 'axios'
-import { axiosInstance } from './index'
 
 export const createCircleUser = async (
   circleId: number,

@@ -1,3 +1,9 @@
+import {
+  faChevronCircleLeft,
+  faChevronCircleRight,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
@@ -6,13 +12,7 @@ import { AllUserListItem } from '@/components/molecules/list_items/AllUserListIt
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { User, UserByAllCircle } from '@/lib/types/model/User'
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
-import { NextPage } from 'next'
 
 type SearchValue = {
   name: UseStringInput

@@ -1,10 +1,10 @@
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { BaseHeader } from '../components/layouts/BaseHeader'
+import { BaseContainer } from '@/components/layouts/BaseContainer'
+import { BaseWrapper } from '@/components/layouts/BaseWrapper'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()

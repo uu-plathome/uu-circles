@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useEffect, useMemo, useState } from 'react'
+import { scroller } from 'react-scroll'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { AllCircleUsersTemplate } from '@/components/pages/CircleUser/Index/AllCircleUsersTemplate'
 import { useStringInput } from '@/hooks/useInput'
@@ -7,10 +11,6 @@ import {
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
 import { UserByAllCircle } from '@/lib/types/model/User'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useEffect, useMemo, useState } from 'react'
-import { scroller } from 'react-scroll'
 
 const IndexPage: NextPage = () => {
   const [originalUsers, setOriginalUsers] =

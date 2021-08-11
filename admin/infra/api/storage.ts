@@ -1,6 +1,6 @@
-import { AdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
+import { AdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 
 export const putStorage = async (file: Blob | string) => {
   try {

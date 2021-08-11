@@ -1,12 +1,13 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "jest"
+  ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    // Uncomment the following lines to enable eslint-config-prettier
-    // Is not enabled right now to avoid issues with the Next.js repo
+    "next",
+    "next/core-web-vitals",
     "prettier"
   ],
   "env": {
@@ -21,7 +22,11 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   },
@@ -45,7 +50,12 @@
     "no-console": [
       2,
       {
-        "allow": ["log", "info", "warn", "error"]
+        "allow": [
+          "log",
+          "info",
+          "warn",
+          "error"
+        ]
       }
     ],
     "sort-imports": 0,

@@ -1,14 +1,14 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useMemo } from 'react'
+import { scroller } from 'react-scroll'
+import useSWR from 'swr'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { Index } from '@/components/pages/circle/Index'
 import { useStringInput } from '@/hooks/useInput'
 import { usePageInput } from '@/hooks/usePageInput'
 import { getCircleList } from '@/infra/api/circle'
 import { CircleType } from '@/lib/enum/api/CircleType'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useMemo } from 'react'
-import { scroller } from 'react-scroll'
-import useSWR from 'swr'
 
 const IndexPage: NextPage = () => {
   const { data: originalCircles } = useSWR('/circles', getCircleList)
