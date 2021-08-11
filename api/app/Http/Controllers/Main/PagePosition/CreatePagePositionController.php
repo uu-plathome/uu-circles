@@ -98,7 +98,7 @@ final class CreatePagePositionController extends Controller
                 'createdAt'             => $pagePositionHistory->created_at,
                 'data'                  => true,
             ]);
-        } 
+        }
 
         $searchStartTime = $now->timestamp - 3;
         $searchTimeFormat = 'Y-m-d H:i:s';
