@@ -39,7 +39,7 @@ final class UpdateCircleController extends Controller
     public function __invoke(UpdateCircleFormRequest $request, int $circleId)
     {
         Log::debug('UpdateCircleController args', [
-            'circleId' => $circleId
+            'circleId' => $circleId,
         ]);
 
         $adminUser = Auth::adminUser();
