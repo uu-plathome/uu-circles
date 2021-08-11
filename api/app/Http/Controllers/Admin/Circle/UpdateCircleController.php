@@ -52,8 +52,7 @@ final class UpdateCircleController extends Controller
         }
 
         $this->updateCircleUsecase->invoke(
-            $request->makeCircleValueObject(),
-            $role
+            $request->makeUpdateCircleUsecaseParam(),
         );
     }
 }
