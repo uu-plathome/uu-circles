@@ -25,14 +25,16 @@ const Page: NextPage<Props> = ({
   const router = useRouter()
   const { name } = router.query
 
-  return <SearchCircleByFreeWordTemplate
-    searchWord={String(name)}
-    circles={circles}
-    recommendCircles={recommendCircles}
-    uuYellArticles={uuYellArticles}
-    announcements={announcements}
-    tagPageViewRanking={tagPageViewRanking}
-  />
+  return (
+    <SearchCircleByFreeWordTemplate
+      searchWord={String(name)}
+      circles={circles}
+      recommendCircles={recommendCircles}
+      uuYellArticles={uuYellArticles}
+      announcements={announcements}
+      tagPageViewRanking={tagPageViewRanking}
+    />
+  )
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({
@@ -44,8 +46,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     return { props: { errorCode: 404 } }
   }
 
-  const { circles, recommendCircles, uuYellArticles, tagPageViewRanking, announcements } =
-    await searchCircle(params.name)
+  const {
+    circles,
+    recommendCircles,
+    uuYellArticles,
+    tagPageViewRanking,
+    announcements,
+  } = await searchCircle(params.name)
 
   return {
     props: {

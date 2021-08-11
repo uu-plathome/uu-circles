@@ -1,11 +1,11 @@
 import { faClock } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Image from "next/image"
-import { FC } from "react"
-import { WP_REST_API_Attachment, WP_REST_API_Post } from "wp-types"
-import { ImagePath } from "@/src/lib/enum/app/ImagePath"
-import { dayjs } from "@/src/plugins/Dayjs"
-import colors from "@/src/styles/colors"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
+import { FC } from 'react'
+import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
+import { dayjs } from '@/src/plugins/Dayjs'
+import colors from '@/src/styles/colors'
 
 export const WpPostBlock: FC<{
   post: WP_REST_API_Post

@@ -22,7 +22,7 @@ const ID_LIST = {
 }
 
 type Props = {
-  /** 検索ワード */ searchWord: string,
+  /** 検索ワード */ searchWord: string
   /** 検索結果 */ circles?: Circle[]
   /** 他のサークルも見る */ recommendCircles?: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
@@ -61,14 +61,18 @@ export const SearchCircleByFreeWordTemplate: NextPage<Props> = ({
               <BaseCircleList
                 id={ID_LIST.CIRCLE_LIST}
                 circles={circles}
-                onChangeId={async (_: string) => { return }}
+                onChangeId={async (_: string) => {
+                  return
+                }}
               />
 
               {/* 他のサークルも見る */}
               <RecommendCircleList
                 id={ID_LIST.SEARCH_OTHER_CIRCLE}
                 recommendCircles={recommendCircles}
-                onChangeId={async (_: string) => { return }}
+                onChangeId={async (_: string) => {
+                  return
+                }}
               />
             </div>
           </TwoColumnContainer>

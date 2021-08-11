@@ -22,18 +22,19 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-
   if (!circles) {
     return <div></div>
   }
 
-  return <SearchCircleByCategoryTemplate
-    circles={circles}
-    recommendCircles={recommendCircles}
-    uuYellArticles={uuYellArticles}
-    announcements={announcements}
-    tagPageViewRanking={tagPageViewRanking}
-  />
+  return (
+    <SearchCircleByCategoryTemplate
+      circles={circles}
+      recommendCircles={recommendCircles}
+      uuYellArticles={uuYellArticles}
+      announcements={announcements}
+      tagPageViewRanking={tagPageViewRanking}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
