@@ -7,10 +7,8 @@ namespace App\Http\Controllers\Admin\AllUser;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\Admin\AllUser\IndexAllUserUsecase;
-use App\Usecases\Admin\AllUser\Params\IndexAllUserUsecaseParam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 final class IndexAllUserController extends Controller
 {
@@ -25,31 +23,10 @@ final class IndexAllUserController extends Controller
     {
         Log::debug('IndexAllUserController args none');
 
-        $request->validate(Arr::camel_keys([
-            'id'         => 'nullable|integer',
-            'updated_at' => 'nullable|string',
-            'previous'   => 'nullable|boolean',
-            'next'       => 'nullable|boolean',
-            'search'     => 'nullable|string',
-        ]));
-        $requestId = $request->query('id', null);
-        $requestUpdatedAt = $request->query(Str::camel('updated_at'), null);
-        $requestPrevious = $request->query('previous', false);
-        $requestNext = $request->query('next', false);
-        $requestSearch = $request->query('search', null);
-        $param = new IndexAllUserUsecaseParam();
-        $param->id = $requestId;
-        $param->updated_at = $requestUpdatedAt;
-        $param->previous = $requestPrevious;
-        $param->next = (bool) $requestNext;
-        $param->search = $requestSearch;
-        if ($param->previous === $param->next) {
-            $param->previous = !$param->previous;
-        }
-        $user = $this->indexAllUserUsecase->invoke($param);
+        $user = $this->indexAllUserUsecase->invoke();
 
         return Arr::camel_keys([
-            'data' => $user,
+            'data' => $user->toArray(),
         ]);
     }
 }

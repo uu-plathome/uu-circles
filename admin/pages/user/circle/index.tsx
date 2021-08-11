@@ -1,49 +1,23 @@
-import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseHeader } from '@/components/layouts/BaseHeader'
-import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
+import { AllCircleUsersTemplate } from '@/components/pages/CircleUser/Index/AllCircleUsersTemplate'
 import { useStringInput } from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { usePageInput } from '@/hooks/usePageInput'
 import {
-  paginateAllUserList,
+  allCircleUserList,
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
-import { User } from '@/lib/types/model/User'
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
+import { UserByAllCircle } from '@/lib/types/model/User'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { scroller } from 'react-scroll'
 
-type PaginateUserCursor = {
-  id?: number
-  updatedAt?: string
-  previous: boolean
-  next: boolean
-  name?: string
-} | null
 const IndexPage: NextPage = () => {
-  const [users, setUsers] = useState<{
-    hasNext: boolean | null
-    hasPrevious: boolean | null
-    nextCursor: PaginateUserCursor
-    previousCursor: PaginateUserCursor
-    records: User[]
-  }>(undefined)
-  const { isMd } = useMediaQuery()
-  const name = useStringInput('')
+  const [originalUsers, setOriginalUsers] =
+    useState<UserByAllCircle[]>(undefined)
+  const searchName = useStringInput('')
   const [isOpen, setIsOpen] = useState(false)
-
-  const foundAllUserList = async (cursor: PaginateUserCursor = null) => {
-    setUsers(await paginateAllUserList(cursor))
-
+  const scrollTop = () => {
     scroller.scrollTo('top', {
       duration: 800,
       delay: 0,
@@ -51,37 +25,69 @@ const IndexPage: NextPage = () => {
     })
   }
 
+  const page = usePageInput({
+    initialMaxPage: Math.ceil(originalUsers ? originalUsers.length / 10 : 1),
+    pageSize: 10,
+  })
+
   useEffect(() => {
     const f = async () => {
-      setUsers(
-        await paginateAllUserList({
-          id: null,
-          updatedAt: null,
-          previous: false,
-          next: true,
-          name: name.value,
-        })
-      )
+      setOriginalUsers((await allCircleUserList()).data.users)
     }
     f()
   }, [])
 
-  const onSearchSubmit = (event: FormEvent) => {
-    event.preventDefault()
+  const searchedUsers = useMemo((): {
+    users: UserByAllCircle[]
+  } => {
+    if (!originalUsers) {
+      return {
+        users: [],
+      }
+    }
 
-    foundAllUserList({
-      id: null,
-      updatedAt: null,
-      previous: false,
-      next: true,
-      name: name.value,
-    })
-  }
+    const newUsers = (() => {
+      const filteredName = originalUsers.filter((u) => {
+        if (u.username && ~u.username.indexOf(searchName.value)) {
+          return true
+        }
+
+        if (u.displayName && ~u.displayName.indexOf(searchName.value)) {
+          return true
+        }
+
+        if (u.email && ~u.email.indexOf(searchName.value)) {
+          return true
+        }
+
+        return false
+      })
+
+      page.setMaxPage(Math.ceil(filteredName ? filteredName.length / 10 : 1))
+
+      return filteredName
+    })()
+
+    return {
+      users: newUsers.slice(
+        (page.page - 1) * page.pageSize,
+        page.page * page.pageSize
+      ),
+    }
+  }, [originalUsers, page.page, page.pageSize, searchName.value])
+
+  useMemo(() => {
+    page.updatePage(1)
+  }, [searchName.value])
 
   const onResendEmail = async (email: string) => {
     setIsOpen(true)
     await resendEmailCircleUser(email)
     setIsOpen(false)
+  }
+
+  if (!originalUsers) {
+    return <SubmitLoading isOpen={true} />
   }
 
   return (
@@ -90,102 +96,19 @@ const IndexPage: NextPage = () => {
         <title>部員アカウント一覧</title>
       </Head>
 
-      {isMd ? <BaseHeader /> : ''}
+      <SubmitLoading isOpen={isOpen} />
 
-      <BaseContainer>
-        <BaseWrapper
-          title="部員アカウント一覧"
-          actionText="サークル新規作成"
-          actionHref="/circle/create"
-        >
-          <div className="border-2 border-gray-800 p-2">
-            {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
-
-            {users ? (
-              <div className="py-4 mb-8">
-                <p className="text-white">ユーザー検索</p>
-
-                <form onSubmit={onSearchSubmit}>
-                  <SearchTextField
-                    id="nameSearch"
-                    name="nameSearch"
-                    expand
-                    {...name}
-                  />
-                </form>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {users && users.records.length > 0
-              ? users.records.map((user: User) => {
-                  return (
-                    <AllUserListItem
-                      key={`user-${user.id}`}
-                      user={user}
-                      onResendEmail={onResendEmail}
-                    />
-                  )
-                })
-              : ''}
-
-            {users && users.records.length === 0 ? (
-              <div className="py-4">
-                <p className="text-white">
-                  まだ部員アカウントが登録されていません
-                </p>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {users ? (
-              <div className="text-center">
-                <button
-                  className="mx-2 disabled:opacity-50 "
-                  disabled={!users.hasPrevious}
-                  onClick={() =>
-                    foundAllUserList({
-                      ...users.previousCursor,
-                      previous: true,
-                      next: false,
-                      name: name.value,
-                    })
-                  }
-                >
-                  <FontAwesomeIcon
-                    color={Color.white}
-                    icon={faChevronCircleLeft}
-                    size="2x"
-                  />
-                </button>
-
-                <button
-                  className="mx-2 disabled:opacity-50 "
-                  disabled={!users.hasNext}
-                  onClick={() =>
-                    foundAllUserList({
-                      ...users.nextCursor,
-                      previous: false,
-                      next: true,
-                      name: name.value,
-                    })
-                  }
-                >
-                  <FontAwesomeIcon
-                    color={Color.white}
-                    icon={faChevronCircleRight}
-                    size="2x"
-                  />
-                </button>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-        </BaseWrapper>
-      </BaseContainer>
+      <AllCircleUsersTemplate
+        users={searchedUsers.users}
+        searchValue={{
+          name: searchName,
+        }}
+        hasPrevious={page.hasPrevious}
+        hasNext={page.hasNext}
+        onPrevious={() => page.previousPage(scrollTop)}
+        onNext={() => page.nextPage(scrollTop)}
+        onResendEmail={onResendEmail}
+      />
     </div>
   )
 }

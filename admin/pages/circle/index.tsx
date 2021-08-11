@@ -1,58 +1,24 @@
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { Index } from '@/components/pages/circle/Index'
 import { useStringInput } from '@/hooks/useInput'
+import { usePageInput } from '@/hooks/usePageInput'
 import { getCircleList } from '@/infra/api/circle'
 import { CircleType } from '@/lib/enum/api/CircleType'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { scroller } from 'react-scroll'
 import useSWR from 'swr'
-
-const usePageInput = ({
-  initialMaxPage,
-  pageSize,
-}: {
-  initialMaxPage: number
-  pageSize: number
-}) => {
-  const [page, setPage] = useState(1)
-  const [maxPage, setMaxPage] = useState(initialMaxPage)
-
-  const previousPage = () => {
-    updatePage(page - 1)
-  }
-  const nextPage = () => {
-    updatePage(page + 1)
-  }
-
-  const updatePage = (newPage: number) => {
-    console.log(page)
-    if (maxPage < newPage) {
-      setPage(maxPage)
-      return
-    }
-
-    if (1 > newPage) {
-      setPage(1)
-      return
-    }
-
-    setPage(newPage)
-  }
-
-  return {
-    page,
-    pageSize,
-    maxPage,
-    setMaxPage,
-    previousPage,
-    nextPage,
-    updatePage,
-  }
-}
 
 const IndexPage: NextPage = () => {
   const { data: originalCircles } = useSWR('/circles', getCircleList)
+  const scrollTop = () => {
+    scroller.scrollTo('top', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+    })
+  }
 
   const searchName = useStringInput('')
   const searchRelease = useStringInput('')
@@ -203,8 +169,8 @@ const IndexPage: NextPage = () => {
         }}
         hasPrevious={page.page !== 1}
         hasNext={page.page !== page.maxPage}
-        onPrevious={page.previousPage}
-        onNext={page.nextPage}
+        onPrevious={() => page.previousPage(scrollTop)}
+        onNext={() => page.nextPage(scrollTop)}
       />
     </div>
   )
