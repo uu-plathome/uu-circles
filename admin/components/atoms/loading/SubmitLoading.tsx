@@ -1,7 +1,7 @@
+import Color from 'colors'
 import { FC } from 'react'
 import Skeleton from 'react-loading'
 import Modal from 'react-modal'
-import Color from 'colors'
 
 const customStyles = {
   content: {
