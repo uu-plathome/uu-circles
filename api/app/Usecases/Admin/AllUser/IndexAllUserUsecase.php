@@ -18,7 +18,7 @@ final class IndexAllUserUsecase
     public function invoke(): IndexAllUserDto
     {
         Log::debug('IndexAllUserUsecase args none');
-        
+
         $allUser = User::whereDoesntHave('adminUser')
             ->orderByDesc('updated_at')
             ->get();
