@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\AllUser\Dto;
+namespace App\Usecases\Admin\AllUser\Dto;
 
 use App\Models\User;
 
@@ -25,7 +25,9 @@ final class IndexAllUserItemDto
         $dto->username = $user->username;
         $dto->display_name = $user->display_name;
         $dto->email = $user->email;
-        $dto->email_verified_at = $user->email_verified_at->format('Y-m-d H:i:s');
+        $dto->email_verified_at = $user->email_verified_at 
+            ? $user->email_verified_at->format('Y-m-d H:i:s')
+            : null;
         $dto->active = $user->active;
 
         return $dto;

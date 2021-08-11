@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Admin\AllUser;
 
-use App\Http\Controllers\Admin\AllUser\Dto\IndexAllUserDto;
+use App\UseCases\Admin\AllUser\Dto\IndexAllUserDto;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
