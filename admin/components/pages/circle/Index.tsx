@@ -3,6 +3,7 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from 'colors'
 import { NextPage } from 'next'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
@@ -15,7 +16,6 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
 import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
-import Color from 'colors'
 
 type SearchValue = {
   name: UseStringInput
