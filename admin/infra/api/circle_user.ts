@@ -9,7 +9,7 @@ import {
 import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
 import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
 import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
-import { User } from '@/lib/types/model/User'
+import { User, UserByAllCircle } from '@/lib/types/model/User'
 import { AxiosError } from 'axios'
 import { axiosInstance } from './index'
 
@@ -290,31 +290,18 @@ export const deleteRelationBetweenUserAndCircle = async (
   }
 }
 
-type PaginateAllUserCursor = {
-  id?: number
-  updatedAt?: string
-  previous: boolean
-  next: boolean
-  name?: string
-} | null
-export const paginateAllUserList = async (cursor: PaginateAllUserCursor) => {
+export const allCircleUserList = async (): Promise<{
+  data: {
+    users: UserByAllCircle[]
+  }
+}> => {
   const { data } = await axiosInstance.get<{
     data: {
-      hasNext: boolean | null
-      hasPrevious: boolean | null
-      nextCursor: PaginateAllUserCursor
-      previousCursor: PaginateAllUserCursor
-      records: User[]
+      users: UserByAllCircle[]
     }
-  }>('/admin/api/user/circle', {
-    params: {
-      id: cursor.id,
-      updatedAt: cursor.updatedAt,
-      previous: cursor.previous ? 1 : 0,
-      next: cursor.next ? 1 : 0,
-      search: cursor.name,
-    },
-  })
+  }>('/admin/api/user/circle')
 
-  return data.data
+  return {
+    data: data.data
+  }
 }
