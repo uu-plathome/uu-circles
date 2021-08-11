@@ -25,7 +25,7 @@ final class IndexAllUserItemDto
         $dto->username = $user->username;
         $dto->display_name = $user->display_name;
         $dto->email = $user->email;
-        $dto->email_verified_at = $user->email_verified_at 
+        $dto->email_verified_at = $user->email_verified_at
             ? $user->email_verified_at->format('Y-m-d H:i:s')
             : null;
         $dto->active = $user->active;
