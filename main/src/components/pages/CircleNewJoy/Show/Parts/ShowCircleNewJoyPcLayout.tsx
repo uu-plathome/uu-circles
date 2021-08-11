@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import { IndexCircleNewJoyListPC } from '../List/IndexCircleNewJoyListPC'
-import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
-import { InformationCircleBesideNewJoyPCWithButton } from '../ShowCircle/InformationCircleBesideNewJoyPCWithButton'
+import { IndexCircleNewJoyListPC } from '../../../../organisms/List/IndexCircleNewJoyListPC'
+import { CircleNewJoyDetail } from '../../../../organisms/Newjoy/CircleNewJoyDetail'
 import { YellowButton } from '@/src/components/atoms/button/YellowButton'
+import { InformationCircleBesideNewJoyPCWithButton } from '@/src/components/pages/CircleNewJoy/Show/Parts/InformationCircleBesideNewJoyPCWithButton'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 

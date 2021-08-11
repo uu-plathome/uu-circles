@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { IndexCircleNewJoyListSP } from '../List/IndexCircleNewJoyListSP'
-import { CircleNewJoyDetail } from '../Newjoy/CircleNewJoyDetail'
-import { InformationCircleBesideNewJoySP } from '../ShowCircle/InformationCircleBesideNewJoySP'
+import { CircleNewJoyDetail } from '../../../../organisms//Newjoy/CircleNewJoyDetail'
+import { IndexCircleNewJoyListSP } from '../../../../organisms/List/IndexCircleNewJoyListSP'
+import { InformationCircleBesideNewJoySP } from './InformationCircleBesideNewJoySP'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
