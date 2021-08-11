@@ -34,7 +34,10 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
   return (
     <>
       {circles.length > 0 ? (
-        <div id={id} className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-7">
+        <div
+          id={id}
+          className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-7"
+        >
           {circles.map((circle, idx) => {
             return (
               <div
@@ -67,7 +70,9 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
             )
           })}
         </div>
-      ) : <CircleListWhenEmpty id={id} />}
+      ) : (
+        <CircleListWhenEmpty id={id} />
+      )}
     </>
   )
 }

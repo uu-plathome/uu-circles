@@ -25,13 +25,15 @@ const Page: NextPage<Props> = ({
     return <div></div>
   }
 
-  return <SearchCircleByTagTemplate
-    circles={circles}
-    recommendCircles={recommendCircles}
-    uuYellArticles={uuYellArticles}
-    announcements={announcements}
-    tagPageViewRanking={tagPageViewRanking}
-  />
+  return (
+    <SearchCircleByTagTemplate
+      circles={circles}
+      recommendCircles={recommendCircles}
+      uuYellArticles={uuYellArticles}
+      announcements={announcements}
+      tagPageViewRanking={tagPageViewRanking}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {

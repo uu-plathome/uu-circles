@@ -87,14 +87,18 @@ export const SearchCircleByTagTemplate: NextPage<Props> = ({
               <BaseCircleList
                 id={ID_LIST.CIRCLE_LIST}
                 circles={circles}
-                onChangeId={async (_: string) => { return }}
+                onChangeId={async (_: string) => {
+                  return
+                }}
               />
 
               {/*  他のサークルも見る */}
               <RecommendCircleList
                 id={ID_LIST.SEARCH_OTHER_CIRCLE}
                 recommendCircles={recommendCircles}
-                onChangeId={async (_: string) => { return }}
+                onChangeId={async (_: string) => {
+                  return
+                }}
               />
             </div>
           </TwoColumnContainer>
