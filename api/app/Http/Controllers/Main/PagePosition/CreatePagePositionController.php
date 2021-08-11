@@ -87,81 +87,87 @@ final class CreatePagePositionController extends Controller
          * 2. PC、タグレットのときに、イベント発生
          * 3. 9:00 ~ 26:00 のときに、イベントを発生
          */
-        if (
+        if (!(
             // 2. PC、タグレットのときに、イベント発生
             $requestScreenWidth >= 768 &&
             // 3. 9:00 ~ 26:00 のときに、イベントを発生
             2 <= $now->hour || 9 <= $now->hour
-        ) {
-            $searchStartTime = $now->timestamp - 3;
-            $searchTimeFormat = 'Y-m-d H:i:s';
+        )) {
+            return Arr::camel_keys([
+                'pagePositionHistoryId' => $pagePositionHistory->id,
+                'createdAt'             => $pagePositionHistory->created_at,
+                'data'                  => true,
+            ]);
+        } 
 
-            // 他のページに遷移したユーザーを弾くために、関与したユーザーの履歴をまとめて取得
-            $pagePositions = PagePositionHistory::with([
-                'identifier:id,identifier_hash',
-            ])
-                // 3s以内
-                ->where(
-                    PagePositionHistoryProperty::created_at,
-                    '<=',
-                    date($searchTimeFormat, $searchStartTime)
-                )
-                ->where(function ($query) use ($requestPageUrl) {
-                    // 今回のイベントで同じページにいるユーザーを取得
-                    $query->wherePageUrl($requestPageUrl);
-                })
-                ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                    // 今回のイベントに関係のあるユーザーの識別子ID一覧作成し、それらが他のページに遷移していた場合は弾きたいので、一緒に拾ってくる
-                    $query->whereIn(
-                        PagePositionHistoryProperty::identifier_id,
-                        function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                            $query->select('identifier_id')
-                                ->distinct()
-                                ->from(with(new PagePositionHistory())->getTable())
-                                ->where('page_url', $requestPageUrl)
-                                ->where(
-                                    PagePositionHistoryProperty::created_at,
-                                    '<=',
-                                    date($searchTimeFormat, $searchStartTime)
-                                );
-                        }
-                    );
-                })
-                ->get([
-                    PagePositionHistoryProperty::id,
+        $searchStartTime = $now->timestamp - 3;
+        $searchTimeFormat = 'Y-m-d H:i:s';
+
+        // 他のページに遷移したユーザーを弾くために、関与したユーザーの履歴をまとめて取得
+        $pagePositions = PagePositionHistory::with([
+            'identifier:id,identifier_hash',
+        ])
+            // 3s以内
+            ->where(
+                PagePositionHistoryProperty::created_at,
+                '<=',
+                date($searchTimeFormat, $searchStartTime)
+            )
+            ->where(function ($query) use ($requestPageUrl) {
+                // 今回のイベントで同じページにいるユーザーを取得
+                $query->wherePageUrl($requestPageUrl);
+            })
+            ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                // 今回のイベントに関係のあるユーザーの識別子ID一覧作成し、それらが他のページに遷移していた場合は弾きたいので、一緒に拾ってくる
+                $query->whereIn(
                     PagePositionHistoryProperty::identifier_id,
-                    PagePositionHistoryProperty::page_position_id,
-                    PagePositionHistoryProperty::page_name,
-                    PagePositionHistoryProperty::page_url,
-                    PagePositionHistoryProperty::created_at,
-                ]);
-
-            // 他のページに遷移したユーザーを弾く
-            $mergedPagePosition = (new Collection($pagePositions))
-                ->sortByDesc(PagePositionHistoryProperty::created_at)
-                ->values()
-                ->unique(PagePositionHistoryProperty::identifier_id)
-                ->values();
-
-            Log::debug('CreatePagePositionController mergedPagePosition', [
-                'mergedPagePosition' => $mergedPagePosition,
+                    function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                        $query->select('identifier_id')
+                            ->distinct()
+                            ->from(with(new PagePositionHistory())->getTable())
+                            ->where('page_url', $requestPageUrl)
+                            ->where(
+                                PagePositionHistoryProperty::created_at,
+                                '<=',
+                                date($searchTimeFormat, $searchStartTime)
+                            );
+                    }
+                );
+            })
+            ->get([
+                PagePositionHistoryProperty::id,
+                PagePositionHistoryProperty::identifier_id,
+                PagePositionHistoryProperty::page_position_id,
+                PagePositionHistoryProperty::page_name,
+                PagePositionHistoryProperty::page_url,
+                PagePositionHistoryProperty::created_at,
             ]);
 
-            // リクエストが送られたページの位置データのみに加工
-            $newPagePositionsByPageUrl = $mergedPagePosition->filter(
-                fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->page_url === $requestPageUrl
-            )->values();
+        // 他のページに遷移したユーザーを弾く
+        $mergedPagePosition = (new Collection($pagePositions))
+            ->sortByDesc(PagePositionHistoryProperty::created_at)
+            ->values()
+            ->unique(PagePositionHistoryProperty::identifier_id)
+            ->values();
 
-            Log::debug('CreatePagePositionController newPagePositionsByPageUrl', [
-                'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl,
-            ]);
+        Log::debug('CreatePagePositionController mergedPagePosition', [
+            'mergedPagePosition' => $mergedPagePosition,
+        ]);
 
-            // 2人以上のアクセスのときに、イベント発生
-            if ($newPagePositionsByPageUrl->count() > 1) {
-                Log::debug('CreatePagePositionController event happen');
-                $arg = PagePositions::byEloquent($newPagePositionsByPageUrl);
-                event(new SendPagePosition($arg));
-            }
+        // リクエストが送られたページの位置データのみに加工
+        $newPagePositionsByPageUrl = $mergedPagePosition->filter(
+            fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->page_url === $requestPageUrl
+        )->values();
+
+        Log::debug('CreatePagePositionController newPagePositionsByPageUrl', [
+            'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl,
+        ]);
+
+        // 2人以上のアクセスのときに、イベント発生
+        if ($newPagePositionsByPageUrl->count() > 1) {
+            Log::debug('CreatePagePositionController event happen');
+            $arg = PagePositions::byEloquent($newPagePositionsByPageUrl);
+            event(new SendPagePosition($arg));
         }
 
         return Arr::camel_keys([
