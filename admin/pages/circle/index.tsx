@@ -71,58 +71,58 @@ const IndexPage: NextPage = () => {
         searchRelease.value === ''
           ? filteredName
           : filteredName.filter((c) => {
-            if (searchRelease.value === 'true' && c.release === true) {
-              return true
-            }
+              if (searchRelease.value === 'true' && c.release === true) {
+                return true
+              }
 
-            if (searchRelease.value === 'false' && c.release === false) {
-              return true
-            }
+              if (searchRelease.value === 'false' && c.release === false) {
+                return true
+              }
 
-            return false
-          })
+              return false
+            })
 
       const filteredCircleType =
         searchCircleType.value === ''
           ? filteredRelease
           : filteredRelease.filter((c) => {
-            if (
-              searchCircleType.value === CircleType.OFFICIAL_ORGANIZATION &&
-              c.circleType === CircleType.OFFICIAL_ORGANIZATION
-            ) {
-              return true
-            }
+              if (
+                searchCircleType.value === CircleType.OFFICIAL_ORGANIZATION &&
+                c.circleType === CircleType.OFFICIAL_ORGANIZATION
+              ) {
+                return true
+              }
 
-            if (
-              searchCircleType.value === CircleType.SENDING_ORGANIZATION &&
-              c.circleType === CircleType.SENDING_ORGANIZATION
-            ) {
-              return true
-            }
+              if (
+                searchCircleType.value === CircleType.SENDING_ORGANIZATION &&
+                c.circleType === CircleType.SENDING_ORGANIZATION
+              ) {
+                return true
+              }
 
-            if (
-              searchCircleType.value === CircleType.STUDENT_GROUP &&
-              c.circleType === CircleType.STUDENT_GROUP
-            ) {
-              return true
-            }
+              if (
+                searchCircleType.value === CircleType.STUDENT_GROUP &&
+                c.circleType === CircleType.STUDENT_GROUP
+              ) {
+                return true
+              }
 
-            if (
-              searchCircleType.value === CircleType.UNOFFICIAL_ORGANIZATION &&
-              c.circleType === CircleType.UNOFFICIAL_ORGANIZATION
-            ) {
-              return true
-            }
+              if (
+                searchCircleType.value === CircleType.UNOFFICIAL_ORGANIZATION &&
+                c.circleType === CircleType.UNOFFICIAL_ORGANIZATION
+              ) {
+                return true
+              }
 
-            if (
-              searchCircleType.value === '不明' &&
-              ['', null].includes(c.circleType)
-            ) {
-              return true
-            }
+              if (
+                searchCircleType.value === '不明' &&
+                ['', null].includes(c.circleType)
+              ) {
+                return true
+              }
 
-            return false
-          })
+              return false
+            })
 
       page.setMaxPage(
         Math.ceil(filteredCircleType ? filteredCircleType.length / 10 : 1)

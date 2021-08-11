@@ -22,7 +22,7 @@ final class IndexAllUserController extends Controller
     public function __invoke(Request $request): array
     {
         Log::debug('IndexAllUserController args none');
-        
+
         $user = $this->indexAllUserUsecase->invoke();
 
         return Arr::camel_keys([
