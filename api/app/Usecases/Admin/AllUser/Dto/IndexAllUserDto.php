@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\AllUser\Dto;
+namespace App\Usecases\Admin\AllUser\Dto;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
