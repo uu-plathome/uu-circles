@@ -39,21 +39,4 @@ class IndexAllUserControllerTest extends TestCase
         $this->assertArrayHasKey('data', $response);
         $this->assertIsArray($response['data']);
     }
-
-    public function testRequest_検索つき()
-    {
-        Log::info('testRequest');
-
-        // GIVEN
-
-        // WHEN
-        $response = $this->get('/admin/api/user/circle?search=udai', [
-            'Authorization' => 'Bearer test1234',
-        ]);
-
-        // THEN
-        $response->assertOk();
-        $this->assertArrayHasKey('data', $response);
-        $this->assertIsArray($response['data']);
-    }
 }
