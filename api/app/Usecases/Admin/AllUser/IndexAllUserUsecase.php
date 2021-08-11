@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Usecases\Admin\AllUser;
 
-use App\UseCases\Admin\AllUser\Dto\IndexAllUserDto;
 use App\Models\User;
+use App\UseCases\Admin\AllUser\Dto\IndexAllUserDto;
 use Illuminate\Support\Facades\Log;
 
 final class IndexAllUserUsecase
