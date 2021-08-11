@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
@@ -7,10 +11,6 @@ import { useInput } from '@/hooks/useInput'
 import { checkVerify, verifyPassword } from '@/infra/api/auth'
 import { isVerificationConfirmRequestValidationError } from '@/lib/types/api/VerificationConfirmRequest'
 import { isVerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
 
 const Login: NextPage = () => {
   const password = useInput('')

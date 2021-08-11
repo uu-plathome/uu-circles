@@ -2,8 +2,8 @@ const colors = require('./colors')
 
 module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
-  presets: [],
   darkMode: 'class', // or 'media' or 'class'
+  mode: 'jit',
   theme: {
     screens: {
       sm: '640px',

@@ -1,12 +1,12 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import useSWR from 'swr'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { DemoCircleNewJoyListItem } from '@/components/molecules/list_items/DemoCircleNewJoyListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getDemoCircleNewJoyList } from '@/infra/api/demo_cirecle_new_joy'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import useSWR from 'swr'
 
 const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()

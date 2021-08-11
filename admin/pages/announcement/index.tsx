@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useState } from 'react'
+import useSWR from 'swr'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
@@ -12,10 +16,6 @@ import {
   getAnnouncementList,
 } from '@/infra/api/announcement'
 import { Announcement } from '@/lib/types/model/Announcement'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useState } from 'react'
-import useSWR from 'swr'
 
 const IndexPage: NextPage = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([])

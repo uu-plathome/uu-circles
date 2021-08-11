@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -11,10 +15,6 @@ import {
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
 import { User } from '@/lib/types/model/User'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 
 const IndexPage: NextPage = () => {
   const router = useRouter()
