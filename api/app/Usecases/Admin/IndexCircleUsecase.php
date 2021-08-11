@@ -23,7 +23,11 @@ final class IndexCircleUsecase
             'circleInformation',
             'circleHandbill',
         ])->hasByNonDependentSubquery('circleInformation')
-            ->get();
+            ->get()
+            // 更新日でソート
+            ->sortByDesc(function (Circle $circle) { 
+                return $circle->circleInformation->updated_at;
+            })->values();
 
         return $circles->map(
             fn (Circle $circle) => CircleValueObject::byEloquent(
