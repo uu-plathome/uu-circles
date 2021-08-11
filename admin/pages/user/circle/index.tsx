@@ -1,76 +1,19 @@
-import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseHeader } from '@/components/layouts/BaseHeader'
-import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
+import { AllCircleUsersTemplate } from '@/components/pages/CircleUser/Index/AllCircleUsersTemplate'
 import { useStringInput } from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { usePageInput } from '@/hooks/usePageInput'
 import {
   allCircleUserList,
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
-import { User, UserByAllCircle } from '@/lib/types/model/User'
-import {
-  faChevronCircleLeft,
-  faChevronCircleRight,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
+import { UserByAllCircle } from '@/lib/types/model/User'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import { scroller } from 'react-scroll'
 
-const usePageInput = ({
-  initialMaxPage,
-  pageSize,
-}: {
-  initialMaxPage: number
-  pageSize: number
-}) => {
-  const [page, setPage] = useState(1)
-  const [maxPage, setMaxPage] = useState(initialMaxPage)
-
-  const previousPage = (callback: () => void) => {
-    updatePage(page - 1)
-    if (callback) { callback() }
-  }
-  const nextPage = (callback: () => void) => {
-    updatePage(page + 1)
-    if (callback) { callback() }
-  }
-
-  const updatePage = (newPage: number) => {
-    console.log(page)
-    if (maxPage < newPage) {
-      setPage(maxPage)
-      return
-    }
-
-    if (1 > newPage) {
-      setPage(1)
-      return
-    }
-
-    setPage(newPage)
-  }
-
-  return {
-    page,
-    pageSize,
-    maxPage,
-    hasPrevious: page !== 1,
-    hasNext: page !== maxPage,
-    setMaxPage,
-    previousPage,
-    nextPage,
-    updatePage,
-  }
-}
 const IndexPage: NextPage = () => {
   const [originalUsers, setOriginalUsers] = useState<UserByAllCircle[]>(undefined)
-  const { isMd } = useMediaQuery()
   const searchName = useStringInput('')
   const [isOpen, setIsOpen] = useState(false)
   const scrollTop = () => {
@@ -161,88 +104,19 @@ const IndexPage: NextPage = () => {
         <title>部員アカウント一覧</title>
       </Head>
 
-      {isMd ? <BaseHeader /> : ''}
+      <SubmitLoading isOpen={isOpen} />
 
-      <BaseContainer>
-        <BaseWrapper
-          title="部員アカウント一覧"
-          actionText="サークル新規作成"
-          actionHref="/circle/create"
-        >
-          <div className="border-2 border-gray-800 p-2">
-            {isOpen ? <SubmitLoading isOpen={isOpen} /> : ''}
-
-            {searchedUsers ? (
-              <div className="py-4 mb-8">
-                <p className="text-white">ユーザー検索</p>
-
-                <form>
-                  <SearchTextField
-                    id="nameSearch"
-                    name="nameSearch"
-                    expand
-                    {...searchName}
-                  />
-                </form>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {searchedUsers && searchedUsers.users.length > 0
-              ? searchedUsers.users.map((user: User) => {
-                return (
-                  <AllUserListItem
-                    key={`user-${user.id}`}
-                    user={user}
-                    onResendEmail={onResendEmail}
-                  />
-                )
-              })
-              : ''}
-
-            {searchedUsers && searchedUsers.users.length === 0 ? (
-              <div className="py-4">
-                <p className="text-white">
-                  まだ部員アカウントが登録されていません
-                </p>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {searchedUsers ? (
-              <div className="text-center">
-                <button
-                  className="mx-2 disabled:opacity-50 "
-                  disabled={!page.hasPrevious}
-                  onClick={() => page.previousPage(scrollTop)}
-                >
-                  <FontAwesomeIcon
-                    color={Color.white}
-                    icon={faChevronCircleLeft}
-                    size="2x"
-                  />
-                </button>
-
-                <button
-                  className="mx-2 disabled:opacity-50 "
-                  disabled={!page.hasNext}
-                  onClick={() => page.nextPage(scrollTop)}
-                >
-                  <FontAwesomeIcon
-                    color={Color.white}
-                    icon={faChevronCircleRight}
-                    size="2x"
-                  />
-                </button>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-        </BaseWrapper>
-      </BaseContainer>
+      <AllCircleUsersTemplate
+        users={searchedUsers.users}
+        searchValue={{
+          name: searchName
+        }}
+        hasPrevious={page.hasPrevious}
+        hasNext={page.hasNext}
+        onPrevious={() => page.previousPage(scrollTop)}
+        onNext={() => page.nextPage(scrollTop)}
+        onResendEmail={onResendEmail}
+      />
     </div>
   )
 }
