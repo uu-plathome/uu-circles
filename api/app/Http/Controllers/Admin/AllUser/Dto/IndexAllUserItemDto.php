@@ -38,7 +38,7 @@ final class IndexAllUserItemDto
             'username'          => $this->username,
             'display_name'      => $this->display_name,
             'email'             => $this->email,
-            'email_verified_at' => $this->email_verified_at, 
+            'email_verified_at' => $this->email_verified_at,
             'active'            => $this->active,
         ];
     }
