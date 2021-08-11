@@ -171,6 +171,13 @@
       <path value="$PROJECT_DIR$/vendor/imanghafoori/laravel-microscope" />
       <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
       <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/php-token-analyzer" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/php-search-replace" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/league/config" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
