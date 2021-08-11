@@ -6,7 +6,6 @@ use App\Enum\Property\CircleInformationProperty as CIP;
 use App\Enum\Property\CircleProperty as CP;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
-use App\Usecases\Admin\Circle\Dto\UpdateCircleForSystemUsecaseDto;
 use App\Usecases\Admin\Circle\Dto\UpdateCircleUsecaseDto;
 use App\Usecases\Admin\Circle\Param\UpdateCircleUsecaseParam;
 use Exception;
@@ -20,8 +19,9 @@ final class UpdateCircleUsecase
      *
      * @param UpdateCircleUsecase $param
      *
-     * @return UpdateCircleUsecaseDto
      * @throws Exception
+     *
+     * @return UpdateCircleUsecaseDto
      */
     public function invoke(UpdateCircleUsecaseParam $param): UpdateCircleUsecaseDto
     {
