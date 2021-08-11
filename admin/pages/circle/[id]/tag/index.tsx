@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { FormEvent, useEffect, useState } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import {
   BaseCheckBox,
@@ -12,10 +16,6 @@ import { createOrUpdateCircleTag, getCircleTag } from '@/infra/api/circle_tag'
 import { __ } from '@/lang/ja'
 import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
 import { isCreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

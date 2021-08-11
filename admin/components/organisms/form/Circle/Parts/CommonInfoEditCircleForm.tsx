@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
@@ -11,7 +12,6 @@ import {
 } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
-import { FC } from 'react'
 
 export type Props = {
   onDropMainImage(acceptedFiles: any): void

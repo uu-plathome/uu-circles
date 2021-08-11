@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useEffect, useState } from 'react'
+import useSWR from 'swr'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
@@ -9,10 +13,6 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { deleteAdminUser, getAdminUser } from '@/infra/api/admin_user'
 import { getAuthUser } from '@/infra/api/auth'
 import { Role } from '@/lib/enum/api/Role'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
-import useSWR from 'swr'
 
 const DeletePage: NextPage = () => {
   const router = useRouter()

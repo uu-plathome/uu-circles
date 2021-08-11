@@ -11,7 +11,8 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
-    "lint": "eslint . --fix --ext ts --ext tsx --ext js"
+    "lint": "eslint . --fix --ext ts --ext tsx --ext js",
+    "lint:fix": "npm run lint && npm run format"
   },
   "dependencies": {
     "@bugsnag/js": "^7.11.0",
@@ -48,6 +49,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.24.0",
     "postcss": "8.3.6",
     "prettier": "^2.3.2",
