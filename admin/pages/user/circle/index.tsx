@@ -13,7 +13,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { scroller } from 'react-scroll'
 
 const IndexPage: NextPage = () => {
-  const [originalUsers, setOriginalUsers] = useState<UserByAllCircle[]>(undefined)
+  const [originalUsers, setOriginalUsers] =
+    useState<UserByAllCircle[]>(undefined)
   const searchName = useStringInput('')
   const [isOpen, setIsOpen] = useState(false)
   const scrollTop = () => {
@@ -25,9 +26,7 @@ const IndexPage: NextPage = () => {
   }
 
   const page = usePageInput({
-    initialMaxPage: Math.ceil(
-      originalUsers ? originalUsers.length / 10 : 1
-    ),
+    initialMaxPage: Math.ceil(originalUsers ? originalUsers.length / 10 : 1),
     pageSize: 10,
   })
 
@@ -64,9 +63,7 @@ const IndexPage: NextPage = () => {
         return false
       })
 
-      page.setMaxPage(
-        Math.ceil(filteredName ? filteredName.length / 10 : 1)
-      )
+      page.setMaxPage(Math.ceil(filteredName ? filteredName.length / 10 : 1))
 
       return filteredName
     })()
@@ -77,12 +74,7 @@ const IndexPage: NextPage = () => {
         page.page * page.pageSize
       ),
     }
-  }, [
-    originalUsers,
-    page.page,
-    page.pageSize,
-    searchName.value,
-  ])
+  }, [originalUsers, page.page, page.pageSize, searchName.value])
 
   useMemo(() => {
     page.updatePage(1)
@@ -109,7 +101,7 @@ const IndexPage: NextPage = () => {
       <AllCircleUsersTemplate
         users={searchedUsers.users}
         searchValue={{
-          name: searchName
+          name: searchName,
         }}
         hasPrevious={page.hasPrevious}
         hasNext={page.hasNext}

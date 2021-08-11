@@ -15,7 +15,7 @@ import Color from 'colors'
 import { NextPage } from 'next'
 
 type SearchValue = {
-  name: UseStringInput,
+  name: UseStringInput
 }
 type Props = {
   users: UserByAllCircle[]
@@ -67,14 +67,14 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
 
             {users && users.length > 0
               ? users.map((user: User) => {
-                return (
-                  <AllUserListItem
-                    key={`user-${user.id}`}
-                    user={user}
-                    onResendEmail={onResendEmail}
-                  />
-                )
-              })
+                  return (
+                    <AllUserListItem
+                      key={`user-${user.id}`}
+                      user={user}
+                      onResendEmail={onResendEmail}
+                    />
+                  )
+                })
               : ''}
 
             {users && users.length === 0 ? (

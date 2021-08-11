@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useState } from 'react'
 
 /**
  * フロントのページネーション実装
@@ -28,14 +28,18 @@ export const usePageInput = ({
    */
   const previousPage = (callback: () => void) => {
     updatePage(page - 1)
-    if (callback) { callback() }
+    if (callback) {
+      callback()
+    }
   }
   /**
    * 次のページへ進む
    */
   const nextPage = (callback: () => void) => {
     updatePage(page + 1)
-    if (callback) { callback() }
+    if (callback) {
+      callback()
+    }
   }
 
   /**

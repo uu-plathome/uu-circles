@@ -25,7 +25,7 @@ final class IndexCircleUsecase
         ])->hasByNonDependentSubquery('circleInformation')
             ->get()
             // 更新日でソート
-            ->sortByDesc(function (Circle $circle) { 
+            ->sortByDesc(function (Circle $circle) {
                 return $circle->circleInformation->updated_at;
             })->values();
 
