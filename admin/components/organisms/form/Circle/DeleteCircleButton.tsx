@@ -1,8 +1,8 @@
+import { FC, useState } from 'react'
+import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { Circle } from '@/lib/types/model/Circle'
-import { FC, useState } from 'react'
-import Modal from 'react-modal'
 
 const customStyles = {
   content: {

@@ -1,5 +1,3 @@
-import { __ } from '@/lang/ja'
-import { User } from '@/lib/types/model/User'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -10,6 +8,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
+import { __ } from '@/lang/ja'
+import { User } from '@/lib/types/model/User'
 
 type Props = {
   user: User

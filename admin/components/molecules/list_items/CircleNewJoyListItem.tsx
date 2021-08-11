@@ -1,11 +1,3 @@
-import { GrayButton } from '@/components/atoms/buttons/GrayButton'
-import { OrangeButton } from '@/components/atoms/buttons/OrangeButton'
-import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { __ } from '@/lang/ja'
-import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { dayjs } from '@/plugins/Dayjs'
 import {
   faCheckCircle,
   faTimesCircle,
@@ -17,6 +9,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
+import { GrayButton } from '@/components/atoms/buttons/GrayButton'
+import { OrangeButton } from '@/components/atoms/buttons/OrangeButton'
+import { RedButton } from '@/components/atoms/buttons/RedButton'
+import { __ } from '@/lang/ja'
+import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity'
+import { Circle } from '@/lib/types/model/Circle'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { dayjs } from '@/plugins/Dayjs'
 
 type Props = {
   circle: Circle

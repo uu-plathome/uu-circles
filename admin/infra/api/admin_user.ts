@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+import { axiosInstance } from '.'
 import {
   RegisterAdminFormRequest,
   RegisterAdminFormRequestValidationError,
@@ -7,8 +9,6 @@ import {
   UpdateAdminUserRequestValidationError,
 } from '@/lib/types/api/UpdateAdminUserRequest'
 import { User } from '@/lib/types/model/User'
-import { AxiosError } from 'axios'
-import { axiosInstance } from '.'
 
 export const getAdminUserList = async () => {
   const { data } = await axiosInstance.get<{

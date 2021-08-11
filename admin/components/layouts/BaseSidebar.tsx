@@ -1,6 +1,3 @@
-import { AuthContext } from '@/contexts/AuthContext'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Role } from '@/lib/enum/api/Role'
 import {
   IconDefinition,
   faChevronRight,
@@ -16,6 +13,9 @@ import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
 import { FC, useContext, useState } from 'react'
 import { BaseHeader } from './BaseHeader'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Role } from '@/lib/enum/api/Role'
 
 interface SidebarItem {
   name: string

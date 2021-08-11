@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
@@ -15,10 +19,6 @@ import {
   isRegisterAdminFormRequestValidationError,
   RegisterAdminFormRequest,
 } from '@/lib/types/api/RegisterAdminFormRequest'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

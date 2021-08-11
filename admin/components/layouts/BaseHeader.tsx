@@ -1,10 +1,10 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
 import Link from 'next/link'
 import React from 'react'
 import { BaseContainer } from './BaseContainer'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 type Props = {
   onClick?(): void

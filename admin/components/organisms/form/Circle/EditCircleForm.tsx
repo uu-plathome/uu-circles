@@ -1,13 +1,3 @@
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseSelect } from '@/components/atoms/form/BaseSelect'
-import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { FormHeader } from '@/components/atoms/header/FormHeader'
-import {
-  UseBooleanInput,
-  UseNumberInput,
-  UseStringInput,
-} from '@/hooks/useInput'
-import { isSystem, Role } from '@/lib/enum/api/Role'
 import {
   faFacebook,
   faGithub,
@@ -29,6 +19,16 @@ import {
   NameEditCircleForm,
   Props as NameEditCircleFormProps,
 } from './Parts/NameEditCircleForm'
+import { GreenButton } from '@/components/atoms/buttons/GreenButton'
+import { BaseSelect } from '@/components/atoms/form/BaseSelect'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { FormHeader } from '@/components/atoms/header/FormHeader'
+import {
+  UseBooleanInput,
+  UseNumberInput,
+  UseStringInput,
+} from '@/hooks/useInput'
+import { isSystem, Role } from '@/lib/enum/api/Role'
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
