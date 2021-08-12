@@ -39,8 +39,8 @@ const Index: NextPage<Props> = ({
 
   // ページ位置
   const { pageData, onChangeId, recordPagePosition } = usePagePosition({
-    pageUrl: '/',
-    pageName: 'Main',
+    pageUrl: '/demo',
+    pageName: 'main_demo',
     identifierHash,
   })
 
