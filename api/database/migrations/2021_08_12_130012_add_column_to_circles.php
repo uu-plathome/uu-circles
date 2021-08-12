@@ -14,7 +14,7 @@ class AddColumnToCircles extends Migration
     public function up()
     {
         Schema::table('page_position_histories', function (Blueprint $table) {
-            $table->foreignId('circle_id')->after('page_position_id')->constrained();
+            $table->foreignId('circle_id')->nullable()->after('page_position_id')->constrained();
         });
     }
 
