@@ -1,11 +1,9 @@
-import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import { createPagePosition } from '../lib/infra/api/pagePosition'
 import { isCreatePagePositionRequestValidationError } from '../lib/types/api/CreatePagePositionRequest'
 import { PagePositions } from '../lib/types/model/PagePosition'
+import { pagePositionChannel } from '../plugins/Pusher'
 import { useWindowResize } from './useWindowResize'
-
-const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
 export type PagePositionRecord = {
   pagePositionHistoryId: number
@@ -93,17 +91,15 @@ export const usePagePosition = ({
    * リアルタイム同期
    */
   useEffect(() => {
-    const channelName = 'page-position-channel'
-    const pusher = new Pusher(PUSHER_KEY, {
-      cluster: 'ap3',
-    })
+    const eventName = `my-event_${pageName}`
 
-    pusher
-      .subscribe(channelName)
-      .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
+    pagePositionChannel
+      .bind(eventName, (data: { arg: PagePositions }) => {
         // console.info('Received event:', data)
         setPageData(data.arg)
       })
+
+    return () => { pagePositionChannel.unbind(eventName) }
   }, [identifierHash, pageName])
 
   return {
