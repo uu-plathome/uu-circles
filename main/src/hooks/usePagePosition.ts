@@ -12,15 +12,18 @@ export type PagePositionRecord = {
 export const usePagePosition = ({
   pageUrl,
   pageName,
+  circleSlug,
   identifierHash,
 }: {
   pageUrl: string
   pageName: string
+  circleSlug?: string
   identifierHash: string
 }): {
   pagePositionId: string
   pageData: PagePositions
   pageUrl: string
+  circleSlug?: string
   identifierHash: string
   recordPagePosition: PagePositionRecord[]
   onChangeId: (_pagePositionId: string) => Promise<void>
@@ -65,6 +68,7 @@ export const usePagePosition = ({
           type: 'CreatePagePositionRequest',
           pageUrl,
           pageName,
+          circleSlug,
           pagePositionId: _pagePositionId,
           screenWidth: width,
           screenHeight: height,
@@ -112,8 +116,10 @@ export const usePagePosition = ({
    */
   useEffect(() => {
     return () => {
-      clearTimeout(onProcessTimeoutId)
-      setOnProcessTimeoutId(undefined)
+      if (onProcessTimeoutId) {
+        clearTimeout(onProcessTimeoutId)
+        setOnProcessTimeoutId(undefined)
+      }
     }
   })
 
@@ -121,6 +127,7 @@ export const usePagePosition = ({
     pagePositionId,
     pageData,
     pageUrl,
+    circleSlug,
     identifierHash,
     recordPagePosition,
     onChangeId,

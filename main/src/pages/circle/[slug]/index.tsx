@@ -43,7 +43,7 @@ const Page: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string>(null)
   useEffect(() => {
     setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
   }, [])
@@ -98,6 +98,7 @@ const Page: NextPage<Props> = ({
   const { onChangeId } = usePagePosition({
     pageUrl: `/circle/${circle.slug}`,
     pageName: `circle_show_${circle.slug}`,
+    circleSlug: circle.slug,
     identifierHash
   })
 
