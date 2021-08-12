@@ -14,17 +14,17 @@ export const WpPostBlock: FC<{
   return (
     <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
       <a href={post.link} className="transition-all">
-        <p className="wp-cardtype__img">
+        <div className="wp-cardtype__img">
           <Image
             src={(media && media.source_url) || ImagePath.UU_YELL.MAIN}
             alt={(media && media.alt_text) || ''}
             layout="fill"
           />
-        </p>
+        </div>
 
         <div className="px-6 py-2 mb-2">
           {post.date ? (
-            <p className="pt-2 flex items-center mb-2">
+            <div className="pt-2 flex items-center mb-2">
               <FontAwesomeIcon
                 icon={faClock}
                 color={colors.gray[400]}
@@ -33,7 +33,7 @@ export const WpPostBlock: FC<{
               <span className="text-sm text-gray-400">
                 {dayjs(post.date).format('YYYY年MM月DD日')}
               </span>
-            </p>
+            </div>
           ) : (
             ''
           )}
