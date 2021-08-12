@@ -13,7 +13,6 @@ import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 
-
 type Props = {
   advertises: Advertise[]
   mainAdvertises: Advertise[]

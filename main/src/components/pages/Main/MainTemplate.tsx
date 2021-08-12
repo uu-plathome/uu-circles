@@ -139,10 +139,7 @@ export const MainTemplate: FC<Props> = ({
         </div>
 
         <BaseContainer>
-          <div
-            className="px-7 relative"
-            id={ID_LIST.CIRCLE_LIST_CONTAINER}
-          >
+          <div className="px-7 relative" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
             <MainTagList
               id={ID_LIST.RECOMMEND_TAG_LIST}
               onChangeId={onChangeId}
