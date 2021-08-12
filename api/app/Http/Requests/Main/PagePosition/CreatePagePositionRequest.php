@@ -26,6 +26,7 @@ final class CreatePagePositionRequest extends FormRequest
     public function rules()
     {
         return [
+            'circleSlug'     => 'nullable|string|max:255|exists:circle,slug',
             'pageUrl'        => 'required|string|max:255',
             'pageName'       => 'required|string|alpha_dash|max:255',
             'pagePositionId' => 'required|string|alpha_dash|max:255',

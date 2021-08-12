@@ -3,6 +3,7 @@ import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
+import { MainHead } from '../components/pages/Main/Parts/MainHead'
 import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
@@ -73,17 +74,21 @@ const Index: NextPage<Props> = (ssrProps) => {
   })
 
   return (
-    <MainTemplate
-      advertises={advertises}
-      mainAdvertises={mainAdvertises}
-      circles={circles}
-      uuYellArticles={uuYellArticles}
-      uuYellForMain={uuYellForMain}
-      announcements={announcements}
-      pagePositions={pageData}
-      recordPagePosition={recordPagePosition}
-      onChangeId={onChangeId}
-    />
+    <div>
+      <MainHead />
+
+      <MainTemplate
+        advertises={advertises}
+        mainAdvertises={mainAdvertises}
+        circles={circles}
+        uuYellArticles={uuYellArticles}
+        uuYellForMain={uuYellForMain}
+        announcements={announcements}
+        pagePositions={pageData}
+        recordPagePosition={recordPagePosition}
+        onChangeId={onChangeId}
+      />
+    </div>
   )
 }
 

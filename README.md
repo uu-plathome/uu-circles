@@ -20,6 +20,8 @@ UU-Circles: https://uu-circles.com/
 ## 機能
 
 [機能一覧/Change log](https://ulab-uu.com/2021/04/22/uu-circles-uu-yell-change-log/)
+[UU-Circles システム目線の話](https://ulab-uu.com/2021/08/08/uu-circles-system-report/)
+[ER図](./docs/MySql.png)
 
 ### UU-Circles メインページ
 

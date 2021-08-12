@@ -4,9 +4,17 @@ import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 
-const MainTagList: FC = () => {
+type Props = {
+  id: string
+  onChangeId: (id: string) => void
+}
+const MainTagList: FC<Props> = ({ id, onChangeId }) => {
   return (
-    <div className="md:flex md:justify-center md:items-center md:pt-10 pb-10">
+    <div
+      id={id}
+      className="md:flex md:justify-center md:items-center md:pt-10 pb-10"
+      onMouseOver={() => onChangeId(id)}
+    >
       <h2 className="text-black text-lg font-bold md:pr-8 md:border-r md:border-gray-400 md:mr-8 mb-2">
         おすすめのタグ
       </h2>

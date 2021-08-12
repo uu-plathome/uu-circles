@@ -16,6 +16,7 @@ class PagePositionHistory extends Model
         PagePositionHistoryProperty::page_name,
         PagePositionHistoryProperty::page_url,
         PagePositionHistoryProperty::page_position_id,
+        PagePositionHistoryProperty::circle_id,
         PagePositionHistoryProperty::screen_width,
         PagePositionHistoryProperty::screen_height,
     ];
@@ -23,5 +24,10 @@ class PagePositionHistory extends Model
     public function identifier(): BelongsTo
     {
         return $this->belongsTo(Identifier::class);
+    }
+
+    public function circle(): BelongsTo
+    {
+        return $this->belongsTo(Circle::class);
     }
 }

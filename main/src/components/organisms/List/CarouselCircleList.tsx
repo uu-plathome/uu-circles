@@ -35,7 +35,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
         <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
           {circles.map((circle) => {
             return (
-              <div key={`isMd-${circle.id}`}>
+              <div key={`isMd-${circle.slug}`}>
                 <div className="mb-6 md:mb-16">
                   <Link
                     href="/circle/[slug]"
@@ -67,7 +67,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
           <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
             {circles.map((circle) => {
               return (
-                <SwiperSlide key={`not-isMd-${circle.id}`}>
+                <SwiperSlide key={`not-isMd-${circle.slug}`}>
                   <div className="pb-10 flex justify-center">
                     <div>
                       <Link
