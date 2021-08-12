@@ -88,11 +88,14 @@ export const ShowCircleTemplate: FC<Props> = ({
       >
         <div>
           <BaseContainer>
-            <div onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}>
-              <div className="bg-white">
-                <TopImage circle={circle} />
-              </div>
+            <div
+              id={ID_LIST.CIRCLE_TOP_IMAGE}
+              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}
+            >
+              {/* 活動写真 */}
+              <TopImage circle={circle} />
 
+              {/* サークル情報 */}
               <CircleTopInformation circle={circle} />
             </div>
 

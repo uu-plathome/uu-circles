@@ -35,7 +35,7 @@ const TopImage: FC<Props> = ({ circle }) => {
   }, [circle])
 
   return (
-    <>
+    <div className="bg-white">
       {/* スライダー本体 */}
       <Swiper
         spaceBetween={50}
@@ -77,7 +77,7 @@ const TopImage: FC<Props> = ({ circle }) => {
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 
