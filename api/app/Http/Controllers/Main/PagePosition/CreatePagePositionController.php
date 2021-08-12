@@ -9,6 +9,7 @@ use App\Events\Arg\PagePositions;
 use App\Events\SendPagePosition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\PagePosition\CreatePagePositionRequest;
+use App\Models\Circle;
 use App\Models\Identifier;
 use App\Models\PagePositionHistory;
 use App\Support\Arr;
@@ -40,6 +41,7 @@ final class CreatePagePositionController extends Controller
 
         $now = Carbon::now();
 
+        $requestCircleSlug = $request->get('circleSlug');
         $requestPagePositionId = $request->get('pagePositionId');
         $requestPageUrl = $request->get('pageUrl');
         $requestPageName = $request->get('pageName');
@@ -68,6 +70,14 @@ final class CreatePagePositionController extends Controller
                     $query->whereIpAddress($request->ip());
                 })->first()
         );
+        
+        /** @var Circle|null $circleOrNull */
+        $circleOrNull = $requestCircleSlug ?
+            Cache::remember(
+                'CreatePagePositionController.circle.circleSlug='.$requestCircleSlug,
+                300,
+                fn () => Circle::whereSlug($requestCircleSlug)->first()
+            ) : null;
 
         // 識別子が存在しない場合は、バリデーションエラーを出す
         if (is_null($identifier)) {
@@ -81,6 +91,7 @@ final class CreatePagePositionController extends Controller
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
             PagePositionHistoryProperty::page_name        => $requestPageName,
             PagePositionHistoryProperty::page_position_id => $requestPagePositionId,
+            PagePositionHistoryProperty::circle_id        => $circleOrNull ? $circleOrNull->id : null,
             PagePositionHistoryProperty::screen_width     => $requestScreenWidth,
             PagePositionHistoryProperty::screen_height    => $requestScreenHeight,
         ])->save();

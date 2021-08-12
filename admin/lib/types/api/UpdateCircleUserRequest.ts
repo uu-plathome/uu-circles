@@ -23,10 +23,5 @@ export interface UpdateCircleUserRequestValidationError {
   message: string
 }
 
-export const isUpdateCircleUserRequest = (
-  v: any
-): v is UpdateCircleUserRequest => v && v.type === 'UpdateCircleUserRequest'
-export const isUpdateCircleUserRequestValidationError = (
-  v: any
-): v is UpdateCircleUserRequestValidationError =>
-  v && v.type === 'UpdateCircleUserRequestValidationError'
+export const isUpdateCircleUserRequest = (v: any): v is UpdateCircleUserRequest => v && v.type === 'UpdateCircleUserRequest'
+export const isUpdateCircleUserRequestValidationError = (v: any): v is UpdateCircleUserRequestValidationError => v && v.type === 'UpdateCircleUserRequestValidationError'
