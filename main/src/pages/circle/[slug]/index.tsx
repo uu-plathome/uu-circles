@@ -99,7 +99,7 @@ const Page: NextPage<Props> = ({
     pageUrl: `/circle/${circle.slug}`,
     pageName: `circle_show_${circle.slug}`,
     circleSlug: circle.slug,
-    identifierHash
+    identifierHash,
   })
 
   if (errorCode) {

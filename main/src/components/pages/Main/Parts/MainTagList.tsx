@@ -5,8 +5,8 @@ import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 
 type Props = {
-  id: string,
-  onChangeId: (id: string) => void,
+  id: string
+  onChangeId: (id: string) => void
 }
 const MainTagList: FC<Props> = ({ id, onChangeId }) => {
   return (
