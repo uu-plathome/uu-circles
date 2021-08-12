@@ -1,29 +1,18 @@
-import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import useSWR from 'swr'
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
-import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseLayout } from '@/src/components/layouts/BaseLayout'
-import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList'
-import { MainDemoUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainDemoUucircleTopButtons'
-import { MainSponsorshipFooter } from '@/src/components/pages/Main/Parts/MainSponsorshipFooter'
-import { MainTagList } from '@/src/components/pages/Main/Parts/MainTagList'
-import { MainUucircleAd } from '@/src/components/pages/Main/Parts/MainUucircleAd'
-import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
-import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
+import { useEffect, useState } from 'react'
+import { WP_REST_API_Posts } from 'wp-types'
+import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
+import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
+import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { Importance } from '@/src/lib/enum/api/Importance'
-import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
-import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
+import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getMainDemo } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 
-const UU_YELL_URL = ApiUrl.UU_YELL
 
 type Props = {
   advertises: Advertise[]
@@ -39,34 +28,20 @@ const Index: NextPage<Props> = ({
   uuYellArticles,
   announcements,
 }) => {
-  // uu-yellの記事の取得
-  const { data: uuYellForMain } = useSWR<{
-    posts: WP_REST_API_Posts
-    medias: WP_REST_API_Attachments
-  }>(['main'], async () => {
-    const TAG_NUMBER = UuYellTagNumber.UuCirclesRecommend
-    const fetchedPosts = await axios.get<WP_REST_API_Posts>(
-      `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&tags=${TAG_NUMBER}`
-    )
+  // 識別子の取得
+  const [identifierHash, setIdentifierHash] = useState(null)
+  useEffect(() => {
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+  }, [])
 
-    if (fetchedPosts.data.length === 0) {
-      return {
-        posts: [],
-        medias: [],
-      }
-    }
+  // 「編集長イチオシ」の取得
+  const { uuYellForMain } = useFetchUuYell()
 
-    const mediaIds = fetchedPosts.data.map((post) => post.featured_media)
-    const queryMediaIds = mediaIds.join(',')
-
-    const fetchedMedias = await axios.get<WP_REST_API_Attachments>(
-      `${UU_YELL_URL}/wp-json/wp/v2/media?perPage=100&context=embed&include=${queryMediaIds}`
-    )
-
-    return {
-      posts: fetchedPosts.data,
-      medias: fetchedMedias.data,
-    }
+  // ページ位置
+  const { pageData, onChangeId, recordPagePosition } = usePagePosition({
+    pageUrl: '/',
+    pageName: 'Main',
+    identifierHash,
   })
 
   return (
@@ -92,49 +67,17 @@ const Index: NextPage<Props> = ({
         <meta name="twitter:card" content="summary" />
       </Head>
 
-      <BaseLayout
-        announcement={
-          announcements && announcements.length > 0
-            ? announcements[0]
-            : undefined
-        }
-      >
-        <MainUucircleTopCarousel advertises={mainAdvertises} />
-
-        <div style={{ marginTop: '-6px' }} className="bg-white">
-          <p className="text-center py-8">新歓をハックする！</p>
-        </div>
-
-        <MainDemoUucircleTopButtons />
-
-        <BaseContainer>
-          <div className="px-7">
-            <MainTagList />
-
-            {/*  サークル一覧 */}
-            <MainCircleList circles={circles} />
-
-            <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
-              <GreenButton href="/circle">もっと見る</GreenButton>
-            </div>
-          </div>
-        </BaseContainer>
-
-        <div className="bg-gray-100">
-          {/*  フッター */}
-
-          <MainUucircleAd />
-
-          <MainUucircleBottomButtons
-            medias={uuYellForMain ? uuYellForMain.medias : []}
-            posts={uuYellForMain ? uuYellForMain.posts : []}
-          />
-
-          <MainSponsorshipFooter advertises={advertises} />
-
-          <BaseFooter uuYellArticles={uuYellArticles} />
-        </div>
-      </BaseLayout>
+      <MainTemplate
+        advertises={advertises}
+        mainAdvertises={mainAdvertises}
+        circles={circles}
+        uuYellArticles={uuYellArticles}
+        uuYellForMain={uuYellForMain}
+        announcements={announcements}
+        pagePositions={pageData}
+        recordPagePosition={recordPagePosition}
+        onChangeId={onChangeId}
+      />
     </div>
   )
 }

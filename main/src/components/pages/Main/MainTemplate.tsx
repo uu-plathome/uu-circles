@@ -112,9 +112,7 @@ export const MainTemplate: FC<Props> = ({
   }, [pagePositions, recordPagePosition])
 
   return (
-    <div>
-      <MainHead />
-
+    <>
       <BaseLayout
         announcement={
           announcements && announcements.length > 0
@@ -145,7 +143,6 @@ export const MainTemplate: FC<Props> = ({
           <div
             className="px-7 relative"
             id={ID_LIST.CIRCLE_LIST_CONTAINER}
-            onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
           >
             <MainTagList
               id={ID_LIST.RECOMMEND_TAG_LIST}
@@ -190,6 +187,6 @@ export const MainTemplate: FC<Props> = ({
           <BaseFooter uuYellArticles={uuYellArticles} />
         </div>
       </BaseLayout>
-    </div>
+    </>
   )
 }
