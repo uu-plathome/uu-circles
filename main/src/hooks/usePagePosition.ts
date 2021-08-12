@@ -31,6 +31,9 @@ export const usePagePosition = ({
     pagePositions: [],
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
+  const [onProcessTimeoutId, setOnProcessTimeoutId] = useState<
+    NodeJS.Timeout|undefined
+  >(undefined)
   const [recordPagePosition, setRecordPagePosition] = useState<
     PagePositionRecord[]
   >([])
@@ -81,9 +84,11 @@ export const usePagePosition = ({
         },
       ])
     } finally {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setOnProcess(false)
-      }, 500)
+        setOnProcessTimeoutId(undefined)
+      }, 1000)
+      setOnProcessTimeoutId(timeoutId)
     }
   }
 
@@ -101,6 +106,16 @@ export const usePagePosition = ({
 
     return () => { pagePositionChannel.unbind(eventName) }
   }, [identifierHash, pageName])
+
+  /**
+   * Timeoutの初期化
+   */
+  useEffect(() => {
+    return () => {
+      clearTimeout(onProcessTimeoutId)
+      setOnProcessTimeoutId(undefined)
+    }
+  })
 
   return {
     pagePositionId,
