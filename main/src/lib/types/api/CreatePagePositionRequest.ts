@@ -3,6 +3,7 @@
  */
 export interface CreatePagePositionRequest {
   type: 'CreatePagePositionRequest'
+  circleSlug?: string
   pageUrl: string
   pageName: string
   pagePositionId: string
@@ -16,6 +17,7 @@ export interface CreatePagePositionRequest {
 export interface CreatePagePositionRequestValidationError {
   type: 'CreatePagePositionRequestValidationError'
   errors: {
+    circleSlug?: string[]
     pageUrl?: string[]
     pageName?: string[]
     pagePositionId?: string[]
@@ -25,10 +27,5 @@ export interface CreatePagePositionRequestValidationError {
   message: string
 }
 
-export const isCreatePagePositionRequest = (
-  v: any
-): v is CreatePagePositionRequest => v && v.type === 'CreatePagePositionRequest'
-export const isCreatePagePositionRequestValidationError = (
-  v: any
-): v is CreatePagePositionRequestValidationError =>
-  v && v.type === 'CreatePagePositionRequestValidationError'
+export const isCreatePagePositionRequest = (v: any): v is CreatePagePositionRequest => v && v.type === 'CreatePagePositionRequest'
+export const isCreatePagePositionRequestValidationError = (v: any): v is CreatePagePositionRequestValidationError => v && v.type === 'CreatePagePositionRequestValidationError'
