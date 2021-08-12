@@ -25,7 +25,7 @@ class PagePositionHistory extends Model
     {
         return $this->belongsTo(Identifier::class);
     }
-    
+
     public function circle(): BelongsTo
     {
         return $this->belongsTo(Circle::class);
