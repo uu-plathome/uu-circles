@@ -35,7 +35,7 @@ export const usePagePosition = ({
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
   const [onProcessTimeoutId, setOnProcessTimeoutId] = useState<
-    NodeJS.Timeout|undefined
+    NodeJS.Timeout | undefined
   >(undefined)
   const [recordPagePosition, setRecordPagePosition] = useState<
     PagePositionRecord[]
@@ -102,13 +102,14 @@ export const usePagePosition = ({
   useEffect(() => {
     const eventName = `my-event_${pageName}`
 
-    pagePositionChannel
-      .bind(eventName, (data: { arg: PagePositions }) => {
-        // console.info('Received event:', data)
-        setPageData(data.arg)
-      })
+    pagePositionChannel.bind(eventName, (data: { arg: PagePositions }) => {
+      // console.info('Received event:', data)
+      setPageData(data.arg)
+    })
 
-    return () => { pagePositionChannel.unbind(eventName) }
+    return () => {
+      pagePositionChannel.unbind(eventName)
+    }
   }, [identifierHash, pageName])
 
   /**

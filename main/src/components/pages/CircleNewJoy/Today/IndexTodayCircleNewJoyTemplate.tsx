@@ -1,14 +1,12 @@
-import { FC } from "react";
+import { FC } from 'react'
 import { useMemo } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
-import { ShareSns } from "./Parts/ShareSns";
+import { ShareSns } from './Parts/ShareSns'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { IndexCircleNewJoyListForNoSlug } from '@/src/components/organisms/List/IndexCircleNewJoyListForNoSlug'
-import {
-  TodayCircleNewJoy,
-} from '@/src/lib/infra/api/circleNewJoy'
+import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 
 const ID_LIST = {
@@ -33,16 +31,14 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
   todayCircleNewJoys,
   uuYellArticles,
   announcements,
-  onChangeId
+  onChangeId,
 }) => {
   const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
 
   return (
     <BaseLayout
       announcement={
-        announcements && announcements.length > 0
-          ? announcements[0]
-          : undefined
+        announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
       <div className="bg-gray-100 px-2">
@@ -73,10 +69,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
             )}
           </div>
 
-          <ShareSns
-            id={ID_LIST.SHARE_SNS}
-            pageUrl={pageUrl}
-          />
+          <ShareSns id={ID_LIST.SHARE_SNS} pageUrl={pageUrl} />
 
           <div
             id={ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST}

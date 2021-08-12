@@ -35,7 +35,7 @@ const Page: NextPage<Props> = ({
   const { onChangeId } = usePagePosition({
     pageUrl: `/circle/newjoy`,
     pageName: `circle_today_newjoy`,
-    identifierHash
+    identifierHash,
   })
 
   if (errorCode) {
