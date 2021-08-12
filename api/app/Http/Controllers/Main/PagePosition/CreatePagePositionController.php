@@ -70,7 +70,7 @@ final class CreatePagePositionController extends Controller
                     $query->whereIpAddress($request->ip());
                 })->first()
         );
-        
+
         /** @var Circle|null $circleOrNull */
         $circleOrNull = $requestCircleSlug ?
             Cache::remember(
@@ -113,9 +113,8 @@ final class CreatePagePositionController extends Controller
          * 1. デバイスによる制御
          *      どちらかをみたいしているとき
          *      - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
-         *      - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知
+         *      - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知.
          */
-
         $searchStartTime = $now->timestamp - 3;
         $searchTimeFormat = 'Y-m-d H:i:s';
 
@@ -196,7 +195,7 @@ final class CreatePagePositionController extends Controller
 
         /**
          * - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
-         * - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知
+         * - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知.
          */
         if (
             $tabletOrPcPagePositions->count() > 2 ||
