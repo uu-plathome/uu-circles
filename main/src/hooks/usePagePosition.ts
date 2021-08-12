@@ -1,11 +1,9 @@
-import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import { createPagePosition } from '../lib/infra/api/pagePosition'
 import { isCreatePagePositionRequestValidationError } from '../lib/types/api/CreatePagePositionRequest'
 import { PagePositions } from '../lib/types/model/PagePosition'
+import { pagePositionChannel } from '../plugins/Pusher'
 import { useWindowResize } from './useWindowResize'
-
-const PUSHER_KEY = 'a9b069e2da6cbb2a3766'
 
 export type PagePositionRecord = {
   pagePositionHistoryId: number
@@ -14,15 +12,18 @@ export type PagePositionRecord = {
 export const usePagePosition = ({
   pageUrl,
   pageName,
+  circleSlug,
   identifierHash,
 }: {
   pageUrl: string
   pageName: string
+  circleSlug?: string
   identifierHash: string
 }): {
   pagePositionId: string
   pageData: PagePositions
   pageUrl: string
+  circleSlug?: string
   identifierHash: string
   recordPagePosition: PagePositionRecord[]
   onChangeId: (_pagePositionId: string) => Promise<void>
@@ -33,6 +34,9 @@ export const usePagePosition = ({
     pagePositions: [],
   })
   const [onProcess, setOnProcess] = useState<boolean>(false)
+  const [onProcessTimeoutId, setOnProcessTimeoutId] = useState<
+    NodeJS.Timeout | undefined
+  >(undefined)
   const [recordPagePosition, setRecordPagePosition] = useState<
     PagePositionRecord[]
   >([])
@@ -64,6 +68,7 @@ export const usePagePosition = ({
           type: 'CreatePagePositionRequest',
           pageUrl,
           pageName,
+          circleSlug,
           pagePositionId: _pagePositionId,
           screenWidth: width,
           screenHeight: height,
@@ -83,9 +88,11 @@ export const usePagePosition = ({
         },
       ])
     } finally {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setOnProcess(false)
-      }, 500)
+        setOnProcessTimeoutId(undefined)
+      }, 1000)
+      setOnProcessTimeoutId(timeoutId)
     }
   }
 
@@ -93,23 +100,35 @@ export const usePagePosition = ({
    * リアルタイム同期
    */
   useEffect(() => {
-    const channelName = 'page-position-channel'
-    const pusher = new Pusher(PUSHER_KEY, {
-      cluster: 'ap3',
+    const eventName = `my-event_${pageName}`
+
+    pagePositionChannel.bind(eventName, (data: { arg: PagePositions }) => {
+      // console.info('Received event:', data)
+      setPageData(data.arg)
     })
 
-    pusher
-      .subscribe(channelName)
-      .bind(`my-event_${pageName}`, (data: { arg: PagePositions }) => {
-        // console.info('Received event:', data)
-        setPageData(data.arg)
-      })
+    return () => {
+      pagePositionChannel.unbind(eventName)
+    }
   }, [identifierHash, pageName])
+
+  /**
+   * Timeoutの初期化
+   */
+  useEffect(() => {
+    return () => {
+      if (onProcessTimeoutId) {
+        clearTimeout(onProcessTimeoutId)
+        setOnProcessTimeoutId(undefined)
+      }
+    }
+  })
 
   return {
     pagePositionId,
     pageData,
     pageUrl,
+    circleSlug,
     identifierHash,
     recordPagePosition,
     onChangeId,

@@ -9,6 +9,7 @@ use App\Events\Arg\PagePositions;
 use App\Events\SendPagePosition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\PagePosition\CreatePagePositionRequest;
+use App\Models\Circle;
 use App\Models\Identifier;
 use App\Models\PagePositionHistory;
 use App\Support\Arr;
@@ -23,9 +24,12 @@ final class CreatePagePositionController extends Controller
      * ユーザーのページ位置を記録し、
      * 送信してきたユーザーのページ位置を見ている他のユーザーの位置情報を更新する.
      *
-     * 1. 2人以上のアクセスのときに、イベント発生
-     * 2. スマホのときは記録のみをして、イベント発生させない
-     * 3. 9:00 ~ 26:00 のときに、イベントを発生
+     * 1. デバイスによる制御
+     *      どちらかをみたいしているとき
+     *      - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
+     *      - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知
+     * 2. 9:00 ~ 26:00 のときに、イベントを発生
+     *      → 2:00 ~ 8:59 はイベントを発生させない
      *
      * @param CreatePagePositionRequest $request
      *
@@ -37,6 +41,7 @@ final class CreatePagePositionController extends Controller
 
         $now = Carbon::now();
 
+        $requestCircleSlug = $request->get('circleSlug');
         $requestPagePositionId = $request->get('pagePositionId');
         $requestPageUrl = $request->get('pageUrl');
         $requestPageName = $request->get('pageName');
@@ -66,6 +71,14 @@ final class CreatePagePositionController extends Controller
                 })->first()
         );
 
+        /** @var Circle|null $circleOrNull */
+        $circleOrNull = $requestCircleSlug ?
+            Cache::remember(
+                'CreatePagePositionController.circle.circleSlug='.$requestCircleSlug,
+                300,
+                fn () => Circle::whereSlug($requestCircleSlug)->first()
+            ) : null;
+
         // 識別子が存在しない場合は、バリデーションエラーを出す
         if (is_null($identifier)) {
             return abort(422);
@@ -78,21 +91,17 @@ final class CreatePagePositionController extends Controller
             PagePositionHistoryProperty::page_url         => $requestPageUrl,
             PagePositionHistoryProperty::page_name        => $requestPageName,
             PagePositionHistoryProperty::page_position_id => $requestPagePositionId,
+            PagePositionHistoryProperty::circle_id        => $circleOrNull ? $circleOrNull->id : null,
             PagePositionHistoryProperty::screen_width     => $requestScreenWidth,
             PagePositionHistoryProperty::screen_height    => $requestScreenHeight,
         ])->save();
 
         /**
-         * 1. 2人以上のアクセスのときに、イベント発生
-         * 2. PC、タグレットのときに、イベント発生
-         * 3. 9:00 ~ 26:00 のときに、イベントを発生
+         * 2. 9:00 ~ 25:59 (1:59) のときに、イベントを発生
+         *
+         * → 2:00 ~ 8:59 はイベントを発生させない
          */
-        if (!(
-            // 2. PC、タグレットのときに、イベント発生
-            $requestScreenWidth >= 768 &&
-            // 3. 9:00 ~ 26:00 のときに、イベントを発生
-            2 <= $now->hour || 9 <= $now->hour
-        )) {
+        if (2 <= $now->hour && $now->hour < 9) {
             return Arr::camel_keys([
                 'pagePositionHistoryId' => $pagePositionHistory->id,
                 'createdAt'             => $pagePositionHistory->created_at,
@@ -100,6 +109,12 @@ final class CreatePagePositionController extends Controller
             ]);
         }
 
+        /**
+         * 1. デバイスによる制御
+         *      どちらかをみたいしているとき
+         *      - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
+         *      - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知.
+         */
         $searchStartTime = $now->timestamp - 3;
         $searchTimeFormat = 'Y-m-d H:i:s';
 
@@ -107,32 +122,37 @@ final class CreatePagePositionController extends Controller
         $pagePositions = PagePositionHistory::with([
             'identifier:id,identifier_hash',
         ])
-            // 3s以内
-            ->where(
-                PagePositionHistoryProperty::created_at,
-                '<=',
-                date($searchTimeFormat, $searchStartTime)
-            )
-            ->where(function ($query) use ($requestPageUrl) {
+            ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
                 // 今回のイベントで同じページにいるユーザーを取得
-                $query->wherePageUrl($requestPageUrl);
+                $query->wherePageUrl($requestPageUrl)
+                    // 3s以内
+                    ->where(
+                        PagePositionHistoryProperty::created_at,
+                        '<=',
+                        date($searchTimeFormat, $searchStartTime)
+                    );
             })
             ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
                 // 今回のイベントに関係のあるユーザーの識別子ID一覧作成し、それらが他のページに遷移していた場合は弾きたいので、一緒に拾ってくる
                 $query->whereIn(
                     PagePositionHistoryProperty::identifier_id,
                     function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                        $query->select('identifier_id')
+                        $query->select(PagePositionHistoryProperty::identifier_id)
                             ->distinct()
                             ->from(with(new PagePositionHistory())->getTable())
-                            ->where('page_url', $requestPageUrl)
+                            ->where(PagePositionHistoryProperty::page_url, $requestPageUrl)
                             ->where(
                                 PagePositionHistoryProperty::created_at,
                                 '<=',
                                 date($searchTimeFormat, $searchStartTime)
                             );
                     }
-                );
+                )
+                    ->where(
+                        PagePositionHistoryProperty::created_at,
+                        '<=',
+                        date($searchTimeFormat, $searchStartTime)
+                    );
             })
             ->get([
                 PagePositionHistoryProperty::id,
@@ -140,6 +160,7 @@ final class CreatePagePositionController extends Controller
                 PagePositionHistoryProperty::page_position_id,
                 PagePositionHistoryProperty::page_name,
                 PagePositionHistoryProperty::page_url,
+                PagePositionHistoryProperty::screen_width,
                 PagePositionHistoryProperty::created_at,
             ]);
 
@@ -163,8 +184,23 @@ final class CreatePagePositionController extends Controller
             'newPagePositionsByPageUrl' => $newPagePositionsByPageUrl,
         ]);
 
-        // 2人以上のアクセスのときに、イベント発生
-        if ($newPagePositionsByPageUrl->count() > 1) {
+        // タブレット、PCのユーザーの抽出
+        $tabletOrPcPagePositions = $newPagePositionsByPageUrl->filter(
+            fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->screen_width >= 768
+        )->values();
+
+        Log::debug('CreatePagePositionController tabletOrPcPagePositions', [
+            'tabletOrPcPagePositions' => $newPagePositionsByPageUrl,
+        ]);
+
+        /**
+         * - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
+         * - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知.
+         */
+        if (
+            $tabletOrPcPagePositions->count() > 2 ||
+            ($tabletOrPcPagePositions->count() === 1 && $requestScreenWidth < 768)
+        ) {
             Log::debug('CreatePagePositionController event happen');
             $arg = PagePositions::byEloquent($newPagePositionsByPageUrl);
             event(new SendPagePosition($arg));

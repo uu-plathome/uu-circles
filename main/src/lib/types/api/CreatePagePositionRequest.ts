@@ -3,6 +3,7 @@
  */
 export interface CreatePagePositionRequest {
   type: 'CreatePagePositionRequest'
+  circleSlug?: string
   pageUrl: string
   pageName: string
   pagePositionId: string
@@ -16,6 +17,7 @@ export interface CreatePagePositionRequest {
 export interface CreatePagePositionRequestValidationError {
   type: 'CreatePagePositionRequestValidationError'
   errors: {
+    circleSlug?: string[]
     pageUrl?: string[]
     pageName?: string[]
     pagePositionId?: string[]

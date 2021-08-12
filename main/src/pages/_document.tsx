@@ -42,11 +42,15 @@ export default class MyDocument extends Document {
           )}
 
           {/* Google AdSense */}
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6683230775343969"
-            crossOrigin="anonymous"
-          />
+          {process.env.NODE_ENV === 'production' ? (
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6683230775343969"
+              crossOrigin="anonymous"
+            />
+          ) : (
+            ''
+          )}
 
           {/* YouTube */}
           <script src="https://www.youtube.com/iframe_api" async></script>

@@ -7,7 +7,6 @@ import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList'
-import { MainHead } from '@/src/components/pages/Main/Parts/MainHead'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
 import { PagePositionRecord } from '@/src/hooks/usePagePosition'
@@ -40,8 +39,15 @@ const MainSponsorshipFooter = dynamic(() =>
 const ID_LIST = {
   HEADER_CATCH_COPY: 'header_catch_copy',
   TOP_BUTTONS: 'top_buttons',
+  /** おすすめのタグ */
+  RECOMMEND_TAG_LIST: 'recommend_tag_list',
+  /** サークル一覧 */
+  CIRCLE_LIST_CONTAINER: 'circle_list_container',
+  /** サークル一覧 */
   CIRCLE_LIST: 'circle_list',
+  /** UU-Circles 広告 */
   UU_CIRCLES_AD: 'uu_circles_ad',
+  /** uu-yell記事 */
   UU_YELL_ARTICLES: 'uu_yell_articles',
 } as const
 
@@ -105,9 +111,7 @@ export const MainTemplate: FC<Props> = ({
   }, [pagePositions, recordPagePosition])
 
   return (
-    <div>
-      <MainHead />
-
+    <>
       <BaseLayout
         announcement={
           announcements && announcements.length > 0
@@ -135,15 +139,18 @@ export const MainTemplate: FC<Props> = ({
         </div>
 
         <BaseContainer>
-          <div
-            className="px-7 relative"
-            id={ID_LIST.CIRCLE_LIST}
-            onMouseMove={() => onChangeId(ID_LIST.CIRCLE_LIST)}
-          >
-            <MainTagList />
+          <div className="px-7 relative" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
+            <MainTagList
+              id={ID_LIST.RECOMMEND_TAG_LIST}
+              onChangeId={onChangeId}
+            />
 
             {/*  サークル一覧 */}
-            <MainCircleList circles={circles} />
+            <MainCircleList
+              id={ID_LIST.CIRCLE_LIST}
+              circles={circles}
+              onChangeId={onChangeId}
+            />
 
             <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
               <GreenButton href="/circle">もっと見る</GreenButton>
@@ -176,6 +183,6 @@ export const MainTemplate: FC<Props> = ({
           <BaseFooter uuYellArticles={uuYellArticles} />
         </div>
       </BaseLayout>
-    </div>
+    </>
   )
 }

@@ -19,6 +19,27 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
+const ID_LIST = {
+  /** 活動写真 */
+  CIRCLE_TOP_IMAGE: 'circle_top_image',
+  /** アピールポイント */
+  APPEALING_POINT: 'appealing_point',
+  /** 新歓ビラ */
+  CIRCLE_HANDBILL_IMAGE: 'circle_handbill_image',
+  /** 新歓一覧 */
+  NEWJOY_LIST: 'newjoy_list',
+  /** サークル情報 */
+  INFORMATION_FILED: 'information_filed',
+  /** サークル WordPress おすすめ */
+  WP_POSTS_RECOMMEND: 'wp_posts_recommend',
+  /** サークル WordPress 最新の投稿 */
+  WP_POSTS_RECENT: 'wp_posts_recent',
+  /** サークル uu-yell */
+  CIRCLE_UU_YELL_ARTICLES: 'circle_uu_yell_articles',
+  /** サークル Twitter */
+  CIRCLE_TWITTER: 'circle_uu_yell_articles',
+} as const
+
 type Props = {
   circle?: Circle
   circleTags?: CircleTagModel[]
@@ -34,6 +55,7 @@ type Props = {
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Attachment[]
   }
+  onChangeId: (id: string) => void
 }
 
 export const ShowCircleTemplate: FC<Props> = ({
@@ -44,6 +66,7 @@ export const ShowCircleTemplate: FC<Props> = ({
   wpPosts,
   announcements,
   uuYellForCircles,
+  onChangeId,
 }) => {
   // w : h = 210 : 297
   const width = 300
@@ -65,21 +88,32 @@ export const ShowCircleTemplate: FC<Props> = ({
       >
         <div>
           <BaseContainer>
-            <div>
-              <div className="bg-white">
-                <TopImage circle={circle} />
-              </div>
+            <div
+              id={ID_LIST.CIRCLE_TOP_IMAGE}
+              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}
+            >
+              {/* 活動写真 */}
+              <TopImage circle={circle} />
 
+              {/* サークル情報 */}
               <CircleTopInformation circle={circle} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
-              <div className="order-1">
+              <div
+                id={ID_LIST.APPEALING_POINT}
+                className="order-1"
+                onMouseOver={() => onChangeId(ID_LIST.APPEALING_POINT)}
+              >
                 <AppealingPoint circle={circle} />
               </div>
 
               {circle.handbillImageUrl ? (
-                <div className="order-2 pt-10">
+                <div
+                  id={ID_LIST.CIRCLE_HANDBILL_IMAGE}
+                  className="order-2 pt-10"
+                  onMouseOver={() => onChangeId(ID_LIST.CIRCLE_HANDBILL_IMAGE)}
+                >
                   <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
 
                   <div className="flex justify-center md:justify-start">
@@ -103,8 +137,12 @@ export const ShowCircleTemplate: FC<Props> = ({
                 ''
               )}
 
-              <div className="order-4 md:order-4 pt-10">
-                <div>
+              <div
+                id={ID_LIST.NEWJOY_LIST}
+                className="order-4 md:order-4 pt-10"
+                onMouseOver={() => onChangeId(ID_LIST.NEWJOY_LIST)}
+              >
+                <>
                   {circleNewJoys && circleNewJoys.length > 0 ? (
                     <div>
                       <NewJoyList
@@ -121,7 +159,7 @@ export const ShowCircleTemplate: FC<Props> = ({
                       </p>
                     </div>
                   )}
-                </div>
+                </>
 
                 <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
                   <GreenButton
@@ -133,14 +171,22 @@ export const ShowCircleTemplate: FC<Props> = ({
                 </div>
               </div>
 
-              <div className="order-3 md:order-3 pt-10">
+              <div
+                id={ID_LIST.INFORMATION_FILED}
+                className="order-3 md:order-3 pt-10"
+                onMouseOver={() => onChangeId(ID_LIST.INFORMATION_FILED)}
+              >
                 <InformationField circle={circle} circleTags={circleTags} />
               </div>
 
               {wpPosts &&
               wpPosts.postsExistTags &&
               wpPosts.postsExistTags.length > 0 ? (
-                <div className="order-5 pt-10 px-6 md:px-0">
+                <div
+                  id={ID_LIST.WP_POSTS_RECOMMEND}
+                  className="order-5 pt-10 px-6 md:px-0"
+                  onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECOMMEND)}
+                >
                   <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
                   {wpPosts.postsExistTags.map((post, key) => {
@@ -169,7 +215,11 @@ export const ShowCircleTemplate: FC<Props> = ({
               {wpPosts &&
               wpPosts.postsNotTags &&
               wpPosts.postsNotTags.length > 0 ? (
-                <div className="order-6 pt-10 px-6 md:px-0">
+                <div
+                  id={ID_LIST.WP_POSTS_RECENT}
+                  className="order-6 pt-10 px-6 md:px-0"
+                  onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECENT)}
+                >
                   <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
                   {wpPosts.postsNotTags.map((post, key) => {
@@ -196,7 +246,11 @@ export const ShowCircleTemplate: FC<Props> = ({
             {uuYellForCircles &&
             uuYellForCircles.posts &&
             uuYellForCircles.posts.length > 0 ? (
-              <div className="pt-10 px-6 md:px-0">
+              <div
+                id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
+                className="pt-10 px-6 md:px-0"
+                onMouseOver={() => onChangeId(ID_LIST.CIRCLE_UU_YELL_ARTICLES)}
+              >
                 <ShowCircleTitle>
                   uu-yellでサークルを詳しく知ろう！
                 </ShowCircleTitle>
@@ -223,7 +277,10 @@ export const ShowCircleTemplate: FC<Props> = ({
               ''
             )}
 
-            <div>
+            <div
+              id={ID_LIST.CIRCLE_TWITTER}
+              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TWITTER)}
+            >
               {circle && circle.twitterUrl ? (
                 <div className="pb-16 px-6 md:pl-0 md:pr-2">
                   <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
