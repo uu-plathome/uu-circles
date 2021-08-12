@@ -26,6 +26,7 @@ class AddColumnToCircles extends Migration
     public function down()
     {
         Schema::table('page_position_histories', function (Blueprint $table) {
+            $table->dropForeign('page_position_histories_circle_id_foreign');
             $table->dropColumn(['circle_id']);
         });
     }
