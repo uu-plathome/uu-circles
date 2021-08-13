@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
