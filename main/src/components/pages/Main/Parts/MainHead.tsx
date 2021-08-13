@@ -36,7 +36,7 @@ export const MainHead: FC = () => {
         },
         {
           url: `${baseUuCirclesUrl}/circle/category/${CategorySlugProperty.official_organization}`,
-        }
+        },
       ]}
     />
   )

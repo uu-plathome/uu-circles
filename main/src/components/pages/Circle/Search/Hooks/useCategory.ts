@@ -1,6 +1,6 @@
-import { useRouter } from "next/dist/client/router"
-import { namespaceType, __ } from "@/src/lang/ja"
-import { CategorySlugProperty } from "@/src/lib/enum/api/CategorySlugProperty"
+import { useRouter } from 'next/dist/client/router'
+import { namespaceType, __ } from '@/src/lang/ja'
+import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 
 export const useCategory = () => {
   const router = useRouter()

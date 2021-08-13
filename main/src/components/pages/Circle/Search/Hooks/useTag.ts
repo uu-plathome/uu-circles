@@ -1,6 +1,6 @@
-import { useRouter } from "next/dist/client/router"
-import { namespaceType, __ } from "@/src/lang/ja"
-import { TagSlugProperty } from "@/src/lib/enum/api/TagSlugProperty"
+import { useRouter } from 'next/dist/client/router'
+import { namespaceType, __ } from '@/src/lang/ja'
+import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 
 export const useTag = () => {
   const router = useRouter()
