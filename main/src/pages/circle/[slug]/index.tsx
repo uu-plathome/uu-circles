@@ -137,8 +137,8 @@ const Page: NextPage<Props> = ({
           {
             url: `${baseUuCirclesUrl}/circle/newjoy`,
           },
-          ...circleNewJoys.map(circleNewJoy => ({
-            url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`
+          ...circleNewJoys.map((circleNewJoy) => ({
+            url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
           })),
         ]}
       />

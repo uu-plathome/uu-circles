@@ -42,9 +42,7 @@ export const IndexCircleTemplate: FC<Props> = ({
   return (
     <BaseLayout
       announcement={
-        announcements && announcements.length > 0
-          ? announcements[0]
-          : undefined
+        announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
       <div className="bg-gray-100 px-2">
