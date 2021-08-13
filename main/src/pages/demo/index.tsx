@@ -1,12 +1,14 @@
 import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
+import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { Importance } from '@/src/lib/enum/api/Importance'
+import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getMainDemo } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
@@ -45,26 +47,40 @@ const Index: NextPage<Props> = ({
 
   return (
     <div>
-      <Head>
-        <title>UU-Circles デモ画面</title>
-        <meta
-          property="og:title"
-          content={`UU-Circles | 宇都宮大学の“知りたいサークル“を知る場所`}
-        />
-        <meta
-          property="og:description"
-          content={`宇都宮大学のサークル一覧。なりたいジブンをさがす春。`}
-        />
-        <meta property="og:site_name" content="UU-Circles" />
-        <meta property="og:type" content={'website'} />
-        <meta property="og:url" content={`https://uu-circles.com/`} />
-        <meta
-          name="og:image"
-          content="https://uu-circles.com/images/uucircles_ogp.png"
-        />
-        <meta name="twitter:site" content="@Ulab_uu" />
-        <meta name="twitter:card" content="summary" />
-      </Head>
+      <BaseHead
+        title="UU-Circles デモ画面 | 宇都宮大学の“知りたいサークル“を知る場所"
+        description={`デモ画面。宇都宮大学のサークル一覧。なりたいジブンをさがす春。`}
+        breadcrumbJsonLdItemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: baseUuCirclesUrl,
+          },
+        ]}
+        carouselJsonLdData={[
+          {
+            url: `${baseUuCirclesUrl}/circle`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/tag/${TagSlugProperty.sport}`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/tag/${TagSlugProperty.music}`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/tag/${TagSlugProperty.culture}`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/tag/${TagSlugProperty.community}`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/tag/${TagSlugProperty.programming}`,
+          },
+          {
+            url: `${baseUuCirclesUrl}/circle/category/${CategorySlugProperty.official_organization}`,
+          },
+        ]}
+      />
 
       <MainTemplate
         advertises={advertises}

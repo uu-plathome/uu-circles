@@ -10,7 +10,6 @@ import { TopImage } from './Parts/TopImage'
 import { WpPostBlock } from './Parts/WpPostBlock'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { TwitterEmbed } from '@/src/components/organisms/Twitter/TwitterEmbed'
@@ -73,204 +72,56 @@ export const ShowCircleTemplate: FC<Props> = ({
   const height = (300 * 297) / 210
 
   return (
-    <div>
-      <BaseHead
-        title={`${circle.name} サークル詳細`}
-        description={circle.description}
-      />
+    <BaseLayout
+      announcement={
+        announcements && announcements.length > 0 ? announcements[0] : undefined
+      }
+    >
+      <div>
+        <BaseContainer>
+          <div
+            id={ID_LIST.CIRCLE_TOP_IMAGE}
+            onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}
+          >
+            {/* 活動写真 */}
+            <TopImage circle={circle} />
 
-      <BaseLayout
-        announcement={
-          announcements && announcements.length > 0
-            ? announcements[0]
-            : undefined
-        }
-      >
-        <div>
-          <BaseContainer>
+            {/* サークル情報 */}
+            <CircleTopInformation circle={circle} />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
             <div
-              id={ID_LIST.CIRCLE_TOP_IMAGE}
-              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}
+              id={ID_LIST.APPEALING_POINT}
+              className="order-1"
+              onMouseOver={() => onChangeId(ID_LIST.APPEALING_POINT)}
             >
-              {/* 活動写真 */}
-              <TopImage circle={circle} />
-
-              {/* サークル情報 */}
-              <CircleTopInformation circle={circle} />
+              <AppealingPoint circle={circle} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
+            {circle.handbillImageUrl ? (
               <div
-                id={ID_LIST.APPEALING_POINT}
-                className="order-1"
-                onMouseOver={() => onChangeId(ID_LIST.APPEALING_POINT)}
+                id={ID_LIST.CIRCLE_HANDBILL_IMAGE}
+                className="order-2 pt-10"
+                onMouseOver={() => onChangeId(ID_LIST.CIRCLE_HANDBILL_IMAGE)}
               >
-                <AppealingPoint circle={circle} />
-              </div>
+                <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
 
-              {circle.handbillImageUrl ? (
-                <div
-                  id={ID_LIST.CIRCLE_HANDBILL_IMAGE}
-                  className="order-2 pt-10"
-                  onMouseOver={() => onChangeId(ID_LIST.CIRCLE_HANDBILL_IMAGE)}
-                >
-                  <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
-
-                  <div className="flex justify-center md:justify-start">
-                    <a
-                      href={circle.handbillImageUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={circle.handbillImageUrl}
-                        alt={`${circle.name}新歓ビラ`}
-                        width={width}
-                        height={height}
-                        className="rounded"
-                        objectFit="cover"
-                      />
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                ''
-              )}
-
-              <div
-                id={ID_LIST.NEWJOY_LIST}
-                className="order-4 md:order-4 pt-10"
-                onMouseOver={() => onChangeId(ID_LIST.NEWJOY_LIST)}
-              >
-                <>
-                  {circleNewJoys && circleNewJoys.length > 0 ? (
-                    <div>
-                      <NewJoyList
-                        slug={circle.slug}
-                        circleNewJoys={circleNewJoys}
-                      />
-                    </div>
-                  ) : (
-                    <div>
-                      <ShowCircleTitle>新歓イベント日程</ShowCircleTitle>
-
-                      <p className="text-center">
-                        現在開催予定の新歓はありません
-                      </p>
-                    </div>
-                  )}
-                </>
-
-                <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
-                  <GreenButton
-                    href="/circle/[slug]/newjoy"
-                    as={`/circle/${circle.slug}/newjoy`}
+                <div className="flex justify-center md:justify-start">
+                  <a
+                    href={circle.handbillImageUrl}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    もっと詳しく
-                  </GreenButton>
-                </div>
-              </div>
-
-              <div
-                id={ID_LIST.INFORMATION_FILED}
-                className="order-3 md:order-3 pt-10"
-                onMouseOver={() => onChangeId(ID_LIST.INFORMATION_FILED)}
-              >
-                <InformationField circle={circle} circleTags={circleTags} />
-              </div>
-
-              {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
-                <div
-                  id={ID_LIST.WP_POSTS_RECOMMEND}
-                  className="order-5 pt-10 px-6 md:px-0"
-                  onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECOMMEND)}
-                >
-                  <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
-
-                  {wpPosts.postsExistTags.map((post, key) => {
-                    return (
-                      <div
-                        key={`wpPosts.postsExistTags-${key}`}
-                        className="mb-4"
-                      >
-                        <WpPostBlock
-                          post={post}
-                          media={
-                            wpPosts.medias &&
-                            wpPosts.medias.find(
-                              (media) => media.id === post.featured_media
-                            )
-                          }
-                        />
-                      </div>
-                    )
-                  })}
-                </div>
-              ) : (
-                ''
-              )}
-
-              {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
-                <div
-                  id={ID_LIST.WP_POSTS_RECENT}
-                  className="order-6 pt-10 px-6 md:px-0"
-                  onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECENT)}
-                >
-                  <ShowCircleTitle>最新の投稿</ShowCircleTitle>
-
-                  {wpPosts.postsNotTags.map((post, key) => {
-                    return (
-                      <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
-                        <WpPostBlock
-                          post={post}
-                          media={
-                            wpPosts.medias &&
-                            wpPosts.medias.find(
-                              (media) => media.id === post.featured_media
-                            )
-                          }
-                        />
-                      </div>
-                    )
-                  })}
-                </div>
-              ) : (
-                ''
-              )}
-            </div>
-
-            {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
-              <div
-                id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
-                className="pt-10 px-6 md:px-0"
-                onMouseOver={() => onChangeId(ID_LIST.CIRCLE_UU_YELL_ARTICLES)}
-              >
-                <ShowCircleTitle>
-                  uu-yellでサークルを詳しく知ろう！
-                </ShowCircleTitle>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 pb-8">
-                  {uuYellForCircles.posts.map((post, key) => {
-                    return (
-                      <div key={`uuYellForCircles-${key}`} className="mb-4">
-                        <WpPostBlock
-                          post={post}
-                          media={
-                            uuYellForCircles.medias &&
-                            uuYellForCircles.medias.find(
-                              (media) => media.id === post.featured_media
-                            )
-                          }
-                        />
-                      </div>
-                    )
-                  })}
+                    <Image
+                      src={circle.handbillImageUrl}
+                      alt={`${circle.name}新歓ビラ`}
+                      width={width}
+                      height={height}
+                      className="rounded"
+                      objectFit="cover"
+                    />
+                  </a>
                 </div>
               </div>
             ) : (
@@ -278,30 +129,166 @@ export const ShowCircleTemplate: FC<Props> = ({
             )}
 
             <div
-              id={ID_LIST.CIRCLE_TWITTER}
-              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TWITTER)}
+              id={ID_LIST.NEWJOY_LIST}
+              className="order-4 md:order-4 pt-10"
+              onMouseOver={() => onChangeId(ID_LIST.NEWJOY_LIST)}
             >
-              {circle && circle.twitterUrl ? (
-                <div className="pb-16 px-6 md:pl-0 md:pr-2">
-                  <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
-
-                  <div className="md:w-1/2">
-                    <TwitterEmbed
-                      name={circle.name}
-                      twitterLink={circle.twitterUrl}
+              <>
+                {circleNewJoys && circleNewJoys.length > 0 ? (
+                  <div>
+                    <NewJoyList
+                      slug={circle.slug}
+                      circleNewJoys={circleNewJoys}
                     />
                   </div>
-                </div>
-              ) : (
-                ''
-              )}
-            </div>
-          </BaseContainer>
-        </div>
+                ) : (
+                  <div>
+                    <ShowCircleTitle>新歓イベント日程</ShowCircleTitle>
 
-        {/*  フッター */}
-        <BaseFooter uuYellArticles={uuYellArticles} />
-      </BaseLayout>
-    </div>
+                    <p className="text-center">
+                      現在開催予定の新歓はありません
+                    </p>
+                  </div>
+                )}
+              </>
+
+              <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
+                <GreenButton
+                  href="/circle/[slug]/newjoy"
+                  as={`/circle/${circle.slug}/newjoy`}
+                >
+                  もっと詳しく
+                </GreenButton>
+              </div>
+            </div>
+
+            <div
+              id={ID_LIST.INFORMATION_FILED}
+              className="order-3 md:order-3 pt-10"
+              onMouseOver={() => onChangeId(ID_LIST.INFORMATION_FILED)}
+            >
+              <InformationField circle={circle} circleTags={circleTags} />
+            </div>
+
+            {wpPosts &&
+            wpPosts.postsExistTags &&
+            wpPosts.postsExistTags.length > 0 ? (
+              <div
+                id={ID_LIST.WP_POSTS_RECOMMEND}
+                className="order-5 pt-10 px-6 md:px-0"
+                onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECOMMEND)}
+              >
+                <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
+
+                {wpPosts.postsExistTags.map((post, key) => {
+                  return (
+                    <div key={`wpPosts.postsExistTags-${key}`} className="mb-4">
+                      <WpPostBlock
+                        post={post}
+                        media={
+                          wpPosts.medias &&
+                          wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )
+                        }
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              ''
+            )}
+
+            {wpPosts &&
+            wpPosts.postsNotTags &&
+            wpPosts.postsNotTags.length > 0 ? (
+              <div
+                id={ID_LIST.WP_POSTS_RECENT}
+                className="order-6 pt-10 px-6 md:px-0"
+                onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECENT)}
+              >
+                <ShowCircleTitle>最新の投稿</ShowCircleTitle>
+
+                {wpPosts.postsNotTags.map((post, key) => {
+                  return (
+                    <div key={`wpPosts.postsNotTags-${key}`} className="mb-4">
+                      <WpPostBlock
+                        post={post}
+                        media={
+                          wpPosts.medias &&
+                          wpPosts.medias.find(
+                            (media) => media.id === post.featured_media
+                          )
+                        }
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+
+          {uuYellForCircles &&
+          uuYellForCircles.posts &&
+          uuYellForCircles.posts.length > 0 ? (
+            <div
+              id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
+              className="pt-10 px-6 md:px-0"
+              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_UU_YELL_ARTICLES)}
+            >
+              <ShowCircleTitle>
+                uu-yellでサークルを詳しく知ろう！
+              </ShowCircleTitle>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 pb-8">
+                {uuYellForCircles.posts.map((post, key) => {
+                  return (
+                    <div key={`uuYellForCircles-${key}`} className="mb-4">
+                      <WpPostBlock
+                        post={post}
+                        media={
+                          uuYellForCircles.medias &&
+                          uuYellForCircles.medias.find(
+                            (media) => media.id === post.featured_media
+                          )
+                        }
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <div
+            id={ID_LIST.CIRCLE_TWITTER}
+            onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TWITTER)}
+          >
+            {circle && circle.twitterUrl ? (
+              <div className="pb-16 px-6 md:pl-0 md:pr-2">
+                <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
+
+                <div className="md:w-1/2">
+                  <TwitterEmbed
+                    name={circle.name}
+                    twitterLink={circle.twitterUrl}
+                  />
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+        </BaseContainer>
+      </div>
+
+      {/*  フッター */}
+      <BaseFooter uuYellArticles={uuYellArticles} />
+    </BaseLayout>
   )
 }

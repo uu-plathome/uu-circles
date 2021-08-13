@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
 import { WP_REST_API_Posts } from 'wp-types'
+import { useCategory } from './Hooks/useCategory'
 import { MainHeading } from './Parts/MainHeading'
 import { RecommendCircleList } from './Parts/RecommendCircleList'
 import { SearchDescription } from './Parts/SearchDescription'
@@ -10,30 +10,9 @@ import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
 import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
-import { namespaceType, __ } from '@/src/lang/ja'
-import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
-
-const useCategory = () => {
-  const router = useRouter()
-  const { category: _category } = router.query
-  const category = String(_category) as CategorySlugProperty
-
-  return {
-    category,
-    categoryTranslated: __(category, CategorySlugProperty._type),
-    categoryDescriptionTitle: __(
-      category,
-      namespaceType.TitleByCategorySlugProperty
-    ),
-    categoryDescriptionText: __(
-      category,
-      namespaceType.TextByCategorySlugProperty
-    ),
-  }
-}
 
 const ID_LIST = {
   /** タイトル */
