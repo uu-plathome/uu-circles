@@ -1,5 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { WP_REST_API_Posts } from 'wp-types'
+import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
+import { useTag } from '@/src/components/pages/Circle/Search/Hooks/useTag'
 import { SearchCircleByTagTemplate } from '@/src/components/pages/Circle/Search/SearchCircleByTagTemplate'
 import { getCircleByTag } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
@@ -21,18 +23,50 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
+  const { tag, tagTranslated, tagDescriptionText, tagDescriptionTitle } =
+    useTag()
+
   if (!circles) {
     return <div></div>
   }
 
   return (
-    <SearchCircleByTagTemplate
-      circles={circles}
-      recommendCircles={recommendCircles}
-      uuYellArticles={uuYellArticles}
-      announcements={announcements}
-      tagPageViewRanking={tagPageViewRanking}
-    />
+    <>
+      <BaseHead
+        title={`${tagTranslated} - タグ検索`}
+        description={`${tagDescriptionTitle}。${tagDescriptionText}`}
+        breadcrumbJsonLdItemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: baseUuCirclesUrl,
+          },
+          {
+            position: 2,
+            name: 'サークル一覧',
+            item: `${baseUuCirclesUrl}/circle`,
+          },
+          {
+            position: 3,
+            name: `${tagTranslated} - タグ検索`,
+            item: `${baseUuCirclesUrl}/circle/tag/${tag}`,
+          },
+        ]}
+        carouselJsonLdData={[
+          ...circles.map((circle) => ({
+            url: `${baseUuCirclesUrl}/circle/${circle.slug}`,
+          })),
+        ]}
+      />
+
+      <SearchCircleByTagTemplate
+        circles={circles}
+        recommendCircles={recommendCircles}
+        uuYellArticles={uuYellArticles}
+        announcements={announcements}
+        tagPageViewRanking={tagPageViewRanking}
+      />
+    </>
   )
 }
 
