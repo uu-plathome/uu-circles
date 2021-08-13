@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
+import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { IndexCircleTemplate } from '@/src/components/pages/Circle/Index/IndexCircleTemplate'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
@@ -36,14 +37,37 @@ const Page: NextPage<Props> = ({
   })
 
   return (
-    <IndexCircleTemplate
-      circles={circles}
-      uuYellArticles={uuYellArticles}
-      announcements={announcements}
-      tagPageViewRanking={tagPageViewRanking}
-      pagePositions={pageData}
-      onChangeId={onChangeId}
-    />
+    <>
+      <BaseHead
+        title="サークル一覧"
+        breadcrumbJsonLdItemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: baseUuCirclesUrl,
+          },
+          {
+            position: 2,
+            name: 'サークル一覧',
+            item: `${baseUuCirclesUrl}/circle`,
+          },
+        ]}
+        carouselJsonLdData={[
+          ...circles.map(circle => ({
+            url: `${baseUuCirclesUrl}/circle/${circle.slug}`
+          }))
+        ]}
+      />
+
+      <IndexCircleTemplate
+        circles={circles}
+        uuYellArticles={uuYellArticles}
+        announcements={announcements}
+        tagPageViewRanking={tagPageViewRanking}
+        pagePositions={pageData}
+        onChangeId={onChangeId}
+      />
+    </>
   )
 }
 

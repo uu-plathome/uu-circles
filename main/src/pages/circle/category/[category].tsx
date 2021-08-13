@@ -1,5 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { WP_REST_API_Posts } from 'wp-types'
+import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
+import { useCategory } from '@/src/components/pages/Circle/Search/Hooks/useCategory'
 import { SearchCircleByCategoryTemplate } from '@/src/components/pages/Circle/Search/SearchCircleByCategoryTemplate'
 import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { getCircleByCategory } from '@/src/lib/infra/api/circle'
@@ -22,18 +24,49 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
+  const { category, categoryTranslated, categoryDescriptionText, categoryDescriptionTitle } = useCategory()
+
   if (!circles) {
     return <div></div>
   }
 
   return (
-    <SearchCircleByCategoryTemplate
-      circles={circles}
-      recommendCircles={recommendCircles}
-      uuYellArticles={uuYellArticles}
-      announcements={announcements}
-      tagPageViewRanking={tagPageViewRanking}
-    />
+    <>
+      <BaseHead
+        title={`${categoryTranslated} - カテゴリー検索`}
+        description={`${categoryDescriptionTitle}。${categoryDescriptionText}`}
+        breadcrumbJsonLdItemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: baseUuCirclesUrl,
+          },
+          {
+            position: 2,
+            name: 'サークル一覧',
+            item: `${baseUuCirclesUrl}/circle`,
+          },
+          {
+            position: 3,
+            name: `${categoryTranslated} - カテゴリー検索`,
+            item: `${baseUuCirclesUrl}/circle/category/${category}`,
+          },
+        ]}
+        carouselJsonLdData={[
+          ...circles.map(circle => ({
+            url: `${baseUuCirclesUrl}/circle/${circle.slug}`
+          }))
+        ]}
+      />
+
+      <SearchCircleByCategoryTemplate
+        circles={circles}
+        recommendCircles={recommendCircles}
+        uuYellArticles={uuYellArticles}
+        announcements={announcements}
+        tagPageViewRanking={tagPageViewRanking}
+      />
+    </>
   )
 }
 

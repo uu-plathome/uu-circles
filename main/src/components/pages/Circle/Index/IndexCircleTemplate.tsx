@@ -3,7 +3,6 @@ import { WP_REST_API_Posts } from 'wp-types'
 import { CircleLengthView } from './Parts/CircleLengthView'
 import { SearchCircle } from './Parts/SearchCircle'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
-import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
@@ -41,66 +40,62 @@ export const IndexCircleTemplate: FC<Props> = ({
   onChangeId,
 }) => {
   return (
-    <div>
-      <BaseHead title="サークル一覧" />
+    <BaseLayout
+      announcement={
+        announcements && announcements.length > 0
+          ? announcements[0]
+          : undefined
+      }
+    >
+      <div className="bg-gray-100 px-2">
+        <TwoColumnContainer
+          sidebar={
+            <CircleSidebar
+              tagPageViewRanking={tagPageViewRanking}
+              excludeTags={[
+                TagSlugProperty.sport,
+                TagSlugProperty.music,
+                TagSlugProperty.culture,
+                TagSlugProperty.community,
+              ]}
+            />
+          }
+        >
+          <div className="px-7">
+            <h1 className="text-2xl py-8">サークル一覧</h1>
 
-      <BaseLayout
-        announcement={
-          announcements && announcements.length > 0
-            ? announcements[0]
-            : undefined
-        }
-      >
-        <div className="bg-gray-100 px-2">
-          <TwoColumnContainer
-            sidebar={
-              <CircleSidebar
-                tagPageViewRanking={tagPageViewRanking}
-                excludeTags={[
-                  TagSlugProperty.sport,
-                  TagSlugProperty.music,
-                  TagSlugProperty.culture,
-                  TagSlugProperty.community,
-                ]}
-              />
-            }
-          >
-            <div className="px-7">
-              <h1 className="text-2xl py-8">サークル一覧</h1>
-
-              <div className="md:hidden mb-8">
-                {/* サークル検索 */}
-                <SearchCircle />
-              </div>
-
-              {/* 現在の掲載団体数 */}
-              <CircleLengthView
-                id={ID_LIST.CIRCLE_LENGTH}
-                circleLength={circles.length}
-                onChangeId={onChangeId}
-              />
-
-              <div
-                id={ID_LIST.RECOMMEND_TAG_LIST}
-                onMouseMove={() => onChangeId(ID_LIST.RECOMMEND_TAG_LIST)}
-              >
-                {/*  おすすめのタグ */}
-                <RecommendTagList />
-              </div>
-
-              {/*  サークル一覧 */}
-              <BaseCircleList
-                id={ID_LIST.CIRCLE_LIST}
-                circles={circles}
-                onChangeId={onChangeId}
-              />
+            <div className="md:hidden mb-8">
+              {/* サークル検索 */}
+              <SearchCircle />
             </div>
-          </TwoColumnContainer>
-        </div>
 
-        {/*  フッター */}
-        <BaseFooter uuYellArticles={uuYellArticles} />
-      </BaseLayout>
-    </div>
+            {/* 現在の掲載団体数 */}
+            <CircleLengthView
+              id={ID_LIST.CIRCLE_LENGTH}
+              circleLength={circles.length}
+              onChangeId={onChangeId}
+            />
+
+            <div
+              id={ID_LIST.RECOMMEND_TAG_LIST}
+              onMouseMove={() => onChangeId(ID_LIST.RECOMMEND_TAG_LIST)}
+            >
+              {/*  おすすめのタグ */}
+              <RecommendTagList />
+            </div>
+
+            {/*  サークル一覧 */}
+            <BaseCircleList
+              id={ID_LIST.CIRCLE_LIST}
+              circles={circles}
+              onChangeId={onChangeId}
+            />
+          </div>
+        </TwoColumnContainer>
+      </div>
+
+      {/*  フッター */}
+      <BaseFooter uuYellArticles={uuYellArticles} />
+    </BaseLayout>
   )
 }
