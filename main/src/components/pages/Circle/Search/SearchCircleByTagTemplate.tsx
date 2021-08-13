@@ -43,9 +43,7 @@ export const SearchCircleByTagTemplate: NextPage<Props> = ({
   return (
     <BaseLayout
       announcement={
-        announcements && announcements.length > 0
-          ? announcements[0]
-          : undefined
+        announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
       <div className="bg-gray-100 px-2">
@@ -53,9 +51,7 @@ export const SearchCircleByTagTemplate: NextPage<Props> = ({
           sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
         >
           <div className="px-5">
-            <MainHeading id={ID_LIST.MAIN_HEADING}>
-              {tagTranslated}
-            </MainHeading>
+            <MainHeading id={ID_LIST.MAIN_HEADING}>{tagTranslated}</MainHeading>
 
             {/*  カテゴリーやタグの説明 */}
             <SearchDescription

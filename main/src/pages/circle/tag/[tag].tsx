@@ -23,7 +23,8 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-  const { tag, tagTranslated, tagDescriptionText, tagDescriptionTitle } = useTag()
+  const { tag, tagTranslated, tagDescriptionText, tagDescriptionTitle } =
+    useTag()
 
   if (!circles) {
     return <div></div>
@@ -52,9 +53,9 @@ const Page: NextPage<Props> = ({
           },
         ]}
         carouselJsonLdData={[
-          ...circles.map(circle => ({
-            url: `${baseUuCirclesUrl}/circle/${circle.slug}`
-          }))
+          ...circles.map((circle) => ({
+            url: `${baseUuCirclesUrl}/circle/${circle.slug}`,
+          })),
         ]}
       />
 

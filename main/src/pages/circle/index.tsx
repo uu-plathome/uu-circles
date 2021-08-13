@@ -53,9 +53,9 @@ const Page: NextPage<Props> = ({
           },
         ]}
         carouselJsonLdData={[
-          ...circles.map(circle => ({
-            url: `${baseUuCirclesUrl}/circle/${circle.slug}`
-          }))
+          ...circles.map((circle) => ({
+            url: `${baseUuCirclesUrl}/circle/${circle.slug}`,
+          })),
         ]}
       />
 

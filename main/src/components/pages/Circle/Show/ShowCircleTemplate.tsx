@@ -74,9 +74,7 @@ export const ShowCircleTemplate: FC<Props> = ({
   return (
     <BaseLayout
       announcement={
-        announcements && announcements.length > 0
-          ? announcements[0]
-          : undefined
+        announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
       <div>
@@ -173,8 +171,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             </div>
 
             {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+            wpPosts.postsExistTags &&
+            wpPosts.postsExistTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECOMMEND}
                 className="order-5 pt-10 px-6 md:px-0"
@@ -184,10 +182,7 @@ export const ShowCircleTemplate: FC<Props> = ({
 
                 {wpPosts.postsExistTags.map((post, key) => {
                   return (
-                    <div
-                      key={`wpPosts.postsExistTags-${key}`}
-                      className="mb-4"
-                    >
+                    <div key={`wpPosts.postsExistTags-${key}`} className="mb-4">
                       <WpPostBlock
                         post={post}
                         media={
@@ -206,8 +201,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             )}
 
             {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+            wpPosts.postsNotTags &&
+            wpPosts.postsNotTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECENT}
                 className="order-6 pt-10 px-6 md:px-0"
@@ -237,8 +232,8 @@ export const ShowCircleTemplate: FC<Props> = ({
           </div>
 
           {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+          uuYellForCircles.posts &&
+          uuYellForCircles.posts.length > 0 ? (
             <div
               id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
               className="pt-10 px-6 md:px-0"
