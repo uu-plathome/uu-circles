@@ -71,6 +71,22 @@ final class SitemapUsecase
                 $url.'/guide/to-new-students',
                 '2021-03-07',
             ),
+            SitemapDto::of(
+                $url.'/statistics',
+                '2021-04-18',
+            ),
+            SitemapDto::of(
+                $url.'/gacha',
+                '2021-07-16',
+            ),
+            SitemapDto::of(
+                $url.'/demo',
+                '2021-07-16',
+            ),
+            SitemapDto::of(
+                $url.'/circle/newjoy/demo',
+                '2021-07-16',
+            ),
         ];
     }
 
