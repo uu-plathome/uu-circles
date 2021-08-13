@@ -79,7 +79,7 @@ const Index: NextPage<Props> = ({
           },
           {
             url: `${baseUuCirclesUrl}/circle/category/${CategorySlugProperty.official_organization}`,
-          }
+          },
         ]}
       />
 
