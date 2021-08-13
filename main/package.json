@@ -60,6 +60,7 @@
     "eslint-plugin-import": "^2.24.0",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "next-seo": "^4.26.0",
     "postcss": "8.3.6",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",

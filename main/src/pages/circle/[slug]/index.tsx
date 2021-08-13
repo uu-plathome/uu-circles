@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
+import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { ShowCircleTemplate } from '@/src/components/pages/Circle/Show/ShowCircleTemplate'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
@@ -111,16 +112,48 @@ const Page: NextPage<Props> = ({
   }
 
   return (
-    <ShowCircleTemplate
-      circle={circle}
-      circleTags={circleTags}
-      circleNewJoys={circleNewJoys}
-      uuYellArticles={uuYellArticles}
-      wpPosts={wpPosts}
-      announcements={announcements}
-      uuYellForCircles={uuYellForCircles}
-      onChangeId={onChangeId}
-    />
+    <>
+      <BaseHead
+        title={`${circle.name} - サークル紹介`}
+        description={circle.description}
+        breadcrumbJsonLdItemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: baseUuCirclesUrl,
+          },
+          {
+            position: 2,
+            name: 'サークル一覧',
+            item: `${baseUuCirclesUrl}/circle`,
+          },
+          {
+            position: 2,
+            name: circle.name,
+            item: `${baseUuCirclesUrl}/circle/${circle.slug}`,
+          },
+        ]}
+        carouselJsonLdData={[
+          {
+            url: `${baseUuCirclesUrl}/circle/newjoy`,
+          },
+          ...circleNewJoys.map(circleNewJoy => ({
+            url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`
+          })),
+        ]}
+      />
+
+      <ShowCircleTemplate
+        circle={circle}
+        circleTags={circleTags}
+        circleNewJoys={circleNewJoys}
+        uuYellArticles={uuYellArticles}
+        wpPosts={wpPosts}
+        announcements={announcements}
+        uuYellForCircles={uuYellForCircles}
+        onChangeId={onChangeId}
+      />
+    </>
   )
 }
 
