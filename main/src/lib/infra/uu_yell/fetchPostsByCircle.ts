@@ -1,7 +1,7 @@
-import axios from "axios"
-import { WP_REST_API_Attachments, WP_REST_API_Posts } from "wp-types"
-import { ApiUrl } from "../../enum/app/ApiUrl"
-import { WpPostsList } from "./types/WpPostsList"
+import axios from 'axios'
+import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+import { ApiUrl } from '../../enum/app/ApiUrl'
+import { WpPostsList } from './types/WpPostsList'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 
@@ -10,7 +10,7 @@ export const fetchPostsByCircle = async ({
   circleName,
   circleShortName,
 }: {
-  circleSlug: string,
+  circleSlug: string
   circleName: string
   circleShortName?: string
 }): Promise<WpPostsList> => {
@@ -26,7 +26,7 @@ export const fetchPostsByCircle = async ({
     promiseValues.push(
       axios.get<WP_REST_API_Posts>(
         `${UU_YELL_URL}/wp-json/wp/v2/posts?context=embed&search=${circleShortName}`
-      ),
+      )
     )
   }
   const fetchedPosts = await Promise.all(promiseValues)
