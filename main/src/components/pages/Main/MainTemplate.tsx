@@ -90,9 +90,9 @@ export const MainTemplate: FC<Props> = ({
     )
 
     // サークルの処理
-    const allCircleSlugs = pagePositionsExcludeOwn.filter(
-      (p) => p.circleSlug
-    ).map((p) => p.circleSlug)
+    const allCircleSlugs = pagePositionsExcludeOwn
+      .filter((p) => p.circleSlug)
+      .map((p) => p.circleSlug)
     const uniqCircleSlugs = [...new Set(allCircleSlugs)]
 
     const retVal = {
@@ -106,7 +106,7 @@ export const MainTemplate: FC<Props> = ({
         circleSlug,
         count: pagePositionsExcludeOwn.filter(
           (p) => p.circleSlug === circleSlug
-        ).length
+        ).length,
       })),
       [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
