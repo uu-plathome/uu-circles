@@ -8,14 +8,14 @@ export const SearchDescription: FC<{
   return (
     <div id={id}>
       {title ? (
-        <p id={`${id}_title`} className="text-base pb-4 font-bold">
+        <p id={`${id}_title`} className="pb-4 text-base font-bold">
           {title}
         </p>
       ) : (
         ''
       )}
       {text ? (
-        <p id={`${id}_text`} className="text-sm pb-8">
+        <p id={`${id}_text`} className="pb-8 text-sm">
           {text}
         </p>
       ) : (

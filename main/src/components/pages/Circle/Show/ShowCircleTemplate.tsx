@@ -152,7 +152,7 @@ export const ShowCircleTemplate: FC<Props> = ({
                 )}
               </>
 
-              <div className="pt-8 pb-10 bg-gray-100 flex justify-center">
+              <div className="flex justify-center pt-8 pb-10 bg-gray-100">
                 <GreenButton
                   href="/circle/[slug]/newjoy"
                   as={`/circle/${circle.slug}/newjoy`}
@@ -175,7 +175,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             wpPosts.postsExistTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECOMMEND}
-                className="order-5 pt-10 px-6 md:px-0"
+                className="order-5 px-6 md:px-0 pt-10"
                 onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECOMMEND)}
               >
                 <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
@@ -205,7 +205,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             wpPosts.postsNotTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECENT}
-                className="order-6 pt-10 px-6 md:px-0"
+                className="order-6 px-6 md:px-0 pt-10"
                 onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECENT)}
               >
                 <ShowCircleTitle>最新の投稿</ShowCircleTitle>
@@ -236,7 +236,7 @@ export const ShowCircleTemplate: FC<Props> = ({
           uuYellForCircles.posts.length > 0 ? (
             <div
               id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
-              className="pt-10 px-6 md:px-0"
+              className="px-6 md:px-0 pt-10"
               onMouseOver={() => onChangeId(ID_LIST.CIRCLE_UU_YELL_ARTICLES)}
             >
               <ShowCircleTitle>
@@ -270,7 +270,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TWITTER)}
           >
             {circle && circle.twitterUrl ? (
-              <div className="pb-16 px-6 md:pl-0 md:pr-2">
+              <div className="px-6 md:pr-2 pb-16 md:pl-0">
                 <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
 
                 <div className="md:w-1/2">

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
 const ShowCircleTitle: FC = ({ children }) => {
-  return <h2 className="text-center md:text-left mb-8 text-lg">{children}</h2>
+  return <h2 className="mb-8 text-lg text-center md:text-left">{children}</h2>
 }
 export { ShowCircleTitle }

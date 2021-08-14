@@ -45,7 +45,7 @@ export const IndexCircleTemplate: FC<Props> = ({
         announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
-      <div className="bg-gray-100 px-2">
+      <div className="px-2 bg-gray-100">
         <TwoColumnContainer
           sidebar={
             <CircleSidebar
@@ -60,7 +60,7 @@ export const IndexCircleTemplate: FC<Props> = ({
           }
         >
           <div className="px-7">
-            <h1 className="text-2xl py-8">サークル一覧</h1>
+            <h1 className="py-8 text-2xl">サークル一覧</h1>
 
             <div className="md:hidden mb-8">
               {/* サークル検索 */}

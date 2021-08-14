@@ -29,7 +29,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
         <div className="mx-auto" style={{ maxWidth: 700 }}>
           <div
             id="site_title"
-            className="px-4 sm:px-0 xl:container flex justify-between items-center py-4"
+            className="xl:container flex justify-between items-center py-4 px-4 sm:px-0"
           >
             <div className="flex items-center">
               <div className="md:hidden pr-4">

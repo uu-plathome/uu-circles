@@ -15,8 +15,8 @@ const Header: FC<{
   id: string
 }> = ({ children, id }) => {
   return (
-    <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-      <h2 id={id} className="text-lg md:text-2xl px-4 font-bold">
+    <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+      <h2 id={id} className="px-4 text-lg md:text-2xl font-bold">
         {children}
       </h2>
     </div>
@@ -39,12 +39,12 @@ const Page: NextPage<Props> = () => {
       <BaseHead title={`UU-Circlesについて`} />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <h1 className="text-2xl pt-12 pb-8 px-4">UU-Circlesについて</h1>
+            <h1 className="px-4 pt-12 pb-8 text-2xl">UU-Circlesについて</h1>
 
-            <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
-              <p className="text-2xl pt-1">目次</p>
+            <div className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500">
+              <p className="pt-1 text-2xl">目次</p>
 
               <ul>
                 <li className="pt-2">
@@ -140,7 +140,7 @@ const Page: NextPage<Props> = () => {
               サービスから成り立っています。
             </p>
 
-            <ul className="list-disc list-inside px-4 pb-8">
+            <ul className="px-4 pb-8 list-disc list-inside">
               <li className="pb-2">
                 <span className="inline-block md:inline mb-2 md:mb-0">
                   一般ユーザー向けのページ：
@@ -205,7 +205,7 @@ const Page: NextPage<Props> = () => {
 
             <p className="px-4 pb-4">U-labが制作・運営を行う主な作品</p>
 
-            <ul className="list-disc list-inside px-4 pb-8">
+            <ul className="px-4 pb-8 list-disc list-inside">
               <li className="pb-2">
                 <a
                   className="text-blue-600 hover:underline"
@@ -261,20 +261,20 @@ const Page: NextPage<Props> = () => {
 
             <Header id={ID_LIST.third}>3. このサイトを作った動機</Header>
 
-            <p className="pb-2 px-4 leading-relaxed">
+            <p className="px-4 pb-2 leading-relaxed">
               ときは、2020年3月。去年の大学入試の合格発表前日に、コロナ禍で例年のように新入生を迎えることができない状況を打開しようと、サークルビラ一覧の構想を考えました。「思いたったが吉日」とたった1日で急いでプロトタイプを制作して公開しました。
             </p>
 
-            <p className="pb-2 px-4 leading-relaxed">
+            <p className="px-4 pb-2 leading-relaxed">
               そこから大きな反響があり、U-labメンバーの全面協力により、その1週間後に正式にWebサービスとしてリリースしました。
             </p>
 
-            <p className="pb-2 px-4 leading-relaxed">
+            <p className="px-4 pb-2 leading-relaxed">
               しかし、正式版の制作時間は1週間しかなかったため、システムやデザイン、UI・UX
               のどの観点も満足いくものが作れませんでした。
             </p>
 
-            <p className="pb-8 px-4 leading-relaxed">
+            <p className="px-4 pb-8 leading-relaxed">
               次の年はさらにより良いものにしたいと思い、今年 (2021年)
               の1月くらいから密かに準備を進めてきました。
             </p>
@@ -332,7 +332,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="px-4 pb-8">
-              <p className="font-bold pb-2">プロジェクト責任者</p>
+              <p className="pb-2 font-bold">プロジェクト責任者</p>
               <p className="pb-2">元 U-lab 代表 4年 飯泉 一馬</p>
               <p className="pb-2 text-sm">
                 担当: プロダクトマネジメント、UI・UXデザイン
@@ -340,7 +340,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="px-4 pb-8">
-              <p className="font-bold pb-2">プログラム管理責任者</p>
+              <p className="pb-2 font-bold">プログラム管理責任者</p>
               <p className="pb-2">U-lab 4年 樋口 航也</p>
               <p className="pb-2 text-sm">
                 担当: システムアーキテクティング、プログラム
@@ -348,7 +348,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="px-4 pb-12">
-              <p className="font-bold pb-2">開発サポートメンバー</p>
+              <p className="pb-2 font-bold">開発サポートメンバー</p>
 
               <p className="pb-2">U-lab 4年 野沢 万葉</p>
               <p className="pb-4 text-sm">
@@ -389,7 +389,7 @@ const Page: NextPage<Props> = () => {
                   className="flex items-center"
                 >
                   <FontAwesomeIcon icon={faGithub} size="2x" />
-                  <span className="underline ml-4">GitHubを見る</span>
+                  <span className="ml-4 underline">GitHubを見る</span>
                 </a>
               </p>
             </div>

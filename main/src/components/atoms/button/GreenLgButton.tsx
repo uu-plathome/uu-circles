@@ -21,7 +21,7 @@ const GreenLgButton: React.FC<Props> = ({
     return (
       <div>
         <Link href={href} as={as}>
-          <a className="hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none">
+          <a className="py-4 px-4 mx-4 font-bold text-gray-50 bg-green-500 hover:bg-green-700 rounded shadow hover:shadow-lg focus:outline-none">
             {children}
           </a>
         </Link>
@@ -30,7 +30,7 @@ const GreenLgButton: React.FC<Props> = ({
   } else {
     return (
       <button
-        className="hover:shadow-lg bg-green-500 hover:bg-green-700 shadow text-gray-50 font-bold py-4 px-4 rounded mx-4 focus:outline-none"
+        className="py-4 px-4 mx-4 font-bold text-gray-50 bg-green-500 hover:bg-green-700 rounded shadow hover:shadow-lg focus:outline-none"
         onClick={onClick}
         type={type ? type : 'button'}
       >

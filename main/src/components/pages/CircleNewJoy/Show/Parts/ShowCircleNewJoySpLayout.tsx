@@ -6,7 +6,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const CircleNewJoyTitle: FC = ({ children }) => {
-  return <h2 className="font-bold text-center mb-3">{children}</h2>
+  return <h2 className="mb-3 font-bold text-center">{children}</h2>
 }
 
 type ShowCircleNewJoySpLayoutProps = {

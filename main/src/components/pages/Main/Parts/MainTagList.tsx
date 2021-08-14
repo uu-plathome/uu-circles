@@ -15,7 +15,7 @@ const MainTagList: FC<Props> = ({ id, onChangeId }) => {
       className="md:flex md:justify-center md:items-center md:pt-10 pb-10"
       onMouseOver={() => onChangeId(id)}
     >
-      <h2 className="text-black text-lg font-bold md:pr-8 md:border-r md:border-gray-400 md:mr-8 mb-2">
+      <h2 className="md:pr-8 md:mr-8 mb-2 text-lg font-bold text-black md:border-r md:border-gray-400">
         おすすめのタグ
       </h2>
 

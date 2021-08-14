@@ -8,8 +8,8 @@ type Props = {
 }
 const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
   return (
-    <div className="bg-white mt-3 rounded-xl px-3 pb-6 " style={{ width: 222 }}>
-      <div className="mx-auto text-center pb-3 pt-6">
+    <div className="px-3 pb-6 mt-3 bg-white rounded-xl " style={{ width: 222 }}>
+      <div className="pt-6 pb-3 mx-auto text-center">
         <Image
           src={
             circle.mainImageUrl ? circle.mainImageUrl : '/images/no-image.png'
@@ -21,8 +21,8 @@ const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
         />
       </div>
       <h4 className="text-base text-center">{circle.prefixName}</h4>
-      <h3 className="text-xl text-center mt-3 mb-4">{circle.name}</h3>
-      <p className="text-xs text-left mx-auto whitespace-pre-wrap">
+      <h3 className="mt-3 mb-4 text-xl text-center">{circle.name}</h3>
+      <p className="mx-auto text-xs text-left whitespace-pre-wrap">
         {circle.description}
       </p>
 
@@ -41,7 +41,7 @@ const InformationCircleBesideNewJoyPCWithButton: FC<Props> = ({ circle }) => {
             href="/circle/[slug]/newjoy"
             as={`/circle/${circle.slug}/newjoy/`}
           >
-            <a className="rounded-full text-white bg-green-500 text-center  px-3 py-2 text-base">
+            <a className="py-2 px-3 text-base text-center text-white bg-green-500 rounded-full">
               新歓日程
             </a>
           </Link>

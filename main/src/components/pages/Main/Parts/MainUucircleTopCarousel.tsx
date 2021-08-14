@@ -85,8 +85,8 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                     )}
                   </div>
 
-                  <div className="absolute left-2 top-2">
-                    <div className="bg-gray-300 px-4 p-2 text-xs rounded">
+                  <div className="absolute top-2 left-2">
+                    <div className="p-2 px-4 text-xs bg-gray-300 rounded">
                       広告
                     </div>
                   </div>
