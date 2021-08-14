@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enum\CircleType;
+use App\Enum\Property\CircleTagProperty;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
 use App\Models\CircleInformation;
@@ -27,7 +28,7 @@ class CirclesTableSeeder extends Seeder
         DB::beginTransaction();
 
         try {
-            factory(Circle::class, 20)->create()->each(function (Circle $circle) {
+            factory(Circle::class, 20)->create()->each(function (Circle $circle, $idx) {
                 $circle->update([
                     'name'        => "U-lab {$circle->id}",
                 ]);
@@ -83,6 +84,22 @@ class CirclesTableSeeder extends Seeder
                     'image_url' => $this->getCircleHandbillImageUrl($circle->id),
                     'year'      => 2021,
                 ]);
+
+                if ($idx % 2 === 0) {
+                    $circle->circleTag()->create([
+                        CircleTagProperty::sport              => rand(0, 1) === 0,
+                        CircleTagProperty::community          => rand(0, 1) === 0,
+                        CircleTagProperty::culture            => rand(0, 1) === 0,
+                        CircleTagProperty::music              => rand(0, 1) === 0,
+                        CircleTagProperty::nature             => rand(0, 1) === 0,
+                        CircleTagProperty::volunteer          => rand(0, 1) === 0,
+                        CircleTagProperty::international      => rand(0, 1) === 0,
+                        CircleTagProperty::loose              => rand(0, 1) === 0,
+                        CircleTagProperty::programming        => rand(0, 1) === 0,
+                        CircleTagProperty::urgent_recruitment => rand(0, 1) === 0,
+                        CircleTagProperty::mystery            => rand(0, 1) === 0,
+                    ]);
+                }
             });
 
             factory(Circle::class, 4)->state('非公開')->create()->each(function (Circle $circle) {
