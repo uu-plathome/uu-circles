@@ -51,7 +51,7 @@ const Page: NextPage<Props> = ({
       <BaseHead title="サークルガチャ結果" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2 pb-36">
+        <div className="px-2 pb-36 bg-gray-100">
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
@@ -63,7 +63,7 @@ const Page: NextPage<Props> = ({
                 />
               </div>
 
-              <h1 className="font-bold text-2xl text-center py-8">- 結果 -</h1>
+              <h1 className="py-8 text-2xl font-bold text-center">- 結果 -</h1>
 
               {count === 1 &&
               resultCircles &&
@@ -133,14 +133,14 @@ const Page: NextPage<Props> = ({
               <div className="flex justify-center py-8">
                 <Link href="/gacha">
                   <a>
-                    <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                    <div className="flex-initial py-4 px-4 md:px-8 my-6 mx-4 font-black text-white bg-green-500 rounded-md shadow-sm hover:shadow-md cursor-pointer">
                       ガチャTOPへ
                     </div>
                   </a>
                 </Link>
                 <Link href={count === 10 ? '/gacha/draw/10' : '/gacha/draw/1'}>
                   <a>
-                    <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                    <div className="flex-initial py-4 px-4 md:px-8 my-6 mx-4 font-black text-white bg-green-500 rounded-md shadow-sm hover:shadow-md cursor-pointer">
                       もう一回引く
                     </div>
                   </a>
@@ -148,11 +148,11 @@ const Page: NextPage<Props> = ({
               </div>
 
               <div className="pb-12 md:pb-0">
-                <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 text-center">
+                <h2 className="md:py-4 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal text-center">
                   SNSでガチャ結果をShare
                 </h2>
 
-                <div className="my-2 pb-2 flex justify-center">
+                <div className="flex justify-center pb-2 my-2">
                   <TwitterShareButton
                     url={pageUrl}
                     title={
@@ -191,7 +191,7 @@ const Page: NextPage<Props> = ({
                         color={colors.yellow[500]}
                         size="lg"
                       />
-                      <h2 className="text-yellow-500 font-bold text-2xl">
+                      <h2 className="text-2xl font-bold text-yellow-500">
                         Pick Up
                       </h2>
                       <FontAwesomeIcon
@@ -213,7 +213,7 @@ const Page: NextPage<Props> = ({
                               as={`/circle/${resultCircles[0].slug}`}
                               passHref
                             >
-                              <div className="rounded bg-white flex items-center px-6 py-4">
+                              <div className="flex items-center py-4 px-6 bg-white rounded">
                                 <div
                                   style={{ minWidth: 60 }}
                                   className="rounded border border-gray-300"
@@ -227,7 +227,7 @@ const Page: NextPage<Props> = ({
                                 </div>
 
                                 <div className="pl-2">
-                                  <h3 className="font-bold text-lg mb-2">
+                                  <h3 className="mb-2 text-lg font-bold">
                                     {circle.name}
                                   </h3>
                                   <p className="text-sm max-line-2">
@@ -246,7 +246,7 @@ const Page: NextPage<Props> = ({
                 ''
               )}
 
-              <div className="py-8 flex justify-center">
+              <div className="flex justify-center py-8">
                 <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
               </div>
             </div>

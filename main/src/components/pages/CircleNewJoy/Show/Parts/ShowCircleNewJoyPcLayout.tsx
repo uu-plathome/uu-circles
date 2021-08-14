@@ -8,7 +8,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const CircleNewJoyTitle: FC = ({ children }) => {
-  return <h2 className="font-bold text-center pl-1 mb-3">{children}</h2>
+  return <h2 className="pl-1 mb-3 font-bold text-center">{children}</h2>
 }
 
 type Props = {
@@ -33,12 +33,12 @@ const ShowCircleNewJoyPcLayout: FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className="pb-16 grid grid-cols-7">
+      <div className="grid grid-cols-7 pb-16">
         <div className="col-span-5">
           <CircleNewJoyDetail circle={circle} circleNewJoy={circleNewJoy} />
         </div>
 
-        <div className="col-span-2  ml-6">
+        <div className="col-span-2 ml-6">
           <h2 className="text-xl">主催サークル</h2>
 
           <InformationCircleBesideNewJoyPCWithButton circle={circle} />

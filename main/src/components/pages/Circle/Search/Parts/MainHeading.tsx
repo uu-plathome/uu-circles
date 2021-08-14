@@ -4,7 +4,7 @@ export const MainHeading: FC<{
   id: string
 }> = ({ children, id }) => {
   return (
-    <h1 id={id} className="text-2xl py-8">
+    <h1 id={id} className="py-8 text-2xl">
       {children}
     </h1>
   )

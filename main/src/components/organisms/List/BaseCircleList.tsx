@@ -11,7 +11,7 @@ const CircleListWhenEmpty: FC<{
 }> = ({ id }) => {
   return (
     <div id={`${id}_empty`} className="pt-4 pb-12">
-      <p className="text-black mb-4">サークルが見つかりませんでした。</p>
+      <p className="mb-4 text-black">サークルが見つかりませんでした。</p>
       <p className="text-blue-600">
         <Link href="/circle">
           <a className="underline">サークル一覧へ戻る</a>
@@ -36,7 +36,7 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
       {circles.length > 0 ? (
         <div
           id={id}
-          className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-7"
+          className="grid grid-cols-2 md:grid-cols-3 gap-7 md:mx-auto max-w-screen-md"
         >
           {circles.map((circle, idx) => {
             return (
@@ -63,7 +63,7 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
                   </a>
                 </Link>
 
-                <h3 className="text-center text-sm text-gray-600 pt-1">
+                <h3 className="pt-1 text-sm text-center text-gray-600">
                   {circle.name}
                 </h3>
               </div>

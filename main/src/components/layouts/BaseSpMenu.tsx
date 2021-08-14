@@ -12,7 +12,7 @@ const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
     <li className="border border-b border-gray-200">
       <Link href={href}>
         <a className="text-sm text-black">
-          <div className="pl-8 py-4">{children}</div>
+          <div className="py-4 pl-8">{children}</div>
         </a>
       </Link>
     </li>
@@ -29,7 +29,7 @@ const MenuExternalItem: FC<MenuItemProps> = ({ href, children }) => {
   return (
     <li className="border border-b border-gray-200">
       <a href={href} className="text-sm text-black">
-        <div className="pl-8 py-4">{children}</div>
+        <div className="py-4 pl-8">{children}</div>
       </a>
     </li>
   )
@@ -48,7 +48,7 @@ const SearchForm = () => {
   }
 
   return (
-    <div className="px-8 py-4">
+    <div className="py-4 px-8">
       <form onSubmit={onSubmit} role="search" aria-label="サークルを検索">
         <SearchTextField id="search" name="search" expand {...name} />
       </form>

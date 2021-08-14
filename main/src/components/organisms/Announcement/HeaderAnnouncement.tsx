@@ -9,9 +9,9 @@ type Props = {
 }
 const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
   return (
-    <div className="border-blue-300 border-4 py-2 px-4 bg-white">
-      <div className="max-w-3xl mx-auto">
-        <p className="text-center text-xs mb-1">
+    <div className="py-2 px-4 bg-white border-4 border-blue-300">
+      <div className="mx-auto max-w-3xl">
+        <p className="mb-1 text-xs text-center">
           -{__(announcement.announcementType, AnnouncementType._type)}-
         </p>
 
@@ -32,7 +32,7 @@ const HeaderAnnouncement: FC<Props> = ({ announcement }) => {
           <p className="text-right md:text-center">
             <a
               href={announcement.link}
-              className="text-blue-600 underline text-xs"
+              className="text-xs text-blue-600 underline"
             >
               詳しく見る
             </a>

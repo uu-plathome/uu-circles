@@ -7,7 +7,7 @@ import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 const RecommendTagList: FC = () => {
   return (
     <div className="pb-10">
-      <h2 className="text-black text-lg font-bold mb-2">おすすめのタグ</h2>
+      <h2 className="mb-2 text-lg font-bold text-black">おすすめのタグ</h2>
 
       <div className="flex justify-between sm:justify-start">
         <div className="px-0.5 sm:px-1">

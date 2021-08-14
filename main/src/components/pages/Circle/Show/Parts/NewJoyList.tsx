@@ -12,7 +12,7 @@ const NewJoyList: FC<Props> = ({ slug, circleNewJoys }) => {
     <div className="bg-gray-100">
       <ShowCircleTitle>新歓イベント日程</ShowCircleTitle>
 
-      <div className="md:flex justify-center flex-wrap">
+      <div className="md:flex flex-wrap justify-center">
         {circleNewJoys.map((circleNewJoy) => {
           const className = 'md:mr-auto'
 

@@ -54,7 +54,7 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
 
   return (
     <div>
-      <div className="flex justify-between bg-white px-4 md:px-10 py-6 border-b border-gray-50">
+      <div className="flex justify-between py-6 px-4 md:px-10 bg-white border-b border-gray-50">
         <div>
           <p className="text-sm">{circle.prefixName}</p>
           <h1 className="text-lg md:text-2xl font-bold">{circle.name}</h1>
@@ -107,7 +107,7 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
         </div>
 
         {/* SNS Share */}
-        <div className="flex items-center justify-end py-2">
+        <div className="flex justify-end items-center py-2">
           <span className="mr-2 text-sm">Share</span>
           <TwitterShareButton
             url={pageUrl}

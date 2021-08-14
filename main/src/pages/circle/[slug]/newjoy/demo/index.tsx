@@ -78,12 +78,12 @@ const Page: NextPage<Props> = ({
             : undefined
         }
       >
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <BaseContainer>
             {isMd ? (
               //PC
               <div style={{ width: 750 }}>
-                <h1 className="text-2xl text-center py-20">
+                <h1 className="py-20 text-2xl text-center">
                   {circle.name}の新歓 デモ画面
                 </h1>
 
@@ -91,7 +91,7 @@ const Page: NextPage<Props> = ({
                   <div className="col-span-5">
                     {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                       <div className="pb-16">
-                        <h2 className="text-left text-lg pl-6 mb-3">開催中</h2>
+                        <h2 className="pl-6 mb-3 text-lg text-left">開催中</h2>
 
                         <IndexCircleNewJoyListPC
                           slug={circle.slug}
@@ -103,7 +103,7 @@ const Page: NextPage<Props> = ({
                     )}
 
                     <div className="pb-16">
-                      <h2 className="text-left text-lg pl-6 mb-3">
+                      <h2 className="pl-6 mb-3 text-lg text-left">
                         今日の新歓
                       </h2>
                       {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -117,7 +117,7 @@ const Page: NextPage<Props> = ({
                     </div>
 
                     <div className="pb-16">
-                      <h2 className="text-left text-lg pl-6 mb-3">開催予定</h2>
+                      <h2 className="pl-6 mb-3 text-lg text-left">開催予定</h2>
                       {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
                         <IndexCircleNewJoyListPC
                           slug={circle.slug}
@@ -131,7 +131,7 @@ const Page: NextPage<Props> = ({
                     </div>
 
                     <div className="pb-16">
-                      <h2 className="text-left text-lg pl-6 mb-3">開催済み</h2>
+                      <h2 className="pl-6 mb-3 text-lg text-left">開催済み</h2>
                       {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
                         <IndexCircleNewJoyListPC
                           slug={circle.slug}
@@ -145,7 +145,7 @@ const Page: NextPage<Props> = ({
                     </div>
                   </div>
 
-                  <div className="col-span-2  mx-1">
+                  <div className="col-span-2 mx-1">
                     <h2 className="text-xl">主催サークル</h2>
 
                     <InformationCircleBesideNewJoyPC circle={circle} />
@@ -170,7 +170,7 @@ const Page: NextPage<Props> = ({
                       SNSで{circle.shortName || circle.name}の新歓をShare
                     </h2>
 
-                    <div className="my-2 pb-2">
+                    <div className="pb-2 my-2">
                       <TwitterShareButton
                         url={pageUrl}
                         title={`UU-Circlesで${
@@ -199,10 +199,10 @@ const Page: NextPage<Props> = ({
               </div>
             ) : (
               <div>
-                <h1 className="text-2xl py-8 pl-4">{`${circle.name}の新歓`}</h1>
+                <h1 className="py-8 pl-4 text-2xl">{`${circle.name}の新歓`}</h1>
                 {nowCircleNewJoys && nowCircleNewJoys.length > 0 ? (
                   <div className="pb-16">
-                    <h2 className="font-bold text-center pl-4 mb-3">開催中</h2>
+                    <h2 className="pl-4 mb-3 font-bold text-center">開催中</h2>
 
                     <IndexCircleNewJoyListSP
                       slug={circle.slug}
@@ -214,7 +214,7 @@ const Page: NextPage<Props> = ({
                 )}
 
                 <div className="pb-16">
-                  <h2 className="font-bold text-center pl-4 mb-3">
+                  <h2 className="pl-4 mb-3 font-bold text-center">
                     今日の新歓
                   </h2>
                   {todayCircleNewJoys && todayCircleNewJoys.length > 0 ? (
@@ -228,7 +228,7 @@ const Page: NextPage<Props> = ({
                 </div>
 
                 <div className="pb-16">
-                  <h2 className="font-bold text-center pl-4 mb-3">開催予定</h2>
+                  <h2 className="pl-4 mb-3 font-bold text-center">開催予定</h2>
                   {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
                     <IndexCircleNewJoyListSP
                       slug={circle.slug}
@@ -240,7 +240,7 @@ const Page: NextPage<Props> = ({
                 </div>
 
                 <div className="pb-16">
-                  <h2 className="font-bold text-center pl-4 mb-3">開催済み</h2>
+                  <h2 className="pl-4 mb-3 font-bold text-center">開催済み</h2>
                   {pastCircleNewJoys && pastCircleNewJoys.length > 0 ? (
                     <IndexCircleNewJoyListSP
                       slug={circle.slug}
@@ -254,11 +254,11 @@ const Page: NextPage<Props> = ({
                 <InformationCircleBesideNewJoySP circle={circle} />
 
                 <div className="pb-16">
-                  <h2 className="text-center font-bold">
+                  <h2 className="font-bold text-center">
                     SNSで{circle.shortName || circle.name}の新歓をShare
                   </h2>
 
-                  <div className="my-2 pb-2 flex justify-center">
+                  <div className="flex justify-center pb-2 my-2">
                     <TwitterShareButton
                       url={pageUrl}
                       title={`UU-Circlesで${

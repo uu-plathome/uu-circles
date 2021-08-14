@@ -11,7 +11,7 @@ type Props = {
 const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
   return (
     <div className="pb-16">
-      <h2 className="font-bold text-center mb-3">主催サークル</h2>
+      <h2 className="mb-3 font-bold text-center">主催サークル</h2>
       <Link
         href="/circle/[slug]"
         as={`/circle/${circle.slug}`}
@@ -19,7 +19,7 @@ const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
       >
         <a>
           <div
-            className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-2 py-2 mx-auto mb-2"
+            className="flex justify-between items-center py-2 px-2 mx-auto mb-2 bg-white rounded-lg border border-gray-300"
             style={{ width: 300 }}
           >
             <div className="mr-2" style={{ width: 64 }}>
@@ -36,8 +36,8 @@ const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
               />
             </div>
 
-            <div className="w-full pr-2" style={{ width: 200 }}>
-              <h3 className="text-black font-bold mb-1 text-sm">
+            <div className="pr-2 w-full" style={{ width: 200 }}>
+              <h3 className="mb-1 text-sm font-bold text-black">
                 {circle.name}
               </h3>
               <div>

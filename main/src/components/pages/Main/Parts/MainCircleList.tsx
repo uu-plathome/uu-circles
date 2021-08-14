@@ -16,7 +16,7 @@ const MainCircleList: FC<Props> = ({ circles, id, onChangeId }) => {
   return (
     <div
       id={id}
-      className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-7"
+      className="grid grid-cols-2 md:grid-cols-4 gap-7 md:mx-auto max-w-screen-md"
       onMouseOver={() => onChangeId(id)}
     >
       {circles.map((circle, idx) => {
@@ -44,7 +44,7 @@ const MainCircleList: FC<Props> = ({ circles, id, onChangeId }) => {
               </a>
             </Link>
 
-            <h3 className="text-center text-sm text-gray-600 pt-1">
+            <h3 className="pt-1 text-sm text-center text-gray-600">
               {circle.name}
             </h3>
           </div>

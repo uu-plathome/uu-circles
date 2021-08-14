@@ -41,11 +41,11 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
         announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
-      <div className="bg-gray-100 px-2">
+      <div className="px-2 bg-gray-100">
         <BaseContainer>
           <h1
             id={ID_LIST.MAIN_HEADING}
-            className="text-2xl py-8 md:py-20 md:text-center"
+            className="py-8 md:py-20 text-2xl md:text-center"
             onMouseOver={() => onChangeId(ID_LIST.MAIN_HEADING)}
           >
             今日の新歓
@@ -56,7 +56,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
             className="pb-16"
             onMouseOver={() => onChangeId(ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST)}
           >
-            <h2 className="md:hidden font-bold text-lg md:text-center pl-1 mb-3">
+            <h2 className="md:hidden pl-1 mb-3 text-lg font-bold md:text-center">
               今日開催予定の新歓イベント
             </h2>
 
@@ -77,7 +77,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
             onMouseOver={() => onChangeId(ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST)}
           >
             <section>
-              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-20 md:text-center">
+              <h2 className="md:py-20 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
                 開催日時が近い新歓イベント
               </h2>
 
