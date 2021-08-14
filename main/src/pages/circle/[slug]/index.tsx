@@ -49,8 +49,8 @@ const Page: NextPage<Props> = ({
   const { data: uuYellForCircles } = useSWR<{
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Attachment[]
-  }>(['/circle/[slug]', circle.slug],
-    () => fetchPostsByCircle({
+  }>(['/circle/[slug]', circle.slug], () =>
+    fetchPostsByCircle({
       circleSlug: circle.slug,
       circleName: circle.name,
       circleShortName: circle.shortName,
