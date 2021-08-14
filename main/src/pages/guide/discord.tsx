@@ -11,7 +11,7 @@ const Page: NextPage = () => {
       <BaseHead title="Discordで行われるオンライン新歓に参加してみよう！" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <BaseContainer>
             <div className="flex justify-center items-center pt-6">
               <a href="https://discord.com/download">
@@ -23,11 +23,11 @@ const Page: NextPage = () => {
                 />
               </a>
             </div>
-            <h1 className="text-2xl pt-6 pb-8 px-4">
+            <h1 className="px-4 pt-6 pb-8 text-2xl">
               Discordで行われるオンライン新歓に参加してみよう！
             </h1>
-            <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
-              <h1 className="text-2xl pt-1">目次</h1>
+            <div className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500">
+              <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">0.Discordとは</p>
               <p className="pt-2">1.Discordをインストールしよう</p>
               <p className="pt-2">2.Discordのアカウントを作ろう</p>
@@ -36,20 +36,20 @@ const Page: NextPage = () => {
               <p className="pt-2">5.表示名を変更する</p>
               <p className="pt-2">6.新歓に参加しよう！</p>
             </div>
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">0.Discordとは</h2>
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">0.Discordとは</h2>
             </div>
             <p className="px-4 pb-6">
               個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね
             </p>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">
                 1.アプリをインストール
               </h2>
             </div>
 
-            <p className="pb-4 px-4">
+            <p className="px-4 pb-4">
               以下のURLをタップして、Discordをインストールしよう。
             </p>
             <div className="flex justify-center items-center pb-6">
@@ -63,20 +63,20 @@ const Page: NextPage = () => {
               </a>
             </div>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">2.アカウントを作成</h2>
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">2.アカウントを作成</h2>
             </div>
 
             <div className="px-4">
               <p>Discordアプリを開いたら「登録」からアカウントを作ろう。</p>
             </div>
 
-            <div className="border-b-4 border-red-400 mx-4 mb-28 mt-20 text-center">
+            <div className="mx-4 mt-20 mb-28 text-center border-b-4 border-red-400">
               <p>↓Discordを使ったことがある人はここから！↓</p>
             </div>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">
                 3.Googleフォームに入力
               </h2>
             </div>
@@ -98,8 +98,8 @@ const Page: NextPage = () => {
               </p>
             </div>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">
                 4.招待URLから新歓会場へ！
               </h2>
             </div>
@@ -111,8 +111,8 @@ const Page: NextPage = () => {
               <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
             </div>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">5.表示名を変更する</h2>
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">5.表示名を変更する</h2>
             </div>
 
             <div className="px-4 pb-6">
@@ -125,8 +125,8 @@ const Page: NextPage = () => {
               <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
             </div>
 
-            <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-              <h2 className="text-2xl px-4 font-bold">6.新歓に参加しよう！</h2>
+            <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+              <h2 className="px-4 text-2xl font-bold">6.新歓に参加しよう！</h2>
             </div>
 
             <div className="px-4 pb-24">

@@ -14,12 +14,12 @@ type Props = {
 const InformationField: FC<Props> = ({ circle, circleTags }) => {
   return (
     <div>
-      <h2 className="text-lg text-center mb-6 md:text-left">サークル詳細</h2>
+      <h2 className="mb-6 text-lg text-center md:text-left">サークル詳細</h2>
 
       <div className="flex justify-center md:justify-start px-6 md:px-0">
-        <div className="bg-white rounded md:w-full px-6 py-8">
-          <div className="border-b border-gray-400 pb-4">
-            <p className="text-sm text-gray-400 mb-2">団体・サークル名</p>
+        <div className="py-8 px-6 md:w-full bg-white rounded">
+          <div className="pb-4 border-b border-gray-400">
+            <p className="mb-2 text-sm text-gray-400">団体・サークル名</p>
             {circle.prefixName ? (
               <p className="text-xs text-black">
                 <span className="mr-4">{circle.prefixName}</span>
@@ -31,8 +31,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           </div>
 
           {circle.nameKana ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">
                 団体・サークル名(カナ)
               </p>
               <p className="text-sm text-black whitespace-pre-wrap">
@@ -44,8 +44,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           )}
 
           {circle.description ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">サークル紹介文</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">サークル紹介文</p>
               <p className="text-sm text-black whitespace-pre-wrap">
                 {circle.description}
               </p>
@@ -55,8 +55,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           )}
 
           {circle.circleType && isCircleType(circle.circleType) ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">サークル種別</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">サークル種別</p>
               <p className="text-sm text-black">
                 {__(circle.circleType, CircleType._type)}
               </p>
@@ -67,8 +67,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
 
           {circle.admissionFeePerYear &&
           Number(circle.admissionFeePerYear) > 0 ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">年間費用</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">年間費用</p>
               <p className="text-sm text-black">
                 {Number(circle.admissionFeePerYear).toLocaleString()}円/年
               </p>
@@ -78,8 +78,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           )}
 
           {circle.numberOfMembers > 0 ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">活動人数</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">活動人数</p>
               <p className="text-sm text-black">{circle.numberOfMembers}人</p>
             </div>
           ) : (
@@ -87,16 +87,16 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           )}
 
           {circle.publicEmail ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">連絡用メールアドレス</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">連絡用メールアドレス</p>
               <p className="text-sm text-black">{circle.publicEmail}</p>
             </div>
           ) : (
             ''
           )}
 
-          <div className="border-b border-gray-400 py-4">
-            <p className="text-sm text-gray-400 mb-2">通常活動場所</p>
+          <div className="py-4 border-b border-gray-400">
+            <p className="mb-2 text-sm text-gray-400">通常活動場所</p>
             <p className="text-sm text-black">
               {__(circle.commonPlaceOfActivity, PlaceOfActivity._type) ||
                 __(PlaceOfActivity.OTHER, PlaceOfActivity._type)}
@@ -104,8 +104,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           </div>
 
           {circle.commonPlaceOfActivityDetail ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">通常活動場所詳細</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">通常活動場所詳細</p>
               <p className="text-sm text-black whitespace-pre-wrap">
                 {circle.commonPlaceOfActivityDetail}
               </p>
@@ -121,10 +121,10 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           circle.commonDateOfActivityFriday ||
           circle.commonDateOfActivitySunday ||
           circle.commonDateOfActivitySunday ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">通常活動日</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">通常活動日</p>
               <div className="flex flex-wrap">
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivityMonday
@@ -135,7 +135,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     月曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivityTuesday
@@ -146,7 +146,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     火曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivityWednesday
@@ -157,7 +157,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     水曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivityThursday
@@ -168,7 +168,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     木曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivityFriday
@@ -179,7 +179,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     金曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivitySaturday
@@ -190,7 +190,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     土曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.commonDateOfActivitySunday
@@ -204,15 +204,15 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
               </div>
             </div>
           ) : (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">通常活動日</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">通常活動日</p>
               <p className="text-sm text-black whitespace-pre-wrap">不定期</p>
             </div>
           )}
 
           {circle.commonDateOfActivityDetail ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">通常活動日時詳細</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">通常活動日時詳細</p>
               <p className="text-sm text-black whitespace-pre-wrap">
                 {circle.commonDateOfActivityDetail}
               </p>
@@ -221,16 +221,16 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             ''
           )}
 
-          <div className="border-b border-gray-400 py-4">
-            <p className="text-sm text-gray-400 mb-2">オンライン活動</p>
+          <div className="py-4 border-b border-gray-400">
+            <p className="mb-2 text-sm text-gray-400">オンライン活動</p>
             <p className="text-sm text-black">
               {circle.isOnlineActivity ? '行う' : '行わない'}
             </p>
           </div>
 
           {circle.isOnlineActivity && circle.onlineDateOfActivityDetail ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">オンライン活動場所</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">オンライン活動場所</p>
               <p className="text-sm text-black whitespace-pre-wrap">
                 {circle.onlineDateOfActivityDetail}
               </p>
@@ -247,10 +247,10 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
             circle.onlineDateOfActivityFriday ||
             circle.onlineDateOfActivitySunday ||
             circle.onlineDateOfActivitySunday) ? (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">オンライン活動日</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">オンライン活動日</p>
               <div className="flex flex-wrap">
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivityMonday
@@ -261,7 +261,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     月曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivityTuesday
@@ -272,7 +272,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     火曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivityWednesday
@@ -283,7 +283,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     水曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivityThursday
@@ -294,7 +294,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     木曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivityFriday
@@ -305,7 +305,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     金曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivitySaturday
@@ -316,7 +316,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                     土曜日
                   </p>
                 </div>
-                <div className="w-1/2 mb-2">
+                <div className="mb-2 w-1/2">
                   <p
                     className={`w-1/2 p-2 text-sm rounded text-center text-white ${
                       circle.onlineDateOfActivitySunday
@@ -330,15 +330,15 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
               </div>
             </div>
           ) : (
-            <div className="border-b border-gray-400 py-4">
-              <p className="text-sm text-gray-400 mb-2">オンライン活動日</p>
+            <div className="py-4 border-b border-gray-400">
+              <p className="mb-2 text-sm text-gray-400">オンライン活動日</p>
               <p className="text-sm text-black whitespace-pre-wrap">不定期</p>
             </div>
           )}
 
           {circle.participationUrl ? (
             <div className="py-4 border-b border-gray-400">
-              <p className="text-sm text-gray-400 mb-2">新歓・活動参加用URL</p>
+              <p className="mb-2 text-sm text-gray-400">新歓・活動参加用URL</p>
               <div>
                 <a
                   className="text-blue-600 underline"
@@ -355,7 +355,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           )}
 
           <div className="py-4">
-            <p className="text-sm text-gray-400 mb-2">各種SNS</p>
+            <p className="mb-2 text-sm text-gray-400">各種SNS</p>
             <div>
               <SnsList circle={circle} />
             </div>
@@ -363,7 +363,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
 
           {circleTags && circleTags.length > 0 ? (
             <div className="py-4 border-t border-gray-400">
-              <p className="text-sm text-gray-400 mb-2">タグ</p>
+              <p className="mb-2 text-sm text-gray-400">タグ</p>
               <div className="grid grid-cols-2 gap-1">
                 {circleTags.map((circleTag) => {
                   return (
@@ -372,7 +372,7 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
                       href={`/circle/tag/[tag]`}
                       as={`/circle/tag/${circleTag.toLocaleLowerCase()}`}
                     >
-                      <a className="before:content-['#'] text-gray-400 text-sm hover:underline">
+                      <a className="text-sm text-gray-400 hover:underline before:content-['#']">
                         {__(circleTag, CircleTagModel._type)}
                       </a>
                     </Link>

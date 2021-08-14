@@ -32,7 +32,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
   return (
     <>
       {isMd ? (
-        <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:mx-auto max-w-screen-md">
           {circles.map((circle) => {
             return (
               <div key={`isMd-${circle.slug}`}>
@@ -54,7 +54,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                     </a>
                   </Link>
 
-                  <h3 className="text-center text-sm text-gray-600 pt-1">
+                  <h3 className="pt-1 text-sm text-center text-gray-600">
                     {circle.name}
                   </h3>
                 </div>
@@ -64,11 +64,11 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
         </div>
       ) : (
         <Swiper {...params}>
-          <div className="max-w-screen-md md:mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:mx-auto max-w-screen-md">
             {circles.map((circle) => {
               return (
                 <SwiperSlide key={`not-isMd-${circle.slug}`}>
-                  <div className="pb-10 flex justify-center">
+                  <div className="flex justify-center pb-10">
                     <div>
                       <Link
                         href="/circle/[slug]"
@@ -87,7 +87,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
                         </a>
                       </Link>
 
-                      <h3 className="text-center text-sm text-gray-600 pt-1">
+                      <h3 className="pt-1 text-sm text-center text-gray-600">
                         {circle.name}
                       </h3>
                     </div>

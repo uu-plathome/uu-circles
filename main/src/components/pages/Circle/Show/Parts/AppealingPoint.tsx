@@ -18,7 +18,7 @@ const AppealingPoint: FC<Props> = ({ circle }) => {
           <ShowCircleTitle>{circle.name}について</ShowCircleTitle>
 
           <div className="flex justify-center md:justify-start px-6 md:px-0">
-            <div className="bg-white rounded-2xl md:rounded md:w-full px-4 md:pr-6 md:pl-6 py-4 w-full">
+            <div className="py-4 px-4 md:pr-6 md:pl-6 w-full md:w-full bg-white rounded-2xl md:rounded">
               <ul>
                 {circle.appealingPoint1 ? (
                   <li className="flex mb-2 text-sm md:text-base">

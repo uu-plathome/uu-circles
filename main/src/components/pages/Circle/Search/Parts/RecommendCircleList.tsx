@@ -12,7 +12,7 @@ export const RecommendCircleList: FC<{
 }> = ({ id, recommendCircles, onChangeId }) => {
   return (
     <div id={id} className="pb-8" onMouseOver={() => onChangeId(id)}>
-      <h2 className="text-lg py-8">他のサークルも見る</h2>
+      <h2 className="py-8 text-lg">他のサークルも見る</h2>
 
       <CarouselCircleList circles={recommendCircles} />
     </div>

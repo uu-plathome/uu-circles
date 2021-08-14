@@ -41,13 +41,13 @@ export const NewjoyTemplate: NextPage<Props> = ({
             : undefined
         }
       >
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <h1 className="text-2xl py-8 md:py-20 md:text-center">
+            <h1 className="py-8 md:py-20 text-2xl md:text-center">
               今日の新歓
             </h1>
 
-            <h2 className="md:hidden font-bold text-lg md:text-center pl-1 mb-3">
+            <h2 className="md:hidden pl-1 mb-3 text-lg font-bold md:text-center">
               今日開催予定の新歓イベント
             </h2>
 
@@ -63,11 +63,11 @@ export const NewjoyTemplate: NextPage<Props> = ({
             </div>
 
             <div className="pb-16 md:pb-0">
-              <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-4 md:text-center">
+              <h2 className="md:py-4 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
                 SNSで今日の新歓をShare
               </h2>
 
-              <div className="my-2 pb-2 flex justify-center">
+              <div className="flex justify-center pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
                   title={`UU-Circlesで今日の新歓を見る！`}
@@ -93,7 +93,7 @@ export const NewjoyTemplate: NextPage<Props> = ({
 
             <div className="pb-16">
               <section>
-                <h2 className="font-bold md:font-normal text-lg md:text-2xl pl-1 mb-4 md:mb-0 md:py-20 md:text-center">
+                <h2 className="md:py-20 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
                   開催日時が近い新歓イベント
                 </h2>
                 <IndexCircleNewJoyListForNoSlug

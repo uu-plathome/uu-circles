@@ -46,7 +46,7 @@ export const SearchCircleByTagTemplate: NextPage<Props> = ({
         announcements && announcements.length > 0 ? announcements[0] : undefined
       }
     >
-      <div className="bg-gray-100 px-2">
+      <div className="px-2 bg-gray-100">
         <TwoColumnContainer
           sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
         >

@@ -14,7 +14,7 @@ import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getFullJPDate } from '@/src/lib/utils/Date'
 
 const TableTitle: FC = ({ children }) => {
-  return <h4 className="text-gray-500 text-base text-gray-400">{children}</h4>
+  return <h4 className="text-base text-gray-400 text-gray-500">{children}</h4>
 }
 
 type Props = {
@@ -31,24 +31,24 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
     <div>
       <div className="hidden md:block">
         <div
-          className="bg-white rounded-lg px-6 py-2 mx-auto mb-2 flex justify-center"
+          className="flex justify-center py-2 px-6 mx-auto mb-2 bg-white rounded-lg"
           style={{ width: 500 }}
         >
           <div className="my-3 mr-6">
             <section
-              className="rounded-2xl border-gray-300 border"
+              className="rounded-2xl border border-gray-300"
               style={{
                 width: 70,
                 height: 70,
               }}
             >
-              <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
+              <div className="text-center text-white bg-gray-600 rounded-2xl rounded-b-none ">
                 <p className="text-xs leading-5">
                   {getDOW(circleNewJoy.startDate)}
                 </p>
               </div>
               <div
-                className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
+                className="items-center pb-4 text-center text-black rounded-2xl rounded-t-none "
                 style={{ borderRadius: '0 0 10 10 ' }}
               >
                 <p className="text-xs leading-4">
@@ -65,21 +65,21 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
           >
             <section className="my-3 border-b border-gray-600">
               <TableTitle>新歓イベント名</TableTitle>
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {circle.shortName || circle.name} {circleNewJoy.title}
               </p>
             </section>
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓日時</TableTitle>
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
               </p>
             </section>
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>活動場所</TableTitle>
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </p>
             </section>
@@ -87,7 +87,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             {circleNewJoy.placeOfActivityDetail ? (
               <section className="my-6 border-b border-gray-600">
                 <TableTitle>活動場所詳細</TableTitle>
-                <p className="text-black text-sm my-2 pb-2 font-bold whitespace-pre-wrap">
+                <p className="pb-2 my-2 text-sm font-bold text-black whitespace-pre-wrap">
                   {circleNewJoy.placeOfActivityDetail}
                 </p>
               </section>
@@ -98,9 +98,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             {circleNewJoy.url ? (
               <section className="my-6 border-b border-gray-600">
                 <TableTitle>URL</TableTitle>
-                <p className="text-sm my-2 pb-2">
+                <p className="pb-2 my-2 text-sm">
                   <a
-                    className="text-blue-600 font-bold hover:underline"
+                    className="font-bold text-blue-600 hover:underline"
                     href={circleNewJoy.url}
                     target="_blank"
                     rel="noreferrer"
@@ -115,7 +115,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
 
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓説明</TableTitle>
-              <p className="text-black text-sm my-2 pb-2 font-bold whitespace-pre-wrap">
+              <p className="pb-2 my-2 text-sm font-bold text-black whitespace-pre-wrap">
                 {circleNewJoy.description}
               </p>
             </section>
@@ -123,7 +123,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>SNSで共有しよう</TableTitle>
 
-              <div className="my-2 pb-2">
+              <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
                   title={`UU-Circlesで${circle.shortName || circle.name}の新歓${
@@ -154,11 +154,11 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
 
       <div className="md:hidden">
         <div className="px-6">
-          <div className=" bg-white rounded-lg px-6 py-2 mx-auto mb-2">
+          <div className="py-2 px-6 mx-auto mb-2 bg-white rounded-lg ">
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓イベント名</TableTitle>
 
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {circle.shortName || circle.name} {circleNewJoy.title}
               </p>
             </section>
@@ -166,7 +166,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓日時</TableTitle>
 
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {getFullJPDate(circleNewJoy.startDate, circleNewJoy.endDate)}
               </p>
             </section>
@@ -174,7 +174,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>活動場所</TableTitle>
 
-              <p className="text-black text-sm  my-2 pb-2 font-bold">
+              <p className="pb-2 my-2 text-sm font-bold text-black">
                 {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </p>
             </section>
@@ -182,7 +182,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             {circleNewJoy.placeOfActivityDetail ? (
               <section className="my-6 border-b border-gray-600">
                 <TableTitle>活動場所詳細</TableTitle>
-                <p className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+                <p className="pb-2 my-2 text-sm font-bold text-black whitespace-pre-wrap">
                   {circleNewJoy.placeOfActivityDetail}
                 </p>
               </section>
@@ -193,9 +193,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             {circleNewJoy.url ? (
               <section className="my-6 border-b border-gray-600">
                 <TableTitle>URL</TableTitle>
-                <p className="text-sm my-2 pb-2">
+                <p className="pb-2 my-2 text-sm">
                   <a
-                    className="text-blue-600 font-bold hover:underline"
+                    className="font-bold text-blue-600 hover:underline"
                     href={circleNewJoy.url}
                     target="_blank"
                     rel="noreferrer"
@@ -211,7 +211,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>新歓説明</TableTitle>
 
-              <p className="text-black text-sm  my-2 pb-2 font-bold whitespace-pre-wrap">
+              <p className="pb-2 my-2 text-sm font-bold text-black whitespace-pre-wrap">
                 {circleNewJoy.description}
               </p>
             </section>
@@ -219,7 +219,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             <section className="my-6 border-b border-gray-600">
               <TableTitle>SNSで共有しよう</TableTitle>
 
-              <div className="my-2 pb-2">
+              <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
                   title={`UU-Circlesで${

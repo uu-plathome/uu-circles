@@ -36,7 +36,7 @@ const SearchTextField: FC<Props> = ({
         placeholder={placeholder}
         onChange={onChange}
         maxLength={255}
-        className="border-2 border-gray-300 bg-white h-10 pl-3 pr-12 rounded-lg text-sm focus:outline-none"
+        className="pr-12 pl-3 h-10 text-sm bg-white rounded-lg border-2 border-gray-300 focus:outline-none"
         pattern={pattern}
         disabled={disabled}
         style={{
@@ -45,7 +45,7 @@ const SearchTextField: FC<Props> = ({
       />
 
       <p
-        className="absolute right-0 top-0 mt-0.5 mr-2 md:mr-1 whitespace-nowrap text-black-900 px-1 md:px-2 flex items-center text-xs md:text-base"
+        className="flex absolute top-0 right-0 items-center px-1 md:px-2 mt-0.5 mr-2 md:mr-1 text-xs md:text-base whitespace-nowrap text-black-900"
         style={{ height: 34 }}
       >
         <button type="submit" aria-label="検索する">

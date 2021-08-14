@@ -7,7 +7,7 @@ type Props = {
 const LightBlueButton: FC<Props> = ({ children, href, target }) => {
   return (
     <a
-      className="bg-blue-500 text-white text-lg rounded text-center p-6 hover:shadow-lg hover:opacity-80 focus:outline-none"
+      className="p-6 text-lg text-center text-white bg-blue-500 rounded hover:shadow-lg hover:opacity-80 focus:outline-none"
       href={href}
       target={target}
     >

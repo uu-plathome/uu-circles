@@ -13,10 +13,10 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
       <div className="mb-16">
         <StatisticsHeader>活動人数</StatisticsHeader>
 
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-2">
+        <div className="py-2 px-6 mx-auto mb-2 bg-white rounded">
           {statistics && statistics.numberOfActivitiesRanking ? (
             <div className="pb-4">
-              <p className="text-center py-4">活動人数ランキング</p>
+              <p className="py-4 text-center">活動人数ランキング</p>
               {statistics.numberOfActivitiesRanking.first ? (
                 <StatisticsListItem
                   rank={1}
@@ -81,10 +81,10 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
       <div>
         <StatisticsHeader>活動費用ランキング</StatisticsHeader>
 
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-16">
+        <div className="py-2 px-6 mx-auto mb-16 bg-white rounded">
           {statistics && statistics.admissionFeePerYearHighRankings ? (
             <div className="pb-4">
-              <p className="text-center py-4">活動費用ランキング高い順</p>
+              <p className="py-4 text-center">活動費用ランキング高い順</p>
               {statistics.admissionFeePerYearHighRankings.first ? (
                 <StatisticsListItem
                   rank={1}
@@ -145,10 +145,10 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
           )}
         </div>
 
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-16">
+        <div className="py-2 px-6 mx-auto mb-16 bg-white rounded">
           {statistics && statistics.admissionFeePerYearSmallRankings ? (
             <div className="pb-4">
-              <p className="text-center py-4">活動費用ランキング低い順</p>
+              <p className="py-4 text-center">活動費用ランキング低い順</p>
               {statistics.admissionFeePerYearSmallRankings.first ? (
                 <StatisticsListItem
                   rank={1}
@@ -213,10 +213,10 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
       <div>
         <StatisticsHeader>週の活動頻度ランキング</StatisticsHeader>
 
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-16">
+        <div className="py-2 px-6 mx-auto mb-16 bg-white rounded">
           {statistics && statistics.activityFrequencyRankingDto ? (
             <div className="pb-4">
-              <p className="text-center py-4">週の活動頻度ランキング</p>
+              <p className="py-4 text-center">週の活動頻度ランキング</p>
               {statistics.activityFrequencyRankingDto.first ? (
                 <StatisticsListItem
                   rank={1}

@@ -17,7 +17,7 @@ const SpButton: FC<SpButtonProps> = ({ href, src, alt }) => {
     <div className="mx-auto" style={{ width: 280, height: 65 }}>
       <Link href={href} passHref>
         <a
-          className="text-gray-900 block shadow rounded"
+          className="block text-gray-900 rounded shadow"
           style={{ width: '100%', height: '100%' }}
         >
           <Image width="280" height="65" src={src} alt={alt} />
@@ -74,7 +74,7 @@ const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
     <div className="mx-auto" style={{ width: 280, height: 65 }}>
       <Link href={href}>
         <a
-          className="text-gray-900 block shadow rounded"
+          className="block text-gray-900 rounded shadow"
           style={{ width: '100%', height: '100%' }}
         >
           <Image width="280" height="65" src={src} alt={alt} />

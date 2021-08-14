@@ -124,22 +124,22 @@ export const MainTemplate: FC<Props> = ({
         <div
           id={ID_LIST.HEADER_CATCH_COPY}
           style={{ marginTop: '-6px' }}
-          className="bg-white relative"
+          className="relative bg-white"
           onMouseMove={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
         >
-          <p className="text-center py-8">新歓をハックする！</p>
+          <p className="py-8 text-center">新歓をハックする！</p>
         </div>
 
         <div
           id={ID_LIST.TOP_BUTTONS}
-          className="bg-white relative"
+          className="relative bg-white"
           onMouseMove={() => onChangeId(ID_LIST.TOP_BUTTONS)}
         >
           <MainUucircleTopButtons />
         </div>
 
         <BaseContainer>
-          <div className="px-7 relative" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
+          <div className="relative px-7" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
             <MainTagList
               id={ID_LIST.RECOMMEND_TAG_LIST}
               onChangeId={onChangeId}
@@ -152,7 +152,7 @@ export const MainTemplate: FC<Props> = ({
               onChangeId={onChangeId}
             />
 
-            <div className="pt-4 pb-10 bg-gray-100 flex justify-center">
+            <div className="flex justify-center pt-4 pb-10 bg-gray-100">
               <GreenButton href="/circle">もっと見る</GreenButton>
             </div>
           </div>
