@@ -4,10 +4,10 @@ import React from 'react'
 // md:bg-transparent
 const noteClassName = `
     p-2
-    text-sm 
+    text-sm
     text-gray-600
     bg-gray-200
-    rounded-lg 
+    rounded-lg
 `
 
 export type Props = {
