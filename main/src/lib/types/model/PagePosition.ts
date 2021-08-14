@@ -10,6 +10,6 @@ export interface PagePositionItem {
   pagePositionHistoryId: number
   pageUrl: string
   pagePositionId: string
-  circleId?: number
+  circleSlug?: string
   createdAt: string
 }

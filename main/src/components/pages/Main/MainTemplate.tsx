@@ -90,10 +90,10 @@ export const MainTemplate: FC<Props> = ({
     )
 
     // サークルの処理
-    const allCircleIds = pagePositionsExcludeOwn.filter(
-      (p) => p.circleId
-    ).map((p) => p.circleId)
-    const uniqCircleIds = [...new Set(allCircleIds)]
+    const allCircleSlugs = pagePositionsExcludeOwn.filter(
+      (p) => p.circleSlug
+    ).map((p) => p.circleSlug)
+    const uniqCircleSlugs = [...new Set(allCircleSlugs)]
 
     const retVal = {
       [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
@@ -102,10 +102,10 @@ export const MainTemplate: FC<Props> = ({
       [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
       ).length,
-      circlePageViews: uniqCircleIds.map((circleId) => ({
-        circleId,
+      circlePageViews: uniqCircleSlugs.map((circleSlug) => ({
+        circleSlug,
         count: pagePositionsExcludeOwn.filter(
-          (p) => p.circleId === circleId
+          (p) => p.circleSlug === circleSlug
         ).length
       })),
       [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(

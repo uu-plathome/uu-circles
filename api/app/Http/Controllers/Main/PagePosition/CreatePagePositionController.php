@@ -121,6 +121,7 @@ final class CreatePagePositionController extends Controller
         // 他のページに遷移したユーザーを弾くために、関与したユーザーの履歴をまとめて取得
         $pagePositions = PagePositionHistory::with([
             'identifier:id,identifier_hash',
+            'circle:id,slug',
         ])
             ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
                 // 今回のイベントで同じページにいるユーザーを取得
