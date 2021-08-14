@@ -17,7 +17,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   const height = (width * 218) / 375
 
   return (
-    <div className="justify-center md:px-6 bg-gray-100">
+    <>
       <div
         className="md:flex justify-center md:mx-auto"
         style={{ maxWidth: 700 }}
@@ -46,11 +46,9 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
               />
             </a>
 
-            <div>
-              <p className="text-sm text-center text-black">
-                {advertises[0].title}
-              </p>
-            </div>
+            <p className="text-sm text-center text-black">
+              {advertises[0].title}
+            </p>
           </div>
         ) : (
           ''
@@ -80,26 +78,24 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
               />
             </a>
 
-            <div>
-              <p className="text-sm text-center text-black">
-                {advertises[1].title}
-              </p>
-            </div>
+            <p className="text-sm text-center text-black">
+              {advertises[1].title}
+            </p>
           </div>
         ) : (
           ''
         )}
       </div>
 
-      <div className="md:flex justify-center items-center pb-10 mx-auto md:mx-6 text-center">
-        <div className="my-8 mx-auto md:mr-10 md:ml-0" style={{ width: 280 }}>
+      <div className="md:flex justify-center items-center pb-10 text-center">
+        <div className="py-8 mx-auto md:mr-10 md:ml-0" style={{ width: 280 }}>
           <h2 className="mb-2 text-lg font-bold">協賛してくださる企業様募集</h2>
-          <p className="pb-4 md:pb-0 text-sm">
+          <p className="text-sm">
             当ウェブサイトは宇都宮の多くの企業の方々に支えられて運営することができています。
           </p>
         </div>
 
-        <div className="pb-8 md:pb-0 mx-auto md:mx-0" style={{ width: 280 }}>
+        <div className="mx-auto md:mx-0" style={{ width: 280 }}>
           <LightBlueButton
             href="https://forms.gle/1oULcDjiPaknvfvc8"
             target="_blank"
@@ -108,7 +104,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
           </LightBlueButton>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
