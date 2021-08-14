@@ -89,6 +89,12 @@ export const MainTemplate: FC<Props> = ({
       (p) => !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
     )
 
+    // サークルの処理
+    const allCircleIds = pagePositionsExcludeOwn.filter(
+      (p) => p.circleId
+    ).map((p) => p.circleId)
+    const uniqCircleIds = [...new Set(allCircleIds)]
+
     const retVal = {
       [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
@@ -96,14 +102,20 @@ export const MainTemplate: FC<Props> = ({
       [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
       ).length,
-      [ID_LIST.CIRCLE_LIST]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.CIRCLE_LIST
-      ).length,
+      circlePageViews: uniqCircleIds.map((circleId) => ({
+        circleId,
+        count: pagePositionsExcludeOwn.filter(
+          (p) => p.circleId === circleId
+        ).length
+      })),
       [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
       ).length,
       [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
+      ).length,
+      [ID_LIST.SPONSORSHIP_FOOTER]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.SPONSORSHIP_FOOTER
       ).length,
     }
 
