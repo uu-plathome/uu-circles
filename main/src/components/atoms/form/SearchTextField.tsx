@@ -27,33 +27,31 @@ const SearchTextField: FC<Props> = ({
   onChange,
 }) => {
   return (
-    <div className="flex flex-col">
-      <div className="relative text-gray-600">
-        <input
-          type={type}
-          id={id}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          maxLength={255}
-          className="border-2 border-gray-300 bg-white h-10 pl-3 pr-12 rounded-lg text-sm focus:outline-none"
-          pattern={pattern}
-          disabled={disabled}
-          style={{
-            width: expand ? '100%' : 'auto',
-          }}
-        />
+    <div className="relative text-gray-600">
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        maxLength={255}
+        className="border-2 border-gray-300 bg-white h-10 pl-3 pr-12 rounded-lg text-sm focus:outline-none"
+        pattern={pattern}
+        disabled={disabled}
+        style={{
+          width: expand ? '100%' : 'auto',
+        }}
+      />
 
-        <p
-          className="absolute right-0 top-0 mt-0.5 mr-2 md:mr-1 whitespace-nowrap text-black-900 px-1 md:px-2 flex items-center text-xs md:text-base"
-          style={{ height: 34 }}
-        >
-          <button type="submit" aria-label="検索する">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </p>
-      </div>
+      <p
+        className="absolute right-0 top-0 mt-0.5 mr-2 md:mr-1 whitespace-nowrap text-black-900 px-1 md:px-2 flex items-center text-xs md:text-base"
+        style={{ height: 34 }}
+      >
+        <button type="submit" aria-label="検索する">
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </p>
     </div>
   )
 }
