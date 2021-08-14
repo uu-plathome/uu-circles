@@ -19,7 +19,7 @@ const SearchTextField: FC<Props> = ({
   id,
   name,
   value,
-  type = 'text',
+  type = 'search',
   placeholder,
   pattern,
   expand,
@@ -49,7 +49,7 @@ const SearchTextField: FC<Props> = ({
           className="absolute right-0 top-0 mt-0.5 mr-2 md:mr-1 whitespace-nowrap text-black-900 px-1 md:px-2 flex items-center text-xs md:text-base"
           style={{ height: 34 }}
         >
-          <button type="submit">
+          <button type="submit" aria-label="検索する">
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </p>

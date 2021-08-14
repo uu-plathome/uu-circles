@@ -49,8 +49,8 @@ const SearchForm = () => {
 
   return (
     <div className="px-8 py-4">
-      <form onSubmit={onSubmit}>
-        <SearchTextField id="search" name="search" {...name} expand />
+      <form onSubmit={onSubmit} role="search" aria-label="サークルを検索">
+        <SearchTextField id="search" name="search" expand {...name} />
       </form>
     </div>
   )

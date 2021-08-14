@@ -16,7 +16,7 @@ export const SearchCircle: FC = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} role="search" aria-label="サークルを検索">
       <SearchTextField id="search" name="search" expand {...name} />
     </form>
   )

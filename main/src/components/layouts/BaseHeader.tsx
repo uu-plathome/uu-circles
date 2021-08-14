@@ -53,7 +53,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
               </h1>
 
               <div className="hidden md:block ml-4">
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} role="search" aria-label="サークルを検索">
                   <SearchTextField id="search" name="search" {...name} />
                 </form>
               </div>
