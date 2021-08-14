@@ -49,6 +49,8 @@ const ID_LIST = {
   UU_CIRCLES_AD: 'uu_circles_ad',
   /** uu-yell記事 */
   UU_YELL_ARTICLES: 'uu_yell_articles',
+  /** 企業広告 */
+  SPONSORSHIP_FOOTER: 'sponsorship_footer',
 } as const
 
 type Props = {
@@ -178,7 +180,12 @@ export const MainTemplate: FC<Props> = ({
             />
           </div>
 
-          <MainSponsorshipFooter advertises={advertises} />
+          <div
+            id={ID_LIST.SPONSORSHIP_FOOTER}
+            onMouseMove={() => onChangeId(ID_LIST.SPONSORSHIP_FOOTER)}
+          >
+            <MainSponsorshipFooter advertises={advertises} />
+          </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />
         </div>
