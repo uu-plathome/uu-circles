@@ -56,7 +56,7 @@ export const SearchCircleByCategoryTemplate: NextPage<Props> = ({
             : undefined
         }
       >
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <TwoColumnContainer
             sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
           >

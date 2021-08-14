@@ -20,7 +20,7 @@ const WpPostBlock: FC<{
   media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
-    <article className="rounded-sm bg-white pb-4 mb-12 shadow-md md:pb-6 cursor-pointer">
+    <article className="pb-4 md:pb-6 mb-12 bg-white rounded-sm shadow-md cursor-pointer">
       <a href={post.link} className="transition-all">
         <div className="wp-cardtype__img">
           <Image
@@ -31,9 +31,9 @@ const WpPostBlock: FC<{
           />
         </div>
 
-        <div className="px-6 py-2 mb-2">
+        <div className="py-2 px-6 mb-2">
           {post.date ? (
-            <p className="pt-2 flex items-center mb-2">
+            <p className="flex items-center pt-2 mb-2">
               <FontAwesomeIcon
                 icon={faClock}
                 color={colors.gray[400]}
@@ -47,9 +47,9 @@ const WpPostBlock: FC<{
             ''
           )}
 
-          <div className="w-full pr-3">
+          <div className="pr-3 w-full">
             <h3
-              className="text-black font-bold mb-1 max-line-4"
+              className="mb-1 font-bold text-black max-line-4"
               style={{
                 minHeight: '48px',
               }}
@@ -72,21 +72,21 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
   const { isMd } = useMediaQuery()
 
   return (
-    <div className="bg-gray-100  pt-10 pb-10 ">
-      <div className="text-center my-8 mx-auto">
-        <h2 className="text-lg font-bold mb-2">
+    <div className="pt-10 pb-10 bg-gray-100 ">
+      <div className="my-8 mx-auto text-center">
+        <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！
         </h2>
 
         <div className="px-16">
-          <p className="text-sm mb-2">宇大を生き抜くヒントがここに。</p>
+          <p className="mb-2 text-sm">宇大を生き抜くヒントがここに。</p>
         </div>
       </div>
 
       <div>
         <div className="md:flex md:justify-center">
           <nav
-            className="md:grid md:grid-cols-2 md:gap-4 md:justify-center hidden"
+            className="hidden md:grid md:grid-cols-2 md:gap-4 md:justify-center"
             style={{ width: isMd ? 700 : 280 }}
             id="top-button-scroll"
           >

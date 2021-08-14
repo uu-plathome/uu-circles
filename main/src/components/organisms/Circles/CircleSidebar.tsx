@@ -20,7 +20,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
   return (
     <li className="mb-3">
       <Link href={tagItem.href} as={tagItem.as}>
-        <a className="text-gray-400 font-bold text-sm before:content-['#']">
+        <a className="text-sm font-bold text-gray-400 before:content-['#']">
           {tagItem.text}
         </a>
       </Link>
@@ -62,7 +62,7 @@ const CategoryItemFc: FC<CategoryItemFcProps> = ({ categoryItem }) => {
   return (
     <li className="mb-3">
       <Link href={categoryItem.href} as={categoryItem.as}>
-        <a className="text-gray-400 font-bold text-sm">{categoryItem.text}</a>
+        <a className="text-sm font-bold text-gray-400">{categoryItem.text}</a>
       </Link>
     </li>
   )
@@ -105,7 +105,7 @@ const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
 
   return (
     <div>
-      <h2 className="text-gray-600 text-lg py-8">カテゴリー</h2>
+      <h2 className="py-8 text-lg text-gray-600">カテゴリー</h2>
       <ul>
         {categoryItems.map((_categoryItem, idx) => (
           <CategoryItemFc
@@ -115,7 +115,7 @@ const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
         ))}
       </ul>
 
-      <h2 className="text-gray-600 text-lg py-8">人気のタグ</h2>
+      <h2 className="py-8 text-lg text-gray-600">人気のタグ</h2>
       <ul>
         {tagList.map((_tagItem, idx) => (
           <TagItemFc key={_tagItem.text + idx} tagItem={_tagItem} />

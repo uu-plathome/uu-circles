@@ -10,8 +10,8 @@ type Props = {
 
 const InformationCircleBesideNewJoyPC: FC<Props> = ({ circle }) => {
   return (
-    <div className="bg-white mt-3 rounded-xl px-3 pb-6 " style={{ width: 222 }}>
-      <div className="mx-auto text-center pb-3 pt-6">
+    <div className="px-3 pb-6 mt-3 bg-white rounded-xl " style={{ width: 222 }}>
+      <div className="pt-6 pb-3 mx-auto text-center">
         <Image
           src={
             circle.mainImageUrl ? circle.mainImageUrl : '/images/no-image.png'
@@ -23,8 +23,8 @@ const InformationCircleBesideNewJoyPC: FC<Props> = ({ circle }) => {
         />
       </div>
       <h4 className="text-base text-center">{circle.prefixName}</h4>
-      <h3 className="text-xl text-center mt-3 mb-4">{circle.name}</h3>
-      <p className="text-xs text-left mx-auto whitespace-pre-wrap">
+      <h3 className="mt-3 mb-4 text-xl text-center">{circle.name}</h3>
+      <p className="mx-auto text-xs text-left whitespace-pre-wrap">
         {circle.description}
       </p>
 

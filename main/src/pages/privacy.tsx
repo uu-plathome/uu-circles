@@ -9,17 +9,17 @@ const Section: FunctionComponent = ({ children }) => (
   <section className="my-8">{children}</section>
 )
 const SubHeader: FunctionComponent = ({ children }) => (
-  <h2 className="text-lg mb-4">{children}</h2>
+  <h2 className="mb-4 text-lg">{children}</h2>
 )
 const Paragraph: FunctionComponent = ({ children }) => (
-  <p className="text-sm mb-4">{children}</p>
+  <p className="mb-4 text-sm">{children}</p>
 )
 type ListProps = {
   list: (string | Element)[]
 }
 const List: FunctionComponent<ListProps> = ({ list, children }) => {
   return (
-    <ul className="text-sm list-decimal ml-8">
+    <ul className="ml-8 text-sm list-decimal">
       {list.map((text, idx) => (
         <li key={idx} className="mb-4">
           {text}
@@ -36,9 +36,9 @@ const Page: NextPage = () => {
       <BaseHead title="プライバシーポリシー" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-6 pb-20">
+        <div className="px-6 pb-20 bg-gray-100">
           <BaseContainer>
-            <h1 className="text-2xl py-8 text-center">プライバシーポリシー</h1>
+            <h1 className="py-8 text-2xl text-center">プライバシーポリシー</h1>
 
             <div>
               <Paragraph>

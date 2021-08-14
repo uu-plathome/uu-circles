@@ -27,8 +27,8 @@ const SubHeader: FC<{
   id: string
 }> = ({ children, id }) => {
   return (
-    <div className="border-l-4 border-green-500 mt-8 mb-6 mx-5">
-      <h2 id={id} className="text-2xl px-4 font-bold">
+    <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
+      <h2 id={id} className="px-4 text-2xl font-bold">
         {children}
       </h2>
     </div>
@@ -72,7 +72,7 @@ const Page: NextPage<Props> = () => {
       <BaseHead title={`新入生へ`} />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2">
+        <div className="px-2 bg-gray-100">
           <BaseContainer>
             <div className="flex justify-center items-center pt-6">
               <a href="https://discord.com/download">
@@ -84,9 +84,9 @@ const Page: NextPage<Props> = () => {
                 />
               </a>
             </div>
-            <h1 className="text-2xl pt-6 pb-8 px-4">新入生へ</h1>
-            <div className="bg-white px-8 py-6 mx-4 rounded-md text-gray-500">
-              <h1 className="text-2xl pt-1">目次</h1>
+            <h1 className="px-4 pt-6 pb-8 text-2xl">新入生へ</h1>
+            <div className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500">
+              <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">
                 <ScrollLink
                   to={ID_LIST.first}
@@ -161,12 +161,12 @@ const Page: NextPage<Props> = () => {
               1. 気になったサークルを見てみよう
             </SubHeader>
 
-            <p className="pb-6 px-4">
+            <p className="px-4 pb-6">
               ホームのサークル一覧から、「なんだか楽しそう！」と思ったビラをタップして
               実際にサークル情報を見てみましょう。
             </p>
 
-            <div className="pb-8 pt-4">
+            <div className="pt-4 pb-8">
               <GreenLgButton href="/">UU-Circleのトップ画面へ</GreenLgButton>
             </div>
 
@@ -197,7 +197,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div className="pb-8 pt-4">
+            <div className="pt-4 pb-8">
               <GreenLgButton href="/circle/newjoy">
                 今日の新歓ページへ
               </GreenLgButton>
@@ -206,19 +206,19 @@ const Page: NextPage<Props> = () => {
             <SubHeader id={ID_LIST.fourth}>3. uu-yellをみよう</SubHeader>
 
             <div className="px-4 pb-6">
-              <p className="pb-6 px-4">
+              <p className="px-4 pb-6">
                 {' '}
                 キャッチコピーは「uu-mailのとなりにuu-yell。」
               </p>
-              <p className="pb-6 px-4">
+              <p className="px-4 pb-6">
                 UU-Circlesの姉妹サイトの「メディアサイトuu-yell」は宇都宮大学の学生活動の発信＆受信における”プラットフォーム”です。
               </p>
-              <p className="pb-6 px-4">
+              <p className="px-4 pb-6">
                 以下の2本軸でプラットフォームを体現していきます。
               </p>
-              <div className="pb-6 px-4">
+              <div className="px-4 pb-6">
                 <blockquote cite="https://media.uu-circles.com/about/">
-                  <ol className="list-inside list-decimal border border-gray-400 round p-4">
+                  <ol className="p-4 list-decimal list-inside border border-gray-400 round">
                     <li>
                       uu-yell編集部からの直接的な情報発信（学生活動の取材記事や読者要望に応えた記事、編集部企画の記事など）
                     </li>
@@ -228,7 +228,7 @@ const Page: NextPage<Props> = () => {
                   </ol>
                 </blockquote>
               </div>
-              <p className="pb-6 px-4">
+              <p className="px-4 pb-6">
                 是非チェックしてホーム画面に追加してね！
               </p>
             </div>

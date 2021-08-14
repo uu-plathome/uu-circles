@@ -51,22 +51,22 @@ const PcLayout: FC<{
 
   return (
     <div
-      className="border border-gray-300 bg-white rounded-xl flex justify-between items-center px-6 py-2 mx-auto mb-2"
+      className="flex justify-between items-center py-2 px-6 mx-auto mb-2 bg-white rounded-xl border border-gray-300"
       style={{ width: 750, height: 100 }}
     >
       <section
-        className="rounded-2xl border-gray-300 border"
+        className="rounded-2xl border border-gray-300"
         style={{
           width: 70,
           height: 70,
         }}
       >
-        <div className="bg-gray-600 text-white  rounded-2xl rounded-b-none text-center ">
+        <div className="text-center text-white bg-gray-600 rounded-2xl rounded-b-none ">
           <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
         </div>
 
         <div
-          className=" text-black  text-center rounded-2xl rounded-t-none  items-center pb-4"
+          className="items-center pb-4 text-center text-black rounded-2xl rounded-t-none "
           style={{ borderRadius: '0 0 10 10 ' }}
         >
           <p className="text-xs leading-4">
@@ -76,22 +76,22 @@ const PcLayout: FC<{
         </div>
       </section>
 
-      <section className="bg-white px-2 pl-3 w-80">
+      <section className="px-2 pl-3 w-80 bg-white">
         <div className="col-span-4">
-          <h2 className="font-bold text-center mb-1">
+          <h2 className="mb-1 font-bold text-center">
             {todayCircleNewJoy.circleNewJoy.title}
           </h2>
 
-          <div className="border-b-2  grid grid-cols-8">
-            <p className="text-gray-600 text-xs col-span-1">場所</p>
-            <p className="text-gray-600 text-xs col-span-6 text-center">
+          <div className="grid grid-cols-8 border-b-2">
+            <p className="col-span-1 text-xs text-gray-600">場所</p>
+            <p className="col-span-6 text-xs text-center text-gray-600">
               {' '}
               {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
             </p>
           </div>
-          <div className="border-b-2  grid grid-cols-8">
-            <p className="text-gray-600 text-xs col-span-1">日時</p>
-            <p className="text-gray-600 text-xs col-span-6 text-center">
+          <div className="grid grid-cols-8 border-b-2">
+            <p className="col-span-1 text-xs text-gray-600">日時</p>
+            <p className="col-span-6 text-xs text-center text-gray-600">
               {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
             </p>
           </div>
@@ -99,7 +99,7 @@ const PcLayout: FC<{
       </section>
 
       <section
-        className="h-full w-28 text-center mx-auto"
+        className="mx-auto w-28 h-full text-center"
         style={{ paddingTop: '50px' }}
       >
         <Link
@@ -115,22 +115,22 @@ const PcLayout: FC<{
           }
           prefetch={false}
         >
-          <a className="text-blue-600 border-b border-blue-600 text-xs w-20 ">
+          <a className="w-20 text-xs text-blue-600 border-b border-blue-600 ">
             もっと詳しく
           </a>
         </Link>
       </section>
 
       <section
-        className="border-l-2 border-gray-600 h-full pl-2"
+        className="pl-2 h-full border-l-2 border-gray-600"
         style={{ width: '250px' }}
       >
         <h3 className="text-xs">主催サークル</h3>
 
         <Link href="/circle/[slug]" as={`/circle/${slug}`} prefetch={false}>
           <a>
-            <div className="pl-2 flex justify-around items-center">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full">
+            <div className="flex justify-around items-center pl-2">
+              <div className="flex justify-center items-center w-12 h-12 rounded-full">
                 <Image
                   src={
                     todayCircleNewJoy.mainImageUrl
@@ -149,7 +149,7 @@ const PcLayout: FC<{
                   {__(todayCircleNewJoy.circleType, CircleType._type)}
                 </p>
 
-                <p className="inline  border-b font-bold cursor-pointer">
+                <p className="inline font-bold border-b cursor-pointer">
                   <span className={getCircleNameSize(circleShowName)}>
                     {circleShowName}
                   </span>
@@ -188,29 +188,29 @@ const SpLayout: FC<{
       passHref
     >
       <div
-        className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+        className="flex justify-between items-center py-2 px-6 mx-auto mb-2 bg-white rounded-lg border border-gray-300"
         style={{ width: 320 }}
       >
-        <div className=" pr-2" style={{ minWidth: 230 }}>
-          <h3 className="text-black font-bold mb-1">{title}</h3>
+        <div className="pr-2 " style={{ minWidth: 230 }}>
+          <h3 className="mb-1 font-bold text-black">{title}</h3>
 
-          <p className="text-sm border-b border-gray-400 flex mb-1">
-            <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
+          <p className="flex mb-1 text-sm border-b border-gray-400">
+            <span className="pl-1 text-xs text-gray-400 whitespace-nowrap">
               場所
             </span>
-            <span className="block  text-center mx-auto">
+            <span className="block mx-auto text-center">
               {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
             </span>
           </p>
 
-          <div className="text-sm flex">
-            <div className="mr-2 border-b border-gray-400 whitespace-nowrap">
-              <span className="text-gray-400 text-xs pl-1">日時</span>
+          <div className="flex text-sm">
+            <div className="mr-2 whitespace-nowrap border-b border-gray-400">
+              <span className="pl-1 text-xs text-gray-400">日時</span>
               <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
             </div>
 
             <span
-              className="block  text-center border-b border-gray-400 whitespace-nowrap"
+              className="block text-center whitespace-nowrap border-b border-gray-400"
               style={{ minWidth: 87 }}
             >
               {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
@@ -219,7 +219,7 @@ const SpLayout: FC<{
         </div>
         <div className="mr-4">
           <div
-            className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center"
+            className="flex justify-center items-center text-xs text-white bg-blue-800 rounded-full"
             style={{ width: 52, height: 52 }}
           >
             詳細

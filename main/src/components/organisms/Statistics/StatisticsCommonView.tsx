@@ -12,16 +12,16 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
     <div className="pb-16">
       {/* 基本情報 */}
       <div className="mb-16">
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-2">
+        <div className="py-2 px-6 mx-auto mb-2 bg-white rounded">
           {/* 掲載団体数 */}
           <div className="py-4">
-            <p className="text-gray-400 mb-2">掲載団体数</p>
+            <p className="mb-2 text-gray-400">掲載団体数</p>
             <p>{statistics.circleCount}</p>
           </div>
 
           {/* 総アクセス人数 */}
           <div className="py-4 border-t border-gray-400">
-            <p className="text-gray-400 mb-2">総アクセス人数</p>
+            <p className="mb-2 text-gray-400">総アクセス人数</p>
             <p>
               {statistics.allActiveUsers
                 ? statistics.allActiveUsers.toLocaleString()
@@ -31,7 +31,7 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
 
           {/* 総PV数 */}
           <div className="py-4 border-t border-gray-400">
-            <p className="text-gray-400 mb-2">総PV数</p>
+            <p className="mb-2 text-gray-400">総PV数</p>
             <p>
               {statistics.allPageViews
                 ? statistics.allPageViews.toLocaleString()
@@ -41,7 +41,7 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
         </div>
 
         <div>
-          <p className="text-right text-sm py-1">
+          <p className="py-1 text-sm text-right">
             更新日時 {dayjs().format('YYYY/MM/DD')}
           </p>
         </div>
@@ -50,9 +50,9 @@ const StatisticsCommonView: FC<Props> = ({ statistics }) => {
       <div className="mb-16">
         <StatisticsHeader>サークルページ閲覧数</StatisticsHeader>
 
-        <div className="rounded bg-white px-6 py-2 mx-auto mb-2">
+        <div className="py-2 px-6 mx-auto mb-2 bg-white rounded">
           {statistics && statistics.circlePageViewsHighRanking ? (
-            <div className="pb-4 pt-8">
+            <div className="pt-8 pb-4">
               {statistics.circlePageViewsHighRanking.first ? (
                 <StatisticsListItem
                   rank={1}

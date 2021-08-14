@@ -49,7 +49,7 @@ const Page: NextPage = () => {
       <BaseHead title="サークルガチャ" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2 pb-36">
+        <div className="px-2 pb-36 bg-gray-100">
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
@@ -61,13 +61,13 @@ const Page: NextPage = () => {
                 />
               </div>
 
-              <div className="py-8 flex justify-center">
+              <div className="flex justify-center py-8">
                 <div
-                  className="w-full relative h-0 overflow-hidden mb-12"
+                  className="overflow-hidden relative mb-12 w-full h-0"
                   style={{ paddingBottom: '56.25%' }}
                 >
                   <YouTube
-                    className="w-full h-full absolute top-0 left-0"
+                    className="absolute top-0 left-0 w-full h-full"
                     videoId={GachaMovieId.B}
                     opts={opts}
                     onReady={onPlayerReady}
@@ -79,7 +79,7 @@ const Page: NextPage = () => {
               <div className="flex justify-end">
                 <a
                   onClick={redirect}
-                  className="underline text-blue-600 text-right cursor-pointer"
+                  className="text-right text-blue-600 underline cursor-pointer"
                 >
                   動画が再生されない場合はこちらをクリック
                 </a>

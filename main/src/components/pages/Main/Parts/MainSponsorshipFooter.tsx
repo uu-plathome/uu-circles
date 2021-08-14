@@ -17,13 +17,13 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   const height = (width * 218) / 375
 
   return (
-    <div className="bg-gray-100 md:px-6 justify-center">
+    <div className="justify-center md:px-6 bg-gray-100">
       <div
         className="md:flex justify-center md:mx-auto"
         style={{ maxWidth: 700 }}
       >
         {advertises && advertises[0] ? (
-          <div className="mx-auto md:ml-0 md:mr-2 rounded">
+          <div className="mx-auto md:mr-2 md:ml-0 rounded">
             <a
               href={
                 advertises[0].link
@@ -47,7 +47,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
             </a>
 
             <div>
-              <p className="text-center text-black text-sm">
+              <p className="text-sm text-center text-black">
                 {advertises[0].title}
               </p>
             </div>
@@ -81,7 +81,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
             </a>
 
             <div>
-              <p className="text-center text-black text-sm">
+              <p className="text-sm text-center text-black">
                 {advertises[1].title}
               </p>
             </div>
@@ -91,15 +91,15 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         )}
       </div>
 
-      <div className="mx-auto md:mx-6 pb-10 md:flex items-center justify-center text-center">
-        <div className="my-8 mx-auto md:ml-0 md:mr-10" style={{ width: 280 }}>
-          <h2 className="text-lg font-bold mb-2">協賛してくださる企業様募集</h2>
-          <p className="text-sm pb-4 md:pb-0">
+      <div className="md:flex justify-center items-center pb-10 mx-auto md:mx-6 text-center">
+        <div className="my-8 mx-auto md:mr-10 md:ml-0" style={{ width: 280 }}>
+          <h2 className="mb-2 text-lg font-bold">協賛してくださる企業様募集</h2>
+          <p className="pb-4 md:pb-0 text-sm">
             当ウェブサイトは宇都宮の多くの企業の方々に支えられて運営することができています。
           </p>
         </div>
 
-        <div className="mx-auto md:mx-0 pb-8 md:pb-0" style={{ width: 280 }}>
+        <div className="pb-8 md:pb-0 mx-auto md:mx-0" style={{ width: 280 }}>
           <LightBlueButton
             href="https://forms.gle/1oULcDjiPaknvfvc8"
             target="_blank"

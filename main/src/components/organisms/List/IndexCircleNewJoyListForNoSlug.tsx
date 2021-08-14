@@ -12,7 +12,7 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({
 }) => {
   return (
     <div className="bg-gray-100">
-      <div className="flex justify-center flex-wrap">
+      <div className="flex flex-wrap justify-center">
         {circleNewJoys &&
           circleNewJoys.map((circleNewJoy, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''

@@ -23,7 +23,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
       <BaseHead title="サークルガチャ" />
 
       <BaseLayout>
-        <div className="bg-gray-100 px-2 pb-36">
+        <div className="px-2 pb-36 bg-gray-100">
           <BaseContainer>
             <div className="px-4">
               <div className="flex justify-center items-center pt-6">
@@ -35,7 +35,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                 />
               </div>
 
-              <h1 className="text-2xl pt-6 px-4 text-center">サークルガチャ</h1>
+              <h1 className="px-4 pt-6 text-2xl text-center">サークルガチャ</h1>
 
               <div className="flex justify-center items-center pt-6">
                 <Image
@@ -48,12 +48,12 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
 
               <div className="flex justify-center">
                 <Link href="/gacha/draw/1" passHref>
-                  <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                  <div className="flex-initial py-4 px-4 md:px-8 my-6 mx-4 font-black text-white bg-green-500 rounded-md shadow-sm hover:shadow-md cursor-pointer">
                     1連ガチャ
                   </div>
                 </Link>
                 <Link href="/gacha/draw/5" passHref>
-                  <div className="flex-initial rounded-md bg-green-500 px-4 md:px-8 py-4 text-white mx-4 my-6 font-black cursor-pointer shadow-sm hover:shadow-md">
+                  <div className="flex-initial py-4 px-4 md:px-8 my-6 mx-4 font-black text-white bg-green-500 rounded-md shadow-sm hover:shadow-md cursor-pointer">
                     5連ガチャ
                   </div>
                 </Link>
@@ -70,7 +70,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                         color={colors.yellow[500]}
                         size="lg"
                       />
-                      <h2 className="text-yellow-500 font-bold text-2xl">
+                      <h2 className="text-2xl font-bold text-yellow-500">
                         Pick Up
                       </h2>
                       <FontAwesomeIcon
@@ -92,7 +92,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                               as={`/circle/${circle.slug}`}
                               passHref
                             >
-                              <div className="rounded bg-white flex items-center px-6 py-4">
+                              <div className="flex items-center py-4 px-6 bg-white rounded">
                                 <div
                                   style={{ minWidth: 60 }}
                                   className="rounded border border-gray-300"
@@ -106,7 +106,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                                 </div>
 
                                 <div className="pl-2">
-                                  <h3 className="font-bold text-lg mb-2">
+                                  <h3 className="mb-2 text-lg font-bold">
                                     {circle.name}
                                   </h3>
                                   <p className="text-sm max-line-2">
@@ -125,7 +125,7 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
                 ''
               )}
 
-              <div className="py-8 flex justify-center">
+              <div className="flex justify-center py-8">
                 <GreenButton href="/gacha/history">ガチャ結果一覧</GreenButton>
               </div>
             </div>

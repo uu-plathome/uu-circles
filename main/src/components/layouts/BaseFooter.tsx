@@ -138,7 +138,7 @@ const TagItemFc: FC<TagItemFcProps> = ({ tagItem }) => {
   return (
     <li className="mb-3">
       <Link href={tagItem.href} as={tagItem.as}>
-        <a className="text-gray-400 font-bold text-sm before:content-['#']">
+        <a className="text-sm font-bold text-gray-400 before:content-['#']">
           {tagItem.text}
         </a>
       </Link>
@@ -181,15 +181,15 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <BaseContainer>
           {uuYellArticles && uuYellArticles.length > 0 ? (
             <div className="px-6 pt-12 md:pt-16 mb-10">
-              <h2 className="text-lg mb-6">uu-yellの最新記事</h2>
+              <h2 className="mb-6 text-lg">uu-yellの最新記事</h2>
 
-              <ul className="list-outside list-decimal text-gray-400 pl-4">
+              <ul className="pl-4 list-decimal list-outside text-gray-400">
                 {uuYellArticles.map((uuYellArticle: WP_REST_API_Post, idx) => {
                   return (
                     <li key={`uuYellArticle-${idx}`} className="mb-3">
                       <a
                         href={uuYellArticle.link}
-                        className="text-gray-400 font-bold text-sm"
+                        className="text-sm font-bold text-gray-400"
                       >
                         {uuYellArticle.title.rendered}
                       </a>
@@ -210,7 +210,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
         <BaseContainer>
           <div className="flex">
             <div className="pt-6 w-1/2 md:w-3/4">
-              <h2 id="footer_tag_list" className="text-lg mb-6">
+              <h2 id="footer_tag_list" className="mb-6 text-lg">
                 全てのタグ
               </h2>
 
@@ -228,7 +228,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                   <p>
                     <a
                       onClick={() => setIsTagOpen(true)}
-                      className="underline text-gray-400 text-xs"
+                      className="text-xs text-gray-400 underline"
                     >
                       全てのタグ
                     </a>
@@ -238,7 +238,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
             </div>
 
             <div className="pt-6 w-1/2 md:w-1/4">
-              <h2 className="text-lg mb-6">カテゴリー</h2>
+              <h2 className="mb-6 text-lg">カテゴリー</h2>
 
               <ul>
                 <li className="mb-3">
@@ -246,7 +246,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     href="/circle/category/[category]"
                     as={`/circle/category/${CategorySlugProperty.club}`}
                   >
-                    <a className="text-gray-400 font-bold text-sm">
+                    <a className="text-sm font-bold text-gray-400">
                       {__(
                         CategorySlugProperty.club,
                         CategorySlugProperty._type
@@ -259,7 +259,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     href="/circle/category/[category]"
                     as={`/circle/category/${CategorySlugProperty.official_organization}`}
                   >
-                    <a className="text-gray-400 font-bold text-sm">
+                    <a className="text-sm font-bold text-gray-400">
                       {__(
                         CategorySlugProperty.official_organization,
                         CategorySlugProperty._type
@@ -272,7 +272,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     href="/circle/category/[category]"
                     as={`/circle/category/${CategorySlugProperty.student_group}`}
                   >
-                    <a className="text-gray-400 font-bold text-sm">
+                    <a className="text-sm font-bold text-gray-400">
                       {__(
                         CategorySlugProperty.student_group,
                         CategorySlugProperty._type
@@ -285,7 +285,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     href="/circle/category/[category]"
                     as={`/circle/category/${CategorySlugProperty.unofficial_organization}`}
                   >
-                    <a className="text-gray-400 font-bold text-sm">
+                    <a className="text-sm font-bold text-gray-400">
                       {__(
                         CategorySlugProperty.unofficial_organization,
                         CategorySlugProperty._type
@@ -302,33 +302,33 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
           <div>
             <div className="flex flex-col-reverse md:flex-row">
               <div className="pt-20 md:w-1/2">
-                <h2 className="text-lg mb-6">メニュー</h2>
+                <h2 className="mb-6 text-lg">メニュー</h2>
 
                 <ul>
                   <li className="mb-3">
                     <Link href="/circle">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         サークルを見つける
                       </a>
                     </Link>
                   </li>
                   <li className="mb-3">
                     <Link href="/circle/newjoy">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         今日の新歓
                       </a>
                     </Link>
                   </li>
                   <li className="mb-3">
                     <Link href="/gacha">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         サークルガチャ
                       </a>
                     </Link>
                   </li>
                   <li className="mb-3">
                     <Link href="/statistics">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         統計情報
                       </a>
                     </Link>
@@ -338,7 +338,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                       href="https://forms.gle/1oULcDjiPaknvfvc8"
                       target="_blank"
                       rel="noreferrer"
-                      className="text-gray-400 font-bold text-sm"
+                      className="text-sm font-bold text-gray-400"
                     >
                       お問い合わせ
                     </a>
@@ -347,19 +347,19 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
               </div>
 
               <div className="pt-20 md:w-1/2">
-                <h2 className="text-lg mb-6">デモ画面</h2>
+                <h2 className="mb-6 text-lg">デモ画面</h2>
 
                 <ul>
                   <li className="mb-3">
                     <Link href="/demo">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         メイン画面 (デモ)
                       </a>
                     </Link>
                   </li>
                   <li className="mb-3">
                     <Link href="/circle/newjoy/demo">
-                      <a className="text-gray-400 font-bold text-sm">
+                      <a className="text-sm font-bold text-gray-400">
                         今日の新歓 (デモ)
                       </a>
                     </Link>
@@ -375,15 +375,15 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
             <hr className="border border-gray-200" />
             <div className="py-8">
               <Link href="/guide/management-team">
-                <a className="text-gray-400 px-2 text-xs">UU-Circlesについて</a>
+                <a className="px-2 text-xs text-gray-400">UU-Circlesについて</a>
               </Link>
 
               <Link href="/terms">
-                <a className="text-gray-400 px-2 text-xs">利用規約</a>
+                <a className="px-2 text-xs text-gray-400">利用規約</a>
               </Link>
 
               <Link href="/privacy">
-                <a className="text-gray-400 px-2 text-xs">
+                <a className="px-2 text-xs text-gray-400">
                   プライバシーポリシー
                 </a>
               </Link>
@@ -391,7 +391,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
           </BaseContainer>
         </div>
 
-        <div className="text-center pb-8">
+        <div className="pb-8 text-center">
           <a href="https://ulab-uu.com/">
             <Image
               src={ImagePath.U_LAB.COPY_LIGHT}
