@@ -2,7 +2,6 @@ import useSWR from 'swr'
 import { fetchPostsOfUuYellRecommend } from '../lib/infra/uu_yell/fetchPostsOfUuYellRecommend'
 import { WpPostsList } from '../lib/infra/uu_yell/types/WpPostsList'
 
-
 /**
  * uu-yellの記事の取得
  */

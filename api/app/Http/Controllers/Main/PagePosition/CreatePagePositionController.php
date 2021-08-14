@@ -62,7 +62,7 @@ final class CreatePagePositionController extends Controller
 
         /** @var \App\Models\Identifier $identifier */
         $identifier = Cache::remember(
-            'CreatePagePositionController.identifier.identifierHash=' . $identifierHash . 'ip=' . $request->ip() . 'user_agent=' . $request->userAgent(),
+            'CreatePagePositionController.identifier.identifierHash='.$identifierHash.'ip='.$request->ip().'user_agent='.$request->userAgent(),
             300,
             fn () => Identifier::whereIdentifierHash($identifierHash)
                 ->hasByNonDependentSubquery('identifierHistory', function ($query) use ($request) {
@@ -74,7 +74,7 @@ final class CreatePagePositionController extends Controller
         /** @var Circle|null $circleOrNull */
         $circleOrNull = $requestCircleSlug ?
             Cache::remember(
-                'CreatePagePositionController.circle.circleSlug=' . $requestCircleSlug,
+                'CreatePagePositionController.circle.circleSlug='.$requestCircleSlug,
                 300,
                 fn () => Circle::whereSlug($requestCircleSlug)->first()
             ) : null;
@@ -135,7 +135,7 @@ final class CreatePagePositionController extends Controller
                                 date($searchTimeFormat, $searchStartTime)
                             );
                     })
-                    ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                    ->orWhere(function ($query) use ($searchTimeFormat, $searchStartTime) {
                         /** @var \App\Models\PagePositionHistory $query */
                         // 今回のイベントで同じページにいるユーザーを取得
                         $query->whereNotNull(PagePositionHistoryProperty::circle_id)
@@ -164,7 +164,7 @@ final class CreatePagePositionController extends Controller
                                         date($searchTimeFormat, $searchStartTime)
                                     );
                             })
-                            ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+                            ->orWhere(function ($query) use ($searchTimeFormat, $searchStartTime) {
                                 /** @var \App\Models\PagePositionHistory $query */
                                 // 今回のイベントで同じページにいるユーザーを取得
                                 $query->whereNotNull(PagePositionHistoryProperty::circle_id)
@@ -207,8 +207,7 @@ final class CreatePagePositionController extends Controller
 
         // リクエストが送られたページの位置データのみに加工
         $newPagePositionsByPageUrl = $mergedPagePosition->filter(
-            fn (PagePositionHistory $pagePositionHistory) =>
-                $pagePositionHistory->page_url === $requestPageUrl ||
+            fn (PagePositionHistory $pagePositionHistory) => $pagePositionHistory->page_url === $requestPageUrl ||
                 $pagePositionHistory->circle_id
         )->values();
 
