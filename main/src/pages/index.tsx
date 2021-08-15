@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from 'next'
-import Pusher from 'pusher-js'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
@@ -12,8 +11,6 @@ import { getMain } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
-
-Pusher.logToConsole = process.env.NODE_ENV === 'development'
 
 /**
  * メインページのコンテンツを再取得

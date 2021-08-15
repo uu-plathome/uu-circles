@@ -26,6 +26,11 @@ final class PagePositionItemArg
     public string $pagePositionId;
 
     /**
+     * @var string|null サークルSlug
+     */
+    public ?string $circleSlug;
+
+    /**
      * @var string 登録日
      */
     public string $createdAt;
@@ -39,6 +44,7 @@ final class PagePositionItemArg
         $item->pageUrl = $pagePositionHistory->page_url;
         $item->pageName = $pagePositionHistory->page_name;
         $item->pagePositionId = $pagePositionHistory->page_position_id;
+        $item->circleSlug = $pagePositionHistory->circle ? $pagePositionHistory->circle->slug : null;
         $item->createdAt = $pagePositionHistory->created_at->format('Y-m-d H:i:s');
 
         return $item;
