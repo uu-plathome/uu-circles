@@ -49,6 +49,8 @@ const ID_LIST = {
   UU_CIRCLES_AD: 'uu_circles_ad',
   /** uu-yell記事 */
   UU_YELL_ARTICLES: 'uu_yell_articles',
+  /** 企業広告 */
+  SPONSORSHIP_FOOTER: 'sponsorship_footer',
 } as const
 
 type Props = {
@@ -87,6 +89,12 @@ export const MainTemplate: FC<Props> = ({
       (p) => !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
     )
 
+    // サークルの処理
+    const allCircleSlugs = pagePositionsExcludeOwn
+      .filter((p) => p.circleSlug)
+      .map((p) => p.circleSlug)
+    const uniqCircleSlugs = [...new Set(allCircleSlugs)]
+
     const retVal = {
       [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
@@ -94,14 +102,20 @@ export const MainTemplate: FC<Props> = ({
       [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
       ).length,
-      [ID_LIST.CIRCLE_LIST]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.CIRCLE_LIST
-      ).length,
+      circlePageViews: uniqCircleSlugs.map((circleSlug) => ({
+        circleSlug,
+        count: pagePositionsExcludeOwn.filter(
+          (p) => p.circleSlug === circleSlug
+        ).length,
+      })),
       [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
       ).length,
       [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(
         (p) => p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
+      ).length,
+      [ID_LIST.SPONSORSHIP_FOOTER]: pagePositionsExcludeOwn.filter(
+        (p) => p.pagePositionId === ID_LIST.SPONSORSHIP_FOOTER
       ).length,
     }
 
@@ -178,7 +192,12 @@ export const MainTemplate: FC<Props> = ({
             />
           </div>
 
-          <MainSponsorshipFooter advertises={advertises} />
+          <div
+            id={ID_LIST.SPONSORSHIP_FOOTER}
+            onMouseMove={() => onChangeId(ID_LIST.SPONSORSHIP_FOOTER)}
+          >
+            <MainSponsorshipFooter advertises={advertises} />
+          </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />
         </div>
