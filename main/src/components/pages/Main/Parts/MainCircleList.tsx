@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { Circle } from '@/src/lib/types/model/Circle'
 
 type Props = {
@@ -27,6 +28,10 @@ const MainCircleList: FC<Props> = ({ circles, id, onChangeId }) => {
             className="mb-6 md:mb-16"
             onMouseOver={() => onChangeId(`${id}-${idx}`)}
           >
+            {idx % 2 === 0
+              ? <Utas num={idx + 1 < 5 ? idx + 1 : 5} />
+              : <div className="pt-8" />}
+
             <Link
               href="/circle/[slug]"
               as={`/circle/${circle.slug}`}

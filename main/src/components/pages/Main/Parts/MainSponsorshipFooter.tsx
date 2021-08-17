@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
 import { LightBlueButton } from '@/src/components/atoms/button/LightBlueButton'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { useWindowResize } from '@/src/hooks/useWindowResize'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
@@ -19,72 +20,80 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   return (
     <>
       <div
-        className="md:flex justify-center md:mx-auto"
+        className="md:mx-auto"
         style={{ maxWidth: 700 }}
       >
-        {advertises && advertises[0] ? (
-          <div className="mx-auto md:mr-2 md:ml-0 rounded">
-            <a
-              href={
-                advertises[0].link
-                  ? `${process.env.API_URL}/share/advertise/${advertises[0].slug}`
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={
-                  advertises[0].mainImageUrl
-                    ? advertises[0].mainImageUrl
-                    : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
+        <div className="mb-2">
+          {true
+            ? <Utas num={4} />
+            : <div className="pt-8" />}
+        </div>
+
+        <div className="md:flex justify-center">
+          {advertises && advertises[0] ? (
+            <div className="mx-auto md:mr-2 md:ml-0 rounded">
+              <a
+                href={
+                  advertises[0].link
+                    ? `${process.env.API_URL}/share/advertise/${advertises[0].slug}`
+                    : undefined
                 }
-                alt="協賛企業広告"
-                width={width || 375}
-                height={height}
-                objectFit="cover"
-              />
-            </a>
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={
+                    advertises[0].mainImageUrl
+                      ? advertises[0].mainImageUrl
+                      : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
+                  }
+                  alt="協賛企業広告"
+                  width={width || 375}
+                  height={height}
+                  objectFit="cover"
+                />
+              </a>
 
-            <p className="text-sm text-center text-black">
-              {advertises[0].title}
-            </p>
-          </div>
-        ) : (
-          ''
-        )}
+              <p className="text-sm text-center text-black">
+                {advertises[0].title}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
 
-        {advertises && advertises[1] ? (
-          <div className="hidden md:block md:ml-2 rounded">
-            <a
-              href={
-                advertises[1].link
-                  ? `${process.env.API_URL}/share/advertise/${advertises[1].slug}`
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={
-                  advertises[1].mainImageUrl
-                    ? advertises[1].mainImageUrl
-                    : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
+          {advertises && advertises[1] ? (
+            <div className="hidden md:block md:ml-2 rounded">
+              <a
+                href={
+                  advertises[1].link
+                    ? `${process.env.API_URL}/share/advertise/${advertises[1].slug}`
+                    : undefined
                 }
-                alt="協賛企業広告"
-                width={width || 375}
-                height={height}
-                objectFit="cover"
-              />
-            </a>
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={
+                    advertises[1].mainImageUrl
+                      ? advertises[1].mainImageUrl
+                      : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
+                  }
+                  alt="協賛企業広告"
+                  width={width || 375}
+                  height={height}
+                  objectFit="cover"
+                />
+              </a>
 
-            <p className="text-sm text-center text-black">
-              {advertises[1].title}
-            </p>
-          </div>
-        ) : (
-          ''
-        )}
+              <p className="text-sm text-center text-black">
+                {advertises[1].title}
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
 
       <div className="md:flex justify-center items-center pb-10 text-center">
