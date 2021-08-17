@@ -10,6 +10,7 @@ import {
   WP_REST_API_Post,
   WP_REST_API_Posts,
 } from 'wp-types'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { dayjs } from '@/src/plugins/Dayjs'
@@ -73,7 +74,7 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
 
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
-      <div className="my-8 mx-auto text-center">
+      <div className="mx-auto mt-8 text-center">
         <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！
         </h2>
@@ -81,6 +82,12 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         <div className="px-16">
           <p className="mb-2 text-sm">宇大を生き抜くヒントがここに。</p>
         </div>
+      </div>
+
+      <div className="mb-4">
+        {true
+          ? <Utas num={4} center />
+          : <div className="pt-8" />}
       </div>
 
       <div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
@@ -86,7 +87,11 @@ const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
 const PcButtonGroup = () => {
   return (
     <nav className="flex">
-      <div className="m-4">
+      <div className="mx-4 mb-4">
+        {false
+          ? <Utas num={4} />
+          : <div className="pt-8" />}
+
         <PcButton
           href="/guide/to-new-students"
           src="/images/topButtons/Rectangle15.png"
@@ -94,7 +99,11 @@ const PcButtonGroup = () => {
         />
       </div>
 
-      <div className="m-4">
+      <div className="mx-4 mb-4">
+        {true
+          ? <Utas num={4} />
+          : <div className="pt-8" />}
+
         <PcButton
           href="/circle/newjoy"
           src="/images/topButtons/shinkan1.png"
@@ -102,7 +111,11 @@ const PcButtonGroup = () => {
         />
       </div>
 
-      <div className="m-4">
+      <div className="mx-4 mb-4">
+        {false
+          ? <Utas num={4} />
+          : <div className="pt-8" />}
+
         <PcButton
           href="/guide/discord"
           src="/images/online.png"
