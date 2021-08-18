@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
+import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { Circle } from '@/src/lib/types/model/Circle'
 
@@ -8,11 +9,26 @@ type Props = {
   id: string
   circles: Circle[]
   onChangeId: (id: string) => void
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
 }
-const MainCircleList: FC<Props> = ({ circles, id, onChangeId }) => {
+const MainCircleList: FC<Props> = ({ circles, id, pagePositionIdNowLength, onChangeId }) => {
   const width = 400
   // w : h = 210 : 297
   const height = (width * 297) / 210
+
+  const pageViewsByCircleSlug = useCallback((slug: string) => {
+    const circle = circles.find(c => c.slug === slug)
+    if (!circle) {
+      return 0
+    }
+
+    const p = pagePositionIdNowLength.circlePageViews.find(p => p.circleSlug === slug)
+    if (!p) {
+      return 0
+    }
+
+    return p.count
+  }, [circles, pagePositionIdNowLength])
 
   return (
     <div
@@ -23,13 +39,18 @@ const MainCircleList: FC<Props> = ({ circles, id, onChangeId }) => {
       {circles.map((circle, idx) => {
         return (
           <div
-            id={`${id}-${idx}`}
-            key={`MainCircleList-${circle.slug}`}
+            id={`${id}-${circle.slug}`}
+            key={`MainCircleList-${circle.slug}-${idx}`}
             className="mb-6 md:mb-16"
-            onMouseOver={() => onChangeId(`${id}-${idx}`)}
+            onMouseOver={() => onChangeId(`${id}-${circle.slug}`)}
           >
-            {idx % 2 === 0
-              ? <Utas num={idx + 1 < 5 ? idx + 1 : 5} />
+            {pageViewsByCircleSlug(circle.slug) > 0
+              ?
+              <Utas
+                num={pageViewsByCircleSlug(circle.slug) > 5
+                  ? 5
+                  : pageViewsByCircleSlug(circle.slug)}
+              />
               : <div className="pt-8" />}
 
             <Link
