@@ -10,6 +10,8 @@ import {
   WP_REST_API_Post,
   WP_REST_API_Posts,
 } from 'wp-types'
+import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
+import { ID_LIST } from '../id_list'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
@@ -66,11 +68,13 @@ const WpPostBlock: FC<{
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
   posts: WP_REST_API_Posts
   medias: WP_REST_API_Attachments
 }
-const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
+const MainUucircleBottomButtons: FC<Props> = ({ medias, posts, pagePositionIdNowLength }) => {
   const { isMd } = useMediaQuery()
+  const pLen = pagePositionIdNowLength
 
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
@@ -85,8 +89,14 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
       </div>
 
       <div className="mb-4">
-        {true
-          ? <Utas num={4} center />
+        {pLen[ID_LIST.UU_YELL_ARTICLES] > 0
+          ?
+          <Utas
+            num={
+              pLen[ID_LIST.UU_YELL_ARTICLES] > 5 ? 5 : pLen[ID_LIST.UU_YELL_ARTICLES]
+            }
+            center
+          />
           : <div className="pt-8" />}
       </div>
 

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
 import { WhiteBadge } from '@/src/components/atoms/badge/WhiteBadge'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { __ } from '@/src/lang/ja'
@@ -7,13 +8,16 @@ import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 
 type Props = {
   id: string
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
   onChangeId: (id: string) => void
 }
-const MainTagList: FC<Props> = ({ id, onChangeId }) => {
+const MainTagList: FC<Props> = ({ id, onChangeId, pagePositionIdNowLength }) => {
+  const pLen = pagePositionIdNowLength
+
   return (
     <div className="md:pt-10 pb-10">
-      {true
-        ? <Utas num={4} />
+      {pLen[id] > 0
+        ? <Utas num={pLen[id] > 5 ? 5 : pLen[id]} />
         : <div className="pt-8" />}
 
       <div
