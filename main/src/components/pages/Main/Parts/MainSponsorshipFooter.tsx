@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
+import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
+import { ID_LIST } from '../id_list'
 import { LightBlueButton } from '@/src/components/atoms/button/LightBlueButton'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
@@ -8,14 +10,16 @@ import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 
 type Props = {
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
   advertises: Advertise[]
 }
-const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
+const MainSponsorshipFooter: FC<Props> = ({ advertises, pagePositionIdNowLength }) => {
   const { isMd } = useMediaQuery()
   const { width: windowWidth } = useWindowResize()
   const width = isMd ? 375 : windowWidth
   // w : h = 375 : 218
   const height = (width * 218) / 375
+  const pLen = pagePositionIdNowLength
 
   return (
     <>
@@ -24,8 +28,8 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         style={{ maxWidth: 700 }}
       >
         <div className="mb-2">
-          {true
-            ? <Utas num={4} />
+          {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0
+            ? <Utas num={pLen[ID_LIST.SPONSORSHIP_FOOTER] > 5 ? 5 : pLen[ID_LIST.SPONSORSHIP_FOOTER]} />
             : <div className="pt-8" />}
         </div>
 

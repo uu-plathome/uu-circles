@@ -101,6 +101,7 @@ export const MainTemplate: FC<Props> = ({
           <div className="relative px-7" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
             <MainTagList
               id={ID_LIST.RECOMMEND_TAG_LIST}
+              pagePositionIdNowLength={pagePositionIdNowLength}
               onChangeId={onChangeId}
             />
 
@@ -133,6 +134,7 @@ export const MainTemplate: FC<Props> = ({
             onMouseMove={() => onChangeId(ID_LIST.UU_YELL_ARTICLES)}
           >
             <MainUucircleBottomButtons
+              pagePositionIdNowLength={pagePositionIdNowLength}
               medias={uuYellForMain ? uuYellForMain.medias : []}
               posts={uuYellForMain ? uuYellForMain.posts : []}
             />
@@ -142,7 +144,10 @@ export const MainTemplate: FC<Props> = ({
             id={ID_LIST.SPONSORSHIP_FOOTER}
             onMouseMove={() => onChangeId(ID_LIST.SPONSORSHIP_FOOTER)}
           >
-            <MainSponsorshipFooter advertises={advertises} />
+            <MainSponsorshipFooter
+              pagePositionIdNowLength={pagePositionIdNowLength}
+              advertises={advertises}
+            />
           </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />
