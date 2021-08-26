@@ -66,7 +66,7 @@ export const MainTemplate: FC<Props> = ({
   const pagePositionIdNowLength = useMemo(() => {
     return computedPagePositionIdNowLength({
       pagePositions,
-      recordPagePosition
+      recordPagePosition,
     })
   }, [pagePositions, recordPagePosition])
 
@@ -90,11 +90,11 @@ export const MainTemplate: FC<Props> = ({
           <p className="py-8 text-center">新歓をハックする！</p>
         </div>
 
-        <div
-          id={ID_LIST.TOP_BUTTONS}
-          className="relative bg-white"
-        >
-          <MainUucircleTopButtons pagePositionIdNowLength={pagePositionIdNowLength} onChangeId={onChangeId} />
+        <div id={ID_LIST.TOP_BUTTONS} className="relative bg-white">
+          <MainUucircleTopButtons
+            pagePositionIdNowLength={pagePositionIdNowLength}
+            onChangeId={onChangeId}
+          />
         </div>
 
         <BaseContainer>

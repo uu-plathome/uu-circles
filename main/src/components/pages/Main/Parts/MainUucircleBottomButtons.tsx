@@ -72,7 +72,11 @@ type Props = {
   posts: WP_REST_API_Posts
   medias: WP_REST_API_Attachments
 }
-const MainUucircleBottomButtons: FC<Props> = ({ medias, posts, pagePositionIdNowLength }) => {
+const MainUucircleBottomButtons: FC<Props> = ({
+  medias,
+  posts,
+  pagePositionIdNowLength,
+}) => {
   const { isMd } = useMediaQuery()
   const pLen = pagePositionIdNowLength
 
@@ -89,15 +93,18 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts, pagePositionIdNow
       </div>
 
       <div className="mb-4">
-        {pLen[ID_LIST.UU_YELL_ARTICLES] > 0
-          ?
+        {pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
           <Utas
             num={
-              pLen[ID_LIST.UU_YELL_ARTICLES] > 5 ? 5 : pLen[ID_LIST.UU_YELL_ARTICLES]
+              pLen[ID_LIST.UU_YELL_ARTICLES] > 5
+                ? 5
+                : pLen[ID_LIST.UU_YELL_ARTICLES]
             }
             center
           />
-          : <div className="pt-8" />}
+        ) : (
+          <div className="pt-8" />
+        )}
       </div>
 
       <div>

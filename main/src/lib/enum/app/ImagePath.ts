@@ -33,7 +33,7 @@ export const ImagePath = {
 
     UTA_ICON: {
       BLUE: '/images/no-image.png',
-    }
+    },
   },
 
   UU_CIRCLES_2020: {

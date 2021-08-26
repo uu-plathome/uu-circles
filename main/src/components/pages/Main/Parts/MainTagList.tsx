@@ -11,14 +11,20 @@ type Props = {
   pagePositionIdNowLength: ComputedPagePositionIdNowLength
   onChangeId: (id: string) => void
 }
-const MainTagList: FC<Props> = ({ id, onChangeId, pagePositionIdNowLength }) => {
+const MainTagList: FC<Props> = ({
+  id,
+  onChangeId,
+  pagePositionIdNowLength,
+}) => {
   const pLen = pagePositionIdNowLength
 
   return (
     <div className="md:pt-10 pb-10">
-      {pLen[id] > 0
-        ? <Utas num={pLen[id] > 5 ? 5 : pLen[id]} />
-        : <div className="pt-8" />}
+      {pLen[id] > 0 ? (
+        <Utas num={pLen[id] > 5 ? 5 : pLen[id]} />
+      ) : (
+        <div className="pt-8" />
+      )}
 
       <div
         id={id}

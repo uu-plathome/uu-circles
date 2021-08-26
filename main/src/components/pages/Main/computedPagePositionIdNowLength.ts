@@ -1,11 +1,11 @@
-import { TOP_BUTTONS_ID_LIST } from "./Parts/MainUucircleTopButtons/top_buttons_id_list"
-import { ID_LIST } from "./id_list"
-import { PagePositionRecord } from "@/src/hooks/usePagePosition"
-import { PagePositions } from "@/src/lib/types/model/PagePosition"
+import { TOP_BUTTONS_ID_LIST } from './Parts/MainUucircleTopButtons/top_buttons_id_list'
+import { ID_LIST } from './id_list'
+import { PagePositionRecord } from '@/src/hooks/usePagePosition'
+import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
 export const computedPagePositionIdNowLength = ({
   pagePositions,
-  recordPagePosition
+  recordPagePosition,
 }: {
   pagePositions: PagePositions
   recordPagePosition: PagePositionRecord[]
@@ -49,9 +49,11 @@ export const computedPagePositionIdNowLength = ({
     [ID_LIST.SPONSORSHIP_FOOTER]: pagePositionsExcludeOwn.filter(
       (p) => p.pagePositionId === ID_LIST.SPONSORSHIP_FOOTER
     ).length,
-    [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]: pagePositionsExcludeOwn.filter(
-      (p) => p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS
-    ).length,
+    [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]:
+      pagePositionsExcludeOwn.filter(
+        (p) =>
+          p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS
+      ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]: pagePositionsExcludeOwn.filter(
       (p) => p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY
     ).length,
@@ -65,4 +67,6 @@ export const computedPagePositionIdNowLength = ({
   return retVal
 }
 
-export type ComputedPagePositionIdNowLength = ReturnType<typeof computedPagePositionIdNowLength>
+export type ComputedPagePositionIdNowLength = ReturnType<
+  typeof computedPagePositionIdNowLength
+>
