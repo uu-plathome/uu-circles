@@ -74,7 +74,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onDelete }) => {
 type Props = {
   circle: Circle
   userId: number
-  onDeleteRelation(circleId: number): void
+  onDeleteRelation(arg: { circleId: number }): void
 }
 
 const CircleListItemTableColumn: FC<{
@@ -91,7 +91,6 @@ const CircleListItemTableColumn: FC<{
 }
 const CircleUserRelationListItem: FC<Props> = ({
   circle,
-  userId,
   onDeleteRelation,
 }) => {
   const imageLink =
@@ -158,7 +157,7 @@ const CircleUserRelationListItem: FC<Props> = ({
           <CircleListItemTableColumn title="連携解除">
             <DeleteButton
               circle={circle}
-              onDelete={() => onDeleteRelation(userId)}
+              onDelete={() => onDeleteRelation({ circleId: circle.id })}
             />
           </CircleListItemTableColumn>
         </div>

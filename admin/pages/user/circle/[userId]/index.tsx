@@ -27,7 +27,7 @@ const IndexPage: NextPage = () => {
     async () => await getCircleListByUserId(Number(userId))
   )
 
-  const onDeleteRelation = async (circleId: number) => {
+  const onDeleteRelation = async ({ circleId }: { circleId: number }) => {
     const data = await deleteRelationBetweenUserAndCircle(
       Number(userId),
       circleId
