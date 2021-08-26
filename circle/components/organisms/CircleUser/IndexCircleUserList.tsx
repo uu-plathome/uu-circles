@@ -9,7 +9,7 @@ type Props = {
 const IndexCircleUserList: FC<Props> = ({ circleId, users }) => {
   return (
     <div className="bg-gray-50">
-      <div className="md:flex justify-center flex-wrap">
+      <div className="md:flex flex-wrap justify-center">
         {users &&
           users.map((user, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''

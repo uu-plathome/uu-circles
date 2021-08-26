@@ -83,7 +83,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           自分のアカウント編集
         </h1>
@@ -101,7 +101,7 @@ const CreatePage: NextPage = () => {
               }}
             />
 
-            <div className="text-center pt-12 border-t border-gray-300 mt-12">
+            <div className="pt-12 mt-12 text-center border-t border-gray-300">
               <Link href="/logout">
                 <a className="text-red-500 hover:underline">
                   <FontAwesomeIcon

@@ -196,7 +196,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faTag} className="mr-4" size="lg" />
           サークルタグ管理
         </h1>
@@ -205,16 +205,16 @@ const CreatePage: NextPage = () => {
 
         <BaseContainer>
           <div className="px-2 pt-8 pb-32">
-            <p className="px-4 py-8">
+            <p className="py-8 px-4">
               <Link
                 href="/circle/[circleId]"
                 as={`/circle/${Number(circleId)}`}
               >
-                <a className="underline text-blue-500">←サークルに戻る</a>
+                <a className="text-blue-500 underline">←サークルに戻る</a>
               </Link>
             </p>
 
-            <div className="px-2 py-4">
+            <div className="py-4 px-2">
               <form onSubmit={onSubmit}>
                 <BaseCheckBox
                   id="circle_tag"

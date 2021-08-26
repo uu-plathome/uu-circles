@@ -5,7 +5,7 @@ type Props = {
 }
 const FormHeader: FC<Props> = ({ children }) => {
   return (
-    <h2 className="text-black text-lg text-center mb-4 font-bold py-8">
+    <h2 className="py-8 mb-4 text-lg font-bold text-center text-black">
       {children}
     </h2>
   )

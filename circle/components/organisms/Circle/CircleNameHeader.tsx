@@ -43,7 +43,7 @@ const CircleNameHeader: FC<Props> = ({ circle }) => {
 
         <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
           <a>
-            <h1 className="text-black text-lg md:text-2xl font-bold">
+            <h1 className="text-lg md:text-2xl font-bold text-black">
               {circle.name}
             </h1>
           </a>
@@ -52,7 +52,7 @@ const CircleNameHeader: FC<Props> = ({ circle }) => {
 
       <div>
         <Link href="/">
-          <a className="text-blue-500 hover:underline text-sm">切り替え</a>
+          <a className="text-sm text-blue-500 hover:underline">切り替え</a>
         </Link>
       </div>
     </div>

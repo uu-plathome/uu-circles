@@ -71,7 +71,7 @@ const IndexPage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           新歓イベント一覧
         </h1>
@@ -85,7 +85,7 @@ const IndexPage: NextPage = () => {
                     href="/circle/[circleId]"
                     as={`/circle/${Number(circleId)}`}
                   >
-                    <a className="underline text-blue-500">← サークルに戻る</a>
+                    <a className="text-blue-500 underline">← サークルに戻る</a>
                   </Link>
                 </p>
 
@@ -100,7 +100,7 @@ const IndexPage: NextPage = () => {
 
                 {onReleaseFuture && onReleaseFuture.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       予定している公開中の新歓一覧
                     </h2>
 
@@ -115,7 +115,7 @@ const IndexPage: NextPage = () => {
 
                 {onPrivateFuture && onPrivateFuture.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       予定している非公開の新歓一覧
                     </h2>
 
@@ -130,7 +130,7 @@ const IndexPage: NextPage = () => {
 
                 {onReleasePast && onReleasePast.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       実施済みの公開中の新歓一覧
                     </h2>
 
@@ -145,7 +145,7 @@ const IndexPage: NextPage = () => {
 
                 {onPrivatePast && onPrivatePast.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       実施済みの非公開の新歓一覧
                     </h2>
 

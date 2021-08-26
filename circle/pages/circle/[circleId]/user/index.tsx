@@ -74,7 +74,7 @@ const IndexPage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント一覧
         </h1>
@@ -82,12 +82,12 @@ const IndexPage: NextPage = () => {
         <BaseContainer>
           <div className="pb-32">
             {circle ? (
-              <p className="px-4 py-8">
+              <p className="py-8 px-4">
                 <Link
                   href="/circle/[circleId]"
                   as={`/circle/${Number(circleId)}`}
                 >
-                  <a className="underline text-blue-500">←サークルに戻る</a>
+                  <a className="text-blue-500 underline">←サークルに戻る</a>
                 </Link>
               </p>
             ) : (
@@ -117,7 +117,7 @@ const IndexPage: NextPage = () => {
                 {circleUsersDoneEmailVerify &&
                 circleUsersDoneEmailVerify.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       認証済みの部員アカウント一覧
                     </h2>
 
@@ -133,7 +133,7 @@ const IndexPage: NextPage = () => {
                 {circleUsersNotDoneEmailVerify &&
                 circleUsersNotDoneEmailVerify.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       未認証の部員アカウント一覧
                     </h2>
 

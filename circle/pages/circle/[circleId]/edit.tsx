@@ -520,19 +520,19 @@ const Page: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faFileAlt} className="mr-4" size="lg" />
           <span>{circle ? circle.name : 'サークル'}の編集</span>
         </h1>
 
         <BaseContainer>
-          <div className="pb-32 md:pb-72 px-4">
+          <div className="px-4 pb-32 md:pb-72">
             <p className="pt-8">
               <Link
                 href="/circle/[circleId]"
                 as={`/circle/${Number(circleId)}`}
               >
-                <a className="underline text-blue-500">← 戻る</a>
+                <a className="text-blue-500 underline">← 戻る</a>
               </Link>
             </p>
 

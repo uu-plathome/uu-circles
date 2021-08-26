@@ -7,8 +7,8 @@ type Props = {
 }
 const SuccessBunner: FC<Props> = ({ text }) => {
   return (
-    <div className="p-4 mb-4 border-4 border-green-700 rounded">
-      <p className="text-black text-lg">
+    <div className="p-4 mb-4 rounded border-4 border-green-700">
+      <p className="text-lg text-black">
         <FontAwesomeIcon icon={faCheckCircle} color="green" /> {text}
       </p>
     </div>
