@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enum\Property\CircleTagProperty;
 use App\Enum\Property\TagPageViewProperty;
 use App\Enum\SlugProperty\TagSlugProperty;
 use App\Models\TagPageView;
