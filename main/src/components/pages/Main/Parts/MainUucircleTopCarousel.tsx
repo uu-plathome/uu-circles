@@ -41,40 +41,28 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
 
   return (
     <div className="flex justify-center bg-gray-100">
-      <Swiper {...params}>
-        <nav>
-          <SwiperSlide>
-            <Image
-              src="/images/top-image.png"
-              width={width || 1000}
-              height={height}
-              objectFit="cover"
-              alt="宇都宮大学の“知りたいサークル“を知る場所"
-            />
-          </SwiperSlide>
+      <Swiper tag="nav" {...params}>
+        <SwiperSlide>
+          <Image
+            src="/images/top-image.png"
+            width={width || 1000}
+            height={height}
+            objectFit="cover"
+            alt="宇都宮大学の“知りたいサークル“を知る場所"
+          />
+        </SwiperSlide>
 
-          {advertises &&
-            advertises.map((advertise) => {
-              return (
-                <SwiperSlide key={advertise.id}>
-                  <div className="relative">
-                    {advertise.link ? (
-                      <a
-                        href={`${process.env.API_URL}/share/advertise/${advertise.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Image
-                          width={width || 1000}
-                          height={height}
-                          objectFit="cover"
-                          alt={`${advertise.title} - トップ広告`}
-                          src={
-                            advertise.mainImageUrl || '/images/top-image.png'
-                          }
-                        />
-                      </a>
-                    ) : (
+        {advertises &&
+          advertises.map((advertise) => {
+            return (
+              <SwiperSlide key={advertise.id}>
+                <div className="relative">
+                  {advertise.link ? (
+                    <a
+                      href={`${process.env.API_URL}/share/advertise/${advertise.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Image
                         width={width || 1000}
                         height={height}
@@ -82,18 +70,26 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                         alt={`${advertise.title} - トップ広告`}
                         src={advertise.mainImageUrl || '/images/top-image.png'}
                       />
-                    )}
-                  </div>
+                    </a>
+                  ) : (
+                    <Image
+                      width={width || 1000}
+                      height={height}
+                      objectFit="cover"
+                      alt={`${advertise.title} - トップ広告`}
+                      src={advertise.mainImageUrl || '/images/top-image.png'}
+                    />
+                  )}
+                </div>
 
-                  <div className="absolute top-2 left-2">
-                    <div className="p-2 px-4 text-xs bg-gray-300 rounded">
-                      広告
-                    </div>
+                <div className="absolute top-2 left-2">
+                  <div className="p-2 px-4 text-xs bg-gray-300 rounded">
+                    広告
                   </div>
-                </SwiperSlide>
-              )
-            })}
-        </nav>
+                </div>
+              </SwiperSlide>
+            )
+          })}
       </Swiper>
     </div>
   )
