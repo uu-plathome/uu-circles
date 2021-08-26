@@ -5,7 +5,7 @@ namespace App\Enum\SlugProperty;
 /**
  * /api/circle/tag/{tag}のtagのパス一覧.
  */
-class TagSlugProperty
+final class TagSlugProperty
 {
     const sport = 'sport';
     const music = 'music';
