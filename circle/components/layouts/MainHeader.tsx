@@ -1,8 +1,8 @@
-import { YellowButton } from '@/components/atoms/buttons/YellowButton'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { FC } from 'react'
+import { YellowButton } from '@/components/atoms/buttons/YellowButton'
+import Color from 'colors'
 
 type Props = {
   onClick?(): void
@@ -14,7 +14,7 @@ const MainHeader: FC<Props> = ({ onClick }) => {
         <div className="mx-auto" style={{ maxWidth: 700 }}>
           <div
             id="site_title"
-            className="px-4 sm:px-0 xl:container flex justify-between items-center py-4"
+            className="xl:container flex justify-between items-center py-4 px-4 sm:px-0"
           >
             <div className="flex items-center">
               <div className="md:hidden pr-2">

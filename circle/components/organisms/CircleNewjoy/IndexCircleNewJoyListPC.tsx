@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { CircleNewJoyListItemPC } from '@/components/organisms/CircleNewjoy/CircleNewJoyListItemPC'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { FC } from 'react'
 
 type Props = {
   circleId: number
@@ -9,7 +9,7 @@ type Props = {
 const IndexCircleNewJoyListPC: FC<Props> = ({ circleId, circleNewJoys }) => {
   return (
     <div className="bg-gray-50">
-      <div className="md:flex justify-center flex-wrap">
+      <div className="md:flex flex-wrap justify-center">
         {circleNewJoys &&
           circleNewJoys.map((circleNewJoy, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''

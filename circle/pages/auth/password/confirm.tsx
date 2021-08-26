@@ -1,3 +1,8 @@
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useContext, useState } from 'react'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
@@ -6,11 +11,6 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { resetPassword } from '@/infra/api/auth'
 import { isResetPasswordCircleRequestValidationError } from '@/lib/types/api/ResetPasswordCircleRequest'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
 
 const PasswordConfirmPage: NextPage = () => {
   const password = useInput('')
@@ -68,15 +68,15 @@ const PasswordConfirmPage: NextPage = () => {
       <MainHeader />
 
       <div className="xl:container">
-        <div className="max-w-screen-md mx-auto mt-16">
-          <div className="rounded p-4">
-            <h1 className="text-black text-center text-2xl mb-4">
+        <div className="mx-auto mt-16 max-w-screen-md">
+          <div className="p-4 rounded">
+            <h1 className="mb-4 text-2xl text-center text-black">
               新しいパスワード
             </h1>
 
             {error ? (
               <div className="p-4 mb-4">
-                <p className="text-black text-lg">
+                <p className="text-lg text-black">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
                 </p>

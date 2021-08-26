@@ -1,11 +1,12 @@
-import colors from '@/colors'
-import { __ } from '@/lang/ja'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { getDate, getTime } from '@/lib/utils/Date'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
+import colors from '@/colors'
+import { __ } from '@/lang/ja'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { getDate, getTime } from '@/lib/utils/Date'
 
 type Props = {
   circleId: number
@@ -20,11 +21,11 @@ const CircleNewJoyListItemSP: FC<Props> = ({ circleId, circleNewJoy }) => {
     >
       <a>
         <div
-          className="border border-gray-300 bg-white rounded-lg flex justify-between items-center px-6 py-2 mx-auto mb-2"
+          className="flex justify-between items-center py-2 px-6 mx-auto mb-2 bg-white rounded-lg border border-gray-300"
           style={{ width: 320 }}
         >
-          <div className="w-full pr-3">
-            <h2 className="text-black font-bold mb-1">
+          <div className="pr-3 w-full">
+            <h2 className="mb-1 font-bold text-black">
               <FontAwesomeIcon
                 icon={circleNewJoy.release ? faCheck : faTimes}
                 color={
@@ -34,25 +35,25 @@ const CircleNewJoyListItemSP: FC<Props> = ({ circleId, circleNewJoy }) => {
               />
               {circleNewJoy.title}
             </h2>
-            <p className="text-sm border-b border-gray-400 flex mb-1">
-              <span className="text-gray-400 whitespace-nowrap text-xs pl-1">
+            <p className="flex mb-1 text-sm border-b border-gray-400">
+              <span className="pl-1 text-xs text-gray-400 whitespace-nowrap">
                 場所
               </span>
               <span className="block w-full text-center">
-                {__(circleNewJoy.placeOfActivity)}
+                {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
               </span>
             </p>
-            <div className="text-sm flex">
+            <div className="flex text-sm">
               <div
-                className="mr-2 border-b border-gray-400 whitespace-nowrap"
+                className="mr-2 whitespace-nowrap border-b border-gray-400"
                 style={{ width: 120 }}
               >
-                <span className="text-gray-400 text-xs pl-1">日時</span>
+                <span className="pl-1 text-xs text-gray-400">日時</span>
                 <span className="px-2">{getDate(circleNewJoy.startDate)}</span>
               </div>
 
               <span
-                className="block w-full text-center border-b border-gray-400 whitespace-nowrap"
+                className="block w-full text-center whitespace-nowrap border-b border-gray-400"
                 style={{ width: 90 }}
               >
                 {getTime(circleNewJoy.startDate, circleNewJoy.endDate)}
@@ -61,7 +62,7 @@ const CircleNewJoyListItemSP: FC<Props> = ({ circleId, circleNewJoy }) => {
           </div>
           <div className="mr-4">
             <div
-              className="text-white bg-blue-800 rounded-full text-xs flex items-center justify-center cursor-pointer"
+              className="flex justify-center items-center text-xs text-white bg-blue-800 rounded-full cursor-pointer"
               style={{ width: 52, height: 52 }}
             >
               詳細

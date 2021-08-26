@@ -1,3 +1,10 @@
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useContext, useMemo } from 'react'
+import useSWR from 'swr'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -10,14 +17,6 @@ import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader
 import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -31,33 +30,17 @@ const useCircleId = () => {
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [circle, setCircle] = useState<Circle>()
-  const [onReleaseFuture, setOnReleaseFuture] = useState<CircleNewJoy[]>()
-  const [onReleasePast, setOnReleasePast] = useState<CircleNewJoy[]>()
-  const [onPrivateFuture, setOnPrivateFuture] = useState<CircleNewJoy[]>()
-  const [onPrivatePast, setOnPrivatePast] = useState<CircleNewJoy[]>()
   const { circleId } = useCircleId()
 
-  useEffect(() => {
-    const f = async () => {
-      const {
-        circle: _circle,
-        onReleaseFuture,
-        onReleasePast,
-        onPrivateFuture,
-        onPrivatePast,
-      } = await getCircleNewJoyList(circleId)
-      setCircle(_circle)
-      setOnReleaseFuture(onReleaseFuture)
-      setOnReleasePast(onReleasePast)
-      setOnPrivateFuture(onPrivateFuture)
-      setOnPrivatePast(onPrivatePast)
-    }
-
-    f()
-  }, [])
+  const { data } = useSWR(
+    `/circle/${circleId}/newjoy`,
+    async () => await getCircleNewJoyList(circleId)
+  )
 
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    if (!data) return []
+
+    const circle = data.circle
     return circle
       ? [
           ...[
@@ -75,14 +58,20 @@ const IndexPage: NextPage = () => {
           ],
         ]
       : []
-  }, [circle])
+  }, [data])
+
+  const circle = data ? data.circle : null
+  const onReleaseFuture = data ? data.onReleaseFuture : []
+  const onReleasePast = data ? data.onReleasePast : []
+  const onPrivateFuture = data ? data.onPrivateFuture : []
+  const onPrivatePast = data ? data.onPrivatePast : []
 
   return (
     <div>
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           新歓イベント一覧
         </h1>
@@ -96,7 +85,7 @@ const IndexPage: NextPage = () => {
                     href="/circle/[circleId]"
                     as={`/circle/${Number(circleId)}`}
                   >
-                    <a className="underline text-blue-500">← サークルに戻る</a>
+                    <a className="text-blue-500 underline">← サークルに戻る</a>
                   </Link>
                 </p>
 
@@ -111,7 +100,7 @@ const IndexPage: NextPage = () => {
 
                 {onReleaseFuture && onReleaseFuture.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       予定している公開中の新歓一覧
                     </h2>
 
@@ -126,7 +115,7 @@ const IndexPage: NextPage = () => {
 
                 {onPrivateFuture && onPrivateFuture.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       予定している非公開の新歓一覧
                     </h2>
 
@@ -141,7 +130,7 @@ const IndexPage: NextPage = () => {
 
                 {onReleasePast && onReleasePast.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       実施済みの公開中の新歓一覧
                     </h2>
 
@@ -156,7 +145,7 @@ const IndexPage: NextPage = () => {
 
                 {onPrivatePast && onPrivatePast.length > 0 ? (
                   <div>
-                    <h2 className="text-lg font-bold text-center pt-10 pb-6">
+                    <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       実施済みの非公開の新歓一覧
                     </h2>
 

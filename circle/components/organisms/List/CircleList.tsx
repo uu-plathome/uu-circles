@@ -1,6 +1,6 @@
-import { Circle } from '@/lib/types/model/Circle'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Circle } from '@/lib/types/model/Circle'
 
 const CircleListItem: FC<{
   circle: Circle
@@ -9,10 +9,10 @@ const CircleListItem: FC<{
     <Link href="/circle/[circleId]" as={`/circle/${circle.id}`}>
       <a>
         <div
-          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6"
+          className="flex justify-center items-center py-6 bg-white rounded border border-gray-200"
           style={{ width: 280 }}
         >
-          <p className="font-lg font-bold">{circle.name}</p>
+          <p className="font-bold font-lg">{circle.name}</p>
         </div>
       </a>
     </Link>
@@ -29,7 +29,7 @@ const CircleList: FC<Props> = ({ circles }) => {
         return (
           <div
             key={`CircleList-${circle.id}`}
-            className="mb-4 flex justify-center"
+            className="flex justify-center mb-4"
           >
             <CircleListItem circle={circle} />
           </div>

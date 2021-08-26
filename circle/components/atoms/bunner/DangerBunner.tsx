@@ -7,8 +7,8 @@ type Props = {
 }
 const DangerBunner: FC<Props> = ({ text }) => {
   return (
-    <div className="p-4 mb-4 border-4 bg-gray-100 border-red-700 rounded">
-      <p className="text-red-600 text-sm">
+    <div className="p-4 mb-4 bg-gray-100 rounded border-4 border-red-700">
+      <p className="text-sm text-red-600">
         <FontAwesomeIcon icon={faExclamationTriangle} color="red" /> {text}
       </p>
     </div>

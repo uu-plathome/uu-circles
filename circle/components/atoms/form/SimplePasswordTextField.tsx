@@ -1,8 +1,8 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { FC, InputHTMLAttributes, useState } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
+import Color from 'colors'
 
 const inputClass = `
     px-4
@@ -46,7 +46,7 @@ const SimplePasswordTextField: FC<Props> = ({
   const [visible, setVisible] = useState(false)
 
   return (
-    <div className="flex flex-col space-y-1 mb-4">
+    <div className="flex flex-col mb-4 space-y-1">
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="relative">

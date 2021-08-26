@@ -1,3 +1,16 @@
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import {
+  FormEvent,
+  MouseEvent,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -20,19 +33,6 @@ import {
   UpdateCircleNewJoyRequest,
 } from '@/lib/types/api/UpdateCircleNewJoyRequest'
 import { Circle } from '@/lib/types/model/Circle'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import {
-  FormEvent,
-  MouseEvent,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -162,19 +162,19 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faCalendarAlt} className="mr-4" size="lg" />
           新歓イベントの編集
         </h1>
 
         <BaseContainer>
-          <div className="px-4 py-4">
+          <div className="py-4 px-4">
             <p className="pt-8">
               <Link
                 href="/circle/[circleId]/newjoy"
                 as={`/circle/${Number(circleId)}/newjoy`}
               >
-                <a className="underline text-blue-500">
+                <a className="text-blue-500 underline">
                   ←新歓イベント一覧に戻る
                 </a>
               </Link>
@@ -201,7 +201,7 @@ const CreatePage: NextPage = () => {
                   }}
                 />
 
-                <div className="text-center pt-16 pb-8">
+                <div className="pt-16 pb-8 text-center">
                   <a
                     onClick={onDelete}
                     className="text-red-600 hover:underline"

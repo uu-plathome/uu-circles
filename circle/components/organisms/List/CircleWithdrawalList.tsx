@@ -1,8 +1,8 @@
+import { FC, useState } from 'react'
+import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { Circle } from '@/lib/types/model/Circle'
-import { FC, useState } from 'react'
-import Modal from 'react-modal'
 
 const customStyles = {
   content: {
@@ -37,10 +37,10 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onWithdrawal }) => {
         onClick={() => setIsOpen(true)}
       >
         <div
-          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6"
+          className="flex justify-center items-center py-6 bg-white rounded border border-gray-200"
           style={{ width: 280 }}
         >
-          <p className="font-lg font-bold">{circle.name}</p>
+          <p className="font-bold font-lg">{circle.name}</p>
         </div>
       </a>
 
@@ -50,7 +50,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onWithdrawal }) => {
         style={customStyles}
         contentLabel="サークルを脱退"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当にサークルを脱退しますか？
         </h2>
 
@@ -87,7 +87,7 @@ const CircleWithdrawalList: FC<Props> = ({ circles, onWithdrawal }) => {
         return (
           <div
             key={`CircleWithdrawalList-${circle.id}`}
-            className="mb-4 flex justify-center"
+            className="flex justify-center mb-4"
           >
             <CircleWithdrawalListItem
               circle={circle}

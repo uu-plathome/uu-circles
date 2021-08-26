@@ -1,6 +1,6 @@
-import { User } from '@/lib/types/model/User'
 import { FC } from 'react'
 import { CircleUserListItemByImport } from './CircleUserListItemByImport'
+import { User } from '@/lib/types/model/User'
 
 type Props = {
   users: User[]
@@ -14,7 +14,7 @@ const IndexCircleUserListByImport: FC<Props> = ({
 }) => {
   return (
     <div className="bg-gray-50">
-      <div className="md:flex justify-center flex-wrap">
+      <div className="md:flex flex-wrap justify-center">
         {users &&
           users.map((user, idx) => {
             let className = idx % 3 === 0 ? 'place-self-end' : ''

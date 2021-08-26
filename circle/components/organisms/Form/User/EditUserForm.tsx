@@ -1,7 +1,7 @@
+import { FC, FormEvent } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseStringInput } from '@/hooks/useInput'
-import { FC, FormEvent } from 'react'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void
