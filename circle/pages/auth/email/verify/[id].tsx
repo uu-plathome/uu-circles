@@ -82,9 +82,9 @@ const Login: NextPage = () => {
       <MainHeader />
 
       <div className="xl:container">
-        <div className="max-w-screen-md mx-auto mt-16">
-          <div className="rounded p-4">
-            <h1 className="text-black text-center text-2xl mb-4">
+        <div className="mx-auto mt-16 max-w-screen-md">
+          <div className="p-4 rounded">
+            <h1 className="mb-4 text-2xl text-center text-black">
               パスワード設定
             </h1>
 

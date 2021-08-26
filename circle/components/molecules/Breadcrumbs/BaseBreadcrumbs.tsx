@@ -35,7 +35,7 @@ const BaseBreadcrumbs: FC<Props> = ({ items }) => {
   return (
     <div className="">
       <BaseContainer>
-        <div className="border-b border-gray-300 px-4 py-2">
+        <div className="py-2 px-4 border-b border-gray-300">
           {breadcrumbsItems &&
             breadcrumbsItems.map((item, idx) => {
               return (

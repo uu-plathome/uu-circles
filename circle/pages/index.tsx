@@ -23,7 +23,7 @@ const IndexPage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={[]} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
           サークル一覧
         </h1>
@@ -37,7 +37,7 @@ const IndexPage: NextPage = () => {
             )}
           </div>
 
-          <div className="text-center pt-32">
+          <div className="pt-32 text-center">
             <Link href="/circle/withdrawal">
               <a className="text-red-600 hover:underline">サークルを脱退する</a>
             </Link>

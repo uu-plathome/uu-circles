@@ -12,7 +12,7 @@ const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
     <li className="border border-b border-gray-200">
       <Link href={href}>
         <a className="text-sm text-black">
-          <div className="pl-8 py-4">{children}</div>
+          <div className="py-4 pl-8">{children}</div>
         </a>
       </Link>
     </li>
@@ -24,7 +24,7 @@ const BaseSpMenu: FC = () => {
     <div>
       <div>
         <ul className="mb-8">
-          <h3 className="text-center my-4">サークル管理画面</h3>
+          <h3 className="my-4 text-center">サークル管理画面</h3>
 
           <MenuItem href="/">
             <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
@@ -48,7 +48,7 @@ const BaseSpMenu: FC = () => {
         </ul>
 
         <ul>
-          <h3 className="text-center mb-4">メインページを見る</h3>
+          <h3 className="mb-4 text-center">メインページを見る</h3>
 
           <MenuItem href="https://uu-circles.com">
             <FontAwesomeIcon icon={faPager} size="lg" className="mr-4" />

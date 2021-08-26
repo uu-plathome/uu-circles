@@ -1,10 +1,10 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { FC } from 'react'
 import { User } from '@/lib/types/model/User'
+import Color from 'colors'
 
 type Props = {
   user: User
@@ -19,7 +19,7 @@ const BaseHeader: FC<Props> = ({ onClick, user }) => {
         <div className="mx-auto" style={{ maxWidth: 700 }}>
           <div
             id="site_title"
-            className="px-4 sm:px-0 xl:container flex justify-between items-center py-4"
+            className="xl:container flex justify-between items-center py-4 px-4 sm:px-0"
           >
             <div className="flex items-center">
               <div className="md:hidden pr-2">
@@ -32,7 +32,7 @@ const BaseHeader: FC<Props> = ({ onClick, user }) => {
                 </button>
               </div>
 
-              <div className="flex items-baseline flex-col-reverse md:flex-row">
+              <div className="flex flex-col-reverse md:flex-row items-baseline">
                 <h1 className="text-base md:text-lg">
                   {router.pathname === '/' ? (
                     <p>UU-Circles</p>
