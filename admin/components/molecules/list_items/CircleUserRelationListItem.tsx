@@ -152,7 +152,10 @@ const CircleUserRelationListItem: FC<Props> = ({
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="ユーザー情報">
-            <Link href="/circle/[id]/user/[userId]/edit" as={`/circle/${circle.id}/user/${userId}/edit`}>
+            <Link
+              href="/circle/[id]/user/[userId]/edit"
+              as={`/circle/${circle.id}/user/${userId}/edit`}
+            >
               <a>
                 <FontAwesomeIcon size="lg" color="orange" icon={faUser} />
               </a>

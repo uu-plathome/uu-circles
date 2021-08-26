@@ -57,7 +57,13 @@ export const deleteCircleUser = async (
   }
 }
 
-export const getCircleUser = async ({ circleId, userId }: { circleId: number, userId: number }) => {
+export const getCircleUser = async ({
+  circleId,
+  userId,
+}: {
+  circleId: number
+  userId: number
+}) => {
   const { data } = await axiosInstance.get<{
     data: User
   }>(`/admin/api/circle/${circleId}/user/${userId}`)
