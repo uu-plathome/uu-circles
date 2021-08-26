@@ -36,6 +36,16 @@ export const ImagePath = {
     },
   },
 
+  UTA_ICON: {
+    BLUE: '/images/uta/uta-blue.png',
+    GRAY: '/images/uta/uta-gray.png',
+    GREEN: '/images/uta/uta-green.png',
+    ORANGE: '/images/uta/uta-orange.png',
+    PINK: '/images/uta/uta-pink.png',
+    PURPLE: '/images/uta/uta-purple.png',
+    YELLOW: '/images/uta/uta-yellow.png',
+  },
+
   UU_CIRCLES_2020: {
     MAIN: '/images/uu-circles2020/uu-circles2020-main.png',
   },
