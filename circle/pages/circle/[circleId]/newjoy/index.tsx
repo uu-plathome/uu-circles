@@ -32,7 +32,10 @@ const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
   const { circleId } = useCircleId()
 
-  const { data } = useSWR(`/circle/${circleId}/newjoy`, async () => await getCircleNewJoyList(circleId))
+  const { data } = useSWR(
+    `/circle/${circleId}/newjoy`,
+    async () => await getCircleNewJoyList(circleId)
+  )
 
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     if (!data) return []
@@ -40,20 +43,20 @@ const IndexPage: NextPage = () => {
     const circle = data.circle
     return circle
       ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `新歓イベント一覧`,
-            href: `/circle/[circleId]/newjoy`,
-            as: `/circle/${circle.id}/newjoy`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `新歓イベント一覧`,
+              href: `/circle/[circleId]/newjoy`,
+              as: `/circle/${circle.id}/newjoy`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [data])
 
