@@ -27,7 +27,7 @@ const MainSponsorshipFooter: FC<Props> = ({
   return (
     <>
       <div className="md:mx-auto" style={{ maxWidth: 700 }}>
-        <div className="mb-2">
+        <div className="hidden md:block mb-2">
           {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0 ? (
             <Utas
               num={

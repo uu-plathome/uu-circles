@@ -63,13 +63,15 @@ const MainCircleList: FC<Props> = ({
             className="mb-6 md:mb-16"
             onMouseOver={() => onChangeId(`${id}-${circle.slug}`)}
           >
-            {_pageViewsByCircleSlug > 0 ? (
-              <Utas
-                num={_pageViewsByCircleSlug >= 5 ? 5 : _pageViewsByCircleSlug}
-              />
-            ) : (
-              <div className="pt-8" />
-            )}
+            <div className="hidden md:block">
+              {_pageViewsByCircleSlug > 0 ? (
+                <Utas
+                  num={_pageViewsByCircleSlug >= 5 ? 5 : _pageViewsByCircleSlug}
+                />
+              ) : (
+                <div className="pt-8" />
+              )}
+            </div>
 
             <Link
               href="/circle/[slug]"
