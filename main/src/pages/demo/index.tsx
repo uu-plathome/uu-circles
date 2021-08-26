@@ -17,20 +17,19 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 
 const randomArr = (array: any[], num: number) => {
-  const a = array;
-  let t = [];
-  let r = [];
-  let l = a.length;
-  let n = num < l ? num : l;
+  const a = array
+  let t = []
+  let r = []
+  let l = a.length
+  let n = num < l ? num : l
   while (n-- > 0) {
-    var i = Math.random() * l | 0;
-    r[n] = t[i] || a[i];
-    --l;
-    t[i] = t[l] || a[l];
+    var i = (Math.random() * l) | 0
+    r[n] = t[i] || a[i]
+    --l
+    t[i] = t[l] || a[l]
   }
-  return r;
+  return r
 }
-
 
 type Props = {
   advertises: Advertise[]
@@ -60,10 +59,14 @@ const Index: NextPage<Props> = ({
     pageUrl: '/demo',
     pageName: 'main_demo',
     identifierHash,
-    candidateCircleSlug: useMemo(() => randomArr(
-      circles.map(circle => circle.slug),
-      Math.floor(circles.length / 2)
-    ), [circles]),
+    candidateCircleSlug: useMemo(
+      () =>
+        randomArr(
+          circles.map((circle) => circle.slug),
+          Math.floor(circles.length / 2)
+        ),
+      [circles]
+    ),
   })
 
   return (
