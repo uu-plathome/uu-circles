@@ -1,10 +1,11 @@
 import { GetStaticProps, NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
+import { usePagePositionForDemo } from '@/src/components/pages/Main/Demo/usePagePositionForDemo'
 import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { CategorySlugProperty } from '@/src/lib/enum/api/CategorySlugProperty'
 import { Importance } from '@/src/lib/enum/api/Importance'
@@ -14,6 +15,22 @@ import { getMainDemo } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
+
+const randomArr = (array: any[], num: number) => {
+  const a = array;
+  let t = [];
+  let r = [];
+  let l = a.length;
+  let n = num < l ? num : l;
+  while (n-- > 0) {
+    var i = Math.random() * l | 0;
+    r[n] = t[i] || a[i];
+    --l;
+    t[i] = t[l] || a[l];
+  }
+  return r;
+}
+
 
 type Props = {
   advertises: Advertise[]
@@ -39,14 +56,18 @@ const Index: NextPage<Props> = ({
   const { uuYellForMain } = useFetchUuYell()
 
   // ページ位置
-  const { pageData, onChangeId, recordPagePosition } = usePagePosition({
+  const { pageData, onChangeId, recordPagePosition } = usePagePositionForDemo({
     pageUrl: '/demo',
     pageName: 'main_demo',
     identifierHash,
+    candidateCircleSlug: useMemo(() => randomArr(
+      circles.map(circle => circle.slug),
+      Math.floor(circles.length / 2)
+    ), [circles]),
   })
 
   return (
-    <div>
+    <>
       <BaseHead
         title="UU-Circles デモ画面 | 宇都宮大学の“知りたいサークル“を知る場所"
         description={`デモ画面。宇都宮大学のサークル一覧。なりたいジブンをさがす春。`}
@@ -93,7 +114,7 @@ const Index: NextPage<Props> = ({
         recordPagePosition={recordPagePosition}
         onChangeId={onChangeId}
       />
-    </div>
+    </>
   )
 }
 

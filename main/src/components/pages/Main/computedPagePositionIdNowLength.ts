@@ -40,6 +40,9 @@ export const computedPagePositionIdNowLength = ({
           p.pagePositionId === `${ID_LIST.CIRCLE_LIST}-${circleSlug}`
       ).length,
     })),
+    [ID_LIST.RECOMMEND_TAG_LIST]: pagePositionsExcludeOwn.filter(
+      (p) => p.pagePositionId === ID_LIST.RECOMMEND_TAG_LIST
+    ).length,
     [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
       (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
     ).length,
