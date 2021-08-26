@@ -18,6 +18,7 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useMemo, useState } from 'react'
+import useSWR from 'swr'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -31,51 +32,40 @@ const useCircleId = () => {
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [circle, setCircle] = useState<Circle>()
-  const [onReleaseFuture, setOnReleaseFuture] = useState<CircleNewJoy[]>()
-  const [onReleasePast, setOnReleasePast] = useState<CircleNewJoy[]>()
-  const [onPrivateFuture, setOnPrivateFuture] = useState<CircleNewJoy[]>()
-  const [onPrivatePast, setOnPrivatePast] = useState<CircleNewJoy[]>()
   const { circleId } = useCircleId()
 
-  useEffect(() => {
-    const f = async () => {
-      const {
-        circle: _circle,
-        onReleaseFuture,
-        onReleasePast,
-        onPrivateFuture,
-        onPrivatePast,
-      } = await getCircleNewJoyList(circleId)
-      setCircle(_circle)
-      setOnReleaseFuture(onReleaseFuture)
-      setOnReleasePast(onReleasePast)
-      setOnPrivateFuture(onPrivateFuture)
-      setOnPrivatePast(onPrivatePast)
-    }
-
-    f()
-  }, [])
+  const { data } = useSWR(`/circle/${circleId}/newjoy`, async () => await getCircleNewJoyList(circleId))
 
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
+    if (!data) return []
+
+    const circle = data.circle
     return circle
       ? [
-          ...[
-            {
-              text: circle.shortName || circle.name,
-              href: `/circle/[circleId]`,
-              as: `/circle/${circle.id}`,
-            },
-            {
-              text: `新歓イベント一覧`,
-              href: `/circle/[circleId]/newjoy`,
-              as: `/circle/${circle.id}/newjoy`,
-              active: true,
-            },
-          ],
-        ]
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `新歓イベント一覧`,
+            href: `/circle/[circleId]/newjoy`,
+            as: `/circle/${circle.id}/newjoy`,
+            active: true,
+          },
+        ],
+      ]
       : []
-  }, [circle])
+  }, [data])
+
+  const {
+    circle,
+    onReleaseFuture,
+    onReleasePast,
+    onPrivateFuture,
+    onPrivatePast,
+  } = data
 
   return (
     <div>
