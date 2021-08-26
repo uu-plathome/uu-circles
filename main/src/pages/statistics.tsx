@@ -43,7 +43,7 @@ const Page: NextPage<Props> = ({
   )
 
   return (
-    <div>
+    <>
       <BaseHead title="統計情報" />
 
       <BaseLayout
@@ -66,17 +66,15 @@ const Page: NextPage<Props> = ({
               />
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${
-                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                }`}
+                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                  }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
@@ -93,7 +91,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

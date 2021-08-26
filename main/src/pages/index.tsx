@@ -71,7 +71,7 @@ const Index: NextPage<Props> = (ssrProps) => {
   })
 
   return (
-    <div>
+    <>
       <MainHead />
 
       <MainTemplate
@@ -85,7 +85,7 @@ const Index: NextPage<Props> = (ssrProps) => {
         recordPagePosition={recordPagePosition}
         onChangeId={onChangeId}
       />
-    </div>
+    </>
   )
 }
 
