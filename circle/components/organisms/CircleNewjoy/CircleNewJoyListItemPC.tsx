@@ -1,5 +1,6 @@
 import colors from '@/colors'
 import { __ } from '@/lang/ja'
+import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getTime } from '@/lib/utils/Date'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -51,8 +52,7 @@ const CircleNewJoyListItemPC: FC<Props> = ({ circleId, circleNewJoy }) => {
           <div className="border-b-2  grid grid-cols-8">
             <p className="text-gray-600 text-xs col-span-1">場所</p>
             <p className="text-gray-600 text-xs col-span-6 text-center">
-              {' '}
-              {__(circleNewJoy.placeOfActivity)}
+              {__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}
             </p>
           </div>
           <div className="border-b-2  grid grid-cols-8">
