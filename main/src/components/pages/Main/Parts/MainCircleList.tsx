@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC, useCallback } from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
 import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { Circle } from '@/src/lib/types/model/Circle'
@@ -21,24 +23,30 @@ const MainCircleList: FC<Props> = ({
   // w : h = 210 : 297
   const height = (width * 297) / 210
 
+  const [isOn, setIsOn] = useState(false)
+
   const pageViewsByCircleSlug = useCallback(
     (slug: string) => {
       const circle = circles.find((c) => c.slug === slug)
-      if (!circle) {
-        return 0
-      }
+      if (!circle) return 0
 
       const p = pagePositionIdNowLength.circlePageViews.find(
         (p) => p.circleSlug === slug
       )
-      if (!p) {
-        return 0
-      }
+      if (!p) return 0
 
       return p.count
     },
     [circles, pagePositionIdNowLength]
   )
+
+  useEffect(() => {
+    setIsOn(true)
+  }, [])
+
+  if (!isOn) {
+    return <div />
+  }
 
   return (
     <div
@@ -47,6 +55,7 @@ const MainCircleList: FC<Props> = ({
       onMouseOver={() => onChangeId(id)}
     >
       {circles.map((circle, idx) => {
+        const _pageViewsByCircleSlug = pageViewsByCircleSlug(circle.slug)
         return (
           <div
             id={`${id}-${circle.slug}`}
@@ -54,13 +63,9 @@ const MainCircleList: FC<Props> = ({
             className="mb-6 md:mb-16"
             onMouseOver={() => onChangeId(`${id}-${circle.slug}`)}
           >
-            {pageViewsByCircleSlug(circle.slug) > 0 ? (
+            {_pageViewsByCircleSlug > 0 ? (
               <Utas
-                num={
-                  pageViewsByCircleSlug(circle.slug) > 5
-                    ? 5
-                    : pageViewsByCircleSlug(circle.slug)
-                }
+                num={_pageViewsByCircleSlug >= 5 ? 5 : _pageViewsByCircleSlug}
               />
             ) : (
               <div className="pt-8" />

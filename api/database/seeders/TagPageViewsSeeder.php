@@ -14,6 +14,8 @@ class TagPageViewsSeeder extends Seeder
     /**
      * Run the database seeds.
      *
+     * @throws \Exception
+     *
      * @return void
      */
     public function run()

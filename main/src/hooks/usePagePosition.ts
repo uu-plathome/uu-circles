@@ -57,7 +57,9 @@ export const usePagePosition = ({
       return
     }
 
-    console.info('onChangeId', _pagePositionId)
+    if (process.env.NODE_ENV === 'development') {
+      console.info('onChangeId', _pagePositionId)
+    }
 
     try {
       setOnProcess(true)
@@ -134,3 +136,5 @@ export const usePagePosition = ({
     onChangeId,
   }
 }
+export type UsePagePosition = ReturnType<typeof usePagePosition>
+export type UsePagePositionArg = Parameters<typeof usePagePosition>[0]

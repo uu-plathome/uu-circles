@@ -1,12 +1,35 @@
 import Image from 'next/image'
-import { FC } from 'react'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
+import { useEffect, useMemo, useState, FC } from 'react'
+import { UtaColorList, UtaImagePath } from './utaColorList'
 
 type UtasProps = {
   num: number
   center?: boolean
+  colorList?: UtaColorList[]
 }
-const Utas: FC<UtasProps> = ({ num = 1, center }) => {
+const Utas: FC<UtasProps> = ({
+  num = 1,
+  center,
+  colorList: _colorList = [],
+}) => {
+  const [colorList, setColorList] = useState<UtaColorList[]>(_colorList)
+
+  useEffect(() => {
+    // ランダムな順にする
+    const candidateColorList = Object.values(UtaColorList)
+    const randomColorList = candidateColorList.sort(() => Math.random() - 0.5)
+    setColorList(randomColorList)
+  }, [])
+
+  // 表示数
+  const displayNum = useMemo(() => {
+    if (num <= 1) return 1
+    if (num >= 5) return 5
+    return num
+  }, [num])
+
+  const randKey = useMemo(() => Math.random().toString(36).slice(-8), [])
+
   return (
     <div
       className={`
@@ -15,15 +38,16 @@ const Utas: FC<UtasProps> = ({ num = 1, center }) => {
       ${center ? 'text-center flex justify-center' : ''}
       `}
     >
-      {Array(num)
+      {Array(displayNum)
         .fill(0)
         .map((_, i) => (
           <Uta
-            key={i}
+            key={`${randKey}-${i}`}
             center={center}
             left={`${i * 18}px`}
             top={`2px`}
             isFirst={i === 0}
+            color={colorList[i]}
           />
         ))}
     </div>
@@ -35,15 +59,27 @@ type UtaProps = {
   center: boolean
   left: number | string
   top: number | string
+  color?: UtaColorList
 }
-const Uta: FC<UtaProps> = ({ isFirst, center, left, top }) => {
+const Uta: FC<UtaProps> = ({
+  isFirst,
+  center,
+  left,
+  top,
+  color = UtaColorList.BLUE,
+}) => {
   return (
-    <div className={isFirst || center ? '' : 'absolute'} style={{ left, top }}>
+    <div
+      className={`
+      ${isFirst || center ? '' : 'absolute'}
+    `}
+      style={{ left, top, height: 28 }}
+    >
       <Image
         className="rounded-full"
         width="24"
         height="24"
-        src={ImagePath.UU_CIRCLES.UTA_ICON.BLUE}
+        src={UtaImagePath[color]}
         alt="一人目"
       />
     </div>

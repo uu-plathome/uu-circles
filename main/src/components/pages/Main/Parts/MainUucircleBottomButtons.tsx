@@ -68,7 +68,7 @@ const WpPostBlock: FC<{
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
-  pagePositionIdNowLength: ComputedPagePositionIdNowLength
+  pagePositionIdNowLength?: ComputedPagePositionIdNowLength
   posts: WP_REST_API_Posts
   medias: WP_REST_API_Attachments
 }
@@ -82,18 +82,8 @@ const MainUucircleBottomButtons: FC<Props> = ({
 
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
-      <div className="mx-auto mt-8 text-center">
-        <h2 className="mb-2 text-lg font-bold">
-          新宇大生必見の情報サイト「uu-yell」！
-        </h2>
-
-        <div className="px-16">
-          <p className="mb-2 text-sm">宇大を生き抜くヒントがここに。</p>
-        </div>
-      </div>
-
-      <div className="mb-4">
-        {pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
+      <div className="my-8 mx-auto text-center">
+        {pLen && pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
           <Utas
             num={
               pLen[ID_LIST.UU_YELL_ARTICLES] > 5
@@ -105,6 +95,14 @@ const MainUucircleBottomButtons: FC<Props> = ({
         ) : (
           <div className="pt-8" />
         )}
+
+        <h2 className="mb-2 text-lg font-bold">
+          新宇大生必見の情報サイト「uu-yell」！
+        </h2>
+
+        <div className="px-16">
+          <p className="mb-2 text-sm">宇大を生き抜くヒントがここに。</p>
+        </div>
       </div>
 
       <div>

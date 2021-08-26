@@ -68,7 +68,7 @@ const Page: NextPage<Props> = () => {
   })
 
   return (
-    <div>
+    <>
       <BaseHead title={`新入生へ`} />
 
       <BaseLayout>
@@ -249,7 +249,7 @@ const Page: NextPage<Props> = () => {
         {/*  フッター */}
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 
