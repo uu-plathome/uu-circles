@@ -10,14 +10,12 @@ import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader
 import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useMemo } from 'react'
 import useSWR from 'swr'
 
 const useCircleId = () => {
