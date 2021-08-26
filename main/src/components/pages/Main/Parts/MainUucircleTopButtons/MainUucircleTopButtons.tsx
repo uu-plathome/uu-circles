@@ -106,17 +106,19 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
           onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS)
         }
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
-          <Utas
-            num={
-              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 5
-                ? 5
-                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
-            }
-          />
-        ) : (
-          <div className="pt-8" />
-        )}
+        <div className="hidden md:block">
+          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
+            <Utas
+              num={
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 5
+                  ? 5
+                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
+              }
+            />
+          ) : (
+            <div className="pt-8" />
+          )}
+        </div>
 
         <PcButton
           href="/guide/to-new-students"
@@ -130,17 +132,19 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         className="mx-4 mb-4"
         onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY)}
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
-          <Utas
-            num={
-              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 5
-                ? 5
-                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
-            }
-          />
-        ) : (
-          <div className="pt-8" />
-        )}
+        <div className="hidden md:block">
+          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
+            <Utas
+              num={
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 5
+                  ? 5
+                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
+              }
+            />
+          ) : (
+            <div className="pt-8" />
+          )}
+        </div>
 
         <PcButton
           href="/circle/newjoy"
@@ -154,17 +158,19 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         className="mx-4 mb-4"
         onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD)}
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
-          <Utas
-            num={
-              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 5
-                ? 5
-                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
-            }
-          />
-        ) : (
-          <div className="pt-8" />
-        )}
+        <div className="hidden md:block">
+          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
+            <Utas
+              num={
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 5
+                  ? 5
+                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
+              }
+            />
+          ) : (
+            <div className="pt-8" />
+          )}
+        </div>
 
         <PcButton
           href="/guide/discord"
