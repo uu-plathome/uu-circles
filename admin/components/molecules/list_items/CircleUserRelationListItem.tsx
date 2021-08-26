@@ -4,6 +4,7 @@ import {
   faEdit,
   faTrash,
   faTags,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -11,8 +12,6 @@ import { FC, useState } from 'react'
 import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { __ } from '@/lang/ja'
-import { CircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
 
 const customStyles = {
@@ -91,6 +90,7 @@ const CircleListItemTableColumn: FC<{
 }
 const CircleUserRelationListItem: FC<Props> = ({
   circle,
+  userId,
   onDeleteRelation,
 }) => {
   const imageLink =
@@ -130,9 +130,6 @@ const CircleUserRelationListItem: FC<Props> = ({
               icon={circle.release ? faCheckCircle : faTimesCircle}
             />
           </CircleListItemTableColumn>
-          <CircleListItemTableColumn title="種別">
-            {__(circle.circleType, CircleType._type) || '不明'}
-          </CircleListItemTableColumn>
           <CircleListItemTableColumn title="編集">
             <Link href="/circle/[id]/edit" as={`/circle/${circle.id}/edit`}>
               <a>
@@ -151,6 +148,13 @@ const CircleUserRelationListItem: FC<Props> = ({
             <Link href="/circle/[id]/newjoy" as={`/circle/${circle.id}/newjoy`}>
               <a>
                 <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
+              </a>
+            </Link>
+          </CircleListItemTableColumn>
+          <CircleListItemTableColumn title="ユーザー情報">
+            <Link href="/circle/[id]/user/[userId]/edit" as={`/circle/${circle.id}/user/${userId}/edit`}>
+              <a>
+                <FontAwesomeIcon size="lg" color="orange" icon={faUser} />
               </a>
             </Link>
           </CircleListItemTableColumn>

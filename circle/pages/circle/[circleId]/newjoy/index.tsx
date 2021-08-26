@@ -57,13 +57,11 @@ const IndexPage: NextPage = () => {
       : []
   }, [data])
 
-  const {
-    circle,
-    onReleaseFuture,
-    onReleasePast,
-    onPrivateFuture,
-    onPrivatePast,
-  } = data
+  const circle = data ? data.circle : null
+  const onReleaseFuture = data ? data.onReleaseFuture : []
+  const onReleasePast = data ? data.onReleasePast : []
+  const onPrivateFuture = data ? data.onPrivateFuture : []
+  const onPrivatePast = data ? data.onPrivatePast : []
 
   return (
     <div>
