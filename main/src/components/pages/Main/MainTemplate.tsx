@@ -2,12 +2,14 @@ import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 import { FC } from 'react'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+import { computedPagePositionIdNowLength } from './computedPagePositionIdNowLength'
+import { ID_LIST } from './id_list'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList'
-import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons'
+import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
 import { PagePositionRecord } from '@/src/hooks/usePagePosition'
 import { Advertise } from '@/src/lib/types/model/Advertise'
@@ -36,23 +38,6 @@ const MainSponsorshipFooter = dynamic(() =>
   )
 )
 
-const ID_LIST = {
-  HEADER_CATCH_COPY: 'header_catch_copy',
-  TOP_BUTTONS: 'top_buttons',
-  /** おすすめのタグ */
-  RECOMMEND_TAG_LIST: 'recommend_tag_list',
-  /** サークル一覧 */
-  CIRCLE_LIST_CONTAINER: 'circle_list_container',
-  /** サークル一覧 */
-  CIRCLE_LIST: 'circle_list',
-  /** UU-Circles 広告 */
-  UU_CIRCLES_AD: 'uu_circles_ad',
-  /** uu-yell記事 */
-  UU_YELL_ARTICLES: 'uu_yell_articles',
-  /** 企業広告 */
-  SPONSORSHIP_FOOTER: 'sponsorship_footer',
-} as const
-
 type Props = {
   advertises: Advertise[]
   mainAdvertises: Advertise[]
@@ -78,50 +63,11 @@ export const MainTemplate: FC<Props> = ({
   recordPagePosition,
   onChangeId,
 }) => {
-  // const pagePositionIdNowLength =
-  useMemo(() => {
-    // 自分自身のIdを取得
-    const recordPagePositionHistoryIds = recordPagePosition.map(
-      (r) => r.pagePositionHistoryId
-    )
-    // 自分自身は除外する
-    const pagePositionsExcludeOwn = pagePositions.pagePositions.filter(
-      (p) => !recordPagePositionHistoryIds.includes(p.pagePositionHistoryId)
-    )
-
-    // サークルの処理
-    const allCircleSlugs = pagePositionsExcludeOwn
-      .filter((p) => p.circleSlug)
-      .map((p) => p.circleSlug)
-    const uniqCircleSlugs = [...new Set(allCircleSlugs)]
-
-    const retVal = {
-      [ID_LIST.HEADER_CATCH_COPY]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.HEADER_CATCH_COPY
-      ).length,
-      [ID_LIST.TOP_BUTTONS]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.TOP_BUTTONS
-      ).length,
-      circlePageViews: uniqCircleSlugs.map((circleSlug) => ({
-        circleSlug,
-        count: pagePositionsExcludeOwn.filter(
-          (p) => p.circleSlug === circleSlug
-        ).length,
-      })),
-      [ID_LIST.UU_CIRCLES_AD]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.UU_CIRCLES_AD
-      ).length,
-      [ID_LIST.UU_YELL_ARTICLES]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.UU_YELL_ARTICLES
-      ).length,
-      [ID_LIST.SPONSORSHIP_FOOTER]: pagePositionsExcludeOwn.filter(
-        (p) => p.pagePositionId === ID_LIST.SPONSORSHIP_FOOTER
-      ).length,
-    }
-
-    console.info(retVal)
-
-    return retVal
+  const pagePositionIdNowLength = useMemo(() => {
+    return computedPagePositionIdNowLength({
+      pagePositions,
+      recordPagePosition,
+    })
   }, [pagePositions, recordPagePosition])
 
   return (
@@ -144,18 +90,18 @@ export const MainTemplate: FC<Props> = ({
           <p className="py-8 text-center">新歓をハックする！</p>
         </div>
 
-        <div
-          id={ID_LIST.TOP_BUTTONS}
-          className="relative bg-white"
-          onMouseMove={() => onChangeId(ID_LIST.TOP_BUTTONS)}
-        >
-          <MainUucircleTopButtons />
+        <div id={ID_LIST.TOP_BUTTONS} className="relative bg-white">
+          <MainUucircleTopButtons
+            pagePositionIdNowLength={pagePositionIdNowLength}
+            onChangeId={onChangeId}
+          />
         </div>
 
         <BaseContainer>
           <div className="relative px-7" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
             <MainTagList
               id={ID_LIST.RECOMMEND_TAG_LIST}
+              pagePositionIdNowLength={pagePositionIdNowLength}
               onChangeId={onChangeId}
             />
 
@@ -163,6 +109,7 @@ export const MainTemplate: FC<Props> = ({
             <MainCircleList
               id={ID_LIST.CIRCLE_LIST}
               circles={circles}
+              pagePositionIdNowLength={pagePositionIdNowLength}
               onChangeId={onChangeId}
             />
 
@@ -187,6 +134,7 @@ export const MainTemplate: FC<Props> = ({
             onMouseMove={() => onChangeId(ID_LIST.UU_YELL_ARTICLES)}
           >
             <MainUucircleBottomButtons
+              pagePositionIdNowLength={pagePositionIdNowLength}
               medias={uuYellForMain ? uuYellForMain.medias : []}
               posts={uuYellForMain ? uuYellForMain.posts : []}
             />
@@ -196,7 +144,10 @@ export const MainTemplate: FC<Props> = ({
             id={ID_LIST.SPONSORSHIP_FOOTER}
             onMouseMove={() => onChangeId(ID_LIST.SPONSORSHIP_FOOTER)}
           >
-            <MainSponsorshipFooter advertises={advertises} />
+            <MainSponsorshipFooter
+              pagePositionIdNowLength={pagePositionIdNowLength}
+              advertises={advertises}
+            />
           </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />

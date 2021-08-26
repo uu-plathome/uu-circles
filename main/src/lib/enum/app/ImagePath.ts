@@ -30,6 +30,10 @@ export const ImagePath = {
 
   UU_CIRCLES: {
     UU_CIRCLES_SERVICE: '/images/uu-circles/u-lab-uu-circles-services.png',
+
+    UTA_ICON: {
+      BLUE: '/images/no-image.png',
+    },
   },
 
   UU_CIRCLES_2020: {
