@@ -83,18 +83,20 @@ const MainUucircleBottomButtons: FC<Props> = ({
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
       <div className="my-8 mx-auto text-center">
-        {pLen && pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
-          <Utas
-            num={
-              pLen[ID_LIST.UU_YELL_ARTICLES] > 5
-                ? 5
-                : pLen[ID_LIST.UU_YELL_ARTICLES]
-            }
-            center
-          />
-        ) : (
-          <div className="pt-8" />
-        )}
+        <div className="hidden md:block">
+          {pLen && pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
+            <Utas
+              num={
+                pLen[ID_LIST.UU_YELL_ARTICLES] > 5
+                  ? 5
+                  : pLen[ID_LIST.UU_YELL_ARTICLES]
+              }
+              center
+            />
+          ) : (
+            <div className="pt-8" />
+          )}
+        </div>
 
         <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！
