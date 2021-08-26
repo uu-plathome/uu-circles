@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import useSWR, { mutate } from 'swr'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { SuccessBunner } from '@/components/atoms/bunner/SuccessBunner'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -13,25 +14,18 @@ import { useSuccess } from '@/hooks/useSuccess'
 import { getCircleListByUserId } from '@/infra/api/circle'
 import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
 import { Circle } from '@/lib/types/model/Circle'
-import { User } from '@/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
-  const [circles, setCircles] = useState<Circle[]>([])
-  const [user, setUser] = useState<User | null>(null)
   const { success, setSuccess } = useSuccess('')
   const [error, setError] = useState<string>('')
   const router = useRouter()
   const { userId } = router.query
   const { isMd } = useMediaQuery()
 
-  useEffect(() => {
-    const f = async () => {
-      const { circles, user } = await getCircleListByUserId(Number(userId))
-      setCircles(circles)
-      setUser(user)
-    }
-    f()
-  }, [])
+  const { data } = useSWR(
+    `/circle/${userId}/index`,
+    async () => await getCircleListByUserId(Number(userId))
+  )
 
   const onDeleteRelation = async (circleId: number) => {
     const data = await deleteRelationBetweenUserAndCircle(
@@ -44,11 +38,12 @@ const IndexPage: NextPage = () => {
       return
     }
 
-    const { circles, user } = await getCircleListByUserId(Number(userId))
-    setCircles(circles)
-    setUser(user)
+    mutate(`/circle/${userId}/index`)
     setSuccess('連携解除に成功しました', 3000)
   }
+
+  const circles = data ? data.circles : []
+  const user = data ? data.user : null
 
   return (
     <div>
@@ -73,15 +68,15 @@ const IndexPage: NextPage = () => {
           <div className="border-2 border-gray-800 p-2">
             {circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleUserRelationListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                      userId={Number(userId)}
-                      onDeleteRelation={onDeleteRelation}
-                    />
-                  )
-                })
+                return (
+                  <CircleUserRelationListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                    userId={Number(userId)}
+                    onDeleteRelation={onDeleteRelation}
+                  />
+                )
+              })
               : ''}
 
             {circles.length === 0 ? (
