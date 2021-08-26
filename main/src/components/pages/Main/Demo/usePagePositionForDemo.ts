@@ -1,7 +1,10 @@
 import { useMemo } from 'react'
 import { TOP_BUTTONS_ID_LIST } from '../Parts/MainUucircleTopButtons/top_buttons_id_list'
 import { ID_LIST } from '../id_list'
-import { UsePagePosition, UsePagePositionArg } from '@/src/hooks/usePagePosition'
+import {
+  UsePagePosition,
+  UsePagePositionArg,
+} from '@/src/hooks/usePagePosition'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
 type CircleSlugArg = {
@@ -13,8 +16,8 @@ export const usePagePositionForDemo = ({
   circleSlug,
   identifierHash,
   candidateCircleSlug,
-}: UsePagePositionArg & CircleSlugArg): UsePagePosition  => {
-  const createdAt = useMemo(() => (new Date()).toString(), [])
+}: UsePagePositionArg & CircleSlugArg): UsePagePosition => {
+  const createdAt = useMemo(() => new Date().toString(), [])
 
   const pageData: PagePositions = useMemo(() => {
     return {
@@ -24,97 +27,96 @@ export const usePagePositionForDemo = ({
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.HEADER_CATCH_COPY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.RECOMMEND_TAG_LIST,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.RECOMMEND_TAG_LIST,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.UU_CIRCLES_AD,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.UU_YELL_ARTICLES,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.UU_YELL_ARTICLES,
-          createdAt
+          createdAt,
         },
         {
           pagePositionHistoryId: -1,
           pageUrl,
           pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
-          createdAt
+          createdAt,
         },
         ...candidateCircleSlug.map((_slug) => ({
           pagePositionHistoryId: -1,
           pageUrl: `/circle/${_slug}`,
           pagePositionId: '',
           circleSlug: _slug,
-          createdAt
-        }))
-      ]
+          createdAt,
+        })),
+      ],
     }
   }, [pageUrl, createdAt, candidateCircleSlug])
-
 
   return {
     pagePositionId: '',
@@ -123,6 +125,8 @@ export const usePagePositionForDemo = ({
     circleSlug,
     identifierHash,
     recordPagePosition: [],
-    onChangeId: async (_pagePositionId: string) => { return },
+    onChangeId: async (_pagePositionId: string) => {
+      return
+    },
   }
 }

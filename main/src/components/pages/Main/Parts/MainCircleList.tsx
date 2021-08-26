@@ -40,7 +40,9 @@ const MainCircleList: FC<Props> = ({
     [circles, pagePositionIdNowLength]
   )
 
-  useEffect(() => { setIsOn(true) }, [])
+  useEffect(() => {
+    setIsOn(true)
+  }, [])
 
   if (!isOn) {
     return <div />
@@ -63,11 +65,7 @@ const MainCircleList: FC<Props> = ({
           >
             {_pageViewsByCircleSlug > 0 ? (
               <Utas
-                num={
-                  _pageViewsByCircleSlug >= 5
-                    ? 5
-                    : _pageViewsByCircleSlug
-                }
+                num={_pageViewsByCircleSlug >= 5 ? 5 : _pageViewsByCircleSlug}
               />
             ) : (
               <div className="pt-8" />

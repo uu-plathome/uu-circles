@@ -1,4 +1,4 @@
-import { ImagePath } from "@/src/lib/enum/app/ImagePath"
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
 /**
  * Utaの色リスト

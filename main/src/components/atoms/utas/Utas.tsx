@@ -7,7 +7,11 @@ type UtasProps = {
   center?: boolean
   colorList?: UtaColorList[]
 }
-const Utas: FC<UtasProps> = ({ num = 1, center, colorList: _colorList = [] }) => {
+const Utas: FC<UtasProps> = ({
+  num = 1,
+  center,
+  colorList: _colorList = [],
+}) => {
   const [colorList, setColorList] = useState<UtaColorList[]>(_colorList)
 
   useEffect(() => {
@@ -59,7 +63,13 @@ type UtaProps = {
   top: number | string
   color?: UtaColorList
 }
-const Uta: FC<UtaProps> = ({ isFirst, center, left, top, color = UtaColorList.BLUE }) => {
+const Uta: FC<UtaProps> = ({
+  isFirst,
+  center,
+  left,
+  top,
+  color = UtaColorList.BLUE,
+}) => {
   return (
     <div className={`
       ${isFirst || center ? '' : 'absolute'}
