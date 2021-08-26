@@ -8,7 +8,6 @@ import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { MainCircleList } from '@/src/components/pages/Main/Parts/MainCircleList'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
 import { PagePositionRecord } from '@/src/hooks/usePagePosition'
@@ -17,6 +16,11 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
+const MainCircleList = dynamic(() =>
+  import('@/src/components/pages/Main/Parts/MainCircleList').then(
+    (mod) => mod.MainCircleList
+  )
+)
 const MainTagList = dynamic(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(
     (mod) => mod.MainTagList

@@ -65,7 +65,7 @@ final class DemoIndexController extends Controller
         /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
             $this->getCacheKey(),
-            60,
+            60 * 3,
             fn () => $this->getCircleWithDemoFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
