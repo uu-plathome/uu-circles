@@ -48,7 +48,10 @@ const CreatePage: NextPage = () => {
     f()
   }, [id, userId])
 
-  const { data } = useSWR(`/circle/${id}/show`, async () => await showCircle(Number(id)))
+  const { data } = useSWR(
+    `/circle/${id}/show`,
+    async () => await showCircle(Number(id))
+  )
   const circle = data
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -94,7 +97,9 @@ const CreatePage: NextPage = () => {
               <div className="mb-8">
                 <p className="text-white text-lg">{circle.name}の情報編集</p>
               </div>
-            ) : ''}
+            ) : (
+              ''
+            )}
 
             <EditCircleUserForm
               onSubmit={onSubmit}

@@ -68,15 +68,15 @@ const IndexPage: NextPage = () => {
           <div className="border-2 border-gray-800 p-2">
             {circles.length > 0
               ? circles.map((circle: Circle) => {
-                return (
-                  <CircleUserRelationListItem
-                    key={`circle-${circle.id}`}
-                    circle={circle}
-                    userId={Number(userId)}
-                    onDeleteRelation={onDeleteRelation}
-                  />
-                )
-              })
+                  return (
+                    <CircleUserRelationListItem
+                      key={`circle-${circle.id}`}
+                      circle={circle}
+                      userId={Number(userId)}
+                      onDeleteRelation={onDeleteRelation}
+                    />
+                  )
+                })
               : ''}
 
             {circles.length === 0 ? (
