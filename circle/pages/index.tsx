@@ -4,27 +4,22 @@ import { BaseBreadcrumbs } from '@/components/molecules/Breadcrumbs/BaseBreadcru
 import { CircleList } from '@/components/organisms/List/CircleList'
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList } from '@/infra/api/circle'
-import { Circle } from '@/lib/types/model/Circle'
 import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
+import useSWR from 'swr'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [circles, setCircles] = useState<Circle[]>([])
 
-  useEffect(() => {
-    const f = async () => {
-      setCircles(await getCircleList())
-    }
+  const { data } = useSWR(`/main`, getCircleList)
 
-    f()
-  }, [])
+  const circles = data
 
   return (
-    <div>
+    <>
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={[]} />
 
@@ -35,10 +30,10 @@ const IndexPage: NextPage = () => {
 
         <div className="pt-8 pb-32">
           <div>
-            {circles && circles.length > 0 ? (
+            {circles && Array.isArray(circles) && circles.length > 0 ? (
               <CircleList circles={circles} />
             ) : (
-              ''
+              <div className="text-center">Loading...</div>
             )}
           </div>
 
@@ -51,7 +46,7 @@ const IndexPage: NextPage = () => {
 
         <BaseFooter />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 
