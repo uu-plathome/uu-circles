@@ -34,19 +34,21 @@ const Utas: FC<UtasProps> = ({ num = 1, center, colorList: _colorList = [] }) =>
       ${center ? 'text-center flex justify-center' : ''}
       `}
     >
-      {Array(displayNum)
-        .fill(0)
-        .map((_, i) => (
-          <Uta
-            key={`${randKey}-${i}`}
-            center={center}
-            left={`${i * 18}px`}
-            top={`2px`}
-            isFirst={i === 0}
-            color={colorList[i]}
-          />
-        ))}
-    </div>
+      {
+        Array(displayNum)
+          .fill(0)
+          .map((_, i) => (
+            <Uta
+              key={`${randKey}-${i}`}
+              center={center}
+              left={`${i * 18}px`}
+              top={`2px`}
+              isFirst={i === 0}
+              color={colorList[i]}
+            />
+          ))
+      }
+    </div >
   )
 }
 
@@ -59,7 +61,9 @@ type UtaProps = {
 }
 const Uta: FC<UtaProps> = ({ isFirst, center, left, top, color = UtaColorList.BLUE }) => {
   return (
-    <div className={isFirst || center ? '' : 'absolute'} style={{ left, top }}>
+    <div className={`
+      ${isFirst || center ? '' : 'absolute'}
+    `} style={{ left, top, height: 28 }}>
       <Image
         className="rounded-full"
         width="24"
