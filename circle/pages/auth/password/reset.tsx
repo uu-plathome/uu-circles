@@ -1,10 +1,3 @@
-import { BlueButton } from '@/components/atoms/buttons/BlueButton'
-import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { MainHeader } from '@/components/layouts/MainHeader'
-import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
-import { forgotPassword } from '@/infra/api/auth'
-import { isForgotPasswordCircleRequestValidationError } from '@/lib/types/api/ForgotPasswordCircleRequest'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
@@ -12,6 +5,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
+import { BlueButton } from '@/components/atoms/buttons/BlueButton'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
+import { MainHeader } from '@/components/layouts/MainHeader'
+import { AuthContext } from '@/contexts/AuthContext'
+import { useInput } from '@/hooks/useInput'
+import { forgotPassword } from '@/infra/api/auth'
+import { isForgotPasswordCircleRequestValidationError } from '@/lib/types/api/ForgotPasswordCircleRequest'
 
 const Login: NextPage = () => {
   const email = useInput('')
@@ -58,15 +58,15 @@ const Login: NextPage = () => {
       <MainHeader />
 
       <div className="xl:container">
-        <div className="max-w-screen-md mx-auto mt-16">
-          <div className="rounded p-4">
-            <h1 className="text-black text-center text-2xl mb-4">
+        <div className="mx-auto mt-16 max-w-screen-md">
+          <div className="p-4 rounded">
+            <h1 className="mb-4 text-2xl text-center text-black">
               パスワードを変更する
             </h1>
 
             {error ? (
               <div className="p-4 mb-4">
-                <p className="text-black text-lg">
+                <p className="text-lg text-black">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
                 </p>
@@ -93,7 +93,7 @@ const Login: NextPage = () => {
                   </div>
                 </form>
 
-                <div className="text-black text-right mt-8 mb-4">
+                <div className="mt-8 mb-4 text-right text-black">
                   <Link href="/login">
                     <a className="underline">ログインへ戻る</a>
                   </Link>

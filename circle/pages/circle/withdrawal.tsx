@@ -1,3 +1,8 @@
+import { faBuilding } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
@@ -6,11 +11,6 @@ import { CircleWithdrawalList } from '@/components/organisms/List/CircleWithdraw
 import { AuthContext } from '@/contexts/AuthContext'
 import { getCircleList, withdrawalOwnCircle } from '@/infra/api/circle'
 import { Circle } from '@/lib/types/model/Circle'
-import { faBuilding } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
@@ -44,7 +44,7 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <BaseLayout user={authContext.user}>
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faBuilding} className="mr-4" size="lg" />
           <span className="text-red-600">サークルを脱退する</span>
         </h1>
@@ -58,7 +58,7 @@ const IndexPage: NextPage = () => {
             </GreenButton>
           </div>
 
-          <h2 className="text-center font-bold mb-8 text-lg">
+          <h2 className="mb-8 text-lg font-bold text-center">
             どのサークルを脱退しますか？
           </h2>
 

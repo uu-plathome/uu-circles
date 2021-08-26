@@ -1,5 +1,5 @@
-import { User } from '@/lib/types/model/User'
 import { createContext, Dispatch, SetStateAction } from 'react'
+import { User } from '@/lib/types/model/User'
 
 const AuthContext = createContext({
   accessToken: undefined,

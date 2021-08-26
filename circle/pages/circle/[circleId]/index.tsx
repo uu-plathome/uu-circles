@@ -1,3 +1,13 @@
+import {
+  faCalendarAlt,
+  faFileAlt,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import {
@@ -10,16 +20,6 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Role } from '@/lib/enum/api/Role'
 import { Circle } from '@/lib/types/model/Circle'
-import {
-  faCalendarAlt,
-  faFileAlt,
-  faTag,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -86,7 +86,7 @@ const IndexPage: NextPage = () => {
                     >
                       <a>
                         <div
-                          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto"
+                          className="flex justify-center items-center py-6 mx-auto bg-white rounded border border-gray-200"
                           style={{ width: 280 }}
                         >
                           <div
@@ -95,7 +95,7 @@ const IndexPage: NextPage = () => {
                           >
                             <FontAwesomeIcon icon={faFileAlt} size="lg" />
                             <div className="text-center">
-                              <p className="font-lg font-bold">
+                              <p className="font-bold font-lg">
                                 サークル情報の編集
                               </p>
                             </div>
@@ -113,7 +113,7 @@ const IndexPage: NextPage = () => {
                     >
                       <a>
                         <div
-                          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto"
+                          className="flex justify-center items-center py-6 mx-auto bg-white rounded border border-gray-200"
                           style={{ width: 280 }}
                         >
                           <div
@@ -122,7 +122,7 @@ const IndexPage: NextPage = () => {
                           >
                             <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
                             <div className="text-center">
-                              <p className="font-lg font-bold">
+                              <p className="font-bold font-lg">
                                 新歓イベントの追加・編集
                               </p>
                             </div>
@@ -140,7 +140,7 @@ const IndexPage: NextPage = () => {
                     >
                       <a>
                         <div
-                          className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto"
+                          className="flex justify-center items-center py-6 mx-auto bg-white rounded border border-gray-200"
                           style={{ width: 280 }}
                         >
                           <div
@@ -149,7 +149,7 @@ const IndexPage: NextPage = () => {
                           >
                             <FontAwesomeIcon icon={faTag} size="lg" />
                             <div className="text-center">
-                              <p className="font-lg font-bold">
+                              <p className="font-bold font-lg">
                                 サークルタグ管理
                               </p>
                             </div>
@@ -168,7 +168,7 @@ const IndexPage: NextPage = () => {
                       >
                         <a>
                           <div
-                            className="flex justify-center items-center rounded border border-gray-200 bg-white py-6 mx-auto"
+                            className="flex justify-center items-center py-6 mx-auto bg-white rounded border border-gray-200"
                             style={{ width: 280 }}
                           >
                             <div
@@ -177,7 +177,7 @@ const IndexPage: NextPage = () => {
                             >
                               <FontAwesomeIcon icon={faFileAlt} size="lg" />
                               <div className="text-center">
-                                <p className="font-lg font-bold">
+                                <p className="font-bold font-lg">
                                   部員アカウント管理
                                 </p>
                               </div>

@@ -1,3 +1,7 @@
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useState } from 'react'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
@@ -9,10 +13,6 @@ import { useStringInput } from '@/hooks/useInput'
 import { login } from '@/infra/api/auth'
 import { LoginCircleFormRequest } from '@/lib/types/api/LoginCircleFormRequest'
 import { isUser } from '@/lib/types/model/User'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useState } from 'react'
 
 const Login: NextPage = () => {
   const [error, setError] = useState('')
@@ -68,14 +68,14 @@ const Login: NextPage = () => {
       <MainHeader />
 
       <div className="xl:container pb-20">
-        <div className="max-w-screen-md mx-auto mt-8">
+        <div className="mx-auto mt-8 max-w-screen-md">
           <div className="p-4">
-            <h1 className="text-black text-center text-2xl mb-12 font-bold">
+            <h1 className="mb-12 text-2xl font-bold text-center text-black">
               サークル管理者ログイン
             </h1>
 
             {error ? (
-              <div className="px-4 py-4">
+              <div className="py-4 px-4">
                 <DangerBunner text={error} />
               </div>
             ) : (
@@ -100,14 +100,14 @@ const Login: NextPage = () => {
                 />
               </div>
 
-              <div className="text-center mt-12">
+              <div className="mt-12 text-center">
                 <GreenButton type="submit" rounded>
                   ログイン
                 </GreenButton>
               </div>
             </form>
 
-            <div className="text-black text-right mt-8 mb-4">
+            <div className="mt-8 mb-4 text-right text-black">
               <Link href="/auth/password/reset">
                 <a className="underline">パスワードを忘れた場合はこちら</a>
               </Link>

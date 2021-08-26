@@ -1,3 +1,10 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useMemo, useState } from 'react'
+import useSWR from 'swr'
 import { DangerBunner } from '@/components/atoms/bunner/DangerBunner'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
@@ -21,13 +28,6 @@ import {
   isImportCircleUserRequestValidationError,
 } from '@/lib/types/api/ImportCircleUserRequest'
 import { User } from '@/lib/types/model/User'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useMemo, useState } from 'react'
-import useSWR from 'swr'
 
 const useParams = () => {
   const router = useRouter()
@@ -125,7 +125,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           既存部員アカウントを招待
         </h1>
@@ -137,7 +137,7 @@ const CreatePage: NextPage = () => {
                 href="/circle/[circleId]/user"
                 as={`/circle/${Number(circleId)}/user`}
               >
-                <a className="underline text-blue-500">← 戻る</a>
+                <a className="text-blue-500 underline">← 戻る</a>
               </Link>
             </p>
 

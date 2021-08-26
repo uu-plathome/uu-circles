@@ -1,7 +1,7 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { FC, useEffect, useState } from 'react'
 import { MainHeader } from './MainHeader'
 import { MainSpMenu } from './MainSpMenu'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const MainLayout: FC = ({ children }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)

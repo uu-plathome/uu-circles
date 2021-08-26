@@ -1,3 +1,11 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FC, FormEvent, useContext, useEffect, useMemo, useState } from 'react'
+import Modal from 'react-modal'
+import useSWR from 'swr'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
@@ -19,14 +27,6 @@ import {
   UpdateCircleUserRequest,
 } from '@/lib/types/api/UpdateCircleUserRequest'
 import { User } from '@/lib/types/model/User'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FC, FormEvent, useContext, useEffect, useMemo, useState } from 'react'
-import Modal from 'react-modal'
-import useSWR from 'swr'
 
 const customStyles = {
   content: {
@@ -56,7 +56,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ user, onWithdrawal }) => {
 
   return (
     <div>
-      <div className="text-center pt-12 border-t border-gray-300 mt-12">
+      <div className="pt-12 mt-12 text-center border-t border-gray-300">
         <a
           className="text-red-500 hover:underline"
           onClick={() => setIsOpen(true)}
@@ -71,7 +71,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ user, onWithdrawal }) => {
         style={customStyles}
         contentLabel="サークルを脱退"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当にサークルを脱退しますか？
         </h2>
 
@@ -194,7 +194,7 @@ const CreatePage: NextPage = () => {
       <BaseLayout user={authContext.user}>
         <BaseBreadcrumbs items={baseBreadcrumbsItems} />
 
-        <h1 className="text-lg font-bold bg-white text-center py-6">
+        <h1 className="py-6 text-lg font-bold text-center bg-white">
           <FontAwesomeIcon icon={faUser} className="mr-4" size="lg" />
           部員アカウント情報編集
         </h1>
@@ -206,7 +206,7 @@ const CreatePage: NextPage = () => {
                 href="/circle/[circleId]/user"
                 as={`/circle/${Number(circleId)}/user`}
               >
-                <a className="underline text-blue-500">
+                <a className="text-blue-500 underline">
                   ←部員アカウント一覧に戻る
                 </a>
               </Link>

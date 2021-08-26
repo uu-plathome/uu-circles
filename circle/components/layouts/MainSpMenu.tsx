@@ -9,7 +9,7 @@ const MenuItem: FC<MenuItemProps> = ({ href, children }) => {
     <li className="border border-b border-gray-200">
       <Link href={href}>
         <a className="text-sm text-black">
-          <div className="pl-8 py-4">{children}</div>
+          <div className="py-4 pl-8">{children}</div>
         </a>
       </Link>
     </li>

@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
+import useSWR from 'swr'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
@@ -9,6 +10,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { showCircle } from '@/infra/api/circle'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { Role } from '@/lib/enum/api/Role'
 import {
@@ -30,7 +32,10 @@ const CreatePage: NextPage = () => {
 
   useEffect(() => {
     const f = async () => {
-      const foundUser = await getCircleUser(Number(id), Number(userId))
+      const foundUser = await getCircleUser({
+        circleId: Number(id),
+        userId: Number(userId),
+      })
       email.set(foundUser.email)
       username.set(foundUser.username)
       displayName.set(foundUser.displayName)
@@ -42,6 +47,12 @@ const CreatePage: NextPage = () => {
 
     f()
   }, [id, userId])
+
+  const { data } = useSWR(
+    `/circle/${id}/show`,
+    async () => await showCircle(Number(id))
+  )
+  const circle = data
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -82,6 +93,14 @@ const CreatePage: NextPage = () => {
       <BaseContainer>
         <BaseWrapper title="部員アカウント編集">
           <div className="border-2 border-gray-800 px-2 py-4">
+            {circle ? (
+              <div className="mb-8">
+                <p className="text-white text-lg">{circle.name}の情報編集</p>
+              </div>
+            ) : (
+              ''
+            )}
+
             <EditCircleUserForm
               onSubmit={onSubmit}
               form={{
