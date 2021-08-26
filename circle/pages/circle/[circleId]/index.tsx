@@ -1,3 +1,13 @@
+import {
+  faCalendarAlt,
+  faFileAlt,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import {
@@ -10,16 +20,6 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Role } from '@/lib/enum/api/Role'
 import { Circle } from '@/lib/types/model/Circle'
-import {
-  faCalendarAlt,
-  faFileAlt,
-  faTag,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
 
 const useCircleId = () => {
   const router = useRouter()

@@ -1,6 +1,6 @@
-import { User } from '@/lib/types/model/User'
 import { FC } from 'react'
 import { CircleUserListItem } from './CircleUserListItem'
+import { User } from '@/lib/types/model/User'
 
 type Props = {
   circleId: number

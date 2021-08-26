@@ -1,10 +1,10 @@
+import { FC, useState } from 'react'
+import Modal from 'react-modal'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { isManager } from '@/lib/enum/api/Role'
 import { User } from '@/lib/types/model/User'
-import { FC, useState } from 'react'
-import Modal from 'react-modal'
 
 const customStyles = {
   content: {

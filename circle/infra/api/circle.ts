@@ -1,11 +1,11 @@
+import { AxiosError } from 'axios'
+import { axiosInstance } from '.'
 import { Role } from '@/lib/enum/api/Role'
 import {
   UpdateCircleFormRequest,
   UpdateCircleFormRequestValidationError,
 } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
-import { AxiosError } from 'axios'
-import { axiosInstance } from '.'
 
 export const getCircleList = async (): Promise<Circle[]> => {
   console.log('getCircleList args none')

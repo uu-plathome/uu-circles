@@ -1,8 +1,8 @@
-import colors from '@/colors'
 import { faBuilding, faPager, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
+import colors from '@/colors'
 
 type MenuItemProps = {
   href: string

@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { CircleNewJoyListItemSP } from '@/components/organisms/CircleNewjoy/CircleNewJoyListItemSP'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { FC } from 'react'
 
 type Props = {
   circleId: number

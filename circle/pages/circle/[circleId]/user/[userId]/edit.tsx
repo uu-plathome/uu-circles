@@ -1,3 +1,11 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FC, FormEvent, useContext, useEffect, useMemo, useState } from 'react'
+import Modal from 'react-modal'
+import useSWR from 'swr'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
@@ -19,14 +27,6 @@ import {
   UpdateCircleUserRequest,
 } from '@/lib/types/api/UpdateCircleUserRequest'
 import { User } from '@/lib/types/model/User'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FC, FormEvent, useContext, useEffect, useMemo, useState } from 'react'
-import Modal from 'react-modal'
-import useSWR from 'swr'
 
 const customStyles = {
   content: {

@@ -1,3 +1,10 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useMemo, useState } from 'react'
+import useSWR from 'swr'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
@@ -16,13 +23,6 @@ import {
   isRegisterCircleUserRequestValidationError,
   RegisterCircleUserRequest,
 } from '@/lib/types/api/RegisterCircleUserRequest'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useMemo, useState } from 'react'
-import useSWR from 'swr'
 
 const useParams = () => {
   const router = useRouter()

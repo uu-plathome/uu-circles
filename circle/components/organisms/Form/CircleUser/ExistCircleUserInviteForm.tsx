@@ -1,10 +1,10 @@
+import { FC, FormEvent } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { UseNumberInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
 import { Role } from '@/lib/enum/api/Role'
 import { User } from '@/lib/types/model/User'
-import { FC, FormEvent } from 'react'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void

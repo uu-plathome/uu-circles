@@ -1,3 +1,9 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
 import Colors from '@/colors'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
@@ -15,12 +21,6 @@ import {
   isUpdateOwnUserRequestValidationError,
   UpdateOwnUserRequest,
 } from '@/lib/types/api/UpdateOwnUserRequest'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)

@@ -1,6 +1,6 @@
-import { Circle } from '@/lib/types/model/Circle'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Circle } from '@/lib/types/model/Circle'
 
 const CircleListItem: FC<{
   circle: Circle
