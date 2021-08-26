@@ -68,9 +68,7 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                         height={height}
                         objectFit="cover"
                         alt={`${advertise.title} - トップ広告`}
-                        src={
-                          advertise.mainImageUrl || '/images/top-image.png'
-                        }
+                        src={advertise.mainImageUrl || '/images/top-image.png'}
                       />
                     </a>
                   ) : (
