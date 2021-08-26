@@ -43,7 +43,7 @@ const Page: NextPage<Props> = ({
   )
 
   return (
-    <div>
+    <>
       <BaseHead title="統計情報" />
 
       <BaseLayout
@@ -93,7 +93,7 @@ const Page: NextPage<Props> = ({
         {/*  フッター */}
         <BaseFooter uuYellArticles={uuYellArticles} />
       </BaseLayout>
-    </div>
+    </>
   )
 }
 

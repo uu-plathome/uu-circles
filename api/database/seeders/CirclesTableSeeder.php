@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enum\CircleType;
+use App\Enum\Property\CircleProperty;
 use App\Enum\Property\CircleTagProperty;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
@@ -28,9 +29,12 @@ class CirclesTableSeeder extends Seeder
         DB::beginTransaction();
 
         try {
-            factory(Circle::class, 20)->create()->each(function (Circle $circle, $idx) {
+            factory(Circle::class, 30)->create()->each(function (Circle $circle, $idx) {
+                $isDemoFixed = random_int(0, 1) === 1;
                 $circle->update([
-                    'name'        => "U-lab {$circle->id}",
+                    CircleProperty::name          => "U-lab {$circle->id}",
+                    CircleProperty::is_demo_fixed => $isDemoFixed,
+                    CircleProperty::demo_priority => $isDemoFixed ? random_int(0, 10) : 0,
                 ]);
 
                 $circle->circleInformation()->save(factory(CircleInformation::class)->make([
