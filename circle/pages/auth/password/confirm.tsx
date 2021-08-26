@@ -1,3 +1,8 @@
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useContext, useState } from 'react'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
@@ -6,11 +11,6 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { resetPassword } from '@/infra/api/auth'
 import { isResetPasswordCircleRequestValidationError } from '@/lib/types/api/ResetPasswordCircleRequest'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
 
 const PasswordConfirmPage: NextPage = () => {
   const password = useInput('')

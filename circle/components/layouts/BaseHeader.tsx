@@ -1,10 +1,10 @@
-import { User } from '@/lib/types/model/User'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { FC } from 'react'
+import { User } from '@/lib/types/model/User'
 
 type Props = {
   user: User

@@ -1,6 +1,6 @@
-import { CirclePutStorageRequestValidationError } from '@/lib/types/api/CirclePutStorageRequest'
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
+import { CirclePutStorageRequestValidationError } from '@/lib/types/api/CirclePutStorageRequest'
 
 export const putStorage = async (file: Blob | string) => {
   console.log('putStorage args', {

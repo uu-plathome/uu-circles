@@ -1,15 +1,15 @@
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { BaseBreadcrumbs } from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
-import { CircleList } from '@/components/organisms/List/CircleList'
-import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleList } from '@/infra/api/circle'
 import { faBuilding } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useContext } from 'react'
 import useSWR from 'swr'
+import { BaseFooter } from '@/components/layouts/BaseFooter'
+import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseBreadcrumbs } from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { CircleList } from '@/components/organisms/List/CircleList'
+import { AuthContext } from '@/contexts/AuthContext'
+import { getCircleList } from '@/infra/api/circle'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)

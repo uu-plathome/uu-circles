@@ -1,8 +1,8 @@
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { User } from '@/lib/types/model/User'
 import { FC, useEffect, useState } from 'react'
 import { BaseHeader } from './BaseHeader'
 import { BaseSpMenu } from './BaseSpMenu'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { User } from '@/lib/types/model/User'
 
 type Props = {
   user: User

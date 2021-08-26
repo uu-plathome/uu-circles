@@ -1,3 +1,6 @@
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { OrangeButton } from '@/components/atoms/buttons/OrangeButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
@@ -9,9 +12,6 @@ import {
   verificationEmailCircleUser,
 } from '@/infra/api/auth'
 import { isVerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { FormEvent, useContext, useEffect, useState } from 'react'
 
 const Login: NextPage = () => {
   const password = useInput('')
