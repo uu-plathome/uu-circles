@@ -13,7 +13,10 @@ type Props = {
   pagePositionIdNowLength: ComputedPagePositionIdNowLength
   advertises: Advertise[]
 }
-const MainSponsorshipFooter: FC<Props> = ({ advertises, pagePositionIdNowLength }) => {
+const MainSponsorshipFooter: FC<Props> = ({
+  advertises,
+  pagePositionIdNowLength,
+}) => {
   const { isMd } = useMediaQuery()
   const { width: windowWidth } = useWindowResize()
   const width = isMd ? 375 : windowWidth
@@ -23,14 +26,19 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises, pagePositionIdNowLength 
 
   return (
     <>
-      <div
-        className="md:mx-auto"
-        style={{ maxWidth: 700 }}
-      >
+      <div className="md:mx-auto" style={{ maxWidth: 700 }}>
         <div className="mb-2">
-          {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0
-            ? <Utas num={pLen[ID_LIST.SPONSORSHIP_FOOTER] > 5 ? 5 : pLen[ID_LIST.SPONSORSHIP_FOOTER]} />
-            : <div className="pt-8" />}
+          {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0 ? (
+            <Utas
+              num={
+                pLen[ID_LIST.SPONSORSHIP_FOOTER] > 5
+                  ? 5
+                  : pLen[ID_LIST.SPONSORSHIP_FOOTER]
+              }
+            />
+          ) : (
+            <div className="pt-8" />
+          )}
         </div>
 
         <div className="md:flex justify-center">

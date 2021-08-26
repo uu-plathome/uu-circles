@@ -1,6 +1,6 @@
-import Image from "next/image"
-import { FC } from "react"
-import { ImagePath } from "@/src/lib/enum/app/ImagePath"
+import Image from 'next/image'
+import { FC } from 'react'
+import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
 type UtasProps = {
   num: number
@@ -8,21 +8,24 @@ type UtasProps = {
 }
 const Utas: FC<UtasProps> = ({ num = 1, center }) => {
   return (
-    <div className={
-      `
+    <div
+      className={`
       relative
       pt-0.5
-      ${center ? "text-center flex justify-center" : ""}
-      `}>
-      {Array(num).fill(0).map((_, i) => (
-        <Uta
-          key={i}
-          center={center}
-          left={`${i * 18}px`}
-          top={`2px`}
-          isFirst={i === 0}
-        />
-      ))}
+      ${center ? 'text-center flex justify-center' : ''}
+      `}
+    >
+      {Array(num)
+        .fill(0)
+        .map((_, i) => (
+          <Uta
+            key={i}
+            center={center}
+            left={`${i * 18}px`}
+            top={`2px`}
+            isFirst={i === 0}
+          />
+        ))}
     </div>
   )
 }
@@ -33,17 +36,9 @@ type UtaProps = {
   left: number | string
   top: number | string
 }
-const Uta: FC<UtaProps> = ({
-  isFirst,
-  center,
-  left,
-  top
-}) => {
+const Uta: FC<UtaProps> = ({ isFirst, center, left, top }) => {
   return (
-    <div
-      className={isFirst || center ? "" : "absolute"}
-      style={{ left, top }}
-    >
+    <div className={isFirst || center ? '' : 'absolute'} style={{ left, top }}>
       <Image
         className="rounded-full"
         width="24"

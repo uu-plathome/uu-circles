@@ -93,7 +93,7 @@ type PcButtonGroupProps = {
 }
 const PcButtonGroup: FC<PcButtonGroupProps> = ({
   pagePositionIdNowLength,
-  onChangeId
+  onChangeId,
 }) => {
   const pLen = pagePositionIdNowLength
 
@@ -102,16 +102,21 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
       <div
         id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS}
         className="mx-4 mb-4"
-        onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS)}
+        onMouseOver={() =>
+          onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS)
+        }
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0
-          ? <Utas
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
+          <Utas
             num={
               pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 5
                 ? 5
                 : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
-            } />
-          : <div className="pt-8" />}
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
 
         <PcButton
           href="/guide/to-new-students"
@@ -125,14 +130,17 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         className="mx-4 mb-4"
         onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY)}
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0
-          ? <Utas
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
+          <Utas
             num={
               pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 5
                 ? 5
                 : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
-            } />
-          : <div className="pt-8" />}
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
 
         <PcButton
           href="/circle/newjoy"
@@ -146,14 +154,17 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         className="mx-4 mb-4"
         onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD)}
       >
-        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0
-          ? <Utas
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
+          <Utas
             num={
               pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 5
                 ? 5
                 : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
-            } />
-          : <div className="pt-8" />}
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
 
         <PcButton
           href="/guide/discord"
@@ -171,13 +182,20 @@ type Props = {
 }
 const MainUucircleTopButtons: FC<Props> = ({
   pagePositionIdNowLength,
-  onChangeId
+  onChangeId,
 }) => {
   const { isLg } = useMediaQuery()
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isLg ? <PcButtonGroup pagePositionIdNowLength={pagePositionIdNowLength} onChangeId={onChangeId} /> : <SpButtonGroup />}
+      {isLg ? (
+        <PcButtonGroup
+          pagePositionIdNowLength={pagePositionIdNowLength}
+          onChangeId={onChangeId}
+        />
+      ) : (
+        <SpButtonGroup />
+      )}
     </div>
   )
 }

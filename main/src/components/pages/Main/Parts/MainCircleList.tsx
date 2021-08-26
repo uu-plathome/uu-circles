@@ -11,24 +11,34 @@ type Props = {
   onChangeId: (id: string) => void
   pagePositionIdNowLength: ComputedPagePositionIdNowLength
 }
-const MainCircleList: FC<Props> = ({ circles, id, pagePositionIdNowLength, onChangeId }) => {
+const MainCircleList: FC<Props> = ({
+  circles,
+  id,
+  pagePositionIdNowLength,
+  onChangeId,
+}) => {
   const width = 400
   // w : h = 210 : 297
   const height = (width * 297) / 210
 
-  const pageViewsByCircleSlug = useCallback((slug: string) => {
-    const circle = circles.find(c => c.slug === slug)
-    if (!circle) {
-      return 0
-    }
+  const pageViewsByCircleSlug = useCallback(
+    (slug: string) => {
+      const circle = circles.find((c) => c.slug === slug)
+      if (!circle) {
+        return 0
+      }
 
-    const p = pagePositionIdNowLength.circlePageViews.find(p => p.circleSlug === slug)
-    if (!p) {
-      return 0
-    }
+      const p = pagePositionIdNowLength.circlePageViews.find(
+        (p) => p.circleSlug === slug
+      )
+      if (!p) {
+        return 0
+      }
 
-    return p.count
-  }, [circles, pagePositionIdNowLength])
+      return p.count
+    },
+    [circles, pagePositionIdNowLength]
+  )
 
   return (
     <div
@@ -44,14 +54,17 @@ const MainCircleList: FC<Props> = ({ circles, id, pagePositionIdNowLength, onCha
             className="mb-6 md:mb-16"
             onMouseOver={() => onChangeId(`${id}-${circle.slug}`)}
           >
-            {pageViewsByCircleSlug(circle.slug) > 0
-              ?
+            {pageViewsByCircleSlug(circle.slug) > 0 ? (
               <Utas
-                num={pageViewsByCircleSlug(circle.slug) > 5
-                  ? 5
-                  : pageViewsByCircleSlug(circle.slug)}
+                num={
+                  pageViewsByCircleSlug(circle.slug) > 5
+                    ? 5
+                    : pageViewsByCircleSlug(circle.slug)
+                }
               />
-              : <div className="pt-8" />}
+            ) : (
+              <div className="pt-8" />
+            )}
 
             <Link
               href="/circle/[slug]"
