@@ -115,7 +115,7 @@ final class CreatePagePositionController extends Controller
          *      - タブレット、PCのユーザーが2人以上のアクセスのときに、イベント発生
          *      - タブレット、PCのユーザーが1人のときで、自分がスマホのときは通知.
          */
-        $searchStartTime = $now->timestamp - 3;
+        $searchStartTime = $now->timestamp - 60 * 3;
         $searchTimeFormat = 'Y-m-d H:i:s';
 
         // 他のページに遷移したユーザーを弾くために、関与したユーザーの履歴をまとめて取得
@@ -131,7 +131,7 @@ final class CreatePagePositionController extends Controller
                             // 3s以内
                             ->where(
                                 PagePositionHistoryProperty::created_at,
-                                '<=',
+                                '>=',
                                 date($searchTimeFormat, $searchStartTime)
                             );
                     })
@@ -142,7 +142,7 @@ final class CreatePagePositionController extends Controller
                             // 3s以内
                             ->where(
                                 PagePositionHistoryProperty::created_at,
-                                '<=',
+                                '>=',
                                 date($searchTimeFormat, $searchStartTime)
                             );
                     });
@@ -160,7 +160,7 @@ final class CreatePagePositionController extends Controller
                                     // 3s以内
                                     ->where(
                                         PagePositionHistoryProperty::created_at,
-                                        '<=',
+                                        '>=',
                                         date($searchTimeFormat, $searchStartTime)
                                     );
                             })
@@ -171,7 +171,7 @@ final class CreatePagePositionController extends Controller
                                     // 3s以内
                                     ->where(
                                         PagePositionHistoryProperty::created_at,
-                                        '<=',
+                                        '>=',
                                         date($searchTimeFormat, $searchStartTime)
                                     );
                             });
@@ -179,7 +179,7 @@ final class CreatePagePositionController extends Controller
                 )
                     ->where(
                         PagePositionHistoryProperty::created_at,
-                        '<=',
+                        '>=',
                         date($searchTimeFormat, $searchStartTime)
                     );
             })
@@ -202,6 +202,7 @@ final class CreatePagePositionController extends Controller
             ->values();
 
         Log::debug('CreatePagePositionController mergedPagePosition', [
+            'pagePositions'      => $pagePositions,
             'mergedPagePosition' => $mergedPagePosition,
         ]);
 

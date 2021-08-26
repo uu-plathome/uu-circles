@@ -2,7 +2,7 @@
 
 namespace App\Enum\SlugProperty;
 
-class AnnouncementPlaceQuerySlugProperty
+final class AnnouncementPlaceQuerySlugProperty
 {
     /**
      * メイン画面 (お知らせページ).

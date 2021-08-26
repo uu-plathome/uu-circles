@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IdentifierTableSeeder::class);
         $this->call(UuyellPostsTableSeeder::class);
         $this->call(PageViewSeeder::class);
+        $this->call(TagPageViewsSeeder::class);
     }
 }

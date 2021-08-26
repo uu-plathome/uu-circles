@@ -10,6 +10,9 @@ import {
   WP_REST_API_Post,
   WP_REST_API_Posts,
 } from 'wp-types'
+import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
+import { ID_LIST } from '../id_list'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { dayjs } from '@/src/plugins/Dayjs'
@@ -65,15 +68,21 @@ const WpPostBlock: FC<{
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 type Props = {
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
   posts: WP_REST_API_Posts
   medias: WP_REST_API_Attachments
 }
-const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
+const MainUucircleBottomButtons: FC<Props> = ({
+  medias,
+  posts,
+  pagePositionIdNowLength,
+}) => {
   const { isMd } = useMediaQuery()
+  const pLen = pagePositionIdNowLength
 
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
-      <div className="my-8 mx-auto text-center">
+      <div className="mx-auto mt-8 text-center">
         <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！
         </h2>
@@ -81,6 +90,21 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
         <div className="px-16">
           <p className="mb-2 text-sm">宇大を生き抜くヒントがここに。</p>
         </div>
+      </div>
+
+      <div className="mb-4">
+        {pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
+          <Utas
+            num={
+              pLen[ID_LIST.UU_YELL_ARTICLES] > 5
+                ? 5
+                : pLen[ID_LIST.UU_YELL_ARTICLES]
+            }
+            center
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
       </div>
 
       <div>

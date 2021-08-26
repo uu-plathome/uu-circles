@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { FC } from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { ComputedPagePositionIdNowLength } from '../../computedPagePositionIdNowLength'
+import { TOP_BUTTONS_ID_LIST } from './top_buttons_id_list'
+import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
@@ -83,10 +86,38 @@ const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
     </div>
   )
 }
-const PcButtonGroup = () => {
+
+type PcButtonGroupProps = {
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
+  onChangeId: (id: string) => void
+}
+const PcButtonGroup: FC<PcButtonGroupProps> = ({
+  pagePositionIdNowLength,
+  onChangeId,
+}) => {
+  const pLen = pagePositionIdNowLength
+
   return (
     <nav className="flex">
-      <div className="m-4">
+      <div
+        id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS}
+        className="mx-4 mb-4"
+        onMouseOver={() =>
+          onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS)
+        }
+      >
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
+          <Utas
+            num={
+              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 5
+                ? 5
+                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
+
         <PcButton
           href="/guide/to-new-students"
           src="/images/topButtons/Rectangle15.png"
@@ -94,7 +125,23 @@ const PcButtonGroup = () => {
         />
       </div>
 
-      <div className="m-4">
+      <div
+        id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY}
+        className="mx-4 mb-4"
+        onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY)}
+      >
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
+          <Utas
+            num={
+              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 5
+                ? 5
+                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
+
         <PcButton
           href="/circle/newjoy"
           src="/images/topButtons/shinkan1.png"
@@ -102,7 +149,23 @@ const PcButtonGroup = () => {
         />
       </div>
 
-      <div className="m-4">
+      <div
+        id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD}
+        className="mx-4 mb-4"
+        onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD)}
+      >
+        {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
+          <Utas
+            num={
+              pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 5
+                ? 5
+                : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
+            }
+          />
+        ) : (
+          <div className="pt-8" />
+        )}
+
         <PcButton
           href="/guide/discord"
           src="/images/online.png"
@@ -113,13 +176,26 @@ const PcButtonGroup = () => {
   )
 }
 
-type Props = Record<string, never>
-const MainUucircleTopButtons: FC<Props> = () => {
+type Props = {
+  pagePositionIdNowLength: ComputedPagePositionIdNowLength
+  onChangeId: (id: string) => void
+}
+const MainUucircleTopButtons: FC<Props> = ({
+  pagePositionIdNowLength,
+  onChangeId,
+}) => {
   const { isLg } = useMediaQuery()
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isLg ? <PcButtonGroup /> : <SpButtonGroup />}
+      {isLg ? (
+        <PcButtonGroup
+          pagePositionIdNowLength={pagePositionIdNowLength}
+          onChangeId={onChangeId}
+        />
+      ) : (
+        <SpButtonGroup />
+      )}
     </div>
   )
 }

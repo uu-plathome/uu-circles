@@ -10,12 +10,12 @@ namespace App\Enum;
 final class CircleType
 {
     /**
-     * 公式団体.
+     * 公認団体.
      */
     const OFFICIAL_ORGANIZATION = 'OFFICIAL_ORGANIZATION';
 
     /**
-     * 非公式団体.
+     * 非公認団体.
      */
     const UNOFFICIAL_ORGANIZATION = 'UNOFFICIAL_ORGANIZATION';
 
