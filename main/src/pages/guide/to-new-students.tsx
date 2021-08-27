@@ -90,7 +90,10 @@ const Page: NextPage<Props> = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <div id={ID_LIST.header_to_new_students} onMouseOver={() => onChangeId(ID_LIST.header_to_new_students)}>
+            <div
+              id={ID_LIST.header_to_new_students}
+              onMouseOver={() => onChangeId(ID_LIST.header_to_new_students)}
+            >
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -104,7 +107,11 @@ const Page: NextPage<Props> = () => {
               <h1 className="px-4 pt-6 pb-8 text-2xl">新入生へ</h1>
             </div>
 
-            <div id={ID_LIST.toc} onMouseOver={() => onChangeId(ID_LIST.toc)} className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500">
+            <div
+              id={ID_LIST.toc}
+              onMouseOver={() => onChangeId(ID_LIST.toc)}
+              className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500"
+            >
               <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">
                 <ScrollLink
@@ -168,9 +175,14 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div id={ID_LIST.first} onMouseOver={() => onChangeId(ID_LIST.first)}>
+            <div
+              id={ID_LIST.first}
+              onMouseOver={() => onChangeId(ID_LIST.first)}
+            >
               <SubHeader id={ID_LIST.first}>0. 新入生へ</SubHeader>
-              <p className="px-4 pb-6">新入生の方々合格おめでとうございます。</p>
+              <p className="px-4 pb-6">
+                新入生の方々合格おめでとうございます。
+              </p>
               <p className="px-4 pb-6">
                 新型コロナという残念な状況ではありますが、
                 その中でも新入生が楽しく学生生活を送れるようにこのサイトを制作運営しています。
@@ -178,7 +190,10 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div id={ID_LIST.second} onMouseOver={() => onChangeId(ID_LIST.second)}>
+            <div
+              id={ID_LIST.second}
+              onMouseOver={() => onChangeId(ID_LIST.second)}
+            >
               <SubHeader id={ID_LIST.second}>
                 1. 気になったサークルを見てみよう
               </SubHeader>
@@ -209,7 +224,10 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div> */}
 
-            <div id={ID_LIST.third} onMouseOver={() => onChangeId(ID_LIST.third)}>
+            <div
+              id={ID_LIST.third}
+              onMouseOver={() => onChangeId(ID_LIST.third)}
+            >
               <SubHeader id={ID_LIST.third}>
                 2. いつ・どんな新歓があるか確認してみよう
               </SubHeader>
@@ -228,7 +246,10 @@ const Page: NextPage<Props> = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.fourth} onMouseOver={() => onChangeId(ID_LIST.fourth)}>
+            <div
+              id={ID_LIST.fourth}
+              onMouseOver={() => onChangeId(ID_LIST.fourth)}
+            >
               <SubHeader id={ID_LIST.fourth}>3. uu-yellをみよう</SubHeader>
 
               <div className="px-4 pb-6">
