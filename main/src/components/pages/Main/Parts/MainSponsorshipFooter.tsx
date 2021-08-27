@@ -6,7 +6,6 @@ import { LightBlueButton } from '@/src/components/atoms/button/LightBlueButton'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { useWindowResize } from '@/src/hooks/useWindowResize'
-import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 
 type Props = {
@@ -19,9 +18,9 @@ const MainSponsorshipFooter: FC<Props> = ({
 }) => {
   const { isMd } = useMediaQuery()
   const { width: windowWidth } = useWindowResize()
-  const width = isMd ? 375 : windowWidth
+  const width = (isMd ? 375 : windowWidth) || 342
   // w : h = 375 : 218
-  const height = (width * 218) / 375
+  const height = width ? (width * 218) / 375 : 200
   const pLen = pagePositionIdNowLength
 
   return (
@@ -54,11 +53,7 @@ const MainSponsorshipFooter: FC<Props> = ({
                 rel="noopener noreferrer"
               >
                 <Image
-                  src={
-                    advertises[0].mainImageUrl
-                      ? advertises[0].mainImageUrl
-                      : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
-                  }
+                  src={advertises[0].mainImageUrl}
                   alt="協賛企業広告"
                   width={width || 375}
                   height={height}
@@ -86,11 +81,7 @@ const MainSponsorshipFooter: FC<Props> = ({
                 rel="noopener noreferrer"
               >
                 <Image
-                  src={
-                    advertises[1].mainImageUrl
-                      ? advertises[1].mainImageUrl
-                      : ImagePath.ADVERTISE.ADVERTISE_EMPTY_THUMBNAIL
-                  }
+                  src={advertises[1].mainImageUrl}
                   alt="協賛企業広告"
                   width={width || 375}
                   height={height}

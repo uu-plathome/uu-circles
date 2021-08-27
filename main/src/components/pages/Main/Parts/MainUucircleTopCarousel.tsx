@@ -21,10 +21,10 @@ type Props = {
 const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
   const { isMd } = useMediaQuery()
   const { width } = useWindowResize()
-  const [height, setHeight] = useState(0)
+  const [height, setHeight] = useState(196)
 
   useEffect(() => {
-    setHeight(isMd ? 330 : (width * 4192) / 8001)
+    setHeight((isMd ? 330 : (width * 4192) / 8001) || 196)
   }, [isMd, width])
 
   const params: Swiper = {
