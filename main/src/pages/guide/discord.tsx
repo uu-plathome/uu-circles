@@ -40,8 +40,10 @@ const Page: NextPage = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-
-            <div id={ID_LIST.HEADER_DISCORD} onMouseOver={() => onChangeId(ID_LIST.HEADER_DISCORD)}>
+            <div
+              id={ID_LIST.HEADER_DISCORD}
+              onMouseOver={() => onChangeId(ID_LIST.HEADER_DISCORD)}
+            >
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -58,7 +60,11 @@ const Page: NextPage = () => {
               </h1>
             </div>
 
-            <div id={ID_LIST.TOC} onMouseOver={() => onChangeId(ID_LIST.TOC)} className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500">
+            <div
+              id={ID_LIST.TOC}
+              onMouseOver={() => onChangeId(ID_LIST.TOC)}
+              className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500"
+            >
               <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">0.Discordとは</p>
               <p className="pt-2">1.Discordをインストールしよう</p>
@@ -148,7 +154,10 @@ const Page: NextPage = () => {
                 <p>
                   その３で入力したアドレスに、オンライン新歓が行われるサーバーへの招待URLが届くよ！
                 </p>
-                <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
+                <p>
+                  {' '}
+                  タップして参加しよう！（送信には時間がかかる場合がある？)
+                </p>
               </div>
             </div>
 
@@ -164,13 +173,18 @@ const Page: NextPage = () => {
                 </p>
                 <p>(例)たろう 工学部 基盤工学科 １年</p>
                 <p>じろう 地デザ 建築 １年</p>
-                <p> タップして参加しよう！（送信には時間がかかる場合がある？)</p>
+                <p>
+                  {' '}
+                  タップして参加しよう！（送信には時間がかかる場合がある？)
+                </p>
               </div>
             </div>
 
             <div id={ID_LIST.P_6} onMouseOver={() => onChangeId(ID_LIST.P_6)}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
-                <h2 className="px-4 text-2xl font-bold">6.新歓に参加しよう！</h2>
+                <h2 className="px-4 text-2xl font-bold">
+                  6.新歓に参加しよう！
+                </h2>
               </div>
 
               <div className="px-4 pb-24">
