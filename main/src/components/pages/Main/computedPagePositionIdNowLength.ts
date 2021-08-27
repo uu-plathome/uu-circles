@@ -57,16 +57,16 @@ export const computedPagePositionIdNowLength = ({
         (p) =>
           p.pagePositionId ===
             TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS ||
-          p.pageUrl === '/guide/discord'
+          p.pageUrl === '/guide/to-new-students'
       ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]: pagePositionsExcludeOwn.filter(
       (p) =>
-        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY &&
+        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY ||
         p.pageUrl === '/circle/newjoy'
     ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]: pagePositionsExcludeOwn.filter(
       (p) =>
-        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD &&
+        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD ||
         p.pageUrl === '/guide/discord'
     ).length,
   }
