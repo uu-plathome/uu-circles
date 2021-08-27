@@ -31,6 +31,8 @@ export type Props = {
   pattern?: string
   disabled?: boolean
   onChange(e: any): void
+  min?: number
+  visibleCounter?: boolean
 } & BaseLabelProps
 const BaseTextField: FC<Props> = ({
   label,
@@ -48,7 +50,9 @@ const BaseTextField: FC<Props> = ({
   suffix,
   error,
   disabled,
+  min,
   onChange,
+  visibleCounter = true,
 }) => {
   const [counter, setCounter] = useState<number>(0)
 
@@ -88,6 +92,7 @@ const BaseTextField: FC<Props> = ({
           placeholder={placeholder}
           onChange={onChange}
           maxLength={maxLength}
+          min={min}
           className={inputClass}
           pattern={pattern}
           disabled={disabled}
@@ -105,10 +110,12 @@ const BaseTextField: FC<Props> = ({
         ) : (
           <span> </span>
         )}
-        <p className="text-sm text-white">
-          <span>{counter}</span>
-          {maxLength ? <span> / {maxLength}</span> : ''}
-        </p>
+        {visibleCounter ? (
+          <p className="text-sm text-white">
+            <span>{counter}</span>
+            {maxLength ? <span> / {maxLength}</span> : ''}
+          </p>
+        ) : null}
       </div>
     </div>
   )

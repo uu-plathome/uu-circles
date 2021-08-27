@@ -3,6 +3,7 @@
 namespace App\Usecases\Admin\AllUser\Dto;
 
 use App\Models\User;
+use JetBrains\PhpStorm\ArrayShape;
 
 final class IndexAllUserItemDto
 {
@@ -18,6 +19,9 @@ final class IndexAllUserItemDto
 
     public bool $active;
 
+    // 所属サークル数
+    public int $circle_user_count;
+
     public static function byEloquent(User $user): self
     {
         $dto = new self();
@@ -29,10 +33,21 @@ final class IndexAllUserItemDto
             ? $user->email_verified_at->format('Y-m-d H:i:s')
             : null;
         $dto->active = $user->active;
+        $dto->circle_user_count = $user->circleUsers 
+            ? $user->circleUsers->count()  
+            : 0;
 
         return $dto;
     }
 
+    #[ArrayShape([
+        'id' => "int",
+        'username' => "string",
+        'display_name' => "string",
+        'email' => "string",
+        'email_verified_at' => "null|string",
+        'active' => "bool",
+        'circle_user_count' => "int"])]
     public function toArray(): array
     {
         return [
@@ -42,6 +57,7 @@ final class IndexAllUserItemDto
             'email'             => $this->email,
             'email_verified_at' => $this->email_verified_at,
             'active'            => $this->active,
+            'circle_user_count' => $this->circle_user_count,
         ];
     }
 }

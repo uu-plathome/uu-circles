@@ -19,7 +19,8 @@ final class IndexAllUserUsecase
     {
         Log::debug('IndexAllUserUsecase args none');
 
-        $allUser = User::whereDoesntHave('adminUser')
+        $allUser = User::with(['circleUsers'])
+            ->whereDoesntHave('adminUser')
             ->orderByDesc('updated_at')
             ->get();
 

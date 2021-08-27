@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { scroller } from 'react-scroll'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { AllCircleUsersTemplate } from '@/components/pages/CircleUser/Index/AllCircleUsersTemplate'
-import { useStringInput } from '@/hooks/useInput'
+import { useNumberInput, useStringInput } from '@/hooks/useInput'
 import { usePageInput } from '@/hooks/usePageInput'
 import {
   allCircleUserList,
@@ -16,6 +16,7 @@ const IndexPage: NextPage = () => {
   const [originalUsers, setOriginalUsers] =
     useState<UserByAllCircle[]>(undefined)
   const searchName = useStringInput('')
+  const searchCircleCount = useNumberInput(null)
   const [isOpen, setIsOpen] = useState(false)
   const scrollTop = () => {
     scroller.scrollTo('top', {
@@ -63,9 +64,23 @@ const IndexPage: NextPage = () => {
         return false
       })
 
-      page.setMaxPage(Math.ceil(filteredName ? filteredName.length / 10 : 1))
+      const filteredCircleCount = filteredName.filter((u) => {
+        if (['', null, undefined].includes(searchCircleCount.value)) {
+          return true
+        }
 
-      return filteredName
+        if (u.circleUserCount && u.circleUserCount >= searchCircleCount.toNumber) {
+          return true
+        }
+
+        return false
+      })
+
+      const _filteredUsers = filteredCircleCount
+
+      page.setMaxPage(Math.ceil(_filteredUsers ? _filteredUsers.length / 10 : 1))
+
+      return _filteredUsers
     })()
 
     return {
@@ -74,11 +89,11 @@ const IndexPage: NextPage = () => {
         page.page * page.pageSize
       ),
     }
-  }, [originalUsers, page.page, page.pageSize, searchName.value])
+  }, [originalUsers, page.page, page.pageSize, searchName.value, searchCircleCount.value])
 
   useMemo(() => {
     page.updatePage(1)
-  }, [searchName.value])
+  }, [searchName.value, searchCircleCount.value])
 
   const onResendEmail = async (email: string) => {
     setIsOpen(true)
@@ -102,6 +117,7 @@ const IndexPage: NextPage = () => {
         users={searchedUsers.users}
         searchValue={{
           name: searchName,
+          circleCount: searchCircleCount,
         }}
         hasPrevious={page.hasPrevious}
         hasNext={page.hasNext}

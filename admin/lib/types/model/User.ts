@@ -24,4 +24,6 @@ export interface UserByAllCircle {
   email: string
   emailVerifiedAt: string
   active: boolean
+  /** 所属サークル数 */
+  circleUserCount: number
 }

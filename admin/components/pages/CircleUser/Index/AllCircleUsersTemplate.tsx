@@ -5,17 +5,19 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'colors'
 import { NextPage } from 'next'
+import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
-import { UseStringInput } from '@/hooks/useInput'
+import { UseNumberInput, UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { User, UserByAllCircle } from '@/lib/types/model/User'
+import { UserByAllCircle } from '@/lib/types/model/User'
 
 type SearchValue = {
   name: UseStringInput
+  circleCount: UseNumberInput
 }
 type Props = {
   users: UserByAllCircle[]
@@ -50,14 +52,27 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
           <div className="border-2 border-gray-800 p-2">
             {users ? (
               <div className="py-4 mb-8">
-                <p className="text-white">ユーザー検索</p>
 
                 <form>
-                  <SearchTextField
-                    id="nameSearch"
-                    name="nameSearch"
-                    expand
-                    {...searchValue.name}
+                  <div className="mb-2">
+                    <label htmlFor="nameSearch" className="text-white mb-2">ユーザー検索</label>
+
+                    <SearchTextField
+                      id="nameSearch"
+                      name="nameSearch"
+                      expand
+                      {...searchValue.name}
+                    />
+                  </div>
+
+                  <BaseTextField
+                    id="circleCountSearch"
+                    name="circleCountSearch"
+                    label="サークル所属数"
+                    type="number"
+                    min={0}
+                    visibleCounter={false}
+                    {...searchValue.circleCount}
                   />
                 </form>
               </div>
@@ -66,15 +81,15 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
             )}
 
             {users && users.length > 0
-              ? users.map((user: User) => {
-                  return (
-                    <AllUserListItem
-                      key={`user-${user.id}`}
-                      user={user}
-                      onResendEmail={onResendEmail}
-                    />
-                  )
-                })
+              ? users.map((user: UserByAllCircle) => {
+                return (
+                  <AllUserListItem
+                    key={`user-${user.id}`}
+                    user={user}
+                    onResendEmail={onResendEmail}
+                  />
+                )
+              })
               : ''}
 
             {users && users.length === 0 ? (

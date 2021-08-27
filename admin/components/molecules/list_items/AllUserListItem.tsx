@@ -6,10 +6,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
-import { User } from '@/lib/types/model/User'
+import { UserByAllCircle } from '@/lib/types/model/User'
 
 type Props = {
-  user: User
+  user: UserByAllCircle
   onResendEmail(email: string): void
 }
 const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
@@ -21,19 +21,19 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
         </h2>
 
         <div className="flex flex-wrap w-full">
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="w-1/2 sm:1/3 lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-1 bg-gray-800 text-gray-300 font-bold text-sm">
               ユーザー名
             </p>
-            <div className="flex justify-center h-7 items-center text-white">
+            <div className="flex justify-center h-16 items-center text-white">
               {user.username}
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="w-1/2 sm:1/3 lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-1 bg-gray-800 text-gray-300 font-bold text-sm">
               有効なアカウント
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center h-16 items-center">
               <FontAwesomeIcon
                 size="lg"
                 color={user.active ? 'green' : 'red'}
@@ -41,11 +41,11 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
               />
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="w-1/2 sm:1/3 lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-1 bg-gray-800 text-gray-300 font-bold text-sm">
               認証済みか
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center h-16 items-center">
               <div>
                 <div className="flex justify-center items-center">
                   <FontAwesomeIcon
@@ -66,11 +66,11 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="w-1/2 sm:1/3 lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-1 bg-gray-800 text-gray-300 font-bold text-sm">
               所属サークル
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center h-16 items-center">
               <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
                 <a>
                   <FontAwesomeIcon
@@ -80,6 +80,16 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
                   />
                 </a>
               </Link>
+            </div>
+          </div>
+          <div className="w-1/2 sm:1/3 lg:w-1/6 pr-2">
+            <p className="text-center py-1 mb-1 bg-gray-800 text-gray-300 font-bold text-sm">
+              所属サークル数
+            </p>
+            <div className="flex justify-center h-16 items-center">
+              <span className="text-white">
+                {user.circleUserCount}
+              </span>
             </div>
           </div>
         </div>
