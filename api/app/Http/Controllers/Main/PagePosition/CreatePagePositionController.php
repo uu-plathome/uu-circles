@@ -123,60 +123,9 @@ final class CreatePagePositionController extends Controller
             'identifier:id,identifier_hash',
             'circle:id,slug',
         ])
-            ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                // 今回のイベントで同じページにいるユーザーを取得
+            ->where(function ($query) use ($searchTimeFormat, $searchStartTime) {
                 $query
-                    ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                        $query->wherePageUrl($requestPageUrl)
-                            // 3s以内
-                            ->where(
-                                PagePositionHistoryProperty::created_at,
-                                '>=',
-                                date($searchTimeFormat, $searchStartTime)
-                            );
-                    })
-                    ->orWhere(function ($query) use ($searchTimeFormat, $searchStartTime) {
-                        /** @var \App\Models\PagePositionHistory $query */
-                        // 今回のイベントで同じページにいるユーザーを取得
-                        $query->whereNotNull(PagePositionHistoryProperty::circle_id)
-                            // 3s以内
-                            ->where(
-                                PagePositionHistoryProperty::created_at,
-                                '>=',
-                                date($searchTimeFormat, $searchStartTime)
-                            );
-                    });
-            })
-            ->orWhere(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                // 今回のイベントに関係のあるユーザーの識別子ID一覧作成し、それらが他のページに遷移していた場合は弾きたいので、一緒に拾ってくる
-                $query->whereIn(
-                    PagePositionHistoryProperty::identifier_id,
-                    function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                        $query->select(PagePositionHistoryProperty::identifier_id)
-                            ->distinct()
-                            ->from(with(new PagePositionHistory())->getTable())
-                            ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
-                                $query->wherePageUrl($requestPageUrl)
-                                    // 3s以内
-                                    ->where(
-                                        PagePositionHistoryProperty::created_at,
-                                        '>=',
-                                        date($searchTimeFormat, $searchStartTime)
-                                    );
-                            })
-                            ->orWhere(function ($query) use ($searchTimeFormat, $searchStartTime) {
-                                /** @var \App\Models\PagePositionHistory $query */
-                                // 今回のイベントで同じページにいるユーザーを取得
-                                $query->whereNotNull(PagePositionHistoryProperty::circle_id)
-                                    // 3s以内
-                                    ->where(
-                                        PagePositionHistoryProperty::created_at,
-                                        '>=',
-                                        date($searchTimeFormat, $searchStartTime)
-                                    );
-                            });
-                    }
-                )
+                    // 3s以内
                     ->where(
                         PagePositionHistoryProperty::created_at,
                         '>=',

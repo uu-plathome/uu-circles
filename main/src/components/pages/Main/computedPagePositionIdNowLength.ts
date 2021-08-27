@@ -55,13 +55,19 @@ export const computedPagePositionIdNowLength = ({
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]:
       pagePositionsExcludeOwn.filter(
         (p) =>
-          p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS
+          p.pagePositionId ===
+            TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS ||
+          p.pageUrl === '/guide/to-new-students'
       ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]: pagePositionsExcludeOwn.filter(
-      (p) => p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY
+      (p) =>
+        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY ||
+        p.pageUrl === '/circle/newjoy'
     ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]: pagePositionsExcludeOwn.filter(
-      (p) => p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD
+      (p) =>
+        p.pagePositionId === TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD ||
+        p.pageUrl === '/guide/discord'
     ).length,
   }
 
