@@ -52,10 +52,11 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
           <div className="border-2 border-gray-800 p-2">
             {users ? (
               <div className="py-4 mb-8">
-
                 <form>
                   <div className="mb-2">
-                    <label htmlFor="nameSearch" className="text-white mb-2">ユーザー検索</label>
+                    <label htmlFor="nameSearch" className="text-white mb-2">
+                      ユーザー検索
+                    </label>
 
                     <SearchTextField
                       id="nameSearch"
@@ -82,14 +83,14 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
 
             {users && users.length > 0
               ? users.map((user: UserByAllCircle) => {
-                return (
-                  <AllUserListItem
-                    key={`user-${user.id}`}
-                    user={user}
-                    onResendEmail={onResendEmail}
-                  />
-                )
-              })
+                  return (
+                    <AllUserListItem
+                      key={`user-${user.id}`}
+                      user={user}
+                      onResendEmail={onResendEmail}
+                    />
+                  )
+                })
               : ''}
 
             {users && users.length === 0 ? (

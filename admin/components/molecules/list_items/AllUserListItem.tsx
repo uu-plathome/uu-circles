@@ -87,9 +87,7 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
               所属サークル数
             </p>
             <div className="flex justify-center h-16 items-center">
-              <span className="text-white">
-                {user.circleUserCount}
-              </span>
+              <span className="text-white">{user.circleUserCount}</span>
             </div>
           </div>
         </div>

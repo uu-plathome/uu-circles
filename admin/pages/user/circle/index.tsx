@@ -69,7 +69,10 @@ const IndexPage: NextPage = () => {
           return true
         }
 
-        if (u.circleUserCount && u.circleUserCount >= searchCircleCount.toNumber) {
+        if (
+          u.circleUserCount &&
+          u.circleUserCount >= searchCircleCount.toNumber
+        ) {
           return true
         }
 
@@ -78,7 +81,9 @@ const IndexPage: NextPage = () => {
 
       const _filteredUsers = filteredCircleCount
 
-      page.setMaxPage(Math.ceil(_filteredUsers ? _filteredUsers.length / 10 : 1))
+      page.setMaxPage(
+        Math.ceil(_filteredUsers ? _filteredUsers.length / 10 : 1)
+      )
 
       return _filteredUsers
     })()
@@ -89,7 +94,13 @@ const IndexPage: NextPage = () => {
         page.page * page.pageSize
       ),
     }
-  }, [originalUsers, page.page, page.pageSize, searchName.value, searchCircleCount.value])
+  }, [
+    originalUsers,
+    page.page,
+    page.pageSize,
+    searchName.value,
+    searchCircleCount.value,
+  ])
 
   useMemo(() => {
     page.updatePage(1)
