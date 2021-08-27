@@ -100,7 +100,8 @@ final class DrawGachaUsecase
                 );
 
                 return is_null($found);
-            });
+            }
+        );
         Log::debug('DrawGachaUsecase notPickupCircles', [$notPickupCircles]);
 
         //値の確定 コレクション
