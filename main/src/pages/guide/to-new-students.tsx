@@ -11,10 +11,10 @@ import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
-import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
-import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
+import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
+import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 

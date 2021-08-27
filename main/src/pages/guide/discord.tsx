@@ -1,11 +1,11 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
-import { useEffect, useState } from 'react'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 
 const ID_LIST = {
