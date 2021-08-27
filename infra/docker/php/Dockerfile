@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-buster
+FROM php:8.0-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 ARG APCU_VERSION=5.1.19

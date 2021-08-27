@@ -81,7 +81,7 @@ final class CreateAnnouncementUsecase
     {
         $loop = self::MAX_SLUG_CHECK;
         for ($i = $loop; $i > 0; $i--) {
-            $newSlug = (string) Str::uuid();
+            $newSlug = Str::uuid()->toString();
 
             if (Announcement::whereSlug($newSlug)->doesntExist()) {
                 return $newSlug;

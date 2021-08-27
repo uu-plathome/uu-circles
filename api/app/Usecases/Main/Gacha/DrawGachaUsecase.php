@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Usecases\Main\Gacha;
 
+use App\Enum\Property\CircleGachaResultProperty;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
@@ -90,15 +91,16 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase pickupCircles', [$pickupCircles]);
 
         //ピックアップじゃないリストの処理
-        $notPickupCircles = $foundCircles->filter(function (GachaSimpleCircleDto $cvo) use ($pickupListCirclesCollection) {
-            $pickupListCircles = $pickupListCirclesCollection;
-            $found = $pickupListCircles->first(
-                //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
-                fn (GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
-            );
+        $notPickupCircles = $foundCircles->filter(
+            function (GachaSimpleCircleDto $cvo) use ($pickupListCirclesCollection) {
+                $pickupListCircles = $pickupListCirclesCollection;
+                $found = $pickupListCircles->first(
+                    //ピックアップのサークル と DBからランダムで拾ってきたサークル の一致
+                    fn (GachaSimpleCircleDto $pickupCvo) => $pickupCvo->circleId === $cvo->circleId
+                );
 
-            return is_null($found);
-        });
+                return is_null($found);
+            });
         Log::debug('DrawGachaUsecase notPickupCircles', [$notPickupCircles]);
 
         //値の確定 コレクション
@@ -117,16 +119,21 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $drewCircle_ids = $drewCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
+        $drewCircleIds = $drewCircles
+            ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
+            ->values()
+            ->toArray();
+        $pickupCircleIds = (new Collection($pickupList->pickupCircles->list))
+            ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
+            ->values()
+            ->toArray();
 
         //DBに挿入
         $data = [
-            'result_circle_ids'                      => $drewCircle_ids,
-            'pickup_circle_ids'                      => (new Collection($pickupList->pickupCircles->list))
-                ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
-                ->values(),
-            'gacha_hash'        => (string) Str::uuid(),
-            'identifier_hash'   => $param->identifierHash,
+            CircleGachaResultProperty::result_circle_ids  => json_encode($drewCircleIds),
+            CircleGachaResultProperty::pickup_circle_ids  => json_encode($pickupCircleIds),
+            CircleGachaResultProperty::gacha_hash         => Str::uuid()->toString(),
+            CircleGachaResultProperty::identifier_hash    => $param->identifierHash,
         ];
         $circleGachaResult = CircleGachaResult::create($data);
 

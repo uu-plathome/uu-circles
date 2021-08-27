@@ -47,6 +47,11 @@ final class GachaDrawController extends Controller
         }
 
         Log::debug('identifierHash', [$identifierHash]);
+
+        if (!is_string($identifierHash)) {
+            return abort(422);
+        }
+
         if (Identifier::whereIdentifierHash($identifierHash)->doesntExist()) {
             return abort(422);
         }

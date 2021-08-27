@@ -30,7 +30,7 @@ class AnnouncementFactory extends Factory
             AnnouncementProperty::announcement_type    => AnnouncementType::QUESTIONNAIRE,
             AnnouncementProperty::link                 => 'https://uu-circles.com',
             AnnouncementProperty::importance           => Importance::HIGH,
-            AnnouncementProperty::slug                 => (string) Str::uuid(),
+            AnnouncementProperty::slug                 => Str::uuid()->toString(),
             AnnouncementProperty::for_admin_mail       => false,
             AnnouncementProperty::for_admin_view       => false,
             AnnouncementProperty::for_circle_mail      => false,

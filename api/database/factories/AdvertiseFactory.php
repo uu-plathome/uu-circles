@@ -5,6 +5,7 @@
 use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,6 @@ $factory->define(Advertise::class, function (Faker $faker) {
     return [
         AdvertiseProperty::title => 'みやメシ応援隊',
         AdvertiseProperty::link  => 'https://ulab-uu.com',
-        AdvertiseProperty::slug  => \Illuminate\Support\Str::uuid(),
+        AdvertiseProperty::slug  => Str::uuid()->toString(),
     ];
 });
