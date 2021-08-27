@@ -123,7 +123,7 @@ final class CreatePagePositionController extends Controller
             'identifier:id,identifier_hash',
             'circle:id,slug',
         ])
-            ->where(function ($query) use ($requestPageUrl, $searchTimeFormat, $searchStartTime) {
+            ->where(function ($query) use ($searchTimeFormat, $searchStartTime) {
                 $query
                     // 3s以内
                     ->where(
