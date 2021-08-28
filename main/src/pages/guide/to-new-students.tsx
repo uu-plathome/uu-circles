@@ -17,9 +17,7 @@ import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 const UU_YELL_URL = ApiUrl.UU_YELL

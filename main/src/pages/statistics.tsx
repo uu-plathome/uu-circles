@@ -28,9 +28,7 @@ const StatisticsOtherView = dynamic(() =>
 )
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {
@@ -71,15 +69,17 @@ const Page: NextPage<Props> = ({
               />
 
               <div
-                className={`${buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.COMMON ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCommonView statistics={statistics} />
               </div>
 
               <div
-                className={`${buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
-                  }`}
+                className={`${
+                  buttonState === StatisticsButtonState.CIRCLE ? '' : 'hidden'
+                }`}
               >
                 <StatisticsCircleView statistics={statistics} />
               </div>
