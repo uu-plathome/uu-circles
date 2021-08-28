@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Log;
 
 final class GetRandomAdvertiseUsecase
 {
+    const TTL = 60 * 5;
+
     public function invoke(int $limit = 2)
     {
         Log::debug('GetRandomAdvertiseUsecase args none');
@@ -32,5 +34,12 @@ final class GetRandomAdvertiseUsecase
             ->toArray();
 
         return $advertises;
+    }
+
+    public static function getCacheKey(): string
+    {
+        $hour = Carbon::now()->format('YmdH');
+
+        return 'main.advertise.mainTop'.$hour;
     }
 }

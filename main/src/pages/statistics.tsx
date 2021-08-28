@@ -2,7 +2,6 @@ import { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -26,6 +25,10 @@ const StatisticsOtherView = dynamic(() =>
   import('@/src/components/organisms/Statistics/StatisticsOtherView').then(
     (mod) => mod.StatisticsOtherView
   )
+)
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {

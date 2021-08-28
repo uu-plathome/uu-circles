@@ -69,13 +69,17 @@ final class IndexController extends Controller
             fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
-        $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60 * 5, function () {
-            return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
-        });
+        $advertises = Cache::remember(
+            GetRandomAdvertiseUsecase::getCacheKey(),
+            GetRandomAdvertiseUsecase::TTL,
+            function () {
+                return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
+            }
+        );
 
         $mainAdvertises = Cache::remember(
-            $this->getMainTopAdvertiseCacheKey(),
-            60 * 30,
+            GetMainTopAdvertiseUsecase::getCacheKey(),
+            GetMainTopAdvertiseUsecase::TTL,
             fn () => $this->getMainTopAdvertiseUsecase->invoke()
         );
 
@@ -118,12 +122,5 @@ final class IndexController extends Controller
         $hour = Carbon::now()->format('YmdH');
 
         return 'main.advertise.mainTop'.$hour;
-    }
-
-    private function getAdvertiseCacheKey(): string
-    {
-        $minutes = Carbon::now()->format('YmdHi');
-
-        return 'main.advertise'.$minutes;
     }
 }

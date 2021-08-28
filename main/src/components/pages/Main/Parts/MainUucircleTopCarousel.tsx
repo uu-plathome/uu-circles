@@ -22,10 +22,15 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
   const { isMd } = useMediaQuery()
   const { width } = useWindowResize()
   const [height, setHeight] = useState(196)
+  const [isLoad, setIsLoad] = useState(false)
 
   useEffect(() => {
     setHeight((isMd ? 330 : (width * 4192) / 8001) || 196)
   }, [isMd, width])
+
+  useEffect(() => {
+    setIsLoad(true)
+  }, [])
 
   const params: Swiper = {
     //Swiperの設定
@@ -42,7 +47,7 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
   return (
     <div className="flex justify-center bg-gray-100">
       <Swiper tag="nav" {...params}>
-        <SwiperSlide>
+        <SwiperSlide style={{ minHeight: '167px' }}>
           <Image
             src="/images/top-image.png"
             width={width || 1000}
@@ -55,7 +60,10 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
         {advertises &&
           advertises.map((advertise) => {
             return (
-              <SwiperSlide key={advertise.id}>
+              <SwiperSlide
+                key={`MainUucircleTopCarousel-${advertise.id}`}
+                style={{ minHeight: '167px' }}
+              >
                 <div className="relative">
                   {advertise.link ? (
                     <a
@@ -82,11 +90,13 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
                   )}
                 </div>
 
-                <div className="absolute top-2 left-2">
-                  <div className="p-2 px-4 text-xs bg-gray-300 rounded">
-                    広告
+                {isLoad ? (
+                  <div className="absolute top-2 left-2">
+                    <div className="p-2 px-4 text-xs bg-gray-300 rounded">
+                      広告
+                    </div>
                   </div>
-                </div>
+                ) : null}
               </SwiperSlide>
             )
           })}

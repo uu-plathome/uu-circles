@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic'
-import { useMemo } from 'react'
-import { FC } from 'react'
+import { useMemo, FC } from 'react'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { computedPagePositionIdNowLength } from './computedPagePositionIdNowLength'
 import { ID_LIST } from './id_list'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
@@ -40,6 +38,9 @@ const MainSponsorshipFooter = dynamic(() =>
   import('@/src/components/pages/Main/Parts/MainSponsorshipFooter').then(
     (mod) => mod.MainSponsorshipFooter
   )
+)
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {
