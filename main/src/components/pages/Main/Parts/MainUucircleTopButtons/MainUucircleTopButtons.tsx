@@ -30,39 +30,41 @@ const SpButton: FC<SpButtonProps> = ({ href, src, alt }) => {
   )
 }
 const SpButtonGroup = () => {
+  const { isSm } = useMediaQuery()
+
   return (
     <Swiper
       spaceBetween={50}
-      slidesPerView={1}
+      slidesPerView={isSm ? 2 : 1}
       initialSlide={1}
-      navigation
+      centeredSlides
+      navigation={isSm ? false : true}
       loop
+      tag="nav"
     >
-      <nav className="mx-4">
-        <SwiperSlide>
-          <SpButton
-            href="/guide/to-new-students"
-            src="/images/topButtons/Rectangle15.png"
-            alt="新入生へ"
-          />
-        </SwiperSlide>
+      <SwiperSlide>
+        <SpButton
+          href="/guide/to-new-students"
+          src="/images/topButtons/Rectangle15.png"
+          alt="新入生へ"
+        />
+      </SwiperSlide>
 
-        <SwiperSlide>
-          <SpButton
-            href="/circle/newjoy"
-            src="/images/topButtons/shinkan1.png"
-            alt="今日の新歓"
-          />
-        </SwiperSlide>
+      <SwiperSlide>
+        <SpButton
+          href="/circle/newjoy"
+          src="/images/topButtons/shinkan1.png"
+          alt="今日の新歓"
+        />
+      </SwiperSlide>
 
-        <SwiperSlide>
-          <SpButton
-            href="/guide/discord"
-            src="/images/topButtons/discordBunner1.png"
-            alt="新歓ディスコード"
-          />
-        </SwiperSlide>
-      </nav>
+      <SwiperSlide>
+        <SpButton
+          href="/guide/discord"
+          src="/images/topButtons/discordBunner1.png"
+          alt="新歓ディスコード"
+        />
+      </SwiperSlide>
     </Swiper>
   )
 }
