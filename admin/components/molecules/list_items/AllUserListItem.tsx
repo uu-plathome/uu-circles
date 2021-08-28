@@ -15,25 +15,25 @@ type Props = {
 const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
   return (
     <div>
-      <div className="ml-2 w-full mb-4">
-        <h2 className="font-bold text-lg text-gray-300 mb-2">
+      <div className="mb-4 ml-2 w-full">
+        <h2 className="mb-2 text-lg font-bold text-gray-300">
           {user.displayName}
         </h2>
 
         <div className="flex flex-wrap w-full">
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               ユーザー名
             </p>
-            <div className="flex justify-center h-7 items-center text-white">
+            <div className="flex justify-center items-center h-7 text-white">
               {user.username}
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               有効なアカウント
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <FontAwesomeIcon
                 size="lg"
                 color={user.active ? 'green' : 'red'}
@@ -41,11 +41,11 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
               />
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               認証済みか
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <div>
                 <div className="flex justify-center items-center">
                   <FontAwesomeIcon
@@ -66,11 +66,11 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               所属サークル
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
                 <a>
                   <FontAwesomeIcon

@@ -82,7 +82,7 @@ const IndexPage: NextPage = () => {
             ''
           )} */}
 
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {announcements.length > 0
               ? announcements.map((announcement: Announcement) => {
                   return (

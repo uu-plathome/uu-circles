@@ -50,7 +50,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ user, onDelete }) => {
         style={customStyles}
         contentLabel="部員アカウント削除"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当に削除しますか？
         </h2>
 
@@ -82,25 +82,25 @@ const CircleUserListItem: FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className="ml-2 w-full mb-4">
-        <h2 className="font-bold text-lg text-gray-300 mb-2">
+      <div className="mb-4 ml-2 w-full">
+        <h2 className="mb-2 text-lg font-bold text-gray-300">
           {user.displayName}
         </h2>
 
         <div className="flex flex-wrap w-full">
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               ユーザー名
             </p>
-            <div className="flex justify-center h-7 items-center text-white">
+            <div className="flex justify-center items-center h-7 text-white">
               {user.username}
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               有効なアカウント
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <FontAwesomeIcon
                 size="lg"
                 color={user.active ? 'green' : 'red'}
@@ -108,11 +108,11 @@ const CircleUserListItem: FC<Props> = ({
               />
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               認証済みか
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <div>
                 <div className="flex justify-center items-center">
                   <FontAwesomeIcon
@@ -133,11 +133,11 @@ const CircleUserListItem: FC<Props> = ({
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               所属サークル
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
                 <a>
                   <FontAwesomeIcon
@@ -149,11 +149,11 @@ const CircleUserListItem: FC<Props> = ({
               </Link>
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               編集する
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <Link
                 href="/circle/[id]/user/[userId]/edit"
                 as={`/circle/${circleId}/user/${user.id}/edit`}
@@ -164,11 +164,11 @@ const CircleUserListItem: FC<Props> = ({
               </Link>
             </div>
           </div>
-          <div className="w-full lg:w-1/6 pr-2">
-            <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+          <div className="pr-2 w-full lg:w-1/6">
+            <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
               削除する
             </p>
-            <div className="flex justify-center h-7 items-center">
+            <div className="flex justify-center items-center h-7">
               <DeleteButton user={user} onDelete={() => onDelete(user.id)} />
             </div>
           </div>

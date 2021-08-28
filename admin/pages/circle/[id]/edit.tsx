@@ -1,6 +1,5 @@
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import Compressor from 'compressorjs'
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -27,6 +26,7 @@ import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPu
 import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { HiraToKana } from '@/lib/utils/String'
+import Color from 'colors'
 
 const EditPage: NextPage = () => {
   const [circle, setCircle] = useState<Circle | undefined>(undefined)
@@ -556,7 +556,7 @@ const EditPage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="サークル編集">
-          <div className="border-2 border-gray-800 px-2 py-4">
+          <div className="py-4 px-2 border-2 border-gray-800">
             {circle ? (
               <>
                 {isSystem(authUser.role) ? (
@@ -568,8 +568,8 @@ const EditPage: NextPage = () => {
                 )}
 
                 {!handbillImageUrl.value ? (
-                  <div className="border-2 border-white p-4 text-white mb-4 rounded">
-                    <p className="text-red-600 text-lg mb-2">
+                  <div className="p-4 mb-4 text-white rounded border-2 border-white">
+                    <p className="mb-2 text-lg text-red-600">
                       <FontAwesomeIcon
                         icon={faExclamationTriangle}
                         color={Color.red[600]}

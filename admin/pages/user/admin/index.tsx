@@ -82,7 +82,7 @@ const IndexPage: NextPage = () => {
 
           {error ? <DangerBunner text={error} /> : ''}
 
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {users
               ? users.map((user: User) => {
                   return (
