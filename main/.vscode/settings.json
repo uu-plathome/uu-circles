@@ -15,18 +15,21 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": [
+    "Utas",
     "bugsnag",
     "chmod",
     "datepicker",
     "dropzone",
     "fontawesome",
     "fortawesome",
+    "gacha",
     "gtag",
     "intelephense",
     "laravel",
     "newjoy",
     "peing",
     "prefetch",
+    "swiper",
     "tailwindcss",
     "yoto",
     "youtube"

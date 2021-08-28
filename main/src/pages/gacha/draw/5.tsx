@@ -1,13 +1,17 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import YouTube, { Options } from 'react-youtube'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { drawGacha } from '@/src/lib/infra/api/gacha'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
+)
 
 const opts: Options = {
   height: '390',

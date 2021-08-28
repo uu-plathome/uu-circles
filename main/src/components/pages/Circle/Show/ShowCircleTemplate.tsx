@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { FC } from 'react'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
@@ -9,7 +10,6 @@ import { ShowCircleTitle } from './Parts/ShowCircleTitle'
 import { TopImage } from './Parts/TopImage'
 import { WpPostBlock } from './Parts/WpPostBlock'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { TwitterEmbed } from '@/src/components/organisms/Twitter/TwitterEmbed'
@@ -17,6 +17,10 @@ import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
+)
 
 const ID_LIST = {
   /** 活動写真 */

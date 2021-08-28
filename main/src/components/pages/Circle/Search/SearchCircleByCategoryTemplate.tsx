@@ -1,10 +1,10 @@
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { WP_REST_API_Posts } from 'wp-types'
 import { useCategory } from './Hooks/useCategory'
 import { MainHeading } from './Parts/MainHeading'
 import { RecommendCircleList } from './Parts/RecommendCircleList'
 import { SearchDescription } from './Parts/SearchDescription'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
@@ -13,6 +13,10 @@ import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
+)
 
 const ID_LIST = {
   /** タイトル */

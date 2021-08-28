@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Error from 'next/error'
 import { WP_REST_API_Posts } from 'wp-types'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -12,6 +12,10 @@ import { PageNotFoundError } from '@/src/lib/infra/api/error'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
+)
 
 type Props = {
   errorCode?: number

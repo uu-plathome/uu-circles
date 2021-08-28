@@ -69,13 +69,17 @@ final class DemoIndexController extends Controller
             fn () => $this->getCircleWithDemoFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
-        $advertises = Cache::remember($this->getAdvertiseCacheKey(), 60 * 5, function () {
-            return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
-        });
+        $advertises = Cache::remember(
+            GetRandomAdvertiseUsecase::getCacheKey(),
+            GetRandomAdvertiseUsecase::TTL,
+            function () {
+                return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
+            }
+        );
 
         $mainAdvertises = Cache::remember(
-            $this->getMainTopAdvertiseCacheKey(),
-            60 * 30,
+            GetMainTopAdvertiseUsecase::getCacheKey(),
+            GetMainTopAdvertiseUsecase::TTL,
             fn () => $this->getMainTopAdvertiseUsecase->invoke()
         );
 

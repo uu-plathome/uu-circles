@@ -1,8 +1,8 @@
+import dynamic from 'next/dynamic'
 import { FC } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { CircleLengthView } from './Parts/CircleLengthView'
 import { SearchCircle } from './Parts/SearchCircle'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
@@ -13,6 +13,10 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
+)
 
 const ID_LIST = {
   /** 現在の掲載団体数 */

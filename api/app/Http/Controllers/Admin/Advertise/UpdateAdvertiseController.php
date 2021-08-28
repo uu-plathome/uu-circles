@@ -9,8 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Advertise\UpdateAdvertiseRequest;
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
+use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
+use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -66,6 +69,9 @@ final class UpdateAdvertiseController extends Controller
             }
 
             DB::commit();
+
+            Cache::forget(GetMainTopAdvertiseUsecase::getCacheKey());
+            Cache::forget(GetRandomAdvertiseUsecase::getCacheKey());
         } catch (Exception $e) {
             DB::rollBack();
 
