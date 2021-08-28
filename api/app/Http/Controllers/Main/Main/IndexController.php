@@ -70,11 +70,12 @@ final class IndexController extends Controller
         );
 
         $advertises = Cache::remember(
-            GetRandomAdvertiseUsecase::getCacheKey(), 
-            GetRandomAdvertiseUsecase::TTL, 
+            GetRandomAdvertiseUsecase::getCacheKey(),
+            GetRandomAdvertiseUsecase::TTL,
             function () {
                 return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
-            });
+            }
+        );
 
         $mainAdvertises = Cache::remember(
             GetMainTopAdvertiseUsecase::getCacheKey(),
