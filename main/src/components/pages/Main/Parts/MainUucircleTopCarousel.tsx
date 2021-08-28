@@ -57,11 +57,13 @@ const MainUucircleTopCarousel: FC<Props> = ({ advertises }) => {
           />
         </SwiperSlide>
 
-        {
-          advertises &&
+        {advertises &&
           advertises.map((advertise) => {
             return (
-              <SwiperSlide key={`MainUucircleTopCarousel-${advertise.id}`} style={{ minHeight: '167px' }}>
+              <SwiperSlide
+                key={`MainUucircleTopCarousel-${advertise.id}`}
+                style={{ minHeight: '167px' }}
+              >
                 <div className="relative">
                   {advertise.link ? (
                     <a

@@ -15,9 +15,7 @@ import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 const ID_LIST = {

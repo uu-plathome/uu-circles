@@ -71,9 +71,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
               </Link>
             </p>
 
-            <YellowButton href="/guide/to-new-students">
-              新入生へ
-            </YellowButton>
+            <YellowButton href="/guide/to-new-students">新入生へ</YellowButton>
           </div>
         </div>
       </div>

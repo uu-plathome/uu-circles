@@ -40,9 +40,7 @@ const MainSponsorshipFooter = dynamic(() =>
   )
 )
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {

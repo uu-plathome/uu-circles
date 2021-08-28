@@ -10,9 +10,7 @@ import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 const ID_LIST = {

@@ -4,14 +4,14 @@ import { ComputedPagePositionIdNowLength } from '@/src/components/pages/Main/com
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 
 const PcButtonGroup = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsPc').then(
-    (mod) => mod.PcButtonGroup
-  )
+  import(
+    '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsPc'
+  ).then((mod) => mod.PcButtonGroup)
 )
 const SpButtonGroup = dynamic(() =>
-  import('@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsSp').then(
-    (mod) => mod.SpButtonGroup
-  )
+  import(
+    '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsSp'
+  ).then((mod) => mod.SpButtonGroup)
 )
 
 type Props = {

@@ -12,9 +12,7 @@ import { getGachaPickup, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 import colors from '@/src/styles/colors'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {
@@ -66,8 +64,8 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               </div>
 
               {pickupCircle.list &&
-                Array.isArray(pickupCircle.list) &&
-                pickupCircle.list.length > 0 ? (
+              Array.isArray(pickupCircle.list) &&
+              pickupCircle.list.length > 0 ? (
                 <div className="flex justify-center">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">

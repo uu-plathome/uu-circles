@@ -19,9 +19,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 const ID_LIST = {
@@ -177,8 +175,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             </div>
 
             {wpPosts &&
-              wpPosts.postsExistTags &&
-              wpPosts.postsExistTags.length > 0 ? (
+            wpPosts.postsExistTags &&
+            wpPosts.postsExistTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECOMMEND}
                 className="order-5 px-6 md:px-0 pt-10"
@@ -207,8 +205,8 @@ export const ShowCircleTemplate: FC<Props> = ({
             )}
 
             {wpPosts &&
-              wpPosts.postsNotTags &&
-              wpPosts.postsNotTags.length > 0 ? (
+            wpPosts.postsNotTags &&
+            wpPosts.postsNotTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECENT}
                 className="order-6 px-6 md:px-0 pt-10"
@@ -238,8 +236,8 @@ export const ShowCircleTemplate: FC<Props> = ({
           </div>
 
           {uuYellForCircles &&
-            uuYellForCircles.posts &&
-            uuYellForCircles.posts.length > 0 ? (
+          uuYellForCircles.posts &&
+          uuYellForCircles.posts.length > 0 ? (
             <div
               id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
               className="px-6 md:px-0 pt-10"
