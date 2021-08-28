@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { GreenLgButton } from '@/src/components/atoms/button/GreenLgButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -15,6 +15,12 @@ import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then(
+    (mod) => mod.BaseFooter
+  )
+)
 
 const UU_YELL_URL = ApiUrl.UU_YELL
 

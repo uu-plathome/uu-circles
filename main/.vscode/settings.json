@@ -3,7 +3,11 @@
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
-  "eslint.validate": ["html", "javascriptreact", "typescriptreact"],
+  "eslint.validate": [
+    "html",
+    "javascriptreact",
+    "typescriptreact"
+  ],
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
@@ -15,18 +19,21 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": [
+    "Utas",
     "bugsnag",
     "chmod",
     "datepicker",
     "dropzone",
     "fontawesome",
     "fortawesome",
+    "gacha",
     "gtag",
     "intelephense",
     "laravel",
     "newjoy",
     "peing",
     "prefetch",
+    "swiper",
     "tailwindcss",
     "yoto",
     "youtube"
