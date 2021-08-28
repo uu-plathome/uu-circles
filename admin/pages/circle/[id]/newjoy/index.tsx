@@ -93,7 +93,7 @@ const IndexPage: NextPage = () => {
           actionHref="/circle/[id]/newjoy/create"
           actionAs={`/circle/${id}/newjoy/create`}
         >
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {success ? <SuccessBunner text={success} /> : ''}
 
             {error ? <DangerBunner text={error} /> : ''}

@@ -21,13 +21,13 @@ const IndexPage: NextPage = () => {
         <BaseWrapper title="ダッシュボード">
           <div className="pl-4">
             <ul>
-              <li className="text-white pb-4">メニュー</li>
-              <li className="text-white pb-4 list-disc ml-4">
+              <li className="pb-4 text-white">メニュー</li>
+              <li className="pb-4 ml-4 list-disc text-white">
                 <Link href="/circle">
                   <a className="text-white underline">サークル一覧へ</a>
                 </Link>
               </li>
-              <li className="text-white pb-4 list-disc ml-4">
+              <li className="pb-4 ml-4 list-disc text-white">
                 <Link href="/circle/create">
                   <a className="text-white underline">サークル新規追加</a>
                 </Link>

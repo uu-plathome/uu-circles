@@ -32,7 +32,7 @@ const IndexPage: NextPage = () => {
           actionHref="/demo/newjoy/create"
           actionAs={`/demo/newjoy/create`}
         >
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length > 0
               ? data.demoCircleNewJoys.map((demoCircleNewJoy) => {
                   return (

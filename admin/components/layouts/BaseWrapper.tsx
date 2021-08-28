@@ -24,7 +24,7 @@ const BaseWrapper: FC<Props> = ({
       <div className="w-full md:w-2/3 lg:w-4/5">
         <div className="pt-20 md:pt-10 pb-10">
           <div className="md:flex justify-between mb-8">
-            <h1 className="text-2xl text-gray-100 mb-4 md:mb-0">{title}</h1>
+            <h1 className="mb-4 md:mb-0 text-2xl text-gray-100">{title}</h1>
 
             {actionText ? (
               <div className="text-right">

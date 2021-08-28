@@ -148,9 +148,9 @@ const BaseSidebar: FC = () => {
         {!isMd ? <BaseHeader onClick={() => setVisible(!visible)} /> : ''}
 
         {isMd || (!isMd && visible) ? (
-          <div className="py-4 px-4 md:pl-0 relative">
+          <div className="relative py-4 px-4 md:pl-0">
             <div>
-              <p className="font-bold text-white p-2">General</p>
+              <p className="p-2 font-bold text-white">General</p>
             </div>
 
             <ul>

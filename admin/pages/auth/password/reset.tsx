@@ -58,15 +58,15 @@ const Login: NextPage = () => {
       <AuthHeader />
 
       <div className="xl:container">
-        <div className="max-w-screen-md mx-auto mt-16">
-          <div className="border-2 border-white rounded p-4">
-            <h1 className="text-white text-center text-2xl mb-4">
+        <div className="mx-auto mt-16 max-w-screen-md">
+          <div className="p-4 rounded border-2 border-white">
+            <h1 className="mb-4 text-2xl text-center text-white">
               パスワードを変更する
             </h1>
 
             {error ? (
               <div className="p-4 mb-4">
-                <p className="text-white text-lg">
+                <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
                 </p>
@@ -93,7 +93,7 @@ const Login: NextPage = () => {
                   </div>
                 </form>
 
-                <div className="text-white text-right mt-8 mb-4">
+                <div className="mt-8 mb-4 text-right text-white">
                   <Link href="/auth/login">
                     <a className="underline">ログインへ戻る</a>
                   </Link>

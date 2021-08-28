@@ -20,11 +20,11 @@ const CircleListItemTableColumn: FC<{
   title: string
 }> = ({ children, title }) => {
   return (
-    <div className="w-1/3 lg:w-1/6 pr-2 mb-2">
-      <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+    <div className="pr-2 mb-2 w-1/3 lg:w-1/6">
+      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
         {title}
       </p>
-      <div className="flex justify-center h-7 items-center">{children}</div>
+      <div className="flex justify-center items-center h-7">{children}</div>
     </div>
   )
 }
@@ -32,14 +32,14 @@ const CircleListItem: FC<Props> = ({ circle }) => {
   const imageLink =
     circle.mainImageUrl || circle.handbillImageUrl || `/images/no-image.png`
   return (
-    <div className="text-white flex mb-4">
+    <div className="flex mb-4 text-white">
       <div className="hidden lg:block">
         <img
           src={imageLink}
           alt="サークル画像"
           width="100"
           height="100"
-          className="square-image object-contain"
+          className="object-contain square-image"
         />
       </div>
 
@@ -51,10 +51,10 @@ const CircleListItem: FC<Props> = ({ circle }) => {
               alt="サークル画像"
               width="100"
               height="100"
-              className="square-image object-contain"
+              className="object-contain square-image"
             />
           </div>
-          <h2 className="font-bold text-lg text-gray-300 mb-2">
+          <h2 className="mb-2 text-lg font-bold text-gray-300">
             {circle.name}
           </h2>
         </div>
