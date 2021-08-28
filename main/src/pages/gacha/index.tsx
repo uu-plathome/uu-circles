@@ -1,15 +1,21 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GetStaticProps, NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
-import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { getGachaPickup, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 import colors from '@/src/styles/colors'
+
+const BaseFooter = dynamic(() =>
+  import('@/src/components/layouts/BaseFooter').then(
+    (mod) => mod.BaseFooter
+  )
+)
 
 type Props = {
   pickupCircle: {
@@ -60,8 +66,8 @@ const Page: NextPage<Props> = ({ pickupCircle }) => {
               </div>
 
               {pickupCircle.list &&
-              Array.isArray(pickupCircle.list) &&
-              pickupCircle.list.length > 0 ? (
+                Array.isArray(pickupCircle.list) &&
+                pickupCircle.list.length > 0 ? (
                 <div className="flex justify-center">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
