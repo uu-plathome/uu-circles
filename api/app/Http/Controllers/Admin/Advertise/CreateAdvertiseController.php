@@ -62,7 +62,6 @@ final class CreateAdvertiseController extends Controller
 
             Cache::forget(GetMainTopAdvertiseUsecase::getCacheKey());
             Cache::forget(GetRandomAdvertiseUsecase::getCacheKey());
-
         } catch (Exception $e) {
             DB::rollBack();
 
