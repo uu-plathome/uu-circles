@@ -74,7 +74,8 @@ final class DemoIndexController extends Controller
             GetRandomAdvertiseUsecase::TTL,
             function () {
                 return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
-            });
+            }
+        );
 
         $mainAdvertises = Cache::remember(
             GetMainTopAdvertiseUsecase::getCacheKey(),
