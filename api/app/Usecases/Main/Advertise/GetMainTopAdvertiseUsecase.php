@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Log;
 
 final class GetMainTopAdvertiseUsecase
 {
+    const TTL = 60 * 30;
+
     public function invoke()
     {
         Log::debug('GetMainTopAdvertiseUsecase args none');
@@ -31,5 +33,12 @@ final class GetMainTopAdvertiseUsecase
             ->toArray();
 
         return $advertises;
+    }
+
+    public static function getCacheKey(): string
+    {
+        $minutes = Carbon::now()->format('YmdHi');
+
+        return 'GetMainTopAdvertiseUsecase.'.$minutes;
     }
 }
