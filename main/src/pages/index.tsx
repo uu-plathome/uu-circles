@@ -57,13 +57,8 @@ const Index: NextPage<Props> = (ssrProps) => {
     setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
   }, [])
 
-  const {
-    advertises,
-    mainAdvertises,
-    circles,
-    uuYellArticles,
-    announcements
-  } = useRefetchMainData(ssrProps)
+  const { advertises, mainAdvertises, circles, uuYellArticles, announcements } =
+    useRefetchMainData(ssrProps)
 
   // 「編集長イチオシ」の取得
   const { uuYellForMain } = useFetchUuYell()
@@ -95,13 +90,8 @@ const Index: NextPage<Props> = (ssrProps) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const {
-    circles,
-    advertises,
-    mainAdvertises,
-    uuYellArticles,
-    announcements
-  } = await getMain()
+  const { circles, advertises, mainAdvertises, uuYellArticles, announcements } =
+    await getMain()
 
   return {
     props: {

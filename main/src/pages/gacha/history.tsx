@@ -13,9 +13,7 @@ import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getGachaHistory, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {

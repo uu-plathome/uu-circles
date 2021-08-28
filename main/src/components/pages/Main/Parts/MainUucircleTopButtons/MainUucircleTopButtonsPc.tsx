@@ -6,9 +6,7 @@ import { TOP_BUTTONS_ID_LIST } from './top_buttons_id_list'
 import { ComputedPagePositionIdNowLength } from '@/src/components/pages/Main/computedPagePositionIdNowLength'
 
 const Utas = dynamic(() =>
-  import('@/src/components/atoms/utas/Utas').then(
-    (mod) => mod.Utas
-  )
+  import('@/src/components/atoms/utas/Utas').then((mod) => mod.Utas)
 )
 
 type PcButtonProps = {

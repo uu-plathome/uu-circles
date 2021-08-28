@@ -28,9 +28,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const BaseFooter = dynamic(() =>
-  import('@/src/components/layouts/BaseFooter').then(
-    (mod) => mod.BaseFooter
-  )
+  import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {
@@ -177,8 +175,9 @@ const Page: NextPage<Props> = ({
                     <div className="pb-2 my-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${circle.shortName || circle.name
-                          }の新歓を見る！`}
+                        title={`UU-Circlesで${
+                          circle.shortName || circle.name
+                        }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -264,8 +263,9 @@ const Page: NextPage<Props> = ({
                   <div className="flex justify-center pb-2 my-2">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${circle.shortName || circle.name
-                        }の新歓を見る！`}
+                      title={`UU-Circlesで${
+                        circle.shortName || circle.name
+                      }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >
