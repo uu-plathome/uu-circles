@@ -6,42 +6,42 @@ describe('Color', () => {
       arg: Parameters<typeof ColorFunc.rgba>
       expected: ReturnType<typeof ColorFunc.rgba>
     }
-    const testCases: TestCase[]  = [
+    const testCases: TestCase[] = [
       {
         arg: ['#ffffff', 1],
-        expected: 'rgba(255, 255, 255, 1)'
+        expected: 'rgba(255, 255, 255, 1)',
       },
       {
         arg: ['#ffffff', 0.5],
-        expected: 'rgba(255, 255, 255, 0.5)'
+        expected: 'rgba(255, 255, 255, 0.5)',
       },
       {
         arg: ['#ffffff', 0],
-        expected: 'rgba(255, 255, 255, 0)'
+        expected: 'rgba(255, 255, 255, 0)',
       },
       {
         arg: ['#333333', 1],
-        expected: 'rgba(51, 51, 51, 1)'
+        expected: 'rgba(51, 51, 51, 1)',
       },
       {
         arg: ['#333333', 0.5],
-        expected: 'rgba(51, 51, 51, 0.5)'
+        expected: 'rgba(51, 51, 51, 0.5)',
       },
       {
         arg: ['#333333', 0],
-        expected: 'rgba(51, 51, 51, 0)'
+        expected: 'rgba(51, 51, 51, 0)',
       },
       {
         arg: ['#000000', 1],
-        expected: 'rgba(0, 0, 0, 1)'
+        expected: 'rgba(0, 0, 0, 1)',
       },
       {
         arg: ['#000000', 0.5],
-        expected: 'rgba(0, 0, 0, 0.5)'
+        expected: 'rgba(0, 0, 0, 0.5)',
       },
       {
         arg: ['#000000', 0],
-        expected: 'rgba(0, 0, 0, 0)'
+        expected: 'rgba(0, 0, 0, 0)',
       },
     ]
 
@@ -56,7 +56,7 @@ describe('Color', () => {
     type TestCase = {
       arg: Parameters<typeof ColorFunc.rgba>
     }
-    const testCases: TestCase[]  = [
+    const testCases: TestCase[] = [
       {
         arg: ['#ffffff', -1],
       },

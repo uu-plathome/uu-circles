@@ -1,7 +1,6 @@
 import { dayjs } from '../../plugins/Dayjs'
 import * as DateFunc from './Date'
 
-
 describe('Date', () => {
   describe('Date/getDow', () => {
     type TestCase = {
@@ -15,15 +14,15 @@ describe('Date', () => {
         expected: '未定',
       },
       {
-        arg: [dayjs(new Date("2021-09-01"))],
+        arg: [dayjs(new Date('2021-09-01'))],
         expected: '水',
       },
       {
-        arg: [dayjs(new Date("2021-09-02"))],
+        arg: [dayjs(new Date('2021-09-02'))],
         expected: '木',
       },
       {
-        arg: [dayjs("2021-09-03")],
+        arg: [dayjs('2021-09-03')],
         expected: '金',
       },
     ]
