@@ -3,7 +3,6 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { NextPage } from 'next'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
@@ -11,16 +10,18 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
-import { UseStringInput } from '@/hooks/useInput'
+import { UseBooleanOrNullInput, UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
 import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
 import { Circle } from '@/lib/types/model/Circle'
+import Color from 'colors'
 
 type SearchValue = {
   name: UseStringInput
-  release: UseStringInput
+  release: UseBooleanOrNullInput
   circleType: UseStringInput
+  isHandbill: UseBooleanOrNullInput
 }
 
 type Props = {
@@ -51,7 +52,7 @@ const Index: NextPage<Props> = ({
           actionText="サークル新規作成"
           actionHref="/circle/create"
         >
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {circles ? (
               <div className="py-4 mb-8">
                 <p className="text-white">サークル名検索</p>
@@ -66,14 +67,14 @@ const Index: NextPage<Props> = ({
                     />
                   </div>
 
-                  <div className="pt-8 flex">
-                    <div className="w-1/2 md:w-1/3 pr-4">
+                  <div className="grid grid-cols-2 gap-4 pt-8">
+                    <div>
                       <BaseSelect
                         label="公開設定"
                         id="release"
                         name="release"
                         items={[
-                          { value: '', label: '未選択' },
+                          { value: 'null', label: 'すべて' },
                           { value: 'true', label: '公開' },
                           { value: 'false', label: '非公開' },
                         ]}
@@ -81,7 +82,7 @@ const Index: NextPage<Props> = ({
                       />
                     </div>
 
-                    <div className="w-1/2 md:w-1/3 px-2">
+                    <div>
                       <BaseSelect
                         label="サークル種別"
                         id="circleType"
@@ -95,6 +96,20 @@ const Index: NextPage<Props> = ({
                           { value: '不明', label: '不明' },
                         ]}
                         {...searchValue.circleType}
+                      />
+                    </div>
+
+                    <div>
+                      <BaseSelect
+                        label="新歓ビラがあるかどうか"
+                        id="isHandbill"
+                        name="isHandbill"
+                        items={[
+                          { value: 'null', label: 'すべて' },
+                          { value: 'true', label: 'あり' },
+                          { value: 'false', label: 'なし' },
+                        ]}
+                        {...searchValue.isHandbill}
                       />
                     </div>
                   </div>

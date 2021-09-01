@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import TailwindConfig from 'tailwind.config'
 import { useWindowResize } from './useWindowResize'
+import TailwindConfig from 'tailwind.config'
 
 const useScreenSize = () => {
   return {
@@ -27,7 +27,7 @@ export const useMediaQuery = () => {
     setIsLg(width > lg)
     setIsXl(width > xl)
     setIsXl2(width > xl2)
-  })
+  }, [width, sm, md, lg, xl, xl2])
 
   return {
     isSm,

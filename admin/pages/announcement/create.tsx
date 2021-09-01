@@ -97,7 +97,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="お知らせ発行">
-          <div className="border-2 border-gray-800 px-2 py-4">
+          <div className="py-4 px-2 border-2 border-gray-800">
             <CreateAnnouncementForm
               onSubmit={onSubmit}
               form={{

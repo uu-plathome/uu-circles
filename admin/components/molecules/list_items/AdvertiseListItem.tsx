@@ -5,6 +5,7 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
@@ -55,7 +56,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
         style={customStyles}
         contentLabel="新歓の削除"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当に削除しますか？
         </h2>
 
@@ -81,10 +82,10 @@ const ListItemTableColumn: FC<{
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
     <div className={`${widthClass} pr-2`}>
-      <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
         {title}
       </p>
-      <div className="flex justify-center h-7 items-center">{children}</div>
+      <div className="flex justify-center items-center h-7">{children}</div>
     </div>
   )
 }
@@ -92,9 +93,9 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
   const { isMd } = useMediaQuery()
 
   return (
-    <div className="text-white flex mb-4">
+    <div className="flex mb-4 text-white">
       <div className="hidden lg:block">
-        <img
+        <Image
           src={
             advertise.mainImageUrl
               ? advertise.mainImageUrl
@@ -110,7 +111,7 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <img
+            <Image
               src={
                 advertise.mainImageUrl
                   ? advertise.mainImageUrl
@@ -122,7 +123,7 @@ const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
               className="square-image"
             />
           </div>
-          <h2 className="font-bold md:text-lg text-gray-300 mb-2">
+          <h2 className="mb-2 md:text-lg font-bold text-gray-300">
             {advertise.title}
           </h2>
         </div>

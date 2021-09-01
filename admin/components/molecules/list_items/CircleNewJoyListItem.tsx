@@ -43,10 +43,10 @@ const CircleListItemTableColumn: FC<{
             lg:mb-0
         `}
     >
-      <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
         {title}
       </p>
-      <div className="flex justify-center h-10 items-center">{children}</div>
+      <div className="flex justify-center items-center h-10">{children}</div>
     </div>
   )
 }
@@ -59,14 +59,14 @@ const NewJoyDateTime: FC<{
   if (startDate && endDate) {
     return (
       <div>
-        <p className="text-sm text-white mt-4">
-          <span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">
+        <p className="mt-4 text-sm text-white">
+          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
             始
           </span>
           {formatDateTime(startDate)}
         </p>
-        <p className="text-sm text-white mt-2">
-          <span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">
+        <p className="mt-2 text-sm text-white">
+          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
             終
           </span>
           {formatDateTime(endDate)}
@@ -79,7 +79,7 @@ const NewJoyDateTime: FC<{
     return (
       <div>
         <p className="text-sm text-white">
-          <span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">
+          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
             始
           </span>
           {formatDateTime(startDate)}
@@ -91,13 +91,13 @@ const NewJoyDateTime: FC<{
   if (!startDate && endDate) {
     return (
       <div>
-        <p className="text-sm text-white mt-4">
-          <span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">
+        <p className="mt-4 text-sm text-white">
+          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
             始
           </span>
         </p>
-        <p className="text-sm text-white mt-2">
-          <span className="border-2 border-white bg-white text-gray-800 rounded-full mr-2">
+        <p className="mt-2 text-sm text-white">
+          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
             終
           </span>
           {formatDateTime(endDate)}
@@ -154,13 +154,13 @@ const CopyButton: FC<CopyButtonProps> = ({
         style={customStyles}
         contentLabel="新歓のコピー"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当にコピーしますか？
         </h2>
 
         <p className="mb-4 text-center">{newJoyTitle}</p>
 
-        <div className="bg-gray-800 rounded p-4 mb-4">
+        <div className="p-4 mb-4 bg-gray-800 rounded">
           <p className="text-white">新歓日時</p>
           <div className="pb-2">
             <NewJoyDateTime
@@ -212,13 +212,13 @@ const DeleteButton: FC<DeleteButtonProps> = ({
         style={customStyles}
         contentLabel="新歓の削除"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当に削除しますか？
         </h2>
 
         <p className="mb-4 text-center">{newJoyTitle}</p>
 
-        <div className="bg-gray-800 rounded p-4 mb-4">
+        <div className="p-4 mb-4 bg-gray-800 rounded">
           <p className="text-white">新歓日時</p>
           <div className="pb-2">
             <NewJoyDateTime
@@ -251,7 +251,7 @@ const CircleNewJoyListItem: FC<Props> = ({
   return (
     <div className="mb-8">
       <div className="ml-2 w-full">
-        <h2 className="font-bold text-lg text-gray-300 mb-2">
+        <h2 className="mb-2 text-lg font-bold text-gray-300">
           {newJoyTitle.value}
         </h2>
 

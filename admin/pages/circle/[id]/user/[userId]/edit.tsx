@@ -92,10 +92,10 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="部員アカウント編集">
-          <div className="border-2 border-gray-800 px-2 py-4">
+          <div className="py-4 px-2 border-2 border-gray-800">
             {circle ? (
               <div className="mb-8">
-                <p className="text-white text-lg">{circle.name}の情報編集</p>
+                <p className="text-lg text-white">{circle.name}の情報編集</p>
               </div>
             ) : (
               ''
