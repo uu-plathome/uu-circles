@@ -66,7 +66,7 @@ export const useBooleanInput = (initialValue: boolean) => {
     toBoolean: _useInput.value === 'true',
   }
 }
-export const useBooleanOrNullInput = (initialValue: boolean|null) => {
+export const useBooleanOrNullInput = (initialValue: boolean | null) => {
   const initialValueStr = (() => {
     if (initialValue === null) {
       return 'null'
@@ -75,11 +75,11 @@ export const useBooleanOrNullInput = (initialValue: boolean|null) => {
     return initialValue === true ? 'true' : 'false'
   })()
 
-  const _useInput = useInput<'true' | 'false'|'null'>(initialValueStr)
+  const _useInput = useInput<'true' | 'false' | 'null'>(initialValueStr)
 
   return {
     ..._useInput,
-    set: (newVal: boolean|null|'null') => {
+    set: (newVal: boolean | null | 'null') => {
       if (newVal === null || newVal === 'null') {
         _useInput.set('null')
         return
@@ -87,7 +87,9 @@ export const useBooleanOrNullInput = (initialValue: boolean|null) => {
 
       _useInput.set(newVal === true ? 'true' : 'false')
     },
-    toBooleanOrNull: [null, 'null'].includes(_useInput.value) ? null : _useInput.value === 'true',
+    toBooleanOrNull: [null, 'null'].includes(_useInput.value)
+      ? null
+      : _useInput.value === 'true',
   }
 }
 export const useDateInput = (
