@@ -10,7 +10,7 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleListItem } from '@/components/molecules/list_items/CircleListItem'
-import { UseStringInput } from '@/hooks/useInput'
+import { UseBooleanOrNullInput, UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
 import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
@@ -19,7 +19,7 @@ import Color from 'colors'
 
 type SearchValue = {
   name: UseStringInput
-  release: UseStringInput
+  release: UseBooleanOrNullInput
   circleType: UseStringInput
 }
 
@@ -73,7 +73,7 @@ const Index: NextPage<Props> = ({
                         id="release"
                         name="release"
                         items={[
-                          { value: '', label: '未選択' },
+                          { value: 'null', label: '未選択' },
                           { value: 'true', label: '公開' },
                           { value: 'false', label: '非公開' },
                         ]}
@@ -106,13 +106,13 @@ const Index: NextPage<Props> = ({
 
             {circles && circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                    />
-                  )
-                })
+                return (
+                  <CircleListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                  />
+                )
+              })
               : ''}
 
             {circles && circles.length === 0 ? (
