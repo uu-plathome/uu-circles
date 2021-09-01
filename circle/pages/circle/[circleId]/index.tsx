@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useMemo } from 'react'
+import useSWR from 'swr'
 import { BaseFooter } from '@/components/layouts/BaseFooter'
 import { BaseLayout } from '@/components/layouts/BaseLayout'
 import {
@@ -19,7 +20,6 @@ import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader
 import { AuthContext } from '@/contexts/AuthContext'
 import { showCircle } from '@/infra/api/circle'
 import { Role } from '@/lib/enum/api/Role'
-import { Circle } from '@/lib/types/model/Circle'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -33,32 +33,24 @@ const useCircleId = () => {
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)
-  const [circle, setCircle] = useState<Circle>()
-  const [role, setRole] = useState<Role>()
   const { circleId } = useCircleId()
 
-  useEffect(() => {
-    const f = async () => {
-      const data = await showCircle(circleId)
-      setCircle(data.circle)
-      setRole(data.role)
-    }
-
-    f()
-  }, [])
+  const { data } = useSWR(['/circle', circleId], () => showCircle(circleId))
+  const circle = data && data.circle
+  const role = data && data.role
 
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle
       ? [
-          ...[
-            {
-              text: circle.shortName || circle.name,
-              href: `/circle/[circleId]`,
-              as: `/circle/${circle.id}`,
-              active: true,
-            },
-          ],
-        ]
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+            active: true,
+          },
+        ],
+      ]
       : []
   }, [circle])
 
@@ -193,7 +185,7 @@ const IndexPage: NextPage = () => {
                 </div>
               </div>
             ) : (
-              ''
+              'loading'
             )}
           </div>
         </BaseContainer>
