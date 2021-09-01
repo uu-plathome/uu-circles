@@ -5,8 +5,8 @@ import * as DateFunc from './Date'
 describe('Date', () => {
   describe('Date/getDow', () => {
     type TestCase = {
-      arg: Parameters<typeof DateFunc.getDOW>
-      expected: ReturnType<typeof DateFunc.getDOW>
+      arg: Parameters<typeof DateFunc.getDow>
+      expected: ReturnType<typeof DateFunc.getDow>
     }
 
     const testCases: TestCase[] = [
@@ -30,7 +30,7 @@ describe('Date', () => {
 
     testCases.forEach(({ arg, expected }) => {
       it(`should return ${expected}`, () => {
-        expect(DateFunc.getDOW(...arg)).toBe(expected)
+        expect(DateFunc.getDow(...arg)).toBe(expected)
       })
     })
   })
