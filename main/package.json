@@ -14,7 +14,8 @@
     "start": "next start",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
     "lint": "eslint . --fix --ext ts --ext tsx --ext js",
-    "lint:fix": "npm run lint && npm run format"
+    "lint:fix": "npm run lint && npm run format",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@bugsnag/js": "^7.11.0",
@@ -43,6 +44,8 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "@types/gtag.js": "^0.0.7",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.1",
@@ -52,7 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "autoprefixer": "10.3.3",
-    "babel-jest": "^27.0.6",
+    "babel-jest": "^27.1.0",
     "babel-loader": "^8.2.2",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.0",
@@ -62,9 +65,12 @@
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-tailwindcss": "^1.14.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.1.0",
     "next-seo": "^4.26.0",
     "postcss": "8.3.6",
     "prettier": "^2.3.2",
+    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "stylelint-config-recommended": "^5.0.0",
     "tailwindcss": "2.2.7",

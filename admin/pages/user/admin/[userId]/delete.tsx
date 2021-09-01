@@ -76,7 +76,7 @@ const DeletePage: NextPage = () => {
           actionHref="/user/admin"
           actionText="管理者アカウント一覧に戻る"
         >
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {error ? <DangerBunner text={error} /> : ''}
 
             <form onSubmit={onSubmit}>

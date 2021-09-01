@@ -65,7 +65,7 @@ const IndexPage: NextPage = () => {
           {success ? <SuccessBunner text={success} /> : ''}
           {error ? <DangerBunner text={error} /> : ''}
 
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {circles.length > 0
               ? circles.map((circle: Circle) => {
                   return (

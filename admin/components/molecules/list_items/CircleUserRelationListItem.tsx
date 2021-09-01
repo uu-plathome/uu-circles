@@ -7,6 +7,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
@@ -51,7 +52,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ circle, onDelete }) => {
         style={customStyles}
         contentLabel="連携解除"
       >
-        <h2 className="text-center text-lg mb-4 font-bold">
+        <h2 className="mb-4 text-lg font-bold text-center">
           本当に連携解除しますか？
         </h2>
 
@@ -80,11 +81,11 @@ const CircleListItemTableColumn: FC<{
   title: string
 }> = ({ children, title }) => {
   return (
-    <div className="w-full lg:w-1/6 pr-2">
-      <p className="text-center py-1 mb-2 bg-gray-800 text-gray-300 font-bold text-sm">
+    <div className="pr-2 w-full lg:w-1/6">
+      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
         {title}
       </p>
-      <div className="flex justify-center h-7 items-center">{children}</div>
+      <div className="flex justify-center items-center h-7">{children}</div>
     </div>
   )
 }
@@ -97,27 +98,29 @@ const CircleUserRelationListItem: FC<Props> = ({
     circle.mainImageUrl || circle.handbillImageUrl || `/images/no-image.png`
 
   return (
-    <div className="text-white flex mb-4">
+    <div className="flex mb-4 text-white">
       <div className="hidden lg:block">
-        <img
+        <Image
           src={imageLink}
           width="100"
           height="100"
-          className="square-image object-contain"
+          className="object-contain square-image"
+          alt="新歓ビラ"
         />
       </div>
 
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <img
+            <Image
               src={imageLink}
               width="100"
               height="100"
-              className="square-image object-contain"
+              className="object-contain square-image"
+              alt="新歓ビラ"
             />
           </div>
-          <h2 className="font-bold text-lg text-gray-300 mb-2">
+          <h2 className="mb-2 text-lg font-bold text-gray-300">
             {circle.name}
           </h2>
         </div>

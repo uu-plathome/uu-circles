@@ -3,7 +3,6 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Color from 'colors'
 import { NextPage } from 'next'
 import { SearchTextField } from '@/components/atoms/form/SearchTextField'
 import { BaseContainer } from '@/components/layouts/BaseContainer'
@@ -13,6 +12,7 @@ import { AllUserListItem } from '@/components/molecules/list_items/AllUserListIt
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { User, UserByAllCircle } from '@/lib/types/model/User'
+import Color from 'colors'
 
 type SearchValue = {
   name: UseStringInput
@@ -47,7 +47,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
           actionText="サークル新規作成"
           actionHref="/circle/create"
         >
-          <div className="border-2 border-gray-800 p-2">
+          <div className="p-2 border-2 border-gray-800">
             {users ? (
               <div className="py-4 mb-8">
                 <p className="text-white">ユーザー検索</p>
