@@ -7,6 +7,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
@@ -99,22 +100,24 @@ const CircleUserRelationListItem: FC<Props> = ({
   return (
     <div className="flex mb-4 text-white">
       <div className="hidden lg:block">
-        <img
+        <Image
           src={imageLink}
           width="100"
           height="100"
           className="object-contain square-image"
+          alt="新歓ビラ"
         />
       </div>
 
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <img
+            <Image
               src={imageLink}
               width="100"
               height="100"
               className="object-contain square-image"
+              alt="新歓ビラ"
             />
           </div>
           <h2 className="mb-2 text-lg font-bold text-gray-300">
