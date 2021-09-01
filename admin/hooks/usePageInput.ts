@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
 /**
  * フロントのページネーション実装
@@ -63,8 +63,8 @@ export const usePageInput = ({
     page,
     pageSize,
     maxPage,
-    hasPrevious: maxPage > 1 && page !== 1,
-    hasNext: maxPage > 1 && page !== maxPage,
+    hasPrevious: useMemo(() => maxPage > 1 && page !== 1, [maxPage, page]),
+    hasNext: useMemo(() => maxPage > 1 && page !== maxPage, [maxPage, page]),
     setMaxPage,
     previousPage,
     nextPage,

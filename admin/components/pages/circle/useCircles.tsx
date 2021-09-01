@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useBooleanOrNullInput, useStringInput } from "@/hooks/useInput"
 import { usePageInput } from "@/hooks/usePageInput"
 import { CircleType } from "@/lib/enum/api/CircleType"
 import { Circle } from "@/lib/types/model/Circle"
 import { hiraToKana } from "@/lib/utils/String"
 
-export const useCircles = ({
-  originalCircles,
-}: {
+export const useCircles = (
   originalCircles: Circle[]
-}) => {
+) => {
   const [filteredCircles, setFilteredCircles] = useState<Circle[]>([])
-  const [nowPageCircles, setNowPageCircles] = useState<Circle[]>([])
   // 名前
   const searchName = useStringInput('')
   // 公開中かどうか
@@ -47,19 +44,19 @@ export const useCircles = ({
   ])
 
   useEffect(() => {
-    page.setMaxPage(Math.ceil(filteredCircles.length / 10))
+    const newPage = Math.ceil(filteredCircles.length / 10)
+
+    page.setMaxPage(newPage === 0 ? 1 : newPage)
   }, [filteredCircles, page])
 
-  useEffect(() => {
-    setNowPageCircles(filteredCircles.slice(
+  const nowPageCircles = useMemo(() => {
+    return filteredCircles.slice(
       (page.page - 1) * page.pageSize,
       page.page * page.pageSize
-    ))
-  }, [
-    filteredCircles,
-    page.page,
-    page.pageSize
-  ])
+    )
+  }, [filteredCircles, page.page, page.pageSize])
+
+  console.log({ nowPageCircles, originalCircles, filteredCircles })
 
   return {
     searchName,
