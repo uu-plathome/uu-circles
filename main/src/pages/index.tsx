@@ -25,7 +25,7 @@ const useRefetchMainData = (ssrProps: Props): Props => {
       announcements,
     },
   } = useSWR('main.refresh', getMain, {
-    initialData: {
+    fallbackData: {
       advertises: ssrProps.advertises,
       mainAdvertises: ssrProps.mainAdvertises,
       circles: ssrProps.circles,

@@ -1,23 +1,25 @@
-//曜日を取得する関数
-import dayjs from 'dayjs'
+import { dayjs } from '../../plugins/Dayjs'
 
+/** 曜日 */
+type Dow = '日' | '月' | '火' | '水' | '木' | '金' | '土'
 /**
  * 曜日を返す
  */
-export const getDOW = (
-  originStartDate: dayjs.Dayjs | Date | string
-): string => {
+export const getDow = (
+  originStartDate: Parameters<typeof dayjs>[0]
+): Dow | '未定' => {
   if (!originStartDate) {
     return '未定'
   }
+
   const date = dayjs(originStartDate)
-  const DOWList = ['日', '月', '火', '水', '木', '金', '土'] //dayjsは日曜始まり
-  const DOW = DOWList[date.day()]
-  return DOW
+  const DOWList: Dow[] = ['日', '月', '火', '水', '木', '金', '土'] // dayjsは日曜始まり
+
+  return DOWList[date.day()]
 }
 
-//月を返す
-export const getMonth = (originDate: dayjs.Dayjs | Date | string): string => {
+// 月を返す
+export const getMonth = (originDate: Parameters<typeof dayjs>[0]): string => {
   if (!originDate) {
     return '未定'
   }
@@ -26,8 +28,8 @@ export const getMonth = (originDate: dayjs.Dayjs | Date | string): string => {
   return date.format('M')
 }
 
-//日にちを返す
-export const getDay = (originDate: dayjs.Dayjs | Date | string): string => {
+// 日にちを返す
+export const getDay = (originDate: Parameters<typeof dayjs>[0]): string => {
   if (!originDate) {
     return '未定'
   }
@@ -36,8 +38,8 @@ export const getDay = (originDate: dayjs.Dayjs | Date | string): string => {
   return date.format('D')
 }
 
-//2021/2/4などを返す
-export const getDate = (originDate: dayjs.Dayjs | Date | string): string => {
+// 2021/2/4などを返す
+export const getDate = (originDate: Parameters<typeof dayjs>[0]): string => {
   if (!originDate) {
     return '未定'
   }
@@ -53,8 +55,8 @@ export const getDate = (originDate: dayjs.Dayjs | Date | string): string => {
  * @returns
  */
 export const getTime = (
-  originStartDate: dayjs.Dayjs | Date | string,
-  originEndDate: dayjs.Dayjs | Date | string
+  originStartDate: Parameters<typeof dayjs>[0],
+  originEndDate: Parameters<typeof dayjs>[0]
 ): string => {
   if (originStartDate && originEndDate) {
     return `${getTimeFormat(originStartDate)}-${getTimeFormat(originEndDate)}`
@@ -79,7 +81,7 @@ export const getTime = (
  * @returns
  */
 export const getTimeFormat = (
-  originDate: dayjs.Dayjs | Date | string
+  originDate: Parameters<typeof dayjs>[0]
 ): string | null => {
   if (!originDate) {
     return null

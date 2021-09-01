@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { __ } from '@/src/lang/ja'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
-import { getDOW, getMonth, getDay, getTime } from '@/src/lib/utils/Date'
+import { getDow, getMonth, getDay, getTime } from '@/src/lib/utils/Date'
 
 type Props = {
   slug: string
@@ -23,7 +23,7 @@ const CircleNewJoyListItemPC: FC<Props> = ({ slug, circleNewJoy }) => {
         }}
       >
         <div className="text-center text-white bg-gray-600 rounded-2xl rounded-b-none ">
-          <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
+          <p className="text-xs leading-5">{getDow(circleNewJoy.startDate)}</p>
         </div>
         <div
           className="items-center pb-4 text-center text-black rounded-2xl rounded-t-none "

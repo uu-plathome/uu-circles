@@ -11,7 +11,7 @@ import { __ } from '@/src/lang/ja'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
-import { getDOW, getMonth, getDay, getFullJPDate } from '@/src/lib/utils/Date'
+import { getDow, getMonth, getDay, getFullJPDate } from '@/src/lib/utils/Date'
 
 const TableTitle: FC = ({ children }) => {
   return <h4 className="text-base text-gray-400 text-gray-500">{children}</h4>
@@ -44,7 +44,7 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
             >
               <div className="text-center text-white bg-gray-600 rounded-2xl rounded-b-none ">
                 <p className="text-xs leading-5">
-                  {getDOW(circleNewJoy.startDate)}
+                  {getDow(circleNewJoy.startDate)}
                 </p>
               </div>
               <div
