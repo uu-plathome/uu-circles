@@ -6,7 +6,7 @@ import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import {
-  getDOW,
+  getDow,
   getMonth,
   getDay,
   getDate,
@@ -62,7 +62,7 @@ const PcLayout: FC<{
         }}
       >
         <div className="text-center text-white bg-gray-600 rounded-2xl rounded-b-none ">
-          <p className="text-xs leading-5">{getDOW(circleNewJoy.startDate)}</p>
+          <p className="text-xs leading-5">{getDow(circleNewJoy.startDate)}</p>
         </div>
 
         <div
