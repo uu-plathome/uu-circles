@@ -1,13 +1,11 @@
-import { useEffect, useMemo, useState } from "react"
-import { useBooleanOrNullInput, useStringInput } from "@/hooks/useInput"
-import { usePageInput } from "@/hooks/usePageInput"
-import { CircleType } from "@/lib/enum/api/CircleType"
-import { Circle } from "@/lib/types/model/Circle"
-import { hiraToKana } from "@/lib/utils/String"
+import { useEffect, useMemo, useState } from 'react'
+import { useBooleanOrNullInput, useStringInput } from '@/hooks/useInput'
+import { usePageInput } from '@/hooks/usePageInput'
+import { CircleType } from '@/lib/enum/api/CircleType'
+import { Circle } from '@/lib/types/model/Circle'
+import { hiraToKana } from '@/lib/utils/String'
 
-export const useCircles = (
-  originalCircles: Circle[]
-) => {
+export const useCircles = (originalCircles: Circle[]) => {
   const [filteredCircles, setFilteredCircles] = useState<Circle[]>([])
   // 名前
   const searchName = useStringInput('')
@@ -68,37 +66,35 @@ export const useCircles = (
 
 const searchCircle = ({
   circles,
-  search: {
-    name,
-    release,
-    circleType,
-    isHandbill,
-  }
+  search: { name, release, circleType, isHandbill },
 }: {
   circles: Circle[]
   search: {
-    name?: string,
-    release?: boolean | null | 'null',
+    name?: string
+    release?: boolean | null | 'null'
     circleType?: string
-    isHandbill?: boolean | null | 'null',
+    isHandbill?: boolean | null | 'null'
   }
 }): Circle[] => {
   if (!circles) {
     return []
   }
 
-  const searchedCirclesByName = searchCircleByName({ circles, search: { name } })
+  const searchedCirclesByName = searchCircleByName({
+    circles,
+    search: { name },
+  })
   const searchedCirclesByRelease = searchCircleByRelease({
     circles: searchedCirclesByName,
-    search: { release }
+    search: { release },
   })
   const searchedCirclesByCircleType = searchCircleByCircleType({
     circles: searchedCirclesByRelease,
-    search: { circleType }
+    search: { circleType },
   })
   const searchedCircleByIsHandbill = searchCircleByIsHandbill({
     circles: searchedCirclesByCircleType,
-    search: { isHandbill }
+    search: { isHandbill },
   })
 
   return searchedCircleByIsHandbill
@@ -106,9 +102,7 @@ const searchCircle = ({
 
 const searchCircleByName = ({
   circles,
-  search: {
-    name
-  }
+  search: { name },
 }: {
   circles: Circle[]
   search: {
@@ -119,7 +113,7 @@ const searchCircleByName = ({
     return circles
   }
 
-  return circles.filter(c => {
+  return circles.filter((c) => {
     const _name = hiraToKana(name)
 
     if (c.name && hiraToKana(c.name).includes(_name)) {
@@ -152,9 +146,7 @@ const searchCircleByName = ({
 
 const searchCircleByRelease = ({
   circles,
-  search: {
-    release
-  }
+  search: { release },
 }: {
   circles: Circle[]
   search: {
@@ -169,7 +161,7 @@ const searchCircleByRelease = ({
     return circles
   }
 
-  return circles.filter(c => {
+  return circles.filter((c) => {
     if (release === 'true') {
       return c.release === true
     }
@@ -188,9 +180,7 @@ const searchCircleByRelease = ({
 
 const searchCircleByCircleType = ({
   circles,
-  search: {
-    circleType
-  }
+  search: { circleType },
 }: {
   circles: Circle[]
   search: {
@@ -201,7 +191,7 @@ const searchCircleByCircleType = ({
     return circles
   }
 
-  return circles.filter(c => {
+  return circles.filter((c) => {
     if (
       circleType === CircleType.OFFICIAL_ORGANIZATION &&
       c.circleType === CircleType.OFFICIAL_ORGANIZATION
@@ -230,10 +220,7 @@ const searchCircleByCircleType = ({
       return true
     }
 
-    if (
-      circleType === '不明' &&
-      ['', null].includes(c.circleType)
-    ) {
+    if (circleType === '不明' && ['', null].includes(c.circleType)) {
       return true
     }
 
@@ -243,9 +230,7 @@ const searchCircleByCircleType = ({
 
 const searchCircleByIsHandbill = ({
   circles,
-  search: {
-    isHandbill
-  }
+  search: { isHandbill },
 }: {
   circles: Circle[]
   search: {
@@ -260,7 +245,7 @@ const searchCircleByIsHandbill = ({
     return circles
   }
 
-  return circles.filter(c => {
+  return circles.filter((c) => {
     if (isHandbill === true || isHandbill === 'true') {
       return !!c.handbillImageUrl
     }
