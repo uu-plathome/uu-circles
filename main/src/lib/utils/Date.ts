@@ -1,19 +1,21 @@
-//曜日を取得する関数
-import dayjs from 'dayjs'
+import { dayjs } from '../../plugins/Dayjs'
 
+/** 曜日 */
+type Dow = '日' | '月' | '火' | '水' | '木' | '金' | '土'
 /**
  * 曜日を返す
  */
 export const getDOW = (
-  originStartDate: dayjs.Dayjs | Date | string
-): string => {
+  originStartDate: Parameters<typeof dayjs>[0],
+): Dow | '未定' => {
   if (!originStartDate) {
     return '未定'
   }
+
   const date = dayjs(originStartDate)
-  const DOWList = ['日', '月', '火', '水', '木', '金', '土'] //dayjsは日曜始まり
-  const DOW = DOWList[date.day()]
-  return DOW
+  const DOWList: Dow[] = ['日', '月', '火', '水', '木', '金', '土'] // dayjsは日曜始まり
+
+  return DOWList[date.day()]
 }
 
 //月を返す
