@@ -66,6 +66,30 @@ export const useBooleanInput = (initialValue: boolean) => {
     toBoolean: _useInput.value === 'true',
   }
 }
+export const useBooleanOrNullInput = (initialValue: boolean|null) => {
+  const initialValueStr = (() => {
+    if (initialValue === null) {
+      return 'null'
+    }
+
+    return initialValue === true ? 'true' : 'false'
+  })()
+
+  const _useInput = useInput<'true' | 'false'|'null'>(initialValueStr)
+
+  return {
+    ..._useInput,
+    set: (newVal: boolean|null|'null') => {
+      if (newVal === null || newVal === 'null') {
+        _useInput.set('null')
+        return
+      }
+
+      _useInput.set(newVal === true ? 'true' : 'false')
+    },
+    toBooleanOrNull: [null, 'null'].includes(_useInput.value) ? null : _useInput.value === 'true',
+  }
+}
 export const useDateInput = (
   initialValue?: Date,
   format = 'YYYY/MM/DD HH:mm',
@@ -129,4 +153,5 @@ export const useDateInput = (
 export type UseStringInput = ReturnType<typeof useStringInput>
 export type UseNumberInput = ReturnType<typeof useNumberInput>
 export type UseBooleanInput = ReturnType<typeof useBooleanInput>
+export type UseBooleanOrNullInput = ReturnType<typeof useBooleanOrNullInput>
 export type UseDateInput = ReturnType<typeof useDateInput>

@@ -25,7 +25,7 @@ import { isSystem } from '@/lib/enum/api/Role'
 import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
-import { HiraToKana } from '@/lib/utils/String'
+import { hiraToKana } from '@/lib/utils/String'
 import Color from 'colors'
 
 const EditPage: NextPage = () => {
@@ -182,7 +182,7 @@ const EditPage: NextPage = () => {
   // カタカナに固定する
   useDelayedEffect(
     () => {
-      nameKana.set(HiraToKana(nameKana.value))
+      nameKana.set(hiraToKana(nameKana.value))
     },
     [nameKana.value],
     1000
@@ -375,7 +375,7 @@ const EditPage: NextPage = () => {
         isOnlyDemo: isOnlyDemo.toBoolean,
         isDemoFixed: isDemoFixed.toBoolean,
         demoPriority: demoPriority.toNumber,
-        nameKana: HiraToKana(nameKana.value),
+        nameKana: hiraToKana(nameKana.value),
         circleType: circleType.value,
         shortName: shortName.value,
         prefixName: prefixName.value,
