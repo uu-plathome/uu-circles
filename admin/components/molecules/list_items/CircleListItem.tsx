@@ -6,6 +6,7 @@ import {
   faTags,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { __ } from '@/lang/ja'
@@ -34,7 +35,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
   return (
     <div className="flex mb-4 text-white">
       <div className="hidden lg:block">
-        <img
+        <Image
           src={imageLink}
           alt="サークル画像"
           width="100"
@@ -46,7 +47,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
       <div className="ml-2 w-full">
         <div className="flex items-center mb-4 lg:mb-0">
           <div className="lg:hidden mr-2">
-            <img
+            <Image
               src={imageLink}
               alt="サークル画像"
               width="100"

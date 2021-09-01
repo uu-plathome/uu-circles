@@ -56,8 +56,6 @@ export const useCircles = (
     )
   }, [filteredCircles, page.page, page.pageSize])
 
-  console.log({ nowPageCircles, originalCircles, filteredCircles })
-
   return {
     searchName,
     searchRelease,
