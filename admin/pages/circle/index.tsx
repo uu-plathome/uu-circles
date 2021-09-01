@@ -21,14 +21,16 @@ const IndexPage: NextPage = () => {
     searchName,
     searchCircleType,
     searchRelease,
+    searchIsHandbill,
     nowPageCircles,
     page,
   } = useCircles({ originalCircles })
 
-
   if (!originalCircles) {
     return <SubmitLoading isOpen={true} />
   }
+
+  console.log(page)
 
   return (
     <div id="top">
@@ -42,9 +44,10 @@ const IndexPage: NextPage = () => {
           name: searchName,
           release: searchRelease,
           circleType: searchCircleType,
+          isHandbill: searchIsHandbill,
         }}
-        hasPrevious={page.page !== 1}
-        hasNext={page.page !== page.maxPage}
+        hasPrevious={page.hasPrevious}
+        hasNext={page.hasNext}
         onPrevious={() => page.previousPage(scrollTop)}
         onNext={() => page.nextPage(scrollTop)}
       />
