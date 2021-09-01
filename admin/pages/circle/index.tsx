@@ -24,13 +24,11 @@ const IndexPage: NextPage = () => {
     searchIsHandbill,
     nowPageCircles,
     page,
-  } = useCircles({ originalCircles })
+  } = useCircles(originalCircles)
 
   if (!originalCircles) {
     return <SubmitLoading isOpen={true} />
   }
-
-  console.log(page)
 
   return (
     <div id="top">
