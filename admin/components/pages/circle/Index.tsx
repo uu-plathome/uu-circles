@@ -21,6 +21,7 @@ type SearchValue = {
   name: UseStringInput
   release: UseBooleanOrNullInput
   circleType: UseStringInput
+  isHandbill: UseBooleanOrNullInput
 }
 
 type Props = {
@@ -66,14 +67,14 @@ const Index: NextPage<Props> = ({
                     />
                   </div>
 
-                  <div className="flex pt-8">
-                    <div className="pr-4 w-1/2 md:w-1/3">
+                  <div className="grid grid-cols-2 gap-4 pt-8">
+                    <div>
                       <BaseSelect
                         label="公開設定"
                         id="release"
                         name="release"
                         items={[
-                          { value: 'null', label: '未選択' },
+                          { value: 'null', label: 'すべて' },
                           { value: 'true', label: '公開' },
                           { value: 'false', label: '非公開' },
                         ]}
@@ -81,7 +82,7 @@ const Index: NextPage<Props> = ({
                       />
                     </div>
 
-                    <div className="px-2 w-1/2 md:w-1/3">
+                    <div>
                       <BaseSelect
                         label="サークル種別"
                         id="circleType"
@@ -95,6 +96,20 @@ const Index: NextPage<Props> = ({
                           { value: '不明', label: '不明' },
                         ]}
                         {...searchValue.circleType}
+                      />
+                    </div>
+
+                    <div>
+                      <BaseSelect
+                        label="新歓ビラがあるかどうか"
+                        id="isHandbill"
+                        name="isHandbill"
+                        items={[
+                          { value: 'null', label: 'すべて' },
+                          { value: 'true', label: 'あり' },
+                          { value: 'false', label: 'なし' },
+                        ]}
+                        {...searchValue.isHandbill}
                       />
                     </div>
                   </div>

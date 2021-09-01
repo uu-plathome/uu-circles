@@ -12,9 +12,14 @@ export const useCircles = ({
 }) => {
   const [filteredCircles, setFilteredCircles] = useState<Circle[]>([])
   const [nowPageCircles, setNowPageCircles] = useState<Circle[]>([])
+  // 名前
   const searchName = useStringInput('')
+  // 公開中かどうか
   const searchRelease = useBooleanOrNullInput(null)
+  // サークルタイプ
   const searchCircleType = useStringInput('')
+  // 新歓ビラがあるかどうか
+  const searchIsHandbill = useBooleanOrNullInput(null)
 
   const page = usePageInput({
     initialMaxPage: Math.ceil(
@@ -28,6 +33,7 @@ export const useCircles = ({
       name: searchName.value,
       release: searchRelease.toBooleanOrNull,
       circleType: searchCircleType.value,
+      isHandbill: searchIsHandbill.toBooleanOrNull,
     }
 
     setFilteredCircles(searchCircle({ circles: originalCircles, search }))
@@ -37,6 +43,7 @@ export const useCircles = ({
     searchName.value,
     searchRelease.toBooleanOrNull,
     searchCircleType.value,
+    searchIsHandbill.toBooleanOrNull,
   ])
 
   useEffect(() => {
@@ -58,6 +65,7 @@ export const useCircles = ({
     searchName,
     searchRelease,
     searchCircleType,
+    searchIsHandbill,
     nowPageCircles,
     page,
   }
@@ -68,7 +76,8 @@ const searchCircle = ({
   search: {
     name,
     release,
-    circleType
+    circleType,
+    isHandbill,
   }
 }: {
   circles: Circle[]
@@ -76,6 +85,7 @@ const searchCircle = ({
     name?: string,
     release?: boolean | null | 'null',
     circleType?: string
+    isHandbill?: boolean | null | 'null',
   }
 }): Circle[] => {
   if (!circles) {
@@ -91,8 +101,12 @@ const searchCircle = ({
     circles: searchedCirclesByRelease,
     search: { circleType }
   })
+  const searchedCircleByIsHandbill = searchCircleByIsHandbill({
+    circles: searchedCirclesByCircleType,
+    search: { isHandbill }
+  })
 
-  return searchedCirclesByCircleType
+  return searchedCircleByIsHandbill
 }
 
 const searchCircleByName = ({
@@ -226,6 +240,38 @@ const searchCircleByCircleType = ({
       ['', null].includes(c.circleType)
     ) {
       return true
+    }
+
+    return false
+  })
+}
+
+const searchCircleByIsHandbill = ({
+  circles,
+  search: {
+    isHandbill
+  }
+}: {
+  circles: Circle[]
+  search: {
+    isHandbill?: null | 'null' | boolean | 'true' | 'false'
+  }
+}): Circle[] => {
+  if (!isHandbill && isHandbill !== false /** isHandbill === null */) {
+    return circles
+  }
+
+  if (isHandbill === 'null') {
+    return circles
+  }
+
+  return circles.filter(c => {
+    if (isHandbill === true || isHandbill === 'true') {
+      return !!c.handbillImageUrl
+    }
+
+    if (isHandbill === false || isHandbill === 'false') {
+      return !c.handbillImageUrl
     }
 
     return false
