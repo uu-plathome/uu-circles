@@ -6,7 +6,7 @@ type Dow = '日' | '月' | '火' | '水' | '木' | '金' | '土'
  * 曜日を返す
  */
 export const getDow = (
-  originStartDate: Parameters<typeof dayjs>[0],
+  originStartDate: Parameters<typeof dayjs>[0]
 ): Dow | '未定' => {
   if (!originStartDate) {
     return '未定'
