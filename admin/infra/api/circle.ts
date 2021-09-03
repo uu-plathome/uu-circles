@@ -87,6 +87,11 @@ export const getCircleListByUserId = async (userId: number) => {
   }
 }
 
+/**
+ * サークルの削除
+ *
+ * @param circleId
+ */
 export const deleteCircle = async (circleId: number) => {
   try {
     await axiosInstance.delete<{
@@ -95,4 +100,26 @@ export const deleteCircle = async (circleId: number) => {
   } catch (_e) {
     console.error(_e)
   }
+}
+
+/**
+ * サークル一覧のXlsxのダウンロード
+ */
+export const downloadCircleXlsx = async (): Promise<void> => {
+  const { data } = await axiosInstance.get(
+    `/admin/api/circle/download`,
+    {
+      responseType: 'blob',
+    }
+  )
+
+  const url = window.URL.createObjectURL(new Blob([data]))
+  const link = document.createElement('a')
+  link.href = url
+  link.setAttribute(
+    'download',
+    `circle_${new Date().toISOString().slice(0, 10)}.xlsx`
+  )
+  document.body.appendChild(link)
+  link.click()
 }
