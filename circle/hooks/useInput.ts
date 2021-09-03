@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { isDate, isDatetime } from '@/lib/utils/Date'
-import { dayjs } from '@/plugins/Dayjs'
+import { dayjs } from '@/src/plugins/Dayjs'
 
 export const useInput = <T extends string>(initialValue: T) => {
   const [state, set] = useState<T>(initialValue)
