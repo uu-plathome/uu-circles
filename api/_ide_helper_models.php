@@ -271,6 +271,7 @@ namespace App\Models{
      * @property-read int|null $circle_invitation_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleNewJoy[] $circleNewJoys
      * @property-read int|null $circle_new_joys_count
+     * @property-read \App\Models\CirclePageView|null $circlePageView
      * @property-read \App\Models\CircleTag|null $circleTag
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CircleUser[] $circleUsers
      * @property-read int|null $circle_users_count

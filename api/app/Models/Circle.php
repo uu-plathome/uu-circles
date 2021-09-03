@@ -93,6 +93,16 @@ class Circle extends Model
     }
 
     /**
+     * サークル閲覧数.
+     *
+     * @return HasOne
+     */
+    public function circlePageView(): HasOne
+    {
+        return $this->hasOne(CirclePageView::class);
+    }
+
+    /**
      * 現在公開中の新歓を取得する.
      *
      * @return void
