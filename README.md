@@ -19,9 +19,9 @@ UU-Circles: https://uu-circles.com/
 
 ## 機能
 
-[機能一覧/Change log](https://ulab-uu.com/2021/04/22/uu-circles-uu-yell-change-log/)
-[UU-Circles システム目線の話](https://ulab-uu.com/2021/08/08/uu-circles-system-report/)
-[ER図](./docs/MySql.png)
+- [機能一覧/Change log](https://ulab-uu.com/2021/04/22/uu-circles-uu-yell-change-log/)
+- [UU-Circles システム目線の話](https://ulab-uu.com/2021/08/08/uu-circles-system-report/)
+- [ER図](./docs/MySql.png)
 
 ### UU-Circles メインページ
 
@@ -52,6 +52,9 @@ UU-Circles: https://uu-circles.com/
 - デモ管理機能
 - 部員アカウント管理
 - 管理者アカウント管理
+- Excel出力
+    - サークル一覧
+    - 広告一覧
 
 ### uu-yell
 
