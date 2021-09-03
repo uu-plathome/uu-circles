@@ -93,7 +93,7 @@ class Circle extends Model
     }
 
     /**
-     * サークル閲覧数
+     * サークル閲覧数.
      *
      * @return HasOne
      */
