@@ -55,10 +55,7 @@ const IndexPage: NextPage = () => {
               <div className="pt-8">
                 <h2 className="mb-4 text-lg text-white">システム管理者専用</h2>
 
-                <BlueButton
-                  type="button"
-                  onClick={onDownloadCircleXlsx}
-                >
+                <BlueButton type="button" onClick={onDownloadCircleXlsx}>
                   サークルのxlsxダウンロード
                 </BlueButton>
               </div>
