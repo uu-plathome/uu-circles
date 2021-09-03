@@ -65,6 +65,8 @@ Route::middleware('auth:adminUser')->group(function () {
     Route::delete('/circle/{circleId}', Circle\DeleteCircleController::class)
         ->name(ARP::AdminCircleDelete)
         ->where('circleId', '[0-9]+');
+    Route::get('/circle/download', Circle\DownloadCircleExcelController::class)
+        ->name(ARP::AdminCircleDownload);
 
     // CircleUser サークルユーザー
     Route::get('/user/circle', AllUser\IndexAllUserController::class);

@@ -18,4 +18,5 @@ class AdminRouteProperty
     const AdminCircleShow = 'admin.circle.show';
     const AdminCircleUpdate = 'admin.circle.update';
     const AdminCircleDelete = 'admin.circle.delete';
+    const AdminCircleDownload = 'admin.circle.download';
 }
