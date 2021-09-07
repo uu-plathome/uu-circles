@@ -9,17 +9,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useMemo } from 'react'
 import useSWR from 'swr'
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import {
   BaseBreadcrumbItem,
   BaseBreadcrumbs,
-} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
-import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
-import { AuthContext } from '@/contexts/AuthContext'
-import { showCircle } from '@/infra/api/circle'
-import { Role } from '@/lib/enum/api/Role'
+} from '@/src/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { CircleNameHeader } from '@/src/components/organisms/Circle/CircleNameHeader'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { Role } from '@/src/lib/enum/api/Role'
+import { showCircle } from '@/src/lib/infra/api/circle'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -42,15 +42,15 @@ const IndexPage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle
       ? [
-          ...[
-            {
-              text: circle.shortName || circle.name,
-              href: `/circle/[circleId]`,
-              as: `/circle/${circle.id}`,
-              active: true,
-            },
-          ],
-        ]
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+            active: true,
+          },
+        ],
+      ]
       : []
   }, [circle])
 

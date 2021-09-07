@@ -4,12 +4,12 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useContext } from 'react'
 import useSWR from 'swr'
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
-import { BaseBreadcrumbs } from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
-import { CircleList } from '@/components/organisms/List/CircleList'
-import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleList } from '@/infra/api/circle'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
+import { BaseBreadcrumbs } from '@/src/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { CircleList } from '@/src/components/organisms/List/CircleList'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { getCircleList } from '@/src/lib/infra/api/circle'
 
 const IndexPage: NextPage = () => {
   const authContext = useContext(AuthContext)

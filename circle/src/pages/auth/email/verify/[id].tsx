@@ -1,17 +1,17 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useContext, useEffect, useState } from 'react'
-import { BlueButton } from '@/components/atoms/buttons/BlueButton'
-import { OrangeButton } from '@/components/atoms/buttons/OrangeButton'
-import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
-import { MainHeader } from '@/components/layouts/MainHeader'
-import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { BlueButton } from '@/src/components/atoms/buttons/BlueButton'
+import { OrangeButton } from '@/src/components/atoms/buttons/OrangeButton'
+import { SimplePasswordTextField } from '@/src/components/atoms/form/SimplePasswordTextField'
+import { MainHeader } from '@/src/components/layouts/MainHeader'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { useInput } from '@/src/hooks/useInput'
 import {
   checkVerifyCircleUser,
   verificationEmailCircleUser,
-} from '@/infra/api/auth'
-import { isVerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
+} from '@/src/lib/infra/api/auth'
+import { isVerificationEmailCircleUserRequestValidationError } from '@/src/lib/types/api/VerificationEmailCircleUserRequest'
 
 const Login: NextPage = () => {
   const password = useInput('')
@@ -26,7 +26,7 @@ const Login: NextPage = () => {
   }
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       if (
         !Array.isArray(id) &&
         Number.isInteger(Number(id)) &&

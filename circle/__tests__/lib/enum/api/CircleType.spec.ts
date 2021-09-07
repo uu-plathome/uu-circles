@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/CircleType'
+import * as TestFunc from '@/src/lib/enum/api/CircleType'
 
 describe('Enum CircleType', () => {
   it('isOfficialOrganization', () => {

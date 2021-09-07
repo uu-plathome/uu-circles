@@ -2,13 +2,13 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { AuthContext } from '@/contexts/AuthContext'
-import { axiosInstance } from '@/infra/api'
-import { User } from '@/lib/types/model/User'
-import { Bugsnag } from '@/lib/utils/Bugsnag'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { axiosInstance } from '@/src/lib/infra/api'
+import { User } from '@/src/lib/types/model/User'
+import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 
 import 'react-datepicker/dist/react-datepicker.css'
-import '../styles/index.css'
+import '@/styles/index.css'
 
 const ErrorBoundary = process.env.BUGSNAG_API_KEY
   ? Bugsnag.getPlugin('react').createErrorBoundary(React)

@@ -5,22 +5,22 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
 import Colors from '@/colors'
-import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { SubmitLoading } from '@/src/components/atoms/loading/SubmitLoading'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import {
   BaseBreadcrumbItem,
   BaseBreadcrumbs,
-} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
-import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { EditUserForm } from '@/components/organisms/Form/User/EditUserForm'
-import { AuthContext } from '@/contexts/AuthContext'
-import { useStringInput } from '@/hooks/useInput'
-import { updateUser } from '@/infra/api/auth'
+} from '@/src/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { EditUserForm } from '@/src/components/organisms/Form/User/EditUserForm'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { useStringInput } from '@/src/hooks/useInput'
+import { updateUser } from '@/src/lib/infra/api/auth'
 import {
   isUpdateOwnUserRequestValidationError,
   UpdateOwnUserRequest,
-} from '@/lib/types/api/UpdateOwnUserRequest'
+} from '@/src/lib/types/api/UpdateOwnUserRequest'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
