@@ -5,18 +5,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useMemo } from 'react'
 import useSWR from 'swr'
-import { GreenButton } from '@/components/atoms/buttons/GreenButton'
-import { BaseFooter } from '@/components/layouts/BaseFooter'
-import { BaseLayout } from '@/components/layouts/BaseLayout'
+import { GreenButton } from '@/src/components/atoms/buttons/GreenButton'
+import { BaseFooter } from '@/src/components/layouts/BaseFooter'
+import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import {
   BaseBreadcrumbItem,
   BaseBreadcrumbs,
-} from '@/components/molecules/Breadcrumbs/BaseBreadcrumbs'
-import { BaseContainer } from '@/components/molecules/Container/BaseContainer'
-import { CircleNameHeader } from '@/components/organisms/Circle/CircleNameHeader'
-import { IndexCircleNewJoyList } from '@/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
-import { AuthContext } from '@/contexts/AuthContext'
-import { getCircleNewJoyList } from '@/infra/api/circleNewjoy'
+} from '@/src/components/molecules/Breadcrumbs/BaseBreadcrumbs'
+import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { CircleNameHeader } from '@/src/components/organisms/Circle/CircleNameHeader'
+import { IndexCircleNewJoyList } from '@/src/components/organisms/CircleNewjoy/IndexCircleNewJoyList'
+import { AuthContext } from '@/src/contexts/AuthContext'
+import { getCircleNewJoyList } from '@/src/lib/infra/api/circleNewjoy'
 
 const useCircleId = () => {
   const router = useRouter()
@@ -43,20 +43,20 @@ const IndexPage: NextPage = () => {
     const circle = data.circle
     return circle
       ? [
-          ...[
-            {
-              text: circle.shortName || circle.name,
-              href: `/circle/[circleId]`,
-              as: `/circle/${circle.id}`,
-            },
-            {
-              text: `新歓イベント一覧`,
-              href: `/circle/[circleId]/newjoy`,
-              as: `/circle/${circle.id}/newjoy`,
-              active: true,
-            },
-          ],
-        ]
+        ...[
+          {
+            text: circle.shortName || circle.name,
+            href: `/circle/[circleId]`,
+            as: `/circle/${circle.id}`,
+          },
+          {
+            text: `新歓イベント一覧`,
+            href: `/circle/[circleId]/newjoy`,
+            as: `/circle/${circle.id}/newjoy`,
+            active: true,
+          },
+        ],
+      ]
       : []
   }, [data])
 

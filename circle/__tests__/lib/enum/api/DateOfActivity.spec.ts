@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/DateOfActivity'
+import * as TestFunc from '@/src/lib/enum/api/DateOfActivity'
 
 describe('Enum DateOfActivity', () => {
   it('isEveryWeek', () => {
