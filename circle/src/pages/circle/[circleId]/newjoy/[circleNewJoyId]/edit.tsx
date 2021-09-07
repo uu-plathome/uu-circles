@@ -21,7 +21,11 @@ import {
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { EditCircleNewJoyForm } from '@/src/components/organisms/Form/CircleNewJoy/EditCircleNewJoyForm'
 import { AuthContext } from '@/src/contexts/AuthContext'
-import { useBooleanInput, useDateInput, useStringInput } from '@/src/hooks/useInput'
+import {
+  useBooleanInput,
+  useDateInput,
+  useStringInput,
+} from '@/src/hooks/useInput'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import {
   deleteCircleNewJoy,
@@ -135,25 +139,25 @@ const CreatePage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle
       ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `新歓イベント一覧`,
-            href: `/circle/[circleId]/newjoy`,
-            as: `/circle/${circle.id}/newjoy`,
-          },
-          {
-            text: `新歓編集`,
-            href: `/circle/[circleId]/newjoy/[circleNewJoyId]/edit`,
-            as: `/circle/${circle.id}/newjoy/${circleNewJoyId}/edit`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `新歓イベント一覧`,
+              href: `/circle/[circleId]/newjoy`,
+              as: `/circle/${circle.id}/newjoy`,
+            },
+            {
+              text: `新歓編集`,
+              href: `/circle/[circleId]/newjoy/[circleNewJoyId]/edit`,
+              as: `/circle/${circle.id}/newjoy/${circleNewJoyId}/edit`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [circle, circleNewJoyId])
 
