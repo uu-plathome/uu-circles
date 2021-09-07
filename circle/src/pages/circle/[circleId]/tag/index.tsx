@@ -20,7 +20,10 @@ import { BaseContainer } from '@/src/components/molecules/Container/BaseContaine
 import { AuthContext } from '@/src/contexts/AuthContext'
 import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
-import { createOrUpdateCircleTag, getCircleTag } from '@/src/lib/infra/api/circleTag'
+import {
+  createOrUpdateCircleTag,
+  getCircleTag,
+} from '@/src/lib/infra/api/circleTag'
 import { isCreateOrUpdateCircleTagRequestValidationError } from '@/src/lib/types/api/CreateOrUpdateCircleTagRequest'
 import { Circle } from '@/src/lib/types/model/Circle'
 
@@ -119,11 +122,11 @@ const CreatePage: NextPage = () => {
 
       const newCheckBoxItemsAdjustPastItem = newCheckBoxItems.map(
         (_checkBoxItem) =>
-        ({
-          value: _checkBoxItem.value,
-          label: _checkBoxItem.label,
-          checked: filterPastCircleTag.includes(_checkBoxItem.value),
-        } as CheckBoxItem)
+          ({
+            value: _checkBoxItem.value,
+            label: _checkBoxItem.label,
+            checked: filterPastCircleTag.includes(_checkBoxItem.value),
+          } as CheckBoxItem)
       )
       setCircle(fetchedCircle)
       setCircleTag(filterPastCircleTag)
@@ -163,11 +166,11 @@ const CreatePage: NextPage = () => {
 
     const newCheckBoxItems = checkBoxItems.map(
       (_checkBoxItem) =>
-      ({
-        value: _checkBoxItem.value,
-        label: _checkBoxItem.label,
-        checked: newCircleTag.includes(_checkBoxItem.value),
-      } as CheckBoxItem)
+        ({
+          value: _checkBoxItem.value,
+          label: _checkBoxItem.label,
+          checked: newCircleTag.includes(_checkBoxItem.value),
+        } as CheckBoxItem)
     )
     setCheckBoxItems(newCheckBoxItems)
   }
@@ -175,19 +178,19 @@ const CreatePage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle && circle
       ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `サークルタグ管理`,
-            href: `/circle/[circleId]/tag`,
-            as: `/circle/${circle.id}/tag`,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `サークルタグ管理`,
+              href: `/circle/[circleId]/tag`,
+              as: `/circle/${circle.id}/tag`,
+            },
+          ],
+        ]
       : []
   }, [circle])
 

@@ -22,7 +22,10 @@ import { AuthContext } from '@/src/contexts/AuthContext'
 import { useStringInput } from '@/src/hooks/useInput'
 import { Role } from '@/src/lib/enum/api/Role'
 import { showCircle } from '@/src/lib/infra/api/circle'
-import { importCircleUser, searchCircleUser } from '@/src/lib/infra/api/circleUser'
+import {
+  importCircleUser,
+  searchCircleUser,
+} from '@/src/lib/infra/api/circleUser'
 import {
   ImportCircleUserRequest,
   isImportCircleUserRequestValidationError,
@@ -98,25 +101,25 @@ const CreatePage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle && circle.circle
       ? [
-        ...[
-          {
-            text: circle.circle.shortName || circle.circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.circle.id}`,
-          },
-          {
-            text: `部員アカウント一覧`,
-            href: `/circle/[circleId]/user`,
-            as: `/circle/${circle.circle.id}/user`,
-          },
-          {
-            text: `既存部員アカウント招待`,
-            href: `/circle/[circleId]/user/import`,
-            as: `/circle/${circle.circle.id}/user/import`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.circle.shortName || circle.circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.circle.id}/user`,
+            },
+            {
+              text: `既存部員アカウント招待`,
+              href: `/circle/[circleId]/user/import`,
+              as: `/circle/${circle.circle.id}/user/import`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [circle])
 
