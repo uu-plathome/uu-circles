@@ -52,20 +52,20 @@ const IndexPage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle
       ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `部員アカウント一覧`,
-            href: `/circle/[circleId]/user`,
-            as: `/circle/${circle.id}/user`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.id}/user`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [circle])
 
@@ -115,7 +115,7 @@ const IndexPage: NextPage = () => {
                 </div>
 
                 {circleUsersDoneEmailVerify &&
-                  circleUsersDoneEmailVerify.length > 0 ? (
+                circleUsersDoneEmailVerify.length > 0 ? (
                   <div>
                     <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       認証済みの部員アカウント一覧
@@ -131,7 +131,7 @@ const IndexPage: NextPage = () => {
                 )}
 
                 {circleUsersNotDoneEmailVerify &&
-                  circleUsersNotDoneEmailVerify.length > 0 ? (
+                circleUsersNotDoneEmailVerify.length > 0 ? (
                   <div>
                     <h2 className="pt-10 pb-6 text-lg font-bold text-center">
                       未認証の部員アカウント一覧

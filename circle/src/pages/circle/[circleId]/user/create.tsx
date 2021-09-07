@@ -80,25 +80,25 @@ const CreatePage: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle && circle.circle
       ? [
-        ...[
-          {
-            text: circle.circle.shortName || circle.circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.circle.id}`,
-          },
-          {
-            text: `部員アカウント一覧`,
-            href: `/circle/[circleId]/user`,
-            as: `/circle/${circle.circle.id}/user`,
-          },
-          {
-            text: `新規追加`,
-            href: `/circle/[circleId]/user/create`,
-            as: `/circle/${circle.circle.id}/user/create`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.circle.shortName || circle.circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.circle.id}`,
+            },
+            {
+              text: `部員アカウント一覧`,
+              href: `/circle/[circleId]/user`,
+              as: `/circle/${circle.circle.id}/user`,
+            },
+            {
+              text: `新規追加`,
+              href: `/circle/[circleId]/user/create`,
+              as: `/circle/${circle.circle.id}/user/create`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [circle])
 

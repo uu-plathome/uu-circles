@@ -61,7 +61,7 @@ type Props = {
     tiktokUrl: UseStringInput
     participationUrl: UseStringInput
   } & NameEditCircleFormProps['form'] &
-  CommonInfoEditCircleFormProps['form']
+    CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({
   onDropMainImage,

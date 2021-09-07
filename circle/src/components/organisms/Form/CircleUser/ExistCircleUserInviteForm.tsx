@@ -34,12 +34,12 @@ const ExistCircleUserInviteForm: FC<Props> = ({
         items={
           canSelectUsers
             ? [
-              { label: '', value: '' },
-              ...canSelectUsers.map((user) => ({
-                label: `${user.displayName} (${user.email})`,
-                value: user.id,
-              })),
-            ]
+                { label: '', value: '' },
+                ...canSelectUsers.map((user) => ({
+                  label: `${user.displayName} (${user.email})`,
+                  value: user.id,
+                })),
+              ]
             : [{ label: '', value: '' }]
         }
         {...form.id}
