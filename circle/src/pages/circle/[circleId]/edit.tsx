@@ -498,20 +498,20 @@ const Page: NextPage = () => {
   const baseBreadcrumbsItems: BaseBreadcrumbItem[] = useMemo(() => {
     return circle
       ? [
-        ...[
-          {
-            text: circle.shortName || circle.name,
-            href: `/circle/[circleId]`,
-            as: `/circle/${circle.id}`,
-          },
-          {
-            text: `${circle.shortName || circle.name}の編集`,
-            href: `/circle/[circleId]/edit`,
-            as: `/circle/${circle.id}/edit`,
-            active: true,
-          },
-        ],
-      ]
+          ...[
+            {
+              text: circle.shortName || circle.name,
+              href: `/circle/[circleId]`,
+              as: `/circle/${circle.id}`,
+            },
+            {
+              text: `${circle.shortName || circle.name}の編集`,
+              href: `/circle/[circleId]/edit`,
+              as: `/circle/${circle.id}/edit`,
+              active: true,
+            },
+          ],
+        ]
       : []
   }, [circle])
 
