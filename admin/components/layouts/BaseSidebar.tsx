@@ -13,7 +13,7 @@ import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
 import { FC, useContext, useState } from 'react'
 import { BaseHeader } from './BaseHeader'
-import { AuthContext } from '@/contexts/AuthContext'
+import { AuthContext } from '@/src/contexts/AuthContext'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { Role } from '@/src/lib/enum/api/Role'
 

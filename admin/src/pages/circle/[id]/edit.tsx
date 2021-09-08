@@ -11,7 +11,7 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { DeleteCircleButton } from '@/components/organisms/form/Circle/DeleteCircleButton'
 import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleForm'
-import { AuthContext } from '@/contexts/AuthContext'
+import { AuthContext } from '@/src/contexts/AuthContext'
 import { useDelayedEffect } from '@/src/hooks/useDelayedEffect'
 import {
   useBooleanInput,
