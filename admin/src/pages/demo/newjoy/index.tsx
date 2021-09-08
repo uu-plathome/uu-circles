@@ -5,7 +5,7 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { DemoCircleNewJoyListItem } from '@/components/molecules/list_items/DemoCircleNewJoyListItem'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { getDemoCircleNewJoyList } from '@/src/lib/infra/api/demo_cirecle_new_joy'
 
 const IndexPage: NextPage = () => {

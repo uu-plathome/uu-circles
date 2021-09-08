@@ -10,7 +10,7 @@ import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useStringInput } from '@/hooks/useInput'
+import { useStringInput } from '@/src/hooks/useInput'
 import { login } from '@/src/lib/infra/api/auth'
 import {
   isLoginAdminFormRequestValidationError,

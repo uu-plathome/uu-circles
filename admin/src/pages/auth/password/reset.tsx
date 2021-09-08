@@ -9,7 +9,7 @@ import { BlueButton } from '@/components/atoms/buttons/BlueButton'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useInput } from '@/src/hooks/useInput'
 import { forgotPassword } from '@/src/lib/infra/api/auth'
 import { isForgotPasswordAdminRequestValidationError } from '@/src/lib/types/api/ForgotPasswordAdminRequest'
 

@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { scroller } from 'react-scroll'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { AllCircleUsersTemplate } from '@/components/pages/CircleUser/Index/AllCircleUsersTemplate'
-import { useStringInput } from '@/hooks/useInput'
-import { usePageInput } from '@/hooks/usePageInput'
+import { useStringInput } from '@/src/hooks/useInput'
+import { usePageInput } from '@/src/hooks/usePageInput'
 import {
   allCircleUserList,
   resendEmailCircleUser,

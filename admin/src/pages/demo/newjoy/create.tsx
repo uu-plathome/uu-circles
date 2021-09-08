@@ -12,8 +12,8 @@ import {
   useDateInput,
   useNumberInput,
   useStringInput,
-} from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+} from '@/src/hooks/useInput'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { createDemoCircleNewJoy } from '@/src/lib/infra/api/demo_cirecle_new_joy'

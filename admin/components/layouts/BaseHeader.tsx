@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import React from 'react'
 import { BaseContainer } from './BaseContainer'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import Color from '@/src/styles/colors'
 
 type Props = {

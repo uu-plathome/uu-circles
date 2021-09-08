@@ -1,7 +1,7 @@
 import { createRef, FC, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { BaseLabel } from './BaseLabel'
-import { UseStringInput } from '@/hooks/useInput'
+import { UseStringInput } from '@/src/hooks/useInput'
 
 const inputClass = `
     transition
@@ -82,12 +82,12 @@ const CircleActivityImageInput: FC<Props> = ({
   useEffect(() => {
     setError(
       activityImageUrl1.error ||
-        activityImageUrl2.error ||
-        activityImageUrl3.error ||
-        activityImageUrl4.error ||
-        activityImageUrl5.error ||
-        activityImageUrl6.error ||
-        ''
+      activityImageUrl2.error ||
+      activityImageUrl3.error ||
+      activityImageUrl4.error ||
+      activityImageUrl5.error ||
+      activityImageUrl6.error ||
+      ''
     )
   }, [
     activityImageUrl1.error,

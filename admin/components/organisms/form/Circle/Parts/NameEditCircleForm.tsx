@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { UseStringInput } from '@/hooks/useInput'
+import { UseStringInput } from '@/src/hooks/useInput'
 
 export type Props = {
   form: {

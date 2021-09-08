@@ -7,8 +7,8 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircleNewJoy/EditDemoCircleNewJoyForm'
-import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useBooleanInput, useDateInput, useStringInput } from '@/src/hooks/useInput'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import {
   getDemoCircleNewJoy,

@@ -10,7 +10,7 @@ import {
   UseDateInput,
   UseNumberInput,
   UseStringInput,
-} from '@/hooks/useInput'
+} from '@/src/hooks/useInput'
 import { __ } from '@/src/lang/ja'
 import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'

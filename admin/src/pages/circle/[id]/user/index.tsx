@@ -8,7 +8,7 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleUserListItem } from '@/components/molecules/list_items/CircleUserListItem'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import {
   deleteCircleUser,
   getCircleUserList,
