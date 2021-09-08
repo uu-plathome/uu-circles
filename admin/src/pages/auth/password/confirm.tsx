@@ -9,7 +9,7 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordTextField'
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useInput } from '@/hooks/useInput'
+import { useInput } from '@/src/hooks/useInput'
 import { resetPassword } from '@/src/lib/infra/api/auth'
 import { isResetPasswordAdminRequestValidationError } from '@/src/lib/types/api/ResetPasswordAdminRequest'
 

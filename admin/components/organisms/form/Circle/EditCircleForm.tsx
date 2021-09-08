@@ -27,7 +27,7 @@ import {
   UseBooleanInput,
   UseNumberInput,
   UseStringInput,
-} from '@/hooks/useInput'
+} from '@/src/hooks/useInput'
 import { isSystem, Role } from '@/src/lib/enum/api/Role'
 
 type Props = {

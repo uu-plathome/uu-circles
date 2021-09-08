@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes, useState } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
-import { useDelayedEffect } from '@/hooks/useDelayedEffect'
+import { useDelayedEffect } from '@/src/hooks/useDelayedEffect'
 
 const inputClass = `
     px-4

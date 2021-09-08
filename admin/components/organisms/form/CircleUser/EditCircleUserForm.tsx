@@ -2,7 +2,7 @@ import { FC, FormEvent } from 'react'
 import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
-import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
+import { UseBooleanInput, UseStringInput } from '@/src/hooks/useInput'
 import { __ } from '@/src/lang/ja'
 import { Role } from '@/src/lib/enum/api/Role'
 

@@ -9,8 +9,8 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditAdvertiseForm } from '@/components/organisms/form/Advertise/EditAdvertiseForm'
-import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useBooleanInput, useDateInput, useStringInput } from '@/src/hooks/useInput'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
 import {
   downloadAdvertiseCounterHistoryXlsx,

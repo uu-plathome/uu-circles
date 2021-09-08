@@ -10,8 +10,8 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleNewJoyListItem } from '@/components/molecules/list_items/CircleNewJoyListItem'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { useSuccess } from '@/hooks/useSuccess'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
+import { useSuccess } from '@/src/hooks/useSuccess'
 import {
   getCircleNewJoyList,
   deleteCircleNewJoy,

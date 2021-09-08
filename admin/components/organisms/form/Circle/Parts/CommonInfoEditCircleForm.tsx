@@ -9,7 +9,7 @@ import {
   UseBooleanInput,
   UseNumberInput,
   UseStringInput,
-} from '@/hooks/useInput'
+} from '@/src/hooks/useInput'
 import { __ } from '@/src/lang/ja'
 import { CircleType, getAllCircleType } from '@/src/lib/enum/api/CircleType'
 

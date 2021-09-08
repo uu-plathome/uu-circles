@@ -12,13 +12,13 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { DeleteCircleButton } from '@/components/organisms/form/Circle/DeleteCircleButton'
 import { EditCircleForm } from '@/components/organisms/form/Circle/EditCircleForm'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useDelayedEffect } from '@/hooks/useDelayedEffect'
+import { useDelayedEffect } from '@/src/hooks/useDelayedEffect'
 import {
   useBooleanInput,
   useNumberInput,
   useStringInput,
-} from '@/hooks/useInput'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+} from '@/src/hooks/useInput'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { isSystem } from '@/src/lib/enum/api/Role'
 import { deleteCircle, showCircle, updateCircle } from '@/src/lib/infra/api/circle'
 import { putStorage } from '@/src/lib/infra/api/storage'

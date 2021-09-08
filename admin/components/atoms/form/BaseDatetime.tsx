@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
-import { UseDateInput } from '@/hooks/useInput'
+import { UseDateInput } from '@/src/hooks/useInput'
 import { DatePicker } from '@/src/plugins/ReactDatepicker'
 
 export type Props = {

@@ -14,7 +14,7 @@ import { NextRouter, useRouter } from 'next/router'
 import { FC, useContext, useState } from 'react'
 import { BaseHeader } from './BaseHeader'
 import { AuthContext } from '@/contexts/AuthContext'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { Role } from '@/src/lib/enum/api/Role'
 
 interface SidebarItem {
