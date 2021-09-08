@@ -1,4 +1,4 @@
-const colors = require('./colors')
+const colors = require('./src/styles/colors')
 
 module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
