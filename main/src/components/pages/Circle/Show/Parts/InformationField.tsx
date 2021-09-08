@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
+import Obfuscate from 'react-obfuscate'
 import { SnsList } from './SnsList'
 import { __ } from '@/src/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
@@ -89,7 +90,9 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
           {circle.publicEmail ? (
             <div className="py-4 border-b border-gray-400">
               <p className="mb-2 text-sm text-gray-400">連絡用メールアドレス</p>
-              <p className="text-sm text-black">{circle.publicEmail}</p>
+              <p className="text-sm text-black">
+                <Obfuscate email={circle.publicEmail} />
+              </p>
             </div>
           ) : (
             ''
