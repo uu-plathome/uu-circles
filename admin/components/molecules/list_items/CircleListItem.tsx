@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { CircleType } from '@/src/lib/enum/api/CircleType'
 import { Circle } from '@/src/lib/types/model/Circle'
 

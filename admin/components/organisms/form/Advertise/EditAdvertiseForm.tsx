@@ -5,7 +5,7 @@ import { BaseDate } from '@/components/atoms/form/BaseDate'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
 
 type Props = {

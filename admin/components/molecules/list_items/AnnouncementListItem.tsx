@@ -10,7 +10,7 @@ import { FC, useState } from 'react'
 import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 
 type Props = {

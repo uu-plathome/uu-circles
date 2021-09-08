@@ -12,7 +12,7 @@ import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 
 type Props = {

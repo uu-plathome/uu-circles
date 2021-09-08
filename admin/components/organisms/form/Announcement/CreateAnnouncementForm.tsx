@@ -6,7 +6,7 @@ import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { Importance } from '@/src/lib/enum/api/Importance'
 

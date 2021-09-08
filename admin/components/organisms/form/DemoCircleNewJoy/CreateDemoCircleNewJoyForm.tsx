@@ -11,7 +11,7 @@ import {
   UseNumberInput,
   UseStringInput,
 } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 

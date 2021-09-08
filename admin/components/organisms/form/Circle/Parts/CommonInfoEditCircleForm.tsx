@@ -10,7 +10,7 @@ import {
   UseNumberInput,
   UseStringInput,
 } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { CircleType, getAllCircleType } from '@/src/lib/enum/api/CircleType'
 
 export type Props = {
