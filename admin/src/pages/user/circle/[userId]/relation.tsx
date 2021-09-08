@@ -10,7 +10,10 @@ import { BaseHeader } from '@/src/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/src/components/layouts/BaseWrapper'
 import { useNumberInput } from '@/src/hooks/useInput'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
-import { getCircleList, getCircleListByUserId } from '@/src/lib/infra/api/circle'
+import {
+  getCircleList,
+  getCircleListByUserId,
+} from '@/src/lib/infra/api/circle'
 import { createRelationBetweenUserAndCircle } from '@/src/lib/infra/api/circle_user'
 import { Circle } from '@/src/lib/types/model/Circle'
 
@@ -36,10 +39,10 @@ const CreatePage: NextPage = () => {
           .filter((circle: Circle) => !relationedCirclesIds.includes(circle.id))
           .map(
             (circle: Circle) =>
-            ({
-              value: circle.id,
-              label: circle.name,
-            } as SelectItem)
+              ({
+                value: circle.id,
+                label: circle.name,
+              } as SelectItem)
           ),
       ]
       setSelectItems(newSelectItems)

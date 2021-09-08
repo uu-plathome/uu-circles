@@ -12,7 +12,10 @@ import { useBooleanInput, useStringInput } from '@/src/hooks/useInput'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { Role } from '@/src/lib/enum/api/Role'
 import { showCircle } from '@/src/lib/infra/api/circle'
-import { getCircleUser, updateCircleUser } from '@/src/lib/infra/api/circle_user'
+import {
+  getCircleUser,
+  updateCircleUser,
+} from '@/src/lib/infra/api/circle_user'
 import {
   isUpdateCircleUserRequestValidationError,
   UpdateCircleUserRequest,

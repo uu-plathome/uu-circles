@@ -25,7 +25,7 @@ const Login: NextPage = () => {
   }
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       if (
         !Array.isArray(id) &&
         Number.isInteger(Number(id)) &&

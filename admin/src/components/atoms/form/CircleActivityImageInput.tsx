@@ -82,12 +82,12 @@ const CircleActivityImageInput: FC<Props> = ({
   useEffect(() => {
     setError(
       activityImageUrl1.error ||
-      activityImageUrl2.error ||
-      activityImageUrl3.error ||
-      activityImageUrl4.error ||
-      activityImageUrl5.error ||
-      activityImageUrl6.error ||
-      ''
+        activityImageUrl2.error ||
+        activityImageUrl3.error ||
+        activityImageUrl4.error ||
+        activityImageUrl5.error ||
+        activityImageUrl6.error ||
+        ''
     )
   }, [
     activityImageUrl1.error,

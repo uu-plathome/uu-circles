@@ -87,14 +87,14 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {advertises.length > 0
               ? advertises.map((advertise: Advertise) => {
-                return (
-                  <AdvertiseListItem
-                    key={`circle-${advertise.id}`}
-                    advertise={advertise}
-                    onDelete={onDelete}
-                  />
-                )
-              })
+                  return (
+                    <AdvertiseListItem
+                      key={`circle-${advertise.id}`}
+                      advertise={advertise}
+                      onDelete={onDelete}
+                    />
+                  )
+                })
               : ''}
 
             {advertises.length === 0 ? (
