@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { scroller } from 'react-scroll'
 import useSWR from 'swr'
-import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
-import { Index } from '@/components/pages/circle/Index'
-import { useCircles } from '@/components/pages/circle/useCircles'
+import { SubmitLoading } from '@/src/components/atoms/loading/SubmitLoading'
+import { Index } from '@/src/components/pages/circle/Index'
+import { useCircles } from '@/src/components/pages/circle/useCircles'
 import { getCircleList } from '@/src/lib/infra/api/circle'
 
 const IndexPage: NextPage = () => {
