@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/AnnouncementType'
+import * as TestFunc from '@/src/lib/enum/api/AnnouncementType'
 
 describe('Enum AnnouncementType', () => {
   it('isMaintenance', () => {

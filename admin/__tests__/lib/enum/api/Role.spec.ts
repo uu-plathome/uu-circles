@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/Role'
+import * as TestFunc from '@/src/lib/enum/api/Role'
 
 describe('Enum Role', () => {
   it('isSystem', () => {

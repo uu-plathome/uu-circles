@@ -3,19 +3,19 @@ import { axiosInstance } from './index'
 import {
   ForgotPasswordAdminRequest,
   ForgotPasswordAdminRequestValidationError,
-} from '@/lib/types/api/ForgotPasswordAdminRequest'
+} from '@/src/lib/types/api/ForgotPasswordAdminRequest'
 import {
   LoginAdminFormRequest,
   LoginAdminFormRequestValidationError,
-} from '@/lib/types/api/LoginAdminFormRequest'
+} from '@/src/lib/types/api/LoginAdminFormRequest'
 import {
   ResetPasswordAdminRequest,
   ResetPasswordAdminRequestValidationError,
-} from '@/lib/types/api/ResetPasswordAdminRequest'
-import { VerificationConfirmRequestValidationError } from '@/lib/types/api/VerificationConfirmRequest'
-import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
-import { VerificationResendAdminUserFormRequestValidationError } from '@/lib/types/api/VerificationResendAdminUserFormRequest'
-import { User } from '@/lib/types/model/User'
+} from '@/src/lib/types/api/ResetPasswordAdminRequest'
+import { VerificationConfirmRequestValidationError } from '@/src/lib/types/api/VerificationConfirmRequest'
+import { VerificationInvalidError } from '@/src/lib/types/api/VerificationInvalidError'
+import { VerificationResendAdminUserFormRequestValidationError } from '@/src/lib/types/api/VerificationResendAdminUserFormRequest'
+import { User } from '@/src/lib/types/model/User'
 
 export const getAuthUser = async () => {
   const { data } = await axiosInstance.get<User>('/admin/api/user')
