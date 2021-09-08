@@ -16,7 +16,7 @@ import { __ } from '@/lang/ja'
 import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity'
 import { Circle } from '@/lib/types/model/Circle'
 import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
-import { dayjs } from '@/plugins/Dayjs'
+import { dayjs } from '@/src/plugins/Dayjs'
 
 type Props = {
   circle: Circle
