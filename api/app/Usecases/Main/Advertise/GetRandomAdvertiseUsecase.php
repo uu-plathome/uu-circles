@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 final class GetRandomAdvertiseUsecase
 {
-    const TTL = 60 * 5;
+    const TTL = 60 * 10;
 
     public function invoke(int $limit = 2)
     {
@@ -38,8 +38,10 @@ final class GetRandomAdvertiseUsecase
 
     public static function getCacheKey(): string
     {
-        $hour = Carbon::now()->format('YmdH');
+        $now = Carbon::now();
+        $hour = $now->format('YmdH');
+        $minutes_flag = floor($now->minute / 10);
 
-        return 'main.advertise.mainTop'.$hour;
+        return 'main.advertise.mainTop'.$hour.$minutes_flag;
     }
 }
