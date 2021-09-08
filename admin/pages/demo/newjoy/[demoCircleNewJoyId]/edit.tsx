@@ -9,11 +9,11 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircleNewJoy/EditDemoCircleNewJoyForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import {
   getDemoCircleNewJoy,
   updateDemoCircleNewJoy,
-} from '@/infra/api/demo_cirecle_new_joy'
-import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
+} from '@/src/lib/infra/api/demo_cirecle_new_joy'
 import { isUpdateDemoCircleNewJoyRequestValidationError } from '@/src/lib/types/api/UpdateDemoCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {

@@ -11,8 +11,8 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CircleUserRelationListItem } from '@/components/molecules/list_items/CircleUserRelationListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
-import { getCircleListByUserId } from '@/infra/api/circle'
-import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
+import { getCircleListByUserId } from '@/src/lib/infra/api/circle'
+import { deleteRelationBetweenUserAndCircle } from '@/src/lib/infra/api/circle_user'
 import { Circle } from '@/src/lib/types/model/Circle'
 
 const IndexPage: NextPage = () => {

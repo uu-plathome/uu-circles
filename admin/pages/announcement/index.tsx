@@ -14,7 +14,7 @@ import { useSuccess } from '@/hooks/useSuccess'
 import {
   deleteAnnouncement,
   getAnnouncementList,
-} from '@/infra/api/announcement'
+} from '@/src/lib/infra/api/announcement'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 
 const IndexPage: NextPage = () => {

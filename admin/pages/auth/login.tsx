@@ -11,7 +11,7 @@ import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordT
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useStringInput } from '@/hooks/useInput'
-import { login } from '@/infra/api/auth'
+import { login } from '@/src/lib/infra/api/auth'
 import {
   isLoginAdminFormRequestValidationError,
   LoginAdminFormRequest,

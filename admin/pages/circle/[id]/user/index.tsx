@@ -13,7 +13,7 @@ import {
   deleteCircleUser,
   getCircleUserList,
   resendEmailCircleUser,
-} from '@/infra/api/circle_user'
+} from '@/src/lib/infra/api/circle_user'
 import { User } from '@/src/lib/types/model/User'
 
 const IndexPage: NextPage = () => {

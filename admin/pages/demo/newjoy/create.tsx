@@ -14,9 +14,9 @@ import {
   useStringInput,
 } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { createDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
 import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { createDemoCircleNewJoy } from '@/src/lib/infra/api/demo_cirecle_new_joy'
 import { isRegisterDemoCircleNewJoyRequestValidationError } from '@/src/lib/types/api/RegisterDemoCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {

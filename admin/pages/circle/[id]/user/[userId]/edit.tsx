@@ -10,9 +10,9 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditCircleUserForm } from '@/components/organisms/form/CircleUser/EditCircleUserForm'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { showCircle } from '@/infra/api/circle'
-import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
 import { Role } from '@/src/lib/enum/api/Role'
+import { showCircle } from '@/src/lib/infra/api/circle'
+import { getCircleUser, updateCircleUser } from '@/src/lib/infra/api/circle_user'
 import {
   isUpdateCircleUserRequestValidationError,
   UpdateCircleUserRequest,

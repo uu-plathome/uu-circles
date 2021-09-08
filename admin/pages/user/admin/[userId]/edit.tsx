@@ -12,9 +12,9 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { __ } from '@/lang/ja'
 import { Role } from '@/src/lib/enum/api/Role'
+import { getAdminUser, updateAdminUser } from '@/src/lib/infra/api/admin_user'
 import {
   isUpdateAdminUserRequestValidationError,
   UpdateAdminUserRequest,

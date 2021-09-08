@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
 import { Index } from '@/components/pages/circle/Index'
 import { useCircles } from '@/components/pages/circle/useCircles'
-import { getCircleList } from '@/infra/api/circle'
+import { getCircleList } from '@/src/lib/infra/api/circle'
 
 const IndexPage: NextPage = () => {
   const { data: originalCircles } = useSWR('/circles', getCircleList)

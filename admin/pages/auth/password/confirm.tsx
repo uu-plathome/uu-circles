@@ -10,7 +10,7 @@ import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordT
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
-import { resetPassword } from '@/infra/api/auth'
+import { resetPassword } from '@/src/lib/infra/api/auth'
 import { isResetPasswordAdminRequestValidationError } from '@/src/lib/types/api/ResetPasswordAdminRequest'
 
 const PasswordConfirmPage: NextPage = () => {

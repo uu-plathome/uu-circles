@@ -10,8 +10,8 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useNumberInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getCircleList, getCircleListByUserId } from '@/infra/api/circle'
-import { createRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
+import { getCircleList, getCircleListByUserId } from '@/src/lib/infra/api/circle'
+import { createRelationBetweenUserAndCircle } from '@/src/lib/infra/api/circle_user'
 import { Circle } from '@/src/lib/types/model/Circle'
 
 const CreatePage: NextPage = () => {

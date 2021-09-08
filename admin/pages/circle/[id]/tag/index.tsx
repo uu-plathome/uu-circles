@@ -12,9 +12,9 @@ import { BaseContainer } from '@/components/layouts/BaseContainer'
 import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { createOrUpdateCircleTag, getCircleTag } from '@/infra/api/circle_tag'
 import { __ } from '@/lang/ja'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
+import { createOrUpdateCircleTag, getCircleTag } from '@/src/lib/infra/api/circle_tag'
 import { isCreateOrUpdateCircleTagRequestValidationError } from '@/src/lib/types/api/CreateOrUpdateCircleTagRequest'
 
 const CreatePage: NextPage = () => {

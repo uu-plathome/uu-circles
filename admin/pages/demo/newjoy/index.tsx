@@ -6,7 +6,7 @@ import { BaseHeader } from '@/components/layouts/BaseHeader'
 import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { DemoCircleNewJoyListItem } from '@/components/molecules/list_items/DemoCircleNewJoyListItem'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getDemoCircleNewJoyList } from '@/infra/api/demo_cirecle_new_joy'
+import { getDemoCircleNewJoyList } from '@/src/lib/infra/api/demo_cirecle_new_joy'
 
 const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()
@@ -35,19 +35,19 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length > 0
               ? data.demoCircleNewJoys.map((demoCircleNewJoy) => {
-                  return (
-                    <DemoCircleNewJoyListItem
-                      key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
-                      name={demoCircleNewJoy.name}
-                      circleId={demoCircleNewJoy.circleId}
-                      demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
-                    />
-                  )
-                })
+                return (
+                  <DemoCircleNewJoyListItem
+                    key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
+                    name={demoCircleNewJoy.name}
+                    circleId={demoCircleNewJoy.circleId}
+                    demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
+                  />
+                )
+              })
               : ''}
             {data &&
-            data.demoCircleNewJoys &&
-            data.demoCircleNewJoys.length === 0 ? (
+              data.demoCircleNewJoys &&
+              data.demoCircleNewJoys.length === 0 ? (
               <div className="py-4">
                 <p className="text-white">まだ新歓が登録されていません</p>
               </div>

@@ -16,7 +16,7 @@ import {
   getCircleNewJoyList,
   deleteCircleNewJoy,
   copyCircleNewJoy,
-} from '@/infra/api/cirecle_new_joy'
+} from '@/src/lib/infra/api/cirecle_new_joy'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
