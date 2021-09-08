@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/CircleTagModel'
+import * as TestFunc from '@/src/lib/enum/api/CircleTagModel'
 
 describe('Enum CircleTagModel', () => {
   it('isSport', () => {

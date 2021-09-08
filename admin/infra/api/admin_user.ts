@@ -3,12 +3,12 @@ import { axiosInstance } from '.'
 import {
   RegisterAdminFormRequest,
   RegisterAdminFormRequestValidationError,
-} from '@/lib/types/api/RegisterAdminFormRequest'
+} from '@/src/lib/types/api/RegisterAdminFormRequest'
 import {
   UpdateAdminUserRequest,
   UpdateAdminUserRequestValidationError,
-} from '@/lib/types/api/UpdateAdminUserRequest'
-import { User } from '@/lib/types/model/User'
+} from '@/src/lib/types/api/UpdateAdminUserRequest'
+import { User } from '@/src/lib/types/model/User'
 
 export const getAdminUserList = async () => {
   const { data } = await axiosInstance.get<{

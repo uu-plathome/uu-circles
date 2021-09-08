@@ -3,12 +3,12 @@ import { axiosInstance } from '.'
 import {
   CreateAdvertiseRequest,
   CreateAdvertiseRequestValidationError,
-} from '@/lib/types/api/CreateAdvertiseRequest'
+} from '@/src/lib/types/api/CreateAdvertiseRequest'
 import {
   UpdateAdvertiseRequest,
   UpdateAdvertiseRequestValidationError,
-} from '@/lib/types/api/UpdateAdvertiseRequest'
-import { Advertise } from '@/lib/types/model/Advertise'
+} from '@/src/lib/types/api/UpdateAdvertiseRequest'
+import { Advertise } from '@/src/lib/types/model/Advertise'
 
 /**
  * 広告一覧
