@@ -12,7 +12,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import {
   getCircleNewJoy,
   updateCircleNewJoy,
-} from '@/infra/api/cirecle_new_joy'
+} from '@/src/lib/infra/api/cirecle_new_joy'
 import {
   isUpdateCircleNewJoyRequestValidationError,
   UpdateCircleNewJoyRequest,

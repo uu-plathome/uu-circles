@@ -19,9 +19,9 @@ import {
   useStringInput,
 } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { deleteCircle, showCircle, updateCircle } from '@/infra/api/circle'
-import { putStorage } from '@/infra/api/storage'
 import { isSystem } from '@/src/lib/enum/api/Role'
+import { deleteCircle, showCircle, updateCircle } from '@/src/lib/infra/api/circle'
+import { putStorage } from '@/src/lib/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/src/lib/types/api/AdminPutStorageRequest'
 import { isUpdateCircleFormRequestValidationError } from '@/src/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/src/lib/types/model/Circle'

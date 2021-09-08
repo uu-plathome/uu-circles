@@ -11,13 +11,13 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditAdvertiseForm } from '@/components/organisms/form/Advertise/EditAdvertiseForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
 import {
   downloadAdvertiseCounterHistoryXlsx,
   showAdvertise,
   updateAdvertise,
-} from '@/infra/api/advertise'
-import { putStorage } from '@/infra/api/storage'
-import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
+} from '@/src/lib/infra/api/advertise'
+import { putStorage } from '@/src/lib/infra/api/storage'
 import { isAdminPutStorageRequestValidationError } from '@/src/lib/types/api/AdminPutStorageRequest'
 import { isUpdateAdvertiseRequestValidationError } from '@/src/lib/types/api/UpdateAdvertiseRequest'
 

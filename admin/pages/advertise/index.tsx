@@ -16,7 +16,7 @@ import {
   deleteAdvertise,
   downloadAdvertiseXlsx,
   getAdvertiseList,
-} from '@/infra/api/advertise'
+} from '@/src/lib/infra/api/advertise'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 
 const IndexPage: NextPage = () => {

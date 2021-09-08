@@ -10,7 +10,7 @@ import { CreateCircleForm } from '@/components/organisms/form/Circle/CreateCircl
 import { useDelayedEffect } from '@/hooks/useDelayedEffect'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { createCircle } from '@/infra/api/circle'
+import { createCircle } from '@/src/lib/infra/api/circle'
 import {
   CreateCircleFormRequest,
   isCreateCircleFormRequestValidationError,

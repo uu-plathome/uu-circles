@@ -9,8 +9,8 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleUserForm } from '@/components/organisms/form/CircleUser/CreateCircleUser'
 import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { createCircleUser } from '@/infra/api/circle_user'
 import { Role } from '@/src/lib/enum/api/Role'
+import { createCircleUser } from '@/src/lib/infra/api/circle_user'
 import {
   isRegisterCircleUserRequestValidationError,
   RegisterCircleUserRequest,

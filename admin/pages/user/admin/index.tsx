@@ -12,9 +12,9 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AdminUserListItem } from '@/components/molecules/list_items/AdminUserListItem'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { getAdminUserList } from '@/infra/api/admin_user'
-import { getAuthUser, resendEmail } from '@/infra/api/auth'
 import { Role } from '@/src/lib/enum/api/Role'
+import { getAdminUserList } from '@/src/lib/infra/api/admin_user'
+import { getAuthUser, resendEmail } from '@/src/lib/infra/api/auth'
 import { User } from '@/src/lib/types/model/User'
 
 const useSuccess = <T,>(initialState: T) => {

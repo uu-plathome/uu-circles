@@ -8,7 +8,7 @@ import { SimplePasswordTextField } from '@/components/atoms/form/SimplePasswordT
 import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
-import { checkVerify, verifyPassword } from '@/infra/api/auth'
+import { checkVerify, verifyPassword } from '@/src/lib/infra/api/auth'
 import { isVerificationConfirmRequestValidationError } from '@/src/lib/types/api/VerificationConfirmRequest'
 import { isVerificationInvalidError } from '@/src/lib/types/api/VerificationInvalidError'
 

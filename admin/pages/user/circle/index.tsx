@@ -9,7 +9,7 @@ import { usePageInput } from '@/hooks/usePageInput'
 import {
   allCircleUserList,
   resendEmailCircleUser,
-} from '@/infra/api/circle_user'
+} from '@/src/lib/infra/api/circle_user'
 import { UserByAllCircle } from '@/src/lib/types/model/User'
 
 const IndexPage: NextPage = () => {

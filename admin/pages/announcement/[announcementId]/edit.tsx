@@ -9,9 +9,9 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { EditAnnouncementForm } from '@/components/organisms/form/Announcement/EditAnnouncementForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { showAnnouncement, updateAnnouncement } from '@/infra/api/announcement'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { Importance } from '@/src/lib/enum/api/Importance'
+import { showAnnouncement, updateAnnouncement } from '@/src/lib/infra/api/announcement'
 import { isUpdateAnnouncementRequestValidationError } from '@/src/lib/types/api/UpdateAnnouncementRequest'
 
 const CreatePage: NextPage = () => {

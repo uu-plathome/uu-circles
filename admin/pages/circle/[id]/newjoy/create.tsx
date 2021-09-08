@@ -10,9 +10,9 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { CreateCircleNewJoyForm } from '@/components/organisms/form/CircleNewJoy/CreateCircleNewJoyForm'
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { showCircle } from '@/infra/api/circle'
-import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { showCircle } from '@/src/lib/infra/api/circle'
+import { createCircleNewJoy } from '@/src/lib/infra/api/cirecle_new_joy'
 import {
   isRegisterCircleNewJoyRequestValidationError,
   RegisterCircleNewJoyRequest,
