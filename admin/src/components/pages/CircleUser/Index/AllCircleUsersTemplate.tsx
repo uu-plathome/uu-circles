@@ -91,7 +91,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
               <div className="text-center">
                 <button
                   aria-label="前へ"
-                  className=" mx-2 disabled:opacity-50"
+                  className="mx-2 disabled:opacity-50"
                   disabled={!hasPrevious}
                   onClick={onPrevious}
                 >
@@ -104,7 +104,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
 
                 <button
                   aria-label="次へ"
-                  className=" mx-2 disabled:opacity-50"
+                  className="mx-2 disabled:opacity-50"
                   disabled={!hasNext}
                   onClick={onNext}
                 >
