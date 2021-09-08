@@ -14,8 +14,8 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getAdminUserList } from '@/infra/api/admin_user'
 import { getAuthUser, resendEmail } from '@/infra/api/auth'
-import { Role } from '@/lib/enum/api/Role'
-import { User } from '@/lib/types/model/User'
+import { Role } from '@/src/lib/enum/api/Role'
+import { User } from '@/src/lib/types/model/User'
 
 const useSuccess = <T,>(initialState: T) => {
   const [success, setSuccess] = useState<T>(initialState)
@@ -85,15 +85,15 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {users
               ? users.map((user: User) => {
-                  return (
-                    <AdminUserListItem
-                      key={`user-${user.id}`}
-                      authUser={authUser}
-                      user={user}
-                      onResendEmail={onResendEmail}
-                    />
-                  )
-                })
+                return (
+                  <AdminUserListItem
+                    key={`user-${user.id}`}
+                    authUser={authUser}
+                    user={user}
+                    onResendEmail={onResendEmail}
+                  />
+                )
+              })
               : ''}
           </div>
         </BaseWrapper>

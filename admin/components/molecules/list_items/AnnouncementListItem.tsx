@@ -11,7 +11,7 @@ import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { __ } from '@/lang/ja'
-import { Announcement } from '@/lib/types/model/Announcement'
+import { Announcement } from '@/src/lib/types/model/Announcement'
 
 type Props = {
   announcement: Announcement

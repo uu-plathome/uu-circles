@@ -3,15 +3,15 @@ import { axiosInstance } from './index'
 import {
   RegisterCircleUserRequest,
   RegisterCircleUserRequestValidationError,
-} from '@/lib/types/api/RegisterCircleUserRequest'
+} from '@/src/lib/types/api/RegisterCircleUserRequest'
 import {
   UpdateCircleUserRequest,
   UpdateCircleUserRequestValidationError,
-} from '@/lib/types/api/UpdateCircleUserRequest'
-import { VerificationEmailCircleUserRequestValidationError } from '@/lib/types/api/VerificationEmailCircleUserRequest'
-import { VerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
-import { VerificationResendCircleUserFormRequestValidationError } from '@/lib/types/api/VerificationResendCircleUserFormRequest'
-import { User, UserByAllCircle } from '@/lib/types/model/User'
+} from '@/src/lib/types/api/UpdateCircleUserRequest'
+import { VerificationEmailCircleUserRequestValidationError } from '@/src/lib/types/api/VerificationEmailCircleUserRequest'
+import { VerificationInvalidError } from '@/src/lib/types/api/VerificationInvalidError'
+import { VerificationResendCircleUserFormRequestValidationError } from '@/src/lib/types/api/VerificationResendCircleUserFormRequest'
+import { User, UserByAllCircle } from '@/src/lib/types/model/User'
 
 export const createCircleUser = async (
   circleId: number,

@@ -10,7 +10,7 @@ import {
   allCircleUserList,
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
-import { UserByAllCircle } from '@/lib/types/model/User'
+import { UserByAllCircle } from '@/src/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
   const [originalUsers, setOriginalUsers] =

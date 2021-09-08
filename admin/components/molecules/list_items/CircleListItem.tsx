@@ -10,8 +10,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { __ } from '@/lang/ja'
-import { CircleType } from '@/lib/enum/api/CircleType'
-import { Circle } from '@/lib/types/model/Circle'
+import { CircleType } from '@/src/lib/enum/api/CircleType'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 type Props = {
   circle: Circle

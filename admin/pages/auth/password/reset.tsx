@@ -11,7 +11,7 @@ import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { forgotPassword } from '@/infra/api/auth'
-import { isForgotPasswordAdminRequestValidationError } from '@/lib/types/api/ForgotPasswordAdminRequest'
+import { isForgotPasswordAdminRequestValidationError } from '@/src/lib/types/api/ForgotPasswordAdminRequest'
 
 const Login: NextPage = () => {
   const email = useInput('')

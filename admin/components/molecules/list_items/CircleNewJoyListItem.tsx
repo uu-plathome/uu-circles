@@ -13,9 +13,9 @@ import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { OrangeButton } from '@/components/atoms/buttons/OrangeButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { __ } from '@/lang/ja'
-import { newJoyTitleEntity } from '@/lib/entity/newJoyTitleEntity'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { newJoyTitleEntity } from '@/src/lib/entity/newJoyTitleEntity'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/src/plugins/Dayjs'
 
 type Props = {

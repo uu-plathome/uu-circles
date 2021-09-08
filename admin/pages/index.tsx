@@ -10,7 +10,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { downloadCircleXlsx } from '@/infra/api/circle'
-import { isSystem } from '@/lib/enum/api/Role'
+import { isSystem } from '@/src/lib/enum/api/Role'
 
 const IndexPage: NextPage = () => {
   const { isMd } = useMediaQuery()

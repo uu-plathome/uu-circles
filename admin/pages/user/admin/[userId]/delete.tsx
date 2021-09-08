@@ -12,7 +12,7 @@ import { AuthContext } from '@/contexts/AuthContext'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { deleteAdminUser, getAdminUser } from '@/infra/api/admin_user'
 import { getAuthUser } from '@/infra/api/auth'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 
 const DeletePage: NextPage = () => {
   const router = useRouter()

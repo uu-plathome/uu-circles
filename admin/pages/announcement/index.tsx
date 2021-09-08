@@ -15,7 +15,7 @@ import {
   deleteAnnouncement,
   getAnnouncementList,
 } from '@/infra/api/announcement'
-import { Announcement } from '@/lib/types/model/Announcement'
+import { Announcement } from '@/src/lib/types/model/Announcement'
 
 const IndexPage: NextPage = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
@@ -85,14 +85,14 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {announcements.length > 0
               ? announcements.map((announcement: Announcement) => {
-                  return (
-                    <AnnouncementListItem
-                      key={`announcement-${announcement.id}`}
-                      announcement={announcement}
-                      onDelete={onDelete}
-                    />
-                  )
-                })
+                return (
+                  <AnnouncementListItem
+                    key={`announcement-${announcement.id}`}
+                    announcement={announcement}
+                    onDelete={onDelete}
+                  />
+                )
+              })
               : ''}
 
             {announcements.length === 0 ? (

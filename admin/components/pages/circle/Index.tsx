@@ -13,8 +13,8 @@ import { CircleListItem } from '@/components/molecules/list_items/CircleListItem
 import { UseBooleanOrNullInput, UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
-import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
-import { Circle } from '@/lib/types/model/Circle'
+import { CircleType, getAllCircleType } from '@/src/lib/enum/api/CircleType'
+import { Circle } from '@/src/lib/types/model/Circle'
 import Color from '@/src/styles/colors'
 
 type SearchValue = {

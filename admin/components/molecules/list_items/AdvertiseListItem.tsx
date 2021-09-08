@@ -13,7 +13,7 @@ import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { __ } from '@/lang/ja'
-import { Advertise } from '@/lib/types/model/Advertise'
+import { Advertise } from '@/src/lib/types/model/Advertise'
 
 type Props = {
   advertise: Advertise

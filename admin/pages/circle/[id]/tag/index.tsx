@@ -14,8 +14,8 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createOrUpdateCircleTag, getCircleTag } from '@/infra/api/circle_tag'
 import { __ } from '@/lang/ja'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { isCreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
+import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
+import { isCreateOrUpdateCircleTagRequestValidationError } from '@/src/lib/types/api/CreateOrUpdateCircleTagRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
@@ -112,11 +112,11 @@ const CreatePage: NextPage = () => {
 
       const newCheckBoxItemsAdjustPastItem = newCheckBoxItems.map(
         (_checkBoxItem) =>
-          ({
-            value: _checkBoxItem.value,
-            label: _checkBoxItem.label,
-            checked: filterPastCircleTag.includes(_checkBoxItem.value),
-          } as CheckBoxItem)
+        ({
+          value: _checkBoxItem.value,
+          label: _checkBoxItem.label,
+          checked: filterPastCircleTag.includes(_checkBoxItem.value),
+        } as CheckBoxItem)
       )
       setCircleTag(filterPastCircleTag)
       setCheckBoxItems(newCheckBoxItemsAdjustPastItem)
@@ -154,11 +154,11 @@ const CreatePage: NextPage = () => {
 
     const newCheckBoxItems = checkBoxItems.map(
       (_checkBoxItem) =>
-        ({
-          value: _checkBoxItem.value,
-          label: _checkBoxItem.label,
-          checked: newCircleTag.includes(_checkBoxItem.value),
-        } as CheckBoxItem)
+      ({
+        value: _checkBoxItem.value,
+        label: _checkBoxItem.label,
+        checked: newCircleTag.includes(_checkBoxItem.value),
+      } as CheckBoxItem)
     )
     setCheckBoxItems(newCheckBoxItems)
   }

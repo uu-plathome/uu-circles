@@ -16,8 +16,8 @@ import {
 import {
   isUpdateCircleNewJoyRequestValidationError,
   UpdateCircleNewJoyRequest,
-} from '@/lib/types/api/UpdateCircleNewJoyRequest'
-import { Circle } from '@/lib/types/model/Circle'
+} from '@/src/lib/types/api/UpdateCircleNewJoyRequest'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

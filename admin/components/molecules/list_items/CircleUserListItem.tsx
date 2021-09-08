@@ -11,7 +11,7 @@ import { FC, useState } from 'react'
 import Modal from 'react-modal'
 import { GrayButton } from '@/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/components/atoms/buttons/RedButton'
-import { User } from '@/lib/types/model/User'
+import { User } from '@/src/lib/types/model/User'
 
 const customStyles = {
   content: {

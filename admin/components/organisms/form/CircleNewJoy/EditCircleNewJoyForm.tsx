@@ -8,8 +8,8 @@ import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
-import { Circle } from '@/lib/types/model/Circle'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void

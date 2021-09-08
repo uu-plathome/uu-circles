@@ -17,9 +17,9 @@ import {
   updateAdvertise,
 } from '@/infra/api/advertise'
 import { putStorage } from '@/infra/api/storage'
-import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
-import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
-import { isUpdateAdvertiseRequestValidationError } from '@/lib/types/api/UpdateAdvertiseRequest'
+import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
+import { isAdminPutStorageRequestValidationError } from '@/src/lib/types/api/AdminPutStorageRequest'
+import { isUpdateAdvertiseRequestValidationError } from '@/src/lib/types/api/UpdateAdvertiseRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

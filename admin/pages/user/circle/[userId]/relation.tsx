@@ -12,7 +12,7 @@ import { useNumberInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getCircleList, getCircleListByUserId } from '@/infra/api/circle'
 import { createRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
-import { Circle } from '@/lib/types/model/Circle'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()
@@ -36,10 +36,10 @@ const CreatePage: NextPage = () => {
           .filter((circle: Circle) => !relationedCirclesIds.includes(circle.id))
           .map(
             (circle: Circle) =>
-              ({
-                value: circle.id,
-                label: circle.name,
-              } as SelectItem)
+            ({
+              value: circle.id,
+              label: circle.name,
+            } as SelectItem)
           ),
       ]
       setSelectItems(newSelectItems)

@@ -4,7 +4,7 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void

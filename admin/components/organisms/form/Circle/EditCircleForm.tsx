@@ -28,7 +28,7 @@ import {
   UseNumberInput,
   UseStringInput,
 } from '@/hooks/useInput'
-import { isSystem, Role } from '@/lib/enum/api/Role'
+import { isSystem, Role } from '@/src/lib/enum/api/Role'
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
@@ -76,7 +76,7 @@ type Props = {
     wpTagTaxonomy: UseStringInput
     isViewWpPost: UseBooleanInput
   } & NameEditCircleFormProps['form'] &
-    CommonInfoEditCircleFormProps['form']
+  CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({
   onDropMainImage,

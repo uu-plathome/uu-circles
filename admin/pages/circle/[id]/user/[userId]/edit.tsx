@@ -12,11 +12,11 @@ import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { showCircle } from '@/infra/api/circle'
 import { getCircleUser, updateCircleUser } from '@/infra/api/circle_user'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 import {
   isUpdateCircleUserRequestValidationError,
   UpdateCircleUserRequest,
-} from '@/lib/types/api/UpdateCircleUserRequest'
+} from '@/src/lib/types/api/UpdateCircleUserRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

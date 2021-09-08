@@ -17,7 +17,7 @@ import {
   downloadAdvertiseXlsx,
   getAdvertiseList,
 } from '@/infra/api/advertise'
-import { Advertise } from '@/lib/types/model/Advertise'
+import { Advertise } from '@/src/lib/types/model/Advertise'
 
 const IndexPage: NextPage = () => {
   const [advertises, setAdvertise] = useState<Advertise[]>([])
@@ -87,14 +87,14 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {advertises.length > 0
               ? advertises.map((advertise: Advertise) => {
-                  return (
-                    <AdvertiseListItem
-                      key={`circle-${advertise.id}`}
-                      advertise={advertise}
-                      onDelete={onDelete}
-                    />
-                  )
-                })
+                return (
+                  <AdvertiseListItem
+                    key={`circle-${advertise.id}`}
+                    advertise={advertise}
+                    onDelete={onDelete}
+                  />
+                )
+              })
               : ''}
 
             {advertises.length === 0 ? (

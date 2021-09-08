@@ -10,9 +10,9 @@ import { EditAnnouncementForm } from '@/components/organisms/form/Announcement/E
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { showAnnouncement, updateAnnouncement } from '@/infra/api/announcement'
-import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
-import { Importance } from '@/lib/enum/api/Importance'
-import { isUpdateAnnouncementRequestValidationError } from '@/lib/types/api/UpdateAnnouncementRequest'
+import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { Importance } from '@/src/lib/enum/api/Importance'
+import { isUpdateAnnouncementRequestValidationError } from '@/src/lib/types/api/UpdateAnnouncementRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

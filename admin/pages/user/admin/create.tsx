@@ -14,11 +14,11 @@ import { useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createAdminUser } from '@/infra/api/admin_user'
 import { __ } from '@/lang/ja'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 import {
   isRegisterAdminFormRequestValidationError,
   RegisterAdminFormRequest,
-} from '@/lib/types/api/RegisterAdminFormRequest'
+} from '@/src/lib/types/api/RegisterAdminFormRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

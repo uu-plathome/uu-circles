@@ -12,11 +12,11 @@ import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { showCircle } from '@/infra/api/circle'
 import { createCircleNewJoy } from '@/infra/api/cirecle_new_joy'
-import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import {
   isRegisterCircleNewJoyRequestValidationError,
   RegisterCircleNewJoyRequest,
-} from '@/lib/types/api/RegisterCircleNewJoyRequest'
+} from '@/src/lib/types/api/RegisterCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

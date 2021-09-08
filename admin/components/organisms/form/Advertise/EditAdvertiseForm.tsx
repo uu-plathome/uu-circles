@@ -6,7 +6,7 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
+import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
 
 type Props = {
   onDropMainImage(acceptedFiles: any): void
