@@ -26,7 +26,7 @@ import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPu
 import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
 import { Circle } from '@/lib/types/model/Circle'
 import { hiraToKana } from '@/lib/utils/String'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 const EditPage: NextPage = () => {
   const [circle, setCircle] = useState<Circle | undefined>(undefined)

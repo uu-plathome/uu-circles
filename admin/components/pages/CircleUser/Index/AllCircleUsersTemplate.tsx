@@ -12,7 +12,7 @@ import { AllUserListItem } from '@/components/molecules/list_items/AllUserListIt
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { User, UserByAllCircle } from '@/lib/types/model/User'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 type SearchValue = {
   name: UseStringInput
@@ -67,14 +67,14 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
 
             {users && users.length > 0
               ? users.map((user: User) => {
-                  return (
-                    <AllUserListItem
-                      key={`user-${user.id}`}
-                      user={user}
-                      onResendEmail={onResendEmail}
-                    />
-                  )
-                })
+                return (
+                  <AllUserListItem
+                    key={`user-${user.id}`}
+                    user={user}
+                    onResendEmail={onResendEmail}
+                  />
+                )
+              })
               : ''}
 
             {users && users.length === 0 ? (
@@ -91,7 +91,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
               <div className="text-center">
                 <button
                   aria-label="前へ"
-                  className="mx-2 disabled:opacity-50 "
+                  className=" mx-2 disabled:opacity-50"
                   disabled={!hasPrevious}
                   onClick={onPrevious}
                 >
@@ -104,7 +104,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
 
                 <button
                   aria-label="次へ"
-                  className="mx-2 disabled:opacity-50 "
+                  className=" mx-2 disabled:opacity-50"
                   disabled={!hasNext}
                   onClick={onNext}
                 >
