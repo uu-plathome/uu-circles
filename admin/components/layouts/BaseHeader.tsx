@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { BaseContainer } from './BaseContainer'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 type Props = {
   onClick?(): void
