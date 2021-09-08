@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { __ } from '@/lang/ja'
 import { DemoCircleNewJoy } from '@/lib/types/model/DemoCircleNewJoy'
-import { dayjs } from '@/plugins/Dayjs'
+import { dayjs } from '@/src/plugins/Dayjs'
 
 type Props = {
   demoCircleNewJoy: DemoCircleNewJoy
