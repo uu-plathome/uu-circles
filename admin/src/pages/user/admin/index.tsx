@@ -85,15 +85,15 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {users
               ? users.map((user: User) => {
-                return (
-                  <AdminUserListItem
-                    key={`user-${user.id}`}
-                    authUser={authUser}
-                    user={user}
-                    onResendEmail={onResendEmail}
-                  />
-                )
-              })
+                  return (
+                    <AdminUserListItem
+                      key={`user-${user.id}`}
+                      authUser={authUser}
+                      user={user}
+                      onResendEmail={onResendEmail}
+                    />
+                  )
+                })
               : ''}
           </div>
         </BaseWrapper>

@@ -76,7 +76,7 @@ type Props = {
     wpTagTaxonomy: UseStringInput
     isViewWpPost: UseBooleanInput
   } & NameEditCircleFormProps['form'] &
-  CommonInfoEditCircleFormProps['form']
+    CommonInfoEditCircleFormProps['form']
 }
 const EditCircleForm: FC<Props> = ({
   onDropMainImage,
