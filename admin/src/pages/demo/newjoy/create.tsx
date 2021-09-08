@@ -2,11 +2,11 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
-import { SubmitLoading } from '@/components/atoms/loading/SubmitLoading'
-import { BaseContainer } from '@/components/layouts/BaseContainer'
-import { BaseHeader } from '@/components/layouts/BaseHeader'
-import { BaseWrapper } from '@/components/layouts/BaseWrapper'
-import { CreateDemoCircleNewJoyForm } from '@/components/organisms/form/DemoCircleNewJoy/CreateDemoCircleNewJoyForm'
+import { SubmitLoading } from '@/src/components/atoms/loading/SubmitLoading'
+import { BaseContainer } from '@/src/components/layouts/BaseContainer'
+import { BaseHeader } from '@/src/components/layouts/BaseHeader'
+import { BaseWrapper } from '@/src/components/layouts/BaseWrapper'
+import { CreateDemoCircleNewJoyForm } from '@/src/components/organisms/form/DemoCircleNewJoy/CreateDemoCircleNewJoyForm'
 import {
   useBooleanInput,
   useDateInput,
