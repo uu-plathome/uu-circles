@@ -1,4 +1,4 @@
-import * as TestFunc from '@/lib/enum/api/PlaceOfActivity'
+import * as TestFunc from '@/src/lib/enum/api/PlaceOfActivity'
 
 describe('Enum PlaceOfActivity', () => {
   it('isMine', () => {
