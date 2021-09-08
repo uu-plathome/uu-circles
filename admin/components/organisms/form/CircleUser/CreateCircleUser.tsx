@@ -3,7 +3,7 @@ import { GreenButton } from '@/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/components/atoms/form/BaseTextField'
 import { UseStringInput } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { Role } from '@/src/lib/enum/api/Role'
 
 type Props = {

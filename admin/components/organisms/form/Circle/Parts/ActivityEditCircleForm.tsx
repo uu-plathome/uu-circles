@@ -3,7 +3,7 @@ import { BaseCheckBox } from '@/components/atoms/form/BaseCheckBox'
 import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { getAllPlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { getAllWeek, Week } from '@/src/lib/enum/api/Week'
 

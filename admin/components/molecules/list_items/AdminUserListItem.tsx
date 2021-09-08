@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
-import { __ } from '@/lang/ja'
+import { __ } from '@/src/lang/ja'
 import { User } from '@/src/lib/types/model/User'
 
 type Props = {
