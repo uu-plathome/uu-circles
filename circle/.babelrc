@@ -1,9 +1,18 @@
 {
-    "presets": ["next/babel"],
-
+    "presets": [
+        "next/babel"
+    ],
     "env": {
         "production": {
-            "plugins": ["transform-remove-console"]
+            "plugins": [
+                "transform-remove-console",
+                {
+                    "exclude": [
+                        "error",
+                        "warn"
+                    ]
+                }
+            ]
         }
     }
 }
