@@ -65,7 +65,7 @@ final class IndexController extends Controller
         /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
             $this->getCacheKey(),
-            60 * 3,
+            60 * 10,
             fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
@@ -111,16 +111,9 @@ final class IndexController extends Controller
     private function getCacheKey(): string
     {
         $now = Carbon::now();
-        $hours = $now->format('YmdHi');
-        $minutes_flag = $now->minute % 3;
+        $hours = $now->format('YmdH');
+        $minutes_flag = floor($now->minute / 10);
 
-        return 'main'.$hours.$minutes_flag;
-    }
-
-    private function getMainTopAdvertiseCacheKey(): string
-    {
-        $hour = Carbon::now()->format('YmdH');
-
-        return 'main.advertise.mainTop'.$hour;
+        return 'main_'.$hours.$minutes_flag;
     }
 }
