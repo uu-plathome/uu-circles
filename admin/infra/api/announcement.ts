@@ -3,12 +3,12 @@ import { axiosInstance } from '.'
 import {
   CreateAnnouncementRequest,
   CreateAnnouncementRequestValidationError,
-} from '@/lib/types/api/CreateAnnouncementRequest'
+} from '@/src/lib/types/api/CreateAnnouncementRequest'
 import {
   UpdateAnnouncementRequest,
   UpdateAnnouncementRequestValidationError,
-} from '@/lib/types/api/UpdateAnnouncementRequest'
-import { Announcement } from '@/lib/types/model/Announcement'
+} from '@/src/lib/types/api/UpdateAnnouncementRequest'
+import { Announcement } from '@/src/lib/types/model/Announcement'
 
 /**
  * お知らせ一覧

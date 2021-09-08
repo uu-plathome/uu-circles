@@ -1,12 +1,12 @@
-import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
-import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { CircleType } from '@/lib/enum/api/CircleType'
-import { DateOfActivity } from '@/lib/enum/api/DateOfActivity'
-import { Importance } from '@/lib/enum/api/Importance'
-import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
-import { Role } from '@/lib/enum/api/Role'
-import { Week } from '@/lib/enum/api/Week'
+import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
+import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
+import { CircleType } from '@/src/lib/enum/api/CircleType'
+import { DateOfActivity } from '@/src/lib/enum/api/DateOfActivity'
+import { Importance } from '@/src/lib/enum/api/Importance'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { Role } from '@/src/lib/enum/api/Role'
+import { Week } from '@/src/lib/enum/api/Week'
 
 export const ja = {
   [CircleType._type]: {

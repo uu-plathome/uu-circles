@@ -15,8 +15,8 @@ import { login } from '@/infra/api/auth'
 import {
   isLoginAdminFormRequestValidationError,
   LoginAdminFormRequest,
-} from '@/lib/types/api/LoginAdminFormRequest'
-import { isUser } from '@/lib/types/model/User'
+} from '@/src/lib/types/api/LoginAdminFormRequest'
+import { isUser } from '@/src/lib/types/model/User'
 
 const Login: NextPage = () => {
   const [error, setError] = useState('')

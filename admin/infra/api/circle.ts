@@ -3,13 +3,13 @@ import { axiosInstance } from '.'
 import {
   CreateCircleFormRequest,
   CreateCircleFormRequestValidationError,
-} from '@/lib/types/api/CreateCircleFormRequest'
+} from '@/src/lib/types/api/CreateCircleFormRequest'
 import {
   UpdateCircleFormRequest,
   UpdateCircleFormRequestValidationError,
-} from '@/lib/types/api/UpdateCircleFormRequest'
-import { Circle } from '@/lib/types/model/Circle'
-import { User } from '@/lib/types/model/User'
+} from '@/src/lib/types/api/UpdateCircleFormRequest'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { User } from '@/src/lib/types/model/User'
 
 export const createCircle = async (circle: CreateCircleFormRequest) => {
   try {

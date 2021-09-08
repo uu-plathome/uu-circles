@@ -21,11 +21,11 @@ import {
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { deleteCircle, showCircle, updateCircle } from '@/infra/api/circle'
 import { putStorage } from '@/infra/api/storage'
-import { isSystem } from '@/lib/enum/api/Role'
-import { isAdminPutStorageRequestValidationError } from '@/lib/types/api/AdminPutStorageRequest'
-import { isUpdateCircleFormRequestValidationError } from '@/lib/types/api/UpdateCircleFormRequest'
-import { Circle } from '@/lib/types/model/Circle'
-import { hiraToKana } from '@/lib/utils/String'
+import { isSystem } from '@/src/lib/enum/api/Role'
+import { isAdminPutStorageRequestValidationError } from '@/src/lib/types/api/AdminPutStorageRequest'
+import { isUpdateCircleFormRequestValidationError } from '@/src/lib/types/api/UpdateCircleFormRequest'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { hiraToKana } from '@/src/lib/utils/String'
 import Color from '@/src/styles/colors'
 
 const EditPage: NextPage = () => {

@@ -12,8 +12,8 @@ import {
   UseStringInput,
 } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
-import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
+import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void

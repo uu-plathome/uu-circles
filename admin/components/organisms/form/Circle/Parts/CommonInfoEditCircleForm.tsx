@@ -11,7 +11,7 @@ import {
   UseStringInput,
 } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { CircleType, getAllCircleType } from '@/lib/enum/api/CircleType'
+import { CircleType, getAllCircleType } from '@/src/lib/enum/api/CircleType'
 
 export type Props = {
   onDropMainImage(acceptedFiles: any): void

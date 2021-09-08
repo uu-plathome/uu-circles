@@ -9,9 +9,9 @@ import { CreateAnnouncementForm } from '@/components/organisms/form/Announcement
 import { useBooleanInput, useDateInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createAnnouncement } from '@/infra/api/announcement'
-import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
-import { Importance } from '@/lib/enum/api/Importance'
-import { isCreateAnnouncementRequestValidationError } from '@/lib/types/api/CreateAnnouncementRequest'
+import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { Importance } from '@/src/lib/enum/api/Importance'
+import { isCreateAnnouncementRequestValidationError } from '@/src/lib/types/api/CreateAnnouncementRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

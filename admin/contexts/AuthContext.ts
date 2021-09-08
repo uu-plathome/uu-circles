@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 
 const AuthContext = createContext({
   accessToken: undefined,

@@ -14,7 +14,7 @@ import { createCircle } from '@/infra/api/circle'
 import {
   CreateCircleFormRequest,
   isCreateCircleFormRequestValidationError,
-} from '@/lib/types/api/CreateCircleFormRequest'
+} from '@/src/lib/types/api/CreateCircleFormRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

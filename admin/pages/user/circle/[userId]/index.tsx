@@ -13,7 +13,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSuccess } from '@/hooks/useSuccess'
 import { getCircleListByUserId } from '@/infra/api/circle'
 import { deleteRelationBetweenUserAndCircle } from '@/infra/api/circle_user'
-import { Circle } from '@/lib/types/model/Circle'
+import { Circle } from '@/src/lib/types/model/Circle'
 
 const IndexPage: NextPage = () => {
   const { success, setSuccess } = useSuccess('')
@@ -68,15 +68,15 @@ const IndexPage: NextPage = () => {
           <div className="p-2 border-2 border-gray-800">
             {circles.length > 0
               ? circles.map((circle: Circle) => {
-                  return (
-                    <CircleUserRelationListItem
-                      key={`circle-${circle.id}`}
-                      circle={circle}
-                      userId={Number(userId)}
-                      onDeleteRelation={onDeleteRelation}
-                    />
-                  )
-                })
+                return (
+                  <CircleUserRelationListItem
+                    key={`circle-${circle.id}`}
+                    circle={circle}
+                    userId={Number(userId)}
+                    onDeleteRelation={onDeleteRelation}
+                  />
+                )
+              })
               : ''}
 
             {circles.length === 0 ? (

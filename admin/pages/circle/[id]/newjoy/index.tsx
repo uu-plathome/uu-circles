@@ -17,8 +17,8 @@ import {
   deleteCircleNewJoy,
   copyCircleNewJoy,
 } from '@/infra/api/cirecle_new_joy'
-import { Circle } from '@/lib/types/model/Circle'
-import { CircleNewJoy } from '@/lib/types/model/CircleNewJoy'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 const IndexPage: NextPage = () => {
   const router = useRouter()
@@ -100,16 +100,16 @@ const IndexPage: NextPage = () => {
 
             {circle && circleNewJoys.length > 0
               ? circleNewJoys.map((circleNewJoy: CircleNewJoy) => {
-                  return (
-                    <CircleNewJoyListItem
-                      key={`circle-${circleNewJoy.id}`}
-                      circle={circle}
-                      circleNewJoy={circleNewJoy}
-                      onCopy={onCopy}
-                      onDelete={onDelete}
-                    />
-                  )
-                })
+                return (
+                  <CircleNewJoyListItem
+                    key={`circle-${circleNewJoy.id}`}
+                    circle={circle}
+                    circleNewJoy={circleNewJoy}
+                    onCopy={onCopy}
+                    onDelete={onDelete}
+                  />
+                )
+              })
               : ''}
             {circleNewJoys.length === 0 ? (
               <div className="py-4">

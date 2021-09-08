@@ -1,4 +1,4 @@
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 
 export interface User {
   type: 'User'

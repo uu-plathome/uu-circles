@@ -15,9 +15,9 @@ import {
 } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { createDemoCircleNewJoy } from '@/infra/api/demo_cirecle_new_joy'
-import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
-import { PlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
-import { isRegisterDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/RegisterDemoCircleNewJoyRequest'
+import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { isRegisterDemoCircleNewJoyRequestValidationError } from '@/src/lib/types/api/RegisterDemoCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

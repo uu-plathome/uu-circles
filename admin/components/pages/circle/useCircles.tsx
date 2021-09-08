@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useBooleanOrNullInput, useStringInput } from '@/hooks/useInput'
 import { usePageInput } from '@/hooks/usePageInput'
-import { CircleType } from '@/lib/enum/api/CircleType'
-import { Circle } from '@/lib/types/model/Circle'
-import { hiraToKana } from '@/lib/utils/String'
+import { CircleType } from '@/src/lib/enum/api/CircleType'
+import { Circle } from '@/src/lib/types/model/Circle'
+import { hiraToKana } from '@/src/lib/utils/String'
 
 export const useCircles = (originalCircles: Circle[]) => {
   const [filteredCircles, setFilteredCircles] = useState<Circle[]>([])

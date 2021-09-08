@@ -14,11 +14,11 @@ import { useBooleanInput, useStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { getAdminUser, updateAdminUser } from '@/infra/api/admin_user'
 import { __ } from '@/lang/ja'
-import { Role } from '@/lib/enum/api/Role'
+import { Role } from '@/src/lib/enum/api/Role'
 import {
   isUpdateAdminUserRequestValidationError,
   UpdateAdminUserRequest,
-} from '@/lib/types/api/UpdateAdminUserRequest'
+} from '@/src/lib/types/api/UpdateAdminUserRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

@@ -13,8 +13,8 @@ import {
   getDemoCircleNewJoy,
   updateDemoCircleNewJoy,
 } from '@/infra/api/demo_cirecle_new_joy'
-import { DemoCircleNewjoyType } from '@/lib/enum/api/DemoCircleNewjoyType'
-import { isUpdateDemoCircleNewJoyRequestValidationError } from '@/lib/types/api/UpdateDemoCircleNewJoyRequest'
+import { DemoCircleNewjoyType } from '@/src/lib/enum/api/DemoCircleNewjoyType'
+import { isUpdateDemoCircleNewJoyRequestValidationError } from '@/src/lib/types/api/UpdateDemoCircleNewJoyRequest'
 
 const CreatePage: NextPage = () => {
   const router = useRouter()

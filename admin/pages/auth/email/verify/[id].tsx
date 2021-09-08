@@ -9,8 +9,8 @@ import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { checkVerify, verifyPassword } from '@/infra/api/auth'
-import { isVerificationConfirmRequestValidationError } from '@/lib/types/api/VerificationConfirmRequest'
-import { isVerificationInvalidError } from '@/lib/types/api/VerificationInvalidError'
+import { isVerificationConfirmRequestValidationError } from '@/src/lib/types/api/VerificationConfirmRequest'
+import { isVerificationInvalidError } from '@/src/lib/types/api/VerificationInvalidError'
 
 const Login: NextPage = () => {
   const password = useInput('')
@@ -25,7 +25,7 @@ const Login: NextPage = () => {
   }
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       if (
         !Array.isArray(id) &&
         Number.isInteger(Number(id)) &&

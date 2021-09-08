@@ -1,4 +1,4 @@
-import { AdvertiseType } from '@/lib/enum/api/AdvertiseType'
+import { AdvertiseType } from '@/src/lib/enum/api/AdvertiseType'
 
 export interface Advertise {
   id: number

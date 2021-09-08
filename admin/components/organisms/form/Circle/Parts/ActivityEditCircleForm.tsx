@@ -4,8 +4,8 @@ import { BaseSelect } from '@/components/atoms/form/BaseSelect'
 import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { UseBooleanInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { getAllPlaceOfActivity } from '@/lib/enum/api/PlaceOfActivity'
-import { getAllWeek, Week } from '@/lib/enum/api/Week'
+import { getAllPlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { getAllWeek, Week } from '@/src/lib/enum/api/Week'
 
 type Props = {
   form: {

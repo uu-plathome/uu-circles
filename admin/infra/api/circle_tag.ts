@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { axiosInstance } from '.'
-import { CircleTagModel } from '@/lib/enum/api/CircleTagModel'
-import { CreateOrUpdateCircleTagRequestValidationError } from '@/lib/types/api/CreateOrUpdateCircleTagRequest'
+import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
+import { CreateOrUpdateCircleTagRequestValidationError } from '@/src/lib/types/api/CreateOrUpdateCircleTagRequest'
 
 export const getCircleTag = async (circleId: number) => {
   type AxiosResponse = {

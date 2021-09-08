@@ -11,7 +11,7 @@ import { AuthHeader } from '@/components/layouts/AuthHeader'
 import { AuthContext } from '@/contexts/AuthContext'
 import { useInput } from '@/hooks/useInput'
 import { resetPassword } from '@/infra/api/auth'
-import { isResetPasswordAdminRequestValidationError } from '@/lib/types/api/ResetPasswordAdminRequest'
+import { isResetPasswordAdminRequestValidationError } from '@/src/lib/types/api/ResetPasswordAdminRequest'
 
 const PasswordConfirmPage: NextPage = () => {
   const password = useInput('')

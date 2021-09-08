@@ -14,7 +14,7 @@ import {
   getCircleUserList,
   resendEmailCircleUser,
 } from '@/infra/api/circle_user'
-import { User } from '@/lib/types/model/User'
+import { User } from '@/src/lib/types/model/User'
 
 const IndexPage: NextPage = () => {
   const router = useRouter()

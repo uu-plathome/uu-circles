@@ -11,7 +11,7 @@ import { BaseWrapper } from '@/components/layouts/BaseWrapper'
 import { AllUserListItem } from '@/components/molecules/list_items/AllUserListItem'
 import { UseStringInput } from '@/hooks/useInput'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { User, UserByAllCircle } from '@/lib/types/model/User'
+import { User, UserByAllCircle } from '@/src/lib/types/model/User'
 import Color from '@/src/styles/colors'
 
 type SearchValue = {

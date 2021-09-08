@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
 import { __ } from '@/lang/ja'
-import { DemoCircleNewJoy } from '@/lib/types/model/DemoCircleNewJoy'
+import { DemoCircleNewJoy } from '@/src/lib/types/model/DemoCircleNewJoy'
 import { dayjs } from '@/src/plugins/Dayjs'
 
 type Props = {

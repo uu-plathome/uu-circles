@@ -7,8 +7,8 @@ import { BaseTextarea } from '@/components/atoms/form/BaseTextarea'
 import { FormHeader } from '@/components/atoms/header/FormHeader'
 import { UseBooleanInput, UseDateInput, UseStringInput } from '@/hooks/useInput'
 import { __ } from '@/lang/ja'
-import { AnnouncementType } from '@/lib/enum/api/AnnouncementType'
-import { Importance } from '@/lib/enum/api/Importance'
+import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
+import { Importance } from '@/src/lib/enum/api/Importance'
 
 type Props = {
   onSubmit(e: FormEvent<HTMLFormElement>): void
