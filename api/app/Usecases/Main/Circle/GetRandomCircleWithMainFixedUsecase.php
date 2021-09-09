@@ -8,10 +8,13 @@ use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
 use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 final class GetRandomCircleWithMainFixedUsecase
 {
+    const TTL = 60 * 10;
+
     /**
      * メイン画面に固定するサークルをランダムに取得
      * デモのサークルは取得しない.
@@ -75,5 +78,14 @@ final class GetRandomCircleWithMainFixedUsecase
         )->toArray();
 
         return $dto;
+    }
+
+    public static function getCacheKey(): string
+    {
+        $now = Carbon::now();
+        $hours = $now->format('YmdH');
+        $minutes_flag = floor($now->minute / 10);
+
+        return 'GetRandomCircleWithMainFixedUsecase.'.$hours.'.'.$minutes_flag;
     }
 }

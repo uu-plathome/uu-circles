@@ -64,17 +64,15 @@ final class IndexController extends Controller
 
         /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
-            $this->getCacheKey(),
-            60 * 10,
+            GetRandomCircleWithMainFixedUsecase::getCacheKey(),
+            GetRandomCircleWithMainFixedUsecase::TTL,
             fn () => $this->getRandomCircleWithMainFixedUsecase->invoke(self::CIRCLE_MAX_VIEW)
         );
 
         $advertises = Cache::remember(
             GetRandomAdvertiseUsecase::getCacheKey(),
             GetRandomAdvertiseUsecase::TTL,
-            function () {
-                return $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW);
-            }
+            fn () => $this->getRandomAdvertiseUsecase->invoke(self::ADVERTISE_MAX_VIEW)
         );
 
         $mainAdvertises = Cache::remember(
@@ -106,14 +104,5 @@ final class IndexController extends Controller
             'uuYellArticles' => $articles,
             'announcements'  => Arr::camel_keys($announcements->toArray())['announcements'],
         ];
-    }
-
-    private function getCacheKey(): string
-    {
-        $now = Carbon::now();
-        $hours = $now->format('YmdH');
-        $minutes_flag = floor($now->minute / 10);
-
-        return 'main_'.$hours.$minutes_flag;
     }
 }
