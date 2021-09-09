@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\Feature\Usecases\Main\Circle;
 
 use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
@@ -29,8 +28,8 @@ class GetRandomCircleWithMainFixedUsecaseTest extends TestCase
     protected $seed = true;
 
     /**
-     * Cacheのkeyのテスト
-     * 
+     * Cacheのkeyのテスト.
+     *
      * @dataProvider dataProviderCacheTime
      */
     public function testGetCacheKey(string $time, string $expected)
@@ -57,33 +56,33 @@ class GetRandomCircleWithMainFixedUsecaseTest extends TestCase
         for ($i = 0; $i < 60; $i++) {
             if ($i < 10) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:0$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.0"
+                    'time'     => "2017-01-02 09:0$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.0',
                 ];
-            } else if ($i < 20) {
+            } elseif ($i < 20) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.1"
+                    'time'     => "2017-01-02 09:$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.1',
                 ];
-            } else if ($i < 30) {
+            } elseif ($i < 30) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.2"
+                    'time'     => "2017-01-02 09:$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.2',
                 ];
-            } else if ($i < 40) {
+            } elseif ($i < 40) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.3"
+                    'time'     => "2017-01-02 09:$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.3',
                 ];
-            } else if ($i < 50) {
+            } elseif ($i < 50) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.4"
+                    'time'     => "2017-01-02 09:$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.4',
                 ];
-            } else if ($i < 60) {
+            } elseif ($i < 60) {
                 $data[] = [
-                    "time"     => "2017-01-02 09:$i:59",
-                    "expected" => "GetRandomCircleWithMainFixedUsecase.2017010209.5"
+                    'time'     => "2017-01-02 09:$i:59",
+                    'expected' => 'GetRandomCircleWithMainFixedUsecase.2017010209.5',
                 ];
             }
         }
