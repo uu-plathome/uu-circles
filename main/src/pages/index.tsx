@@ -2,8 +2,8 @@ import { GetStaticProps, NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
-import { MainHead } from '../components/pages/Main/Parts/MainHead'
 import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
+import { MainHead } from '@/src/components/pages/Main/Parts/MainHead'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
@@ -32,6 +32,7 @@ const useRefetchMainData = (ssrProps: Props): Props => {
       uuYellArticles: ssrProps.uuYellArticles,
       announcements: ssrProps.announcements,
     },
+    refreshInterval: 1000 * 60 * 5 /** 5minに1回再検証 */,
   })
 
   return {
