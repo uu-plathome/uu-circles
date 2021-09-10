@@ -28,7 +28,7 @@ export const usePagePositionForDemo = ({
 
   useEffect(() => {
     setInterval(() => {
-      const randInt = Math.floor( Math.random() * 3 ) /** 0, 1, 2 */
+      const randInt = Math.floor(Math.random() * 3) /** 0, 1, 2 */
 
       if (randInt === 0) {
         setPagePositions(
@@ -66,7 +66,7 @@ export const usePagePositionForDemo = ({
     pagePositionId: '',
     pageData: {
       pageUrl,
-      pagePositions
+      pagePositions,
     },
     pageUrl,
     circleSlug,
@@ -83,9 +83,9 @@ const pagePositionsDemo1 = ({
   createdAt,
   candidateCircleSlug,
 }: {
-  pageUrl: PagePositionItem['pageUrl'],
-  createdAt: PagePositionItem['createdAt'],
-  candidateCircleSlug: CircleSlugArg['candidateCircleSlug'],
+  pageUrl: PagePositionItem['pageUrl']
+  createdAt: PagePositionItem['createdAt']
+  candidateCircleSlug: CircleSlugArg['candidateCircleSlug']
 }): PagePositionItem[] => {
   return [
     {
@@ -187,9 +187,9 @@ const pagePositionsDemo2 = ({
   createdAt,
   candidateCircleSlug,
 }: {
-  pageUrl: PagePositionItem['pageUrl'],
-  createdAt: PagePositionItem['createdAt'],
-  candidateCircleSlug: CircleSlugArg['candidateCircleSlug'],
+  pageUrl: PagePositionItem['pageUrl']
+  createdAt: PagePositionItem['createdAt']
+  candidateCircleSlug: CircleSlugArg['candidateCircleSlug']
 }): PagePositionItem[] => {
   return [
     {
@@ -303,9 +303,9 @@ const pagePositionsDemo3 = ({
   createdAt,
   candidateCircleSlug,
 }: {
-  pageUrl: PagePositionItem['pageUrl'],
-  createdAt: PagePositionItem['createdAt'],
-  candidateCircleSlug: CircleSlugArg['candidateCircleSlug'],
+  pageUrl: PagePositionItem['pageUrl']
+  createdAt: PagePositionItem['createdAt']
+  candidateCircleSlug: CircleSlugArg['candidateCircleSlug']
 }): PagePositionItem[] => {
   return [
     {
