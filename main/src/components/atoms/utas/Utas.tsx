@@ -12,7 +12,13 @@ const Utas: FC<UtasProps> = ({
   center,
   colorList: _colorList = [],
 }) => {
-  const [isOnList, setIsOnList] = useState<boolean[]>([false, false, false, false, false])
+  const [isOnList, setIsOnList] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ])
 
   const colorList: UtaColorList[] = useMemo(() => {
     if (_colorList && _colorList.length > 0) {
@@ -95,7 +101,6 @@ const Uta: FC<UtaProps> = ({
   const [isOn, setIsOn] = useState<boolean>(false)
 
   useEffect(() => {
-
     setInterval(() => {
       const randInt = Math.floor(Math.random() * 5)
 
