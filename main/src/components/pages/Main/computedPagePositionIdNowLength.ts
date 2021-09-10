@@ -71,8 +71,6 @@ export const computedPagePositionIdNowLength = ({
     ).length,
   }
 
-  console.info(retVal)
-
   return retVal
 }
 
