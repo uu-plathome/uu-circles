@@ -12,13 +12,23 @@ const Utas: FC<UtasProps> = ({
   center,
   colorList: _colorList = [],
 }) => {
-  const [colorList, setColorList] = useState<UtaColorList[]>(_colorList)
+  const [isOnList, setIsOnList] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ])
 
-  useEffect(() => {
+  const colorList: UtaColorList[] = useMemo(() => {
+    if (_colorList && _colorList.length > 0) {
+      return _colorList
+    }
+
     // ランダムな順にする
     const candidateColorList = Object.values(UtaColorList)
     const randomColorList = candidateColorList.sort(() => Math.random() - 0.5)
-    setColorList(randomColorList)
+    return randomColorList
   }, [])
 
   // 表示数
@@ -28,6 +38,17 @@ const Utas: FC<UtasProps> = ({
     return num
   }, [num])
 
+  useEffect(() => {
+    for (let i = 0; i < displayNum; i++) {
+      setTimeout(() => {
+        const newIsOnList = isOnList.map((isOn, index) => {
+          return index <= i
+        })
+        setIsOnList(newIsOnList)
+      }, 300 * (i + 1))
+    }
+  }, [displayNum])
+
   const randKey = useMemo(() => Math.random().toString(36).slice(-8), [])
 
   return (
@@ -35,20 +56,29 @@ const Utas: FC<UtasProps> = ({
       className={`
       relative
       pt-0.5
+      transition
       ${center ? 'text-center flex justify-center' : ''}
       `}
     >
       {Array(displayNum)
         .fill(0)
         .map((_, i) => (
-          <Uta
+          <div
             key={`${randKey}-${i}`}
-            center={center}
-            left={`${i * 18}px`}
-            top={`2px`}
-            isFirst={i === 0}
-            color={colorList[i]}
-          />
+            style={{
+              transition: '1s',
+              opacity: isOnList[i] ? 1 : 0,
+              width: isOnList[i] ? '24px' : 0,
+            }}
+          >
+            <Uta
+              center={center}
+              left={`${i * 18}px`}
+              top={`2px`}
+              isFirst={i === 0}
+              color={colorList[i]}
+            />
+          </div>
         ))}
     </div>
   )
@@ -68,10 +98,28 @@ const Uta: FC<UtaProps> = ({
   top,
   color = UtaColorList.BLUE,
 }) => {
+  const [isOn, setIsOn] = useState<boolean>(false)
+
+  useEffect(() => {
+    setInterval(() => {
+      const randInt = Math.floor(Math.random() * 5)
+
+      if (randInt === 0) {
+        setIsOn(true)
+
+        setTimeout(() => {
+          setIsOn(false)
+        }, 1000)
+      }
+    }, 1500)
+  }, [])
+
   return (
     <div
       className={`
       ${isFirst || center ? '' : 'absolute'}
+      transition
+      ${isOn ? 'transform -translate-y-2' : ''}
     `}
       style={{ left, top, height: 28 }}
     >
