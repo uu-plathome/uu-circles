@@ -30,8 +30,8 @@ const MainSponsorshipFooter: FC<Props> = ({
           {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0 ? (
             <Utas
               num={
-                pLen[ID_LIST.SPONSORSHIP_FOOTER] > 5
-                  ? 5
+                pLen[ID_LIST.SPONSORSHIP_FOOTER] > 7
+                  ? 7
                   : pLen[ID_LIST.SPONSORSHIP_FOOTER]
               }
             />

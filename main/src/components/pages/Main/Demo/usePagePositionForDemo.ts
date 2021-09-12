@@ -22,7 +22,14 @@ export const usePagePositionForDemo = ({
     pagePositionsDemo1({
       pageUrl,
       createdAt,
-      candidateCircleSlug,
+      candidateCircleSlug: [
+        ...candidateCircleSlug,
+        ...candidateCircleSlug,
+        ...candidateCircleSlug,
+        ...candidateCircleSlug,
+        ...candidateCircleSlug,
+        ...candidateCircleSlug,
+      ],
     })
   )
 
@@ -35,7 +42,11 @@ export const usePagePositionForDemo = ({
           pagePositionsDemo1({
             pageUrl,
             createdAt,
-            candidateCircleSlug,
+            candidateCircleSlug: [
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+            ],
           })
         )
       }
@@ -45,7 +56,11 @@ export const usePagePositionForDemo = ({
           pagePositionsDemo2({
             pageUrl,
             createdAt,
-            candidateCircleSlug,
+            candidateCircleSlug: [
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+            ],
           })
         )
       }
@@ -55,7 +70,12 @@ export const usePagePositionForDemo = ({
           pagePositionsDemo3({
             pageUrl,
             createdAt,
-            candidateCircleSlug,
+            candidateCircleSlug: [
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+              ...candidateCircleSlug,
+            ],
           })
         )
       }
@@ -127,6 +147,24 @@ const pagePositionsDemo1 = ({
     {
       pagePositionHistoryId: -1,
       pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
       pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
       createdAt,
     },
@@ -134,6 +172,42 @@ const pagePositionsDemo1 = ({
       pagePositionHistoryId: -1,
       pageUrl,
       pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.RECOMMEND_TAG_LIST,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.RECOMMEND_TAG_LIST,
       createdAt,
     },
     {
@@ -157,6 +231,42 @@ const pagePositionsDemo1 = ({
     {
       pagePositionHistoryId: -1,
       pageUrl,
+      pagePositionId: ID_LIST.UU_CIRCLES_AD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_CIRCLES_AD,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
       pagePositionId: ID_LIST.UU_YELL_ARTICLES,
       createdAt,
     },
@@ -172,10 +282,22 @@ const pagePositionsDemo1 = ({
       pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
       createdAt,
     },
-    ...candidateCircleSlug.map((_slug) => ({
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
+      createdAt,
+    },
+    ...candidateCircleSlug.map((_slug, idx) => ({
       pagePositionHistoryId: -1,
       pageUrl: `/circle/${_slug}`,
-      pagePositionId: '',
+      pagePositionId: `circle_${_slug}_${idx}`,
       circleSlug: _slug,
       createdAt,
     })),
@@ -219,6 +341,12 @@ const pagePositionsDemo2 = ({
     {
       pagePositionHistoryId: -1,
       pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
       pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
       createdAt,
     },
@@ -288,10 +416,22 @@ const pagePositionsDemo2 = ({
       pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
       createdAt,
     },
-    ...candidateCircleSlug.map((_slug) => ({
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
+      createdAt,
+    },
+    ...candidateCircleSlug.map((_slug, idx) => ({
       pagePositionHistoryId: -1,
       pageUrl: `/circle/${_slug}`,
-      pagePositionId: '',
+      pagePositionId: `circle_${_slug}_${idx}`,
       circleSlug: _slug,
       createdAt,
     })),
@@ -335,6 +475,18 @@ const pagePositionsDemo3 = ({
     {
       pagePositionHistoryId: -1,
       pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
       pagePositionId: TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS,
       createdAt,
     },
@@ -389,13 +541,37 @@ const pagePositionsDemo3 = ({
     {
       pagePositionHistoryId: -1,
       pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
+      pagePositionId: ID_LIST.UU_YELL_ARTICLES,
+      createdAt,
+    },
+    {
+      pagePositionHistoryId: -1,
+      pageUrl,
       pagePositionId: ID_LIST.SPONSORSHIP_FOOTER,
       createdAt,
     },
-    ...candidateCircleSlug.map((_slug) => ({
+    ...candidateCircleSlug.map((_slug, idx) => ({
       pagePositionHistoryId: -1,
       pageUrl: `/circle/${_slug}`,
-      pagePositionId: '',
+      pagePositionId: `circle_${_slug}_${idx}`,
       circleSlug: _slug,
       createdAt,
     })),

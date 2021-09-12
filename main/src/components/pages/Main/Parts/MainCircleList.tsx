@@ -66,7 +66,7 @@ const MainCircleList: FC<Props> = ({
             <div className="hidden md:block">
               {_pageViewsByCircleSlug > 0 ? (
                 <Utas
-                  num={_pageViewsByCircleSlug >= 5 ? 5 : _pageViewsByCircleSlug}
+                  num={_pageViewsByCircleSlug >= 7 ? 7 : _pageViewsByCircleSlug}
                 />
               ) : (
                 <div className="pt-8" />
