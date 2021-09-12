@@ -87,8 +87,8 @@ const MainUucircleBottomButtons: FC<Props> = ({
           {pLen && pLen[ID_LIST.UU_YELL_ARTICLES] > 0 ? (
             <Utas
               num={
-                pLen[ID_LIST.UU_YELL_ARTICLES] > 5
-                  ? 5
+                pLen[ID_LIST.UU_YELL_ARTICLES] > 7
+                  ? 7
                   : pLen[ID_LIST.UU_YELL_ARTICLES]
               }
               center
