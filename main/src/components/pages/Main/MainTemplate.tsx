@@ -159,7 +159,7 @@ export const MainTemplate: FC<Props> = ({
                 />
               </div>
 
-              <p className="text-sm text-center text-black">
+              <p className="text-sm text-center text-black" >
                 UU-Circles 宣伝動画
               </p>
             </div>
