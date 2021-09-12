@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useMemo, FC } from 'react'
+import YouTube from 'react-youtube'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { computedPagePositionIdNowLength } from './computedPagePositionIdNowLength'
 import { ID_LIST } from './id_list'
@@ -143,6 +144,23 @@ export const MainTemplate: FC<Props> = ({
               medias={uuYellForMain ? uuYellForMain.medias : []}
               posts={uuYellForMain ? uuYellForMain.posts : []}
             />
+          </div>
+
+          <div className="flex justify-center mb-12">
+            <div className="px-4 md:px-0 main-advertise-youtube">
+              <div
+                className="overflow-hidden relative pb-0 mb-4 w-full h-0"
+                style={{ paddingBottom: '56.25%' }}
+              >
+                <YouTube
+                  videoId={'f_YOvzGCe3w'}
+                  containerClassName="main-advertise-youtube mb-2"
+                  className="absolute top-0 left-0 h-full main-advertise-youtube"
+                />
+              </div>
+
+              <p className="text-sm text-center text-black">UU-Circles 宣伝</p>
+            </div>
           </div>
 
           <div
