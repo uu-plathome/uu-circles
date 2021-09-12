@@ -18,7 +18,10 @@ const Utas: FC<UtasProps> = ({
     false,
     false,
     false,
+    false,
+    false,
   ])
+  const [timeoutIds, setTimeoutIds] = useState<NodeJS.Timeout[]>([])
 
   const colorList: UtaColorList[] = useMemo(() => {
     if (_colorList && _colorList.length > 0) {
@@ -34,18 +37,26 @@ const Utas: FC<UtasProps> = ({
   // 表示数
   const displayNum = useMemo(() => {
     if (num <= 1) return 1
-    if (num >= 5) return 5
+    if (num >= 7) return 7
     return num
   }, [num])
 
   useEffect(() => {
     for (let i = 0; i < displayNum; i++) {
-      setTimeout(() => {
+      const _timeoutId = setTimeout(() => {
         const newIsOnList = isOnList.map((isOn, index) => {
           return index <= i
         })
         setIsOnList(newIsOnList)
       }, 300 * (i + 1))
+
+      setTimeoutIds([...timeoutIds, _timeoutId])
+    }
+
+    return () => {
+      timeoutIds.forEach((timeoutId) => {
+        clearTimeout(timeoutId)
+      })
     }
   }, [displayNum])
 
@@ -99,6 +110,7 @@ const Uta: FC<UtaProps> = ({
   color = UtaColorList.BLUE,
 }) => {
   const [isOn, setIsOn] = useState<boolean>(false)
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(undefined)
 
   useEffect(() => {
     setInterval(() => {
@@ -107,9 +119,16 @@ const Uta: FC<UtaProps> = ({
       if (randInt === 0) {
         setIsOn(true)
 
-        setTimeout(() => {
+        const _timeoutId = setTimeout(() => {
           setIsOn(false)
         }, 1000)
+        setTimeoutId(_timeoutId)
+      }
+
+      return () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
       }
     }, 1500)
   }, [])

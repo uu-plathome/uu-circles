@@ -52,8 +52,8 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
           {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
             <Utas
               num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 5
-                  ? 5
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 7
+                  ? 7
                   : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
               }
             />
@@ -78,8 +78,8 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
           {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
             <Utas
               num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 5
-                  ? 5
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 7
+                  ? 7
                   : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
               }
             />
@@ -104,8 +104,8 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
           {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
             <Utas
               num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 5
-                  ? 5
+                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 7
+                  ? 7
                   : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
               }
             />
