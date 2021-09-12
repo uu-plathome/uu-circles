@@ -22,7 +22,7 @@ const MainTagList: FC<Props> = ({
     <div className="md:pt-10 pb-10">
       <div className="hidden md:block">
         {pLen[id] > 0 ? (
-          <Utas num={pLen[id] > 5 ? 5 : pLen[id]} />
+          <Utas num={pLen[id] > 7 ? 7 : pLen[id]} />
         ) : (
           <div className="pt-8" />
         )}
