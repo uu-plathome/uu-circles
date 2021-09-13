@@ -1,4 +1,4 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLaravel } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
+import YouTube from 'react-youtube'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -34,6 +35,7 @@ const ID_LIST = {
   fourth: 'fourth',
   fifth: 'fifth',
   sixth: 'sixth',
+  seventh: 'seventh',
 } as const
 
 type Props = Record<string, never>
@@ -120,7 +122,19 @@ const Page: NextPage<Props> = () => {
                     offset={-50}
                     className="hover:underline cursor-pointer"
                   >
-                    6. 開発の様子
+                    6. 宣伝動画
+                  </ScrollLink>
+                </li>
+                <li className="pt-2">
+                  <ScrollLink
+                    to={ID_LIST.seventh}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:underline cursor-pointer"
+                  >
+                    7. 開発の様子
                   </ScrollLink>
                 </li>
               </ul>
@@ -374,18 +388,59 @@ const Page: NextPage<Props> = () => {
               <p className="pb-2">U-lab 2年 浅野 亮太</p>
               <p className="pb-4 text-sm">
                 担当:{' '}
-                <a href="https://announce.uu-circles.com/">告知サイト制作</a>
+                <a href="https://announce.uu-circles.com/" className="hover:underline">
+                  告知サイト制作
+                </a>
+              </p>
+
+              <p className="pb-2">U-lab 1年 高木 壱哲</p>
+              <p className="pb-4 text-sm">
+                担当:{' '}
+                <a href="https://www.youtube.com/watch?v=f_YOvzGCe3w" className="hover:underline">
+                  宣伝動画監督・編集
+                </a>
+              </p>
+
+              <p className="pb-2">U-lab 1年 高木 壱哲</p>
+              <p className="pb-4 text-sm">
+                担当:{' '}
+                <a href="https://www.youtube.com/watch?v=f_YOvzGCe3w" className="hover:underline">
+                  宣伝動画監督・編集
+                </a>
               </p>
             </div>
 
-            <Header id={ID_LIST.sixth}>6. 開発の様子</Header>
+            <Header id={ID_LIST.sixth}>6. 宣伝動画</Header>
+
+            <div className="flex justify-center mb-4">
+              <div className="px-4 md:px-0 main-advertise-youtube">
+                <div
+                  className="overflow-hidden relative pb-0 mb-4 w-full h-0"
+                  style={{ paddingBottom: '56.25%' }}
+                >
+                  <YouTube
+                    videoId={'f_YOvzGCe3w'}
+                    containerClassName="main-advertise-youtube mb-2"
+                    className="absolute top-0 left-0 h-full main-advertise-youtube"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 pb-4">
+              <p className="text-black" >
+                フルナレーション付きの動画です。音声を付けてぜひ、みてください。
+              </p>
+            </div>
+
+            <Header id={ID_LIST.sixth}>7. 開発の様子</Header>
 
             <div className="px-4 pb-4">
               <p>UU-Circlesでは、開発の様子を公開しています。</p>
             </div>
 
             <div className="pb-36">
-              <p className="px-4">
+              <p className="px-4 mb-4">
                 <a
                   href="https://github.com/H37kouya/uu-circle"
                   target="_blank"
@@ -394,6 +449,16 @@ const Page: NextPage<Props> = () => {
                 >
                   <FontAwesomeIcon icon={faGithub} size="2x" />
                   <span className="ml-4 underline">GitHubを見る</span>
+                </a>
+              </p>
+
+              <p className="px-4 mb-4">
+                <a
+                  href="https://ulab-uu.com/2021/08/08/uu-circles-system-report/"
+                  className="flex items-center"
+                >
+                  <FontAwesomeIcon icon={faLaravel} size="2x" />
+                  <span className="ml-4 underline">UU-Circles システム目線の話</span>
                 </a>
               </p>
             </div>
