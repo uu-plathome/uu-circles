@@ -388,7 +388,10 @@ const Page: NextPage<Props> = () => {
               <p className="pb-2">U-lab 2年 浅野 亮太</p>
               <p className="pb-4 text-sm">
                 担当:{' '}
-                <a href="https://announce.uu-circles.com/" className="hover:underline">
+                <a
+                  href="https://announce.uu-circles.com/"
+                  className="hover:underline"
+                >
                   告知サイト制作
                 </a>
               </p>
@@ -396,7 +399,10 @@ const Page: NextPage<Props> = () => {
               <p className="pb-2">U-lab 1年 高木 壱哲</p>
               <p className="pb-4 text-sm">
                 担当:{' '}
-                <a href="https://www.youtube.com/watch?v=f_YOvzGCe3w" className="hover:underline">
+                <a
+                  href="https://www.youtube.com/watch?v=f_YOvzGCe3w"
+                  className="hover:underline"
+                >
                   宣伝動画監督・編集
                 </a>
               </p>
@@ -404,7 +410,10 @@ const Page: NextPage<Props> = () => {
               <p className="pb-2">U-lab 1年 高木 壱哲</p>
               <p className="pb-4 text-sm">
                 担当:{' '}
-                <a href="https://www.youtube.com/watch?v=f_YOvzGCe3w" className="hover:underline">
+                <a
+                  href="https://www.youtube.com/watch?v=f_YOvzGCe3w"
+                  className="hover:underline"
+                >
                   宣伝動画監督・編集
                 </a>
               </p>
@@ -428,7 +437,7 @@ const Page: NextPage<Props> = () => {
             </div>
 
             <div className="px-4 pb-4">
-              <p className="text-black" >
+              <p className="text-black">
                 フルナレーション付きの動画です。音声を付けてぜひ、みてください。
               </p>
             </div>
@@ -458,7 +467,9 @@ const Page: NextPage<Props> = () => {
                   className="flex items-center"
                 >
                   <FontAwesomeIcon icon={faLaravel} size="2x" />
-                  <span className="ml-4 underline">UU-Circles システム目線の話</span>
+                  <span className="ml-4 underline">
+                    UU-Circles システム目線の話
+                  </span>
                 </a>
               </p>
             </div>
