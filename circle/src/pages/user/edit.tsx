@@ -4,7 +4,6 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
-import Colors from '@/colors'
 import { SubmitLoading } from '@/src/components/atoms/loading/SubmitLoading'
 import { BaseFooter } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -21,6 +20,7 @@ import {
   isUpdateOwnUserRequestValidationError,
   UpdateOwnUserRequest,
 } from '@/src/lib/types/api/UpdateOwnUserRequest'
+import Colors from '@/src/styles/colors'
 
 const CreatePage: NextPage = () => {
   const authContext = useContext(AuthContext)
