@@ -63,7 +63,9 @@ const Index: NextPage<Props> = ({
       () =>
         randomArr(
           circles.map((circle) => circle.slug),
-          Math.floor(Math.random() * (circles.length - Math.floor(circles.length / 2))) + Math.floor(circles.length / 2)
+          Math.floor(
+            Math.random() * (circles.length - Math.floor(circles.length / 2))
+          ) + Math.floor(circles.length / 2)
         ),
       [circles]
     ),
