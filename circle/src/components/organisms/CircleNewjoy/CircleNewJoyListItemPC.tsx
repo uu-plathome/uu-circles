@@ -2,11 +2,11 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { FC } from 'react'
-import colors from '@/colors'
 import { __ } from '@/src/lang/ja'
 import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { getDOW, getMonth, getDay, getTime } from '@/src/lib/utils/Date'
+import colors from '@/src/styles/colors'
 
 type Props = {
   circleId: number

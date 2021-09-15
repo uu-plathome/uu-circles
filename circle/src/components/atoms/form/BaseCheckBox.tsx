@@ -45,7 +45,7 @@ const BaseCheckBox: React.FC<Props> = ({
             >
               <input
                 type="checkbox"
-                className="mb-1 rounded border-gray-300 focus:ring focus:ring-opacity-50 shadow-sm text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200"
+                className="mb-1 text-indigo-600 rounded border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
                 value={checkBoxItem.value}
                 checked={checkBoxItem.checked}
                 id={`${id}_${checkBoxItem.value}`}

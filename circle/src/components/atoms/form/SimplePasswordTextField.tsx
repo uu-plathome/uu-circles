@@ -2,7 +2,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, InputHTMLAttributes, useState } from 'react'
 import { BaseLabel, Props as BaseLabelProps } from './BaseLabel'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 const inputClass = `
     px-4
