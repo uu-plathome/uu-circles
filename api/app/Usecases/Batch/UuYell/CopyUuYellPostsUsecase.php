@@ -30,6 +30,13 @@ final class CopyUuYellPostsUsecase
     protected int $nowPage = 1;
 
     /**
+     * 最大ページ数
+     *
+     * @var int
+     */
+    protected int $maxPage = 50;
+
+    /**
      * 次のページを取得するかどうか.
      *
      * @var bool
@@ -89,8 +96,8 @@ final class CopyUuYellPostsUsecase
 
         // ページに100件にデータがあったら、次のページも見る
         if ($fetchedPosts->count() === self::FETCH_NUMBER) {
+            $this->isNextFetch = $this->nowPage < $this->maxPage;
             $this->nowPage = $this->nowPage + 1;
-            $this->isNextFetch = true;
         }
 
         // 画像の取得
@@ -174,13 +181,16 @@ final class CopyUuYellPostsUsecase
      */
     protected function fetchUuYellPosts(int $page = 1): Collection
     {
-        Log::debug('CopyUuYellPostsUsecase fetchUuYellPosts args', [
-            'page' => $page,
-        ]);
-
         $baseUrl = self::UU_YELL_URL;
         $fetchNumber = self::FETCH_NUMBER;
         $requestUrl = "$baseUrl/wp-json/wp/v2/posts?per_page=$fetchNumber&page=$page";
+
+        Log::debug('CopyUuYellPostsUsecase fetchUuYellPosts args', [
+            'page'        => $page,
+            'baseUrl'     => $baseUrl,
+            'fetchNumber' => $fetchNumber,
+            'requestUrl'  => $requestUrl,
+        ]);
 
         // 記事の取得
         $response = Http::retry(3, 100)->get($requestUrl);
@@ -191,6 +201,9 @@ final class CopyUuYellPostsUsecase
                 'response'    => $response,
             ]);
         }
+
+        $this->maxPage = intval($response->header('x-wp-totalpages'));
+        Log::debug("FetchUuYellArticlesForCirclesUsecase maxPage {$this->maxPage}");
 
         return $response->successful() ? new Collection($response->json()) : new Collection([]);
     }

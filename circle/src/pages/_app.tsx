@@ -8,7 +8,7 @@ import { User } from '@/src/lib/types/model/User'
 import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 
 import 'react-datepicker/dist/react-datepicker.css'
-import '@/styles/index.css'
+import '@/src/styles/index.css'
 
 const ErrorBoundary = process.env.BUGSNAG_API_KEY
   ? Bugsnag.getPlugin('react').createErrorBoundary(React)
