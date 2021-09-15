@@ -30,7 +30,7 @@ final class CopyUuYellPostsUsecase
     protected int $nowPage = 1;
 
     /**
-     * 最大ページ数
+     * 最大ページ数.
      *
      * @var int
      */
