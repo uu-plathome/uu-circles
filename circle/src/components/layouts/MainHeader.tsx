@@ -2,7 +2,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC } from 'react'
 import { YellowButton } from '@/src/components/atoms/buttons/YellowButton'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 type Props = {
   onClick?(): void

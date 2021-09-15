@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { FC } from 'react'
 import { User } from '@/src/lib/types/model/User'
-import Color from 'colors'
+import Color from '@/src/styles/colors'
 
 type Props = {
   user: User
