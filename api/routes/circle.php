@@ -31,6 +31,10 @@ use App\Http\Controllers\Circle\Storage\PutStorageController;
 use App\Http\Controllers\Circle\User\UpdateOwnUserController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('throttle:60,1')->group(function () {
+    Route::post('email/resend', VerificationResendController::class)->name('circle.verification.resend');
+});
+
 Route::middleware('guest:circleUser')->group(function () {
     Route::middleware('throttle:60,1')->group(function () {
         Route::post('/login', LoginCircleController::class)->name('circle.auth.login');
@@ -39,7 +43,6 @@ Route::middleware('guest:circleUser')->group(function () {
     Route::middleware('throttle:30,1')->group(function () {
         Route::get('email/verify/{userId}', VerificationVerifyController::class)->name('circle.verification.verify');
         Route::post('email/verify/{userId}', VerificationConfirmController::class);
-        Route::post('email/resend', VerificationResendController::class)->name('circle.verification.resend');
 
         Route::post('password/reset', ForgotPasswordCircleController::class);
         Route::post('password/confirm', ResetPasswordCircleController::class)->name('circle.password.confirm');
