@@ -21,6 +21,7 @@ module.exports = withBundleAnalyzer({
       'd20rb0br4fsl6o.cloudfront.net',
       'localhost',
       'firebasestorage.googleapis.com',
+      'ulab-uu.com',
     ],
   },
 
