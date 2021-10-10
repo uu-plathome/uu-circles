@@ -27,7 +27,7 @@ final class LoginAdminController extends Controller
     private string $inputType = UserProperty::username;
 
     /**
-     * User がシステム管理者でなく、サークル管理者のときはエラーステータス
+     * User がシステム管理者でなく、サークル管理者のときはエラーステータス.
      */
     const IS_ONLY_CIRCLE_USER_ERROR_STATUS = 'IS_ONLY_CIRCLE_USER_ERROR_STATUS';
 
@@ -151,9 +151,9 @@ final class LoginAdminController extends Controller
                 return response()->json([
                     'errors' => [
                         'usernameOrEmail' => [
-                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS
+                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS,
                         ],
-                    ]
+                    ],
                 ], 422);
             }
         }
@@ -171,9 +171,9 @@ final class LoginAdminController extends Controller
                 return response()->json([
                     'errors' => [
                         'usernameOrEmail' => [
-                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS
+                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS,
                         ],
-                    ]
+                    ],
                 ], 422);
             }
         }
