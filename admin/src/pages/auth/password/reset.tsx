@@ -46,9 +46,9 @@ const Login: NextPage = () => {
       )
 
       if (
-        data.errors.email
-        && Array.isArray(data.errors.email)
-        && data.errors.email[0] === ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS
+        data.errors.email &&
+        Array.isArray(data.errors.email) &&
+        data.errors.email[0] === ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS
       ) {
         email.setError('')
         setEmailError(ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS)
@@ -97,7 +97,11 @@ const Login: NextPage = () => {
               <div className="p-4 mb-4">
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
-                  サークル管理者は<a href="https://circle.uu-circles.com" className="underline">サークル管理者ページ</a>をお使いください。
+                  サークル管理者は
+                  <a href="https://circle.uu-circles.com" className="underline">
+                    サークル管理者ページ
+                  </a>
+                  をお使いください。
                 </p>
               </div>
             ) : (
