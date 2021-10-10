@@ -28,7 +28,9 @@ final class VerificationResendController extends Controller
         $email = $request->get(UserProperty::email);
 
         try {
-            $user = User::whereEmail($email)->firstOrFail();
+            $user = User::whereEmail($email)
+                ->whereHas('adminUser')
+                ->firstOrFail();
         } catch (Exception $e) {
             throw ValidationException::withMessages([
                 'email' => [__('verification.user')],
