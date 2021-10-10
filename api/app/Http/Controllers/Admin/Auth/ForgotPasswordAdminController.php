@@ -28,9 +28,9 @@ final class ForgotPasswordAdminController extends Controller
     use SendsPasswordResetEmails;
 
     /**
-     * User がシステム管理者でなく、サークル管理者のときはエラーステータス
+     * User がシステム管理者でなく、サークル管理者のときはエラーステータス.
      */
-    const IS_ONLY_CIRCLE_USER_ERROR_STATUS = 'IS_ONLY_CIRCLE_USER_ERROR_STATUS'; 
+    const IS_ONLY_CIRCLE_USER_ERROR_STATUS = 'IS_ONLY_CIRCLE_USER_ERROR_STATUS';
 
     public function __invoke(ForgotPasswordAdminRequest $request)
     {
@@ -52,9 +52,9 @@ final class ForgotPasswordAdminController extends Controller
             return response()->json([
                 'errors' => [
                     'email' => [
-                        self::IS_ONLY_CIRCLE_USER_ERROR_STATUS
+                        self::IS_ONLY_CIRCLE_USER_ERROR_STATUS,
                     ],
-                ]
+                ],
             ], 422);
         }
 
