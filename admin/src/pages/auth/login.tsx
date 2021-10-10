@@ -18,8 +18,15 @@ import {
 } from '@/src/lib/types/api/LoginAdminFormRequest'
 import { isUser } from '@/src/lib/types/model/User'
 
+// エラーステータス
+const ERROR_STATUS = {
+  // User がシステム管理者でなく、サークル管理者のときはエラーステータス
+  IS_ONLY_CIRCLE_USER_ERROR_STATUS: 'IS_ONLY_CIRCLE_USER_ERROR_STATUS',
+} as const
+
 const Login: NextPage = () => {
   const [error, setError] = useState('')
+  const [usernameOrEmailError, setUsernameOrEmailError] = useState('')
   const router = useRouter()
   const authContext = useContext(AuthContext)
   const usernameOrEmail = useStringInput('')
@@ -41,6 +48,15 @@ const Login: NextPage = () => {
     if (isLoginAdminFormRequestValidationError(data)) {
       usernameOrEmail.setErrors(data.errors.usernameOrEmail)
       password.setErrors(data.errors.password)
+
+      if (
+        data.errors.usernameOrEmail
+        && Array.isArray(data.errors.usernameOrEmail)
+        && data.errors.usernameOrEmail[0] === ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS
+      ) {
+        usernameOrEmail.setError('')
+        setUsernameOrEmailError(ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS)
+      }
       return
     }
 
@@ -79,6 +95,17 @@ const Login: NextPage = () => {
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
+                </p>
+              </div>
+            ) : (
+              ''
+            )}
+
+            {usernameOrEmailError ? (
+              <div className="p-4 mb-4">
+                <p className="text-lg text-white">
+                  <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
+                  サークル管理者は<a href="https://circle.uu-circles.com" className="underline">サークル管理者ページ</a>をお使いください。
                 </p>
               </div>
             ) : (

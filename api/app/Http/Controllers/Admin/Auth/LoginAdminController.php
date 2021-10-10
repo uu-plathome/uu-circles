@@ -27,6 +27,11 @@ final class LoginAdminController extends Controller
     private string $inputType = UserProperty::username;
 
     /**
+     * User がシステム管理者でなく、サークル管理者のときはエラーステータス
+     */
+    const IS_ONLY_CIRCLE_USER_ERROR_STATUS = 'IS_ONLY_CIRCLE_USER_ERROR_STATUS';
+
+    /**
      * Handle the incoming request.
      *
      * @param LoginAdminFormRequest $request
@@ -126,6 +131,51 @@ final class LoginAdminController extends Controller
 
         if ($user && !$user->hasVerifiedEmail()) {
             throw VerifyEmailException::forUser($user);
+        }
+
+        $usernameOrEmail = $request->get(Str::camel(self::USERNAME_OR_EMAIL));
+        $this->inputType = filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
+            ? UserProperty::email
+            : UserProperty::username;
+
+        if ($this->inputType === UserProperty::email) {
+            $email = $usernameOrEmail;
+            /**
+             * User がシステム管理者でなく、サークル管理者のときはエラーを飛ばす。
+             */
+            $isOnlyCircleUser = User::whereEmail($email)
+                ->whereDoesntHave('adminUser')
+                ->whereHas('circleUsers')
+                ->exists();
+            if ($isOnlyCircleUser) {
+                return response()->json([
+                    'errors' => [
+                        'usernameOrEmail' => [
+                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS
+                        ],
+                    ]
+                ], 422);
+            }
+        }
+
+        if ($this->inputType === UserProperty::username) {
+            $username = $usernameOrEmail;
+            /**
+             * User がシステム管理者でなく、サークル管理者のときはエラーを飛ばす。
+             */
+            $isOnlyCircleUser = User::whereUsername($username)
+                ->whereDoesntHave('adminUser')
+                ->whereHas('circleUsers')
+                ->exists();
+            if ($isOnlyCircleUser) {
+                return response()->json([
+                    'errors' => [
+                        'usernameOrEmail' => [
+                            self::IS_ONLY_CIRCLE_USER_ERROR_STATUS
+                        ],
+                    ]
+                ], 422);
+            }
         }
 
         throw ValidationException::withMessages([
