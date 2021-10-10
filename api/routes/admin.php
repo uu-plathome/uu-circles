@@ -28,7 +28,8 @@ Route::group(['middleware' => 'guest:adminUser'], function () {
         Route::post('email/verify/{userId}', Auth\VerificationConfirmController::class);
 
         Route::post('password/reset', Auth\ForgotPasswordAdminController::class);
-        Route::post('password/confirm', Auth\ResetPasswordAdminController::class)->name('admin.password.confirm');
+        Route::post('password/confirm', Auth\ResetPasswordAdminController::class)
+            ->name('admin.password.confirm');
     });
 });
 
