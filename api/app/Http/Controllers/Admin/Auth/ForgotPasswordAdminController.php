@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\ForgotPasswordAdminRequest;
+use App\Models\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -26,6 +27,11 @@ final class ForgotPasswordAdminController extends Controller
     */
     use SendsPasswordResetEmails;
 
+    /**
+     * User がシステム管理者でなく、サークル管理者のときはエラーステータス.
+     */
+    const IS_ONLY_CIRCLE_USER_ERROR_STATUS = 'IS_ONLY_CIRCLE_USER_ERROR_STATUS';
+
     public function __invoke(ForgotPasswordAdminRequest $request)
     {
         // We will send the password reset link to this user. Once we have attempted
@@ -35,6 +41,24 @@ final class ForgotPasswordAdminController extends Controller
             $this->credentials($request)
         );
 
+        /**
+         * User がシステム管理者でなく、サークル管理者のときはエラーを飛ばす。
+         */
+        $isOnlyCircleUser = User::whereEmail($request->email)
+            ->whereDoesntHave('adminUser')
+            ->whereHas('circleUsers')
+            ->exists();
+        if ($isOnlyCircleUser) {
+            return response()->json([
+                'errors' => [
+                    'email' => [
+                        self::IS_ONLY_CIRCLE_USER_ERROR_STATUS,
+                    ],
+                ],
+            ], 422);
+        }
+
+        // パスワードリセット
         return $response == Password::RESET_LINK_SENT
             ? $this->sendResetLinkResponse($request, $response)
             : $this->sendResetLinkFailedResponse($request, $response);

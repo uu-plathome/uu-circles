@@ -13,10 +13,17 @@ import { useInput } from '@/src/hooks/useInput'
 import { forgotPassword } from '@/src/lib/infra/api/auth'
 import { isForgotPasswordAdminRequestValidationError } from '@/src/lib/types/api/ForgotPasswordAdminRequest'
 
+// エラーステータス
+const ERROR_STATUS = {
+  // User がシステム管理者でなく、サークル管理者のときはエラーステータス
+  IS_ONLY_CIRCLE_USER_ERROR_STATUS: 'IS_ONLY_CIRCLE_USER_ERROR_STATUS',
+} as const
+
 const Login: NextPage = () => {
   const email = useInput('')
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
+  const [emailError, setEmailError] = useState('')
   const router = useRouter()
   const authContext = useContext(AuthContext)
 
@@ -27,6 +34,7 @@ const Login: NextPage = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setEmailError('')
 
     const data = await forgotPassword(email.value)
 
@@ -36,6 +44,16 @@ const Login: NextPage = () => {
           ? data.errors.email[0]
           : ''
       )
+
+      if (
+        data.errors.email &&
+        Array.isArray(data.errors.email) &&
+        data.errors.email[0] === ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS
+      ) {
+        email.setError('')
+        setEmailError(ERROR_STATUS.IS_ONLY_CIRCLE_USER_ERROR_STATUS)
+      }
+
       return
     }
 
@@ -69,6 +87,21 @@ const Login: NextPage = () => {
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
+                </p>
+              </div>
+            ) : (
+              ''
+            )}
+
+            {emailError ? (
+              <div className="p-4 mb-4">
+                <p className="text-lg text-white">
+                  <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
+                  サークル管理者は
+                  <a href="https://circle.uu-circles.com" className="underline">
+                    サークル管理者ページ
+                  </a>
+                  をお使いください。
                 </p>
               </div>
             ) : (
