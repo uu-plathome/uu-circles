@@ -19,8 +19,8 @@ const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 // const message = new Discord.Message();
 
 // トークンの用意
-const token = 'ODE5MTc2MDM2NjY2MTc5NjM1.YEizIg.PTeHvrW8XWp8O0tb0cGopBVbrPg';
-const test_channel_id = '819800457555738654';
+const token = '';
+const test_channel_id = '';
 
 // 起動するとconsoleにready...と表示される
 client.on('ready', () => {
