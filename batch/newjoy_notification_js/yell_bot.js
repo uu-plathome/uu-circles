@@ -1,38 +1,31 @@
 // discord.js モジュールのインポート
 const Discord = require('discord.js');
+const client = new Discord.Client();
+
+// import { Channel, Client } from 'discord.js';
 const { exit } = require('process');
 
-// python-shellモジュールのインポート
+
+/* python-shellモジュールのインポート */
 // var {PythonShell} = require('python-shell');
 
-// .envの読み込み
-// require('dotenv').config();
-// const {TOKEN} = process.env;
-// const {CHANNEL_ID} = process.env;
-// const {TEST_CHANNEL_ID} = process.env;
+/* .envの読み込み */
+require('dotenv').config();
+// bot自体のtoken
+const token = process.env.TOKEN;
+// 本番チャンネル
+// const channel_id = process.env.;
+// testチャンネル
+const test_channel_id = process.env.TEST_CHANNEL_ID;
 
-// const {CHANNEL_ID} = process.env;
-
-
-// Discord Clientのインスタンス作成
-const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
-// const message = new Discord.Message();
-
-// トークンの用意
-const token = '';
-const test_channel_id = '';
-
-// 起動するとconsoleにready...と表示される
-client.on('ready', () => {
-    console.log('ready...');
-});
-
-// Discordへの接続
+/* Discordへの接続 */
 client.login(token);
-console.log(client.channels.cache.get(test_channel_id));
 
-client.channels.cache.get(test_channel_id);
-client.on('message', message => {
-    console.log(message.content);
+/* 起動時の処理 */
+client.on('ready', () => {
+    // 起動するとconsoleにready...と表示される
+    console.log('ready...');
+    // チャンネルに
+    client.channels.cache.get(process.env.TEST_CHANNEL_ID).send('!');
 });
 
