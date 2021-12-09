@@ -5,9 +5,15 @@ const client = new Discord.Client();
 // import { Channel, Client } from 'discord.js';
 const { exit } = require('process');
 
-
 /* python-shellモジュールのインポート */
-// var {PythonShell} = require('python-shell');
+var {PythonShell} = require('python-shell');
+var pyshell = new PythonShell('create_text.py', {mode : 'text'})
+
+pyshell.send("");
+
+pyshell.on('message', function(data){
+    console.log(data);
+})
 
 /* .envの読み込み */
 require('dotenv').config();
@@ -25,7 +31,7 @@ client.login(token);
 client.on('ready', () => {
     // 起動するとconsoleにready...と表示される
     console.log('ready...');
-    // チャンネルに
+    // チャンネルにメッセージを送信
     client.channels.cache.get(process.env.TEST_CHANNEL_ID).send('!');
 });
 
