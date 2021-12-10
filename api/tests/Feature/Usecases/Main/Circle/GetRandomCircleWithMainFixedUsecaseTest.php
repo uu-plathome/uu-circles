@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Usecases\Main\Circle;
 
+use App\Models\Circle;
 use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -26,6 +27,31 @@ class GetRandomCircleWithMainFixedUsecaseTest extends TestCase
      * @var bool
      */
     protected $seed = true;
+
+    /**
+     * デモサークルが表示されていないことを確認するテスト
+     */
+    public function testInvokeWithIsOnlyDemoCircle()
+    {
+        Log::info('GetRandomCircleWithMainFixedUsecaseTest testInvokeWithIsOnlyDemoCircle');
+
+        // GIVEN
+        // 全てのサークルをデモサークルにする
+        /** @var Circle $circle */
+        $circle = Circle::get();
+        $circle->is_only_demo = true;
+        $circle->save();
+
+        // デモサークルではないものが存在しないことを確認
+        $this->assertFalse(Circle::whereIsOnlyDemo(false)->exists());
+
+        // WHEN
+        $actual = (new GetRandomCircleWithMainFixedUsecase())->invoke(12);
+
+        // THEN
+        // デモサークルのみしかデータベースにないときはサークルを一件も取得できない
+        $this->assertEquals(0, count($actual->list));
+    }
 
     /**
      * Cacheのkeyのテスト.
