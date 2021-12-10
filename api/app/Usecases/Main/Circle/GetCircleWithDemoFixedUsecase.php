@@ -28,9 +28,11 @@ final class GetCircleWithDemoFixedUsecase
         $foundCircles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])
+            // 公開されているかどうか
             ->whereRelease(true)
+            // デモサークルの表示
             ->whereIsDemoFixed(true)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 CircleProperty::id,

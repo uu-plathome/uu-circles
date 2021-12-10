@@ -15,6 +15,7 @@ final class GetCircleBySlugUsecase
 {
     /**
      * Slugからサークルを取得する.
+     * デモサークルも取得できる.
      *
      * @param string $slug
      *
@@ -30,7 +31,9 @@ final class GetCircleBySlugUsecase
         $circle = Circle::with([
             'circleInformation',
             'circleHandbill',
-        ])->whereRelease(true)
+        ])
+            // 公開しているサークル
+            ->whereRelease(true)
             ->whereSlug($slug)
             ->firstOrFail();
 

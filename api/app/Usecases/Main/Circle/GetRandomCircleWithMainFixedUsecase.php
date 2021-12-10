@@ -16,10 +16,12 @@ final class GetRandomCircleWithMainFixedUsecase
     const TTL = 60 * 10;
 
     /**
-     * メイン画面に固定するサークルをランダムに取得
+     * メイン画面に表示するサークルをランダムに取得
      * デモのサークルは取得しない.
      *
-     * @param int $limit
+     * メイン画面に固定するサークルを優先的にとり、残りは適当にとって、合計 $limit 件取得する
+     *
+     * @param int $limit サークル取得数
      *
      * @return MainSimpleCircleListDto
      */
@@ -29,13 +31,17 @@ final class GetRandomCircleWithMainFixedUsecase
             'limit' => $limit,
         ]);
 
+        // 「メイン画面に固定しているサークルのクエリ」
         $fixedCircles = Circle::with([
             'circleHandbill:circle_id,image_url',
         ])
+            // 公開しているサークル
             ->whereRelease(true)
+            // デモサークルの非表示
             ->whereIsOnlyDemo(false)
+            // メイン画面に固定するサークル
             ->whereIsMainFixed(true)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 CircleProperty::id,
@@ -45,12 +51,18 @@ final class GetRandomCircleWithMainFixedUsecase
             ])
             ->take($limit);
 
+        // 「メイン画面に固定していないサークルのクエリ」と「メイン画面に固定しているサークルのクエリ」のクエリの統合（Union）
         /** @var Circle $foundCircles */
         $foundCircles = Circle::with([
             'circleHandbill:circle_id,image_url',
-        ])->whereRelease(true)
+        ])
+            // 公開しているサークル
+            ->whereRelease(true)
+            // デモサークルの非表示
+            ->whereIsOnlyDemo(false)
+            // メイン画面に固定しないサークル
             ->whereIsMainFixed(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 CircleProperty::id,
@@ -63,6 +75,14 @@ final class GetRandomCircleWithMainFixedUsecase
             ->union($fixedCircles)
             ->get();
 
+        /**
+         * 「メイン画面に固定していないサークルのクエリ」 0 ~ 12 件
+         * 「メイン画面に固定しているサークルのクエリ」 12 件
+         * の合計 24 件に対し、「メイン画面に固定しているサークル」を優先的に 12 件選ぶ処理.
+         *
+         * メイン画面に固定しているサークルを取れるだけとり、次にメイン画面に固定していないサークルを取る
+         * 最後にピックアップしたサークルをシャッフルする
+         */
         $circles = $foundCircles->unique(CircleProperty::id)
             ->sortByDesc(CircleProperty::is_main_fixed)
             ->values()
