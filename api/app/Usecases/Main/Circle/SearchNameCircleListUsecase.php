@@ -16,6 +16,7 @@ final class SearchNameCircleListUsecase
 {
     /**
      * サークルをテキストで検索する.
+     * ただし、デモサークルは取得しない
      *
      * @param SearchNameCircleListParam $param
      *
@@ -34,7 +35,7 @@ final class SearchNameCircleListUsecase
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             ->whereIsOnlyDemo(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 'circles.id',

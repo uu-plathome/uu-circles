@@ -14,8 +14,9 @@ final class GetRandomCircleUsecase
 {
     /**
      * ランダムなサークルを取得する.
+     * ただし、デモサークルは取得しない.
      *
-     * @param int $limit
+     * @param int $limit サークル取得数
      *
      * @return MainSimpleCircleListDto
      */
@@ -27,9 +28,12 @@ final class GetRandomCircleUsecase
 
         $circles = Circle::with([
             'circleHandbill:circle_id,image_url',
-        ])->whereRelease(true)
+        ])
+            // 公開しているサークル
+            ->whereRelease(true)
+            // デモサークルの非表示
             ->whereIsOnlyDemo(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 CircleProperty::id,

@@ -16,6 +16,7 @@ final class GetCircleListUsecase
 
     /**
      * 全てのサークルを取得する.
+     * ただし、デモサークルは取得しない
      *
      * @return MainSimpleCircleListDto
      */
@@ -26,9 +27,12 @@ final class GetCircleListUsecase
         $circles = Circle::with([
             'circleInformation:circle_id',
             'circleHandbill:circle_id,image_url',
-        ])->whereRelease(true)
+        ])
+            // 公開されているか
+            ->whereRelease(true)
+            // デモサークルの非表示
             ->whereIsOnlyDemo(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
                 'circles.'.'id',
