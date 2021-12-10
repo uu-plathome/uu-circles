@@ -16,7 +16,7 @@ final class SearchCategoryCircleListUsecase
 {
     /**
      * カテゴリー検索をする.
-     * ただし、デモサークルは取得しない
+     * ただし、デモサークルは取得しない.
      *
      * @param SearchCategoryCircleListParam $param
      *

@@ -16,7 +16,7 @@ final class GetCircleListUsecase
 
     /**
      * 全てのサークルを取得する.
-     * ただし、デモサークルは取得しない
+     * ただし、デモサークルは取得しない.
      *
      * @return MainSimpleCircleListDto
      */

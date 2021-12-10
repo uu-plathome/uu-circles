@@ -17,7 +17,7 @@ final class SearchTagCircleListUsecase
 {
     /**
      * タグで検索する.
-     * ただし、デモサークルは取得しない
+     * ただし、デモサークルは取得しない.
      *
      * @param SearchTagCircleListParam $param
      *
