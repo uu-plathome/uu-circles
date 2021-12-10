@@ -29,7 +29,7 @@ class GetRandomCircleWithMainFixedUsecaseTest extends TestCase
     protected $seed = true;
 
     /**
-     * デモサークルが表示されていないことを確認するテスト
+     * デモサークルが表示されていないことを確認するテスト.
      */
     public function testInvokeWithIsOnlyDemoCircle()
     {

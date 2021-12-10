@@ -15,7 +15,7 @@ final class GetCircleBySlugUsecase
 {
     /**
      * Slugからサークルを取得する.
-     * デモサークルも取得できる
+     * デモサークルも取得できる.
      *
      * @param string $slug
      *

@@ -16,7 +16,7 @@ final class SearchNameCircleListUsecase
 {
     /**
      * サークルをテキストで検索する.
-     * ただし、デモサークルは取得しない
+     * ただし、デモサークルは取得しない.
      *
      * @param SearchNameCircleListParam $param
      *
