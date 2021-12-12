@@ -1,14 +1,14 @@
 {
-  "name": "npm_pack",
-  "version": "1.0.0",
-  "description": "## uu-yellとは",
-  "main": "yell_bot.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "discord.js": "^12"
+    "name": "npm_pack",
+    "version": "1.0.0",
+    "description": "## uu-yellとは",
+    "main": "yell_bot.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "discord.js": "^12"
+    }
   }
-}

@@ -13,6 +13,7 @@ pyshell.send("");
 
 pyshell.on('message', function(data){
     console.log(data);
+    console.log('python shell started');
 })
 
 /* .envの読み込み */
@@ -32,6 +33,6 @@ client.on('ready', () => {
     // 起動するとconsoleにready...と表示される
     console.log('ready...');
     // チャンネルにメッセージを送信
-    client.channels.cache.get(process.env.TEST_CHANNEL_ID).send('!');
+    client.channels.cache.get(test_channel_id).send('!');
 });
 
