@@ -74,3 +74,6 @@ __pycache__
 # Container
 db/
 db-test/
+
+# TypeScript
+node_modules
