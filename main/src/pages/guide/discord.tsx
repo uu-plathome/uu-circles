@@ -2,13 +2,14 @@ import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -26,9 +27,9 @@ const ID_LIST = {
 
 const Page: NextPage = () => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
   }, [])
 
   const { onChangeId } = usePagePosition({
@@ -67,7 +68,7 @@ const Page: NextPage = () => {
             <div
               id={ID_LIST.TOC}
               onMouseOver={() => onChangeId(ID_LIST.TOC)}
-              className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500"
+              className="px-8 py-6 mx-4  bg-white rounded-md text-gray-500"
             >
               <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">0.Discordとは</p>

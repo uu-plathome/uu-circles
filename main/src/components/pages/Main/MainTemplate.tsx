@@ -5,8 +5,14 @@ import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { computedPagePositionIdNowLength } from './computedPagePositionIdNowLength'
 import { ID_LIST } from './id_list'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
+import { Props as MainCircleListProps } from '@/src/components/pages/Main/Parts/MainCircleList'
+import { Props as MainSponsorshipFooterProps } from '@/src/components/pages/Main/Parts/MainSponsorshipFooter'
+import { Props as MainTagListProps } from '@/src/components/pages/Main/Parts/MainTagList'
+import { Props as MainUucircleAdProps } from '@/src/components/pages/Main/Parts/MainUucircleAd'
+import { Props as MainUucircleBottomButtonsProps } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
 import { PagePositionRecord } from '@/src/hooks/usePagePosition'
@@ -15,32 +21,33 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
-const MainCircleList = dynamic(() =>
+const MainCircleList = dynamic<MainCircleListProps>(() =>
   import('@/src/components/pages/Main/Parts/MainCircleList').then(
     (mod) => mod.MainCircleList
   )
 )
-const MainTagList = dynamic(() =>
+const MainTagList = dynamic<MainTagListProps>(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(
     (mod) => mod.MainTagList
   )
 )
-const MainUucircleAd = dynamic(() =>
+const MainUucircleAd = dynamic<MainUucircleAdProps>(() =>
   import('@/src/components/pages/Main/Parts/MainUucircleAd').then(
     (mod) => mod.MainUucircleAd
   )
 )
-const MainUucircleBottomButtons = dynamic(() =>
+const MainUucircleBottomButtons = dynamic<MainUucircleBottomButtonsProps>(() =>
   import('@/src/components/pages/Main/Parts/MainUucircleBottomButtons').then(
     (mod) => mod.MainUucircleBottomButtons
   )
 )
-const MainSponsorshipFooter = dynamic(() =>
+const MainSponsorshipFooter = dynamic<MainSponsorshipFooterProps>(() =>
   import('@/src/components/pages/Main/Parts/MainSponsorshipFooter').then(
     (mod) => mod.MainSponsorshipFooter
   )
 )
-const BaseFooter = dynamic(() =>
+
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -51,8 +58,8 @@ type Props = {
   /** uu-yell記事 */ uuYellArticles: WP_REST_API_Posts
   /** お知らせ */ announcements: Announcement[]
   uuYellForMain: {
-    posts: WP_REST_API_Posts
-    medias: WP_REST_API_Attachments
+    posts?: WP_REST_API_Posts
+    medias?: WP_REST_API_Attachments
   }
   pagePositions: PagePositions
   recordPagePosition: PagePositionRecord[]
@@ -141,8 +148,8 @@ export const MainTemplate: FC<Props> = ({
           >
             <MainUucircleBottomButtons
               pagePositionIdNowLength={pagePositionIdNowLength}
-              medias={uuYellForMain ? uuYellForMain.medias : []}
-              posts={uuYellForMain ? uuYellForMain.posts : []}
+              medias={uuYellForMain && uuYellForMain.medias ? uuYellForMain.medias : []}
+              posts={uuYellForMain && uuYellForMain.posts ? uuYellForMain.posts : []}
             />
           </div>
 

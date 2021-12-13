@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { WP_REST_API_Posts } from 'wp-types'
 import { MainHeading } from './Parts/MainHeading'
 import { RecommendCircleList } from './Parts/RecommendCircleList'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
@@ -12,7 +13,7 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -64,7 +65,7 @@ export const SearchCircleByFreeWordTemplate: NextPage<Props> = ({
               {/*  サークル一覧 */}
               <BaseCircleList
                 id={ID_LIST.CIRCLE_LIST}
-                circles={circles}
+                circles={circles || []}
                 onChangeId={async (_: string) => {
                   return
                 }}
@@ -73,7 +74,7 @@ export const SearchCircleByFreeWordTemplate: NextPage<Props> = ({
               {/* 他のサークルも見る */}
               <RecommendCircleList
                 id={ID_LIST.SEARCH_OTHER_CIRCLE}
-                recommendCircles={recommendCircles}
+                recommendCircles={recommendCircles || []}
                 onChangeId={async (_: string) => {
                   return
                 }}

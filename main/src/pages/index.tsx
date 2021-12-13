@@ -16,15 +16,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
  * メインページのコンテンツを再取得
  */
 const useRefetchMainData = (ssrProps: Props): Props => {
-  const {
-    data: {
-      advertises,
-      mainAdvertises,
-      circles,
-      uuYellArticles,
-      announcements,
-    },
-  } = useSWR('main.refresh', getMain, {
+  const { data } = useSWR('main.refresh', getMain, {
     fallbackData: {
       advertises: ssrProps.advertises,
       mainAdvertises: ssrProps.mainAdvertises,
@@ -34,6 +26,24 @@ const useRefetchMainData = (ssrProps: Props): Props => {
     },
     refreshInterval: 1000 * 60 * 5 /** 5minに1回再検証 */,
   })
+
+  if (!data) {
+    return {
+      advertises: ssrProps.advertises,
+      mainAdvertises: ssrProps.mainAdvertises,
+      circles: ssrProps.circles,
+      uuYellArticles: ssrProps.uuYellArticles,
+      announcements: ssrProps.announcements,
+    }
+  }
+
+  const {
+    advertises,
+    mainAdvertises,
+    circles,
+    uuYellArticles,
+    announcements,
+  } = data
 
   return {
     advertises,
@@ -53,9 +63,9 @@ type Props = {
 }
 const Index: NextPage<Props> = (ssrProps) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
   }, [])
 
   const { advertises, mainAdvertises, circles, uuYellArticles, announcements } =
@@ -80,7 +90,10 @@ const Index: NextPage<Props> = (ssrProps) => {
         mainAdvertises={mainAdvertises}
         circles={circles}
         uuYellArticles={uuYellArticles}
-        uuYellForMain={uuYellForMain}
+        uuYellForMain={uuYellForMain || {
+          posts: undefined,
+          medias: undefined
+        }}
         announcements={announcements}
         pagePositions={pageData}
         recordPagePosition={recordPagePosition}

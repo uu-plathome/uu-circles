@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 type Props = {
-  href?: string
+  href: string
   as?: string
 }
 const WhiteBadge: FC<Props> = ({ children, href, as }) => {

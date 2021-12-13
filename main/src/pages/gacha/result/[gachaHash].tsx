@@ -15,6 +15,7 @@ import {
   TwitterShareButton,
 } from 'react-share'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -22,7 +23,7 @@ import { PageNotFoundError } from '@/src/lib/infra/api/error'
 import { resultGacha, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 import colors from '@/src/styles/colors'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -70,9 +71,9 @@ const Page: NextPage<Props> = ({
               <h1 className="py-8 text-2xl font-bold text-center">- 結果 -</h1>
 
               {count === 1 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
                 <div className="flex justify-center cursor-pointer">
                   <Link
                     href="/circle/slug"
@@ -98,9 +99,9 @@ const Page: NextPage<Props> = ({
               )}
 
               {count === 5 &&
-              resultCircles &&
-              Array.isArray(resultCircles) &&
-              resultCircles.length > 0 ? (
+                resultCircles &&
+                Array.isArray(resultCircles) &&
+                resultCircles.length > 0 ? (
                 <div className="grid grid-cols-2 gap-4">
                   {resultCircles.map((resultCircle, idx) => {
                     return (
@@ -162,7 +163,7 @@ const Page: NextPage<Props> = ({
                     title={
                       count === 5
                         ? '5連ガチャ結果を見る！'
-                        : `${resultCircles[0].name}があたりました！`
+                        : `${resultCircles ? resultCircles[0].name : ''}があたりました！`
                     }
                     hashtags={['春から宇大']}
                     className="mr-2"
@@ -185,8 +186,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {pickupCircles &&
-              Array.isArray(pickupCircles) &&
-              pickupCircles.length > 0 ? (
+                Array.isArray(pickupCircles) &&
+                pickupCircles.length > 0 ? (
                 <div className="flex justify-center pt-8">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
@@ -214,7 +215,7 @@ const Page: NextPage<Props> = ({
                           >
                             <Link
                               href="/circle/slug"
-                              as={`/circle/${resultCircles[0].slug}`}
+                              as={`/circle/${resultCircles ? resultCircles[0].slug : ''}`}
                               passHref
                             >
                               <div className="flex items-center py-4 px-6 bg-white rounded">
@@ -265,7 +266,7 @@ const Page: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params.gachaHash || Array.isArray(params.gachaHash)) {
+  if (!params || !params.gachaHash || Array.isArray(params.gachaHash)) {
     return {
       notFound: true,
     }

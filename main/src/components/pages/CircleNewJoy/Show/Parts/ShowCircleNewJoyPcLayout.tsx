@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import { IndexCircleNewJoyListPC } from '../../../../organisms/List/IndexCircleNewJoyListPC'
-import { CircleNewJoyDetail } from '../../../../organisms/Newjoy/CircleNewJoyDetail'
 import { YellowButton } from '@/src/components/atoms/button/YellowButton'
+import { IndexCircleNewJoyListPC } from '@/src/components/organisms/List/IndexCircleNewJoyListPC'
+import { CircleNewJoyDetail } from '@/src/components/organisms/Newjoy/CircleNewJoyDetail'
 import { InformationCircleBesideNewJoyPCWithButton } from '@/src/components/pages/CircleNewJoy/Show/Parts/InformationCircleBesideNewJoyPCWithButton'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
@@ -12,16 +12,16 @@ const CircleNewJoyTitle: FC = ({ children }) => {
 }
 
 type Props = {
-  /** サークル */ circle?: Circle
-  /** 新歓詳細 */ circleNewJoy?: CircleNewJoy
+  /** サークル */ circle: Circle
+  /** 新歓詳細 */ circleNewJoy: CircleNewJoy
   /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
   /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
   /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓 */ todayCircleNewJoys?: CircleNewJoy[]
   /** 今日の新歓(全て) */ allTodayCircleNewJoys?: {
-    slug: string
-    circleNewJoy: CircleNewJoy
-  }[]
+  slug: string
+  circleNewJoy: CircleNewJoy
+}[]
 }
 const ShowCircleNewJoyPcLayout: FC<Props> = ({
   circle,
@@ -91,7 +91,7 @@ const ShowCircleNewJoyPcLayout: FC<Props> = ({
 
         <IndexCircleNewJoyListPC
           slug={circle.slug}
-          circleNewJoys={futureCircleNewJoys}
+          circleNewJoys={futureCircleNewJoys || []}
         />
       </div>
 
@@ -100,7 +100,7 @@ const ShowCircleNewJoyPcLayout: FC<Props> = ({
 
         <IndexCircleNewJoyListPC
           slug={circle.slug}
-          circleNewJoys={pastCircleNewJoys}
+          circleNewJoys={pastCircleNewJoys || []}
         />
       </div>
     </div>

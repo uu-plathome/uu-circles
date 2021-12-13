@@ -120,4 +120,5 @@ const MainSponsorshipFooter: FC<Props> = ({
   )
 }
 
+export type { Props }
 export { MainSponsorshipFooter }

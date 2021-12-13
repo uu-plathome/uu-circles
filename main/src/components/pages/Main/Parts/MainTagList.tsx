@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
+import { ComputedPagePositionIdNowLength, ComputedPagePositionIdNowLengthKey } from '../computedPagePositionIdNowLength'
 import { WhiteBadge } from '@/src/components/atoms/badge/WhiteBadge'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { __ } from '@/src/lang/ja'
@@ -7,7 +7,7 @@ import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 
 type Props = {
-  id: string
+  id: Exclude<ComputedPagePositionIdNowLengthKey, 'circlePageViews'>
   pagePositionIdNowLength: ComputedPagePositionIdNowLength
   onChangeId: (id: string) => void
 }
@@ -79,4 +79,5 @@ const MainTagList: FC<Props> = ({
   )
 }
 
+export type { Props }
 export { MainTagList }

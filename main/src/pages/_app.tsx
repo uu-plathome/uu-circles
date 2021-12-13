@@ -17,9 +17,9 @@ import '@/src/styles/index.scss'
 
 config.autoAddCss = false
 
-const ErrorBoundary = process.env.BUGSNAG_API_KEY
-  ? Bugsnag.getPlugin('react').createErrorBoundary(React)
-  : ({ children }) => <div>{children}</div>
+const ErrorBoundary: any = process.env.BUGSNAG_API_KEY
+  ? Bugsnag.getPlugin('react')?.createErrorBoundary(React)
+  : ({ children }: any) => <div>{children}</div>
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter()
@@ -29,7 +29,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       return
     }
 
-    const handleRouteChange = (path): void => gtag.pageview(path)
+    const handleRouteChange = (path: string): void => gtag.pageview(path)
 
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {

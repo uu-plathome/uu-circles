@@ -1,14 +1,16 @@
 import dynamic from 'next/dynamic'
 import { FC } from 'react'
+import { PcButtonGroupProps } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsPc'
+import { SpButtonGroupProps } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsSp'
 import { ComputedPagePositionIdNowLength } from '@/src/components/pages/Main/computedPagePositionIdNowLength'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 
-const PcButtonGroup = dynamic(() =>
+const PcButtonGroup = dynamic<PcButtonGroupProps>(() =>
   import(
     '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsPc'
   ).then((mod) => mod.PcButtonGroup)
 )
-const SpButtonGroup = dynamic(() =>
+const SpButtonGroup = dynamic<SpButtonGroupProps>(() =>
   import(
     '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsSp'
   ).then((mod) => mod.SpButtonGroup)

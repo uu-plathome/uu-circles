@@ -18,13 +18,13 @@ export const usePagePosition = ({
   pageUrl: string
   pageName: string
   circleSlug?: string
-  identifierHash: string
+  identifierHash?: string
 }): {
   pagePositionId: string
   pageData: PagePositions
   pageUrl: string
   circleSlug?: string
-  identifierHash: string
+  identifierHash?: string
   recordPagePosition: PagePositionRecord[]
   onChangeId: (_pagePositionId: string) => Promise<void>
 } => {
@@ -76,6 +76,10 @@ export const usePagePosition = ({
           screenHeight: height,
         },
       })
+
+      if (!apiResponse) {
+        return
+      }
 
       if (isCreatePagePositionRequestValidationError(apiResponse)) {
         console.error(apiResponse)

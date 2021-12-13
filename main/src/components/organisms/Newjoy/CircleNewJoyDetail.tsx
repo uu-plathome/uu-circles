@@ -14,7 +14,7 @@ import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { getDow, getMonth, getDay, getFullJPDate } from '@/src/lib/utils/Date'
 
 const TableTitle: FC = ({ children }) => {
-  return <h4 className="text-base text-gray-400 text-gray-500">{children}</h4>
+  return <h4 className="text-base text-gray-400">{children}</h4>
 }
 
 type Props = {
@@ -127,9 +127,8 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
-                  title={`UU-Circlesで${circle.shortName || circle.name}の新歓${
-                    circleNewJoy.title
-                  }を見る！`}
+                  title={`UU-Circlesで${circle.shortName || circle.name}の新歓${circleNewJoy.title
+                    }を見る！`}
                   hashtags={['春から宇大']}
                   className="mr-2"
                 >
@@ -223,9 +222,8 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
-                  title={`UU-Circlesで${
-                    circle.shortName || circle.name
-                  }の新歓「${circleNewJoy.title}」を見る！`}
+                  title={`UU-Circlesで${circle.shortName || circle.name
+                    }の新歓「${circleNewJoy.title}」を見る！`}
                   hashtags={['春から宇大']}
                   className="mr-2"
                 >

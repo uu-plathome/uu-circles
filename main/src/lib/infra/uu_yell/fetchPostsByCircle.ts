@@ -42,7 +42,7 @@ export const fetchPostsByCircle = async ({
   ]
   const posts = postIds.map((postId) =>
     allPosts.find((post) => post.id === postId)
-  )
+  ).filter((post) => post !== undefined) as WP_REST_API_Posts
 
   if (posts.length === 0) {
     return {
@@ -51,7 +51,8 @@ export const fetchPostsByCircle = async ({
     }
   }
 
-  const mediaIds = posts.map((post) => post.featured_media)
+  const mediaIds = posts.map((post) => post ? post.featured_media : undefined)
+    .filter((mediaId) => mediaId) as number[]
   const queryMediaIds = mediaIds.join(',')
 
   // 記事のアイキャッチ画像のURLを取得

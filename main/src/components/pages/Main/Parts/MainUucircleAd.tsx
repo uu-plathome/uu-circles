@@ -69,4 +69,5 @@ const MainUucircleAd: FC<Props> = () => {
   )
 }
 
+export type { Props }
 export { MainUucircleAd }

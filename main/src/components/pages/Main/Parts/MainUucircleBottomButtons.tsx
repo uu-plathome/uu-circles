@@ -178,4 +178,5 @@ const MainUucircleBottomButtons: FC<Props> = ({
   )
 }
 
+export type { Props }
 export { MainUucircleBottomButtons }

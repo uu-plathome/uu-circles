@@ -22,11 +22,14 @@ export const validIdentification = async ({
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 400) {
+    if (e.response && e.response.status === 400) {
       return false
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
 

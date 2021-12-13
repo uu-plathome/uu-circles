@@ -6,13 +6,14 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import useSWR from 'swr'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getGachaHistory, SimpleGachaDto } from '@/src/lib/infra/api/gacha'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -25,17 +26,17 @@ type Props = {
   }
 }
 const Page: NextPage<Props> = () => {
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
 
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
   }, [])
 
   const { data: gachaHistory } = useSWR(
     identifierHash
       ? `/api/gacha/circle/history?X-IDENTIFIER_HASH=${identifierHash}`
       : null,
-    () => getGachaHistory({ identifierHash })
+    () => identifierHash ? getGachaHistory({ identifierHash }) : undefined
   )
 
   return (

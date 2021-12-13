@@ -7,12 +7,13 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import YouTube from 'react-youtube'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { ImagePath } from '@/src/lib/enum/app/ImagePath'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 

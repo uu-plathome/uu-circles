@@ -19,7 +19,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
 type Props = {
-  circle?: Circle
+  circle: Circle
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
@@ -41,9 +41,9 @@ const Page: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string>(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
   }, [])
 
   const { data: uuYellForCircles } = useSWR<{
@@ -98,9 +98,9 @@ const Page: NextPage<Props> = ({
           {
             url: `${baseUuCirclesUrl}/circle/newjoy`,
           },
-          ...circleNewJoys.map((circleNewJoy) => ({
+          ...circleNewJoys ? circleNewJoys.map((circleNewJoy) => ({
             url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
-          })),
+          })) : [],
         ]}
       />
 
@@ -111,15 +111,18 @@ const Page: NextPage<Props> = ({
         uuYellArticles={uuYellArticles}
         wpPosts={wpPosts}
         announcements={announcements}
-        uuYellForCircles={uuYellForCircles}
+        uuYellForCircles={uuYellForCircles || {
+          posts: [],
+          medias: []
+        }}
         onChangeId={onChangeId}
       />
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params.slug || Array.isArray(params.slug)) {
+export const getStaticProps: GetStaticProps<Partial<Props>> = async ({ params }) => {
+  if (!params || !params.slug || Array.isArray(params.slug)) {
     return {
       notFound: true,
     }

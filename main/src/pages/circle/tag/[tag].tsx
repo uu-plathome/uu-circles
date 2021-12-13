@@ -71,7 +71,7 @@ const Page: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params.tag || Array.isArray(params.tag)) {
+  if (!params || !params.tag || Array.isArray(params.tag)) {
     return {
       notFound: true,
     }

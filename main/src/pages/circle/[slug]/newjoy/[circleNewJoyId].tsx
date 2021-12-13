@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Error from 'next/error'
 import { WP_REST_API_Posts } from 'wp-types'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -13,7 +14,7 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -47,7 +48,7 @@ const Page: NextPage<Props> = ({
     return <Error statusCode={errorCode} />
   }
 
-  if (!circle) {
+  if (!circle || !circleNewJoy) {
     return <div></div>
   }
 
@@ -105,7 +106,7 @@ const Page: NextPage<Props> = ({
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params.slug || Array.isArray(params.slug)) {
+  if (!params || !params.slug || Array.isArray(params.slug)) {
     return {
       notFound: true,
     }
