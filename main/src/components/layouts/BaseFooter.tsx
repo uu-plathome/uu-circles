@@ -406,4 +406,5 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
   )
 }
 
+export type { Props }
 export { BaseFooter }

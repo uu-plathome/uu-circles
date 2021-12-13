@@ -27,9 +27,13 @@ const Page: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { onChangeId } = usePagePosition({

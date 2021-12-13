@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { CircleLengthView } from './Parts/CircleLengthView'
 import { SearchCircle } from './Parts/SearchCircle'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColumnContainer'
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
@@ -14,7 +15,7 @@ import { Circle } from '@/src/lib/types/model/Circle'
 import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -28,7 +29,7 @@ const ID_LIST = {
 }
 
 type Props = {
-  circles?: Circle[]
+  circles: Circle[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking

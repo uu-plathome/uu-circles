@@ -3,6 +3,8 @@ import { useRouter } from 'next/dist/client/router'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import YouTube, { Options } from 'react-youtube'
+import { YouTubePlayer } from 'youtube-player/dist/types'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -10,7 +12,7 @@ import { GachaMovieId } from '@/src/lib/enum/app/GachaMovieId'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { drawGacha } from '@/src/lib/infra/api/gacha'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -33,7 +35,8 @@ const Page: NextPage = () => {
   const router = useRouter()
 
   const redirect = async () => {
-    const identifierHash = localStorage.getItem(LocalStorageKey.identifierHash)
+    const identifierHash =
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
 
     const data = await drawGacha({
       identifierHash,
@@ -43,7 +46,7 @@ const Page: NextPage = () => {
     await router.push(`/gacha/result/${data.gachaHash}`)
   }
 
-  const onPlayerReady = (event) => {
+  const onPlayerReady = (event: { target: YouTubePlayer }) => {
     event.target.mute()
     event.target.playVideo()
   }

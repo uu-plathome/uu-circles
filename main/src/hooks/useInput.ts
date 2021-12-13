@@ -61,7 +61,7 @@ export const useStringInput = (
   return {
     ..._useInput,
     set: (newVal?: string) => {
-      _useInput.set(newVal)
+      _useInput.set(newVal || '')
     },
   }
 }

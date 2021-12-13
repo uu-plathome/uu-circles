@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { CircleNewJoyDetail } from '../../../../organisms//Newjoy/CircleNewJoyDetail'
-import { IndexCircleNewJoyListSP } from '../../../../organisms/List/IndexCircleNewJoyListSP'
 import { InformationCircleBesideNewJoySP } from './InformationCircleBesideNewJoySP'
+import { CircleNewJoyDetail } from '@/src/components/organisms//Newjoy/CircleNewJoyDetail'
+import { IndexCircleNewJoyListSP } from '@/src/components/organisms/List/IndexCircleNewJoyListSP'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
@@ -10,8 +10,8 @@ const CircleNewJoyTitle: FC = ({ children }) => {
 }
 
 type ShowCircleNewJoySpLayoutProps = {
-  /** サークル */ circle?: Circle
-  /** 新歓詳細 */ circleNewJoy?: CircleNewJoy
+  /** サークル */ circle: Circle
+  /** 新歓詳細 */ circleNewJoy: CircleNewJoy
   /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
   /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
   /** 現在開催中 */ nowCircleNewJoys?: CircleNewJoy[]

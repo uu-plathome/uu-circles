@@ -24,9 +24,13 @@ const Page: NextPage<Props> = ({
   tagPageViewRanking,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   // ページ位置
@@ -52,15 +56,19 @@ const Page: NextPage<Props> = ({
             item: `${baseUuCirclesUrl}/circle`,
           },
         ]}
-        carouselJsonLdData={[
-          ...circles.map((circle) => ({
-            url: `${baseUuCirclesUrl}/circle/${circle.slug}`,
-          })),
-        ]}
+        carouselJsonLdData={
+          circles
+            ? [
+                ...circles.map((circle) => ({
+                  url: `${baseUuCirclesUrl}/circle/${circle.slug}`,
+                })),
+              ]
+            : []
+        }
       />
 
       <IndexCircleTemplate
-        circles={circles}
+        circles={circles ? circles : []}
         uuYellArticles={uuYellArticles}
         announcements={announcements}
         tagPageViewRanking={tagPageViewRanking}

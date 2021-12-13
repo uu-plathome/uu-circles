@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useWindowResize } from './useWindowResize'
-import TailwindConfig from 'tailwind.config'
+import { useWindowResize } from '@/src/hooks/useWindowResize'
+import TailwindConfig from '@/tailwind.config'
 
 const useScreenSize = () => {
   return {

@@ -281,4 +281,5 @@ const StatisticsCircleView: FC<Props> = ({ statistics }) => {
   )
 }
 
+export type { Props }
 export { StatisticsCircleView }

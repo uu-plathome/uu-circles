@@ -171,4 +171,5 @@ const StatisticsOtherView: FC<Props> = ({ statistics }) => {
   )
 }
 
+export type { Props }
 export { StatisticsOtherView }

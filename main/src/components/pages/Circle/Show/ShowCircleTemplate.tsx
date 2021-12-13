@@ -10,6 +10,7 @@ import { ShowCircleTitle } from './Parts/ShowCircleTitle'
 import { TopImage } from './Parts/TopImage'
 import { WpPostBlock } from './Parts/WpPostBlock'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { TwitterEmbed } from '@/src/components/organisms/Twitter/TwitterEmbed'
@@ -18,7 +19,7 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -44,7 +45,7 @@ const ID_LIST = {
 } as const
 
 type Props = {
-  circle?: Circle
+  circle: Circle
   circleTags?: CircleTagModel[]
   circleNewJoys?: CircleNewJoy[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Post[]
@@ -171,7 +172,7 @@ export const ShowCircleTemplate: FC<Props> = ({
               className="order-3 md:order-3 pt-10"
               onMouseOver={() => onChangeId(ID_LIST.INFORMATION_FILED)}
             >
-              <InformationField circle={circle} circleTags={circleTags} />
+              <InformationField circle={circle} circleTags={circleTags || []} />
             </div>
 
             {wpPosts &&

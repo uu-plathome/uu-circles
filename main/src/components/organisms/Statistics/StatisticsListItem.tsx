@@ -21,7 +21,7 @@ const StatisticsListItem: FC<StatisticsListItem> = ({
   rank,
   unit,
 }) => {
-  const RANK_COLOR = ((rank: 1 | 2 | 3 | 4 | 5) => {
+  const RANK_COLOR = ((rank: 1 | 2 | 3 | 4 | 5): string | undefined => {
     if (rank === 1) {
       return '#EFC743'
     }
@@ -34,7 +34,7 @@ const StatisticsListItem: FC<StatisticsListItem> = ({
       return '#5F2B2B'
     }
 
-    return null
+    return undefined
   })(rank)
 
   return (

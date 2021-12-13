@@ -9,8 +9,10 @@ export const useWindowResize = (): {
   width: number
   height: number
 } => {
-  const [windowWidth, setWindowWidth] = useState<number>(undefined)
-  const [windowHeight, setWindowHeight] = useState<number>(undefined)
+  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined)
+  const [windowHeight, setWindowHeight] = useState<number | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,7 +28,7 @@ export const useWindowResize = (): {
   }, [])
 
   return {
-    width: windowWidth,
-    height: windowHeight,
+    width: windowWidth || 0,
+    height: windowHeight || 0,
   }
 }

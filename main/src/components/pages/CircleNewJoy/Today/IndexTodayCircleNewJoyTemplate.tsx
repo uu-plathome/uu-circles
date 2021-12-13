@@ -3,13 +3,14 @@ import { FC } from 'react'
 import { useMemo } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { ShareSns } from './Parts/ShareSns'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { IndexCircleNewJoyListForNoSlug } from '@/src/components/organisms/List/IndexCircleNewJoyListForNoSlug'
 import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -86,7 +87,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
               </h2>
 
               <IndexCircleNewJoyListForNoSlug
-                circleNewJoys={futureCircleNewJoys}
+                circleNewJoys={futureCircleNewJoys || []}
               />
             </section>
           </div>

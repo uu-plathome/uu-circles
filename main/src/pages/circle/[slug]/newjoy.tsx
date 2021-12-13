@@ -13,6 +13,7 @@ import {
 } from 'react-share'
 import { WP_REST_API_Posts } from 'wp-types'
 import { YellowButton } from '@/src/components/atoms/button/YellowButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -27,12 +28,12 @@ import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
 type Props = {
-  /** サークル */ circle?: Circle
+  /** サークル */ circle: Circle
   errorCode?: number
   /** 新歓開催済み */ pastCircleNewJoys?: CircleNewJoy[]
   /** 新歓開催前 */ futureCircleNewJoys?: CircleNewJoy[]
@@ -58,7 +59,7 @@ const Page: NextPage<Props> = ({
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
   const pageUrl = useMemo(
     () => `https://uu-circles.com/${circle.slug}/newjoy`,
-    [circle.slug]
+    [circle]
   )
 
   if (errorCode) {
@@ -297,8 +298,10 @@ const Page: NextPage<Props> = ({
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params.slug || Array.isArray(params.slug)) {
+export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
+  params,
+}) => {
+  if (!params || !params.slug || Array.isArray(params.slug)) {
     return {
       notFound: true,
     }

@@ -83,7 +83,7 @@ const Utas: FC<UtasProps> = ({
             }}
           >
             <Uta
-              center={center}
+              center={!!center}
               left={`${i * 18}px`}
               top={`2px`}
               isFirst={i === 0}
@@ -110,7 +110,9 @@ const Uta: FC<UtaProps> = ({
   color = UtaColorList.BLUE,
 }) => {
   const [isOn, setIsOn] = useState<boolean>(false)
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(undefined)
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     setInterval(() => {
@@ -153,4 +155,5 @@ const Uta: FC<UtaProps> = ({
   )
 }
 
+export type { UtasProps }
 export { Utas }

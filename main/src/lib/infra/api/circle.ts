@@ -75,11 +75,14 @@ export const getCircleBySlug = async (
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 404) {
+    if (e.response && e.response.status === 404) {
       throw new PageNotFoundError(e.response.status, e.response.statusText)
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
 

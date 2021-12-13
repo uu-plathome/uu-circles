@@ -69,12 +69,15 @@ const CategoryItemFc: FC<CategoryItemFcProps> = ({ categoryItem }) => {
 }
 
 type Props = {
-  tagPageViewRanking: TagPageViewRanking
+  tagPageViewRanking?: TagPageViewRanking
   excludeTags?: TagSlugProperty[]
 }
 const CircleSidebar: FC<Props> = ({ tagPageViewRanking, excludeTags }) => {
   const tagList = useMemo(() => {
     const _tagList: TagPageView[] = []
+
+    if (!tagPageViewRanking) return []
+
     tagPageViewRanking.first && _tagList.push(tagPageViewRanking.first)
     tagPageViewRanking.second && _tagList.push(tagPageViewRanking.second)
     tagPageViewRanking.third && _tagList.push(tagPageViewRanking.third)

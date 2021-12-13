@@ -33,7 +33,7 @@ export const drawGacha = async ({
   identifierHash,
   num,
 }: {
-  identifierHash: string
+  identifierHash: string | undefined
   num: number
 }): Promise<{
   count: number
@@ -42,6 +42,10 @@ export const drawGacha = async ({
   pickupCircles: SimpleGachaDto[]
   resultCircles: SimpleGachaDto[]
 }> => {
+  if (!identifierHash) {
+    throw new Error('identifierHash is required')
+  }
+
   const res = await axiosInstance.post<{
     count: number
     createdAt: string

@@ -18,7 +18,7 @@ export const GA_ID = process.env.GOOGLE_ANALYTICS_ID
 export const existsGaId = GA_ID !== ''
 
 // PVを測定する
-export const pageview = (path) => {
+export const pageview = (path: string) => {
   window.gtag('config', GA_ID, {
     page_path: path,
   })

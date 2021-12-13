@@ -7,6 +7,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
 import { GreenLgButton } from '@/src/components/atoms/button/GreenLgButton'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
@@ -16,7 +17,7 @@ import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -46,9 +47,13 @@ const SubHeader: FC<{
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { onChangeId } = usePagePosition({

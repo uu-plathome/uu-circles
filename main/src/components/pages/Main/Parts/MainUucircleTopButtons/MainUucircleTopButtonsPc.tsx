@@ -3,9 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { TOP_BUTTONS_ID_LIST } from './top_buttons_id_list'
+import { UtasProps } from '@/src/components/atoms/utas/Utas'
 import { ComputedPagePositionIdNowLength } from '@/src/components/pages/Main/computedPagePositionIdNowLength'
 
-const Utas = dynamic(() =>
+const Utas = dynamic<UtasProps>(() =>
   import('@/src/components/atoms/utas/Utas').then((mod) => mod.Utas)
 )
 
@@ -124,4 +125,5 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
   )
 }
 
+export type { PcButtonGroupProps }
 export { PcButtonGroup }

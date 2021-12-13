@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   params,
   res,
 }) => {
-  if (!params.name || Array.isArray(params.name)) {
+  if (!params || !params.name || Array.isArray(params.name)) {
     res.statusCode = 404
     return { props: { errorCode: 404 } }
   }

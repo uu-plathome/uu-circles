@@ -16,10 +16,10 @@ import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 
-const randomArr = (array: any[], num: number) => {
+const randomArr = <T extends any>(array: T[], num: number) => {
   const a = array
-  let t = []
-  let r = []
+  let t: T[] = []
+  let r: T[] = []
   let l = a.length
   let n = num < l ? num : l
   while (n-- > 0) {
@@ -46,9 +46,13 @@ const Index: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState(null)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash))
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   // 「編集長イチオシ」の取得
@@ -113,7 +117,12 @@ const Index: NextPage<Props> = ({
         mainAdvertises={mainAdvertises}
         circles={circles}
         uuYellArticles={uuYellArticles}
-        uuYellForMain={uuYellForMain}
+        uuYellForMain={
+          uuYellForMain || {
+            posts: undefined,
+            medias: undefined,
+          }
+        }
         announcements={announcements}
         pagePositions={pageData}
         recordPagePosition={recordPagePosition}

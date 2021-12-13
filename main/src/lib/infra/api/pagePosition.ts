@@ -23,7 +23,9 @@ export const createPagePosition = async ({
   identifierHash: string
   request: CreatePagePositionRequest
 }): Promise<
-  CreatePagePositionResponse | CreatePagePositionRequestValidationError
+  | CreatePagePositionResponse
+  | CreatePagePositionRequestValidationError
+  | undefined
 > => {
   type Response = CreatePagePositionResponse
 

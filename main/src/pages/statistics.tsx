@@ -2,32 +2,36 @@ import { GetStaticProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
+import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { StatisticsButtonGroup } from '@/src/components/organisms/Statistics/StatisticsButtonGroup'
 import { StatisticsButtonState } from '@/src/components/organisms/Statistics/StatisticsButtonState'
+import { Props as StatisticsCircleViewProps } from '@/src/components/organisms/Statistics/StatisticsCircleView'
+import { Props as StatisticsCommonViewProps } from '@/src/components/organisms/Statistics/StatisticsCommonView'
+import { Props as StatisticsOtherViewProps } from '@/src/components/organisms/Statistics/StatisticsOtherView'
 import { getStatistics } from '@/src/lib/infra/api/statistics'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Statistics } from '@/src/lib/types/model/Statistics'
 
-const StatisticsCircleView = dynamic(() =>
+const StatisticsCircleView = dynamic<StatisticsCircleViewProps>(() =>
   import('@/src/components/organisms/Statistics/StatisticsCircleView').then(
     (mod) => mod.StatisticsCircleView
   )
 )
-const StatisticsCommonView = dynamic(() =>
+const StatisticsCommonView = dynamic<StatisticsCommonViewProps>(() =>
   import('@/src/components/organisms/Statistics/StatisticsCommonView').then(
     (mod) => mod.StatisticsCommonView
   )
 )
-const StatisticsOtherView = dynamic(() =>
+const StatisticsOtherView = dynamic<StatisticsOtherViewProps>(() =>
   import('@/src/components/organisms/Statistics/StatisticsOtherView').then(
     (mod) => mod.StatisticsOtherView
   )
 )
 
-const BaseFooter = dynamic(() =>
+const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
 )
 
@@ -44,6 +48,10 @@ const Page: NextPage<Props> = ({
   const [buttonState, setButtonState] = useState<StatisticsButtonState>(
     StatisticsButtonState.COMMON
   )
+
+  if (!statistics) {
+    return <div></div>
+  }
 
   return (
     <>

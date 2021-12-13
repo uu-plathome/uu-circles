@@ -77,3 +77,5 @@ export const computedPagePositionIdNowLength = ({
 export type ComputedPagePositionIdNowLength = ReturnType<
   typeof computedPagePositionIdNowLength
 >
+export type ComputedPagePositionIdNowLengthKey =
+  keyof ComputedPagePositionIdNowLength

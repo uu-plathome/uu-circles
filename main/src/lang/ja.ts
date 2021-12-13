@@ -14,7 +14,7 @@ export const namespaceType = {
   TextByTagSlugProperty: 'TextByTagSlugProperty',
 } as const
 
-export const ja = {
+export const ja: { [key: string]: any } = {
   [CircleType._type]: {
     [CircleType.OFFICIAL_ORGANIZATION]: '公認団体',
     [CircleType.UNOFFICIAL_ORGANIZATION]: '非公認団体',

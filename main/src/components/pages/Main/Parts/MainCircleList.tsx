@@ -100,4 +100,5 @@ const MainCircleList: FC<Props> = ({
   )
 }
 
+export type { Props }
 export { MainCircleList }

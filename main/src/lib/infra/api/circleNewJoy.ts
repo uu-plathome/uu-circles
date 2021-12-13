@@ -49,7 +49,10 @@ export const getTodayCircleNewJoy =
     } catch (_e) {
       const e = _e as AxiosError
 
-      throw new InternalServerError(e.response.status, e.response.statusText)
+      throw new InternalServerError(
+        e.response ? e.response.status : 500,
+        e.response ? e.response.statusText : 'Internal Server Error'
+      )
     }
   }
 
@@ -82,7 +85,10 @@ export const getDemoTodayCircleNewJoy =
     } catch (_e) {
       const e = _e as AxiosError
 
-      throw new InternalServerError(e.response.status, e.response.statusText)
+      throw new InternalServerError(
+        e.response ? e.response.status : 500,
+        e.response ? e.response.statusText : 'Internal Server Error'
+      )
     }
   }
 
@@ -124,11 +130,14 @@ export const getCircleNewJoyBySlug = async (
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 404) {
+    if (e.response && e.response.status === 404) {
       throw new PageNotFoundError(e.response.status, e.response.statusText)
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
 
@@ -170,11 +179,14 @@ export const getDemoCircleNewJoyBySlug = async (
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 404) {
+    if (e.response && e.response.status === 404) {
       throw new PageNotFoundError(e.response.status, e.response.statusText)
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
 
@@ -219,11 +231,14 @@ export const showCircleNewJoyBySlug = async (
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 404) {
+    if (e.response && e.response.status === 404) {
       throw new PageNotFoundError(e.response.status, e.response.statusText)
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
 
@@ -268,10 +283,13 @@ export const showDemoCircleNewJoyBySlug = async (
   } catch (_e) {
     const e = _e as AxiosError
 
-    if (e.response.status === 404) {
+    if (e.response && e.response.status === 404) {
       throw new PageNotFoundError(e.response.status, e.response.statusText)
     }
 
-    throw new InternalServerError(e.response.status, e.response.statusText)
+    throw new InternalServerError(
+      e.response ? e.response.status : 500,
+      e.response ? e.response.statusText : 'Internal Server Error'
+    )
   }
 }
