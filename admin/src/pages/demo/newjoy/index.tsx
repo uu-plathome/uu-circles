@@ -28,26 +28,26 @@ const IndexPage: NextPage = () => {
       <BaseContainer>
         <BaseWrapper
           title="デモ新歓一覧"
-          actionText="新歓新規作成"
+          actionText="デモ新歓新規作成"
           actionHref="/demo/newjoy/create"
           actionAs={`/demo/newjoy/create`}
         >
           <div className="p-2 border-2 border-gray-800">
             {data && data.demoCircleNewJoys && data.demoCircleNewJoys.length > 0
               ? data.demoCircleNewJoys.map((demoCircleNewJoy) => {
-                  return (
-                    <DemoCircleNewJoyListItem
-                      key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
-                      name={demoCircleNewJoy.name}
-                      circleId={demoCircleNewJoy.circleId}
-                      demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
-                    />
-                  )
-                })
+                return (
+                  <DemoCircleNewJoyListItem
+                    key={`circle-${demoCircleNewJoy.demoCircleNewJoy.demoCircleNewJoyId}`}
+                    name={demoCircleNewJoy.name}
+                    circleId={demoCircleNewJoy.circleId}
+                    demoCircleNewJoy={demoCircleNewJoy.demoCircleNewJoy}
+                  />
+                )
+              })
               : ''}
             {data &&
-            data.demoCircleNewJoys &&
-            data.demoCircleNewJoys.length === 0 ? (
+              data.demoCircleNewJoys &&
+              data.demoCircleNewJoys.length === 0 ? (
               <div className="py-4">
                 <p className="text-white">まだ新歓が登録されていません</p>
               </div>
