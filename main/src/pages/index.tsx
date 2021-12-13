@@ -37,13 +37,8 @@ const useRefetchMainData = (ssrProps: Props): Props => {
     }
   }
 
-  const {
-    advertises,
-    mainAdvertises,
-    circles,
-    uuYellArticles,
-    announcements,
-  } = data
+  const { advertises, mainAdvertises, circles, uuYellArticles, announcements } =
+    data
 
   return {
     advertises,
@@ -63,9 +58,13 @@ type Props = {
 }
 const Index: NextPage<Props> = (ssrProps) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { advertises, mainAdvertises, circles, uuYellArticles, announcements } =
@@ -90,10 +89,12 @@ const Index: NextPage<Props> = (ssrProps) => {
         mainAdvertises={mainAdvertises}
         circles={circles}
         uuYellArticles={uuYellArticles}
-        uuYellForMain={uuYellForMain || {
-          posts: undefined,
-          medias: undefined
-        }}
+        uuYellForMain={
+          uuYellForMain || {
+            posts: undefined,
+            medias: undefined,
+          }
+        }
         announcements={announcements}
         pagePositions={pageData}
         recordPagePosition={recordPagePosition}

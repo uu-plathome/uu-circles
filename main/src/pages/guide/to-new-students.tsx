@@ -47,9 +47,13 @@ const SubHeader: FC<{
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { onChangeId } = usePagePosition({

@@ -59,9 +59,9 @@ const Page: NextPage<Props> = ({
   announcements,
 }) => {
   const { isMd } = useMediaQuery() //画面サイズによってレイアウト分けるため
-  const circleSlug = useMemo(() => circle ? circle?.slug : '', [circle])
+  const circleSlug = useMemo(() => (circle ? circle?.slug : ''), [circle])
   const pageUrl = useMemo(
-    () => circle ? `https://uu-circles.com/circle/${circleSlug}/newjoy` : '',
+    () => (circle ? `https://uu-circles.com/circle/${circleSlug}/newjoy` : ''),
     [circle, circleSlug]
   )
 
@@ -179,8 +179,9 @@ const Page: NextPage<Props> = ({
                     <div className="pb-2 my-2">
                       <TwitterShareButton
                         url={pageUrl}
-                        title={`UU-Circlesで${circle.shortName || circle.name
-                          }の新歓を見る！`}
+                        title={`UU-Circlesで${
+                          circle.shortName || circle.name
+                        }の新歓を見る！`}
                         hashtags={['春から宇大']}
                         className="mr-2"
                       >
@@ -266,8 +267,9 @@ const Page: NextPage<Props> = ({
                   <div className="flex justify-center pb-2 my-2">
                     <TwitterShareButton
                       url={pageUrl}
-                      title={`UU-Circlesで${circle.shortName || circle.name
-                        }の新歓を見る！`}
+                      title={`UU-Circlesで${
+                        circle.shortName || circle.name
+                      }の新歓を見る！`}
                       hashtags={['春から宇大']}
                       className="mr-2"
                     >

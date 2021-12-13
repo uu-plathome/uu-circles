@@ -40,9 +40,9 @@ export const fetchPostsByCircle = async ({
       ...fetchedPosts[1].data.map((post) => post.id),
     ]),
   ]
-  const posts = postIds.map((postId) =>
-    allPosts.find((post) => post.id === postId)
-  ).filter((post) => post !== undefined) as WP_REST_API_Posts
+  const posts = postIds
+    .map((postId) => allPosts.find((post) => post.id === postId))
+    .filter((post) => post !== undefined) as WP_REST_API_Posts
 
   if (posts.length === 0) {
     return {
@@ -51,7 +51,8 @@ export const fetchPostsByCircle = async ({
     }
   }
 
-  const mediaIds = posts.map((post) => post ? post.featured_media : undefined)
+  const mediaIds = posts
+    .map((post) => (post ? post.featured_media : undefined))
     .filter((mediaId) => mediaId) as number[]
   const queryMediaIds = mediaIds.join(',')
 

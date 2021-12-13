@@ -35,7 +35,8 @@ const Page: NextPage = () => {
   const router = useRouter()
 
   const redirect = async () => {
-    const identifierHash = localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    const identifierHash =
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
 
     const data = await drawGacha({
       identifierHash,
@@ -45,9 +46,7 @@ const Page: NextPage = () => {
     await router.push(`/gacha/result/${data.gachaHash}`)
   }
 
-  const onPlayerReady = (event: {
-    target: YouTubePlayer
-  }) => {
+  const onPlayerReady = (event: { target: YouTubePlayer }) => {
     event.target.mute()
     event.target.playVideo()
   }

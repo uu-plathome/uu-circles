@@ -41,9 +41,13 @@ const Page: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { data: uuYellForCircles } = useSWR<{
@@ -98,9 +102,11 @@ const Page: NextPage<Props> = ({
           {
             url: `${baseUuCirclesUrl}/circle/newjoy`,
           },
-          ...circleNewJoys ? circleNewJoys.map((circleNewJoy) => ({
-            url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
-          })) : [],
+          ...(circleNewJoys
+            ? circleNewJoys.map((circleNewJoy) => ({
+                url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
+              }))
+            : []),
         ]}
       />
 
@@ -111,17 +117,21 @@ const Page: NextPage<Props> = ({
         uuYellArticles={uuYellArticles}
         wpPosts={wpPosts}
         announcements={announcements}
-        uuYellForCircles={uuYellForCircles || {
-          posts: [],
-          medias: []
-        }}
+        uuYellForCircles={
+          uuYellForCircles || {
+            posts: [],
+            medias: [],
+          }
+        }
         onChangeId={onChangeId}
       />
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps<Partial<Props>> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
+  params,
+}) => {
   if (!params || !params.slug || Array.isArray(params.slug)) {
     return {
       notFound: true,

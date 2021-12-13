@@ -1,5 +1,8 @@
 import { FC } from 'react'
-import { ComputedPagePositionIdNowLength, ComputedPagePositionIdNowLengthKey } from '../computedPagePositionIdNowLength'
+import {
+  ComputedPagePositionIdNowLength,
+  ComputedPagePositionIdNowLengthKey,
+} from '../computedPagePositionIdNowLength'
 import { WhiteBadge } from '@/src/components/atoms/badge/WhiteBadge'
 import { Utas } from '@/src/components/atoms/utas/Utas'
 import { __ } from '@/src/lang/ja'

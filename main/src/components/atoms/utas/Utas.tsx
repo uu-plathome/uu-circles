@@ -110,7 +110,9 @@ const Uta: FC<UtaProps> = ({
   color = UtaColorList.BLUE,
 }) => {
   const [isOn, setIsOn] = useState<boolean>(false)
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(undefined)
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     setInterval(() => {

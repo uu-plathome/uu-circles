@@ -46,9 +46,13 @@ const Index: NextPage<Props> = ({
   announcements,
 }) => {
   // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   // 「編集長イチオシ」の取得
@@ -113,10 +117,12 @@ const Index: NextPage<Props> = ({
         mainAdvertises={mainAdvertises}
         circles={circles}
         uuYellArticles={uuYellArticles}
-        uuYellForMain={uuYellForMain || {
-          posts: undefined,
-          medias: undefined,
-        }}
+        uuYellForMain={
+          uuYellForMain || {
+            posts: undefined,
+            medias: undefined,
+          }
+        }
         announcements={announcements}
         pagePositions={pageData}
         recordPagePosition={recordPagePosition}

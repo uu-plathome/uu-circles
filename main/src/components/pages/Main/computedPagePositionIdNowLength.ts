@@ -56,7 +56,7 @@ export const computedPagePositionIdNowLength = ({
       pagePositionsExcludeOwn.filter(
         (p) =>
           p.pagePositionId ===
-          TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS ||
+            TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS ||
           p.pageUrl === '/guide/to-new-students'
       ).length,
     [TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]: pagePositionsExcludeOwn.filter(
@@ -77,4 +77,5 @@ export const computedPagePositionIdNowLength = ({
 export type ComputedPagePositionIdNowLength = ReturnType<
   typeof computedPagePositionIdNowLength
 >
-export type ComputedPagePositionIdNowLengthKey = keyof ComputedPagePositionIdNowLength
+export type ComputedPagePositionIdNowLengthKey =
+  keyof ComputedPagePositionIdNowLength
