@@ -40,7 +40,8 @@ export const createPagePosition = async ({
 
     if (e.response && e.response.status === 422 && e.response.data) {
       console.info({
-        message: 'CreatePagePositionRequestValidationError 422 request内容の表示',
+        message:
+          'CreatePagePositionRequestValidationError 422 request内容の表示',
         identifierHash,
         request,
       })
