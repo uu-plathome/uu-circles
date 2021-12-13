@@ -1,6 +1,5 @@
-import { FC, VFC } from 'react'
-import { ObfuscateProps } from './interface'
-const Obfuscate: FC<ObfuscateProps> = require('react-obfuscate')
+import { Obfuscate } from '@south-paw/react-obfuscate-ts'
+import { VFC } from 'react'
 
 
 type Props = {
