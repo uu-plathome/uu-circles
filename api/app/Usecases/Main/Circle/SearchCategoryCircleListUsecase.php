@@ -16,6 +16,7 @@ final class SearchCategoryCircleListUsecase
 {
     /**
      * カテゴリー検索をする.
+     * ただし、デモサークルは取得しない.
      *
      * @param SearchCategoryCircleListParam $param
      *
@@ -45,7 +46,7 @@ final class SearchCategoryCircleListUsecase
             'circleHandbill:circle_id,image_url',
         ])->whereRelease(true)
             ->whereIsOnlyDemo(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param, $circleType) {
                 /** @var \App\Models\CircleInformation $query */

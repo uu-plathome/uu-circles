@@ -4,11 +4,19 @@
     "description": "## uu-yellとは",
     "main": "yell_bot.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "dev:hello": "ts-node hello.ts"
     },
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
-      "discord.js": "^12"
+        "axios": "^0.24.0",
+        "dayjs": "^1.10.7",
+        "discord.js": "^12"
+    },
+    "devDependencies": {
+        "@types/node": "^16.11.12",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.3",
+        "wp-types": "^2.12.0"
     }
-  }
+}

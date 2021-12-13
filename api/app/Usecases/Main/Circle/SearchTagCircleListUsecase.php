@@ -17,6 +17,7 @@ final class SearchTagCircleListUsecase
 {
     /**
      * タグで検索する.
+     * ただし、デモサークルは取得しない.
      *
      * @param SearchTagCircleListParam $param
      *
@@ -38,7 +39,7 @@ final class SearchTagCircleListUsecase
         $circles = Circle::with($with)
             ->whereRelease(true)
             ->whereIsOnlyDemo(false)
-            // 新歓が登録されているのものを取得
+            // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->hasByNonDependentSubquery('circleInformation', function (HasOne $query) use ($param) {
                 /** @var \App\Models\CircleInformation $query */
