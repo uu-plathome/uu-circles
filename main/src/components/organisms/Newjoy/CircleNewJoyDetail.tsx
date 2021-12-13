@@ -127,8 +127,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
-                  title={`UU-Circlesで${circle.shortName || circle.name}の新歓${circleNewJoy.title
-                    }を見る！`}
+                  title={`UU-Circlesで${circle.shortName || circle.name}の新歓${
+                    circleNewJoy.title
+                  }を見る！`}
                   hashtags={['春から宇大']}
                   className="mr-2"
                 >
@@ -222,8 +223,9 @@ const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
               <div className="pb-2 my-2">
                 <TwitterShareButton
                   url={pageUrl}
-                  title={`UU-Circlesで${circle.shortName || circle.name
-                    }の新歓「${circleNewJoy.title}」を見る！`}
+                  title={`UU-Circlesで${
+                    circle.shortName || circle.name
+                  }の新歓「${circleNewJoy.title}」を見る！`}
                   hashtags={['春から宇大']}
                   className="mr-2"
                 >

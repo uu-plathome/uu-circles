@@ -1,7 +1,6 @@
 import { Obfuscate } from '@south-paw/react-obfuscate-ts'
 import { VFC } from 'react'
 
-
 type Props = {
   email: string
 }

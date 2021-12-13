@@ -71,9 +71,9 @@ const Page: NextPage<Props> = ({
               <h1 className="py-8 text-2xl font-bold text-center">- 結果 -</h1>
 
               {count === 1 &&
-                resultCircles &&
-                Array.isArray(resultCircles) &&
-                resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
                 <div className="flex justify-center cursor-pointer">
                   <Link
                     href="/circle/slug"
@@ -99,9 +99,9 @@ const Page: NextPage<Props> = ({
               )}
 
               {count === 5 &&
-                resultCircles &&
-                Array.isArray(resultCircles) &&
-                resultCircles.length > 0 ? (
+              resultCircles &&
+              Array.isArray(resultCircles) &&
+              resultCircles.length > 0 ? (
                 <div className="grid grid-cols-2 gap-4">
                   {resultCircles.map((resultCircle, idx) => {
                     return (
@@ -163,7 +163,9 @@ const Page: NextPage<Props> = ({
                     title={
                       count === 5
                         ? '5連ガチャ結果を見る！'
-                        : `${resultCircles ? resultCircles[0].name : ''}があたりました！`
+                        : `${
+                            resultCircles ? resultCircles[0].name : ''
+                          }があたりました！`
                     }
                     hashtags={['春から宇大']}
                     className="mr-2"
@@ -186,8 +188,8 @@ const Page: NextPage<Props> = ({
               </div>
 
               {pickupCircles &&
-                Array.isArray(pickupCircles) &&
-                pickupCircles.length > 0 ? (
+              Array.isArray(pickupCircles) &&
+              pickupCircles.length > 0 ? (
                 <div className="flex justify-center pt-8">
                   <div style={{ width: 360 }}>
                     <div className="flex justify-center items-center mb-4">
@@ -215,7 +217,9 @@ const Page: NextPage<Props> = ({
                           >
                             <Link
                               href="/circle/slug"
-                              as={`/circle/${resultCircles ? resultCircles[0].slug : ''}`}
+                              as={`/circle/${
+                                resultCircles ? resultCircles[0].slug : ''
+                              }`}
                               passHref
                             >
                               <div className="flex items-center py-4 px-6 bg-white rounded">

@@ -148,8 +148,14 @@ export const MainTemplate: FC<Props> = ({
           >
             <MainUucircleBottomButtons
               pagePositionIdNowLength={pagePositionIdNowLength}
-              medias={uuYellForMain && uuYellForMain.medias ? uuYellForMain.medias : []}
-              posts={uuYellForMain && uuYellForMain.posts ? uuYellForMain.posts : []}
+              medias={
+                uuYellForMain && uuYellForMain.medias
+                  ? uuYellForMain.medias
+                  : []
+              }
+              posts={
+                uuYellForMain && uuYellForMain.posts ? uuYellForMain.posts : []
+              }
             />
           </div>
 

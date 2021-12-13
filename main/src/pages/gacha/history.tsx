@@ -26,17 +26,21 @@ type Props = {
   }
 }
 const Page: NextPage<Props> = () => {
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(undefined)
+  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
+    undefined
+  )
 
   useEffect(() => {
-    setIdentifierHash(localStorage.getItem(LocalStorageKey.identifierHash) || undefined)
+    setIdentifierHash(
+      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
+    )
   }, [])
 
   const { data: gachaHistory } = useSWR(
     identifierHash
       ? `/api/gacha/circle/history?X-IDENTIFIER_HASH=${identifierHash}`
       : null,
-    () => identifierHash ? getGachaHistory({ identifierHash }) : undefined
+    () => (identifierHash ? getGachaHistory({ identifierHash }) : undefined)
   )
 
   return (
