@@ -11,7 +11,10 @@ if (process.env.BUGSNAG_API_KEY) {
   })
 
   console.error = (...data: any[]) => {
-    data.length > 0 && Bugsnag.notify(data[0])
+    if (data.length > 0 && !data[0]) {
+      Bugsnag.notify(data[0])
+    }
+
     originalConsoleError(...data)
   }
 }

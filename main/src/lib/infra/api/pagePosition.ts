@@ -39,6 +39,13 @@ export const createPagePosition = async ({
     const e = _e as AxiosError<CreatePagePositionRequestValidationError>
 
     if (e.response && e.response.status === 422 && e.response.data) {
+      console.info({
+        message:
+          'CreatePagePositionRequestValidationError 422 request内容の表示',
+        identifierHash,
+        request,
+      })
+
       return {
         ...e.response.data,
         type: 'CreatePagePositionRequestValidationError',

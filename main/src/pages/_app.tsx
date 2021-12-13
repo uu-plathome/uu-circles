@@ -29,9 +29,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       return
     }
 
-    const handleRouteChange = (path) => {
-      gtag.pageview(path)
-    }
+    const handleRouteChange = (path): void => gtag.pageview(path)
 
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
