@@ -23,7 +23,7 @@ type Props = {
 }
 const CircleNewJoyDetail: FC<Props> = ({ circle, circleNewJoy }) => {
   const pageUrl = useMemo(
-    () => `https://uu-circles.com/${circle.slug}/newjoy/${circleNewJoy.id}`,
+    () => `https://uu-circles.com/circle/${circle.slug}/newjoy/${circleNewJoy.id}`,
     [circle.slug, circleNewJoy.id]
   )
 
