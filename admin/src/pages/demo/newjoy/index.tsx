@@ -28,7 +28,7 @@ const IndexPage: NextPage = () => {
       <BaseContainer>
         <BaseWrapper
           title="デモ新歓一覧"
-          actionText="新歓新規作成"
+          actionText="デモ新歓新規作成"
           actionHref="/demo/newjoy/create"
           actionAs={`/demo/newjoy/create`}
         >
