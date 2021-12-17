@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next -p 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
     "lint": "eslint . --fix --ext ts --ext tsx --ext js"
   },
