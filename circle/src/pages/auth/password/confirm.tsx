@@ -90,7 +90,6 @@ const PasswordConfirmPage: NextPage = () => {
               新しいパスワード
             </h1>
 
-
             {error ? (
               <div className="p-4 mb-4">
                 <p className="text-lg text-black">

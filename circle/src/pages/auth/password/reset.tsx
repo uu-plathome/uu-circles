@@ -49,7 +49,9 @@ const Login: NextPage = () => {
       return
     }
 
-    setError('エラーが発生しました。このメールアドレスは登録されていない可能性があります。')
+    setError(
+      'エラーが発生しました。このメールアドレスは登録されていない可能性があります。'
+    )
     setIsOpen(false)
   }
 
@@ -108,11 +110,10 @@ const Login: NextPage = () => {
             ) : (
               <div>
                 <p className="text-black">
-                  {email.value}にパスワードを変更するためのメールを送信しました。
+                  {email.value}
+                  にパスワードを変更するためのメールを送信しました。
                 </p>
-                <p className="text-black">
-                  メールを確認してください。
-                </p>
+                <p className="text-black">メールを確認してください。</p>
               </div>
             )}
           </div>
