@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import { BlueButton } from '@/src/components/atoms/buttons/BlueButton'
 import { BaseTextField } from '@/src/components/atoms/form/BaseTextField'
+import { SubmitLoading } from '@/src/components/atoms/loading/SubmitLoading'
 import { MainHeader } from '@/src/components/layouts/MainHeader'
 import { AuthContext } from '@/src/contexts/AuthContext'
 import { useInput } from '@/src/hooks/useInput'
@@ -15,8 +16,9 @@ import { isForgotPasswordCircleRequestValidationError } from '@/src/lib/types/ap
 
 const Login: NextPage = () => {
   const email = useInput('')
-  const [success, setSuccess] = useState('')
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const authContext = useContext(AuthContext)
 
@@ -26,6 +28,7 @@ const Login: NextPage = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault()
+    setIsOpen(true)
     setError('')
 
     const data = await forgotPassword(email.value)
@@ -36,17 +39,18 @@ const Login: NextPage = () => {
           ? data.errors.email[0]
           : ''
       )
+      setIsOpen(false)
       return
     }
 
     if (data && data.type === 'success') {
-      setSuccess(
-        `${email.value}にパスワードを変更するためのメールを送信しました。`
-      )
+      setSuccess(true)
+      setIsOpen(false)
       return
     }
 
-    setError('エラーが発生しました。')
+    setError('エラーが発生しました。このメールアドレスは登録されていない可能性があります。')
+    setIsOpen(false)
   }
 
   return (
@@ -56,6 +60,8 @@ const Login: NextPage = () => {
       </Head>
 
       <MainHeader />
+
+      <SubmitLoading isOpen={isOpen} />
 
       <div className="xl:container">
         <div className="mx-auto mt-16 max-w-screen-md">
@@ -100,7 +106,14 @@ const Login: NextPage = () => {
                 </div>
               </div>
             ) : (
-              <p className="text-black">{success}</p>
+              <div>
+                <p className="text-black">
+                  {email.value}にパスワードを変更するためのメールを送信しました。
+                </p>
+                <p className="text-black">
+                  メールを確認してください。
+                </p>
+              </div>
             )}
           </div>
         </div>
