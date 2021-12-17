@@ -44,7 +44,7 @@ final class VerificationConfirmController extends Controller
         if ($user->hasVerifiedEmail()) {
             return response()->json([
                 'status' => __('verification.already_verified'),
-            ], 400);
+            ]);
         }
 
         $user->markEmailAndPasswordAsVerified($request->get('password'));
