@@ -28,7 +28,7 @@ const MainHeader: FC<Props> = ({ onClick }) => {
               </div>
 
               <h1 className="text-sm md:text-lg">
-                <a href="https://uu-circles.com/">UU-circles</a>
+                <a href="https://uu-circles.com/">UU-Circles</a>
               </h1>
             </div>
 
