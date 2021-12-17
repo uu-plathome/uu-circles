@@ -81,7 +81,7 @@ final class ForgotPasswordCircleController extends Controller
             [
                 'request'          => $request,
                 'response'         => $response,
-                'success_response' => Password::RESET_LINK_SENT
+                'success_response' => Password::RESET_LINK_SENT,
             ]
         );
 
