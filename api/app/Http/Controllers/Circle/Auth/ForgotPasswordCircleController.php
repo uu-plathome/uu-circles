@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Auth\ForgotPasswordCircleRequest;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
@@ -52,13 +51,15 @@ final class ForgotPasswordCircleController extends Controller
      * @param Request $request
      * @param string  $response
      *
-     * @return RedirectResponse|int[]
+     * @return JsonResponse
      */
-    protected function sendResetLinkResponse(Request $request, $response)
-    {
+    protected function sendResetLinkResponse(
+        Request $request,
+        string $response
+    ): JsonResponse {
         Log::debug('ForgotPasswordCircleController#sendResetLinkResponse');
 
-        return ['status' => trans($response)];
+        return response()->json(['status' => trans($response)]);
     }
 
     /**
@@ -69,9 +70,20 @@ final class ForgotPasswordCircleController extends Controller
      *
      * @return JsonResponse
      */
-    protected function sendResetLinkFailedResponse(Request $request, $response)
-    {
+    protected function sendResetLinkFailedResponse(
+        Request $request,
+        string $response
+    ): JsonResponse {
         Log::debug('ForgotPasswordCircleController#sendResetLinkFailedResponse');
+
+        Log::warning(
+            'ForgotPasswordCircleController#sendResetLinkFailedResponse',
+            [
+                'request'          => $request,
+                'response'         => $response,
+                'success_response' => Password::RESET_LINK_SENT,
+            ]
+        );
 
         return response()->json(['email' => trans($response)], 400);
     }

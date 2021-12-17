@@ -304,13 +304,30 @@ export const resetPassword = async (request: ResetPasswordCircleRequest) => {
       type: 'success'
     }
   } catch (_e) {
-    const e = _e as AxiosError<ResetPasswordCircleRequestValidationError>
+    const e = _e as AxiosError<
+      | {
+          email: string
+          type: '400'
+        }
+      | ResetPasswordCircleRequestValidationError
+    >
 
     if (e.response && e.response.status === 422) {
       return {
         ...e.response.data,
         type: 'ResetPasswordCircleRequestValidationError',
       } as ResetPasswordCircleRequestValidationError
+    }
+
+    if (e.response && e.response.status === 400) {
+      console.log(e.response.data)
+      return {
+        ...e.response.data,
+        type: '400',
+      } as {
+        email: string
+        type: '400'
+      }
     }
 
     console.error(e)
