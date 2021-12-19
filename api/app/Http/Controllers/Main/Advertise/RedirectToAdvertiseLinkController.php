@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Main\Advertise;
 
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
+use App\Support\Str;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -23,24 +24,37 @@ final class RedirectToAdvertiseLinkController
      */
     public function __invoke(Request $request, string $slug): RedirectResponse
     {
-        Log::debug('RedirectToAdvertiseLinkController', [
+        Log::debug('RedirectToAdvertiseLinkController args', [
             'slug' => $slug,
         ]);
 
-        $advertise = Advertise::nowPublic(Carbon::now())->whereSlug($slug)->first();
+        $advertise = Advertise::nowPublic(Carbon::now())
+            ->whereSlug($slug)
+            ->first();
 
+        // 広告がないとき
         if (is_null($advertise)) {
-            Log::warning('存在しない広告のslugが選択されています', [
-                'slug' => $slug,
-            ]);
+            // header['from']を取得する
+            $headerFrom = $request->header('from'); // 例) googlebot(at)googlebot.com
+            // Google Bot かどうかを判定する
+            if (is_string($headerFrom) && Str::contains($headerFrom, 'googlebot')) {
+                return redirect()->away($this->redirectToHomeUrl());
+            }
 
+            // Google Bot でない場合は、warningを出力してリダイレクトする
+            Log::warning('RedirectToAdvertiseLinkController 存在しない広告のslugが選択されています', [
+                'slug'        => $slug,
+                'redirect_to' => $this->redirectToHomeUrl(),
+            ]);
             return redirect()->away($this->redirectToHomeUrl());
         }
 
+        // 広告はあるが、広告に link が設定されていないとき
         if (!$advertise->link) {
-            Log::warning('広告にlinkが設定されていません。', [
+            Log::warning('RedirectToAdvertiseLinkController 広告にlinkが設定されていません。', [
                 'slug'      => $slug,
                 'advertise' => $advertise,
+                'redirect_to' => $this->redirectToHomeUrl(),
             ]);
 
             return redirect()->away($this->redirectToHomeUrl());
@@ -48,7 +62,7 @@ final class RedirectToAdvertiseLinkController
 
         Log::debug('RedirectToAdvertiseLinkController count up start');
 
-        // 広告のクリック数
+        // 広告のクリック数をカウントアップする
         AdvertiseCounter::whereAdvertiseId($advertise->id)
             ->whereLink($advertise->link)
             ->inRandomOrder()
