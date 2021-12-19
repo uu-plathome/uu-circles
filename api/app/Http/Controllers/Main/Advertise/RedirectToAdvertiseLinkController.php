@@ -46,14 +46,15 @@ final class RedirectToAdvertiseLinkController
                 'slug'        => $slug,
                 'redirect_to' => $this->redirectToHomeUrl(),
             ]);
+
             return redirect()->away($this->redirectToHomeUrl());
         }
 
         // 広告はあるが、広告に link が設定されていないとき
         if (!$advertise->link) {
             Log::warning('RedirectToAdvertiseLinkController 広告にlinkが設定されていません。', [
-                'slug'      => $slug,
-                'advertise' => $advertise,
+                'slug'        => $slug,
+                'advertise'   => $advertise,
                 'redirect_to' => $this->redirectToHomeUrl(),
             ]);
 
