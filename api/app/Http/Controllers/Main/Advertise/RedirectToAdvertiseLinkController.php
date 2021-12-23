@@ -42,7 +42,7 @@ final class RedirectToAdvertiseLinkController
             }
 
             // header['user-agent']を取得する
-            $userAgent = $request->header("user-agent"); // 例 "Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)"
+            $userAgent = $request->header('user-agent'); // 例 "Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)"
             // Bot かどうかを判定する
             if (is_string($userAgent) && Str::contains($userAgent, 'bot')) {
                 return redirect()->away($this->redirectToHomeUrl());
