@@ -8,6 +8,7 @@ use App\Enum\AnnouncementPlace;
 use App\Enum\SlugProperty\AnnouncementPlaceQuerySlugProperty;
 use App\Models\Announcement;
 use App\Models\AnnouncementCounter;
+use App\Support\Str;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -36,8 +37,23 @@ final class RedirectToAnnouncementLinkController
         $announcementPlace = $this->queryToAnnouncementPlace($place);
 
         if (is_null($announcement)) {
+            // header['from']を取得する
+            $headerFrom = $request->header('from'); // 例) googlebot(at)googlebot.com
+            // Bot かどうかを判定する
+            if (is_string($headerFrom) && Str::contains($headerFrom, 'bot')) {
+                return redirect()->away($this->redirectToHomeUrl());
+            }
+
+            // header['user-agent']を取得する
+            $userAgent = $request->header('user-agent'); // 例 "Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)"
+            // Bot かどうかを判定する
+            if (is_string($userAgent) && Str::contains($userAgent, 'bot')) {
+                return redirect()->away($this->redirectToHomeUrl());
+            }
+
             Log::warning('存在しないお知らせのslugが選択されています', [
-                'slug' => $slug,
+                'slug'        => $slug,
+                'redirect_to' => $this->redirectToHomeUrl(),
             ]);
 
             return redirect()->away($this->redirectToHomeUrl());

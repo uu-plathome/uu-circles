@@ -36,12 +36,19 @@ final class RedirectToAdvertiseLinkController
         if (is_null($advertise)) {
             // header['from']を取得する
             $headerFrom = $request->header('from'); // 例) googlebot(at)googlebot.com
-            // Google Bot かどうかを判定する
-            if (is_string($headerFrom) && Str::contains($headerFrom, 'googlebot')) {
+            // Bot かどうかを判定する
+            if (is_string($headerFrom) && Str::contains($headerFrom, 'bot')) {
                 return redirect()->away($this->redirectToHomeUrl());
             }
 
-            // Google Bot でない場合は、warningを出力してリダイレクトする
+            // header['user-agent']を取得する
+            $userAgent = $request->header('user-agent'); // 例 "Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)"
+            // Bot かどうかを判定する
+            if (is_string($userAgent) && Str::contains($userAgent, 'bot')) {
+                return redirect()->away($this->redirectToHomeUrl());
+            }
+
+            // Bot でない場合は、warningを出力してリダイレクトする
             Log::warning('RedirectToAdvertiseLinkController 存在しない広告のslugが選択されています', [
                 'slug'        => $slug,
                 'redirect_to' => $this->redirectToHomeUrl(),
