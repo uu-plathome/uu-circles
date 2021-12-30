@@ -9,7 +9,7 @@ use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
-use App\Usecases\Admin\UpdateAdminUserUsecase;
+use App\Usecases\Admin\AdminUser\UpdateAdminUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
@@ -34,7 +34,7 @@ final class UpdateAdminUserController extends Controller
         Log::debug("UpdateAdminUserController args userId=$userId");
 
         $request->validate([
-            UserProperty::username  => 'unique:users,username,'.$userId,
+            UserProperty::username  => 'unique:users,username,' . $userId,
             AdminUserProperty::role => [Rule::in($this->canSelectedRoles($request->user()))],
         ]);
 

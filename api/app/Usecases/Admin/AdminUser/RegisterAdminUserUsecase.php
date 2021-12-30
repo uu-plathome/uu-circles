@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Usecases;
+declare(strict_types=1);
+
+namespace App\Usecases\Admin\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
 use App\Events\RegisteredAdminUser;
 use App\ValueObjects\AdminUserValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
-class RegisterAdminUserUsecase
+final class RegisterAdminUserUsecase
 {
     /**
-     * invoke.
+     * 管理者アカウントのユーザー情報の新規作成
      *
      * @param AdminUserValueObject $adminUserValueObject
      *
@@ -21,6 +24,10 @@ class RegisterAdminUserUsecase
      */
     public function invoke(AdminUserValueObject $adminUserValueObject): AdminUserValueObject
     {
+        Log::debug('RegisterAdminUserUsecase args', [
+            'adminUserValueObject' => $adminUserValueObject,
+        ]);
+
         $user = $adminUserValueObject->toUserProperty();
         $user->display_name ??= $user->username;
         if ($user->active === null) {

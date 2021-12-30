@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\AdminUser;
 
 use App\Enum\Role;
 use App\Models\User;
