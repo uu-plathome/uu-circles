@@ -48,6 +48,6 @@ final class SitemapController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'SitemapController' . $minutes;
+        return 'SitemapController'.$minutes;
     }
 }

@@ -138,13 +138,13 @@ final class DemoShowCircleNewJoyController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'DemoShowCircleNewJoyController.circleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
+        return 'DemoShowCircleNewJoyController.circleNewJoys'.$slug.'.circleNewJoyId.'.$circleNewJoyId.$minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(string $slug, int $circleNewJoyId): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'DemoShowCircleNewJoyController.allCircleNewJoys' . $slug . '.circleNewJoyId.' . $circleNewJoyId . $minutes;
+        return 'DemoShowCircleNewJoyController.allCircleNewJoys'.$slug.'.circleNewJoyId.'.$circleNewJoyId.$minutes;
     }
 }

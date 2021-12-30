@@ -19,8 +19,9 @@ final class UpdateCircleUsecase
      *
      * @param UpdateCircleUsecaseParam $param
      *
-     * @return UpdateCircleUsecaseDto
      * @throws Exception
+     *
+     * @return UpdateCircleUsecaseDto
      */
     public function invoke(UpdateCircleUsecaseParam $param): UpdateCircleUsecaseDto
     {

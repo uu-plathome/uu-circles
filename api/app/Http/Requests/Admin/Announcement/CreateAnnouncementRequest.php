@@ -108,7 +108,7 @@ class CreateAnnouncementRequest extends FormRequest
                 'nullable',
                 'date',
                 'date_format:Y-m-d H:i',
-                'after:' . Str::camel(AnnouncementProperty::publish_from),
+                'after:'.Str::camel(AnnouncementProperty::publish_from),
             ],
         ]);
     }
@@ -116,23 +116,23 @@ class CreateAnnouncementRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            AnnouncementProperty::title                => __('announcement.' . AnnouncementProperty::title),
-            AnnouncementProperty::description          => __('announcement.' . AnnouncementProperty::description),
-            AnnouncementProperty::link                 => __('announcement.' . AnnouncementProperty::link),
-            AnnouncementProperty::announcement_type    => __('announcement.' . AnnouncementProperty::announcement_type),
-            AnnouncementProperty::importance           => __('announcement.' . AnnouncementProperty::importance),
-            AnnouncementProperty::for_main_view        => __('announcement.' . AnnouncementProperty::for_main_view),
-            AnnouncementProperty::for_circle_mail      => __('announcement.' . AnnouncementProperty::for_circle_mail),
-            AnnouncementProperty::for_admin_view       => __('announcement.' . AnnouncementProperty::for_admin_view),
-            AnnouncementProperty::for_admin_mail       => __('announcement.' . AnnouncementProperty::for_admin_mail),
-            AnnouncementProperty::for_newjoy_discord   => __('announcement.' . AnnouncementProperty::for_newjoy_discord),
-            AnnouncementProperty::active               => __('announcement.' . AnnouncementProperty::active),
-            AnnouncementProperty::is_admin_view_fixed  => __('announcement.' . AnnouncementProperty::is_admin_view_fixed),
-            AnnouncementProperty::is_circle_view_fixed => __('announcement.' . AnnouncementProperty::is_circle_view_fixed),
-            AnnouncementProperty::is_main_view_fixed   => __('announcement.' . AnnouncementProperty::is_main_view_fixed),
-            AnnouncementProperty::notification_time    => __('announcement.' . AnnouncementProperty::notification_time),
-            AnnouncementProperty::publish_from         => __('announcement.' . AnnouncementProperty::publish_from),
-            AnnouncementProperty::publish_to           => __('announcement.' . AnnouncementProperty::publish_to),
+            AnnouncementProperty::title                => __('announcement.'.AnnouncementProperty::title),
+            AnnouncementProperty::description          => __('announcement.'.AnnouncementProperty::description),
+            AnnouncementProperty::link                 => __('announcement.'.AnnouncementProperty::link),
+            AnnouncementProperty::announcement_type    => __('announcement.'.AnnouncementProperty::announcement_type),
+            AnnouncementProperty::importance           => __('announcement.'.AnnouncementProperty::importance),
+            AnnouncementProperty::for_main_view        => __('announcement.'.AnnouncementProperty::for_main_view),
+            AnnouncementProperty::for_circle_mail      => __('announcement.'.AnnouncementProperty::for_circle_mail),
+            AnnouncementProperty::for_admin_view       => __('announcement.'.AnnouncementProperty::for_admin_view),
+            AnnouncementProperty::for_admin_mail       => __('announcement.'.AnnouncementProperty::for_admin_mail),
+            AnnouncementProperty::for_newjoy_discord   => __('announcement.'.AnnouncementProperty::for_newjoy_discord),
+            AnnouncementProperty::active               => __('announcement.'.AnnouncementProperty::active),
+            AnnouncementProperty::is_admin_view_fixed  => __('announcement.'.AnnouncementProperty::is_admin_view_fixed),
+            AnnouncementProperty::is_circle_view_fixed => __('announcement.'.AnnouncementProperty::is_circle_view_fixed),
+            AnnouncementProperty::is_main_view_fixed   => __('announcement.'.AnnouncementProperty::is_main_view_fixed),
+            AnnouncementProperty::notification_time    => __('announcement.'.AnnouncementProperty::notification_time),
+            AnnouncementProperty::publish_from         => __('announcement.'.AnnouncementProperty::publish_from),
+            AnnouncementProperty::publish_to           => __('announcement.'.AnnouncementProperty::publish_to),
         ]);
     }
 

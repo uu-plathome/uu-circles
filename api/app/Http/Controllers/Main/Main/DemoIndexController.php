@@ -112,20 +112,20 @@ final class DemoIndexController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main' . $minutes . rand(0, 2);
+        return 'main'.$minutes.rand(0, 2);
     }
 
     private function getMainTopAdvertiseCacheKey(): string
     {
         $hour = Carbon::now()->format('YmdH');
 
-        return 'main.advertise.mainTop' . $hour;
+        return 'main.advertise.mainTop'.$hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.advertise' . $minutes;
+        return 'main.advertise'.$minutes;
     }
 }

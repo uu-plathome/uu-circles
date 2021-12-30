@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 final class UpdateAdminUserUsecase
 {
     /**
-     * 管理者アカウントのユーザー情報更新
+     * 管理者アカウントのユーザー情報更新.
      *
      * @param int                  $userId
      * @param AdminUserValueObject $adminUserValueObject

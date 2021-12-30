@@ -215,10 +215,10 @@ final class SearchTagCircleListUsecase
                 });
             })
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug',
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')

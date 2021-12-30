@@ -35,10 +35,10 @@ final class GetCircleListUsecase
             // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'circles.' . 'id',
-                'circles.' . 'name',
-                'circles.' . 'release',
-                'circles.' . 'slug',
+                'circles.'.'id',
+                'circles.'.'name',
+                'circles.'.'release',
+                'circles.'.'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
@@ -59,6 +59,6 @@ final class GetCircleListUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.circle.GetCircleListUsecase.' . $minutes;
+        return 'main.circle.GetCircleListUsecase.'.$minutes;
     }
 }
