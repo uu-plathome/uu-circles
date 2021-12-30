@@ -158,6 +158,6 @@ final class SearchTagCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'SearchTagCircleController.main' . $tag . $minutes;
+        return 'SearchTagCircleController.main'.$tag.$minutes;
     }
 }

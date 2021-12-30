@@ -35,6 +35,6 @@ final class GetRecommendCircleUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'RecommendCircles ' . $minutes;
+        return 'RecommendCircles '.$minutes;
     }
 }

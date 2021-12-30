@@ -123,6 +123,6 @@ final class SearchCategoryCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'SearchCategoryCircleController.main' . $category . $minutes;
+        return 'SearchCategoryCircleController.main'.$category.$minutes;
     }
 }

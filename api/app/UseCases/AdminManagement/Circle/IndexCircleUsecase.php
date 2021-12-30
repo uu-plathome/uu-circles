@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleUsecase
 {
     /**
-     * すべてのサークルを取得する
+     * すべてのサークルを取得する.
      *
      * @return CircleValueObject[]
      */

@@ -58,6 +58,6 @@ final class GetMainViewFixedAnnouncementsUsecase
      */
     public static function getCacheKey(): string
     {
-        return 'GetMainViewFixedAnnouncementsUsecase1' . Carbon::today()->format('Y-m-d h');
+        return 'GetMainViewFixedAnnouncementsUsecase1'.Carbon::today()->format('Y-m-d h');
     }
 }

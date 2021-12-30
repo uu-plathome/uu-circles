@@ -131,13 +131,13 @@ final class IndexCircleNewJoyController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'IndexCircleNewJoyController.circleNewJoys' . $minutes;
+        return 'IndexCircleNewJoyController.circleNewJoys'.$minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'IndexCircleNewJoyController.allCircleNewJoys' . $minutes;
+        return 'IndexCircleNewJoyController.allCircleNewJoys'.$minutes;
     }
 }

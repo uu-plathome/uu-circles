@@ -39,6 +39,6 @@ final class GetMainTopAdvertiseUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'GetMainTopAdvertiseUsecase.' . $minutes;
+        return 'GetMainTopAdvertiseUsecase.'.$minutes;
     }
 }

@@ -34,7 +34,7 @@ final class UpdateAdminUserController extends Controller
         Log::debug("UpdateAdminUserController args userId=$userId");
 
         $request->validate([
-            UserProperty::username  => 'unique:users,username,' . $userId,
+            UserProperty::username  => 'unique:users,username,'.$userId,
             AdminUserProperty::role => [Rule::in($this->canSelectedRoles($request->user()))],
         ]);
 
