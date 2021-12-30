@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\RegisterCircleUserRequest;
-use App\Usecases\AdminManagement\CircleUser\CreateCircleUserUsecase;
+use App\UseCases\AdminManagement\CircleUser\CreateCircleUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 

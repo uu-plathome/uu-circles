@@ -6,7 +6,7 @@ use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Support\Arr;
-use App\Usecases\AdminManagement\CircleUser\Params\UpdateCircleUserUsecaseParam;
+use App\UseCases\AdminManagement\CircleUser\Params\UpdateCircleUserUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

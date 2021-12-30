@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha;
+namespace App\UseCases\Main\Gacha;
 
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
-use App\Usecases\Main\Gacha\Dto\GachaHistoryDto;
+use App\UseCases\Main\Gacha\Dto\GachaHistoryDto;
 
 final class GachaHistoryByIdentifierHashUsecase
 {

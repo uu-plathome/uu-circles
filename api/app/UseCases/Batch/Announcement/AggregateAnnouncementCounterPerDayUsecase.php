@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Batch\Announcement;
+namespace App\UseCases\Batch\Announcement;
 
 use App\Enum\Property\AnnouncementCounterHistoryProperty as ACHP;
 use App\Models\AnnouncementCounter;

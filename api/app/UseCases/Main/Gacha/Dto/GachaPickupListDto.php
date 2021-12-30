@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha\Dto;
+namespace App\UseCases\Main\Gacha\Dto;
 
 /*
  * pickupリストの戻り値
  */
+
 final class GachaPickupListDto
 {
     /*

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Advertise;
+namespace App\UseCases\Main\Advertise;
 
 use App\Enum\AdvertiseType;
 use App\Enum\Property\AdvertiseProperty;
@@ -39,6 +39,6 @@ final class GetMainTopAdvertiseUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'GetMainTopAdvertiseUsecase.'.$minutes;
+        return 'GetMainTopAdvertiseUsecase.' . $minutes;
     }
 }

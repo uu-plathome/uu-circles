@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
 use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
 use Illuminate\Support\Facades\Log;
 
 final class GetRandomCircleUsecase

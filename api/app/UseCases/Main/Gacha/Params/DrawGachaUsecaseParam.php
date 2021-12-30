@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha\Params;
+namespace App\UseCases\Main\Gacha\Params;
 
 final class DrawGachaUsecaseParam
 {

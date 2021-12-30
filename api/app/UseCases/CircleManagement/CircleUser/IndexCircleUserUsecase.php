@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleUser;
+namespace App\UseCases\CircleManagement\CircleUser;
 
 use App\Enum\Property\UserProperty;
 use App\Models\User;
-use App\Usecases\CircleManagement\CircleUser\Dto\SeparateIsEmailVerifyCircleUserDto;
+use App\UseCases\CircleManagement\CircleUser\Dto\SeparateIsEmailVerifyCircleUserDto;
 use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;

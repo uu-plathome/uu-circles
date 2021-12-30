@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleNewJoy\Dto;
+namespace App\UseCases\CircleManagement\CircleNewJoy\Dto;
 
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Collection;

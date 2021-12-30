@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleInformationProperty;
 use App\Models\Circle;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\Params\SearchTagCircleListParam;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\Params\SearchTagCircleListParam;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
@@ -215,10 +215,10 @@ final class SearchTagCircleListUsecase
                 });
             })
             ->select([
-                'circles.'.'id',
-                'circles.'.'name',
-                'circles.'.'release',
-                'circles.'.'slug',
+                'circles.' . 'id',
+                'circles.' . 'name',
+                'circles.' . 'release',
+                'circles.' . 'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')

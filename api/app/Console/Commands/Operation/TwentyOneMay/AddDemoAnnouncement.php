@@ -4,8 +4,8 @@ namespace App\Console\Commands\Operation\TwentyOneMay;
 
 use App\Enum\AnnouncementType;
 use App\Enum\Importance;
-use App\Usecases\AdminManagement\Announcement\CreateAnnouncementUsecase;
-use App\Usecases\AdminManagement\Announcement\Params\CreateAnnouncementUsecaseParam;
+use App\UseCases\AdminManagement\Announcement\CreateAnnouncementUsecase;
+use App\UseCases\AdminManagement\Announcement\Params\CreateAnnouncementUsecaseParam;
 use Illuminate\Console\Command;
 
 class AddDemoAnnouncement extends Command

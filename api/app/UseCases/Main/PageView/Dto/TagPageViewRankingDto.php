@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\PageView\Dto;
+namespace App\UseCases\Main\PageView\Dto;
 
 final class TagPageViewRankingDto
 {

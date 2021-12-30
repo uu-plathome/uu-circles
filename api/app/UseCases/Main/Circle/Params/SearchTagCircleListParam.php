@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle\Params;
+namespace App\UseCases\Main\Circle\Params;
 
 final class SearchTagCircleListParam
 {

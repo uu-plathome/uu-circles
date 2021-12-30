@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Batch\PageView;
+namespace App\UseCases\Batch\PageView;
 
 use App\Enum\Property\CirclePageViewProperty;
 use App\Enum\Property\CircleProperty;

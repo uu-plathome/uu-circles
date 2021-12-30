@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Announcement;
+namespace App\UseCases\Main\Announcement;
 
 use App\Enum\Property\AnnouncementProperty;
 use App\Models\Announcement;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\Dto\MainAnnouncementDto;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\Dto\MainAnnouncementDto;
 use Illuminate\Support\Carbon;
 
 final class GetMainViewFixedAnnouncementsUsecase
@@ -58,6 +58,6 @@ final class GetMainViewFixedAnnouncementsUsecase
      */
     public static function getCacheKey(): string
     {
-        return 'GetMainViewFixedAnnouncementsUsecase1'.Carbon::today()->format('Y-m-d h');
+        return 'GetMainViewFixedAnnouncementsUsecase1' . Carbon::today()->format('Y-m-d h');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\CircleNewJoy;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
-use App\Usecases\AdminManagement\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
+use App\UseCases\AdminManagement\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;

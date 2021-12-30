@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\DemoCircleNewJoy;
+namespace App\UseCases\Main\DemoCircleNewJoy;
 
 use App\Enum\DemoCircleNewjoyType;
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Models\DemoCircleNewjoy;
-use App\Usecases\Main\DemoCircleNewJoy\Dto\DemoCircleNewJoyDto;
+use App\UseCases\Main\DemoCircleNewJoy\Dto\DemoCircleNewJoyDto;
 use Illuminate\Support\Facades\Log;
 
 final class GetDemoTodayCircleNewJoyUsecase

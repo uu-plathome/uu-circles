@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Usecases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
+use App\UseCases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;

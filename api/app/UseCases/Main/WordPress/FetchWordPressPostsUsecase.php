@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\WordPress;
+namespace App\UseCases\Main\WordPress;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;

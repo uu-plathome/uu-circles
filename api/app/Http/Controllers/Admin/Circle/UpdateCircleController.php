@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Admin\Circle;
 use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\UpdateCircleFormRequest;
-use App\Usecases\AdminManagement\Circle\UpdateCircleForSystemUsecase;
-use App\Usecases\AdminManagement\Circle\UpdateCircleUsecase;
+use App\UseCases\AdminManagement\Circle\UpdateCircleForSystemUsecase;
+use App\UseCases\AdminManagement\Circle\UpdateCircleUsecase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 

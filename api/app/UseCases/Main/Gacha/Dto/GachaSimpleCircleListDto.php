@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha\Dto;
+namespace App\UseCases\Main\Gacha\Dto;
 
 use Illuminate\Support\Collection;
 

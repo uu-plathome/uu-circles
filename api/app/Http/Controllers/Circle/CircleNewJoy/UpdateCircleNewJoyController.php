@@ -8,7 +8,7 @@ use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
-use App\Usecases\CircleManagement\CircleNewJoy\UpdateCircleNewJoyUsecase;
+use App\UseCases\CircleManagement\CircleNewJoy\UpdateCircleNewJoyUsecase;
 use Illuminate\Support\Facades\Log;
 
 final class UpdateCircleNewJoyController extends Controller

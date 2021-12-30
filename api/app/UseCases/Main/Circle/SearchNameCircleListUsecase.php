@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
 use App\Enum\Property\CircleSearchWordProperty;
 use App\Models\Circle;
 use App\Models\CircleSearchWord;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\Params\SearchNameCircleListParam;
 use Illuminate\Support\Facades\Log;
 
 final class SearchNameCircleListUsecase

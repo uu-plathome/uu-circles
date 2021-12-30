@@ -8,7 +8,7 @@ use App\Enum\Role;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest;
-use App\Usecases\CircleManagement\CircleUser\CreateCircleUserUsecase;
+use App\UseCases\CircleManagement\CircleUser\CreateCircleUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 

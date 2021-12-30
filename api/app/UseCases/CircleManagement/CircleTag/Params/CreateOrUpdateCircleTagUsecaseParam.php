@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleTag\Params;
+namespace App\UseCases\CircleManagement\CircleTag\Params;
 
 final class CreateOrUpdateCircleTagUsecaseParam
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\PageView;
+namespace App\UseCases\Main\PageView;
 
 use App\Enum\Property\TagPageViewProperty;
 use App\Models\TagPageView;
 use App\Support\Arr;
-use App\Usecases\Main\PageView\Dto\TagPageViewDto;
-use App\Usecases\Main\PageView\Dto\TagPageViewRankingDto;
+use App\UseCases\Main\PageView\Dto\TagPageViewDto;
+use App\UseCases\Main\PageView\Dto\TagPageViewRankingDto;
 use Illuminate\Support\Carbon;
 
 final class TagPageViewRankingUsecase
@@ -53,7 +53,7 @@ final class TagPageViewRankingUsecase
     {
         $today = Carbon::today();
 
-        return 'TagPageViewRankingUsecase'.$today;
+        return 'TagPageViewRankingUsecase' . $today;
     }
 
     private function convertToTagPageViewDto(?TagPageView $tagPageView): ?TagPageViewDto

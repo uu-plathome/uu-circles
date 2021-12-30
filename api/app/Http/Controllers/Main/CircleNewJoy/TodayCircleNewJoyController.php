@@ -6,11 +6,11 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\CircleNewJoy\GetTodayCircleNewJoyUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -98,6 +98,6 @@ final class TodayCircleNewJoyController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'TodayCircleNewJoyController.circleNewJoys'.$minutes;
+        return 'TodayCircleNewJoyController.circleNewJoys' . $minutes;
     }
 }

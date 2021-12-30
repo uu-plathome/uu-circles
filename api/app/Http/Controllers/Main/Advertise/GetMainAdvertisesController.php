@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Main\Advertise;
 
 use App\Support\Arr;
-use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
-use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
+use App\UseCases\Main\Advertise\GetMainTopAdvertiseUsecase;
+use App\UseCases\Main\Advertise\GetRandomAdvertiseUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -63,13 +63,13 @@ class GetMainAdvertisesController
     {
         $hour = Carbon::now()->format('YmdH');
 
-        return 'main.advertise.mainTop'.$hour;
+        return 'main.advertise.mainTop' . $hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.advertise'.$minutes;
+        return 'main.advertise' . $minutes;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha;
+namespace App\UseCases\Main\Gacha;
 
 use Illuminate\Support\Carbon;
 
@@ -18,6 +18,6 @@ final class GachaPickupListKey
      */
     public static function getCacheKey(): string
     {
-        return 'Usecase.Main.GachaPickupListKey　'.self::getPickupDate();
+        return 'Usecase.Main.GachaPickupListKey　' . self::getPickupDate();
     }
 }

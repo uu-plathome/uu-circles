@@ -6,15 +6,15 @@ namespace App\Http\Controllers\Main\Circle;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
-use App\Usecases\Main\Circle\Params\SearchNameCircleListParam;
-use App\Usecases\Main\Circle\SearchNameCircleListUsecase;
-use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\GetRecommendCircleUsecase;
+use App\UseCases\Main\Circle\Params\SearchNameCircleListParam;
+use App\UseCases\Main\Circle\SearchNameCircleListUsecase;
+use App\UseCases\Main\PageView\TagPageViewRankingUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -63,7 +63,7 @@ final class SearchNameCircleController extends Controller
         );
 
         // おすすめのサークル
-        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
+        /** @var \App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $recommendCircles = Cache::remember(
             GetRecommendCircleUsecase::getCacheKey(),
             GetRecommendCircleUsecase::TTL,
@@ -108,6 +108,6 @@ final class SearchNameCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'SearchNameCircleController.main'.$search.$minutes;
+        return 'SearchNameCircleController.main' . $search . $minutes;
     }
 }

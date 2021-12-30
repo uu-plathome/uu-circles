@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Main\Gacha;
 use App\Http\Controllers\Controller;
 use App\Models\Identifier;
 use App\Support\Arr;
-use App\Usecases\Main\Gacha\DrawGachaUsecase;
-use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
+use App\UseCases\Main\Gacha\DrawGachaUsecase;
+use App\UseCases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 

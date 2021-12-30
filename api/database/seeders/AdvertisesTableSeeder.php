@@ -6,7 +6,7 @@ use App\Enum\Property\AdvertiseCounterProperty;
 use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
-use App\Usecases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
+use App\UseCases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
 use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -45,7 +45,7 @@ class AdvertisesTableSeeder extends Seeder
                 ->make()
                 ->each(function (Advertise $advertise) use ($idx) {
                     $advertise->fill([
-                        AdvertiseProperty::title          => $advertise->title.$idx,
+                        AdvertiseProperty::title          => $advertise->title . $idx,
                         AdvertiseProperty::slug           => Str::uuid(),
                         AdvertiseProperty::active         => $idx === 1,
                         AdvertiseProperty::main_image_url => $idx === 1 ?

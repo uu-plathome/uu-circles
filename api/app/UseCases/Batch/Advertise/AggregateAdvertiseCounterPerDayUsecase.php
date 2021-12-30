@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Batch\Advertise;
+namespace App\UseCases\Batch\Advertise;
 
 use App\Models\AdvertiseCounter;
 use App\Models\AdvertiseCounterHistory;

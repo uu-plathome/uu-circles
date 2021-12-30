@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\CircleTag;
 
 use App\Enum\CircleTagModel;
 use App\Support\Arr;
-use App\Usecases\AdminManagement\CircleTag\Params\CreateOrUpdateCircleTagUsecaseParam;
+use App\UseCases\AdminManagement\CircleTag\Params\CreateOrUpdateCircleTagUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

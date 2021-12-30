@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Usecases\Batch\UuYell\CopyUuYellPostsUsecase;
+use App\UseCases\Batch\UuYell\CopyUuYellPostsUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 

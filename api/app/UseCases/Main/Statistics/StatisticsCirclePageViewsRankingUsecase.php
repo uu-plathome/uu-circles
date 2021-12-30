@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Statistics;
+namespace App\UseCases\Main\Statistics;
 
 use App\Enum\Property\CirclePageViewProperty;
 use App\Models\CirclePageView;
 use App\Support\Arr;
-use App\Usecases\Main\Statistics\Dto\CircleForStatisticsDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
+use App\UseCases\Main\Statistics\Dto\CircleForStatisticsDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsCirclePageViewsHighRankingDto;
 
 final class StatisticsCirclePageViewsRankingUsecase
 {

@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Circle\CircleTag;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleTag\CreateOrUpdateCircleTagRequest;
-use App\Usecases\CircleManagement\CircleTag\CreateOrUpdateCircleTagUsecase;
+use App\UseCases\CircleManagement\CircleTag\CreateOrUpdateCircleTagUsecase;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;

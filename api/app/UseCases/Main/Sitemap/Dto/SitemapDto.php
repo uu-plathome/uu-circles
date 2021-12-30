@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Sitemap\Dto;
+namespace App\UseCases\Main\Sitemap\Dto;
 
 final class SitemapDto
 {

@@ -6,7 +6,7 @@ use App\Enum\AnnouncementType;
 use App\Enum\Importance;
 use App\Enum\Property\AnnouncementProperty;
 use App\Support\Arr;
-use App\Usecases\AdminManagement\Announcement\Params\UpdateAnnouncementUsecaseParam;
+use App\UseCases\AdminManagement\Announcement\Params\UpdateAnnouncementUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleUser\Dto;
+namespace App\UseCases\CircleManagement\CircleUser\Dto;
 
 use App\ValueObjects\CircleUserDetailValueObject;
 use Illuminate\Support\Collection;

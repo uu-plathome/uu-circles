@@ -6,7 +6,7 @@ use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Support\Arr;
-use App\Usecases\CircleManagement\CircleUser\Params\CreateCircleUserUsecaseParam;
+use App\UseCases\CircleManagement\CircleUser\Params\CreateCircleUserUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -44,10 +44,10 @@ class RegisterCircleUserRequest extends FormRequest
     public function attributes()
     {
         return [
-            UserProperty::username     => __('user.'.UserProperty::username),
-            UserProperty::display_name => __('user.'.UserProperty::display_name),
-            UserProperty::email        => __('user.'.UserProperty::email),
-            CircleUserProperty::role   => __('circleUser.'.CircleUserProperty::role),
+            UserProperty::username     => __('user.' . UserProperty::username),
+            UserProperty::display_name => __('user.' . UserProperty::display_name),
+            UserProperty::email        => __('user.' . UserProperty::email),
+            CircleUserProperty::role   => __('circleUser.' . CircleUserProperty::role),
         ];
     }
 

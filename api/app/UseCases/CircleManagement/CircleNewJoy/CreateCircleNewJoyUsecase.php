@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleNewJoy;
+namespace App\UseCases\CircleManagement\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty as Property;
 use App\Models\Circle;
-use App\Usecases\CircleManagement\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
+use App\UseCases\CircleManagement\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Main\Statistics;
 
 use App\Support\Arr;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Statistics\StatisticsUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\Statistics\StatisticsUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 

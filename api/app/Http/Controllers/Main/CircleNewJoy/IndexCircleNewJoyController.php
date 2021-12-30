@@ -6,13 +6,13 @@ namespace App\Http\Controllers\Main\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\GetCircleBySlugUsecase;
-use App\Usecases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
-use App\Usecases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\Circle\GetCircleBySlugUsecase;
+use App\UseCases\Main\CircleNewJoy\GetTodayCircleNewJoyWithLimitUsecase;
+use App\UseCases\Main\CircleNewJoy\IndexCircleNewJoyUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -131,13 +131,13 @@ final class IndexCircleNewJoyController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'IndexCircleNewJoyController.circleNewJoys'.$minutes;
+        return 'IndexCircleNewJoyController.circleNewJoys' . $minutes;
     }
 
     private function getAllCircleNewJoysCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'IndexCircleNewJoyController.allCircleNewJoys'.$minutes;
+        return 'IndexCircleNewJoyController.allCircleNewJoys' . $minutes;
     }
 }

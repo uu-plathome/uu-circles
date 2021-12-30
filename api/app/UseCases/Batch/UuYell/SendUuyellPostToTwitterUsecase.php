@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Batch\UuYell;
+namespace App\UseCases\Batch\UuYell;
 
 use App\Enum\Property\UuyellPostProperty;
 use App\Models\UuyellPost;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha\Dto;
+namespace App\UseCases\Main\Gacha\Dto;
 
 use App\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 /*
  * pickupリストの戻り値
  */
+
 final class CircleGachaDto
 {
     /*

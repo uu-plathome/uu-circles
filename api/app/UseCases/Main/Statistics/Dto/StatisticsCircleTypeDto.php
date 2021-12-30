@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Statistics\Dto;
+namespace App\UseCases\Main\Statistics\Dto;
 
 /**
  * サークル種別.

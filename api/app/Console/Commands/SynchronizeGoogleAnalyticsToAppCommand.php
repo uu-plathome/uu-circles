@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Usecases\Batch\PageView\ReplicateCirclePageViewUsecase;
-use App\Usecases\Batch\PageView\ReplicateTagPageViewUsecase;
-use App\Usecases\Batch\PageView\SynchronizeGoogleAnalyticsToAppUsecase;
+use App\UseCases\Batch\PageView\ReplicateCirclePageViewUsecase;
+use App\UseCases\Batch\PageView\ReplicateTagPageViewUsecase;
+use App\UseCases\Batch\PageView\SynchronizeGoogleAnalyticsToAppUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 

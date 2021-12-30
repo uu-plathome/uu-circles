@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleNewJoy;
+namespace App\UseCases\CircleManagement\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
-use App\Usecases\CircleManagement\CircleNewJoy\Dto\SeparateReleaseCircleNewJoyDto;
+use App\UseCases\CircleManagement\CircleNewJoy\Dto\SeparateReleaseCircleNewJoyDto;
 use App\ValueObjects\CircleNewJoyValueObject;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;

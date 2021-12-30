@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\CircleUser;
+namespace App\UseCases\CircleManagement\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
 use App\Events\RegisteredCircleUser;
 use App\Models\Circle;
 use App\Models\User;
-use App\Usecases\CircleManagement\CircleUser\Params\CreateCircleUserUsecaseParam;
+use App\UseCases\CircleManagement\CircleUser\Params\CreateCircleUserUsecaseParam;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;

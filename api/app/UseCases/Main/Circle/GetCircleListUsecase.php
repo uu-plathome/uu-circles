@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
 use App\Models\Circle;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleDto;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -35,10 +35,10 @@ final class GetCircleListUsecase
             // 新歓ビラが登録されているのものを取得
             ->hasByNonDependentSubquery('circleHandbill')
             ->select([
-                'circles.'.'id',
-                'circles.'.'name',
-                'circles.'.'release',
-                'circles.'.'slug',
+                'circles.' . 'id',
+                'circles.' . 'name',
+                'circles.' . 'release',
+                'circles.' . 'slug',
             ])
             ->join('circle_information', 'circle_information.circle_id', '=', 'circles.id')
             ->orderByDesc('circle_information.updated_at')
@@ -59,6 +59,6 @@ final class GetCircleListUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.circle.GetCircleListUsecase.'.$minutes;
+        return 'main.circle.GetCircleListUsecase.' . $minutes;
     }
 }

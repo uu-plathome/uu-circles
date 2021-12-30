@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
 use Illuminate\Support\Carbon;
 
 final class GetRecommendCircleUsecase
@@ -35,6 +35,6 @@ final class GetRecommendCircleUsecase
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'RecommendCircles '.$minutes;
+        return 'RecommendCircles ' . $minutes;
     }
 }

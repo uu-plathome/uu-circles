@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Statistics;
+namespace App\UseCases\Main\Statistics;
 
 use App\Enum\CircleType;
 use App\Enum\PlaceOfActivity;
@@ -12,17 +12,17 @@ use App\Models\Circle;
 use App\Models\CircleNewJoy;
 use App\Models\PageView;
 use App\Support\Arr;
-use App\Usecases\Main\Statistics\Dto\CircleForStatisticsDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsActivityFrequencyRankingDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsAdmissionFeePerYearHighRankingDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsAdmissionFeePerYearSmallRankingDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsCircleTypeDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsNumberOfActivitiesCountDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsNumberOfActivitiesRankingDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsOnlineActivityDto;
-use App\Usecases\Main\Statistics\Dto\StatisticsPlaceOfActivityFrequencyDto;
+use App\UseCases\Main\Statistics\Dto\CircleForStatisticsDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsActivityFrequencyDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsActivityFrequencyRankingDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsAdmissionFeePerYearHighRankingDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsAdmissionFeePerYearSmallRankingDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsCircleTypeDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsNumberOfActivitiesCountDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsNumberOfActivitiesRankingDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsOnlineActivityDto;
+use App\UseCases\Main\Statistics\Dto\StatisticsPlaceOfActivityFrequencyDto;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;

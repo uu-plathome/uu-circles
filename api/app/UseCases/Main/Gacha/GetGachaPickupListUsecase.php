@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha;
+namespace App\UseCases\Main\Gacha;
 
 use App\Enum\Property\CircleGachaPickupProperty;
 use App\Models\Circle;
 use App\Models\CircleGachaPickup;
-use App\Usecases\Main\Gacha\Dto\GachaPickupListDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
+use App\UseCases\Main\Gacha\Dto\GachaPickupListDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -91,7 +91,7 @@ final class GetGachaPickupListUsecase
 
         $pickupCirclesDto->list = $circles->map(
             fn (Circle $circle) =>
-                // 型変換
+            // 型変換
             GachaSimpleCircleDto::byEloquent(
                 $circle,
                 $circle->circleInformation,

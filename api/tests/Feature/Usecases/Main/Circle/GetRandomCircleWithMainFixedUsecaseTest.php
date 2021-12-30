@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Usecases\Main\Circle;
 
 use App\Models\Circle;
-use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
+use App\UseCases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;

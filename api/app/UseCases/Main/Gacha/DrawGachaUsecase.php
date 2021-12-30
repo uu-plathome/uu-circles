@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Gacha;
+namespace App\UseCases\Main\Gacha;
 
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
-use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
-use App\Usecases\Main\Gacha\Params\DrawGachaUsecaseParam;
+use App\UseCases\Main\Gacha\Dto\CircleGachaDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleListDto;
+use App\UseCases\Main\Gacha\Params\DrawGachaUsecaseParam;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -37,7 +37,7 @@ final class DrawGachaUsecase
         /**
          * ピックアップ一覧取得.
          *
-         * @var \App\Usecases\Main\Gacha\Dto\GachaPickupListDto $pickupList
+         * @var \App\UseCases\Main\Gacha\Dto\GachaPickupListDto $pickupList
          */
         $pickupList = Cache::remember(
             GachaPickupListKey::getCacheKey(),

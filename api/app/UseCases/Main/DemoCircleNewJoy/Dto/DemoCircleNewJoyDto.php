@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Main\DemoCircleNewJoy\Dto;
+namespace App\UseCases\Main\DemoCircleNewJoy\Dto;
 
 use App\Enum\Property\DemoCircleNewJoyProperty;
 use App\Models\DemoCircleNewjoy;

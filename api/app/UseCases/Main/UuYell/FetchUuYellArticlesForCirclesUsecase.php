@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\UuYell;
+namespace App\UseCases\Main\UuYell;
 
-use App\Usecases\Main\UuYell\Params\FetchUuYellArticlesForCirclesUsecaseParam;
+use App\UseCases\Main\UuYell\Params\FetchUuYellArticlesForCirclesUsecaseParam;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;

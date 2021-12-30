@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Announcement\Dto;
+namespace App\UseCases\Main\Announcement\Dto;
 
 use Illuminate\Support\Collection;
 

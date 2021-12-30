@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\CircleNewJoy;
+namespace App\UseCases\Main\CircleNewJoy;
 
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Models\CircleNewJoy;

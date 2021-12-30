@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\UuYell\Params;
+namespace App\UseCases\Main\UuYell\Params;
 
 final class FetchUuYellArticlesForCirclesUsecaseParam
 {
