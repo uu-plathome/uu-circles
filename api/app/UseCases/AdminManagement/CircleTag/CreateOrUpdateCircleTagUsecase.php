@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\CircleTag;
+namespace App\UseCases\AdminManagement\CircleTag;
 
 use App\Models\CircleTag;
-use App\Usecases\AdminManagement\CircleTag\Params\CreateOrUpdateCircleTagUsecaseParam;
+use App\UseCases\AdminManagement\CircleTag\Params\CreateOrUpdateCircleTagUsecaseParam;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

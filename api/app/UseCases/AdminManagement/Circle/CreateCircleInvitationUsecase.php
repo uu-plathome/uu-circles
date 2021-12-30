@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\Circle;
+namespace App\UseCases\AdminManagement\Circle;
 
 use App\Models\CircleInvitation;
 use Exception;

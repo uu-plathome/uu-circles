@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\CircleManagement\Circle;
+namespace App\UseCases\CircleManagement\Circle;
 
 use App\Enum\Property\CircleInformationProperty as CIP;
 use App\Enum\Property\CircleProperty;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
-use App\Usecases\CircleManagement\Circle\Params\UpdateCircleUsecaseParam;
+use App\UseCases\CircleManagement\Circle\Params\UpdateCircleUsecaseParam;
 use App\ValueObjects\CircleValueObject;
 use Exception;
 use Illuminate\Support\Facades\DB;

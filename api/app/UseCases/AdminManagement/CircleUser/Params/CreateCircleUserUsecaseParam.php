@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\CircleUser\Params;
+namespace App\UseCases\AdminManagement\CircleUser\Params;
 
 final class CreateCircleUserUsecaseParam
 {

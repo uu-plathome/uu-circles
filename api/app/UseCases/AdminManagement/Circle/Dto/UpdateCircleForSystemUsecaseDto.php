@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\AdminManagement\Circle\Dto;
+namespace App\UseCases\AdminManagement\Circle\Dto;
 
 use App\Models\Circle;
 use App\Models\CircleHandbill;

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Usecases\AdminManagement\Circle;
+namespace App\UseCases\AdminManagement\Circle;
 
 use App\Enum\Property\CircleInformationProperty as CIP;
 use App\Enum\Property\CircleProperty as CP;
 use App\Models\Circle;
 use App\Models\CircleHandbill;
-use App\Usecases\AdminManagement\Circle\Dto\UpdateCircleForSystemUsecaseDto;
-use App\Usecases\AdminManagement\Circle\Param\UpdateCircleForSystemUsecaseParam;
+use App\UseCases\AdminManagement\Circle\Dto\UpdateCircleForSystemUsecaseDto;
+use App\UseCases\AdminManagement\Circle\Param\UpdateCircleForSystemUsecaseParam;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

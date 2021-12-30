@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\CircleNewJoy;
+namespace App\UseCases\AdminManagement\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
-use App\Usecases\AdminManagement\CircleNewJoy\Dto\MultipleCircleNewJoyDto;
+use App\UseCases\AdminManagement\CircleNewJoy\Dto\MultipleCircleNewJoyDto;
 use Illuminate\Support\Facades\Log;
 
 final class IndexCircleNewJoyUsecase

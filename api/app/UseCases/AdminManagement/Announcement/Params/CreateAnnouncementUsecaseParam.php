@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\Announcement\Params;
+namespace App\UseCases\AdminManagement\Announcement\Params;
 
 use Illuminate\Support\Carbon;
 

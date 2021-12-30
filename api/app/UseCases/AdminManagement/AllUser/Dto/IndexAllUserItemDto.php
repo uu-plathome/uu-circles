@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\AdminManagement\AllUser\Dto;
+namespace App\UseCases\AdminManagement\AllUser\Dto;
 
 use App\Models\User;
 

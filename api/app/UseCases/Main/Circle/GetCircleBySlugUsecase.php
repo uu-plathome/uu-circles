@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Main\Circle;
+namespace App\UseCases\Main\Circle;
 
 use App\Entity\CircleTagEntity;
 use App\Models\Circle;
 use App\Models\CircleTag;
-use App\Usecases\Main\Circle\Dto\MainDetailCircleDto;
+use App\UseCases\Main\Circle\Dto\MainDetailCircleDto;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Support\Facades\Log;
 

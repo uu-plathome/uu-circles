@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\AdminManagement\CircleNewJoy;
+namespace App\UseCases\AdminManagement\CircleNewJoy;
 
 use App\Models\CircleNewJoy;
 use Exception;
