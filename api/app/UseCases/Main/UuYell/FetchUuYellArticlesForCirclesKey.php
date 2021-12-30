@@ -18,6 +18,6 @@ final class FetchUuYellArticlesForCirclesKey
         $day = $now->format('Ymd');
         $hour = $now->hour - $now->hour % 2;
 
-        return 'FetchUuYellArticlesForCirclesKey' . $param->name . $param->circle_url . $day . $hour;
+        return 'FetchUuYellArticlesForCirclesKey'.$param->name.$param->circle_url.$day.$hour;
     }
 }

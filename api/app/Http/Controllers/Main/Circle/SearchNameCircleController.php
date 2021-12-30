@@ -108,6 +108,6 @@ final class SearchNameCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'SearchNameCircleController.main' . $search . $minutes;
+        return 'SearchNameCircleController.main'.$search.$minutes;
     }
 }

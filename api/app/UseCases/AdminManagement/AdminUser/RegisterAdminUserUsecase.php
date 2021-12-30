@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 final class RegisterAdminUserUsecase
 {
     /**
-     * 管理者アカウントのユーザー情報の新規作成
+     * 管理者アカウントのユーザー情報の新規作成.
      *
      * @param AdminUserValueObject $adminUserValueObject
      *

@@ -53,7 +53,7 @@ final class TagPageViewRankingUsecase
     {
         $today = Carbon::today();
 
-        return 'TagPageViewRankingUsecase' . $today;
+        return 'TagPageViewRankingUsecase'.$today;
     }
 
     private function convertToTagPageViewDto(?TagPageView $tagPageView): ?TagPageViewDto

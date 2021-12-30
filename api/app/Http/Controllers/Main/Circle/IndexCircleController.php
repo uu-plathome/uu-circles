@@ -92,6 +92,6 @@ final class IndexCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.circle.IndexCircleController.' . $minutes;
+        return 'main.circle.IndexCircleController.'.$minutes;
     }
 }

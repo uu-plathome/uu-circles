@@ -98,6 +98,6 @@ final class DemoTodayCircleNewJoyController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'DemoTodayCircleNewJoyController.circleNewJoys' . $minutes;
+        return 'DemoTodayCircleNewJoyController.circleNewJoys'.$minutes;
     }
 }

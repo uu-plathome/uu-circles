@@ -52,7 +52,7 @@ class RegisterDemoCircleNewJoyRequest extends FormRequest
                 ]),
             ],
             DemoCircleNewJoyProperty::start_date               => ['required', 'date', 'date_format:Y-m-d H:i'],
-            DemoCircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:' . Str::camel('start_date')],
+            DemoCircleNewJoyProperty::end_date                 => ['date', 'nullable', 'date_format:Y-m-d H:i', 'after:'.Str::camel('start_date')],
             DemoCircleNewJoyProperty::published                => ['boolean', 'nullable'],
         ]);
     }
@@ -60,14 +60,14 @@ class RegisterDemoCircleNewJoyRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            DemoCircleNewJoyProperty::title                    => __('circleNewJoy.' . CircleNewJoyProperty::title),
-            DemoCircleNewJoyProperty::description              => __('circleNewJoy.' . CircleNewJoyProperty::description),
-            DemoCircleNewJoyProperty::place_of_activity        => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity),
-            DemoCircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.' . CircleNewJoyProperty::place_of_activity_detail),
-            DemoCircleNewJoyProperty::start_date               => __('circleNewJoy.' . CircleNewJoyProperty::start_date),
-            DemoCircleNewJoyProperty::end_date                 => __('circleNewJoy.' . CircleNewJoyProperty::end_date),
-            DemoCircleNewJoyProperty::url                      => __('circleNewJoy.' . CircleNewJoyProperty::url),
-            DemoCircleNewJoyProperty::published                => __('circleNewJoy.' . CircleNewJoyProperty::release),
+            DemoCircleNewJoyProperty::title                    => __('circleNewJoy.'.CircleNewJoyProperty::title),
+            DemoCircleNewJoyProperty::description              => __('circleNewJoy.'.CircleNewJoyProperty::description),
+            DemoCircleNewJoyProperty::place_of_activity        => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity),
+            DemoCircleNewJoyProperty::place_of_activity_detail => __('circleNewJoy.'.CircleNewJoyProperty::place_of_activity_detail),
+            DemoCircleNewJoyProperty::start_date               => __('circleNewJoy.'.CircleNewJoyProperty::start_date),
+            DemoCircleNewJoyProperty::end_date                 => __('circleNewJoy.'.CircleNewJoyProperty::end_date),
+            DemoCircleNewJoyProperty::url                      => __('circleNewJoy.'.CircleNewJoyProperty::url),
+            DemoCircleNewJoyProperty::published                => __('circleNewJoy.'.CircleNewJoyProperty::release),
         ]);
     }
 

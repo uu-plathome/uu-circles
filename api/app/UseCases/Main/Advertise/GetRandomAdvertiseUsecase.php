@@ -42,6 +42,6 @@ final class GetRandomAdvertiseUsecase
         $hour = $now->format('YmdH');
         $minutes_flag = floor($now->minute / 10);
 
-        return 'main.advertise.mainTop' . $hour . $minutes_flag;
+        return 'main.advertise.mainTop'.$hour.$minutes_flag;
     }
 }

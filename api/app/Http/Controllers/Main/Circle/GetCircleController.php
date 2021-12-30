@@ -125,6 +125,6 @@ final class GetCircleController extends Controller
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'GetCircleController.circleNewJoys' . $circleId . $minutes;
+        return 'GetCircleController.circleNewJoys'.$circleId.$minutes;
     }
 }

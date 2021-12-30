@@ -106,6 +106,6 @@ final class GetRandomCircleWithMainFixedUsecase
         $hours = $now->format('YmdH');
         $minutes_flag = floor($now->minute / 10);
 
-        return 'GetRandomCircleWithMainFixedUsecase.' . $hours . '.' . $minutes_flag;
+        return 'GetRandomCircleWithMainFixedUsecase.'.$hours.'.'.$minutes_flag;
     }
 }

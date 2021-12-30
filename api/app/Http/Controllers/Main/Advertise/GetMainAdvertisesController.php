@@ -63,13 +63,13 @@ class GetMainAdvertisesController
     {
         $hour = Carbon::now()->format('YmdH');
 
-        return 'main.advertise.mainTop' . $hour;
+        return 'main.advertise.mainTop'.$hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.advertise' . $minutes;
+        return 'main.advertise'.$minutes;
     }
 }

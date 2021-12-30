@@ -16,6 +16,6 @@ final class FetchUuYellArticlesKey
         $day = $now->format('Ymd');
         $hour = $now->hour - $now->hour % 2;
 
-        return 'FetchUuYellArticlesKey ' . $day . ' ' . $hour;
+        return 'FetchUuYellArticlesKey '.$day.' '.$hour;
     }
 }
