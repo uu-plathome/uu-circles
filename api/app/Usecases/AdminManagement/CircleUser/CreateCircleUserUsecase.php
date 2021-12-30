@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\CircleUser;
+namespace App\Usecases\AdminManagement\CircleUser;
 
 use App\Enum\Property\CircleUserProperty;
 use App\Events\RegisteredCircleUser;
 use App\Models\Circle;
 use App\Models\User;
-use App\Usecases\Admin\CircleUser\Params\CreateCircleUserUsecaseParam;
+use App\Usecases\AdminManagement\CircleUser\Params\CreateCircleUserUsecaseParam;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Admin\DemoCircleNewJoy\Dto;
+namespace App\Usecases\AdminManagement\DemoCircleNewJoy\Dto;
 
 use App\Models\DemoCircleNewjoy;
 use Illuminate\Support\Carbon;

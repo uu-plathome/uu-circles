@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin\DemoCircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DemoCircleNewJoy\RegisterDemoCircleNewJoyRequest;
 use App\Support\Arr;
-use App\Usecases\Admin\DemoCircleNewJoy\CreateDemoCircleNewJoyUsecase;
+use App\Usecases\AdminManagement\DemoCircleNewJoy\CreateDemoCircleNewJoyUsecase;
 use Exception;
 
 final class RegisterDemoCircleNewJoyController extends Controller

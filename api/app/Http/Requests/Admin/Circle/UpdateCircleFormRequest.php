@@ -8,8 +8,8 @@ use App\Enum\Property\CircleInformationProperty;
 use App\Enum\Property\CircleProperty;
 use App\Rules\SmallAlphaNum;
 use App\Support\Arr;
-use App\Usecases\Admin\Circle\Param\UpdateCircleForSystemUsecaseParam;
-use App\Usecases\Admin\Circle\Param\UpdateCircleUsecaseParam;
+use App\Usecases\AdminManagement\Circle\Param\UpdateCircleForSystemUsecaseParam;
+use App\Usecases\AdminManagement\Circle\Param\UpdateCircleUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,7 +37,7 @@ class UpdateCircleFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:50',
-                'unique:circles,slug,'.$this->circleId.'id',
+                'unique:circles,slug,' . $this->circleId . 'id',
                 new SmallAlphaNum(),
                 Rule::notIn(['newjoy']),
             ],

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\DemoCircleNewJoy;
+namespace App\Usecases\AdminManagement\DemoCircleNewJoy;
 
 use App\Enum\Property\DemoCircleNewJoyProperty as Property;
 use App\Models\DemoCircleNewjoy;
-use App\Usecases\Admin\DemoCircleNewJoy\Params\UpdateDemoCircleNewJoyUsecaseParam;
+use App\Usecases\AdminManagement\DemoCircleNewJoy\Params\UpdateDemoCircleNewJoyUsecaseParam;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

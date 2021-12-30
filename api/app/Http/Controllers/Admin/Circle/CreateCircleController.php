@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin\Circle;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Circle\CreateCircleFormRequest;
 use App\Support\Arr;
-use App\Usecases\Admin\Circle\CreateCircleUsecase;
+use App\Usecases\AdminManagement\Circle\CreateCircleUsecase;
 use Illuminate\Support\Facades\Log;
 
 final class CreateCircleController extends Controller

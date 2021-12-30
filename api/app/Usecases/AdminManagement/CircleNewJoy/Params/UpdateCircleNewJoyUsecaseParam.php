@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Admin\CircleNewJoy\Params;
+namespace App\Usecases\AdminManagement\CircleNewJoy\Params;
 
 use Illuminate\Support\Carbon;
 

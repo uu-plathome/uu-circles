@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\AdminUser;
+namespace App\Usecases\AdminManagement\AdminUser;
 
 use App\Enum\Property\AdminUserProperty;
 use App\Enum\Property\UserProperty;

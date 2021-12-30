@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Admin\Circle\Param;
+namespace App\Usecases\AdminManagement\Circle\Param;
 
 final class UpdateCircleUsecaseParam
 {

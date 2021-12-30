@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\AllUser;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Admin\AllUser\IndexAllUserUsecase;
+use App\Usecases\AdminManagement\AllUser\IndexAllUserUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 

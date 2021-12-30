@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\DemoCircleNewJoy\Params;
+namespace App\Usecases\AdminManagement\DemoCircleNewJoy\Params;
 
 use Illuminate\Support\Carbon;
 

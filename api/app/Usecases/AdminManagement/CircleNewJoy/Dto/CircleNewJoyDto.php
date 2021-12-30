@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Usecases\Admin\CircleNewJoy\Dto;
+namespace App\Usecases\AdminManagement\CircleNewJoy\Dto;
 
 use App\Enum\Property\CircleNewJoyProperty as CNP;
 use App\Models\CircleNewJoy;

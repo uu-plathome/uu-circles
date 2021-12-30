@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\DemoCircleNewJoy;
+namespace App\Usecases\AdminManagement\DemoCircleNewJoy;
 
 use App\Models\DemoCircleNewjoy;
-use App\Usecases\Admin\DemoCircleNewJoy\Dto\DemoCircleDto;
-use App\Usecases\Admin\DemoCircleNewJoy\Dto\MultipleDemoCircleNewJoyDto;
+use App\Usecases\AdminManagement\DemoCircleNewJoy\Dto\DemoCircleDto;
+use App\Usecases\AdminManagement\DemoCircleNewJoy\Dto\MultipleDemoCircleNewJoyDto;
 use Illuminate\Support\Facades\Log;
 
 final class ShowDemoCircleNewJoyUsecase

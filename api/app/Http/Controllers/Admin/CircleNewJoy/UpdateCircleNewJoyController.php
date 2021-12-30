@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Support\Arr;
-use App\Usecases\Admin\CircleNewJoy\UpdateCircleNewJoyUsecase;
+use App\Usecases\AdminManagement\CircleNewJoy\UpdateCircleNewJoyUsecase;
 
 final class UpdateCircleNewJoyController extends Controller
 {

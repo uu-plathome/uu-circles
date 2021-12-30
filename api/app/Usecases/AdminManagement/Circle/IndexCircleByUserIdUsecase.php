@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\Circle;
+namespace App\Usecases\AdminManagement\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;

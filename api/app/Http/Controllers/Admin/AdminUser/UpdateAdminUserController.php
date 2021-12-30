@@ -9,7 +9,7 @@ use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUserRequest;
-use App\Usecases\Admin\AdminUser\UpdateAdminUserUsecase;
+use App\Usecases\AdminManagement\AdminUser\UpdateAdminUserUsecase;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;

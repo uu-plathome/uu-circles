@@ -6,7 +6,7 @@ use App\Enum\Property\CircleUserProperty;
 use App\Enum\Property\UserProperty;
 use App\Enum\Role;
 use App\Support\Arr;
-use App\Usecases\Admin\CircleUser\Params\UpdateCircleUserUsecaseParam;
+use App\Usecases\AdminManagement\CircleUser\Params\UpdateCircleUserUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +30,7 @@ class UpdateCircleUserRequest extends FormRequest
     public function rules()
     {
         return Arr::camel_keys([
-            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,'.$this->userId],
+            UserProperty::username     => ['required', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->userId],
             UserProperty::display_name => ['required', 'string', 'max:50'],
             UserProperty::active       => ['required', 'boolean'],
             CircleUserProperty::role   => [

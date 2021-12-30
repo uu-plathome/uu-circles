@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin\AllUser;
+namespace App\Usecases\AdminManagement\AllUser;
 
 use App\Models\User;
-use App\Usecases\Admin\AllUser\Dto\IndexAllUserDto;
+use App\Usecases\AdminManagement\AllUser\Dto\IndexAllUserDto;
 use Illuminate\Support\Facades\Log;
 
 final class IndexAllUserUsecase
