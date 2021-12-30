@@ -17,11 +17,10 @@ final class UpdateCircleUsecase
     /**
      * システム管理者のためのサークル更新.
      *
-     * @param UpdateCircleUsecase $param
-     *
-     * @throws Exception
+     * @param UpdateCircleUsecaseParam $param
      *
      * @return UpdateCircleUsecaseDto
+     * @throws Exception
      */
     public function invoke(UpdateCircleUsecaseParam $param): UpdateCircleUsecaseDto
     {

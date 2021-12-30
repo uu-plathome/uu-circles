@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\CircleUser;
 
 use App\Models\User;
 use App\ValueObjects\CircleUserValueObject;

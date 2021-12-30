@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Usecases\Admin;
+namespace App\Usecases\Admin\Circle;
 
 use App\Models\Circle;
 use App\ValueObjects\CircleValueObject;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 final class IndexCircleUsecase
 {
     /**
-     * invoke.
+     * すべてのサークルを取得する
      *
      * @return CircleValueObject[]
      */

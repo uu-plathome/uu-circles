@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Models\User;
 use App\Support\Arr;
-use App\Usecases\Admin\IndexCircleByUserIdUsecase;
+use App\Usecases\Admin\Circle\IndexCircleByUserIdUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
