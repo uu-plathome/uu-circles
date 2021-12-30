@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Main\Sitemap;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Sitemap\Dto\SitemapDto;
-use App\Usecases\Main\Sitemap\SitemapUsecase;
+use App\UseCases\Main\Sitemap\Dto\SitemapDto;
+use App\UseCases\Main\Sitemap\SitemapUsecase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;

@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\DemoCircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Admin\DemoCircleNewJoy\ShowDemoCircleNewJoyUsecase;
+use App\UseCases\AdminManagement\DemoCircleNewJoy\ShowDemoCircleNewJoyUsecase;
 use Illuminate\Http\Request;
 
 final class ShowDemoCircleNewJoyController extends Controller

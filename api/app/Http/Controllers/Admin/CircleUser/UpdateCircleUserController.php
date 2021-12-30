@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\CircleUser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CircleUser\UpdateCircleUserRequest;
-use App\Usecases\Admin\CircleUser\UpdateCircleUserUsecase;
+use App\UseCases\AdminManagement\CircleUser\UpdateCircleUserUsecase;
 use Illuminate\Support\Facades\Log;
 
 final class UpdateCircleUserController extends Controller

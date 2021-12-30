@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Main\Gacha;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Gacha\GachaPickupListKey;
-use App\Usecases\Main\Gacha\GetGachaPickupListUsecase;
+use App\UseCases\Main\Gacha\GachaPickupListKey;
+use App\UseCases\Main\Gacha\GetGachaPickupListUsecase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;

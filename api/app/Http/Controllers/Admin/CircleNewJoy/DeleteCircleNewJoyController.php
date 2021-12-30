@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin\CircleNewJoy;
 
 use App\Http\Controllers\Controller;
-use App\Usecases\Admin\CircleNewJoy\DeleteCircleNewJoyUsecase;
+use App\UseCases\AdminManagement\CircleNewJoy\DeleteCircleNewJoyUsecase;
 use Exception;
 use Illuminate\Http\Request;
 

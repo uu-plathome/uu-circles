@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\DemoCircleNewJoy;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Admin\DemoCircleNewJoy\IndexDemoCircleNewJoyUsecase;
+use App\UseCases\AdminManagement\DemoCircleNewJoy\IndexDemoCircleNewJoyUsecase;
 use Illuminate\Http\Request;
 
 final class IndexDemoCircleNewJoyController extends Controller

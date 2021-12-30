@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin\Announcement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Announcement\UpdateAnnouncementRequest;
-use App\Usecases\Admin\Announcement\UpdateAnnouncementUsecase;
+use App\UseCases\AdminManagement\Announcement\UpdateAnnouncementUsecase;
 use Illuminate\Support\Facades\Log;
 
 final class UpdateAnnouncementController extends Controller

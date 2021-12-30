@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\CircleNewJoy;
 use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleNewJoyProperty;
 use App\Support\Arr;
-use App\Usecases\Admin\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
+use App\UseCases\AdminManagement\CircleNewJoy\Params\CreateCircleNewJoyUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -77,7 +77,7 @@ class RegisterCircleNewJoyRequest extends FormRequest
         $param->place_of_activity = Arr::get($request, 'place_of_activity');
         $param->place_of_activity_detail =
             Arr::get($request, CircleNewJoyProperty::place_of_activity) !== PlaceOfActivity::NEWJOY_DISCORD
-                ? Arr::get($request, 'place_of_activity_detail') : '';
+            ? Arr::get($request, 'place_of_activity_detail') : '';
         $param->publish_from = Arr::get($request, 'publish_from')
             ? new Carbon(Arr::get($request, 'publish_from'))
             : null;

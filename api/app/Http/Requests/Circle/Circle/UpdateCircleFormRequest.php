@@ -7,7 +7,7 @@ use App\Enum\PlaceOfActivity;
 use App\Enum\Property\CircleInformationProperty as CIP;
 use App\Enum\Property\CircleProperty;
 use App\Support\Arr;
-use App\Usecases\CircleManagement\Circle\Params\UpdateCircleUsecaseParam;
+use App\UseCases\CircleManagement\Circle\Params\UpdateCircleUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

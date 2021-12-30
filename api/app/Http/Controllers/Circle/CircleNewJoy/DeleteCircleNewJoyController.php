@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Circle\CircleNewJoy;
 
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
-use App\Usecases\CircleManagement\CircleNewJoy\DeleteCircleNewJoyUsecase;
+use App\UseCases\CircleManagement\CircleNewJoy\DeleteCircleNewJoyUsecase;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

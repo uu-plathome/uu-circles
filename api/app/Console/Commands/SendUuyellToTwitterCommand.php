@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Usecases\Batch\UuYell\SendUuyellPostToTwitterUsecase;
+use App\UseCases\Batch\UuYell\SendUuyellPostToTwitterUsecase;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 

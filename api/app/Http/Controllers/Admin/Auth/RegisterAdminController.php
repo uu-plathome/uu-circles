@@ -8,7 +8,7 @@ use App\Enum\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\RegisterAdminFormRequest;
 use App\Support\Arr;
-use App\Usecases\RegisterAdminUserUsecase;
+use App\UseCases\AdminManagement\AdminUser\RegisterAdminUserUsecase;
 use Exception;
 use Illuminate\Validation\Rule;
 

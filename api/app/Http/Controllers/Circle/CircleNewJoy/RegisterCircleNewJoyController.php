@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Circle\CircleNewJoy;
 use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\CircleNewJoy\RegisterCircleNewJoyRequest;
-use App\Usecases\CircleManagement\CircleNewJoy\CreateCircleNewJoyUsecase;
+use App\UseCases\CircleManagement\CircleNewJoy\CreateCircleNewJoyUsecase;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;

@@ -7,15 +7,15 @@ namespace App\Http\Controllers\Main\Circle;
 use App\Enum\SlugProperty\CategorySlugProperty;
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\GetRecommendCircleUsecase;
-use App\Usecases\Main\Circle\Params\SearchCategoryCircleListParam;
-use App\Usecases\Main\Circle\SearchCategoryCircleListUsecase;
-use App\Usecases\Main\PageView\TagPageViewRankingUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\GetRecommendCircleUsecase;
+use App\UseCases\Main\Circle\Params\SearchCategoryCircleListParam;
+use App\UseCases\Main\Circle\SearchCategoryCircleListUsecase;
+use App\UseCases\Main\PageView\TagPageViewRankingUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -72,13 +72,13 @@ final class SearchCategoryCircleController extends Controller
         $params->sendingOrganization = $category === CategorySlugProperty::official_organization;
         $params->studentGroup = $category === CategorySlugProperty::student_group;
 
-        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
+        /** @var \App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $circles = Cache::remember($this->getCacheKey($category), 60, function () use ($params) {
             return $this->searchCategoryCircleListUsecase->invoke($params);
         });
 
         // おすすめサークル
-        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
+        /** @var \App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto $recommendCircles */
         $recommendCircles = Cache::remember(
             GetRecommendCircleUsecase::getCacheKey(),
             GetRecommendCircleUsecase::TTL,

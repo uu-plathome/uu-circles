@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Main\Advertise;
 
 use App\Support\Arr;
-use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
-use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
+use App\UseCases\Main\Advertise\GetMainTopAdvertiseUsecase;
+use App\UseCases\Main\Advertise\GetRandomAdvertiseUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;

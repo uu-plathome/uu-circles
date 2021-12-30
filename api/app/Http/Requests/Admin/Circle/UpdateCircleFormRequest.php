@@ -8,8 +8,8 @@ use App\Enum\Property\CircleInformationProperty;
 use App\Enum\Property\CircleProperty;
 use App\Rules\SmallAlphaNum;
 use App\Support\Arr;
-use App\Usecases\Admin\Circle\Param\UpdateCircleForSystemUsecaseParam;
-use App\Usecases\Admin\Circle\Param\UpdateCircleUsecaseParam;
+use App\UseCases\AdminManagement\Circle\Param\UpdateCircleForSystemUsecaseParam;
+use App\UseCases\AdminManagement\Circle\Param\UpdateCircleUsecaseParam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

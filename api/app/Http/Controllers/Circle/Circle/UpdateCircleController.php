@@ -8,7 +8,7 @@ use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Circle\Circle\UpdateCircleFormRequest;
 use App\Support\Arr;
-use App\Usecases\CircleManagement\Circle\UpdateCircleUsecase;
+use App\UseCases\CircleManagement\Circle\UpdateCircleUsecase;
 use Illuminate\Support\Facades\Log;
 
 final class UpdateCircleController extends Controller

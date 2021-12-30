@@ -8,7 +8,7 @@ use App\Http\Controllers\Circle\Traits\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Support\Arr;
-use App\Usecases\CircleManagement\CircleNewJoy\IndexCircleNewJoyUsecase;
+use App\UseCases\CircleManagement\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

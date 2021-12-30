@@ -6,7 +6,7 @@ use App\Enum\Property\AdvertiseCounterProperty;
 use App\Enum\Property\AdvertiseProperty;
 use App\Models\Advertise;
 use App\Models\AdvertiseCounter;
-use App\Usecases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
+use App\UseCases\Batch\Advertise\AggregateAdvertiseCounterPerDayUsecase;
 use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;

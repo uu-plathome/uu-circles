@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin\CircleNewJoy;
 use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Support\Arr;
-use App\Usecases\Admin\CircleNewJoy\IndexCircleNewJoyUsecase;
+use App\UseCases\AdminManagement\CircleNewJoy\IndexCircleNewJoyUsecase;
 use App\ValueObjects\CircleValueObject;
 use Illuminate\Http\Request;
 

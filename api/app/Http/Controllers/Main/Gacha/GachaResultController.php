@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Circle;
 use App\Models\CircleGachaResult;
 use App\Support\Arr;
-use App\Usecases\Main\Gacha\Dto\CircleGachaDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleDto;
-use App\Usecases\Main\Gacha\Dto\GachaSimpleCircleListDto;
+use App\UseCases\Main\Gacha\Dto\CircleGachaDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleDto;
+use App\UseCases\Main\Gacha\Dto\GachaSimpleCircleListDto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -48,12 +48,12 @@ final class GachaResultController extends Controller
         /** @var \Illuminate\Support\Collection $fetchedDrewCircles */
         $foundDrewCircles = $fetchedDrewCircles->map(
             fn (Circle $circle) =>
-             //型変換
-             GachaSimpleCircleDto::byEloquent(
-                 $circle,
-                 $circle->circleInformation,
-                 $circle->circleHandbill
-             )
+            //型変換
+            GachaSimpleCircleDto::byEloquent(
+                $circle,
+                $circle->circleInformation,
+                $circle->circleHandbill
+            )
         );
 
         //DBから引っ張ってくる  pickup
@@ -61,24 +61,24 @@ final class GachaResultController extends Controller
             'circleInformation:circle_id,description,short_name,circle_type,is_club_activities',
             'circleHandbill',
         ])
-             ->whereRelease(true)
+            ->whereRelease(true)
             ->whereIsOnlyDemo(false)
-             // 新歓が登録されているのものを取得
-             ->hasByNonDependentSubquery('circleHandbill')
-             ->select([
-                 'id', 'name', 'slug',
-             ])
-             ->find(json_decode($circleGachaResult->pickup_circle_ids));
+            // 新歓が登録されているのものを取得
+            ->hasByNonDependentSubquery('circleHandbill')
+            ->select([
+                'id', 'name', 'slug',
+            ])
+            ->find(json_decode($circleGachaResult->pickup_circle_ids));
 
         /** @var \Illuminate\Support\Collection $fetchedPickupCircles */
         $foundPickupCircles = $fetchedPickupCircles->map(
             fn (Circle $circle) =>
-              //型変換
-              GachaSimpleCircleDto::byEloquent(
-                  $circle,
-                  $circle->circleInformation,
-                  $circle->circleHandbill
-              )
+            //型変換
+            GachaSimpleCircleDto::byEloquent(
+                $circle,
+                $circle->circleInformation,
+                $circle->circleHandbill
+            )
         );
 
         $dto = new CircleGachaDto();

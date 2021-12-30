@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Enum\Property\AnnouncementCounterProperty;
 use App\Models\Announcement;
 use App\Models\AnnouncementCounter;
-use App\Usecases\Batch\Announcement\AggregateAnnouncementCounterPerDayUsecase;
+use App\UseCases\Batch\Announcement\AggregateAnnouncementCounterPerDayUsecase;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

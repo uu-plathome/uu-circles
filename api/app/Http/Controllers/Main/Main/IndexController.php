@@ -6,14 +6,14 @@ namespace App\Http\Controllers\Main\Main;
 
 use App\Http\Controllers\Controller;
 use App\Support\Arr;
-use App\Usecases\Main\Advertise\GetMainTopAdvertiseUsecase;
-use App\Usecases\Main\Advertise\GetRandomAdvertiseUsecase;
-use App\Usecases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
-use App\Usecases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
-use App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto;
-use App\Usecases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesKey;
-use App\Usecases\Main\UuYell\FetchUuYellArticlesUsecase;
+use App\UseCases\Main\Advertise\GetMainTopAdvertiseUsecase;
+use App\UseCases\Main\Advertise\GetRandomAdvertiseUsecase;
+use App\UseCases\Main\Announcement\Dto\GetMainViewFixedAnnouncementsUsecaseDto;
+use App\UseCases\Main\Announcement\GetMainViewFixedAnnouncementsUsecase;
+use App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto;
+use App\UseCases\Main\Circle\GetRandomCircleWithMainFixedUsecase;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesKey;
+use App\UseCases\Main\UuYell\FetchUuYellArticlesUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -61,7 +61,7 @@ final class IndexController extends Controller
     {
         Log::debug('#IndexController args: none');
 
-        /** @var \App\Usecases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
+        /** @var \App\UseCases\Main\Circle\Dto\MainSimpleCircleListDto $circles */
         $circles = Cache::remember(
             GetRandomCircleWithMainFixedUsecase::getCacheKey(),
             GetRandomCircleWithMainFixedUsecase::TTL,

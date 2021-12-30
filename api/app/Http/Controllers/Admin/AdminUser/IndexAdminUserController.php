@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin\AdminUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUser\IndexAdminUserRequest;
 use App\Support\Arr;
-use App\Usecases\Admin\IndexAdminUserUsecase;
+use App\UseCases\AdminManagement\AdminUser\IndexAdminUserUsecase;
 use App\ValueObjects\AdminUserValueObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
