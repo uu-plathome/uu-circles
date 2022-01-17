@@ -51,20 +51,6 @@ const MainUucircleAd: FC<Props> = () => {
           U-lab公式サイト
         </p>
       </div>
-
-      <div className="mx-auto md:mr-0 mb-10 md:ml-auto" style={{ width }}>
-        <a href="https://miyameshi.com/" target="_blank" rel="noreferrer">
-          <Image
-            src="/images/miyameshi-phone-top.jpg"
-            alt="みやメシ.com"
-            width={width}
-            height={height}
-            className="rounded"
-            objectFit="cover"
-          />
-        </a>
-        <p className="pt-1 text-sm text-center text-gray-600">みやメシ.com</p>
-      </div>
     </div>
   )
 }
