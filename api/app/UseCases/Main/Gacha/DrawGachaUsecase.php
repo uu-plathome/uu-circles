@@ -117,14 +117,19 @@ final class DrawGachaUsecase
         Log::debug('DrawGachaUsecase drewCircles ピックアップで足りないものを取ってくる', [$drewCircles]);
 
         //idのみ抽出
-        $drewCircle_ids = $drewCircles->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)->values();
+        $drewCircleIds = $drewCircles
+            ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
+            ->values()
+            ->toArray();
+        $pickupCircleIds = (new Collection($pickupList->pickupCircles->list))
+            ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
+            ->values()
+            ->toArray();
 
         //DBに挿入
         $data = [
-            'result_circle_ids'                      => $drewCircle_ids,
-            'pickup_circle_ids'                      => (new Collection($pickupList->pickupCircles->list))
-                ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
-                ->values(),
+            'result_circle_ids' => json_encode($drewCircleIds),
+            'pickup_circle_ids' => json_encode($pickupCircleIds),
             'gacha_hash'        => Str::uuid()->toString(),
             'identifier_hash'   => $param->identifierHash,
         ];
