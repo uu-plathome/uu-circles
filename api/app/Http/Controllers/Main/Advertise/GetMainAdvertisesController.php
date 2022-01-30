@@ -17,15 +17,10 @@ class GetMainAdvertisesController
      */
     const ADVERTISE_MAX_VIEW = 2;
 
-    private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
-    private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase;
-
     public function __construct(
-        GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
-        GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase
+        private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
+        private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase,
     ) {
-        $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
-        $this->getMainTopAdvertiseUsecase = $getMainTopAdvertiseUsecase;
     }
 
     /**
@@ -63,13 +58,13 @@ class GetMainAdvertisesController
     {
         $hour = Carbon::now()->format('YmdH');
 
-        return 'main.advertise.mainTop'.$hour;
+        return 'main.advertise.mainTop' . $hour;
     }
 
     private function getAdvertiseCacheKey(): string
     {
         $minutes = Carbon::now()->format('YmdHi');
 
-        return 'main.advertise'.$minutes;
+        return 'main.advertise' . $minutes;
     }
 }

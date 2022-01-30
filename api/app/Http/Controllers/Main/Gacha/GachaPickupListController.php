@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Log;
 
 final class GachaPickupListController extends Controller
 {
-    private GetGachaPickupListUsecase $getGachaPickupListUsecase;
-
-    public function __construct(GetGachaPickupListUsecase $getGachaPickupListUsecase)
-    {
+    public function __construct(
+        private GetGachaPickupListUsecase $getGachaPickupListUsecase
+    ) {
         $this->getGachaPickupListUsecase = $getGachaPickupListUsecase;
     }
 

@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\Log;
 
 final class SitemapController extends Controller
 {
-    private SitemapUsecase $sitemapUsecase;
-
-    public function __construct(SitemapUsecase $sitemapUsecase)
-    {
-        $this->sitemapUsecase = $sitemapUsecase;
+    public function __construct(
+        private SitemapUsecase $sitemapUsecase
+    ){
     }
 
     /**

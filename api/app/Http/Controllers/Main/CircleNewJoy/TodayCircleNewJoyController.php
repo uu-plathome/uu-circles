@@ -19,18 +19,11 @@ use Illuminate\Support\Facades\Log;
 
 final class TodayCircleNewJoyController extends Controller
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-    private GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase;
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private GetTodayCircleNewJoyUsecase $getTodayCircleNewJoyUsecase
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->getTodayCircleNewJoyUsecase = $getTodayCircleNewJoyUsecase;
     }
 
     /**
