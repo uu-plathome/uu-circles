@@ -48,13 +48,13 @@ class CreateAdvertiseRequest extends FormRequest
     public function attributes()
     {
         return Arr::camel_keys([
-            AdvertiseProperty::title          => __('advertise.' . AdvertiseProperty::title),
-            AdvertiseProperty::link           => __('advertise.' . AdvertiseProperty::link),
-            AdvertiseProperty::main_image_url => __('advertise.' . AdvertiseProperty::main_image_url),
-            AdvertiseProperty::active         => __('advertise.' . AdvertiseProperty::active),
-            AdvertiseProperty::advertise_type => __('advertise.' . AdvertiseProperty::advertise_type),
-            AdvertiseProperty::publish_to     => __('advertise.' . AdvertiseProperty::publish_to),
-            AdvertiseProperty::publish_from   => __('advertise.' . AdvertiseProperty::publish_from),
+            AdvertiseProperty::title          => __('advertise.'.AdvertiseProperty::title),
+            AdvertiseProperty::link           => __('advertise.'.AdvertiseProperty::link),
+            AdvertiseProperty::main_image_url => __('advertise.'.AdvertiseProperty::main_image_url),
+            AdvertiseProperty::active         => __('advertise.'.AdvertiseProperty::active),
+            AdvertiseProperty::advertise_type => __('advertise.'.AdvertiseProperty::advertise_type),
+            AdvertiseProperty::publish_to     => __('advertise.'.AdvertiseProperty::publish_to),
+            AdvertiseProperty::publish_from   => __('advertise.'.AdvertiseProperty::publish_from),
         ]);
     }
 
