@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Log;
 
 final class GachaDrawController extends Controller
 {
-
     public function __construct(
         private DrawGachaUsecase $drawGachaUsecase
-    ){
+    ) {
     }
 
     /**
