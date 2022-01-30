@@ -13,9 +13,12 @@ $ scp u-lab:~/uu-circles.com/public_html/api/current/storage/logs/laravel.log la
 $ scp u-lab:~/uu-circles.com/public_html/api/current/.env .env.production
 ```
 
-##
+## シンボリックリンク
 
 ```shell
+# API 本番
+$ ln -nfs ~/uu-circles.com/work/api-stg/current/uu-circle/api ~/uu-circles.com/public_html/api/current
+
 # API STG
-$ ln -nfs ~/uu-circles.com/work/api-stg/current ~/uu-circles.com/public_html/api-stg/current
+$ ln -nfs ~/uu-circles.com/work/api-stg/current/uu-circle/api ~/uu-circles.com/public_html/api-stg/current
 ```
