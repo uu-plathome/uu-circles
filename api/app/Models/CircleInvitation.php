@@ -21,6 +21,6 @@ class CircleInvitation extends Model
 
     public static function generateToken(): string
     {
-        return base64_encode(Str::uuid());
+        return base64_encode(Str::uuid()->toString());
     }
 }

@@ -125,7 +125,7 @@ final class DrawGachaUsecase
             'pickup_circle_ids'                      => (new Collection($pickupList->pickupCircles->list))
                 ->map(fn (GachaSimpleCircleDto $cvo) => $cvo->circleId)
                 ->values(),
-            'gacha_hash'        => (string) Str::uuid(),
+            'gacha_hash'        => Str::uuid()->toString(),
             'identifier_hash'   => $param->identifierHash,
         ];
         $circleGachaResult = CircleGachaResult::create($data);
