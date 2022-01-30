@@ -19,6 +19,7 @@ final class DeleteCircleUserController extends Controller
         $user = User::findOrFail($userId);
 
         DB::beginTransaction();
+
         try {
             // サークル管理者の削除
             $user->circleUsers()->delete();
