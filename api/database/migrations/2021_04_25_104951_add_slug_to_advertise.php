@@ -21,7 +21,7 @@ class AddSlugToAdvertise extends Migration
 
         // $advertises = DB::table('advertises')->whereNull('slug')->get();
         // $advertises->each(fn ($advertise) => $advertise->update([
-        //     'slug' => Str::uuid(),
+        //     'slug' => Str::uuid()->toString(),
         // ]));
     }
 

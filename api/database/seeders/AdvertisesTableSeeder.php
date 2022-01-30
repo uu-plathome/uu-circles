@@ -46,7 +46,7 @@ class AdvertisesTableSeeder extends Seeder
                 ->each(function (Advertise $advertise) use ($idx) {
                     $advertise->fill([
                         AdvertiseProperty::title          => $advertise->title.$idx,
-                        AdvertiseProperty::slug           => Str::uuid(),
+                        AdvertiseProperty::slug           => Str::uuid()->toString(),
                         AdvertiseProperty::active         => $idx === 1,
                         AdvertiseProperty::main_image_url => $idx === 1 ?
                             'https://static.uu-circles.com/images/E8acivKGZzLpaifgsWCrSYqnPzssstUFQ9ViqeBt.jpg' :

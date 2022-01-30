@@ -65,7 +65,7 @@ class CreateAdvertiseRequest extends FormRequest
         return (new Advertise())->fill([
             AdvertiseProperty::title          => $request[AdvertiseProperty::title],
             AdvertiseProperty::link           => $request[AdvertiseProperty::link],
-            AdvertiseProperty::slug           => Str::uuid(),
+            AdvertiseProperty::slug           => Str::uuid()->toString(),
             AdvertiseProperty::main_image_url => $request[AdvertiseProperty::main_image_url],
             AdvertiseProperty::active         => $request[AdvertiseProperty::active],
             AdvertiseProperty::advertise_type => $request[AdvertiseProperty::advertise_type],

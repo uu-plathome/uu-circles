@@ -23,9 +23,9 @@ class Identifier extends Model
      */
     public static function generateIdentifierHash(): string
     {
-        $uuid = Str::uuid();
+        $uuid = Str::uuid()->toString();
 
-        return base64_encode((string) $uuid);
+        return base64_encode($uuid);
     }
 
     public function circleGachaResults(): HasMany
