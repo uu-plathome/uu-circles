@@ -20,21 +20,12 @@ use Illuminate\Support\Facades\Log;
 
 final class IndexCircleController extends Controller
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-    private GetCircleListUsecase $getCircleListUsecase;
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
-
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetCircleListUsecase $getCircleListUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        TagPageViewRankingUsecase $tagPageViewRankingUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private GetCircleListUsecase $getCircleListUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getCircleListUsecase = $getCircleListUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     /**

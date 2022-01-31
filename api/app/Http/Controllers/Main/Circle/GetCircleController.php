@@ -22,33 +22,18 @@ use Illuminate\Support\Facades\Log;
 
 final class GetCircleController extends Controller
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-
-    private FetchWordPressPostsUsecase $fetchWordPressPostsUsecase;
-
-    private GetCircleBySlugUsecase $getCircleBySlugUsecase;
-
-    private GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId;
-
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-
     /**
      * 新歓取得数.
      */
     const TAKE_NEWJOY_COUNT = 6;
 
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
-        GetCircleBySlugUsecase $getCircleBySlugUsecase,
-        GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private FetchWordPressPostsUsecase $fetchWordPressPostsUsecase,
+        private GetCircleBySlugUsecase $getCircleBySlugUsecase,
+        private GetCircleNewJoyAllPeriodWithLimitByCircleId $getCircleNewJoyAllPeriodWithLimitByCircleId,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->fetchWordPressPostsUsecase = $fetchWordPressPostsUsecase;
-        $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
-        $this->getCircleNewJoyAllPeriodWithLimitByCircleId = $getCircleNewJoyAllPeriodWithLimitByCircleId;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
     }
 
     /**

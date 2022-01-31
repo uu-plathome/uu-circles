@@ -31,24 +31,13 @@ final class DemoIndexController extends Controller
      */
     const ADVERTISE_MAX_VIEW = 2;
 
-    private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase;
-    private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase;
-    private GetCircleWithDemoFixedUsecase $getCircleWithDemoFixedUsecase;
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-
     public function __construct(
-        GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
-        GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase,
-        GetCircleWithDemoFixedUsecase $getCircleWithDemoFixedUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase
+        private GetRandomAdvertiseUsecase $getRandomAdvertiseUsecase,
+        private GetMainTopAdvertiseUsecase $getMainTopAdvertiseUsecase,
+        private GetCircleWithDemoFixedUsecase $getCircleWithDemoFixedUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase
     ) {
-        $this->getRandomAdvertiseUsecase = $getRandomAdvertiseUsecase;
-        $this->getMainTopAdvertiseUsecase = $getMainTopAdvertiseUsecase;
-        $this->getCircleWithDemoFixedUsecase = $getCircleWithDemoFixedUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
     }
 
     /**

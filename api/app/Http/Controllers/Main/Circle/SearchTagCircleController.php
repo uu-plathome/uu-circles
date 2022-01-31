@@ -23,28 +23,13 @@ use Illuminate\Support\Facades\Log;
 
 final class SearchTagCircleController extends Controller
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-
-    private GetRecommendCircleUsecase $getRecommendCircleUsecase;
-
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-
-    private SearchTagCircleListUsecase $searchTagCircleListUsecase;
-
-    private TagPageViewRankingUsecase $tagPageViewRankingUsecase;
-
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetRecommendCircleUsecase $getRecommendCircleUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        SearchTagCircleListUsecase $searchTagCircleListUsecase,
-        TagPageViewRankingUsecase $tagPageViewRankingUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private GetRecommendCircleUsecase $getRecommendCircleUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private SearchTagCircleListUsecase $searchTagCircleListUsecase,
+        private TagPageViewRankingUsecase $tagPageViewRankingUsecase
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getRecommendCircleUsecase = $getRecommendCircleUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->searchTagCircleListUsecase = $searchTagCircleListUsecase;
-        $this->tagPageViewRankingUsecase = $tagPageViewRankingUsecase;
     }
 
     /**

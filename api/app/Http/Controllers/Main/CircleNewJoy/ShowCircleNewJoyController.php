@@ -23,24 +23,13 @@ use Illuminate\Support\Facades\Log;
 
 final class ShowCircleNewJoyController extends Controller
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-    private GetCircleBySlugUsecase $getCircleBySlugUsecase;
-    private GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase;
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-    private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase;
-
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetCircleBySlugUsecase $getCircleBySlugUsecase,
-        GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private GetCircleBySlugUsecase $getCircleBySlugUsecase,
+        private GetTodayCircleNewJoyWithLimitUsecase $getTodayCircleNewJoyWithLimitUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private IndexCircleNewJoyUsecase $indexCircleNewJoyUsecase
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getCircleBySlugUsecase = $getCircleBySlugUsecase;
-        $this->getTodayCircleNewJoyWithLimitUsecase = $getTodayCircleNewJoyWithLimitUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->indexCircleNewJoyUsecase = $indexCircleNewJoyUsecase;
     }
 
     /**

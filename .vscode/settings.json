@@ -10,5 +10,6 @@
         "intelephense",
         "laravel",
         "tailwindcss"
-    ]
+    ],
+    "intelephense.environment.phpVersion": "8.0"
 }

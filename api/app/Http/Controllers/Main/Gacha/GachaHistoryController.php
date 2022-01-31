@@ -13,12 +13,9 @@ use Illuminate\Support\Facades\Log;
 
 final class GachaHistoryController extends Controller
 {
-    private GachaHistoryByIdentifierHashUsecase $gachaHistoryByIdentifierHashUsecase;
-
     public function __construct(
-        GachaHistoryByIdentifierHashUsecase $gachaHistoryByIdentifierHashUsecase
+        private GachaHistoryByIdentifierHashUsecase $gachaHistoryByIdentifierHashUsecase
     ) {
-        $this->gachaHistoryByIdentifierHashUsecase = $gachaHistoryByIdentifierHashUsecase;
     }
 
     public function __invoke(Request $request)

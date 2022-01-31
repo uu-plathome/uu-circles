@@ -15,20 +15,11 @@ use Illuminate\Support\Facades\Log;
 
 final class StatisticsController
 {
-    private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase;
-
-    private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase;
-
-    private StatisticsUsecase $statisticsUsecase;
-
     public function __construct(
-        FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
-        GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
-        StatisticsUsecase $statisticsUsecase
+        private FetchUuYellArticlesUsecase $fetchUuYellArticlesUsecase,
+        private GetMainViewFixedAnnouncementsUsecase $getMainViewFixedAnnouncementsUsecase,
+        private StatisticsUsecase $statisticsUsecase
     ) {
-        $this->fetchUuYellArticlesUsecase = $fetchUuYellArticlesUsecase;
-        $this->getMainViewFixedAnnouncementsUsecase = $getMainViewFixedAnnouncementsUsecase;
-        $this->statisticsUsecase = $statisticsUsecase;
     }
 
     /**
