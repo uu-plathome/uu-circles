@@ -104,8 +104,8 @@ const Page: NextPage<Props> = ({
           },
           ...(circleNewJoys
             ? circleNewJoys.map((circleNewJoy) => ({
-              url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
-            }))
+                url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
+              }))
             : []),
         ]}
       />
