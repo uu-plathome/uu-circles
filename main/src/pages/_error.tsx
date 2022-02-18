@@ -3,7 +3,7 @@ import React from 'react'
 import { Bugsnag } from '@/src/lib/utils/Bugsnag'
 
 interface Props {
-  statusCode: number | undefined;
+  statusCode: number | undefined
 }
 const Error: NextPage<Props> = ({ statusCode }) => {
   return (
@@ -28,7 +28,7 @@ Error.getInitialProps = ({ res, err }) => {
     return { statusCode }
   }
 
-  Bugsnag.notify("An error occurred on _error.tsx")
+  Bugsnag.notify('An error occurred on _error.tsx')
   return { statusCode: 500 }
 }
 
