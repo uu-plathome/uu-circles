@@ -348,6 +348,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       }
     }
 
+    console.error(e)
+
     return { props: { errorCode: 500 } }
   }
 }

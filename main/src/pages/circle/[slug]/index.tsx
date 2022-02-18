@@ -179,6 +179,8 @@ export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
       }
     }
 
+    console.error(e)
+
     return { props: { errorCode: 500 } }
   }
 }
