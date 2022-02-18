@@ -17,7 +17,7 @@ final class SitemapController extends Controller
 {
     public function __construct(
         private SitemapUsecase $sitemapUsecase
-    ){
+    ) {
     }
 
     /**
