@@ -80,6 +80,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       revalidate: 180,
     }
   } catch (e) {
+    console.error(e)
     return { props: { errorCode: 500 } }
   }
 }

@@ -104,8 +104,8 @@ const Page: NextPage<Props> = ({
           },
           ...(circleNewJoys
             ? circleNewJoys.map((circleNewJoy) => ({
-                url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
-              }))
+              url: `${baseUuCirclesUrl}/circle/newjoy/${circleNewJoy.id}`,
+            }))
             : []),
         ]}
       />
@@ -178,6 +178,8 @@ export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
         notFound: true,
       }
     }
+
+    console.error(e)
 
     return { props: { errorCode: 500 } }
   }
