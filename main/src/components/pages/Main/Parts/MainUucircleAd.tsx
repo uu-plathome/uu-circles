@@ -33,14 +33,14 @@ const MainUucircleAd: FC<Props> = () => {
             objectFit="cover"
           />
         </a>
-        <p className="pt-1 text-sm text-center text-gray-600">メディアサイト</p>
+        <p className="pt-1 text-sm text-center text-gray-600">メディアサイト uu-yell</p>
       </div>
 
       <div className="mx-auto md:mr-auto mb-10 md:ml-0" style={{ width }}>
-        <a href="https://ulab-uu.com" target="_blank" rel="noreferrer">
+        <a href="https://uu-plathome.com" target="_blank" rel="noreferrer">
           <Image
-            src={ImagePath.U_LAB.OFFICIAL_SITE_EYE_CATCH}
-            alt="u-lab公式サイト"
+            src={ImagePath.UUPH.THUMBNAIL}
+            alt="UU-PlatHome公式サイト"
             width={width}
             height={height}
             className="rounded"
@@ -48,7 +48,7 @@ const MainUucircleAd: FC<Props> = () => {
           />
         </a>
         <p className="pt-1 text-sm text-center text-gray-600">
-          U-lab公式サイト
+          UU-PlatHome公式サイト
         </p>
       </div>
     </div>
