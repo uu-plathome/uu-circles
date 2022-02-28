@@ -28,6 +28,12 @@ export const ImagePath = {
     OFFICIAL_SITE_EYE_CATCH: '/images/u-lab/u-lab-official-site-eye-catch.png',
   },
 
+  UUPH: {
+    THUMBNAIL: '/images/uuph/uuph_thumbnail.png',
+    LOGO: '/images/uuph/logo.png',
+    LOGO_SVG: '/images/uuph/logo.svg',
+  },
+
   UU_CIRCLES: {
     UU_CIRCLES_SERVICE: '/images/uu-circles/u-lab-uu-circles-services.png',
 

@@ -452,7 +452,7 @@ const Page: NextPage<Props> = () => {
             <div className="pb-36">
               <p className="px-4 mb-4">
                 <a
-                  href="https://github.com/H37kouya/uu-circle"
+                  href="https://github.com/UU-PlatHome/uu-circles"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center"
