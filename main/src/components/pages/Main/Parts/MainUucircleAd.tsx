@@ -33,7 +33,9 @@ const MainUucircleAd: FC<Props> = () => {
             objectFit="cover"
           />
         </a>
-        <p className="pt-1 text-sm text-center text-gray-600">メディアサイト uu-yell</p>
+        <p className="pt-1 text-sm text-center text-gray-600">
+          メディアサイト uu-yell
+        </p>
       </div>
 
       <div className="mx-auto md:mr-auto mb-10 md:ml-0" style={{ width }}>
