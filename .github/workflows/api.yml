@@ -81,7 +81,7 @@ jobs:
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
             git clone https://github.com/UU-PlatHome/uu-circles.git && \
-            cd uu-circle/api && \
+            cd uu-circles/api && \
             git reset --hard origin/develop/stg && \
             cp ../../../.env .env && \
             cp ../../../credentials.json credentials.json && \
@@ -114,7 +114,7 @@ jobs:
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
             git clone https://github.com/UU-PlatHome/uu-circles.git && \
-            cd uu-circle/api && \
+            cd uu-circles/api && \
             git reset --hard origin/develop/production && \
             cp ../../../.env .env && \
             cp ../../../credentials.json credentials.json && \
