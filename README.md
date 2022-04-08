@@ -2,7 +2,7 @@
 
 UU-Circles: https://uu-circles.com/
 
-## サイト運営
+## 運営団体
 
 UU-PlatHome: https://uu-plathome.com/
 
