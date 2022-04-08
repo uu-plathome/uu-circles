@@ -38,7 +38,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
   announcements,
   onChangeId,
 }) => {
-  const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
+  const pageUrl = useMemo(() => `https://uu-circles.com/circle/newjoy`, [])
 
   return (
     <BaseLayout
