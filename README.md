@@ -57,8 +57,8 @@ UU-PlatHome: https://uu-plathome.com/
 -   部員アカウント管理
 -   管理者アカウント管理
 -   Excel 出力
-    -   サークル一覧
-    -   広告一覧
+-   サークル一覧
+-   広告一覧
 
 ### uu-yell
 
@@ -68,32 +68,32 @@ UU-PlatHome: https://uu-plathome.com/
 ### バッチ
 
 -   死活監視バッチ
-    -   サーバーが落ちていないか確認
-    -   GitHub Action
-    -   シェル
+-   サーバーが落ちていないか確認
+-   GitHub Action
+-   シェル
 -   新歓通知バッチ
-    -   Discord へ「今日の新歓」を通知する
-    -   GitHub Action
-    -   Python
+-   Discord へ「今日の新歓」を通知する
+-   GitHub Action
+-   Python
 -   uu-yell の最新記事の通知バッチ
-    -   Discord へ「今日の uu-yell の記事」を通知する
-    -   GitHub Action
-    -   Python
-    -   WordPress API
+-   Discord へ「今日の uu-yell の記事」を通知する
+-   GitHub Action
+-   Python
+-   WordPress API
 -   uu-yell の記事を UU-Circles の DB にコピーするバッチ
-    -   Laravel
-    -   MySQL
-    -   WordPress API
+-   Laravel
+-   MySQL
+-   WordPress API
 -   広告の１日のクリック数を計測するバッチ
-    -   Laravel
-    -   MySQL
+-   Laravel
+-   MySQL
 -   お知らせの１日のクリック数を計測するバッチ
-    -   Laravel
-    -   MySQL
+-   Laravel
+-   MySQL
 -   Google Analytics のデータを DB にコピーするバッチ
-    -   Laravel
-    -   MySQL
-    -   Google Analytics
+-   Laravel
+-   MySQL
+-   Google Analytics
 -   uu-yell (WordPress)のバックアップ
-    -   WordPress
-    -   BackWPup
+-   WordPress
+-   BackWPup
