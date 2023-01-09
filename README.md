@@ -27,6 +27,8 @@ UU-PlatHome: https://uu-plathome.com/
 -   [UU-Circles システム目線の話](https://ulab-uu.com/2021/08/08/uu-circles-system-report/)
 -   [ER 図](./docs/MySql.png)
 
+<strong>現在記事サイトが閲覧できない状態になっています。ご了承ください。</strong>
+
 ### UU-Circles メインページ
 
 -   サークル一覧
