@@ -92,8 +92,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
                 />
               ) : (
                 <p className="text-center">近日開催予定の新歓はありません</p>
-              )
-              }
+              )}
             </section>
           </div>
         </BaseContainer>
