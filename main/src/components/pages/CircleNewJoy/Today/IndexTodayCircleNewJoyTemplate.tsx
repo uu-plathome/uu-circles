@@ -38,7 +38,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
   announcements,
   onChangeId,
 }) => {
-  const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
+  const pageUrl = useMemo(() => `https://uu-circles.com/circle/newjoy`, [])
 
   return (
     <BaseLayout
@@ -86,9 +86,13 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
                 開催日時が近い新歓イベント
               </h2>
 
-              <IndexCircleNewJoyListForNoSlug
-                circleNewJoys={futureCircleNewJoys || []}
-              />
+              {futureCircleNewJoys && futureCircleNewJoys.length > 0 ? (
+                <IndexCircleNewJoyListForNoSlug
+                  circleNewJoys={futureCircleNewJoys || []}
+                />
+              ) : (
+                <p className="text-center">近日開催予定の新歓はありません</p>
+              )}
             </section>
           </div>
         </BaseContainer>

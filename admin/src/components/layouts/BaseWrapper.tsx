@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React from 'react'
 import { GreenButton } from '../atoms/buttons/GreenButton'
 import { BaseSidebar } from './BaseSidebar'
 
@@ -7,8 +7,9 @@ type Props = {
   actionHref?: string
   actionAs?: string
   actionText?: string
+  children: React.ReactNode
 }
-const BaseWrapper: FC<Props> = ({
+const BaseWrapper: React.FC<Props> = ({
   title,
   actionHref,
   actionAs,

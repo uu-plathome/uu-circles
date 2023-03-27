@@ -20,6 +20,7 @@ const CircleListItemTableColumn: FC<{
   title: string
   large?: boolean
   xs?: boolean
+  children: React.ReactNode
 }> = ({ children, title, large, xs }) => {
   let w = 'lg:w-1/6'
   w = large ? 'lg:w-1/4' : w

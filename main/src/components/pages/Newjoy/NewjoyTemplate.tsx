@@ -35,7 +35,7 @@ export const NewjoyTemplate: NextPage<Props> = ({
   announcements,
   isDemo,
 }) => {
-  const pageUrl = useMemo(() => `https://uu-circles.com/newjoy`, [])
+  const pageUrl = useMemo(() => `https://uu-circles.com/circle/newjoy`, [])
 
   return (
     <div>

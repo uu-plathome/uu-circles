@@ -8,6 +8,7 @@ type Props = {
   as?: Url
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   href?: LinkProps['href']
+  children: React.ReactNode
 }
 
 const RedButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
