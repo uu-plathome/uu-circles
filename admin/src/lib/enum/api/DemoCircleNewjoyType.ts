@@ -26,7 +26,7 @@ export type DemoCircleNewjoyTypeKey = keyof Omit<
 >
 export type DemoCircleNewjoyTypeAllKey = keyof typeof DemoCircleNewjoyType
 export type DemoCircleNewjoyType =
-  typeof DemoCircleNewjoyType[DemoCircleNewjoyTypeKey]
+  (typeof DemoCircleNewjoyType)[DemoCircleNewjoyTypeKey]
 
 /**
  * 広告種類.

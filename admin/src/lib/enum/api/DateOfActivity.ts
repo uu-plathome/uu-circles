@@ -17,7 +17,7 @@ export const DateOfActivity = {
 
 export type DateOfActivityKey = keyof Omit<typeof DateOfActivity, '_type'>
 export type DateOfActivityAllKey = keyof typeof DateOfActivity
-export type DateOfActivity = typeof DateOfActivity[DateOfActivityKey]
+export type DateOfActivity = (typeof DateOfActivity)[DateOfActivityKey]
 
 /**
  * 活動日時

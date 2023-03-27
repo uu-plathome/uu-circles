@@ -27,7 +27,7 @@ export const CircleType = {
 
 export type CircleTypeKey = keyof Omit<typeof CircleType, '_type'>
 export type CircleTypeAllKey = keyof typeof CircleType
-export type CircleType = typeof CircleType[CircleTypeKey]
+export type CircleType = (typeof CircleType)[CircleTypeKey]
 
 /**
  * サークル種類.

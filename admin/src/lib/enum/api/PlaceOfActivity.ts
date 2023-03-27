@@ -42,7 +42,7 @@ export const PlaceOfActivity = {
 
 export type PlaceOfActivityKey = keyof Omit<typeof PlaceOfActivity, '_type'>
 export type PlaceOfActivityAllKey = keyof typeof PlaceOfActivity
-export type PlaceOfActivity = typeof PlaceOfActivity[PlaceOfActivityKey]
+export type PlaceOfActivity = (typeof PlaceOfActivity)[PlaceOfActivityKey]
 
 /**
  * 活動場所

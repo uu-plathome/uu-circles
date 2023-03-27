@@ -42,7 +42,7 @@ export const Week = {
 
 export type WeekKey = keyof Omit<typeof Week, '_type'>
 export type WeekAllKey = keyof typeof Week
-export type Week = typeof Week[WeekKey]
+export type Week = (typeof Week)[WeekKey]
 
 /**
  * 曜日.
