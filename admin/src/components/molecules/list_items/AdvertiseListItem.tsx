@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC, useState } from 'react'
+import React, { useState } from 'react'
 import Modal from 'react-modal'
 import { GrayButton } from '@/src/components/atoms/buttons/GrayButton'
 import { RedButton } from '@/src/components/atoms/buttons/RedButton'
@@ -36,7 +36,7 @@ type DeleteButtonProps = {
   advertise: Advertise
   onDelete(): void
 }
-const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const onClickDeleteButton = () => {
@@ -75,9 +75,10 @@ const DeleteButton: FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
   )
 }
 
-const ListItemTableColumn: FC<{
+const ListItemTableColumn: React.FC<{
   title: string
   lg?: boolean
+  children: React.ReactNode
 }> = ({ children, title, lg }) => {
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
@@ -89,7 +90,7 @@ const ListItemTableColumn: FC<{
     </div>
   )
 }
-const AdvertiseListItem: FC<Props> = ({ advertise, onDelete }) => {
+const AdvertiseListItem: React.FC<Props> = ({ advertise, onDelete }) => {
   const { isMd } = useMediaQuery()
 
   return (

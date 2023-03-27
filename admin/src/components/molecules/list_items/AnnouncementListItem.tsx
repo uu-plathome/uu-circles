@@ -76,6 +76,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ announcement, onDelete }) => {
 const ListItemTableColumn: FC<{
   title: string
   lg?: boolean
+  children: React.ReactNode
 }> = ({ children, title, lg }) => {
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
