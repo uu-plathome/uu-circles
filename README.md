@@ -4,7 +4,7 @@ UU-Circles: https://uu-circles.com/
 
 ## 運営団体
 
-UU-PlatHome: https://uu-plathome.com/
+宇大生必須のプラットフォーム UU-PlatHome: https://uu-plathome.com/
 
 <p align="center">
 <img src="./docs/uu-circles.png" alt="サークル一覧" />
