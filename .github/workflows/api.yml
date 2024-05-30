@@ -109,7 +109,7 @@ jobs:
           HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -vvv -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
             cd ~/uu-circles.com/work/api && \
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
