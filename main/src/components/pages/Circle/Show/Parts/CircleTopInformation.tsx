@@ -67,6 +67,20 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
       </div>
 
       <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
+        {/*最終更新日を表示*/}
+        <p className="mt-3 text-gray-500">
+          最終更新:{' '}
+          {new Date(circle.updatedAt).toLocaleString('ja-JP', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
+        </p>
+      </div>
+
+      <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
         <div className="flex justify-between md:justify-start py-2">
           {/* 活動人数 */}
           <div className="md:mr-4">
