@@ -19,6 +19,7 @@ type Props = {
 
 const CircleListItemTableColumn: FC<{
   title: string
+  children: React.ReactNode
 }> = ({ children, title }) => {
   return (
     <div className="pr-2 mb-2 w-1/3 lg:w-1/6">

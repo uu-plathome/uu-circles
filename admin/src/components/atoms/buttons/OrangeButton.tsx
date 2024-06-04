@@ -5,6 +5,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset'
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   href?: string
+  children: React.ReactNode
 }
 
 const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {

@@ -17,7 +17,7 @@ export const AdvertiseType = {
 
 export type AdvertiseTypeKey = keyof Omit<typeof AdvertiseType, '_type'>
 export type AdvertiseTypeAllKey = keyof typeof AdvertiseType
-export type AdvertiseType = typeof AdvertiseType[AdvertiseTypeKey]
+export type AdvertiseType = (typeof AdvertiseType)[AdvertiseTypeKey]
 
 /**
  * 広告種類.
