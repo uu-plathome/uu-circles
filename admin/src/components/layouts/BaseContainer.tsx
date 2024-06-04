@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import React from 'react'
 
-const BaseContainer: FC = ({ children }) => {
+type Props = { children: React.ReactNode }
+const BaseContainer: React.FC<Props> = ({ children }) => {
   return (
     <div className="container">
       <div className="mx-auto max-w-screen-lg">{children}</div>

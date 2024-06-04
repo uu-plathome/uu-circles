@@ -3,6 +3,7 @@ import React from 'react'
 type Props = {
   type: 'button' | 'submit' | 'reset'
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  children: React.ReactNode
 }
 const BlueButton: React.FC<Props> = ({ children, onClick, type }) => {
   return (

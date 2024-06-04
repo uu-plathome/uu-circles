@@ -23,7 +23,7 @@ export const Role = {
 
 export type RoleKey = keyof Omit<typeof Role, '_type'>
 export type RoleAllKey = keyof typeof Role
-export type Role = typeof Role[RoleKey]
+export type Role = (typeof Role)[RoleKey]
 
 /**
  * 権限.
