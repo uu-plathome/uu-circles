@@ -139,7 +139,7 @@ class CircleValueObject
         $circleValueObject->tiktok_url = $circleInformation ? $circleInformation->tiktok_url : null;
         $circleValueObject->participation_url = $circleInformation ? $circleInformation->participation_url : null;
         $circleValueObject->created_at = $circle->created_at;
-        $circleValueObject->updated_at = $circleInformation->updated_at;
+        $circleValueObject->updated_at = $circleInformation ? $circleInformation->updated_at : $circle->updated_at;
         $circleValueObject->main_image_url = $circleInformation ? $circleInformation->main_image_url : null;
         $circleValueObject->activity_image_url1 = $circleInformation ? $circleInformation->activity_image_url1 : null;
         $circleValueObject->activity_image_url2 = $circleInformation ? $circleInformation->activity_image_url2 : null;
