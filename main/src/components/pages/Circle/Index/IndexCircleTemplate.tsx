@@ -12,7 +12,6 @@ import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
 import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
-import { PagePositions } from '@/src/lib/types/model/PagePosition'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
 
 const BaseFooter = dynamic<BaseFooterProps>(() =>
@@ -33,16 +32,12 @@ type Props = {
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
   /** タグページ閲覧数 */ tagPageViewRanking: TagPageViewRanking
-  pagePositions: PagePositions
-  onChangeId(_pagePositionId: string): Promise<void>
 }
 export const IndexCircleTemplate: FC<Props> = ({
   circles,
   uuYellArticles,
   announcements,
   tagPageViewRanking,
-  // pagePositions,
-  onChangeId,
 }) => {
   return (
     <BaseLayout
@@ -76,12 +71,10 @@ export const IndexCircleTemplate: FC<Props> = ({
             <CircleLengthView
               id={ID_LIST.CIRCLE_LENGTH}
               circleLength={circles.length}
-              onChangeId={onChangeId}
             />
 
             <div
               id={ID_LIST.RECOMMEND_TAG_LIST}
-              onMouseMove={() => onChangeId(ID_LIST.RECOMMEND_TAG_LIST)}
             >
               {/*  おすすめのタグ */}
               <RecommendTagList />
@@ -91,7 +84,6 @@ export const IndexCircleTemplate: FC<Props> = ({
             <BaseCircleList
               id={ID_LIST.CIRCLE_LIST}
               circles={circles}
-              onChangeId={onChangeId}
             />
           </div>
         </TwoColumnContainer>

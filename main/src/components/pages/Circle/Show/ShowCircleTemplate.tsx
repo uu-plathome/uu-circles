@@ -59,7 +59,6 @@ type Props = {
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Attachment[]
   }
-  onChangeId: (id: string) => void
 }
 
 export const ShowCircleTemplate: FC<Props> = ({
@@ -69,8 +68,7 @@ export const ShowCircleTemplate: FC<Props> = ({
   uuYellArticles,
   wpPosts,
   announcements,
-  uuYellForCircles,
-  onChangeId,
+  uuYellForCircles
 }) => {
   // w : h = 210 : 297
   const width = 300
@@ -86,7 +84,6 @@ export const ShowCircleTemplate: FC<Props> = ({
         <BaseContainer>
           <div
             id={ID_LIST.CIRCLE_TOP_IMAGE}
-            onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TOP_IMAGE)}
           >
             {/* 活動写真 */}
             <TopImage circle={circle} />
@@ -99,7 +96,6 @@ export const ShowCircleTemplate: FC<Props> = ({
             <div
               id={ID_LIST.APPEALING_POINT}
               className="order-1"
-              onMouseOver={() => onChangeId(ID_LIST.APPEALING_POINT)}
             >
               <AppealingPoint circle={circle} />
             </div>
@@ -108,7 +104,6 @@ export const ShowCircleTemplate: FC<Props> = ({
               <div
                 id={ID_LIST.CIRCLE_HANDBILL_IMAGE}
                 className="order-2 pt-10"
-                onMouseOver={() => onChangeId(ID_LIST.CIRCLE_HANDBILL_IMAGE)}
               >
                 <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
 
@@ -136,7 +131,6 @@ export const ShowCircleTemplate: FC<Props> = ({
             <div
               id={ID_LIST.NEWJOY_LIST}
               className="order-4 md:order-4 pt-10"
-              onMouseOver={() => onChangeId(ID_LIST.NEWJOY_LIST)}
             >
               <>
                 {circleNewJoys && circleNewJoys.length > 0 ? (
@@ -170,7 +164,6 @@ export const ShowCircleTemplate: FC<Props> = ({
             <div
               id={ID_LIST.INFORMATION_FILED}
               className="order-3 md:order-3 pt-10"
-              onMouseOver={() => onChangeId(ID_LIST.INFORMATION_FILED)}
             >
               <InformationField circle={circle} circleTags={circleTags || []} />
             </div>
@@ -181,7 +174,6 @@ export const ShowCircleTemplate: FC<Props> = ({
               <div
                 id={ID_LIST.WP_POSTS_RECOMMEND}
                 className="order-5 px-6 md:px-0 pt-10"
-                onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECOMMEND)}
               >
                 <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -211,7 +203,6 @@ export const ShowCircleTemplate: FC<Props> = ({
               <div
                 id={ID_LIST.WP_POSTS_RECENT}
                 className="order-6 px-6 md:px-0 pt-10"
-                onMouseOver={() => onChangeId(ID_LIST.WP_POSTS_RECENT)}
               >
                 <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -242,7 +233,6 @@ export const ShowCircleTemplate: FC<Props> = ({
             <div
               id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
               className="px-6 md:px-0 pt-10"
-              onMouseOver={() => onChangeId(ID_LIST.CIRCLE_UU_YELL_ARTICLES)}
             >
               <ShowCircleTitle>
                 uu-yellでサークルを詳しく知ろう！
@@ -272,7 +262,6 @@ export const ShowCircleTemplate: FC<Props> = ({
 
           <div
             id={ID_LIST.CIRCLE_TWITTER}
-            onMouseOver={() => onChangeId(ID_LIST.CIRCLE_TWITTER)}
           >
             {circle && circle.twitterUrl ? (
               <div className="px-6 md:pr-2 pb-16 md:pl-0">
