@@ -13,11 +13,9 @@ import { Props as MainUucircleAdProps } from '@/src/components/pages/Main/Parts/
 import { Props as MainUucircleBottomButtonsProps } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
-import { PagePositionRecord } from '@/src/hooks/usePagePosition'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
-import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
 const MainCircleList = dynamic<MainCircleListProps>(() =>
   import('@/src/components/pages/Main/Parts/MainCircleList').then(
@@ -59,9 +57,6 @@ type Props = {
     posts?: WP_REST_API_Posts
     medias?: WP_REST_API_Attachments
   }
-  pagePositions: PagePositions
-  recordPagePosition: PagePositionRecord[]
-  onChangeId: (_pagePositionId: string) => Promise<void>
 }
 export const MainTemplate: FC<Props> = ({
   advertises,
