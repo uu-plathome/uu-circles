@@ -105,8 +105,6 @@ export const MainTemplate: FC<Props> = ({
 
         <div id={ID_LIST.TOP_BUTTONS} className="relative bg-white">
           <MainUucircleTopButtons
-            pagePositionIdNowLength={pagePositionIdNowLength}
-            onChangeId={onChangeId}
           />
         </div>
 
@@ -122,8 +120,6 @@ export const MainTemplate: FC<Props> = ({
             <MainCircleList
               id={ID_LIST.CIRCLE_LIST}
               circles={circles}
-              pagePositionIdNowLength={pagePositionIdNowLength}
-              onChangeId={onChangeId}
             />
 
             <div className="flex justify-center pt-4 pb-10 bg-gray-100">
