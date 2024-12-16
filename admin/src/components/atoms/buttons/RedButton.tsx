@@ -15,7 +15,7 @@ const RedButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
   if (href) {
     return (
       <Link href={href} as={as}>
-        <a
+        <p
           className={`
                     min-w-120
                     inline-block
@@ -38,7 +38,7 @@ const RedButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
                 `}
         >
           {children}
-        </a>
+        </p>
       </Link>
     )
   } else {

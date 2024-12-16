@@ -283,9 +283,7 @@ const CircleNewJoyListItem: FC<Props> = ({
               href="/circle/[id]/newjoy/[circleNewJoyId]/edit"
               as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`}
             >
-              <a>
                 <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-              </a>
             </Link>
           </CircleListItemTableColumn>
 

@@ -28,15 +28,15 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
             )}
 
             <Link href="/">
-              <a className="text-xl text-white hover:underline">UU-Manager</a>
+              <p className="text-xl text-white hover:underline">UU-Manager</p>
             </Link>
           </div>
 
           <Link href="/logout">
-            <a className="text-white hover:underline">
+            <p className="text-white hover:underline">
               <FontAwesomeIcon color={Color.red[600]} icon={faUser} />
               <span className="ml-2">ログアウト</span>
-            </a>
+            </p>
           </Link>
         </div>
       </BaseContainer>

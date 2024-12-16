@@ -72,13 +72,11 @@ const AllUserListItem: FC<Props> = ({ user, onResendEmail }) => {
             </p>
             <div className="flex justify-center items-center h-7">
               <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
-                <a>
-                  <FontAwesomeIcon
-                    size="lg"
-                    color="orange"
-                    icon={faUserFriends}
-                  />
-                </a>
+                <FontAwesomeIcon
+                  size="lg"
+                  color="orange"
+                  icon={faUserFriends}
+                />
               </Link>
             </div>
           </div>

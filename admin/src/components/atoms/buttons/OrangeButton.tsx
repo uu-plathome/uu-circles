@@ -12,7 +12,7 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
   if (href) {
     return (
       <Link href={href}>
-        <a
+        <p
           className={`
                     min-w-120
                     inline-block
@@ -35,7 +35,7 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
                 `}
         >
           {children}
-        </a>
+        </p>
       </Link>
     )
   } else {

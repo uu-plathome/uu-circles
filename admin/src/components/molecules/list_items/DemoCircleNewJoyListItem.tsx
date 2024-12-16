@@ -140,9 +140,7 @@ const DemoCircleNewJoyListItem: FC<Props> = ({ name, demoCircleNewJoy }) => {
               href="/demo/newjoy/[demoCircleNewJoyId]/edit"
               as={`/demo/newjoy/${demoCircleNewJoy.demoCircleNewJoyId}/edit`}
             >
-              <a>
                 <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-              </a>
             </Link>
           </CircleListItemTableColumn>
         </div>
