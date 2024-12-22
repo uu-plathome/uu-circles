@@ -6,6 +6,9 @@ namespace App\UseCases\Main\Circle\Params;
 
 final class SearchTagCircleListParam
 {
+    public bool $sport = false;
+    public bool $music = false;
+    public bool $culture = false;
     public bool $nature = false;
     public bool $community = false;
     public bool $international = false;
