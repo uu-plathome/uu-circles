@@ -1,8 +1,5 @@
 <?php
 
-use App\Enum\BroadCastProperty\BroadCastProperty as BCP;
-use Illuminate\Support\Facades\Broadcast;
-
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -13,7 +10,3 @@ use Illuminate\Support\Facades\Broadcast;
 | used to check if an authenticated user can listen to the channel.
 |
 */
-
-Broadcast::channel(BCP::PagePositionChannel, function () {
-    return true;
-});
