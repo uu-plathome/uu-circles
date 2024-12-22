@@ -50,12 +50,6 @@ export const IndexCircleTemplate: FC<Props> = ({
           sidebar={
             <CircleSidebar
               tagPageViewRanking={tagPageViewRanking}
-              excludeTags={[
-                TagSlugProperty.sport,
-                TagSlugProperty.music,
-                TagSlugProperty.culture,
-                TagSlugProperty.community,
-              ]}
             />
           }
         >
