@@ -105,7 +105,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ sidebarItem }) => {
   return (
     <li className="pb-2">
       <Link href={sidebarItem.link}>
-        <p
+        <div
           className={`
                         flex
                         flex-wrap
@@ -126,7 +126,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ sidebarItem }) => {
             <span className="pl-1">{sidebarItem.name}</span>
           </div>
           <FontAwesomeIcon icon={faChevronRight} />
-        </p>
+        </div>
       </Link>
     </li>
   )
