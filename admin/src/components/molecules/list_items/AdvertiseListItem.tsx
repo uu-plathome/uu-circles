@@ -145,7 +145,7 @@ const AdvertiseListItem: React.FC<Props> = ({ advertise, onDelete }) => {
               href="/advertise/[advertiseId]/edit"
               as={`/advertise/${advertise.id}/edit`}
             >
-                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
+              <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
           </ListItemTableColumn>
           <ListItemTableColumn title="削除する">

@@ -78,7 +78,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="タグ">
-           <Link href="/circle/[id]/tag" as={`/circle/${circle.id}/tag`}>
+            <Link href="/circle/[id]/tag" as={`/circle/${circle.id}/tag`}>
               <FontAwesomeIcon size="lg" color="orange" icon={faTags} />
             </Link>
           </CircleListItemTableColumn>

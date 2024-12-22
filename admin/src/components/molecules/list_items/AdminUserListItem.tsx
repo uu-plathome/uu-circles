@@ -112,7 +112,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                   as={`/user/admin/${user.id}/delete`}
                 >
                   <FontAwesomeIcon size="lg" color="red" icon={faTrash} />
-                 </Link>
+                </Link>
               ) : (
                 <FontAwesomeIcon size="lg" color="white" icon={faMinus} />
               )}
