@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { SpButtonGroupProps } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsSp'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 
-const PcButtonGroup = dynamic(() =>
+const PcButtonGroup = dynamic<{}>(() =>
   import(
     '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtonsPc'
   ).then((mod) => mod.PcButtonGroup)

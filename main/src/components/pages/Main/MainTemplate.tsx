@@ -22,7 +22,7 @@ const MainCircleList = dynamic<MainCircleListProps>(() =>
     (mod) => mod.MainCircleList
   )
 )
-const MainTagList = dynamic(() =>
+const MainTagList = dynamic<{}>(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(
     (mod) => mod.MainTagList
   )

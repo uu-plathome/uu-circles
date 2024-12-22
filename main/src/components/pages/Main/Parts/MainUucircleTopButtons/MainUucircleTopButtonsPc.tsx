@@ -1,13 +1,7 @@
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { TOP_BUTTONS_ID_LIST } from './top_buttons_id_list'
-import { UtasProps } from '@/src/components/atoms/utas/Utas'
-
-const Utas = dynamic<UtasProps>(() =>
-  import('@/src/components/atoms/utas/Utas').then((mod) => mod.Utas)
-)
 
 type PcButtonProps = {
   href: string
