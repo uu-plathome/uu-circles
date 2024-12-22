@@ -1,11 +1,8 @@
 import { GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
-import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { IndexTodayCircleNewJoyTemplate } from '@/src/components/pages/CircleNewJoy/Today/IndexTodayCircleNewJoyTemplate'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import {
   getTodayCircleNewJoy,
   TodayCircleNewJoy,
@@ -26,22 +23,6 @@ const Page: NextPage<Props> = ({
   uuYellArticles,
   announcements,
 }) => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
-  const { onChangeId } = usePagePosition({
-    pageUrl: `/circle/newjoy`,
-    pageName: `circle_today_newjoy`,
-    identifierHash,
-  })
-
   if (errorCode) {
     return <Error statusCode={errorCode} />
   }
@@ -55,7 +36,6 @@ const Page: NextPage<Props> = ({
         todayCircleNewJoys={todayCircleNewJoys}
         uuYellArticles={uuYellArticles}
         announcements={announcements}
-        onChangeId={onChangeId}
       />
     </div>
   )

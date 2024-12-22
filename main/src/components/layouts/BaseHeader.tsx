@@ -28,10 +28,10 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
       <div className="mx-auto" style={{ maxWidth: 700 }}>
         <div
           id="site_title"
-          className="xl:container flex justify-between items-center py-4 px-4 sm:px-0"
+          className="flex justify-between items-center p-4 sm:px-0 xl:container"
         >
           <div className="flex items-center">
-            <div className="md:hidden pr-4">
+            <div className="pr-4 md:hidden">
               <button onClick={onClick}>
                 <FontAwesomeIcon
                   size="lg"
@@ -51,7 +51,7 @@ const BaseHeader: FC<Props> = ({ onClick }) => {
               )}
             </h1>
 
-            <div className="hidden md:block ml-4">
+            <div className="hidden ml-4 md:block">
               <form
                 onSubmit={onSubmit}
                 role="search"

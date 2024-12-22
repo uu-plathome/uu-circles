@@ -3,19 +3,10 @@ import { FC, HTMLAttributes } from 'react'
 type Props = {
   id: HTMLAttributes<HTMLDivElement>['id']
   circleLength: number
-  onChangeId(_pagePositionId: string): Promise<void>
 }
-export const CircleLengthView: FC<Props> = ({
-  id,
-  onChangeId,
-  circleLength,
-}) => {
+export const CircleLengthView: FC<Props> = ({ id, circleLength }) => {
   return (
-    <div
-      id={id}
-      className="mb-8 text-right"
-      onMouseMove={() => (id ? onChangeId(id) : undefined)}
-    >
+    <div id={id} className="mb-8 text-right">
       <p className="text-sm">
         現在の掲載団体数
         <span className="mr-2 ml-4 text-2xl font-bold">{circleLength}</span>

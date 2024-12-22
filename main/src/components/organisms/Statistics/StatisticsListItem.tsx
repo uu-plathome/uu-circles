@@ -38,7 +38,7 @@ const StatisticsListItem: FC<StatisticsListItem> = ({
   })(rank)
 
   return (
-    <div className="flex justify-between md:mr-6 mb-4">
+    <div className="flex justify-between mb-4 md:mr-6">
       <div>
         {[1, 2, 3].includes(rank) ? (
           <span className="mr-4">

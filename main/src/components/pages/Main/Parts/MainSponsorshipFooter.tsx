@@ -1,48 +1,26 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { ComputedPagePositionIdNowLength } from '../computedPagePositionIdNowLength'
-import { ID_LIST } from '../id_list'
 import { LightBlueButton } from '@/src/components/atoms/button/LightBlueButton'
-import { Utas } from '@/src/components/atoms/utas/Utas'
 import { useMediaQuery } from '@/src/hooks/useMediaQuery'
 import { useWindowResize } from '@/src/hooks/useWindowResize'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 
 type Props = {
-  pagePositionIdNowLength: ComputedPagePositionIdNowLength
   advertises: Advertise[]
 }
-const MainSponsorshipFooter: FC<Props> = ({
-  advertises,
-  pagePositionIdNowLength,
-}) => {
+const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   const { isMd } = useMediaQuery()
   const { width: windowWidth } = useWindowResize()
   const width = (isMd ? 375 : windowWidth) || 342
   // w : h = 375 : 218
   const height = width ? (width * 218) / 375 : 200
-  const pLen = pagePositionIdNowLength
 
   return (
     <>
       <div className="md:mx-auto" style={{ maxWidth: 700 }}>
-        <div className="hidden md:block mb-2">
-          {pLen[ID_LIST.SPONSORSHIP_FOOTER] > 0 ? (
-            <Utas
-              num={
-                pLen[ID_LIST.SPONSORSHIP_FOOTER] > 7
-                  ? 7
-                  : pLen[ID_LIST.SPONSORSHIP_FOOTER]
-              }
-            />
-          ) : (
-            <div className="pt-8" />
-          )}
-        </div>
-
-        <div className="md:flex justify-center">
+        <div className="justify-center md:flex">
           {advertises && advertises[0] ? (
-            <div className="mx-auto md:mr-2 md:ml-0 rounded">
+            <div className="mx-auto rounded md:mr-2 md:ml-0">
               <a
                 href={
                   advertises[0].link
@@ -70,7 +48,7 @@ const MainSponsorshipFooter: FC<Props> = ({
           )}
 
           {advertises && advertises[1] ? (
-            <div className="hidden md:block md:ml-2 rounded">
+            <div className="hidden rounded md:block md:ml-2">
               <a
                 href={
                   advertises[1].link
@@ -99,7 +77,7 @@ const MainSponsorshipFooter: FC<Props> = ({
         </div>
       </div>
 
-      <div className="md:flex justify-center items-center pb-10 text-center">
+      <div className="justify-center items-center pb-10 text-center md:flex">
         <div className="py-8 mx-auto md:mr-10 md:ml-0" style={{ width: 280 }}>
           <h2 className="mb-2 text-lg font-bold">協賛してくださる企業様募集</h2>
           <p className="text-sm">

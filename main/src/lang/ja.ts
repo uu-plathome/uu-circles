@@ -96,6 +96,7 @@ export const ja: { [key: string]: any } = {
     [TagSlugProperty.only_thursday]: '木曜日のみ活動',
     [TagSlugProperty.only_friday]: '金曜日のみ活動',
     [TagSlugProperty.holiday]: '休日活動',
+    [TagSlugProperty.online]: 'オンライン',
     [TagSlugProperty.mine]: '峰キャンパス',
     [TagSlugProperty.yoto]: '陽東キャンパス',
   },

@@ -14,7 +14,7 @@ const CircleListWhenEmpty: FC<{
       <p className="mb-4 text-black">サークルが見つかりませんでした。</p>
       <p className="text-blue-600">
         <Link href="/circle">
-          <a className="underline">サークル一覧へ戻る</a>
+          <p className="underline">サークル一覧へ戻る</p>
         </Link>
       </p>
     </div>
@@ -24,9 +24,8 @@ const CircleListWhenEmpty: FC<{
 type Props = {
   id: string
   circles: Circle[]
-  onChangeId(_pagePositionId: string): Promise<void>
 }
-const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
+const BaseCircleList: FC<Props> = ({ id, circles }) => {
   const width = 400
   // w : h = 210 : 297
   const height = (width * 297) / 210
@@ -36,7 +35,7 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
       {circles.length > 0 ? (
         <div
           id={id}
-          className="grid grid-cols-2 md:grid-cols-3 gap-7 md:mx-auto max-w-screen-md"
+          className="grid grid-cols-2 gap-7 max-w-screen-md md:grid-cols-3 md:mx-auto"
         >
           {circles.map((circle, idx) => {
             return (
@@ -44,7 +43,6 @@ const BaseCircleList: FC<Props> = ({ id, circles, onChangeId }) => {
                 id={`${id}_${idx}`}
                 key={`BaseCircleList-${circle.slug}`}
                 className="mb-6 md:mb-16"
-                onMouseOver={() => onChangeId(`${id}_${idx}`)}
               >
                 <Link
                   href="/circle/[slug]"

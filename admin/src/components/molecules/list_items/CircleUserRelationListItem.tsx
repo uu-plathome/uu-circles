@@ -136,23 +136,17 @@ const CircleUserRelationListItem: FC<Props> = ({
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="編集">
             <Link href="/circle/[id]/edit" as={`/circle/${circle.id}/edit`}>
-              <a>
-                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-              </a>
+              <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="タグ">
             <Link href="/circle/[id]/tag" as={`/circle/${circle.id}/tag`}>
-              <a>
-                <FontAwesomeIcon size="lg" color="orange" icon={faTags} />
-              </a>
+              <FontAwesomeIcon size="lg" color="orange" icon={faTags} />
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="新歓">
             <Link href="/circle/[id]/newjoy" as={`/circle/${circle.id}/newjoy`}>
-              <a>
-                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-              </a>
+              <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="ユーザー情報">
@@ -160,9 +154,7 @@ const CircleUserRelationListItem: FC<Props> = ({
               href="/circle/[id]/user/[userId]/edit"
               as={`/circle/${circle.id}/user/${userId}/edit`}
             >
-              <a>
-                <FontAwesomeIcon size="lg" color="orange" icon={faUser} />
-              </a>
+              <FontAwesomeIcon size="lg" color="orange" icon={faUser} />
             </Link>
           </CircleListItemTableColumn>
           <CircleListItemTableColumn title="連携解除">

@@ -1,12 +1,9 @@
 import { GetStaticProps, NextPage } from 'next'
-import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Posts } from 'wp-types'
 import { MainTemplate } from '@/src/components/pages/Main/MainTemplate'
 import { MainHead } from '@/src/components/pages/Main/Parts/MainHead'
 import { useFetchUuYell } from '@/src/hooks/useFetchUuYell'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getMain } from '@/src/lib/infra/api/main'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
@@ -57,28 +54,11 @@ type Props = {
   /** お知らせ */ announcements: Announcement[]
 }
 const Index: NextPage<Props> = (ssrProps) => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
   const { advertises, mainAdvertises, circles, uuYellArticles, announcements } =
     useRefetchMainData(ssrProps)
 
   // 「編集長イチオシ」の取得
   const { uuYellForMain } = useFetchUuYell()
-
-  // ページ位置
-  const { pageData, onChangeId, recordPagePosition } = usePagePosition({
-    pageUrl: '/',
-    pageName: 'Main',
-    identifierHash,
-  })
 
   return (
     <>
@@ -96,9 +76,6 @@ const Index: NextPage<Props> = (ssrProps) => {
           }
         }
         announcements={announcements}
-        pagePositions={pageData}
-        recordPagePosition={recordPagePosition}
-        onChangeId={onChangeId}
       />
     </>
   )

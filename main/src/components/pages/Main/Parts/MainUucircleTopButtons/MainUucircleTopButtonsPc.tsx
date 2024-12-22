@@ -1,14 +1,7 @@
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { TOP_BUTTONS_ID_LIST } from './top_buttons_id_list'
-import { UtasProps } from '@/src/components/atoms/utas/Utas'
-import { ComputedPagePositionIdNowLength } from '@/src/components/pages/Main/computedPagePositionIdNowLength'
-
-const Utas = dynamic<UtasProps>(() =>
-  import('@/src/components/atoms/utas/Utas').then((mod) => mod.Utas)
-)
 
 type PcButtonProps = {
   href: string
@@ -30,39 +23,13 @@ const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
   )
 }
 
-type PcButtonGroupProps = {
-  pagePositionIdNowLength: ComputedPagePositionIdNowLength
-  onChangeId: (id: string) => void
-}
-const PcButtonGroup: FC<PcButtonGroupProps> = ({
-  pagePositionIdNowLength,
-  onChangeId,
-}) => {
-  const pLen = pagePositionIdNowLength
-
+const PcButtonGroup: FC = ({}) => {
   return (
     <nav className="flex">
       <div
         id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS}
         className="mx-4 mb-4"
-        onMouseOver={() =>
-          onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS)
-        }
       >
-        <div className="hidden md:block">
-          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 0 ? (
-            <Utas
-              num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS] > 7
-                  ? 7
-                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS]
-              }
-            />
-          ) : (
-            <div className="pt-8" />
-          )}
-        </div>
-
         <PcButton
           href="/guide/to-new-students"
           src="/images/topButtons/Rectangle15.png"
@@ -70,25 +37,7 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         />
       </div>
 
-      <div
-        id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY}
-        className="mx-4 mb-4"
-        onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY)}
-      >
-        <div className="hidden md:block">
-          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 0 ? (
-            <Utas
-              num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY] > 7
-                  ? 7
-                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY]
-              }
-            />
-          ) : (
-            <div className="pt-8" />
-          )}
-        </div>
-
+      <div id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY} className="mx-4 mb-4">
         <PcButton
           href="/circle/newjoy"
           src="/images/topButtons/shinkan1.png"
@@ -96,25 +45,7 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
         />
       </div>
 
-      <div
-        id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD}
-        className="mx-4 mb-4"
-        onMouseOver={() => onChangeId(TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD)}
-      >
-        <div className="hidden md:block">
-          {pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 0 ? (
-            <Utas
-              num={
-                pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD] > 7
-                  ? 7
-                  : pLen[TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD]
-              }
-            />
-          ) : (
-            <div className="pt-8" />
-          )}
-        </div>
-
+      <div id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD} className="mx-4 mb-4">
         <PcButton
           href="/guide/discord"
           src="/images/online.png"
@@ -125,5 +56,4 @@ const PcButtonGroup: FC<PcButtonGroupProps> = ({
   )
 }
 
-export type { PcButtonGroupProps }
 export { PcButtonGroup }

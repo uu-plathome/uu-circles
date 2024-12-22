@@ -163,7 +163,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
   return (
     <div className="bg-gray-100">
       {width ? (
-        <div className="md:px-6 md:mb-10 text-center">
+        <div className="text-center md:px-6 md:mb-10">
           <a href="https://media.uu-circles.com/">
             <Image
               src={ImagePath.UU_YELL.POSTER}
@@ -180,7 +180,7 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
       <div className="mb-10">
         <BaseContainer>
           {uuYellArticles && uuYellArticles.length > 0 ? (
-            <div className="px-6 pt-12 md:pt-16 mb-10">
+            <div className="px-6 pt-12 mb-10 md:pt-16">
               <h2 className="mb-6 text-lg">uu-yellの最新記事</h2>
 
               <ul className="pl-4 list-decimal list-outside text-gray-400">
@@ -342,27 +342,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                     >
                       お問い合わせ
                     </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="pt-20 md:w-1/2">
-                <h2 className="mb-6 text-lg">デモ画面</h2>
-
-                <ul>
-                  <li className="mb-3">
-                    <Link href="/demo">
-                      <a className="text-sm font-bold text-gray-400">
-                        メイン画面 (デモ)
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/circle/newjoy/demo">
-                      <a className="text-sm font-bold text-gray-400">
-                        今日の新歓 (デモ)
-                      </a>
-                    </Link>
                   </li>
                 </ul>
               </div>

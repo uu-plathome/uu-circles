@@ -21,7 +21,7 @@ const GreenButton: React.FC<Props> = ({
   if (href) {
     return (
       <Link href={href} as={as}>
-        <a
+        <p
           className={`
                     min-w-120
                     inline-block
@@ -44,7 +44,7 @@ const GreenButton: React.FC<Props> = ({
                 `}
         >
           {children}
-        </a>
+        </p>
       </Link>
     )
   } else {
