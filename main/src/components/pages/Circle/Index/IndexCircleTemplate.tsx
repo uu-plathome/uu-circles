@@ -9,7 +9,6 @@ import { TwoColumnContainer } from '@/src/components/molecules/Container/TwoColu
 import { CircleSidebar } from '@/src/components/organisms/Circles/CircleSidebar'
 import { RecommendTagList } from '@/src/components/organisms/Circles/RecommendTagList'
 import { BaseCircleList } from '@/src/components/organisms/List/BaseCircleList'
-import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { TagPageViewRanking } from '@/src/lib/types/model/TagPageViewRanking'
@@ -52,7 +51,7 @@ export const IndexCircleTemplate: FC<Props> = ({
           <div className="px-7">
             <h1 className="py-8 text-2xl">サークル一覧</h1>
 
-            <div className="md:hidden mb-8">
+            <div className="mb-8 md:hidden">
               {/* サークル検索 */}
               <SearchCircle />
             </div>

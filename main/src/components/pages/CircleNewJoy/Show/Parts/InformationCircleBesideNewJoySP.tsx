@@ -19,7 +19,7 @@ const InformationCircleBesideNewJoySP: FC<Props> = ({ circle }) => {
       >
         <a>
           <div
-            className="flex justify-between items-center py-2 px-2 mx-auto mb-2 bg-white rounded-lg border border-gray-300"
+            className="flex justify-between items-center p-2 mx-auto mb-2 bg-white rounded-lg border border-gray-300"
             style={{ width: 300 }}
           >
             <div className="mr-2" style={{ width: 64 }}>

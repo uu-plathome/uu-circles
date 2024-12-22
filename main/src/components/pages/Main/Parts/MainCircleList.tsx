@@ -27,7 +27,7 @@ const MainCircleList: FC<Props> = ({ circles, id }) => {
   return (
     <div
       id={id}
-      className="grid grid-cols-2 md:grid-cols-4 gap-7 md:mx-auto max-w-screen-md"
+      className="grid grid-cols-2 gap-7 max-w-screen-md md:grid-cols-4 md:mx-auto"
     >
       {circles.map((circle, idx) => {
         return (

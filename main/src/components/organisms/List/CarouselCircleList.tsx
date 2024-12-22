@@ -32,7 +32,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
   return (
     <>
       {isMd ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:mx-auto max-w-screen-md">
+        <div className="grid grid-cols-2 gap-6 max-w-screen-md md:grid-cols-3 md:mx-auto">
           {circles.map((circle) => {
             return (
               <div key={`isMd-${circle.slug}`}>
@@ -64,7 +64,7 @@ const CarouselCircleList: FC<Props> = ({ circles }) => {
         </div>
       ) : (
         <Swiper {...params}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:mx-auto max-w-screen-md">
+          <div className="grid grid-cols-2 gap-6 max-w-screen-md md:grid-cols-4 md:mx-auto">
             {circles.map((circle) => {
               return (
                 <SwiperSlide key={`not-isMd-${circle.slug}`}>

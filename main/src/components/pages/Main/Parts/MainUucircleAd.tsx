@@ -17,8 +17,8 @@ const MainUucircleAd: FC<Props> = () => {
   }, [isMd, width])
 
   return (
-    <div className="md:grid md:grid-cols-2 gap-6 pt-10 bg-gray-100">
-      <div className="mx-auto md:mr-0 mb-10 md:ml-auto" style={{ width }}>
+    <div className="gap-6 pt-10 bg-gray-100 md:grid md:grid-cols-2">
+      <div className="mx-auto mb-10 md:mr-0 md:ml-auto" style={{ width }}>
         <a
           href="https://media.uu-circles.com/"
           target="_blank"
@@ -38,7 +38,7 @@ const MainUucircleAd: FC<Props> = () => {
         </p>
       </div>
 
-      <div className="mx-auto md:mr-auto mb-10 md:ml-0" style={{ width }}>
+      <div className="mx-auto mb-10 md:mr-auto md:ml-0" style={{ width }}>
         <a href="https://uu-plathome.com" target="_blank" rel="noreferrer">
           <Image
             src={ImagePath.UUPH.THUMBNAIL}

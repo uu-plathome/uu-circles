@@ -90,7 +90,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             <CircleTopInformation circle={circle} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
+          <div className="grid grid-cols-1 pb-16 md:grid-cols-2 md:gap-8">
             <div id={ID_LIST.APPEALING_POINT} className="order-1">
               <AppealingPoint circle={circle} />
             </div>
@@ -120,7 +120,7 @@ export const ShowCircleTemplate: FC<Props> = ({
               ''
             )}
 
-            <div id={ID_LIST.NEWJOY_LIST} className="order-4 md:order-4 pt-10">
+            <div id={ID_LIST.NEWJOY_LIST} className="order-4 pt-10 md:order-4">
               <>
                 {circleNewJoys && circleNewJoys.length > 0 ? (
                   <div>
@@ -152,7 +152,7 @@ export const ShowCircleTemplate: FC<Props> = ({
 
             <div
               id={ID_LIST.INFORMATION_FILED}
-              className="order-3 md:order-3 pt-10"
+              className="order-3 pt-10 md:order-3"
             >
               <InformationField circle={circle} circleTags={circleTags || []} />
             </div>
@@ -162,7 +162,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             wpPosts.postsExistTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECOMMEND}
-                className="order-5 px-6 md:px-0 pt-10"
+                className="order-5 px-6 pt-10 md:px-0"
               >
                 <ShowCircleTitle>おすすめの投稿</ShowCircleTitle>
 
@@ -191,7 +191,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             wpPosts.postsNotTags.length > 0 ? (
               <div
                 id={ID_LIST.WP_POSTS_RECENT}
-                className="order-6 px-6 md:px-0 pt-10"
+                className="order-6 px-6 pt-10 md:px-0"
               >
                 <ShowCircleTitle>最新の投稿</ShowCircleTitle>
 
@@ -221,13 +221,13 @@ export const ShowCircleTemplate: FC<Props> = ({
           uuYellForCircles.posts.length > 0 ? (
             <div
               id={ID_LIST.CIRCLE_UU_YELL_ARTICLES}
-              className="px-6 md:px-0 pt-10"
+              className="px-6 pt-10 md:px-0"
             >
               <ShowCircleTitle>
                 uu-yellでサークルを詳しく知ろう！
               </ShowCircleTitle>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 pb-8">
+              <div className="grid grid-cols-1 pb-8 md:grid-cols-2 md:gap-4">
                 {uuYellForCircles.posts.map((post, key) => {
                   return (
                     <div key={`uuYellForCircles-${key}`} className="mb-4">
@@ -251,7 +251,7 @@ export const ShowCircleTemplate: FC<Props> = ({
 
           <div id={ID_LIST.CIRCLE_TWITTER}>
             {circle && circle.twitterUrl ? (
-              <div className="px-6 md:pr-2 pb-16 md:pl-0">
+              <div className="px-6 pb-16 md:pr-2 md:pl-0">
                 <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>
 
                 <div className="md:w-1/2">

@@ -68,7 +68,7 @@ const Page: NextPage<Props> = ({
       >
         <div className="bg-gray-100">
           <BaseContainer>
-            <h1 className="py-8 md:py-20 pl-4 text-2xl text-left md:text-center">
+            <h1 className="py-8 pl-4 text-2xl text-left md:py-20 md:text-center">
               新歓イベント日程詳細
             </h1>
 

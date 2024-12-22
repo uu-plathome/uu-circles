@@ -35,7 +35,7 @@ const BaseCircleList: FC<Props> = ({ id, circles }) => {
       {circles.length > 0 ? (
         <div
           id={id}
-          className="grid grid-cols-2 md:grid-cols-3 gap-7 md:mx-auto max-w-screen-md"
+          className="grid grid-cols-2 gap-7 max-w-screen-md md:grid-cols-3 md:mx-auto"
         >
           {circles.map((circle, idx) => {
             return (

@@ -1,12 +1,10 @@
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 
 const BaseFooter = dynamic<BaseFooterProps>(() =>
   import('@/src/components/layouts/BaseFooter').then((mod) => mod.BaseFooter)
@@ -25,16 +23,6 @@ const ID_LIST = {
 } as const
 
 const Page: NextPage = () => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
   return (
     <>
       <BaseHead title="Discordで行われるオンライン新歓に参加してみよう！" />
@@ -61,7 +49,7 @@ const Page: NextPage = () => {
 
             <div
               id={ID_LIST.TOC}
-              className="px-8 py-6 mx-4  bg-white rounded-md text-gray-500"
+              className="py-6 px-8 mx-4  bg-white rounded-md text-gray-500"
             >
               <h1 className="pt-1 text-2xl">目次</h1>
               <p className="pt-2">0.Discordとは</p>

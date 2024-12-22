@@ -22,7 +22,7 @@ const Header: FC<{
 }> = ({ children, id }) => {
   return (
     <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
-      <h2 id={id} className="px-4 text-lg md:text-2xl font-bold">
+      <h2 id={id} className="px-4 text-lg font-bold md:text-2xl">
         {children}
       </h2>
     </div>
@@ -161,7 +161,7 @@ const Page: NextPage<Props> = () => {
 
             <ul className="px-4 pb-8 list-disc list-inside">
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">
+                <span className="inline-block mb-2 md:inline md:mb-0">
                   一般ユーザー向けのページ：
                 </span>
                 <br className="md:hidden" />
@@ -170,7 +170,7 @@ const Page: NextPage<Props> = () => {
                 </span>
               </li>
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">
+                <span className="inline-block mb-2 md:inline md:mb-0">
                   サークル管理者向けのページ：
                 </span>
                 <br className="md:hidden" />
@@ -179,7 +179,7 @@ const Page: NextPage<Props> = () => {
                 </span>
               </li>
               <li className="pb-2">
-                <span className="inline-block md:inline mb-2 md:mb-0">
+                <span className="inline-block mb-2 md:inline md:mb-0">
                   UU-Circles運営向けのページ：
                 </span>
                 <br className="md:hidden" />

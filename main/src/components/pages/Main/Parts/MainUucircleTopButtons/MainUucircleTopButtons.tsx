@@ -18,7 +18,7 @@ const MainUucircleTopButtons: FC = ({}) => {
   const { isLg } = useMediaQuery()
 
   return (
-    <div className="flex justify-center pt-10 pb-10 bg-gray-100">
+    <div className="flex justify-center py-10 bg-gray-100">
       {isLg ? <PcButtonGroup /> : <SpButtonGroup />}
     </div>
   )
