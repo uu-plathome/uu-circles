@@ -4,7 +4,6 @@ export const linkConst = {
   MAIN: {
     INDEX: `${GROUP}/main`,
 
-    DEMO: `${GROUP}/main/demo`,
   },
 
   ADVERTISE: {
@@ -38,18 +37,10 @@ export const linkConst = {
   CIRCLE_NEW_JOY: {
     TODAY: `${GROUP}/circle/newjoy`,
 
-    TODAY_DEMO: `${GROUP}/circle/newjoy/demo`,
-
     LIST: (slug: string): `${typeof GROUP}/circle/${string}/newjoy` =>
       `${GROUP}/circle/${slug}/newjoy` as `${typeof GROUP}/circle/${string}/newjoy`,
 
-    LIST_DEMO: (slug: string): `${typeof GROUP}/circle/${string}/newjoy/demo` =>
-      `${GROUP}/circle/${slug}/newjoy/demo` as `${typeof GROUP}/circle/${string}/newjoy/demo`,
-
     SHOW: (slug: string, circleNewJoyId: number) =>
       `${GROUP}/circle/${slug}/newjoy/${circleNewJoyId}`,
-
-    SHOW_DEMO: (slug: string, demoCircleNewJoyId: number) =>
-      `${GROUP}/circle/${slug}/newjoy/demo/${demoCircleNewJoyId}`,
   },
 } as const

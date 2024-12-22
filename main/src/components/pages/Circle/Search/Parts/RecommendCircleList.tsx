@@ -8,10 +8,9 @@ import { Circle } from '@/src/lib/types/model/Circle'
 export const RecommendCircleList: FC<{
   id: string
   recommendCircles: Circle[]
-  onChangeId(_pagePositionId: string): Promise<void>
-}> = ({ id, recommendCircles, onChangeId }) => {
+}> = ({ id, recommendCircles }) => {
   return (
-    <div id={id} className="pb-8" onMouseOver={() => onChangeId(id)}>
+    <div id={id} className="pb-8">
       <h2 className="py-8 text-lg">他のサークルも見る</h2>
 
       <CarouselCircleList circles={recommendCircles} />

@@ -4,11 +4,9 @@ import { TodayCircleNewJoy } from '@/src/lib/infra/api/circleNewJoy'
 
 type Props = {
   circleNewJoys: TodayCircleNewJoy[]
-  isDemo?: boolean
 }
 const IndexCircleNewJoyListForNoSlug: FC<Props> = ({
-  circleNewJoys,
-  isDemo,
+  circleNewJoys
 }) => {
   return (
     <div className="bg-gray-100">
@@ -26,7 +24,6 @@ const IndexCircleNewJoyListForNoSlug: FC<Props> = ({
               >
                 <CircleNewJoyListItemForNoSlug
                   todayCircleNewJoy={circleNewJoy}
-                  isDemo={isDemo}
                 />
               </div>
             )
