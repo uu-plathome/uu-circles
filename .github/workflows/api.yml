@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Deploy
         env:
           PRIVATE_KEY: ${{ secrets.XSERVER_SSH_KEY }}
@@ -77,7 +77,7 @@ jobs:
           HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key && \
-          ssh -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
+          ssh -vT -p 10022 -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
             cd ~/uu-circles.com/work/api-stg && \
             mkdir ${{ github.run_number }} && \
             cd ${{ github.run_number }} && \
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Deploy
         env:
           PRIVATE_KEY: ${{ secrets.XSERVER_SSH_KEY }}
