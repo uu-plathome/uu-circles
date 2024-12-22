@@ -18,9 +18,9 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   return (
     <>
       <div className="md:mx-auto" style={{ maxWidth: 700 }}>
-        <div className="md:flex justify-center">
+        <div className="justify-center md:flex">
           {advertises && advertises[0] ? (
-            <div className="mx-auto md:mr-2 md:ml-0 rounded">
+            <div className="mx-auto rounded md:mr-2 md:ml-0">
               <a
                 href={
                   advertises[0].link
@@ -48,7 +48,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
           )}
 
           {advertises && advertises[1] ? (
-            <div className="hidden md:block md:ml-2 rounded">
+            <div className="hidden rounded md:block md:ml-2">
               <a
                 href={
                   advertises[1].link
@@ -77,7 +77,7 @@ const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
         </div>
       </div>
 
-      <div className="md:flex justify-center items-center pb-10 text-center">
+      <div className="justify-center items-center pb-10 text-center md:flex">
         <div className="py-8 mx-auto md:mr-10 md:ml-0" style={{ width: 280 }}>
           <h2 className="mb-2 text-lg font-bold">協賛してくださる企業様募集</h2>
           <p className="text-sm">

@@ -14,7 +14,7 @@ export const ShareSns: FC<{
 }> = ({ id, pageUrl }) => {
   return (
     <div id={id} className="pb-16 md:pb-0">
-      <h2 className="md:py-4 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
+      <h2 className="pl-1 mb-4 text-lg font-bold md:py-4 md:mb-0 md:text-2xl md:font-normal md:text-center">
         SNSで今日の新歓をShare
       </h2>
 

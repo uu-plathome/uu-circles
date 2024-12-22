@@ -12,7 +12,7 @@ export const WpPostBlock: FC<{
   media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
-    <article className="pb-4 md:pb-6 mb-12 bg-white rounded-sm shadow-md cursor-pointer">
+    <article className="pb-4 mb-12 bg-white rounded-sm shadow-md cursor-pointer md:pb-6">
       <a href={post.link} className="transition-all">
         <div className="wp-cardtype__img">
           <Image

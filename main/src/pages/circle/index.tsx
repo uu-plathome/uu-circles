@@ -1,9 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
-import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { IndexCircleTemplate } from '@/src/components/pages/Circle/Index/IndexCircleTemplate'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getAllCircleList } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
@@ -22,16 +20,6 @@ const Page: NextPage<Props> = ({
   announcements,
   tagPageViewRanking,
 }) => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
   return (
     <>
       <BaseHead
