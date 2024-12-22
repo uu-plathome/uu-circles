@@ -47,11 +47,7 @@ export const IndexCircleTemplate: FC<Props> = ({
     >
       <div className="px-2 bg-gray-100">
         <TwoColumnContainer
-          sidebar={
-            <CircleSidebar
-              tagPageViewRanking={tagPageViewRanking}
-            />
-          }
+          sidebar={<CircleSidebar tagPageViewRanking={tagPageViewRanking} />}
         >
           <div className="px-7">
             <h1 className="py-8 text-2xl">サークル一覧</h1>
@@ -67,18 +63,13 @@ export const IndexCircleTemplate: FC<Props> = ({
               circleLength={circles.length}
             />
 
-            <div
-              id={ID_LIST.RECOMMEND_TAG_LIST}
-            >
+            <div id={ID_LIST.RECOMMEND_TAG_LIST}>
               {/*  おすすめのタグ */}
               <RecommendTagList />
             </div>
 
             {/*  サークル一覧 */}
-            <BaseCircleList
-              id={ID_LIST.CIRCLE_LIST}
-              circles={circles}
-            />
+            <BaseCircleList id={ID_LIST.CIRCLE_LIST} circles={circles} />
           </div>
         </TwoColumnContainer>
       </div>

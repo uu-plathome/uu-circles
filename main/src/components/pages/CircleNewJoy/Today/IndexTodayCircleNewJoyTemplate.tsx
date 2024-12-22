@@ -53,10 +53,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
             今日の新歓
           </h1>
 
-          <div
-            id={ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST}
-            className="pb-16"
-          >
+          <div id={ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST} className="pb-16">
             <h2 className="md:hidden pl-1 mb-3 text-lg font-bold md:text-center">
               今日開催予定の新歓イベント
             </h2>
@@ -72,10 +69,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
 
           <ShareSns id={ID_LIST.SHARE_SNS} pageUrl={pageUrl} />
 
-          <div
-            id={ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST}
-            className="pb-16"
-          >
+          <div id={ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST} className="pb-16">
             <section>
               <h2 className="md:py-20 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
                 開催日時が近い新歓イベント

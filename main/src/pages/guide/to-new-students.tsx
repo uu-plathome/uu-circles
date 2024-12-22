@@ -92,9 +92,7 @@ const Page: NextPage<Props> = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <div
-              id={ID_LIST.header_to_new_students}
-            >
+            <div id={ID_LIST.header_to_new_students}>
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -175,9 +173,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div
-              id={ID_LIST.first}
-            >
+            <div id={ID_LIST.first}>
               <SubHeader id={ID_LIST.first}>0. 新入生へ</SubHeader>
               <p className="px-4 pb-6">
                 新入生の方々合格おめでとうございます。
@@ -189,9 +185,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div
-              id={ID_LIST.second}
-            >
+            <div id={ID_LIST.second}>
               <SubHeader id={ID_LIST.second}>
                 1. 気になったサークルを見てみよう
               </SubHeader>
@@ -222,9 +216,7 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div> */}
 
-            <div
-              id={ID_LIST.third}
-            >
+            <div id={ID_LIST.third}>
               <SubHeader id={ID_LIST.third}>
                 2. いつ・どんな新歓があるか確認してみよう
               </SubHeader>
@@ -243,9 +235,7 @@ const Page: NextPage<Props> = () => {
               </div>
             </div>
 
-            <div
-              id={ID_LIST.fourth}
-            >
+            <div id={ID_LIST.fourth}>
               <SubHeader id={ID_LIST.fourth}>3. uu-yellをみよう</SubHeader>
 
               <div className="px-4 pb-6">

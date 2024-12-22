@@ -19,11 +19,7 @@ const MainUucircleTopButtons: FC = ({}) => {
 
   return (
     <div className="flex justify-center pt-10 pb-10 bg-gray-100">
-      {isLg ? (
-        <PcButtonGroup/>
-      ) : (
-        <SpButtonGroup />
-      )}
+      {isLg ? <PcButtonGroup /> : <SpButtonGroup />}
     </div>
   )
 }

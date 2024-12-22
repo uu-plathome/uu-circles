@@ -9,10 +9,7 @@ type Props = {
   id: string
   circles: Circle[]
 }
-const MainCircleList: FC<Props> = ({
-  circles,
-  id,
-}) => {
+const MainCircleList: FC<Props> = ({ circles, id }) => {
   const width = 400
   // w : h = 210 : 297
   const height = (width * 297) / 210
@@ -39,7 +36,6 @@ const MainCircleList: FC<Props> = ({
             key={`MainCircleList-${circle.slug}-${idx}`}
             className="mb-6 md:mb-16"
           >
-
             <Link
               href="/circle/[slug]"
               as={`/circle/${circle.slug}`}

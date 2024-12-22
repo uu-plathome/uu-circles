@@ -66,10 +66,7 @@ export const SearchCircleByTagTemplate: NextPage<Props> = ({
             />
 
             {/*  サークル一覧 */}
-            <BaseCircleList
-              id={ID_LIST.CIRCLE_LIST}
-              circles={circles || []}
-            />
+            <BaseCircleList id={ID_LIST.CIRCLE_LIST} circles={circles || []} />
 
             {/*  他のサークルも見る */}
             <RecommendCircleList

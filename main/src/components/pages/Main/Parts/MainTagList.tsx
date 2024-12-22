@@ -7,9 +7,7 @@ import { TagSlugProperty } from '@/src/lib/enum/api/TagSlugProperty'
 const MainTagList: FC = ({}) => {
   return (
     <div className="md:pt-10 pb-10">
-      <div
-        className="md:flex md:justify-center md:items-center"
-      >
+      <div className="md:flex md:justify-center md:items-center">
         <h2 className="md:pr-8 md:mr-8 mb-2 text-lg font-bold text-black md:border-r md:border-gray-400">
           おすすめのタグ
         </h2>

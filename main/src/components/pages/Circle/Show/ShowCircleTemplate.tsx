@@ -68,7 +68,7 @@ export const ShowCircleTemplate: FC<Props> = ({
   uuYellArticles,
   wpPosts,
   announcements,
-  uuYellForCircles
+  uuYellForCircles,
 }) => {
   // w : h = 210 : 297
   const width = 300
@@ -82,9 +82,7 @@ export const ShowCircleTemplate: FC<Props> = ({
     >
       <div>
         <BaseContainer>
-          <div
-            id={ID_LIST.CIRCLE_TOP_IMAGE}
-          >
+          <div id={ID_LIST.CIRCLE_TOP_IMAGE}>
             {/* 活動写真 */}
             <TopImage circle={circle} />
 
@@ -93,18 +91,12 @@ export const ShowCircleTemplate: FC<Props> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 pb-16">
-            <div
-              id={ID_LIST.APPEALING_POINT}
-              className="order-1"
-            >
+            <div id={ID_LIST.APPEALING_POINT} className="order-1">
               <AppealingPoint circle={circle} />
             </div>
 
             {circle.handbillImageUrl ? (
-              <div
-                id={ID_LIST.CIRCLE_HANDBILL_IMAGE}
-                className="order-2 pt-10"
-              >
+              <div id={ID_LIST.CIRCLE_HANDBILL_IMAGE} className="order-2 pt-10">
                 <ShowCircleTitle>新歓ビラ</ShowCircleTitle>
 
                 <div className="flex justify-center md:justify-start">
@@ -128,10 +120,7 @@ export const ShowCircleTemplate: FC<Props> = ({
               ''
             )}
 
-            <div
-              id={ID_LIST.NEWJOY_LIST}
-              className="order-4 md:order-4 pt-10"
-            >
+            <div id={ID_LIST.NEWJOY_LIST} className="order-4 md:order-4 pt-10">
               <>
                 {circleNewJoys && circleNewJoys.length > 0 ? (
                   <div>
@@ -260,9 +249,7 @@ export const ShowCircleTemplate: FC<Props> = ({
             ''
           )}
 
-          <div
-            id={ID_LIST.CIRCLE_TWITTER}
-          >
+          <div id={ID_LIST.CIRCLE_TWITTER}>
             {circle && circle.twitterUrl ? (
               <div className="px-6 md:pr-2 pb-16 md:pl-0">
                 <ShowCircleTitle>{circle.name}のTwitter</ShowCircleTitle>

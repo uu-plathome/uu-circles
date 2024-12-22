@@ -86,19 +86,15 @@ export const MainTemplate: FC<Props> = ({
         </div>
 
         <div id={ID_LIST.TOP_BUTTONS} className="relative bg-white">
-          <MainUucircleTopButtons
-          />
+          <MainUucircleTopButtons />
         </div>
 
         <BaseContainer>
           <div className="relative px-7" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
-            <MainTagList/>
+            <MainTagList />
 
             {/*  サークル一覧 */}
-            <MainCircleList
-              id={ID_LIST.CIRCLE_LIST}
-              circles={circles}
-            />
+            <MainCircleList id={ID_LIST.CIRCLE_LIST} circles={circles} />
 
             <div className="flex justify-center pt-4 pb-10 bg-gray-100">
               <GreenButton href="/circle">もっと見る</GreenButton>
@@ -113,7 +109,7 @@ export const MainTemplate: FC<Props> = ({
             <MainUucircleAd />
           </div>
 
-          <div id={ID_LIST.UU_YELL_ARTICLES} >
+          <div id={ID_LIST.UU_YELL_ARTICLES}>
             <MainUucircleBottomButtons
               medias={
                 uuYellForMain && uuYellForMain.medias
@@ -146,9 +142,7 @@ export const MainTemplate: FC<Props> = ({
           </div>
 
           <div id={ID_LIST.SPONSORSHIP_FOOTER}>
-            <MainSponsorshipFooter
-              advertises={advertises}
-            />
+            <MainSponsorshipFooter advertises={advertises} />
           </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />

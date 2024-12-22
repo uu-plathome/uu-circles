@@ -8,9 +8,7 @@ import { Advertise } from '@/src/lib/types/model/Advertise'
 type Props = {
   advertises: Advertise[]
 }
-const MainSponsorshipFooter: FC<Props> = ({
-  advertises,
-}) => {
+const MainSponsorshipFooter: FC<Props> = ({ advertises }) => {
   const { isMd } = useMediaQuery()
   const { width: windowWidth } = useWindowResize()
   const width = (isMd ? 375 : windowWidth) || 342
@@ -20,7 +18,6 @@ const MainSponsorshipFooter: FC<Props> = ({
   return (
     <>
       <div className="md:mx-auto" style={{ maxWidth: 700 }}>
-
         <div className="md:flex justify-center">
           {advertises && advertises[0] ? (
             <div className="mx-auto md:mr-2 md:ml-0 rounded">

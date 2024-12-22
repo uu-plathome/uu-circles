@@ -68,16 +68,12 @@ type Props = {
   posts: WP_REST_API_Posts
   medias: WP_REST_API_Attachments
 }
-const MainUucircleBottomButtons: FC<Props> = ({
-  medias,
-  posts,
-}) => {
+const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
   const { isMd } = useMediaQuery()
 
   return (
     <div className="pt-10 pb-10 bg-gray-100 ">
       <div className="my-8 mx-auto text-center">
-
         <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！
         </h2>

@@ -42,9 +42,7 @@ const Page: NextPage = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <div
-              id={ID_LIST.HEADER_DISCORD}
-            >
+            <div id={ID_LIST.HEADER_DISCORD}>
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -143,7 +141,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_4} >
+            <div id={ID_LIST.P_4}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   4.招待URLから新歓会場へ！
@@ -180,7 +178,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_6} >
+            <div id={ID_LIST.P_6}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   6.新歓に参加しよう！

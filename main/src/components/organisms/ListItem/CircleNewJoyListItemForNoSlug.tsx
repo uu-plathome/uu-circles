@@ -215,9 +215,7 @@ const SpLayout: FC<{
 type Props = {
   todayCircleNewJoy: TodayCircleNewJoy
 }
-const CircleNewJoyListItemForNoSlug: FC<Props> = ({
-  todayCircleNewJoy,
-}) => {
+const CircleNewJoyListItemForNoSlug: FC<Props> = ({ todayCircleNewJoy }) => {
   return (
     <div>
       <div className="hidden md:block">
