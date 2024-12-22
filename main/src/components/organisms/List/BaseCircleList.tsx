@@ -12,11 +12,9 @@ const CircleListWhenEmpty: FC<{
   return (
     <div id={`${id}_empty`} className="pt-4 pb-12">
       <p className="mb-4 text-black">サークルが見つかりませんでした。</p>
-      <p className="text-blue-600">
-        <Link href="/circle">
-          <p className="underline">サークル一覧へ戻る</p>
-        </Link>
-      </p>
+      <Link href="/circle">
+        <p className="text-blue-600 underline">サークル一覧へ戻る</p>
+      </Link>
     </div>
   )
 }
