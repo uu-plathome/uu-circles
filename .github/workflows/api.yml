@@ -18,49 +18,50 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: "checkoutする"
+        uses: actions/checkout@v4
       - name: init
         run: |
-          docker-compose build
-          docker-compose up -d
+          docker compose build
+          docker compose up -d
       - name: composer install
-        run: docker-compose exec -T app composer install
+        run: docker compose exec -T app composer install
       - name: init link and cache
-        run: docker-compose exec -T app php -r "copy('.env.example', '.env');"
+        run: docker compose exec -T app php -r "copy('.env.example', '.env');"
       - name: Generate key
-        run: docker-compose exec -T app php artisan key:generate
+        run: docker compose exec -T app php artisan key:generate
       - name: Directory Permissions
         run: |
-          docker-compose exec -T app php artisan storage:link
-          docker-compose exec -T app chmod -R 777 storage
-          docker-compose exec -T app chmod -R 777 bootstrap/cache
-          docker-compose exec -T app php artisan config:cache
+          docker compose exec -T app php artisan storage:link
+          docker compose exec -T app chmod -R 777 storage
+          docker compose exec -T app chmod -R 777 bootstrap/cache
+          docker compose exec -T app php artisan config:cache
       - name: Check Format
-        run: docker-compose exec -T app php artisan check:all
+        run: docker compose exec -T app php artisan check:all
       - name: check
         run: |
-          sh -c 'docker-compose logs -f db | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
-          sh -c 'docker-compose logs -f dbtest | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
+          sh -c 'docker compose logs -f db | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
+          sh -c 'docker compose logs -f dbtest | { sed "/\[Entrypoint\]: MySQL init process done\. Ready for start up\./ q" && kill $$ ;}' >/dev/null 2>&1 || :
       - name: migrate
         run: |
-          docker-compose up -d
-          docker-compose exec -T app php artisan migrate:fresh
+          docker compose up -d
+          docker compose exec -T app php artisan migrate:fresh
       - name: re migrate
-        run: docker-compose exec -T app php artisan migrate:refresh --seed
+        run: docker compose exec -T app php artisan migrate:refresh --seed
       - name: Execute tests
-        run: docker-compose exec -T app composer test
+        run: docker compose exec -T app composer test
       - name: artisan コマンドが正しく実行されるか
         run: |
-          docker-compose exec -T app php artisan cache:clear
-          docker-compose exec -T app php artisan config:clear
-          docker-compose exec -T app php artisan view:clear
-          docker-compose exec -T app php artisan route:cache
-          docker-compose exec -T app php artisan view:cache
+          docker compose exec -T app php artisan cache:clear
+          docker compose exec -T app php artisan config:clear
+          docker compose exec -T app php artisan view:clear
+          docker compose exec -T app php artisan route:cache
+          docker compose exec -T app php artisan view:cache
       - name: Check Laravel logs
         if: ${{ always() }}
         run: |
-          docker-compose exec -T app ls storage/logs
-          docker-compose exec -T app /bin/bash -c "cd storage/logs && find . -type f | xargs cat"
+          docker compose exec -T app ls storage/logs
+          docker compose exec -T app /bin/bash -c "cd storage/logs && find . -type f | xargs cat"
 
   deploy-stg:
     if: github.ref == 'refs/heads/develop/stg'
