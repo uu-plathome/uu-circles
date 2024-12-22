@@ -29,14 +29,12 @@ type Props = {
   /** 未来の新歓 */ futureCircleNewJoys?: TodayCircleNewJoy[]
   /** uu-yellの記事 */ uuYellArticles?: WP_REST_API_Posts
   /** お知らせ */ announcements?: Announcement[]
-  onChangeId: (id: string) => void
 }
 export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
   futureCircleNewJoys,
   todayCircleNewJoys,
   uuYellArticles,
   announcements,
-  onChangeId,
 }) => {
   const pageUrl = useMemo(() => `https://uu-circles.com/circle/newjoy`, [])
 
@@ -51,16 +49,11 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
           <h1
             id={ID_LIST.MAIN_HEADING}
             className="py-8 md:py-20 text-2xl md:text-center"
-            onMouseOver={() => onChangeId(ID_LIST.MAIN_HEADING)}
           >
             今日の新歓
           </h1>
 
-          <div
-            id={ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST}
-            className="pb-16"
-            onMouseOver={() => onChangeId(ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST)}
-          >
+          <div id={ID_LIST.TODAY_CIRCLE_NEW_JOY_LIST} className="pb-16">
             <h2 className="md:hidden pl-1 mb-3 text-lg font-bold md:text-center">
               今日開催予定の新歓イベント
             </h2>
@@ -76,11 +69,7 @@ export const IndexTodayCircleNewJoyTemplate: FC<Props> = ({
 
           <ShareSns id={ID_LIST.SHARE_SNS} pageUrl={pageUrl} />
 
-          <div
-            id={ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST}
-            className="pb-16"
-            onMouseOver={() => onChangeId(ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST)}
-          >
+          <div id={ID_LIST.FUTURE_CIRCLE_NEW_JOY_LIST} className="pb-16">
             <section>
               <h2 className="md:py-20 pl-1 mb-4 md:mb-0 text-lg md:text-2xl font-bold md:font-normal md:text-center">
                 開催日時が近い新歓イベント

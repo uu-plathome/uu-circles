@@ -27,9 +27,9 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
 
           <div className="px-4">
             <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
-              <a className="text-sm md:text-base text-white underline">
+              <p className="text-sm md:text-base text-white underline">
                 サークルに所属させる→
-              </a>
+              </p>
             </Link>
           </div>
         </div>
@@ -97,9 +97,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                 href="/user/admin/[userId]/edit"
                 as={`/user/admin/${user.id}/edit`}
               >
-                <a>
-                  <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-                </a>
+                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
               </Link>
             </div>
           </div>
@@ -113,9 +111,7 @@ const AdminUserListItem: FC<Props> = ({ user, authUser, onResendEmail }) => {
                   href="/user/admin/[userId]/delete"
                   as={`/user/admin/${user.id}/delete`}
                 >
-                  <a>
-                    <FontAwesomeIcon size="lg" color="red" icon={faTrash} />
-                  </a>
+                  <FontAwesomeIcon size="lg" color="red" icon={faTrash} />
                 </Link>
               ) : (
                 <FontAwesomeIcon size="lg" color="white" icon={faMinus} />

@@ -1,32 +1,28 @@
 import dynamic from 'next/dynamic'
 import { useMemo, FC } from 'react'
+import { ID_LIST } from './id_list'
 import YouTube from 'react-youtube'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
-import { computedPagePositionIdNowLength } from './computedPagePositionIdNowLength'
-import { ID_LIST } from './id_list'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { Props as MainCircleListProps } from '@/src/components/pages/Main/Parts/MainCircleList'
 import { Props as MainSponsorshipFooterProps } from '@/src/components/pages/Main/Parts/MainSponsorshipFooter'
-import { Props as MainTagListProps } from '@/src/components/pages/Main/Parts/MainTagList'
 import { Props as MainUucircleAdProps } from '@/src/components/pages/Main/Parts/MainUucircleAd'
 import { Props as MainUucircleBottomButtonsProps } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { MainUucircleTopButtons } from '@/src/components/pages/Main/Parts/MainUucircleTopButtons/MainUucircleTopButtons'
 import { MainUucircleTopCarousel } from '@/src/components/pages/Main/Parts/MainUucircleTopCarousel'
-import { PagePositionRecord } from '@/src/hooks/usePagePosition'
 import { Advertise } from '@/src/lib/types/model/Advertise'
 import { Announcement } from '@/src/lib/types/model/Announcement'
 import { Circle } from '@/src/lib/types/model/Circle'
-import { PagePositions } from '@/src/lib/types/model/PagePosition'
 
 const MainCircleList = dynamic<MainCircleListProps>(() =>
   import('@/src/components/pages/Main/Parts/MainCircleList').then(
     (mod) => mod.MainCircleList
   )
 )
-const MainTagList = dynamic<MainTagListProps>(() =>
+const MainTagList = dynamic(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(
     (mod) => mod.MainTagList
   )
@@ -61,9 +57,6 @@ type Props = {
     posts?: WP_REST_API_Posts
     medias?: WP_REST_API_Attachments
   }
-  pagePositions: PagePositions
-  recordPagePosition: PagePositionRecord[]
-  onChangeId: (_pagePositionId: string) => Promise<void>
 }
 export const MainTemplate: FC<Props> = ({
   advertises,
@@ -72,17 +65,7 @@ export const MainTemplate: FC<Props> = ({
   uuYellArticles,
   uuYellForMain,
   announcements,
-  pagePositions,
-  recordPagePosition,
-  onChangeId,
 }) => {
-  const pagePositionIdNowLength = useMemo(() => {
-    return computedPagePositionIdNowLength({
-      pagePositions,
-      recordPagePosition,
-    })
-  }, [pagePositions, recordPagePosition])
-
   return (
     <>
       <BaseLayout
@@ -98,33 +81,20 @@ export const MainTemplate: FC<Props> = ({
           id={ID_LIST.HEADER_CATCH_COPY}
           style={{ marginTop: '-6px' }}
           className="relative bg-white"
-          onMouseMove={() => onChangeId(ID_LIST.HEADER_CATCH_COPY)}
         >
           <p className="py-8 text-center">新歓をハックする！</p>
         </div>
 
         <div id={ID_LIST.TOP_BUTTONS} className="relative bg-white">
-          <MainUucircleTopButtons
-            pagePositionIdNowLength={pagePositionIdNowLength}
-            onChangeId={onChangeId}
-          />
+          <MainUucircleTopButtons />
         </div>
 
         <BaseContainer>
           <div className="relative px-7" id={ID_LIST.CIRCLE_LIST_CONTAINER}>
-            <MainTagList
-              id={ID_LIST.RECOMMEND_TAG_LIST}
-              pagePositionIdNowLength={pagePositionIdNowLength}
-              onChangeId={onChangeId}
-            />
+            <MainTagList />
 
             {/*  サークル一覧 */}
-            <MainCircleList
-              id={ID_LIST.CIRCLE_LIST}
-              circles={circles}
-              pagePositionIdNowLength={pagePositionIdNowLength}
-              onChangeId={onChangeId}
-            />
+            <MainCircleList id={ID_LIST.CIRCLE_LIST} circles={circles} />
 
             <div className="flex justify-center pt-4 pb-10 bg-gray-100">
               <GreenButton href="/circle">もっと見る</GreenButton>
@@ -135,19 +105,12 @@ export const MainTemplate: FC<Props> = ({
         <div className="bg-gray-100">
           {/*  フッター */}
 
-          <div
-            id={ID_LIST.UU_CIRCLES_AD}
-            onMouseMove={() => onChangeId(ID_LIST.UU_CIRCLES_AD)}
-          >
+          <div id={ID_LIST.UU_CIRCLES_AD}>
             <MainUucircleAd />
           </div>
 
-          <div
-            id={ID_LIST.UU_YELL_ARTICLES}
-            onMouseMove={() => onChangeId(ID_LIST.UU_YELL_ARTICLES)}
-          >
+          <div id={ID_LIST.UU_YELL_ARTICLES}>
             <MainUucircleBottomButtons
-              pagePositionIdNowLength={pagePositionIdNowLength}
               medias={
                 uuYellForMain && uuYellForMain.medias
                   ? uuYellForMain.medias
@@ -178,14 +141,8 @@ export const MainTemplate: FC<Props> = ({
             </div>
           </div>
 
-          <div
-            id={ID_LIST.SPONSORSHIP_FOOTER}
-            onMouseMove={() => onChangeId(ID_LIST.SPONSORSHIP_FOOTER)}
-          >
-            <MainSponsorshipFooter
-              pagePositionIdNowLength={pagePositionIdNowLength}
-              advertises={advertises}
-            />
+          <div id={ID_LIST.SPONSORSHIP_FOOTER}>
+            <MainSponsorshipFooter advertises={advertises} />
           </div>
 
           <BaseFooter uuYellArticles={uuYellArticles} />

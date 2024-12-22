@@ -12,7 +12,7 @@ const AuthHeader: React.FC = () => {
           </div>
 
           <Link href="/login">
-            <a className="text-white hover:underline">ログイン</a>
+            <p className="text-white hover:underline">ログイン</p>
           </Link>
         </div>
       </BaseContainer>

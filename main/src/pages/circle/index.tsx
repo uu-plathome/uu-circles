@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { WP_REST_API_Posts } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { IndexCircleTemplate } from '@/src/components/pages/Circle/Index/IndexCircleTemplate'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getAllCircleList } from '@/src/lib/infra/api/circle'
 import { Announcement } from '@/src/lib/types/model/Announcement'
@@ -32,13 +31,6 @@ const Page: NextPage<Props> = ({
       localStorage.getItem(LocalStorageKey.identifierHash) || undefined
     )
   }, [])
-
-  // ページ位置
-  const { pageData, onChangeId } = usePagePosition({
-    pageUrl: '/circle',
-    pageName: 'circle_index',
-    identifierHash,
-  })
 
   return (
     <>
@@ -72,8 +64,6 @@ const Page: NextPage<Props> = ({
         uuYellArticles={uuYellArticles}
         announcements={announcements}
         tagPageViewRanking={tagPageViewRanking}
-        pagePositions={pageData}
-        onChangeId={onChangeId}
       />
     </>
   )

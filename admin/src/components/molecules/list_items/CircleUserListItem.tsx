@@ -139,13 +139,11 @@ const CircleUserListItem: FC<Props> = ({
             </p>
             <div className="flex justify-center items-center h-7">
               <Link href="/user/circle/[userId]" as={`/user/circle/${user.id}`}>
-                <a>
-                  <FontAwesomeIcon
-                    size="lg"
-                    color="orange"
-                    icon={faUserFriends}
-                  />
-                </a>
+                <FontAwesomeIcon
+                  size="lg"
+                  color="orange"
+                  icon={faUserFriends}
+                />
               </Link>
             </div>
           </div>
@@ -158,9 +156,7 @@ const CircleUserListItem: FC<Props> = ({
                 href="/circle/[id]/user/[userId]/edit"
                 as={`/circle/${circleId}/user/${user.id}/edit`}
               >
-                <a>
-                  <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-                </a>
+                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
               </Link>
             </div>
           </div>

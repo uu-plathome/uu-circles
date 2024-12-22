@@ -345,27 +345,6 @@ const BaseFooter: FC<Props> = ({ uuYellArticles }) => {
                   </li>
                 </ul>
               </div>
-
-              <div className="pt-20 md:w-1/2">
-                <h2 className="mb-6 text-lg">デモ画面</h2>
-
-                <ul>
-                  <li className="mb-3">
-                    <Link href="/demo">
-                      <a className="text-sm font-bold text-gray-400">
-                        メイン画面 (デモ)
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="mb-3">
-                    <Link href="/circle/newjoy/demo">
-                      <a className="text-sm font-bold text-gray-400">
-                        今日の新歓 (デモ)
-                      </a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </BaseContainer>

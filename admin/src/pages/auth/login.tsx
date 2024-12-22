@@ -142,7 +142,7 @@ const Login: NextPage = () => {
 
             <div className="mt-8 mb-4 text-right text-white">
               <Link href="/auth/password/reset">
-                <a className="underline">パスワードを忘れた場合はこちら</a>
+                <p className="underline">パスワードを忘れた場合はこちら</p>
               </Link>
             </div>
           </div>

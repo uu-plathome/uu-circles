@@ -6,7 +6,6 @@ import useSWR from 'swr'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { ShowCircleTemplate } from '@/src/components/pages/Circle/Show/ShowCircleTemplate'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { Importance } from '@/src/lib/enum/api/Importance'
@@ -60,13 +59,6 @@ const Page: NextPage<Props> = ({
       circleShortName: circle.shortName,
     })
   )
-
-  const { onChangeId } = usePagePosition({
-    pageUrl: `/circle/${circle.slug}`,
-    pageName: `circle_show_${circle.slug}`,
-    circleSlug: circle.slug,
-    identifierHash,
-  })
 
   if (errorCode) {
     return <Error statusCode={errorCode} />
@@ -123,7 +115,6 @@ const Page: NextPage<Props> = ({
             medias: [],
           }
         }
-        onChangeId={onChangeId}
       />
     </>
   )

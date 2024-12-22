@@ -6,7 +6,6 @@ import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 
 const BaseFooter = dynamic<BaseFooterProps>(() =>
@@ -36,12 +35,6 @@ const Page: NextPage = () => {
     )
   }, [])
 
-  const { onChangeId } = usePagePosition({
-    pageUrl: `/guide/discord`,
-    pageName: `guide_discord`,
-    identifierHash,
-  })
-
   return (
     <>
       <BaseHead title="Discordで行われるオンライン新歓に参加してみよう！" />
@@ -49,10 +42,7 @@ const Page: NextPage = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <div
-              id={ID_LIST.HEADER_DISCORD}
-              onMouseOver={() => onChangeId(ID_LIST.HEADER_DISCORD)}
-            >
+            <div id={ID_LIST.HEADER_DISCORD}>
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -71,7 +61,6 @@ const Page: NextPage = () => {
 
             <div
               id={ID_LIST.TOC}
-              onMouseOver={() => onChangeId(ID_LIST.TOC)}
               className="px-8 py-6 mx-4  bg-white rounded-md text-gray-500"
             >
               <h1 className="pt-1 text-2xl">目次</h1>
@@ -91,7 +80,7 @@ const Page: NextPage = () => {
               個人間の友達登録が必要なくて、大人数での通話やテキストのやり取りが複数同時にできるアプリだよ！いくつかのLINEのグループが、一つにまとまっている感じだね
             </p>
 
-            <div id={ID_LIST.P_1} onMouseOver={() => onChangeId(ID_LIST.P_1)}>
+            <div id={ID_LIST.P_1}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   1.アプリをインストール
@@ -113,7 +102,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_2} onMouseOver={() => onChangeId(ID_LIST.P_2)}>
+            <div id={ID_LIST.P_2}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">2.アカウントを作成</h2>
               </div>
@@ -127,7 +116,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_3} onMouseOver={() => onChangeId(ID_LIST.P_3)}>
+            <div id={ID_LIST.P_3}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   3.Googleフォームに入力
@@ -152,7 +141,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_4} onMouseOver={() => onChangeId(ID_LIST.P_4)}>
+            <div id={ID_LIST.P_4}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   4.招待URLから新歓会場へ！
@@ -170,7 +159,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_5} onMouseOver={() => onChangeId(ID_LIST.P_5)}>
+            <div id={ID_LIST.P_5}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">5.表示名を変更する</h2>
               </div>
@@ -189,7 +178,7 @@ const Page: NextPage = () => {
               </div>
             </div>
 
-            <div id={ID_LIST.P_6} onMouseOver={() => onChangeId(ID_LIST.P_6)}>
+            <div id={ID_LIST.P_6}>
               <div className="mx-5 mt-8 mb-6 border-l-4 border-green-500">
                 <h2 className="px-4 text-2xl font-bold">
                   6.新歓に参加しよう！

@@ -12,7 +12,6 @@ import { BaseHead } from '@/src/components/layouts/BaseHead'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
-import { usePagePosition } from '@/src/hooks/usePagePosition'
 import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
 import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
@@ -56,12 +55,6 @@ const Page: NextPage<Props> = () => {
     )
   }, [])
 
-  const { onChangeId } = usePagePosition({
-    pageUrl: `/guide/to-new-students`,
-    pageName: `guide_to-new-students`,
-    identifierHash,
-  })
-
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
     posts: WP_REST_API_Posts
@@ -99,10 +92,7 @@ const Page: NextPage<Props> = () => {
       <BaseLayout>
         <div className="px-2 bg-gray-100">
           <BaseContainer>
-            <div
-              id={ID_LIST.header_to_new_students}
-              onMouseOver={() => onChangeId(ID_LIST.header_to_new_students)}
-            >
+            <div id={ID_LIST.header_to_new_students}>
               <div className="flex justify-center items-center pt-6">
                 <a href="https://discord.com/download">
                   <Image
@@ -118,7 +108,6 @@ const Page: NextPage<Props> = () => {
 
             <div
               id={ID_LIST.toc}
-              onMouseOver={() => onChangeId(ID_LIST.toc)}
               className="py-6 px-8 mx-4 bg-white rounded-md text-gray-500"
             >
               <h1 className="pt-1 text-2xl">目次</h1>
@@ -184,10 +173,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div
-              id={ID_LIST.first}
-              onMouseOver={() => onChangeId(ID_LIST.first)}
-            >
+            <div id={ID_LIST.first}>
               <SubHeader id={ID_LIST.first}>0. 新入生へ</SubHeader>
               <p className="px-4 pb-6">
                 新入生の方々合格おめでとうございます。
@@ -199,10 +185,7 @@ const Page: NextPage<Props> = () => {
               </p>
             </div>
 
-            <div
-              id={ID_LIST.second}
-              onMouseOver={() => onChangeId(ID_LIST.second)}
-            >
+            <div id={ID_LIST.second}>
               <SubHeader id={ID_LIST.second}>
                 1. 気になったサークルを見てみよう
               </SubHeader>
@@ -233,10 +216,7 @@ const Page: NextPage<Props> = () => {
               </GreenLgButton>
             </div> */}
 
-            <div
-              id={ID_LIST.third}
-              onMouseOver={() => onChangeId(ID_LIST.third)}
-            >
+            <div id={ID_LIST.third}>
               <SubHeader id={ID_LIST.third}>
                 2. いつ・どんな新歓があるか確認してみよう
               </SubHeader>
@@ -255,10 +235,7 @@ const Page: NextPage<Props> = () => {
               </div>
             </div>
 
-            <div
-              id={ID_LIST.fourth}
-              onMouseOver={() => onChangeId(ID_LIST.fourth)}
-            >
+            <div id={ID_LIST.fourth}>
               <SubHeader id={ID_LIST.fourth}>3. uu-yellをみよう</SubHeader>
 
               <div className="px-4 pb-6">

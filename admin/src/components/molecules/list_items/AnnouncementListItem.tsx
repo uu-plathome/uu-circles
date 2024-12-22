@@ -117,9 +117,7 @@ const AnnouncementListItem: FC<Props> = ({ announcement, onDelete }) => {
               href="/announcement/[announcementId]/edit"
               as={`/announcement/${announcement.id}/edit`}
             >
-              <a>
-                <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
-              </a>
+              <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
           </ListItemTableColumn>
           <ListItemTableColumn title="削除する">

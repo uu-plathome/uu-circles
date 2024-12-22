@@ -35,7 +35,7 @@ const GrayButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
   if (href) {
     return (
       <Link href={href} as={as}>
-        <a className={buttonClassName}>{children}</a>
+        <p className={buttonClassName}>{children}</p>
       </Link>
     )
   } else {
