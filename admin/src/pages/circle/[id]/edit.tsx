@@ -109,9 +109,6 @@ const EditPage: NextPage = () => {
         slug.set(foundCircle.slug)
         release.set(foundCircle.release)
         isMainFixed.set(foundCircle.isMainFixed)
-        isDemoFixed.set(foundCircle.isDemoFixed)
-        isOnlyDemo.set(foundCircle.isOnlyDemo)
-        demoPriority.set(foundCircle.demoPriority)
         nameKana.set(foundCircle.nameKana)
         shortName.set(foundCircle.shortName)
         prefixName.set(foundCircle.prefixName)
@@ -601,9 +598,6 @@ const EditPage: NextPage = () => {
                     name,
                     slug,
                     isMainFixed,
-                    isOnlyDemo,
-                    isDemoFixed,
-                    demoPriority,
                     nameKana,
                     shortName,
                     prefixName,

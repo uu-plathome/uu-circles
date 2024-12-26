@@ -281,7 +281,7 @@ const CircleNewJoyListItem: FC<Props> = ({
           <CircleListItemTableColumn title="編集">
             <Link
               href="/circle/[id]/newjoy/[circleNewJoyId]/edit"
-              as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`}
+              as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.circleNewJoyId}/edit`}
             >
               <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
@@ -291,7 +291,7 @@ const CircleNewJoyListItem: FC<Props> = ({
             <CopyButton
               newJoyTitle={newJoyTitle.value}
               circleNewJoy={circleNewJoy}
-              onCopy={() => onCopy(circleNewJoy.id)}
+              onCopy={() => onCopy(circleNewJoy.circleNewJoyId)}
             />
           </CircleListItemTableColumn>
 
@@ -299,7 +299,7 @@ const CircleNewJoyListItem: FC<Props> = ({
             <DeleteButton
               newJoyTitle={newJoyTitle.value}
               circleNewJoy={circleNewJoy}
-              onDelete={() => onDelete(circleNewJoy.id)}
+              onDelete={() => onDelete(circleNewJoy.circleNewJoyId)}
             />
           </CircleListItemTableColumn>
         </div>
