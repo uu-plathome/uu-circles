@@ -17,6 +17,7 @@ import { newJoyTitleEntity } from '@/src/lib/entity/newJoyTitleEntity'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/src/plugins/Dayjs'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 
 type Props = {
   circle: Circle
@@ -274,7 +275,7 @@ const CircleNewJoyListItem: FC<Props> = ({
 
           <CircleListItemTableColumn title="活動場所" large>
             <div className="text-white">
-              <p>{__(circleNewJoy.placeOfActivity)}</p>
+              <p>{__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}</p>
             </div>
           </CircleListItemTableColumn>
 
