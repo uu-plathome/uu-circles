@@ -17,7 +17,7 @@ export const createCircleNewJoy = async (
 ) => {
   try {
     const { data } = await axiosInstance.post(
-      `/admin/api/circle/demo/newjoy`,
+      `/admin/api/circle/${circleId}/newjoy`,
       circle
     )
 
