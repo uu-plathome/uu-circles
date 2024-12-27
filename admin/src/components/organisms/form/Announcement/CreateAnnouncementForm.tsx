@@ -24,15 +24,8 @@ type Props = {
     importance: UseStringInput
     // slug は api が生成する値で、ユーザーは入力できない
     forMainView: UseBooleanInput
-    forCircleMail: UseBooleanInput
-    forAdminView: UseBooleanInput
-    forAdminMail: UseBooleanInput
-    forNewjoyDiscord: UseBooleanInput
     active: UseBooleanInput
     isMainViewFixed: UseBooleanInput
-    isCircleViewFixed: UseBooleanInput
-    isAdminViewFixed: UseBooleanInput
-    notificationTime: UseDateInput
     publishFrom: UseDateInput
     publishTo: UseDateInput
   }
@@ -161,97 +154,6 @@ const CreateAnnouncementForm: FC<Props> = ({ onSubmit, form }) => {
               { value: 'false', label: '表示しない' },
             ]}
             {...form.isMainViewFixed}
-          />
-        </div>
-
-        <div>
-          <FormHeader>サークル管理者</FormHeader>
-
-          <BaseSelect
-            label="サークル管理者に固定表示するかどうか"
-            id="isCircleViewFixed"
-            name="isCircleViewFixed"
-            required
-            items={[
-              { value: 'true', label: '固定表示する' },
-              { value: 'false', label: '表示しない' },
-            ]}
-            {...form.isCircleViewFixed}
-          />
-        </div>
-
-        <div>
-          <FormHeader>管理者画面</FormHeader>
-
-          <BaseSelect
-            label="管理者画面に表示する"
-            id="forAdminView"
-            name="forAdminView"
-            required
-            items={[
-              { value: 'true', label: '管理者画面に表示する' },
-              { value: 'false', label: '表示しない' },
-            ]}
-            {...form.forAdminView}
-          />
-
-          <BaseSelect
-            label="管理者画面に固定表示するかどうか"
-            id="isAdminViewFixed"
-            name="isAdminViewFixed"
-            required
-            items={[
-              { value: 'true', label: '固定表示する' },
-              { value: 'false', label: '表示しない' },
-            ]}
-            {...form.isAdminViewFixed}
-          />
-        </div>
-
-        <div>
-          <FormHeader>通知設定</FormHeader>
-
-          <BaseDatetime
-            label="メールや新歓Discordでの通知時間"
-            name="notificationTime"
-            id="notificationTime"
-            {...form.notificationTime}
-          />
-
-          <BaseSelect
-            label="新歓Discordに通知するかどうか"
-            id="forNewjoyDiscord"
-            name="forNewjoyDiscord"
-            required
-            items={[
-              { value: 'true', label: '通知する' },
-              { value: 'false', label: '通知しない' },
-            ]}
-            {...form.forNewjoyDiscord}
-          />
-
-          <BaseSelect
-            label="サークル管理者にメール送信かどうか"
-            id="forCircleMail"
-            name="forCircleMail"
-            required
-            items={[
-              { value: 'true', label: 'メール送信する' },
-              { value: 'false', label: 'メール送信しない' },
-            ]}
-            {...form.forCircleMail}
-          />
-
-          <BaseSelect
-            label="管理者にメール送信かどうか"
-            id="forAdminMail"
-            name="forAdminMail"
-            required
-            items={[
-              { value: 'true', label: 'メール送信する' },
-              { value: 'false', label: 'メール送信しない' },
-            ]}
-            {...form.forAdminMail}
           />
         </div>
       </div>
