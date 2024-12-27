@@ -54,10 +54,10 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
 
   return (
     <div>
-      <div className="flex justify-between py-6 px-4 md:px-10 bg-white border-b border-gray-50">
+      <div className="flex justify-between py-6 px-4 bg-white border-b border-gray-50 md:px-10">
         <div>
           <p className="text-sm">{circle.prefixName}</p>
-          <h1 className="text-lg md:text-2xl font-bold">{circle.name}</h1>
+          <h1 className="text-lg font-bold md:text-2xl">{circle.name}</h1>
         </div>
 
         <div>
@@ -66,7 +66,7 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
         </div>
       </div>
 
-      <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
+      <div className="justify-between items-center px-4 bg-white md:flex md:px-10">
         {/*最終更新日を表示*/}
         <p className="pt-3 text-gray-500">
           最終更新:{' '}
@@ -80,8 +80,8 @@ const CircleTopInformation: FC<Props> = ({ circle }) => {
         </p>
       </div>
 
-      <div className="md:flex justify-between items-center px-4 md:px-10 bg-white">
-        <div className="flex justify-between md:justify-start py-2">
+      <div className="justify-between items-center px-4 bg-white md:flex md:px-10">
+        <div className="flex justify-between py-2 md:justify-start">
           {/* 活動人数 */}
           <div className="md:mr-4">
             <p>

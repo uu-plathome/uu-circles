@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
-import { useMemo, FC } from 'react'
-import { ID_LIST } from './id_list'
+import { FC } from 'react'
 import YouTube from 'react-youtube'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
+import { ID_LIST } from './id_list'
 import { GreenButton } from '@/src/components/atoms/button/GreenButton'
 import { Props as BaseFooterProps } from '@/src/components/layouts/BaseFooter'
 import { BaseLayout } from '@/src/components/layouts/BaseLayout'
@@ -22,7 +22,7 @@ const MainCircleList = dynamic<MainCircleListProps>(() =>
     (mod) => mod.MainCircleList
   )
 )
-const MainTagList = dynamic(() =>
+const MainTagList = dynamic<{}>(() =>
   import('@/src/components/pages/Main/Parts/MainTagList').then(
     (mod) => mod.MainTagList
   )

@@ -17,8 +17,8 @@ const InformationField: FC<Props> = ({ circle, circleTags }) => {
     <div>
       <h2 className="mb-6 text-lg text-center md:text-left">サークル詳細</h2>
 
-      <div className="flex justify-center md:justify-start px-6 md:px-0">
-        <div className="py-8 px-6 md:w-full bg-white rounded">
+      <div className="flex justify-center px-6 md:justify-start md:px-0">
+        <div className="py-8 px-6 bg-white rounded md:w-full">
           <div className="pb-4 border-b border-gray-400">
             <p className="mb-2 text-sm text-gray-400">団体・サークル名</p>
             {circle.prefixName ? (

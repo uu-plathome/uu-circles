@@ -20,7 +20,7 @@ const WpPostBlock: FC<{
   media?: WP_REST_API_Attachment
 }> = ({ post, media }) => {
   return (
-    <article className="pb-4 md:pb-6 mb-12 bg-white rounded-sm shadow-md cursor-pointer">
+    <article className="pb-4 mb-12 bg-white rounded-sm shadow-md cursor-pointer md:pb-6">
       <a href={post.link} className="transition-all">
         <div className="wp-cardtype__img">
           <Image
@@ -72,7 +72,7 @@ const MainUucircleBottomButtons: FC<Props> = ({ medias, posts }) => {
   const { isMd } = useMediaQuery()
 
   return (
-    <div className="pt-10 pb-10 bg-gray-100 ">
+    <div className="py-10 bg-gray-100">
       <div className="my-8 mx-auto text-center">
         <h2 className="mb-2 text-lg font-bold">
           新宇大生必見の情報サイト「uu-yell」！

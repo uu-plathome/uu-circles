@@ -67,7 +67,7 @@ const Page: NextPage<Props> = ({
         <div className="pb-16 bg-gray-100">
           <BaseContainer>
             <div className="px-4">
-              <h1 className="py-8 md:py-20 text-2xl text-left md:text-center">
+              <h1 className="py-8 text-2xl text-left md:py-20 md:text-center">
                 統計情報
               </h1>
 

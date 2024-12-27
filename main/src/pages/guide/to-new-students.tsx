@@ -2,7 +2,7 @@ import axios from 'axios'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import useSWR from 'swr'
 import { WP_REST_API_Attachments, WP_REST_API_Posts } from 'wp-types'
@@ -13,7 +13,6 @@ import { BaseLayout } from '@/src/components/layouts/BaseLayout'
 import { BaseContainer } from '@/src/components/molecules/Container/BaseContainer'
 import { MainUucircleBottomButtons } from '@/src/components/pages/Main/Parts/MainUucircleBottomButtons'
 import { ApiUrl } from '@/src/lib/enum/app/ApiUrl'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { UuYellTagNumber } from '@/src/lib/enum/app/UuYellTagNumber'
 
 const BaseFooter = dynamic<BaseFooterProps>(() =>
@@ -45,16 +44,6 @@ const SubHeader: FC<{
 
 type Props = Record<string, never>
 const Page: NextPage<Props> = () => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
   // uu-yellの記事の取得
   const { data: uuYellForMain } = useSWR<{
     posts: WP_REST_API_Posts

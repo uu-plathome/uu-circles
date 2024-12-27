@@ -1,7 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Error from 'next/error'
-import { useState } from 'react'
-import { useEffect } from 'react'
 import useSWR from 'swr'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
@@ -9,7 +7,6 @@ import { ShowCircleTemplate } from '@/src/components/pages/Circle/Show/ShowCircl
 import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
 import { Importance } from '@/src/lib/enum/api/Importance'
-import { LocalStorageKey } from '@/src/lib/enum/app/LocalStorageKey'
 import { getCircleBySlug } from '@/src/lib/infra/api/circle'
 import { PageNotFoundError } from '@/src/lib/infra/api/error'
 import { fetchPostsByCircle } from '@/src/lib/infra/uu_yell/fetchPostsByCircle'
@@ -39,16 +36,6 @@ const Page: NextPage<Props> = ({
   errorCode,
   announcements,
 }) => {
-  // 識別子の取得
-  const [identifierHash, setIdentifierHash] = useState<string | undefined>(
-    undefined
-  )
-  useEffect(() => {
-    setIdentifierHash(
-      localStorage.getItem(LocalStorageKey.identifierHash) || undefined
-    )
-  }, [])
-
   const { data: uuYellForCircles } = useSWR<{
     posts: WP_REST_API_Post[]
     medias: WP_REST_API_Attachment[]

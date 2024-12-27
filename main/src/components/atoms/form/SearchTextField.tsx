@@ -45,7 +45,7 @@ const SearchTextField: FC<Props> = ({
       />
 
       <p
-        className="flex absolute top-0 right-0 items-center px-1 md:px-2 mt-0.5 mr-2 md:mr-1 text-xs md:text-base whitespace-nowrap text-black-900"
+        className="flex absolute top-0 right-0 items-center px-1 mt-0.5 mr-2 text-xs whitespace-nowrap md:px-2 md:mr-1 md:text-base text-black-900"
         style={{ height: 34 }}
       >
         <button type="submit" aria-label="検索する">
