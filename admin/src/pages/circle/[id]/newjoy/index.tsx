@@ -32,7 +32,9 @@ const IndexPage: NextPage = () => {
 
   // 新歓一覧の取得
   const fetchCircle = async () => {
-    const { circle, circleNewJoys: _circleNewJoys } = await getCircleNewJoyList(Number(id))
+    const { circle, circleNewJoys: _circleNewJoys } = await getCircleNewJoyList(
+      Number(id)
+    )
     setCircle(circle)
     setCircleNewJoys(_circleNewJoys.map((c) => c.circleNewJoy))
   }
