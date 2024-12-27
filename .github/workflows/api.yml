@@ -71,15 +71,15 @@ jobs:
     steps:
       - uses: appleboy/ssh-action@v1.2.0
       - name: Deploy
-        env:
+        with:
           host: ${{ secrets.XSERVER_HOST_NAME }}
           username: ${{ secrets.XSERVER_USER_NAME }}
           key: ${{ secrets.XSERVER_SSH_KEY }}
           port: 10022
-        run: |
-          whoami
-          pwd
-          ls -la
+          script: |
+            whoami
+            pwd
+            ls -la
 
   deploy:
     if: github.ref == 'refs/heads/develop/production'
