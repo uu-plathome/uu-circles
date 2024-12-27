@@ -10,4 +10,4 @@ export const GachaMovieId = {
 } as const
 
 export type GachaMovieIdKey = keyof typeof GachaMovieId
-export type GachaMovieId = typeof GachaMovieId[keyof typeof GachaMovieId]
+export type GachaMovieId = (typeof GachaMovieId)[keyof typeof GachaMovieId]

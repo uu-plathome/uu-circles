@@ -77,13 +77,13 @@ const Login: NextPage = () => {
 
       <div className="xl:container">
         <div className="mx-auto mt-16 max-w-screen-md">
-          <div className="p-4 rounded border-2 border-white">
-            <h1 className="mb-4 text-2xl text-center text-white">
+          <div className="rounded border-2 border-white p-4">
+            <h1 className="mb-4 text-center text-2xl text-white">
               パスワードを変更する
             </h1>
 
             {error ? (
-              <div className="p-4 mb-4">
+              <div className="mb-4 p-4">
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
@@ -94,7 +94,7 @@ const Login: NextPage = () => {
             )}
 
             {emailError ? (
-              <div className="p-4 mb-4">
+              <div className="mb-4 p-4">
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   サークル管理者は
@@ -111,7 +111,7 @@ const Login: NextPage = () => {
             {!success ? (
               <div>
                 <form onSubmit={onSubmit}>
-                  <div className="px-4 mb-4">
+                  <div className="mb-4 px-4">
                     <BaseTextField
                       label="メールアドレス"
                       id="email"

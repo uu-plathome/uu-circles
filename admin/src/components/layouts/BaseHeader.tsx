@@ -15,7 +15,7 @@ const BaseHeader: React.FC<Props> = ({ onClick }) => {
   return (
     <div className="border-b-2 border-gray-100 shadow">
       <BaseContainer>
-        <div className="flex justify-between items-center px-4 h-14">
+        <div className="flex h-14 items-center justify-between px-4">
           <div className="flex items-center">
             {!isMd ? (
               <div className="pr-2">

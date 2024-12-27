@@ -142,7 +142,7 @@ export const CircleTagModel = {
 
 export type CircleTagModelKey = keyof Omit<typeof CircleTagModel, '_type'>
 export type CircleTagModelAllKey = keyof typeof CircleTagModel
-export type CircleTagModel = typeof CircleTagModel[CircleTagModelKey]
+export type CircleTagModel = (typeof CircleTagModel)[CircleTagModelKey]
 
 /**
  * サークルタグ.

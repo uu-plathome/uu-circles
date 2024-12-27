@@ -95,7 +95,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="部員アカウント編集">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             {circle ? (
               <div className="mb-8">
                 <p className="text-lg text-white">{circle.name}の情報編集</p>

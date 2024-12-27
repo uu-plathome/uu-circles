@@ -27,7 +27,7 @@ const BaseRadio: React.FC<Props> = ({
   onChange,
 }) => {
   return (
-    <div className="flex flex-col mb-4 space-y-1">
+    <div className="mb-4 flex flex-col space-y-1">
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div>
@@ -41,7 +41,7 @@ const BaseRadio: React.FC<Props> = ({
               <input
                 id={`${id}_${value}`}
                 name={name}
-                className="py-2 px-4 rounded border border-gray-300 focus:border-transparent focus:ring-4 focus:ring-blue-200 transition duration-300 focus:outline-none"
+                className="rounded border border-gray-300 py-2 px-4 transition duration-300 focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                 type="radio"
                 value={selectItem.value}
                 checked={value === selectItem.value}

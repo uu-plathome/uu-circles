@@ -23,9 +23,9 @@ const BaseWrapper: React.FC<Props> = ({
       </div>
 
       <div className="w-full md:w-2/3 lg:w-4/5">
-        <div className="pt-20 md:pt-16 lg:pt-10 pb-10">
-          <div className="md:flex justify-between mb-8">
-            <h1 className="mb-4 md:mb-0 text-2xl text-gray-100">{title}</h1>
+        <div className="pt-20 pb-10 md:pt-16 lg:pt-10">
+          <div className="mb-8 justify-between md:flex">
+            <h1 className="mb-4 text-2xl text-gray-100 md:mb-0">{title}</h1>
 
             {actionText ? (
               <div className="text-right">

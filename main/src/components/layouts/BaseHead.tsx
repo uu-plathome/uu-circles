@@ -1,6 +1,6 @@
+import { useRouter } from 'next/dist/client/router'
 import { NextSeo, BreadcrumbJsonLd, LogoJsonLd, CarouselJsonLd } from 'next-seo'
 import { ItemListElements } from 'next-seo/lib/jsonld/breadcrumb'
-import { useRouter } from 'next/dist/client/router'
 import { FC } from 'react'
 
 export const baseUuCirclesUrl = 'https://uu-circles.com' as const
