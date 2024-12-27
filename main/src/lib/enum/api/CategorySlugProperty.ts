@@ -16,7 +16,7 @@ export type CategorySlugPropertyKey = keyof Omit<
 >
 export type CategorySlugPropertyAllKey = keyof typeof CategorySlugProperty
 export type CategorySlugProperty =
-  typeof CategorySlugProperty[CategorySlugPropertyKey]
+  (typeof CategorySlugProperty)[CategorySlugPropertyKey]
 
 export const getAllCategorySlugProperty = (): CategorySlugProperty[] => {
   const { _type: _, ...data } = CategorySlugProperty
