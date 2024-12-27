@@ -24,22 +24,22 @@ const GreenButton: React.FC<Props> = ({
         <p
           className={`
                     min-w-120
+                    ripple
                     inline-block
+                    rounded
+                    bg-green-600
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-green-600
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
-                    hover:shadow-lg
+                    transition
                     hover:opacity-80
+                    hover:shadow-lg
                     focus:outline-none
                 `}
         >
@@ -52,22 +52,22 @@ const GreenButton: React.FC<Props> = ({
       <button
         className={`
                     min-w-120
+                    ripple
                     inline-block
+                    rounded
+                    bg-green-600
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-green-600
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
-                    hover:shadow-lg
+                    transition
                     hover:opacity-80
+                    hover:shadow-lg
                     focus:outline-none
                 `}
         onClick={onClick}

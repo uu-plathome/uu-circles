@@ -74,13 +74,13 @@ const PasswordConfirmPage: NextPage = () => {
 
       <div className="xl:container">
         <div className="mx-auto mt-16 max-w-screen-md">
-          <div className="p-4 rounded border-2 border-white">
-            <h1 className="mb-4 text-2xl text-center text-white">
+          <div className="rounded border-2 border-white p-4">
+            <h1 className="mb-4 text-center text-2xl text-white">
               新しいパスワード
             </h1>
 
             {error ? (
-              <div className="p-4 mb-4">
+              <div className="mb-4 p-4">
                 <p className="text-lg text-white">
                   <FontAwesomeIcon icon={faExclamationTriangle} color="red" />{' '}
                   {error}
@@ -92,7 +92,7 @@ const PasswordConfirmPage: NextPage = () => {
 
             {!success ? (
               <form onSubmit={onSubmit}>
-                <div className="px-4 mb-4">
+                <div className="mb-4 px-4">
                   <SimplePasswordTextField
                     label="新しいパスワード"
                     id="password"

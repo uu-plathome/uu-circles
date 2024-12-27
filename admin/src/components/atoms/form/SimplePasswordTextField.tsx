@@ -46,7 +46,7 @@ const SimplePasswordTextField: FC<Props> = ({
   const [visible, setVisible] = useState(false)
 
   return (
-    <div className="flex flex-col mb-4 space-y-1">
+    <div className="mb-4 flex flex-col space-y-1">
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="relative">

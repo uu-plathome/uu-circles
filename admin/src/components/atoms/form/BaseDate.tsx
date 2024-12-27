@@ -26,7 +26,7 @@ const BaseDate: FC<Props> = ({
   onChangeDate,
 }) => {
   return (
-    <div className={`flex flex-col space-y-1 mb-4 ${error ? '' : 'pb-5'}`}>
+    <div className={`mb-4 flex flex-col space-y-1 ${error ? '' : 'pb-5'}`}>
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="flex items-end">

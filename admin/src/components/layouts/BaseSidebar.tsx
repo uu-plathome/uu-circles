@@ -103,11 +103,11 @@ const SidebarItem: FC<SidebarItemProps> = ({ sidebarItem }) => {
                         flex-wrap
                         items-center
                         justify-between
-                        p-2
                         rounded
+                        p-2
                         hover:bg-white
-                        hover:text-black
                         hover:font-bold
+                        hover:text-black
                         ${isActiveSidebar ? 'bg-white' : ''}
                         ${isActiveSidebar ? 'text-black' : 'text-white'}
                         ${isActiveSidebar ? 'font-bold' : 'font-light'}
@@ -140,7 +140,7 @@ const BaseSidebar: FC = () => {
         {!isMd ? <BaseHeader onClick={() => setVisible(!visible)} /> : ''}
 
         {isMd || (!isMd && visible) ? (
-          <div className="relative py-4 px-4 md:pl-0">
+          <div className="relative p-4 md:pl-0">
             <div>
               <p className="p-2 font-bold text-white">General</p>
             </div>

@@ -22,11 +22,11 @@ const CircleListItemTableColumn: FC<{
   children: React.ReactNode
 }> = ({ children, title }) => {
   return (
-    <div className="pr-2 mb-2 w-1/3 lg:w-1/6">
-      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
+    <div className="mb-2 w-1/3 pr-2 lg:w-1/6">
+      <p className="mb-2 bg-gray-800 py-1 text-center text-sm font-bold text-gray-300">
         {title}
       </p>
-      <div className="flex justify-center items-center h-7">{children}</div>
+      <div className="flex h-7 items-center justify-center">{children}</div>
     </div>
   )
 }
@@ -34,26 +34,26 @@ const CircleListItem: FC<Props> = ({ circle }) => {
   const imageLink =
     circle.mainImageUrl || circle.handbillImageUrl || `/images/no-image.png`
   return (
-    <div className="flex mb-4 text-white">
+    <div className="mb-4 flex text-white">
       <div className="hidden lg:block">
         <Image
           src={imageLink}
           alt="サークル画像"
           width="100"
           height="100"
-          className="object-contain square-image"
+          className="square-image object-contain"
         />
       </div>
 
       <div className="ml-2 w-full">
-        <div className="flex items-center mb-4 lg:mb-0">
-          <div className="lg:hidden mr-2">
+        <div className="mb-4 flex items-center lg:mb-0">
+          <div className="mr-2 lg:hidden">
             <Image
               src={imageLink}
               alt="サークル画像"
               width="100"
               height="100"
-              className="object-contain square-image"
+              className="square-image object-contain"
             />
           </div>
           <h2 className="mb-2 text-lg font-bold text-gray-300">
@@ -61,7 +61,7 @@ const CircleListItem: FC<Props> = ({ circle }) => {
           </h2>
         </div>
 
-        <div className="flex flex-wrap w-full">
+        <div className="flex w-full flex-wrap">
           <CircleListItemTableColumn title="公開中">
             <FontAwesomeIcon
               size="lg"

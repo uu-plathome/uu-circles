@@ -557,11 +557,11 @@ const EditPage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="サークル編集">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             {circle ? (
               <>
                 {isSystem(authUser.role) ? (
-                  <div className="flex justify-end mb-2">
+                  <div className="mb-2 flex justify-end">
                     <DeleteCircleButton circle={circle} onDelete={onDelete} />
                   </div>
                 ) : (
@@ -569,7 +569,7 @@ const EditPage: NextPage = () => {
                 )}
 
                 {!handbillImageUrl.value ? (
-                  <div className="p-4 mb-4 text-white rounded border-2 border-white">
+                  <div className="mb-4 rounded border-2 border-white p-4 text-white">
                     <p className="mb-2 text-lg text-red-600">
                       <FontAwesomeIcon
                         icon={faExclamationTriangle}

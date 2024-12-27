@@ -41,11 +41,11 @@ const BaseCheckBox: React.FC<Props> = ({
           return (
             <label
               key={checkBoxItem.value}
-              className={`${widthClass} ${mdWidthClass} inline-flex items-center text-white mb-2`}
+              className={`${widthClass} ${mdWidthClass} mb-2 inline-flex items-center text-white`}
             >
               <input
                 type="checkbox"
-                className="mb-1 rounded border-gray-300 focus:ring focus:ring-opacity-50 shadow-sm text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200"
+                className="text-indigo-600 focus:border-indigo-300 focus:ring-indigo-200 mb-1 rounded border-gray-300 shadow-sm focus:ring focus:ring-opacity-50"
                 value={checkBoxItem.value}
                 checked={checkBoxItem.checked}
                 id={`${id}_${checkBoxItem.value}`}

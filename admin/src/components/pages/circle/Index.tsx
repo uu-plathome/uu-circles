@@ -52,9 +52,9 @@ const Index: NextPage<Props> = ({
           actionText="サークル新規作成"
           actionHref="/circle/create"
         >
-          <div className="p-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 p-2">
             {circles ? (
-              <div className="py-4 mb-8">
+              <div className="mb-8 py-4">
                 <p className="text-white">サークル名検索</p>
 
                 <form>

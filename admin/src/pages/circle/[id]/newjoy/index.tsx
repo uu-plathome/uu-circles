@@ -32,7 +32,9 @@ const IndexPage: NextPage = () => {
 
   // 新歓一覧の取得
   const fetchCircle = async () => {
-    const { circle, circleNewJoys: _circleNewJoys } = await getCircleNewJoyList(Number(id))
+    const { circle, circleNewJoys: _circleNewJoys } = await getCircleNewJoyList(
+      Number(id)
+    )
     setCircle(circle)
     setCircleNewJoys(_circleNewJoys.map((c) => c.circleNewJoy))
   }
@@ -93,7 +95,7 @@ const IndexPage: NextPage = () => {
           actionHref="/circle/[id]/newjoy/create"
           actionAs={`/circle/${id}/newjoy/create`}
         >
-          <div className="p-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 p-2">
             {success ? <SuccessBunner text={success} /> : ''}
 
             {error ? <DangerBunner text={error} /> : ''}

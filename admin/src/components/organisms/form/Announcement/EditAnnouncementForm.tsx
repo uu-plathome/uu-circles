@@ -284,7 +284,7 @@ const EditAnnouncementForm: FC<Props> = ({ onSubmit, form }) => {
         {...form.publishTo}
       />
 
-      <div className="flex justify-center mt-8">
+      <div className="mt-8 flex justify-center">
         <GreenButton type="submit">進む</GreenButton>
       </div>
     </form>

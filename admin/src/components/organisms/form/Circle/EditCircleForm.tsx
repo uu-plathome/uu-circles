@@ -23,10 +23,7 @@ import { GreenButton } from '@/src/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/src/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/src/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/src/components/atoms/header/FormHeader'
-import {
-  UseBooleanInput,
-  UseStringInput,
-} from '@/src/hooks/useInput'
+import { UseBooleanInput, UseStringInput } from '@/src/hooks/useInput'
 import { isSystem, Role } from '@/src/lib/enum/api/Role'
 
 type Props = {
@@ -190,7 +187,7 @@ const EditCircleForm: FC<Props> = ({
 
       <FormHeader>SNS情報</FormHeader>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
         <div>
           <BaseTextField
             label="Twitter URL"
@@ -386,7 +383,7 @@ const EditCircleForm: FC<Props> = ({
         ''
       )}
 
-      <div className="flex justify-center mt-8">
+      <div className="mt-8 flex justify-center">
         <GreenButton type="submit">更新</GreenButton>
       </div>
     </form>

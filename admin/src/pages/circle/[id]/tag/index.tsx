@@ -178,7 +178,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="サークルタグ管理">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             <form onSubmit={onSubmit}>
               <BaseCheckBox
                 id="circle_tag"
