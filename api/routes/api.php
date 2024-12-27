@@ -24,9 +24,6 @@ use App\Http\Controllers\Main\Statistics;
 // トップページ用
 Route::get('/main', Main\IndexController::class)
     ->name(ARP::MainIndex);
-// トップページ (デモ)
-Route::get('/main/demo', Main\DemoIndexController::class)
-    ->name(ARP::MainDemoIndex);
 // サイトマップ
 Route::get('/sitemap', Sitemap\SitemapController::class)
     ->name(ARP::MainSitemap);
@@ -39,9 +36,6 @@ Route::get('/advertises', Advertise\GetMainAdvertisesController::class)
 // 今日の新歓
 Route::get('/circle/newjoy', CircleNewJoy\TodayCircleNewJoyController::class)
     ->name(ARP::MainCircleNewJoyToday);
-// 今日の新歓 (デモ)
-Route::get('/circle/newjoy/demo', CircleNewJoy\DemoTodayCircleNewJoyController::class)
-    ->name(ARP::MainCircleNewJoyTodayDemo);
 
 // サークル一覧
 Route::get('/circle', Circle\IndexCircleController::class)
@@ -63,13 +57,6 @@ Route::get('/circle/{slug}/newjoy', CircleNewJoy\IndexCircleNewJoyController::cl
 Route::get('/circle/{slug}/newjoy/{circleNewJoyId}', CircleNewJoy\ShowCircleNewJoyController::class)
     ->name(ARP::MainCircleNewJoyShow)
     ->where(['circleNewJoyId' => '[0-9]+']);
-
-// デモ新歓
-Route::get('/circle/{slug}/newjoy/demo', CircleNewJoy\DemoIndexCircleNewJoyController::class)
-    ->name(ARP::MainDemoCircleNewJoyIndex);
-Route::get('/circle/{slug}/newjoy/demo/{demoCircleNewJoyId}', CircleNewJoy\DemoShowCircleNewJoyController::class)
-    ->name(ARP::MainDemoCircleNewJoyShow)
-    ->where(['demoCircleNewJoyId' => '[0-9]+']);
 
 // ガチャ用
 Route::get('/gacha/circle/pickup', Gacha\GachaPickupListController::class)

@@ -6,8 +6,6 @@ class ApiRouteProperty
 {
     // トップページ
     const MainIndex = 'main.index';
-    // トップページ (デモ)
-    const MainDemoIndex = 'main.index.demo';
     // サイトマップ
     const MainSitemap = 'main.sitemap';
     // 統計
@@ -26,16 +24,10 @@ class ApiRouteProperty
 
     // 今日の新歓
     const MainCircleNewJoyToday = 'main.circleNewJoy.today';
-    // 今日の新歓 (デモ)
-    const MainCircleNewJoyTodayDemo = 'main.circleNewJoy.today.demo';
 
     // 新歓
     const MainCircleNewJoyIndex = 'main.circleNewJoy.index';
     const MainCircleNewJoyShow = 'main.circleNewJoy.show';
-
-    // デモ新歓
-    const MainDemoCircleNewJoyIndex = 'main.circleNewJoy.demo.index';
-    const MainDemoCircleNewJoyShow = 'main.circleNewJoy.demo.show';
 
     // ガチャ
     const MainGachaPickup = 'main.gacha.pickup';
