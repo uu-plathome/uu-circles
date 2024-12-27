@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.XSERVER_HOST_NAME }}
           username: ${{ secrets.XSERVER_USER_NAME }}
