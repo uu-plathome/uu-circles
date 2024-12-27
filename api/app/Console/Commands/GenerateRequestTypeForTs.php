@@ -20,7 +20,6 @@ use App\Http\Requests\Admin\CircleNewJoy\RegisterCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleNewJoy\UpdateCircleNewJoyRequest;
 use App\Http\Requests\Admin\CircleTag;
 use App\Http\Requests\Admin\CircleUser;
-use App\Http\Requests\Admin\DemoCircleNewJoy;
 use App\Http\Requests\Circle\Auth\ForgotPasswordCircleRequest;
 use App\Http\Requests\Circle\Auth\LoginCircleFormRequest;
 use App\Http\Requests\Circle\Auth\RegisterCircleFormRequest;
@@ -34,7 +33,6 @@ use App\Http\Requests\Circle\CircleUser\ImportCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\RegisterCircleUserRequest as CircleUserRegisterCircleUserRequest;
 use App\Http\Requests\Circle\CircleUser\UpdateCircleUserRequest as CircleUserUpdateCircleUserRequest;
 use App\Http\Requests\Circle\User\UpdateOwnUserRequest;
-use App\Http\Requests\Main;
 use Illuminate\Console\Command;
 use ReflectionClass;
 
@@ -98,8 +96,6 @@ class GenerateRequestTypeForTs extends Command
             CircleTag\CreateOrUpdateCircleTagRequest::class,
             Announcement\CreateAnnouncementRequest::class,
             Announcement\UpdateAnnouncementRequest::class,
-            DemoCircleNewJoy\RegisterDemoCircleNewJoyRequest::class,
-            DemoCircleNewJoy\UpdateDemoCircleNewJoyRequest::class,
         ];
         $this->requestCircleClasses = [
             ForgotPasswordCircleRequest::class,
@@ -117,9 +113,6 @@ class GenerateRequestTypeForTs extends Command
             CircleUserRegisterCircleUserRequest::class,
             ImportCircleUserRequest::class,
             \App\Http\Requests\Circle\CircleTag\CreateOrUpdateCircleTagRequest::class,
-        ];
-        $this->requestMainClasses = [
-            Main\PagePosition\CreatePagePositionRequest::class,
         ];
     }
 

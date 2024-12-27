@@ -4,9 +4,7 @@ import useSWR from 'swr'
 import { WP_REST_API_Attachment, WP_REST_API_Post } from 'wp-types'
 import { BaseHead, baseUuCirclesUrl } from '@/src/components/layouts/BaseHead'
 import { ShowCircleTemplate } from '@/src/components/pages/Circle/Show/ShowCircleTemplate'
-import { AnnouncementType } from '@/src/lib/enum/api/AnnouncementType'
 import { CircleTagModel } from '@/src/lib/enum/api/CircleTagModel'
-import { Importance } from '@/src/lib/enum/api/Importance'
 import { getCircleBySlug } from '@/src/lib/infra/api/circle'
 import { PageNotFoundError } from '@/src/lib/infra/api/error'
 import { fetchPostsByCircle } from '@/src/lib/infra/uu_yell/fetchPostsByCircle'
@@ -126,19 +124,6 @@ export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
       announcements,
     } = await getCircleBySlug(params.slug)
 
-    // デモ画面のみに表示する時は、「デモ画面」であることがわかるようにする
-    let newAnnouncements: Announcement[] = announcements
-    if (circle.isOnlyDemo) {
-      newAnnouncements = [
-        {
-          announcementId: 0,
-          title: 'これはデモ画面です。正しい新歓ではありません。',
-          announcementType: AnnouncementType.UPDATE_FEATURE,
-          importance: Importance.MIDDLE,
-        },
-      ]
-    }
-
     return {
       props: {
         circle,
@@ -146,7 +131,7 @@ export const getStaticProps: GetStaticProps<Partial<Props>> = async ({
         circleNewJoys,
         uuYellArticles,
         wpPosts,
-        announcements: newAnnouncements,
+        announcements,
       },
       revalidate: 180,
     }

@@ -79,14 +79,6 @@ final class SitemapUsecase
                 $url.'/gacha',
                 '2021-07-16',
             ),
-            SitemapDto::of(
-                $url.'/demo',
-                '2021-07-16',
-            ),
-            SitemapDto::of(
-                $url.'/circle/newjoy/demo',
-                '2021-07-16',
-            ),
         ];
     }
 
