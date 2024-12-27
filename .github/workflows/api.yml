@@ -69,32 +69,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: appleboy/ssh-action@v1.2.0
       - name: Deploy
         env:
-          PRIVATE_KEY: ${{ secrets.XSERVER_SSH_KEY }}
-          USER_NAME: ${{ secrets.XSERVER_USER_NAME }}
-          HOST_NAME: ${{ secrets.XSERVER_HOST_NAME }}
+          host: ${{ secrets.XSERVER_HOST_NAME }}
+          username: ${{ secrets.XSERVER_USER_NAME }}
+          key: ${{ secrets.XSERVER_SSH_KEY }}
+          port: 10022
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key && \
-          ssh -vT -p 10022 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o TCPKeepAlive=yes -F /dev/null -i private_key ${USER_NAME}@${HOST_NAME} '
-            cd ~/uu-circles.com/work/api-stg && \
-            mkdir ${{ github.run_number }} && \
-            cd ${{ github.run_number }} && \
-            git clone https://github.com/UU-PlatHome/uu-circles.git && \
-            cd uu-circles/api && \
-            git reset --hard origin/develop/stg && \
-            cp ../../../.env .env && \
-            cp ../../../credentials.json credentials.json && \
-            composer install && \
-            php artisan migrate --force && \
-            php artisan cache:clear && \
-            php artisan config:cache && \
-            php artisan route:cache && \
-            php artisan view:cache
-            cd ~/uu-circles.com && \
-            ln -nfs ~/uu-circles.com/work/api-stg/${{ github.run_number }} ~/uu-circles.com/work/api-stg/current
-          '
+          whoami
+          pwd
+          ls -la
 
   deploy:
     if: github.ref == 'refs/heads/develop/production'
