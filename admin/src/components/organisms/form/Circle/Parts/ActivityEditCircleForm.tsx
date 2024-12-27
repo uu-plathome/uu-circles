@@ -4,7 +4,7 @@ import { BaseSelect } from '@/src/components/atoms/form/BaseSelect'
 import { BaseTextarea } from '@/src/components/atoms/form/BaseTextarea'
 import { UseBooleanInput, UseStringInput } from '@/src/hooks/useInput'
 import { __ } from '@/src/lang/ja'
-import { getAllPlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
+import { getAllPlaceOfActivity, PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { getAllWeek, Week } from '@/src/lib/enum/api/Week'
 
 type Props = {
@@ -188,7 +188,7 @@ const ActivityEditCircleForm: FC<Props> = ({ form }) => {
         items={[
           ...getAllPlaceOfActivity().map((_placeOfActivity) => ({
             value: _placeOfActivity,
-            label: __(_placeOfActivity),
+            label: __(_placeOfActivity, PlaceOfActivity._type),
           })),
         ]}
         {...form.commonPlaceOfActivity}
