@@ -69,8 +69,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: appleboy/ssh-action@v1.2.0
       - name: Deploy
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.XSERVER_HOST_NAME }}
           username: ${{ secrets.XSERVER_USER_NAME }}
