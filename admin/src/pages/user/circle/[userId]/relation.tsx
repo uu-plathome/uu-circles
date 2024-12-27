@@ -82,7 +82,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="サークルと連携する">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             {error ? <DangerBunner text={error} /> : ''}
 
             {selectItems.length > 0 ? (
@@ -96,7 +96,7 @@ const CreatePage: NextPage = () => {
                   {...circleId}
                 />
 
-                <div className="flex justify-center mt-8">
+                <div className="mt-8 flex justify-center">
                   <GreenButton type="submit">追加</GreenButton>
                 </div>
               </form>

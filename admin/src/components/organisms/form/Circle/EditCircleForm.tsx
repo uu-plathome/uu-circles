@@ -23,11 +23,7 @@ import { GreenButton } from '@/src/components/atoms/buttons/GreenButton'
 import { BaseSelect } from '@/src/components/atoms/form/BaseSelect'
 import { BaseTextField } from '@/src/components/atoms/form/BaseTextField'
 import { FormHeader } from '@/src/components/atoms/header/FormHeader'
-import {
-  UseBooleanInput,
-  UseNumberInput,
-  UseStringInput,
-} from '@/src/hooks/useInput'
+import { UseBooleanInput, UseStringInput } from '@/src/hooks/useInput'
 import { isSystem, Role } from '@/src/lib/enum/api/Role'
 
 type Props = {
@@ -38,9 +34,6 @@ type Props = {
   role?: Role
   form: {
     isMainFixed: UseBooleanInput
-    isOnlyDemo: UseBooleanInput
-    isDemoFixed: UseBooleanInput
-    demoPriority: UseNumberInput
     release: UseBooleanInput
     commonPlaceOfActivity: UseStringInput
     commonPlaceOfActivityDetail: UseStringInput
@@ -116,38 +109,6 @@ const EditCircleForm: FC<Props> = ({
               { value: 'false', label: '固定しない' },
             ]}
             {...form.isMainFixed}
-          />
-
-          <BaseSelect
-            label="デモ画面のみに表示するかどうか"
-            id="isOnlyDemo"
-            name="isOnlyDemo"
-            required
-            items={[
-              { value: 'true', label: '表示する' },
-              { value: 'false', label: '表示しない' },
-            ]}
-            {...form.isOnlyDemo}
-          />
-
-          <BaseSelect
-            label="デモ画面に固定するか"
-            id="isDemoFixed"
-            name="isDemoFixed"
-            required
-            items={[
-              { value: 'true', label: '固定' },
-              { value: 'false', label: '固定しない' },
-            ]}
-            {...form.isDemoFixed}
-          />
-
-          <BaseTextField
-            label="デモ画面の優先度"
-            name="demoPriority"
-            id="demoPriority"
-            placeholder="0"
-            {...form.demoPriority}
           />
         </div>
       ) : (
@@ -226,7 +187,7 @@ const EditCircleForm: FC<Props> = ({
 
       <FormHeader>SNS情報</FormHeader>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
         <div>
           <BaseTextField
             label="Twitter URL"
@@ -422,7 +383,7 @@ const EditCircleForm: FC<Props> = ({
         ''
       )}
 
-      <div className="flex justify-center mt-8">
+      <div className="mt-8 flex justify-center">
         <GreenButton type="submit">更新</GreenButton>
       </div>
     </form>

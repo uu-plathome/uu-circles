@@ -44,7 +44,7 @@ export const DeleteConfirmCircleButton: FC<DeleteConfirmCircleButtonProps> = ({
         style={customStyles}
         contentLabel="サークルを削除"
       >
-        <h2 className="mb-4 text-lg font-bold text-center text-red-600">
+        <h2 className="mb-4 text-center text-lg font-bold text-red-600">
           え、まじ？本当にいいんだよね？
         </h2>
 
@@ -92,7 +92,7 @@ export const DeleteCircleButton: FC<Props> = ({ circle, onDelete }) => {
         style={customStyles}
         contentLabel="サークルを削除"
       >
-        <h2 className="mb-4 text-lg font-bold text-center">
+        <h2 className="mb-4 text-center text-lg font-bold">
           本当にサークルを削除しますか？
         </h2>
 

@@ -84,7 +84,7 @@ const IndexPage: NextPage = () => {
             ''
           )}
 
-          <div className="p-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 p-2">
             {advertises.length > 0
               ? advertises.map((advertise: Advertise) => {
                   return (

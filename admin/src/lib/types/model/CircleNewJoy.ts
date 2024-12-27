@@ -1,6 +1,6 @@
 export interface CircleNewJoy {
   type: 'CircleNewJoy'
-  id: number
+  circleNewJoyId: number
   circleId: number
   title: string
   description: string

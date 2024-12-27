@@ -56,7 +56,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ advertise, onDelete }) => {
         style={customStyles}
         contentLabel="新歓の削除"
       >
-        <h2 className="mb-4 text-lg font-bold text-center">
+        <h2 className="mb-4 text-center text-lg font-bold">
           本当に削除しますか？
         </h2>
 
@@ -83,10 +83,10 @@ const ListItemTableColumn: React.FC<{
   const widthClass = lg ? 'w-1/3 lg:w-1/4' : 'w-1/3 lg:w-1/6'
   return (
     <div className={`${widthClass} pr-2`}>
-      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
+      <p className="mb-2 bg-gray-800 py-1 text-center text-sm font-bold text-gray-300">
         {title}
       </p>
-      <div className="flex justify-center items-center h-7">{children}</div>
+      <div className="flex h-7 items-center justify-center">{children}</div>
     </div>
   )
 }
@@ -94,7 +94,7 @@ const AdvertiseListItem: React.FC<Props> = ({ advertise, onDelete }) => {
   const { isMd } = useMediaQuery()
 
   return (
-    <div className="flex mb-4 text-white">
+    <div className="mb-4 flex text-white">
       <div className="hidden lg:block">
         <Image
           src={
@@ -110,8 +110,8 @@ const AdvertiseListItem: React.FC<Props> = ({ advertise, onDelete }) => {
       </div>
 
       <div className="ml-2 w-full">
-        <div className="flex items-center mb-4 lg:mb-0">
-          <div className="lg:hidden mr-2">
+        <div className="mb-4 flex items-center lg:mb-0">
+          <div className="mr-2 lg:hidden">
             <Image
               src={
                 advertise.mainImageUrl
@@ -124,12 +124,12 @@ const AdvertiseListItem: React.FC<Props> = ({ advertise, onDelete }) => {
               className="square-image"
             />
           </div>
-          <h2 className="mb-2 md:text-lg font-bold text-gray-300">
+          <h2 className="mb-2 font-bold text-gray-300 md:text-lg">
             {advertise.title}
           </h2>
         </div>
 
-        <div className="flex flex-wrap w-full">
+        <div className="flex w-full flex-wrap">
           <ListItemTableColumn title="公開中">
             <FontAwesomeIcon
               size="lg"

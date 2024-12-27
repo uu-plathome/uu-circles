@@ -114,7 +114,7 @@ const CircleActivityImageInput: FC<Props> = ({
         id="activityImageUrl"
       />
 
-      <div ref={ref} className="flex mb-3">
+      <div ref={ref} className="mb-3 flex">
         <div className="pr-3">
           <ImageInput
             id="activityImageUrl1"

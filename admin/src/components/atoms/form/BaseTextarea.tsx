@@ -61,13 +61,13 @@ const BaseTextarea: FC<Props> = ({
   )
 
   return (
-    <div className="flex flex-col mb-4 space-y-1">
+    <div className="mb-4 flex flex-col space-y-1">
       <BaseLabel label={label} note={note} required={required} id={id} />
 
       <div className="flex items-end">
         {prefix ? (
           <p
-            className="flex items-center px-2 md:px-4 text-xs md:text-base whitespace-nowrap bg-gray-200 rounded text-black-900"
+            className="text-black-900 flex items-center whitespace-nowrap rounded bg-gray-200 px-2 text-xs md:px-4 md:text-base"
             style={{ height: 42 }}
           >
             <span>{prefix}</span>

@@ -14,6 +14,7 @@ import { OrangeButton } from '@/src/components/atoms/buttons/OrangeButton'
 import { RedButton } from '@/src/components/atoms/buttons/RedButton'
 import { __ } from '@/src/lang/ja'
 import { newJoyTitleEntity } from '@/src/lib/entity/newJoyTitleEntity'
+import { PlaceOfActivity } from '@/src/lib/enum/api/PlaceOfActivity'
 import { Circle } from '@/src/lib/types/model/Circle'
 import { CircleNewJoy } from '@/src/lib/types/model/CircleNewJoy'
 import { dayjs } from '@/src/plugins/Dayjs'
@@ -39,15 +40,15 @@ const CircleListItemTableColumn: FC<{
       className={`
             w-1/2
             ${w}
-            pr-2
             mb-8
+            pr-2
             lg:mb-0
         `}
     >
-      <p className="py-1 mb-2 text-sm font-bold text-center text-gray-300 bg-gray-800">
+      <p className="mb-2 bg-gray-800 py-1 text-center text-sm font-bold text-gray-300">
         {title}
       </p>
-      <div className="flex justify-center items-center h-10">{children}</div>
+      <div className="flex h-10 items-center justify-center">{children}</div>
     </div>
   )
 }
@@ -61,13 +62,13 @@ const NewJoyDateTime: FC<{
     return (
       <div>
         <p className="mt-4 text-sm text-white">
-          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
+          <span className="mr-2 rounded-full border-2 border-white bg-white text-gray-800">
             始
           </span>
           {formatDateTime(startDate)}
         </p>
         <p className="mt-2 text-sm text-white">
-          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
+          <span className="mr-2 rounded-full border-2 border-white bg-white text-gray-800">
             終
           </span>
           {formatDateTime(endDate)}
@@ -80,7 +81,7 @@ const NewJoyDateTime: FC<{
     return (
       <div>
         <p className="text-sm text-white">
-          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
+          <span className="mr-2 rounded-full border-2 border-white bg-white text-gray-800">
             始
           </span>
           {formatDateTime(startDate)}
@@ -93,12 +94,12 @@ const NewJoyDateTime: FC<{
     return (
       <div>
         <p className="mt-4 text-sm text-white">
-          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
+          <span className="mr-2 rounded-full border-2 border-white bg-white text-gray-800">
             始
           </span>
         </p>
         <p className="mt-2 text-sm text-white">
-          <span className="mr-2 text-gray-800 bg-white rounded-full border-2 border-white">
+          <span className="mr-2 rounded-full border-2 border-white bg-white text-gray-800">
             終
           </span>
           {formatDateTime(endDate)}
@@ -155,13 +156,13 @@ const CopyButton: FC<CopyButtonProps> = ({
         style={customStyles}
         contentLabel="新歓のコピー"
       >
-        <h2 className="mb-4 text-lg font-bold text-center">
+        <h2 className="mb-4 text-center text-lg font-bold">
           本当にコピーしますか？
         </h2>
 
         <p className="mb-4 text-center">{newJoyTitle}</p>
 
-        <div className="p-4 mb-4 bg-gray-800 rounded">
+        <div className="mb-4 rounded bg-gray-800 p-4">
           <p className="text-white">新歓日時</p>
           <div className="pb-2">
             <NewJoyDateTime
@@ -213,13 +214,13 @@ const DeleteButton: FC<DeleteButtonProps> = ({
         style={customStyles}
         contentLabel="新歓の削除"
       >
-        <h2 className="mb-4 text-lg font-bold text-center">
+        <h2 className="mb-4 text-center text-lg font-bold">
           本当に削除しますか？
         </h2>
 
         <p className="mb-4 text-center">{newJoyTitle}</p>
 
-        <div className="p-4 mb-4 bg-gray-800 rounded">
+        <div className="mb-4 rounded bg-gray-800 p-4">
           <p className="text-white">新歓日時</p>
           <div className="pb-2">
             <NewJoyDateTime
@@ -256,7 +257,7 @@ const CircleNewJoyListItem: FC<Props> = ({
           {newJoyTitle.value}
         </h2>
 
-        <div className="flex flex-wrap w-full">
+        <div className="flex w-full flex-wrap">
           <CircleListItemTableColumn title="公開中">
             <FontAwesomeIcon
               size="lg"
@@ -274,14 +275,14 @@ const CircleNewJoyListItem: FC<Props> = ({
 
           <CircleListItemTableColumn title="活動場所" large>
             <div className="text-white">
-              <p>{__(circleNewJoy.placeOfActivity)}</p>
+              <p>{__(circleNewJoy.placeOfActivity, PlaceOfActivity._type)}</p>
             </div>
           </CircleListItemTableColumn>
 
           <CircleListItemTableColumn title="編集">
             <Link
               href="/circle/[id]/newjoy/[circleNewJoyId]/edit"
-              as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.id}/edit`}
+              as={`/circle/${circleNewJoy.circleId}/newjoy/${circleNewJoy.circleNewJoyId}/edit`}
             >
               <FontAwesomeIcon size="lg" color="orange" icon={faEdit} />
             </Link>
@@ -291,7 +292,7 @@ const CircleNewJoyListItem: FC<Props> = ({
             <CopyButton
               newJoyTitle={newJoyTitle.value}
               circleNewJoy={circleNewJoy}
-              onCopy={() => onCopy(circleNewJoy.id)}
+              onCopy={() => onCopy(circleNewJoy.circleNewJoyId)}
             />
           </CircleListItemTableColumn>
 
@@ -299,7 +300,7 @@ const CircleNewJoyListItem: FC<Props> = ({
             <DeleteButton
               newJoyTitle={newJoyTitle.value}
               circleNewJoy={circleNewJoy}
-              onDelete={() => onDelete(circleNewJoy.id)}
+              onDelete={() => onDelete(circleNewJoy.circleNewJoyId)}
             />
           </CircleListItemTableColumn>
         </div>

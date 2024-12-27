@@ -72,7 +72,7 @@ const IndexPage: NextPage = () => {
 
           <SubmitLoading isOpen={isOpen} />
 
-          <div className="p-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 p-2">
             {users.map((user: User) => {
               return (
                 <CircleUserListItem

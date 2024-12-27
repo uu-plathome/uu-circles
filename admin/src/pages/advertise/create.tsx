@@ -102,7 +102,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="広告発行">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             <CreateAdvertiseForm
               onDropMainImage={onDropMainImage}
               onSubmit={onSubmit}
