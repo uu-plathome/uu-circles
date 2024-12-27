@@ -88,7 +88,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="管理者アカウント新規作成">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             <form onSubmit={onSubmit}>
               <BaseTextField
                 label="メールアドレス"
@@ -130,7 +130,7 @@ const CreatePage: NextPage = () => {
                 {...role}
               />
 
-              <div className="flex justify-center mt-8">
+              <div className="mt-8 flex justify-center">
                 <GreenButton type="submit">進む</GreenButton>
               </div>
             </form>

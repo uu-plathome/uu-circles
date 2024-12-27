@@ -93,7 +93,7 @@ const CreatePage: NextPage = () => {
 
       <BaseContainer>
         <BaseWrapper title="新歓作成">
-          <div className="py-4 px-2 border-2 border-gray-800">
+          <div className="border-2 border-gray-800 py-4 px-2">
             {circle ? (
               <CreateCircleNewJoyForm
                 onSubmit={onSubmit}

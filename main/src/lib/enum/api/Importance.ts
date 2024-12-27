@@ -22,7 +22,7 @@ export const Importance = {
 
 export type ImportanceKey = keyof Omit<typeof Importance, '_type'>
 export type ImportanceAllKey = keyof typeof Importance
-export type Importance = typeof Importance[ImportanceKey]
+export type Importance = (typeof Importance)[ImportanceKey]
 
 /**
  * 重要度.

@@ -39,7 +39,7 @@ const SearchTextField: FC<Props> = ({
           placeholder={placeholder}
           onChange={onChange}
           maxLength={maxLength}
-          className="pr-12 pl-3 h-10 text-sm bg-white rounded-lg border-2 border-gray-300 focus:outline-none"
+          className="h-10 rounded-lg border-2 border-gray-300 bg-white pr-12 pl-3 text-sm focus:outline-none"
           pattern={pattern}
           disabled={disabled}
           style={{
@@ -48,7 +48,7 @@ const SearchTextField: FC<Props> = ({
         />
 
         <p
-          className="flex absolute top-0 right-0 items-center px-1 md:px-2 mt-0.5 mr-2 md:mr-1 text-xs md:text-base whitespace-nowrap text-black-900"
+          className="text-black-900 absolute top-0 right-0 mt-0.5 mr-2 flex items-center whitespace-nowrap px-1 text-xs md:mr-1 md:px-2 md:text-base"
           style={{ height: 34 }}
         >
           <button type="submit">

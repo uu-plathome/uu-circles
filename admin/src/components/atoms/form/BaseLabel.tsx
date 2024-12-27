@@ -19,12 +19,12 @@ export type Props = {
 const BaseLabel: React.FC<Props> = ({ label, id, note, required }) => {
   return (
     <div className="mb-2">
-      <div className="flex items-center mb-1">
+      <div className="mb-1 flex items-center">
         <label className="mr-2 text-white" htmlFor={id} id={`base_label_${id}`}>
           {label}
         </label>
         {required ? (
-          <span className="p-1 text-xs text-white bg-red-600 rounded">
+          <span className="rounded bg-red-600 p-1 text-xs text-white">
             必須
           </span>
         ) : (

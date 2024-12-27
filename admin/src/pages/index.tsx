@@ -39,12 +39,12 @@ const IndexPage: NextPage = () => {
             <h2 className="mb-4 text-lg text-white">メニュー</h2>
 
             <ul>
-              <li className="pb-4 ml-4 list-disc text-white">
+              <li className="ml-4 list-disc pb-4 text-white">
                 <Link href="/circle">
                   <p className="text-white underline">サークル一覧へ</p>
                 </Link>
               </li>
-              <li className="pb-4 ml-4 list-disc text-white">
+              <li className="ml-4 list-disc pb-4 text-white">
                 <Link href="/circle/create">
                   <p className="text-white underline">サークル新規追加</p>
                 </Link>

@@ -18,22 +18,22 @@ const RedButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
         <p
           className={`
                     min-w-120
+                    ripple
+                    hover:opacity-800
                     inline-block
+                    rounded
+                    bg-red-600
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-red-600
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
+                    transition
                     hover:shadow-lg
-                    hover:opacity-800
                     focus:outline-none
                 `}
         >
@@ -46,22 +46,22 @@ const RedButton: React.FC<Props> = ({ children, as, href, onClick, type }) => {
       <button
         className={`
                     min-w-120
+                    ripple
                     inline-block
+                    rounded
+                    bg-red-600
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-red-600
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
-                    hover:shadow-lg
+                    transition
                     hover:opacity-80
+                    hover:shadow-lg
                     focus:outline-none
                     `}
         onClick={onClick}

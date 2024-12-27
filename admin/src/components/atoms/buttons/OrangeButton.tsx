@@ -15,22 +15,22 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
         <p
           className={`
                     min-w-120
+                    ripple
                     inline-block
+                    rounded
+                    bg-yellow-300
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-yellow-300
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
-                    hover:shadow-lg
+                    transition
                     hover:opacity-80
+                    hover:shadow-lg
                     focus:outline-none
                 `}
         >
@@ -43,22 +43,22 @@ const OrangeButton: React.FC<Props> = ({ children, href, onClick, type }) => {
       <button
         className={`
                     min-w-120
+                    ripple
                     inline-block
+                    rounded
+                    bg-yellow-300
                     px-6
                     py-2
+                    text-center
                     text-sm
                     font-medium
-                    leading-6
-                    text-center
-                    text-white
                     uppercase
-                    transition
-                    bg-yellow-300
-                    rounded
+                    leading-6
+                    text-white
                     shadow
-                    ripple
-                    hover:shadow-lg
+                    transition
                     hover:opacity-80
+                    hover:shadow-lg
                     focus:outline-none
                 `}
         onClick={onClick}
