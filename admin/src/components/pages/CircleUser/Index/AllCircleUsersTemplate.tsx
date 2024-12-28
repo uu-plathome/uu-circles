@@ -44,8 +44,6 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
       <BaseContainer>
         <BaseWrapper
           title="部員アカウント一覧"
-          actionText="サークル新規作成"
-          actionHref="/circle/create"
         >
           <div className="border-2 border-gray-800 p-2">
             {users ? (
