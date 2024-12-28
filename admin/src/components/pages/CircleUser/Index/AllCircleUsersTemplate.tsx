@@ -42,9 +42,7 @@ export const AllCircleUsersTemplate: NextPage<Props> = ({
       {isMd ? <BaseHeader /> : ''}
 
       <BaseContainer>
-        <BaseWrapper
-          title="部員アカウント一覧"
-        >
+        <BaseWrapper title="部員アカウント一覧">
           <div className="border-2 border-gray-800 p-2">
             {users ? (
               <div className="mb-8 py-4">
