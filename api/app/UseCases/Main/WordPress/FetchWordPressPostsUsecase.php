@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\UseCases\Main\WordPress;
 
+use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -15,10 +16,24 @@ final class FetchWordPressPostsUsecase
 
     const MAX_FETCH_NUMBER = 4;
 
+    public function invoke(string $wpUrl, ?string $tagsTaxonomy) : array 
+    {
+        // サイト閉塞やWordPressのサイトがダウンしている場合に、空配列を返却する。
+        try {
+            return $this->getWordPressPosts($wpUrl, $tagsTaxonomy);
+        } catch (Exception $e) {
+            return [
+                'postsNotTags'   => [],
+                'postsExistTags' => [],
+                'medias' => [],
+            ];
+        }
+    }
+
     /**
      * 最新のWordPressの記事を6件取得する.
      */
-    public function invoke(string $wpUrl, ?string $tagsTaxonomy): array
+    public function getWordPressPosts(string $wpUrl, ?string $tagsTaxonomy): array
     {
         Log::debug('FetchUuYellArticlesUsecase args none');
 
