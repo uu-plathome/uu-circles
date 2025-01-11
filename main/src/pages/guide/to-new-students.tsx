@@ -189,22 +189,6 @@ const Page: NextPage<Props> = () => {
               </div>
             </div>
 
-            {/* <SubHeader>2.オンライン新歓会場に参加してみよう</SubHeader>
-
-            <div className="px-4 pb-6">
-              <p>
-                現在はオフラインでの新歓開催を予定していますが、
-                オンラインになった場合のためにdiscordと呼ばれるプラットフォームを用いて
-                、サークルが新歓の告知から説明会まで行ってくれます。まだ入っていない人は下のボタンをタップ！
-              </p>
-            </div>
-
-            <div className="pb-8 pt-4">
-              <GreenLgButton href="/guide/discord">
-                オンライン新歓会場への参加方法へ
-              </GreenLgButton>
-            </div> */}
-
             <div id={ID_LIST.third}>
               <SubHeader id={ID_LIST.third}>
                 2. いつ・どんな新歓があるか確認してみよう
