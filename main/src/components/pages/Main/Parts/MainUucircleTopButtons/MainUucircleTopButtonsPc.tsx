@@ -26,6 +26,14 @@ const PcButton: FC<PcButtonProps> = ({ href, src, alt }) => {
 const PcButtonGroup: FC = ({}) => {
   return (
     <nav className="flex">
+      <div id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY} className="mx-4 mb-4">
+        <PcButton
+          href="/circle/newjoy"
+          src="/images/topButtons/shinkan1.png"
+          alt="今日の新歓"
+        />
+      </div>
+
       <div
         id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_TO_NEW_STUDENTS}
         className="mx-4 mb-4"
@@ -34,14 +42,6 @@ const PcButtonGroup: FC = ({}) => {
           href="/guide/to-new-students"
           src="/images/topButtons/Rectangle15.png"
           alt="新入生へ"
-        />
-      </div>
-
-      <div id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_NEW_JOY} className="mx-4 mb-4">
-        <PcButton
-          href="/circle/newjoy"
-          src="/images/topButtons/shinkan1.png"
-          alt="今日の新歓"
         />
       </div>
     </nav>
