@@ -15,11 +15,11 @@ const SpButtonGroup = dynamic<SpButtonGroupProps>(() =>
 )
 
 const MainUucircleTopButtons: FC = ({}) => {
-  const { isLg } = useMediaQuery()
+  const { isMd } = useMediaQuery()
 
   return (
     <div className="flex justify-center py-10 bg-gray-100">
-      {isLg ? <PcButtonGroup /> : <SpButtonGroup />}
+      {isMd ? <PcButtonGroup /> : <SpButtonGroup />}
     </div>
   )
 }
