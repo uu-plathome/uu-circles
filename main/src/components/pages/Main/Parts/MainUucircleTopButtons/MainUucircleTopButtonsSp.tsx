@@ -57,14 +57,6 @@ const SpButtonGroup: VFC<SpButtonGroupProps> = () => {
             alt="今日の新歓"
           />
         </SwiperSlide>
-
-        <SwiperSlide>
-          <SpButton
-            href="/guide/discord"
-            src="/images/topButtons/discordBunner1.png"
-            alt="新歓ディスコード"
-          />
-        </SwiperSlide>
       </Swiper>
     </>
   )

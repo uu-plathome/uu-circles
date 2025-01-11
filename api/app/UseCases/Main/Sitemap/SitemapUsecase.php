@@ -60,10 +60,6 @@ final class SitemapUsecase
                 '2021-03-07',
             ),
             SitemapDto::of(
-                $url.'/guide/discord',
-                '2021-03-07',
-            ),
-            SitemapDto::of(
                 $url.'/guide/management-team',
                 '2021-03-07',
             ),

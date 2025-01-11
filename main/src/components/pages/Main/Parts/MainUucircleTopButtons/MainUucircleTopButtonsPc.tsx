@@ -44,14 +44,6 @@ const PcButtonGroup: FC = ({}) => {
           alt="今日の新歓"
         />
       </div>
-
-      <div id={TOP_BUTTONS_ID_LIST.TOP_BUTTONS_DISCORD} className="mx-4 mb-4">
-        <PcButton
-          href="/guide/discord"
-          src="/images/online.png"
-          alt="新歓ディスコード"
-        />
-      </div>
     </nav>
   )
 }
