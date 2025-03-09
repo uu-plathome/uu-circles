@@ -22,10 +22,12 @@ const Maintenance: NextPage = () => {
 
       <div className="xl:container">
         <div className="mx-auto mt-16 max-w-screen-md">
-          <h1 className="mb-4 text-center text-2xl text-white">メンテナンスのお知らせ</h1>
+          <h1 className="mb-4 text-center text-2xl text-white">
+            メンテナンスのお知らせ
+          </h1>
 
           <div className="py-4 px-4">
-            <DangerBunner text='2025/3/16（日）以降はサーバー移管のため、本画面から登録作業ができません' />
+            <DangerBunner text="2025/3/16（日）以降はサーバー移管のため、本画面から登録作業ができません" />
           </div>
         </div>
       </div>
