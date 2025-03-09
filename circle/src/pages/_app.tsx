@@ -82,7 +82,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     }
 
     // 環境変数からメンテナンスモードの状態を取得
-    const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+    const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true'
 
     // メンテナンスモードであり、現在のページがメンテナンスページでない場合リダイレクト
     if (isMaintenance) {
