@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
-import { DangerBunner } from '@/src/components/atoms/bunner/DangerBunner'
 import Head from 'next/head'
-import { BaseContainer } from '../components/layouts/BaseContainer'
+import { DangerBunner } from '@/src/components/atoms/bunner/DangerBunner'
+import { BaseContainer } from '@/src/components/layouts/BaseContainer'
 
 const Maintenance: NextPage = () => {
   return (
