@@ -73,7 +73,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       }
     }
 
-    f()
+    const f_maintenance = async () => {
+      // メンテナンスモードであり、現在のページがメンテナンスページでない場合リダイレクト
+      localStorage.setItem('accessToken', '')
+      setAccessToken('')
+      setRole(undefined)
+      await router.push('/maintenance')
+      setLoading(false)
+    }
+
+    // 環境変数からメンテナンスモードの状態を取得
+    const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true'
+
+    // メンテナンスモードであり、現在のページがメンテナンスページでない場合リダイレクト
+    if (isMaintenance) {
+      f_maintenance()
+    } else {
+      f()
+    }
   }, [])
 
   return (

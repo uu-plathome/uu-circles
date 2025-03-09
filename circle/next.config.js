@@ -9,6 +9,7 @@ const nextConfig = {
     API_URL: process.env.API_URL || 'http://localhost:8000',
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
     BUGSNAG_API_KEY: process.env.BUGSNAG_API_KEY,
+    NEXT_PUBLIC_MAINTENANCE_MODE: process.env.NEXT_PUBLIC_MAINTENANCE_MODE,
   },
 
   images: {
