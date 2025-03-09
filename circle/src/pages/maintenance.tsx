@@ -16,7 +16,7 @@ const Maintenance: NextPage = () => {
             </h1>
 
             <div className="py-4 px-4">
-              <DangerBunner text='2025/3/16（日）以降はサーバー移管のため、本画面から登録作業ができません' />
+              <DangerBunner text="2025/3/16（日）以降はサーバー移管のため、本画面から登録作業ができません" />
             </div>
           </div>
         </div>
